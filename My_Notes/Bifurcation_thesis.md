@@ -1,5 +1,5 @@
 # Notes on _Bifurcation Theory of the L-H Transition in Fusion Plasmas_
-## Chapter 1 Introduction
+## Chapter 1: Introduction
 ### 1.2 L-H Transition
 
 + L-mode: turbulence enhances radial transport
@@ -30,7 +30,7 @@
 
 + How does the bifurcation structure change when adding an extra dynamical equation for turbulence? **AND** What is the best dynamical description of the turbulence reduction by sheared $\mathbf{E}\times\mathbf{B}$-flows?
 
-## Chapter 2 L-H Transitions in Magnetically-Confined Plasmas
+## Chapter 2: L-H Transitions in Magnetically-Confined Plasmas
 ### 2.1 Experimental Observations
 
 + "The complex, nonlinear behavior of the plasma and very fast timescales of the transition makes it very hard to discriminate the cause and effect relations between the many evolving physical quantities."
@@ -55,4 +55,52 @@
 
 + Many proposed mechanisms are one of two things: the trigger of the transition, or the sustaining of the H-mode.
 
-	+ One mechanism for sustainment is the reduction of turbulence by sheared flows. The shearing of turbulent eddies until they break into smaller eddies is well known.
++ One mechanism for sustainment is the reduction of turbulence by sheared flows. The shearing of turbulent eddies until they break into smaller eddies is well known.
+
++ However, there are different flows in plasmas because of mass difference.
+
+	+ Each species' flows can be decomposed into orthogonal directions: poloidal and toroidal directions or parallel and perpendicular to the magnetic field.
+
+	+ Further, these mass flows are driven by different effects, so flows can be decomposed into driving terms:
+
+		+ Diamagnetic flow, driven by $\nabla p$
+
+		+ $\mathbf{E}\times\mathbf{B}$-flow, driven by the $\mathbf{E}$-field. This is the **SAME** for all particles, independent of mass and charge: $$v_{\mathbf{E}\times\mathbf{B}} \,=\, \frac{\mathbf{E}\times\mathbf{B}}{B^2}$$
+
+		+ According to Burrell's paper of 1994, the $\mathbf{E}\times\mathbf{B}$-flow reduces (ion temperature-driven) turbulence, tearing apart eddies. Also, because the flow works the same on all particles, it can stabilize all possible modes.
+
+		+ This makes it a very universal mechanism for stabilization. There **is** a consensus on this and is accepted. A radial electric field well has be observed near the edge of an H-mode plasma.
+
+	+ The main experimental parameter is heating; heat flux at the outer bits is more relevant. Ions are shown to be the ones to contribute more, since at low $n$, the energy exchange between $e^-$ and ions is limited and lots of ECRH is needed for H-mode.
+
+		+ However, since heating is more financially and practically dealt with, the threshold values need to be found in terms of the ion heat flux.
+
++ Another decomposition of flows is encountered: the division between zonal and mean flows.
+
+	+ Zonal flows are defined as driven by turbulence itself, and result in small fluctuations of the radial $\mathbf{E}$-field on top of the amount that causes the mean $\mathbf{E}\times\mathbf{B}$-flow.
+
+	+ There is no clear separation in length scales between the two... so it is unclear how they are distinct.
+
+## Chapter 3: Bifurcation Theory
+
++ ??? A bifurcation is a boundary in parameter space where the topological structure of the dynamic solution changes?
+
++ A bifurcation boundary divides the entire parameter space of a certain model into regions with qualitatively the same type of solutions.
+
+	+ Since L-mode and H-mode are qualitatively distinct, they are most likely separated by a bifurcation.
+
+### 3.1 Introduction
+
++ A bifurcation is a topological change in the dynamical solution when a small and smooth change of a parameter is made.
+
++ Dynamical systems are described in terms of DE's as $\dot{x} \,=\, f(x)$, where $x$ is a dynamic variable, and $f(x)$ is an arbitrary function of that variable and probably depends on some parameters.
+
+	+ The classic (and simple) example of a bifurcation is when $f$ is quadratic with $x$, as the following: $\dot{x} \,=\, a + x^2$, where $a$ is the control parameter.
+
+	+ As long as $a$ is negative, there are two solutions: $x_0 \,=\, \pm\sqrt{-a}$ (negative is stable, positive is unstable). However, when $a = 0$, there is only 1 equilibrium point, and is called a saddle-node fixed point. If $a > 0$, there are no equilibrium points. This is known as the _fold bifurcation_.
+
++ The simplest form of any bifurcating system can be reduced is called the _topological norm form_.
+
++ The least number of parameters needed to construct this topological norm form is called the _co-dimension_.
+
+<!-- The codimension of a bifurcation is the number of parameters which must be varied for the bifurcation to occur. -->

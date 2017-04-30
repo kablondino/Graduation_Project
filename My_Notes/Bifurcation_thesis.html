@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1 id="notes-on-bifurcation-theory-of-the-l-h-transition-in-fusion-plasmas">Notes on <em>Bifurcation Theory of the L-H Transition in Fusion Plasmas</em></h1>
-<h2 id="chapter-1-introduction">Chapter 1 Introduction</h2>
+<h2 id="chapter-1-introduction">Chapter 1: Introduction</h2>
 <h3 id="l-h-transition">1.2 L-H Transition</h3>
 <ul>
 <li><p>L-mode: turbulence enhances radial transport</p></li>
@@ -32,7 +32,7 @@
 <li><p>How does the bifurcation structure change when changing the transport reduction mechanism?</p></li>
 <li><p>How does the bifurcation structure change when adding an extra dynamical equation for turbulence? <strong>AND</strong> What is the best dynamical description of the turbulence reduction by sheared <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flows?</p></li>
 </ul>
-<h2 id="chapter-2-l-h-transitions-in-magnetically-confined-plasmas">Chapter 2 L-H Transitions in Magnetically-Confined Plasmas</h2>
+<h2 id="chapter-2-l-h-transitions-in-magnetically-confined-plasmas">Chapter 2: L-H Transitions in Magnetically-Confined Plasmas</h2>
 <h3 id="experimental-observations">2.1 Experimental Observations</h3>
 <ul>
 <li><p>&quot;The complex, nonlinear behavior of the plasma and very fast timescales of the transition makes it very hard to discriminate the cause and effect relations between the many evolving physical quantities.&quot;</p>
@@ -52,5 +52,49 @@
 </ol></li>
 </ul>
 <h3 id="related-physical-mechanisms">2.2 Related Physical Mechanisms</h3>
+<ul>
+<li><p>Many proposed mechanisms are one of two things: the trigger of the transition, or the sustaining of the H-mode.</p></li>
+<li><p>One mechanism for sustainment is the reduction of turbulence by sheared flows. The shearing of turbulent eddies until they break into smaller eddies is well known.</p></li>
+<li><p>However, there are different flows in plasmas because of mass difference.</p>
+<ul>
+<li><p>Each species' flows can be decomposed into orthogonal directions: poloidal and toroidal directions or parallel and perpendicular to the magnetic field.</p></li>
+<li><p>Further, these mass flows are driven by different effects, so flows can be decomposed into driving terms:</p>
+<ul>
+<li><p>Diamagnetic flow, driven by <span class="math">\(\nabla p\)</span></p></li>
+<li><p><span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flow, driven by the <span class="math">\(\mathbf{E}\)</span>-field. This is the <strong>SAME</strong> for all particles, independent of mass and charge: <span class="math">\[v_{\mathbf{E}\times\mathbf{B}} \,=\, \frac{\mathbf{E}\times\mathbf{B}}{B^2}\]</span></p></li>
+<li><p>According to Burrell's paper of 1994, the <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flow reduces (ion temperature-driven) turbulence, tearing apart eddies. Also, because the flow works the same on all particles, it can stabilize all possible modes.</p></li>
+<li><p>This makes it a very universal mechanism for stabilization. There <strong>is</strong> a consensus on this and is accepted. A radial electric field well has be observed near the edge of an H-mode plasma.</p></li>
+</ul></li>
+<li><p>The main experimental parameter is heating; heat flux at the outer bits is more relevant. Ions are shown to be the ones to contribute more, since at low <span class="math">\(n\)</span>, the energy exchange between <span class="math">\(e^-\)</span> and ions is limited and lots of ECRH is needed for H-mode.</p>
+<ul>
+<li>However, since heating is more financially and practically dealt with, the threshold values need to be found in terms of the ion heat flux.</li>
+</ul></li>
+</ul></li>
+<li><p>Another decomposition of flows is encountered: the division between zonal and mean flows.</p>
+<ul>
+<li><p>Zonal flows are defined as driven by turbulence itself, and result in small fluctuations of the radial <span class="math">\(\mathbf{E}\)</span>-field on top of the amount that causes the mean <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flow.</p></li>
+<li><p>There is no clear separation in length scales between the two... so it is unclear how they are distinct.</p></li>
+</ul></li>
+</ul>
+<h2 id="chapter-3-bifurcation-theory">Chapter 3: Bifurcation Theory</h2>
+<ul>
+<li><p>??? A bifurcation is a boundary in parameter space where the topological structure of the dynamic solution changes?</p></li>
+<li><p>A bifurcation boundary divides the entire parameter space of a certain model into regions with qualitatively the same type of solutions.</p>
+<ul>
+<li>Since L-mode and H-mode are qualitatively distinct, they are most likely separated by a bifurcation.</li>
+</ul></li>
+</ul>
+<h3 id="introduction">3.1 Introduction</h3>
+<ul>
+<li><p>A bifurcation is a topological change in the dynamical solution when a small and smooth change of a parameter is made.</p></li>
+<li><p>Dynamical systems are described in terms of DE's as <span class="math">\(\dot{x} \,=\, f(x)\)</span>, where <span class="math">\(x\)</span> is a dynamic variable, and <span class="math">\(f(x)\)</span> is an arbitrary function of that variable and probably depends on some parameters.</p>
+<ul>
+<li><p>The classic (and simple) example of a bifurcation is when <span class="math">\(f\)</span> is quadratic with <span class="math">\(x\)</span>, as the following: <span class="math">\(\dot{x} \,=\, a + x^2\)</span>, where <span class="math">\(a\)</span> is the control parameter.</p></li>
+<li><p>As long as <span class="math">\(a\)</span> is negative, there are two solutions: <span class="math">\(x_0 \,=\, \pm\sqrt{-a}\)</span> (negative is stable, positive is unstable). However, when <span class="math">\(a = 0\)</span>, there is only 1 equilibrium point, and is called a saddle-node fixed point. If <span class="math">\(a &gt; 0\)</span>, there are no equilibrium points. This is known as the <em>fold bifurcation</em>.</p></li>
+</ul></li>
+<li><p>The simplest form of any bifurcating system can be reduced is called the <em>topological norm form</em>.</p></li>
+<li><p>The least number of parameters needed to construct this topological norm form is called the <em>co-dimension</em>.</p></li>
+</ul>
+<!-- The codimension of a bifurcation is the number of parameters which must be varied for the bifurcation to occur. -->
 </body>
 </html>
