@@ -83,8 +83,6 @@
 
 ## Chapter 3: Bifurcation Theory
 
-+ ??? A bifurcation is a boundary in parameter space where the topological structure of the dynamic solution changes?
-
 + A bifurcation boundary divides the entire parameter space of a certain model into regions with qualitatively the same type of solutions.
 
 	+ Since L-mode and H-mode are qualitatively distinct, they are most likely separated by a bifurcation.
@@ -103,4 +101,54 @@
 
 + The least number of parameters needed to construct this topological norm form is called the _co-dimension_.
 
-<!-- The codimension of a bifurcation is the number of parameters which must be varied for the bifurcation to occur. -->
++ Bifurcation theory describes BOTH the existence of stationary states but also analyzes the stability of them.
+
++ Let's introduce a perturbation $x \,\mapsto\, x_0 + x_1 e^{\lambda t}$, and $x_0 \gg x_1$ and $\lambda$ as the eigenvalue, which sign determines if the perturbation grows or not.
+
+	+ For a system of $N$ equations, the eigenvalues become $N$-dimensional complex vectors, with the signs of the real parts determining what is attracting or repelling.
+
++ The _Hopf bifurcation_ is another with co-dimension 1, with the real part of a pair of complex conjugated eigenvalues vanishing.
+
+	+ This means that the referred steady-state changes from unstable to stable, or vice versa.
+
+	+ _Supercritical Hopf bifucation_ is when there is a stable limit cycle surrounding the steady-state.
+
+	+ _Subcritical_ is when there is an unstable (repelling) limit cycle surrounding the steady-state.
+
+	+ When an unstable limit cycle grows and touches the stable limit cycle, they both vanish, causing a _global fold bifurcation_.
+
+### 3.2 Bifurcations vs L-H Transition Dynamics
+
++ Different types of observed transition dynamics can be recognized as certain types of bifurcations.
+
+	+ Fold bifurcations are the natural way to describe sharp transitions, such as L-H AND H-L transitions; the natural way to combine two folds is shown in Fig 3.3.
+
+	+ This gives TWO critical values for $a$; this hysteresis behavior is characteristic of two co-dimension 1 fold bifurcations coming from a co-dimension 2 cusp bifurcation.
+
+		+ The norm form of this: $\dot{x} \,=\, a - bx - x^3$; $b$ determines the size of the hysteresis.
+
+	+ The cusp bifurcation separates the parameter space into two regions: one with sharp transitions with hysteresis, and one with smooth transitions without fold bifurcations (with $a$ being what's scanned).
+
++ Therefore, the cusp bif. organizes two types of L-H transition dynamics: smooth and sharp. Oscillatory behavior can arise due to a Hopf bif.
+
+	+ There is a way that the Hopf bif. can be combined with the cusp bif, which can be view as a _degenerate Bogdanov-Takens bif_. This is **the** co-dimension 3 bif. referenced here.
+
+	+ There are several equivalent unfoldings of this bif., seen as Eq. 3-5
+
++ The original cusp bif. equation is coupled to a damped variable; as long as the coupled constant $c$ is below a critical value, the parameter space is the same as indicated in Fig. 3.3c.
+
+	+ Any additional coupling will cause the model to be very sensitive to perturbations, making it less robust of a candidate for the L-H transition.
+
+	+ At the critical value of $c$, the co-dimension 3 bif. is encountered at the position of the cusp bif. A regime of limit cycle solutions opens up, covering the original cusp. See Fig. 3.4.
+
+		+ The limit of cycle solutions are produced by Hopf bifs. If both steady-states are unstable, the system will oscillate according to this limit cycle. However, if one steady-state turns stable, the system will transit towards it.
+
+		+ Oscillatory solutions only occur in the region surrounding the cusp bif. point where there are no steady-states.
+
+	+ The specific arrangement of smooth and sharp transitions separated by the oscillatory transitions is characteristic of an underlying co-dimension 3 bif. The quality of an H-mode model can be judged by the existence of the co-dimension 3 bif.
+
+		+ If the model does not contain this bif., it can not describe all different types of L-H transitions.
+
+		+ If a model does describe all of the types of  transitions without having this co-dimension 3 bif., there is a parameter in the model that could pull behavior into inappropriate regions of parameter space, _e.g._ oscillations far away from the L-H transition point. Therefore, co-dimension 3 bif is required to be robust.
+
+## Chapter 4: Bifurcation Theory for the L-H Transition in Magnetically-Confined Fusion Plasmas
