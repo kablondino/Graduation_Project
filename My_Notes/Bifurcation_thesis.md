@@ -152,3 +152,26 @@
 		+ If a model does describe all of the types of  transitions without having this co-dimension 3 bif., there is a parameter in the model that could pull behavior into inappropriate regions of parameter space, _e.g._ oscillations far away from the L-H transition point. Therefore, co-dimension 3 bif is required to be robust.
 
 ## Chapter 4: Bifurcation Theory for the L-H Transition in Magnetically-Confined Fusion Plasmas
+### 4.1 Introduction
+
++ Two separate fold bifurcations are necessary to describe the hysteresis, since the heating to trigger the L-H transistion is different than for H-L transition.
+
++ Two types of parameters affect the existence and magnitude of the hysteresis:
+
+	+ One controls the existence by causing the two fold bifs. to meet in the cusp bif. This causes smooth transitions.
+
+	+ The second causes the hysteresis to be replaced by limit cycle oscillations from a Hopf bif.
+
+	+ These two parameters branch off in parameter space out of the underlying co-dimension 3 bif. The analysis of this bif. it is possible to find how the parameters affect the evolution.
+
++ The lowest-order system containing this co-dimension 3 bif. is the Fitz-Hugh-Nagumo: $$\dot{x} \,=\, -a - bx - x^3 + cy \\ \dot{y} \,=\, -x - y$$
+
+	+ For $c = 0$, the steady state solutions can have one or multiple possibilities depending on $a$ and $b$.
+
+	+ For $c \neq 0$, the bif. structure stays the same until $c$ is above some critical value, to which the cusp turns into the region of limit cycle solutions (oscillatory solutions).
+
+	+ If a detailed model for the edge transport barrier dynamics contains this co-dimension 3 bif., it is proven that the regions of parameter space with L-mode, H-mode, hysteresis, and dithering are organized in the same way as the Fitz-Hugh-Nagumo model.
+
+### 4.2 Generalized Bifurcation Theory
+
++ A system of PDEs can be viewed as an infinite system of ODEs, with each ODE describing the evolution of a single point coupled to its neighboring points.
