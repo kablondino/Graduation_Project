@@ -30,6 +30,8 @@
 
 + How does the bifurcation structure change when adding an extra dynamical equation for turbulence? **AND** What is the best dynamical description of the turbulence reduction by sheared $\mathbf{E}\times\mathbf{B}$-flows?
 
+---------------------------------------
+
 ## Chapter 2: L-H Transitions in Magnetically-Confined Plasmas
 ### 2.1 Experimental Observations
 
@@ -80,6 +82,8 @@
 	+ Zonal flows are defined as driven by turbulence itself, and result in small fluctuations of the radial $\mathbf{E}$-field on top of the amount that causes the mean $\mathbf{E}\times\mathbf{B}$-flow.
 
 	+ There is no clear separation in length scales between the two... so it is unclear how they are distinct.
+
+---------------------------------------
 
 ## Chapter 3: Bifurcation Theory
 
@@ -151,6 +155,8 @@
 
 		+ If a model does describe all of the types of  transitions without having this co-dimension 3 bif., there is a parameter in the model that could pull behavior into inappropriate regions of parameter space, _e.g._ oscillations far away from the L-H transition point. Therefore, co-dimension 3 bif is required to be robust.
 
+---------------------------------------
+
 ## Chapter 4: Bifurcation Theory for the L-H Transition in Magnetically-Confined Fusion Plasmas
 ### 4.1 Introduction
 
@@ -164,14 +170,54 @@
 
 	+ These two parameters branch off in parameter space out of the underlying co-dimension 3 bif. The analysis of this bif. it is possible to find how the parameters affect the evolution.
 
-+ The lowest-order system containing this co-dimension 3 bif. is the Fitz-Hugh-Nagumo: $$\dot{x} \,=\, -a - bx - x^3 + cy \\ \dot{y} \,=\, -x - y$$
++ The lowest-order system containing this co-dimension 3 bif. is the FitzHugh-Nagumo: $$\dot{x} \,=\, -a - bx - x^3 + cy \\ \dot{y} \,=\, -x - y$$
 
 	+ For $c = 0$, the steady state solutions can have one or multiple possibilities depending on $a$ and $b$.
 
 	+ For $c \neq 0$, the bif. structure stays the same until $c$ is above some critical value, to which the cusp turns into the region of limit cycle solutions (oscillatory solutions).
 
-	+ If a detailed model for the edge transport barrier dynamics contains this co-dimension 3 bif., it is proven that the regions of parameter space with L-mode, H-mode, hysteresis, and dithering are organized in the same way as the Fitz-Hugh-Nagumo model.
+	+ If a detailed model for the edge transport barrier dynamics contains this co-dimension 3 bif., it is proven that the regions of parameter space with L-mode, H-mode, hysteresis, and dithering are organized in the same way as the FitzHugh-Nagumo model.
 
 ### 4.2 Generalized Bifurcation Theory
 
 + A system of PDEs can be viewed as an infinite system of ODEs, with each ODE describing the evolution of a single point coupled to its neighboring points.
+
++ Summarizing, to have a general dynamical system with the co-dimension 3 bif., two vectors $\mathbf{v}_1$ and $\mathbf{u}_1$ can be found that satisfy:
+	$$M_1 \mathbf{v}_1 \,=\, 0 ~~~~~~~~~~~~~~~~ \mathbf{u}_1^T M_1 \,=\, 0 \\ \mathbf{u}_1^T (M_2 \mathbf{v}_1) \mathbf{v}_1 \,=\, 0 ~~~~~~~~ \mathbf{u}_1^T \cdot \mathbf{v}_1 \,=\, 0$$
+
++ To obtain the parameter threshold values for the different transitions, the fold bif. is found by analyzing steady-state conditions. The Hopf bif. need further investigation.
+
+	+ The Hopf bif. can be found by unfolding the Bogdanov-Takens bif. in all its parameters and by identifying the specific direction which keeps the eigenvalues purely imaginary, _i.e._ the Hopf condition: $M(\mathbf{v} - \mathbf{v}_{new}) \,=\, i\omega(\mathbf{v} - \mathbf{v}_{new}), ~~~ M = M_1 + \delta M$
+
+	+ After combining, we can come up with a rewritten condition that is invariant under transformation:
+	$$\mathbf{u}_1^T \cdot \mathbf{v}_2 (\mathbf{u}_1^T M_3 \mathbf{v}_2 + \mathbf{u}_2^T M_3 \mathbf{v}_1) \,=\, \mathbf{u}_2^T \cdot \mathbf{v}_2 (\mathbf{u}_1^T M_3 \mathbf{v}_1)$$
+
+### 4.3 Finite Dimensional Case
+
++ Cusp: $a^2 \,=\, -\dfrac{4}{27}(b + c)^3$
+
++ Hopf: $a^2 \,=\, -\dfrac{4}{27}(b + 1)\left(b + \dfrac{3}{2}c - \dfrac{1}{2}\right)^2$
+
+### 4.4 Transport Model for the L-H Transition
+
++ Continuity equation for mass (density) and energy, with a single temperature and all the particle and energy deposition into the plasma is somewhere inthe the core outside of the model:
+	$$\frac{\partial n}{\partial t} \,=\, \frac{\partial \Gamma}{\partial r} \\ \frac{\partial}{\partial t} \left(\frac{nT}{\gamma - 1}\right) \,=\, -\frac{\partial q}{\partial r}$$
+
+ + Particle and heat flux ($\gamma$ is the adiabatic index):
+	$$\Gamma \,=\, -D \frac{\partial n}{\partial r} \\ q \,=\, -\chi n \frac{\partial T}{\partial r} + \frac{\Gamma T}{\gamma - 1}$$
+
++ Going to higher confinement can be described as a reduction of transport coefficients: particle $D$ and heat $\chi$
+
++ In the turbulent transport model used here, only a mean flow due to $\mathbf{E}\times\mathbf{B}$-drift is used, such that the transport coefficients become a direct function of the normalized radial electric field:
+	$$Z \,=\, \frac{\rho_p e E_r}{T_i}$$
+
++ To properly describe dynamics, the evolution of the radial electric field must be taken into account via Ampère's law:
+	$$\epsilon \frac{\partial Z}{\partial t} \,=\, \mu \frac{\partial^2 Z}{\partial r^2} + c_n \frac{T}{n^2} \frac{\partial n}{\partial r} + \frac{c_T}{n} \frac{\partial T}{\partial r} - G(Z)$$
+
+	+ $\epsilon \,=\, B_p^2 / (B^2 \nu_i)$ is the dielectric constant
+
+	+ The 1st term on the RHS is the radial currents, and $\mu \sim \rho_p^2$, the ratio of viscosity to collision frequency
+
+	+ The 2nd and 3rd terms of the RHS are due to the bipolar part of the anomalous cross field flux, _i.e._ the excess flux of electrons compared to ions.
+
+	+ The last term $G$ is Taylor expanded because we need an inflection point to obtain the cusp bif.: $G(Z) \,=\, a + bZ + Z^3$
