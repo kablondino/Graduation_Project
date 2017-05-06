@@ -221,3 +221,48 @@
 	+ The 2nd and 3rd terms of the RHS are due to the bipolar part of the anomalous cross field flux, _i.e._ the excess flux of electrons compared to ions.
 
 	+ The last term $G$ is Taylor expanded because we need an inflection point to obtain the cusp bif.: $G(Z) \,=\, a + bZ + Z^3$
+
+	+ The model must be the correct size: the outer edge of the plasma (SOL) is fixed at $r = 0$; the inner boundary is at $r = -\infty$; and at $r = \infty$, the $T$ and $n$ are forced to drop towards zero, giving conditions in Eq. 4-38.
+
++ An assumption can be made about the transport coefficients, which allows us to solve the steady-state $n$ and $T$ profiles as a function of particle diffusivity alone:
+	$$\chi(Z) \,=\, \frac{D(Z)}{\zeta(\gamma - 1)}$$
+
+	+ The value of the radial electric field is determined by the roots of Eq. 4-43, shown in Eq. 4.44
+
+		+ The LHS is a function purely of the radial electric field, and the RHS is a function of the densition, and is monotonic.
+
+		+ In addition, the edge of the radial electric field is given by Eq. 4-45
+
+		+ An angle $\theta$ can be looked at in the parameter space, shown in Fig 4.5 and Eq. 4-46. This can be considered a single bifurcation parameter.
+
++ The fold condition is $\mathbf{u}^T_1 M_1 \,=\, 0$, with $M_1$ given in Eq. 4-47. This leads to the following condition:
+	$$\frac{\text{d}}{\text{d}Z} \left(\frac{G}{D}\right)\biggr\rvert_e \,=\, 0$$
+
++ The cusp condition is defined as $\mathbf{u}_1^T (M_2 \mathbf{v}_1) \mathbf{v}_1 \,=\, 0$, which is taken care of by differentiating the 3-tesor $M_2 \,=\, \dfrac{\partial M_1}{\partial \mathbf{v_0}}$. This leads to a similar condition:
+	$$\frac{\text{d}^2}{\text{d}Z^2} \left(\frac{G}{D}\right)\biggr\rvert_e \,=\, 0$$
+
++ The condition for the Bogdanov-Takens bif.:
+	$$\int_{-\infty}^0 (u_n v_n + u_T v_T + u_Z v_Z) \, \text{d}x \,=\, 0$$
+
++ For the Hopf bif., it is quite complicated, with 4 different cases shown in Fig. 4.7; the condition boils down to:
+	$$\frac{\text{d}}{\text{d}Z} \left(GD\right)\biggr\rvert_e \,=\, 0$$
+
++ A complete, but 1-D control parameter space of the bifs. is in Fig. 4.8. The solid curve surrounds the oscillating regime and the large dashed curve corresponds to the sharp hysteresis-like transitions, both part of the Hopf bif. The short-dashed curve corresponds to the two-fold bif. that merges at the cusp bif. point.
+
+### 4.5 Conclusion and Discussion
+
++ This model, as expected, shows that increasing the heating power increases heat flux from the core, $q(-\infty)$, which decreases $\theta$ towards H-mode.
+
+	+ However, the model also predicts that increasing particle flux has the opposite effect. This is not observed in experiment, because increasing particle flux usually also means increased heating.
+
+	+ Also, this model does not take into account extra momentum and flow due to extra particles, and some SOL physics are excluded.
+
++ The point of this model is to compare different L-H transition mechanisms, by either doing a different bif. analysis and comparing, or by incorporating new mechanism.
+
++ The size of the transport barrier and its parametric dependencies can be determined from this model.
+
++ A list of possible physics topics suggestions to be included in the model is given.
+
+---------------------------------------
+
+## Chapter 5: Bifurcation Theory of a One-Dimensional Transport Model fo the L-H Transition

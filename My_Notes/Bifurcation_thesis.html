@@ -181,9 +181,36 @@
 <li><p>To properly describe dynamics, the evolution of the radial electric field must be taken into account via Ampère's law: <span class="math">\[\epsilon \frac{\partial Z}{\partial t} \,=\, \mu \frac{\partial^2 Z}{\partial r^2} + c_n \frac{T}{n^2} \frac{\partial n}{\partial r} + \frac{c_T}{n} \frac{\partial T}{\partial r} - G(Z)\]</span></p>
 <ul>
 <li><p><span class="math">\(\epsilon \,=\, B_p^2 / (B^2 \nu_i)\)</span> is the dielectric constant</p></li>
-<li><p>The 1st term on the RHS is the radial currents, and <span class="math">\(\mu \sim \rho_p^2, the ratio of viscosity to collision frequency\)</span></p></li>
+<li><p>The 1st term on the RHS is the radial currents, and <span class="math">\(\mu \sim \rho_p^2\)</span>, the ratio of viscosity to collision frequency</p></li>
 <li><p>The 2nd and 3rd terms of the RHS are due to the bipolar part of the anomalous cross field flux, <em>i.e.</em> the excess flux of electrons compared to ions.</p></li>
+<li><p>The last term <span class="math">\(G\)</span> is Taylor expanded because we need an inflection point to obtain the cusp bif.: <span class="math">\(G(Z) \,=\, a + bZ + Z^3\)</span></p></li>
+<li><p>The model must be the correct size: the outer edge of the plasma (SOL) is fixed at <span class="math">\(r = 0\)</span>; the inner boundary is at <span class="math">\(r = -\infty\)</span>; and at <span class="math">\(r = \infty\)</span>, the <span class="math">\(T\)</span> and <span class="math">\(n\)</span> are forced to drop towards zero, giving conditions in Eq. 4-38.</p></li>
 </ul></li>
+<li><p>An assumption can be made about the transport coefficients, which allows us to solve the steady-state <span class="math">\(n\)</span> and <span class="math">\(T\)</span> profiles as a function of particle diffusivity alone: <span class="math">\[\chi(Z) \,=\, \frac{D(Z)}{\zeta(\gamma - 1)}\]</span></p>
+<ul>
+<li><p>The value of the radial electric field is determined by the roots of Eq. 4-43, shown in Eq. 4.44</p>
+<ul>
+<li><p>The LHS is a function purely of the radial electric field, and the RHS is a function of the densition, and is monotonic.</p></li>
+<li><p>In addition, the edge of the radial electric field is given by Eq. 4-45</p></li>
+<li><p>An angle <span class="math">\(\theta\)</span> can be looked at in the parameter space, shown in Fig 4.5 and Eq. 4-46. This can be considered a single bifurcation parameter.</p></li>
+</ul></li>
+</ul></li>
+<li><p>The fold condition is <span class="math">\(\mathbf{u}^T_1 M_1 \,=\, 0\)</span>, with <span class="math">\(M_1\)</span> given in Eq. 4-47. This leads to the following condition: <span class="math">\[\frac{\text{d}}{\text{d}Z} \left(\frac{G}{D}\right)\biggr\rvert_e \,=\, 0\]</span></p></li>
+<li><p>The cusp condition is defined as <span class="math">\(\mathbf{u}_1^T (M_2 \mathbf{v}_1) \mathbf{v}_1 \,=\, 0\)</span>, which is taken care of by differentiating the 3-tesor <span class="math">\(M_2 \,=\, \dfrac{\partial M_1}{\partial \mathbf{v_0}}\)</span>. This leads to a similar condition: <span class="math">\[\frac{\text{d}^2}{\text{d}Z^2} \left(\frac{G}{D}\right)\biggr\rvert_e \,=\, 0\]</span></p></li>
+<li><p>The condition for the Bogdanov-Takens bif.: <span class="math">\[\int_{-\infty}^0 (u_n v_n + u_T v_T + u_Z v_Z) \, \text{d}x \,=\, 0\]</span></p></li>
+<li><p>For the Hopf bif., it is quite complicated, with 4 different cases shown in Fig. 4.7; the condition boils down to: <span class="math">\[\frac{\text{d}}{\text{d}Z} \left(GD\right)\biggr\rvert_e \,=\, 0\]</span></p></li>
+<li><p>A complete, but 1-D control parameter space of the bifs. is in Fig. 4.8. The solid curve surrounds the oscillating regime and the large dashed curve corresponds to the sharp hysteresis-like transitions, both part of the Hopf bif. The short-dashed curve corresponds to the two-fold bif. that merges at the cusp bif. point.</p></li>
+</ul>
+<h3 id="conclusion-and-discussion">4.5 Conclusion and Discussion</h3>
+<ul>
+<li><p>This model, as expected, shows that increasing the heating power increases heat flux from the core, <span class="math">\(q(-\infty)\)</span>, which decreases <span class="math">\(\theta\)</span> towards H-mode.</p>
+<ul>
+<li><p>However, the model also predicts that increasing particle flux has the opposite effect. This is not observed in experiment, because increasing particle flux usually also means increased heating.</p></li>
+<li><p>Also, this model does not take into account extra momentum and flow due to extra particles, and some SOL physics are excluded.</p></li>
+</ul></li>
+<li><p>The point of this model is to compare different L-H transition mechanisms, by either doing a different bif. analysis and comparing, or by incorporating new mechanism.</p></li>
+<li><p>The size of the transport barrier and its parametric dependencies can be determined from this model.</p></li>
+<li><p>A list of possible physics topics suggestions to be included in the model is given.</p></li>
 </ul>
 </body>
 </html>

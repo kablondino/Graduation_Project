@@ -5,7 +5,7 @@ set zlabel "a"
 set samples 500
 set isosamples 50
 
-set pm3d
+set pm3d map
 set grid
 
 
