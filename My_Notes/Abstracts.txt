@@ -1,0 +1,42 @@
+# Chapter 2 (presection)
+The most successful present-day fusion devices are the tokamaks.
+The world record of fusion power production is achieved by the JET tokamak in 1997[1], the fusion reactions produced more than 16 MW.
+This world record was only possible due to the formation of the H-mode transport barrier.
+Therefore, this H-mode state of the plasma will be the standard scenario for operating future fusion devices.
+This chapter elaborates on the characteristics of the H-mode and the observed transition dynamics.
+Furthermore, the current understanding of the underlying mechanism and some possible models are discussed.
+
+# Chapter 3 (presection)
+Nonlinear dynamical systems can exhibit all kinds of rich behaviour.
+Depending on the parameter settings of the model the temporal evolution of dynamical systems can be completely different.
+However, small changes of the parameters do not always qualitatively change the dynamics, such that there could be entire regions in parameter space that show qualitatively similar behaviour.
+Only when crossing the boundaries of these regions in parameter space the topological structure of the dynamic solutions changes; these boundaries are called bifurcations.
+Thus, the bifurcation boundaries divide the entire parameter space of a certain model in regions with qualitatively the same type of solutions.
+Since the L-mode and H-mode are qualitatively distinct they are most likely separated by a bifurcation; especially the different characteristic types of transitions between them are indications of typical bifurcations.
+Bifurcation analysis of L-H transition models can directly determine if these different types of dynamics are present in those models, and in which part of its parameter space they will occur.
+With this technique physical mechanisms can be combined to get a more complete picture of the physics generating the different types of transitions, and to find which parameters can be used to go from one regime to another.
+
+# Chapter 4
+The mathematical field of bifurcation theory is extended to be applicable to 1-dimensionally resolved systems of nonlinear partial differential equations, aimed at the determination of a certain specific bifurcation.
+This extension is needed to be able to properly analyze the bifurcations of the radial transport in magnetically confined fusion plasmas.
+This is of special interest when describing the transition from the low-energy-confinement state to the high-energy confinement state of the radial transport in fusion plasmas (i.e. the L-H transition), because the nonlinear dynamical behavior during the transition corresponds to the dynamical behavior of a system containing such a specific bifurcation.
+This bifurcation determines how the three types (sharp, smooth, and oscillating) of observed L-H transitions are organized as function of all the parameters contained in the model.
+
+# Chapter 5
+Transitions between low and high-confinement (L-H transitions) in magnetically confined plasmas can appear as three qualitatively different types: sharp, smooth, and oscillatory.
+Bifurcation analysis unravels these possible transition types and how they are situated in parameter space.
+In this paper the bifurcation analysis is applied to a 1-dimensional model for the radial transport of energy and density near the edge of magnetically confined plasmas.
+This phenomenological L-H transition model describes the reduction of the turbulent transport by E × B-flow shear self-consistently with the evolution of the radial electric field.
+Therewith, the exact parameter space, including the threshold values of the control parameters, of the possible L-H transitions in the model is determined.
+Furthermore, a generalised equal area rule is derived to describe the evolution of the transport barrier in space and time self-consistently.
+Applying this newly developed rule to the model analysed in this paper reveals a naturally occurring transition to an extra wide transport barrier that may correspond to the improved confinement known as the very- high-confinement mode.
+
+# Chapter 6
+In more than three decades a large amount of models and mechanisms have been proposed to describe a very beneficial feature of magnetically confined fusion plasmas: the L-H transition.
+Bifurcation theory can be used to compare these different models based on their dynamical transition structure.
+In this paper we employ bifurcation theory to distinguish two fundamentally different descriptions of the interaction between turbulence levels and sheared flows.
+The analytic bifurcation analysis characterises the parameter space tructure of the transition dynamics.
+Herewith, in these models three dynamically different types of transitions are characterised, sharp transitions, oscillatory transitions and smooth transitions.
+One of the two models has a very robust transition structure and is therefore more likely to be more accurate for such a robust phenomenon as the L-H transition.
+The other model needs more fine-tuning to get non-oscillatory transitions.
+These conclusions from the analytic bifurcation analysis are confirmed by dedicated numerical simulations, with the newly developed code Bifurcator.

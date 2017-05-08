@@ -19,7 +19,7 @@
 <li>The edge therefore has an &quot;edge transport barrier&quot;</li>
 </ul></li>
 <li><p>There is NO consensus on what plasma physics mechanism causes spontaneous transition from L-mode to H-mode</p></li>
-<li><p>3 different types of dynamics of transition are observed: sharp (sudden), oscillatory, and smooth</p></li>
+<li><p>3 different types of dynamics of transition are observed: sharp (sudden), oscillatory (dithering, or I-phase), and smooth</p></li>
 <li><p>Bifurcation theory is the mathematical study of qualitative changes in the solutions of dynamical systems.</p></li>
 </ul>
 <h3 id="research-questions">1.3 Research Questions</h3>
@@ -141,6 +141,15 @@
 </ul>
 <hr />
 <h2 id="chapter-4-bifurcation-theory-for-the-l-h-transition-in-magnetically-confined-fusion-plasmas">Chapter 4: Bifurcation Theory for the L-H Transition in Magnetically-Confined Fusion Plasmas</h2>
+<!-- ------------ THE ABSTRACT ------------
+
+    The mathematical field of bifurcation theory is extended to be applicable to 1-dimensionally resolved systems of nonlinear partial differential equations, aimed at the determination of a certain specific bifurcation.
+    This extension is needed to be able to properly analyze the bifurcations of the radial transport in magnetically confined fusion plasmas.
+    This is of special interest when describing the transition from the low-energy-confinement state to the high-energy confinement state of the radial transport in fusion plasmas (i.e. the L-H transition), because the nonlinear dynamical behavior during the transition corresponds to the dynamical behavior of a system containing such a specific bifurcation.
+    This bifurcation determines how the three types (sharp, smooth, and oscillating) of observed L-H transitions are organized as function of all the parameters contained in the model.
+
+-->
+
 <h3 id="introduction-1">4.1 Introduction</h3>
 <ul>
 <li><p>Two separate fold bifurcations are necessary to describe the hysteresis, since the heating to trigger the L-H transistion is different than for H-L transition.</p></li>
@@ -183,8 +192,8 @@
 <li><p><span class="math">\(\epsilon \,=\, B_p^2 / (B^2 \nu_i)\)</span> is the dielectric constant</p></li>
 <li><p>The 1st term on the RHS is the radial currents, and <span class="math">\(\mu \sim \rho_p^2\)</span>, the ratio of viscosity to collision frequency</p></li>
 <li><p>The 2nd and 3rd terms of the RHS are due to the bipolar part of the anomalous cross field flux, <em>i.e.</em> the excess flux of electrons compared to ions.</p></li>
-<li><p>The last term <span class="math">\(G\)</span> is Taylor expanded because we need an inflection point to obtain the cusp bif.: <span class="math">\(G(Z) \,=\, a + bZ + Z^3\)</span></p></li>
-<li><p>The model must be the correct size: the outer edge of the plasma (SOL) is fixed at <span class="math">\(r = 0\)</span>; the inner boundary is at <span class="math">\(r = -\infty\)</span>; and at <span class="math">\(r = \infty\)</span>, the <span class="math">\(T\)</span> and <span class="math">\(n\)</span> are forced to drop towards zero, giving conditions in Eq. 4-38.</p></li>
+<li><p>The last term <span class="math">\(G\)</span> is a catch-all for every other effect, and is Taylor expanded because we need an inflection point to obtain the cusp bif.: <span class="math">\(G(Z) \,\approx\, a + b(Z - Z_s) + (Z - Z_s)^3\)</span></p></li>
+<li><p>The model must be the correct size: the outer edge of the plasma (SOL) is fixed at <span class="math">\(r = 0\)</span>; the inner boundary is at <span class="math">\(r = -\infty\)</span>; and at <span class="math">\(r = \infty\)</span>, the <span class="math">\(T\)</span> and <span class="math">\(n\)</span> are forced to drop towards zero, giving conditions in Eq. 4-38 (or Eq. 5-9).</p></li>
 </ul></li>
 <li><p>An assumption can be made about the transport coefficients, which allows us to solve the steady-state <span class="math">\(n\)</span> and <span class="math">\(T\)</span> profiles as a function of particle diffusivity alone: <span class="math">\[\chi(Z) \,=\, \frac{D(Z)}{\zeta(\gamma - 1)}\]</span></p>
 <ul>
@@ -212,5 +221,82 @@
 <li><p>The size of the transport barrier and its parametric dependencies can be determined from this model.</p></li>
 <li><p>A list of possible physics topics suggestions to be included in the model is given.</p></li>
 </ul>
+<hr />
+<h2 id="chapter-5-bifurcation-theory-of-a-one-dimensional-transport-model-fo-the-l-h-transition">Chapter 5: Bifurcation Theory of a One-Dimensional Transport Model fo the L-H Transition</h2>
+<!-- ------------ THE ABSTRACT ------------
+
+    Transitions between low and high-confinement (L-H transitions) in magnetically confined plasmas can appear as three qualitatively different types: sharp, smooth, and oscillatory.
+    Bifurcation analysis unravels these possible transition types and how they are situated in parameter space.
+    In this paper the bifurcation analysis is applied to a 1-dimensional model for the radial transport of energy and density near the edge of magnetically confined plasmas.
+    This phenomenological L-H transition model describes the reduction of the turbulent transport by E × B-flow shear self-consistently with the evolution of the radial electric field.
+    Therewith, the exact parameter space, including the threshold values of the control parameters, of the possible L-H transitions in the model is determined.
+    Furthermore, a generalised equal area rule is derived to describe the evolution of the transport barrier in space and time self-consistently.
+    Applying this newly developed rule to the model analysed in this paper reveals a naturally occurring transition to an extra wide transport barrier that may correspond to the improved confinement known as the very- high-confinement mode.
+
+-->
+
+<h3 id="introduction-2">5.1 Introduction</h3>
+<ul>
+<li><p>Some models based on sets of 0-dimensional dynamical equations <strong>can</strong> describe global temporal evolution around L-H transitions, but they lack a description of radial structure of the transport barrier.</p>
+<ul>
+<li>There is more need of models that can predict such spatial and temporal observations with their threshold parameters. Bifurcation analysis to the rescue!</li>
+</ul></li>
+<li><p>The considered model assumes L-mode radial transport is dominated by turbulence. It is also assumed that shear in the <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flow is capable of tearing apart turbulent eddies.</p>
+<ul>
+<li>This means it is necessary to include the evolution of the radial electrice field and corresponding flow profile. In this model, there is not small-scale tearing and possible back-reaction of turbulence-generating zonal flows.</li>
+</ul></li>
+<li><p>Generalized Equal-Area Rule, which can be applied to other areas of science. In this context, it applies to the spatial and temporal evolution of the transport barrier.</p></li>
+</ul>
+<h3 id="transport-model-for-the-l-h-transition-1">5.2 Transport Model for the L-H Transition</h3>
+<p><em>NOTE:</em> This section is very similiar to 4.4, and is only more specific with <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flow.</p>
+<ul>
+<li><p>A well known effect is the reduction of turbulence by the generation of sheared flows, generated by something external or by the turbulence itself.</p>
+<ul>
+<li>This kind of self-organizing mechanism could be responsible for the self-sustained transport barrier; the sheared flows are identified as <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flows.</li>
+</ul></li>
+<li><p>The quenching mechanism is frequently modeled as an effective diffusivity depending on the <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flow shear: <span class="math">\[D \,=\, D_{min} + \frac{D_{max} - D_{min}}{1 + \widetilde{\alpha}\left(V^\prime_{\mathbf{E}\times\mathbf{B}}\right)^2}\]</span></p>
+<ul>
+<li><p>The prime indicates the radial derivative, and the square of the flow shear means that both signs of flow shear can suppress turbulence.</p></li>
+<li><p>A similar expression can be used to express the thermal conductivity.</p></li>
+<li><p>Approximation: <span class="math">\(V_{\mathbf{}\times\mathbf{B}} \approx E_r / B\)</span></p></li>
+</ul></li>
+<li><p>We cannot expect that the L-H transition will be initiated simply by a difference in the two transport coefficients; therefore, we can make a simplification: <span class="math">\(\chi \,=\, D \,/\, \zeta(\gamma - 1)\)</span>, with <span class="math">\(\zeta\)</span> as a proportionality factor.</p>
+<ul>
+<li>This gives the transport equations (5-6a,b) and evolution of the field (5-6c).</li>
+</ul></li>
+</ul>
+<h3 id="bifurcation-analysis">5.3 Bifurcation Analysis</h3>
+<ul>
+<li><p>The above is similar to Zohm's model, but differs in the description of effective diffusivity:</p>
+<ul>
+<li>Zohm's takes only the value of the radial electric field for diffusivity (shown in Eq. 5-10), with the resulting steady-state density profile as Eq. 5-11.</li>
+</ul></li>
+<li><p>The model for this paper gives a new steady-state in Eq. 5-12</p>
+<ul>
+<li>The angle <span class="math">\(\theta\)</span> is also found, in Eq. 5-13; Where the two intersect is the state of the system.</li>
+</ul></li>
+<li><p>A description of the transitions is then shown on page 68-70 of the pdf.</p></li>
+<li><p>In Fig. 5.3, the parameter space of both models are plotted with the same values (<em>a</em> is shear, <em>b</em> is Zohm):</p>
+<ul>
+<li><p>In Zohm's model, the oscillations during an oscillatory L-H transition last a lot longer.</p></li>
+<li><p>The onset of the oscillatory behavior for Zohm's is at values with a wider range, where the flow-shear model would have already gone into H-mode.</p></li>
+<li><p>The values for <span class="math">\(\theta(L-H)\)</span> are generally higher (<em>i.e.</em> lower heating threshold) for the flow-shear model, supporting that sheared flow is more efficient in reducing turbulence.</p></li>
+</ul></li>
+</ul>
+<h3 id="the-transport-barrier-space-and-time-consistently">5.4 The Transport Barrier: Space and Time Consistently</h3>
+<hr />
+<h2 id="chapter-6-comparison-of-bifurcation-dynamics-of-turbulent-transport-models-for-the-l-h-transition">Chapter 6: Comparison of Bifurcation Dynamics of Turbulent Transport Models for the L-H Transition</h2>
+<!-- ------------ THE ABSTRACT ------------
+
+    In more than three decades a large amount of models and mechanisms have been proposed to describe a very beneficial feature of magnetically confined fusion plasmas: the L-H transition.
+    Bifurcation theory can be used to compare these different models based on their dynamical transition structure.
+    In this paper we employ bifurcation theory to distinguish two fundamentally different descriptions of the interaction between turbulence levels and sheared flows.
+    The analytic bifurcation analysis characterises the parameter space tructure of the transition dynamics.
+    Herewith, in these models three dynamically different types of transitions are characterised, sharp transitions, oscillatory transitions and smooth transitions.
+    One of the two models has a very robust transition structure and is therefore more likely to be more accurate for such a robust phenomenon as the L-H transition.
+    The other model needs more fine-tuning to get non-oscillatory transitions.
+    These conclusions from the analytic bifurcation analysis are confirmed by dedicated numerical simulations, with the newly developed code Bifurcator.
+
+-->
 </body>
 </html>
