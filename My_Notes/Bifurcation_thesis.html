@@ -258,7 +258,7 @@
 <ul>
 <li><p>The prime indicates the radial derivative, and the square of the flow shear means that both signs of flow shear can suppress turbulence.</p></li>
 <li><p>A similar expression can be used to express the thermal conductivity.</p></li>
-<li><p>Approximation: <span class="math">\(V_{\mathbf{}\times\mathbf{B}} \approx E_r / B\)</span></p></li>
+<li><p>Approximation: <span class="math">\(V_{\mathbf{E}\times\mathbf{B}} \approx E_r / B\)</span></p></li>
 </ul></li>
 <li><p>We cannot expect that the L-H transition will be initiated simply by a difference in the two transport coefficients; therefore, we can make a simplification: <span class="math">\(\chi \,=\, D \,/\, \zeta(\gamma - 1)\)</span>, with <span class="math">\(\zeta\)</span> as a proportionality factor.</p>
 <ul>
@@ -284,6 +284,41 @@
 </ul></li>
 </ul>
 <h3 id="the-transport-barrier-space-and-time-consistently">5.4 The Transport Barrier: Space and Time Consistently</h3>
+<ul>
+<li><p>Temporal transitions are a first-order derivative, and spatial transitions are a second-order derivative (Eq. 5-14): <span class="math">\[-\epsilon\frac{\partial X}{\partial t} \,+\, \mu \frac{\partial^2 X}{\partial r^2} \,=\, F(X) - c(r,t)\]</span></p></li>
+<li><p>Temporal transitions between roots correspond to sudden jumps from L- to H-mode and back; spatial transition is when the core of the plasma exhibits L-mode-like transport and the edge exhibits H-mode-like transport.</p>
+<ul>
+<li><p>The limit of purely temporal or purely spatial transitions are well known.</p></li>
+<li><p>The limit of <span class="math">\(\mu \rightarrow 0\)</span> gives maximum hysteresis for the temporal transition.</p></li>
+<li><p>The limit of <span class="math">\(\epsilon \rightarrow 0\)</span> describes how a high-transport core can be connected to a low-transport edge.</p>
+<ul>
+<li>In the time-independent case, the equation can be integrated over space, which must vanish at <span class="math">\(X_+\)</span>, which leads to Maxwell's equal area rule (Eqs. 5-15 and 5-16).</li>
+</ul></li>
+</ul></li>
+<li><p>For the whole system, assume the jumps in time ans pace are rapid (<span class="math">\(\epsilon, \mu \ll 1\)</span>), so that transitions happen in an almost 1-D zone in <span class="math">\((r,t)\)</span>-space.</p>
+<ul>
+<li><p>This lets us use <span class="math">\(\dfrac{\text{d}}{\text{d}t} \,\rightarrow\, v \dfrac{\text{d}}{\text{d}r}\)</span></p></li>
+<li>This allows a new function <span class="math">\(K(X)\)</span>, which gives the generalized equal area rule (see Eqs. 5-17 through 5-19)</li>
+<li><p>The GEA rule determines the position in space and time of the transition between L- and H-mode transport corresponding to the temporal growth of the barrier region.</p></li>
+</ul></li>
+</ul>
+<p><em>NOTE:</em> This section was definitely confusing.</p>
+<h3 id="two-different-regimes-in-transport-barrier-sizes">5.5 Two Different Regimes in Transport Barrier Sizes</h3>
+<ul>
+<li><p>This section applies the GEA rule to Zohm's model; Eq. 5-11 is rewritten in the form of Eq. 5-14, shown in 5-20.</p></li>
+<li><p>Figure 5.6 shows the typical evolution of the solution, as <span class="math">\(\theta_1 \rightarrow \theta_2 \rightarrow \theta_3 \rightarrow \theta_4\)</span>, with the subfigures showing the state. Read the caption of the figure for more info.</p>
+<ul>
+<li><p>The transition moves into the plasma to build a <em>thick-barrier H-mode</em> only once <span class="math">\(\theta\)</span> crosses the GEA condition. Else, the H-mode is only in the <em>thin-barrier</em> regime.</p>
+<ul>
+<li>The thick barrier has width increasing with input power, while the thin barrier has a constant width as a function of input power.</li>
+</ul></li>
+<li><p>The thin-barrier width is of the order of the viscocity, <em>e.g.</em> several gyro-radii.</p></li>
+</ul></li>
+</ul>
+<h3 id="conclusion-and-discussion-1">5.6 Conclusion and Discussion</h3>
+<ul>
+<li>The thick-barrier is hypothesized to be the mechanism responsible for VH-mode; however, tokamaks might already reach other limits before the required heating power is reached, so this is not a claim.</li>
+</ul>
 <hr />
 <h2 id="chapter-6-comparison-of-bifurcation-dynamics-of-turbulent-transport-models-for-the-l-h-transition">Chapter 6: Comparison of Bifurcation Dynamics of Turbulent Transport Models for the L-H Transition</h2>
 <!-- ------------ THE ABSTRACT ------------
@@ -298,5 +333,13 @@
     These conclusions from the analytic bifurcation analysis are confirmed by dedicated numerical simulations, with the newly developed code Bifurcator.
 
 -->
+
+<h3 id="introduction-3">6.1 Introduction</h3>
+<h3 id="turbulent-transport-models-for-the-l-h-transition">6.2 Turbulent Transport Models for the L-H Transition</h3>
+<h3 id="bifurcation-analysis-1">6.3 Bifurcation Analysis</h3>
+<h3 id="bifurcator">6.4 Bifurcator</h3>
+<h3 id="numerical-bifurcation-analysis">6.5 Numerical Bifurcation Analysis</h3>
+<h3 id="conclusion-and-discussion-2">6.6 Conclusion and Discussion</h3>
+<h3 id="a-appendix-radial-currents">6.A Appendix: Radial Currents</h3>
 </body>
 </html>

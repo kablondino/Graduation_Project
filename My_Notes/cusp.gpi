@@ -2,10 +2,10 @@ set title "Cusp Bifurcation"
 set xlabel "b"
 set ylabel "c"
 set zlabel "a"
-set samples 500
+set samples 20
 set isosamples 50
 
-set pm3d map
+set pm3d# map
 set grid
 
 
