@@ -405,22 +405,81 @@ _NOTE:_ This section was definitely confusing.
 
 ### 6.2 Turbulent Transport Models for the L-H Transition
 
++ The minimum amount of transport is determined by neoclassical effects; anomalous transport depends on the turbulence level on top of that.
 
+	+ The anomalous transport increases linearly with the turbulence level $\mathcal{E}$:
+		$$D \,=\, D_{min} + \left(D_{max} - D_{min}\right)\frac{\mathcal{E}}{\mathcal{E}_{max}}, ~~~~~~~~ \mathcal{E}_{max} \,=\, \frac{\gamma_L}{\alpha_{sat}}$$
+
+		+ $\mathcal{E}_{max}$ is the steady-state turbulence level without any flow shear suppresion; $\gamma_L$ is the linear growth rate of the turbulence; $\alpha_{sat}$ depends on the saturation mechanism corresponding to the turbulence.
+
++ Eqs. 6-4 through 6-6 show the evolution of the turbulence, either linearly (Eq. 6-5), or nonlinearly (Eq. 6-6); both are cited.
+
++ The evolution of the radial electric field is determined by the sum of all possible radial currents at the edge: $\epsilon_0 \dfrac{\partial E_r}{\partial t} \,=\, -\sum J_r$. All possible mechanisms for generating $J_r$ is summed in Appendix 6.A.
+
+_NOTE:_ The rest of the section has been covered. It talks about the evolution of the field, along with $G(Z)$ and the conditions.
 
 ### 6.3 Bifurcation Analysis
 
++ The difference in the two models (linear vs nonlinear) arises due to the turbulence level ODE. The steady-state differences are given. See Eqs. 6-15 and 6-16. The results for $D$ of which are given in 6-17 and 6-18.
 
+	+ Linear: whether there is turbulence only affects the range of $Z$ in which it is stable.
+
+	+ Nonlinear: no turbulence results in an always unstable system, and nonzero turbulence is stable.
+
+	+ The bifurcation analysis has been done on these, and are expected to be equivalent. However, with turbulence, the bifurcation structure does change(?).
+
++ In the nonlinear model, $b$ (from the Taylor expansion of $G$) affects what type of transition will occur. In the linear model, $b$ has no effect, and the transition always has an oscillatory phase. See Figs. 6.3 and 6.4.
+
++ The nonlinear turbulence model is in steady-state exactly the same as the flow-shear model.
+
++ Fig. 6.5 summarizes much about the possible transition dynamics. The following figures show smaller values of $\alpha$ for the linear model.
+
++ Summary: similar transition dynamics can be found in both models. However, the linear model is very sensitive to $\alpha$; in contrast, the nonlinear model is very robust.
 
 ### 6.4 Bifurcator
 
++ Bifurcator is a numerical solver for nonlinear ODEs, optimized for bifurcating systems. PDEs need to be discretized first to be used.
 
++ It uses various implicit Runge-Kutta methods; implicit meaning the time integration involves solving nonlinear systems.
+
+	+ Using Newton iteration and requires the user to define the Jacobian matrix of the discretized system.
+
++ A bif. detection scheme is implemented: it obtains the steady-state solution for a given set of parameter and varies one of them over a interval with user-defined increment.
 
 ### 6.5 Numerical Bifurcation Analysis
 
++ For a parameter scan, it is important to start every simulation from the steady-state profile of the previous step.
 
++ Simulations of the nonlinear model shows L-modes where the radial electric field profile is close to zero everywhere and the turbulence $\mathcal{E}$ is close to $\mathcal{E}(max)$, and H-modes where the electric field well is formed near the edge and locally the turbulence is reduced. (AS EXPECTED)
+
++ Read this section again.
 
 ### 6.6 Conclusion and Discussion
 
 
 
 ### 6.A Appendix: Radial Currents
+
+
+
+---------------------------------------
+
+## Chapter 7: Evaluation and Future Prospects
+
+### 7.1 Conclusions and Discussion
+
+
+
+### 7.2 Outlook
+
+
+
+---------------------------------------
+
+## Summary
+
+
+
+## My Own Questions
+
++ Could the oscillatory transition explain ELMs?

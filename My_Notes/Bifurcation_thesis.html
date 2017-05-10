@@ -336,10 +336,57 @@
 
 <h3 id="introduction-3">6.1 Introduction</h3>
 <h3 id="turbulent-transport-models-for-the-l-h-transition">6.2 Turbulent Transport Models for the L-H Transition</h3>
+<ul>
+<li><p>The minimum amount of transport is determined by neoclassical effects; anomalous transport depends on the turbulence level on top of that.</p>
+<ul>
+<li><p>The anomalous transport increases linearly with the turbulence level <span class="math">\(\mathcal{E}\)</span>: <span class="math">\[D \,=\, D_{min} + \left(D_{max} - D_{min}\right)\frac{\mathcal{E}}{\mathcal{E}_{max}}, ~~~~~~~~ \mathcal{E}_{max} \,=\, \frac{\gamma_L}{\alpha_{sat}}\]</span></p>
+<ul>
+<li><span class="math">\(\mathcal{E}_{max}\)</span> is the steady-state turbulence level without any flow shear suppresion; <span class="math">\(\gamma_L\)</span> is the linear growth rate of the turbulence; <span class="math">\(\alpha_{sat}\)</span> depends on the saturation mechanism corresponding to the turbulence.</li>
+</ul></li>
+</ul></li>
+<li><p>Eqs. 6-4 through 6-6 show the evolution of the turbulence, either linearly (Eq. 6-5), or nonlinearly (Eq. 6-6); both are cited.</p></li>
+<li><p>The evolution of the radial electric field is determined by the sum of all possible radial currents at the edge: <span class="math">\(\epsilon_0 \dfrac{\partial E_r}{\partial t} \,=\, -\sum J_r\)</span>. All possible mechanisms for generating <span class="math">\(J_r\)</span> is summed in Appendix 6.A.</p></li>
+</ul>
+<p><em>NOTE:</em> The rest of the section has been covered. It talks about the evolution of the field, along with <span class="math">\(G(Z)\)</span> and the conditions.</p>
 <h3 id="bifurcation-analysis-1">6.3 Bifurcation Analysis</h3>
+<ul>
+<li><p>The difference in the two models (linear vs nonlinear) arises due to the turbulence level ODE. The steady-state differences are given. See Eqs. 6-15 and 6-16. The results for <span class="math">\(D\)</span> of which are given in 6-17 and 6-18.</p>
+<ul>
+<li><p>Linear: whether there is turbulence only affects the range of <span class="math">\(Z\)</span> in which it is stable.</p></li>
+<li><p>Nonlinear: no turbulence results in an always unstable system, and nonzero turbulence is stable.</p></li>
+<li><p>The bifurcation analysis has been done on these, and are expected to be equivalent. However, with turbulence, the bifurcation structure does change(?).</p></li>
+</ul></li>
+<li><p>In the nonlinear model, <span class="math">\(b\)</span> (from the Taylor expansion of <span class="math">\(G\)</span>) affects what type of transition will occur. In the linear model, <span class="math">\(b\)</span> has no effect, and the transition always has an oscillatory phase. See Figs. 6.3 and 6.4.</p></li>
+<li><p>The nonlinear turbulence model is in steady-state exactly the same as the flow-shear model.</p></li>
+<li><p>Fig. 6.5 summarizes much about the possible transition dynamics. The following figures show smaller values of <span class="math">\(\alpha\)</span> for the linear model.</p></li>
+<li><p>Summary: similar transition dynamics can be found in both models. However, the linear model is very sensitive to <span class="math">\(\alpha\)</span>; in contrast, the nonlinear model is very robust.</p></li>
+</ul>
 <h3 id="bifurcator">6.4 Bifurcator</h3>
+<ul>
+<li><p>Bifurcator is a numerical solver for nonlinear ODEs, optimized for bifurcating systems. PDEs need to be discretized first to be used.</p></li>
+<li><p>It uses various implicit Runge-Kutta methods; implicit meaning the time integration involves solving nonlinear systems.</p>
+<ul>
+<li>Using Newton iteration and requires the user to define the Jacobian matrix of the discretized system.</li>
+</ul></li>
+<li><p>A bif. detection scheme is implemented: it obtains the steady-state solution for a given set of parameter and varies one of them over a interval with user-defined increment.</p></li>
+</ul>
 <h3 id="numerical-bifurcation-analysis">6.5 Numerical Bifurcation Analysis</h3>
+<ul>
+<li><p>For a parameter scan, it is important to start every simulation from the steady-state profile of the previous step.</p></li>
+<li><p>Simulations of the nonlinear model shows L-modes where the radial electric field profile is close to zero everywhere and the turbulence <span class="math">\(\mathcal{E}\)</span> is close to <span class="math">\(\mathcal{E}(max)\)</span>, and H-modes where the electric field well is formed near the edge and locally the turbulence is reduced. (AS EXPECTED)</p></li>
+<li><p>Read this section again.</p></li>
+</ul>
 <h3 id="conclusion-and-discussion-2">6.6 Conclusion and Discussion</h3>
 <h3 id="a-appendix-radial-currents">6.A Appendix: Radial Currents</h3>
+<hr />
+<h2 id="chapter-7-evaluation-and-future-prospects">Chapter 7: Evaluation and Future Prospects</h2>
+<h3 id="conclusions-and-discussion">7.1 Conclusions and Discussion</h3>
+<h3 id="outlook">7.2 Outlook</h3>
+<hr />
+<h2 id="summary">Summary</h2>
+<h2 id="my-own-questions">My Own Questions</h2>
+<ul>
+<li>Could the oscillatory transition explain ELMs?</li>
+</ul>
 </body>
 </html>
