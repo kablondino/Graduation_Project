@@ -185,8 +185,8 @@
 <ul>
 <li><p>Continuity equation for mass (density) and energy, with a single temperature and all the particle and energy deposition into the plasma is somewhere inthe the core outside of the model: <span class="math">\[\frac{\partial n}{\partial t} \,=\, \frac{\partial \Gamma}{\partial r} \\ \frac{\partial}{\partial t} \left(\frac{nT}{\gamma - 1}\right) \,=\, -\frac{\partial q}{\partial r}\]</span></p></li>
 <li><p>Particle and heat flux (<span class="math">\(\gamma\)</span> is the adiabatic index): <span class="math">\[\Gamma \,=\, -D \frac{\partial n}{\partial r} \\ q \,=\, -\chi n \frac{\partial T}{\partial r} + \frac{\Gamma T}{\gamma - 1}\]</span></p></li>
-<li><p>Going to higher confinement can be described as a reduction of transport coefficients: particle <span class="math">\(D\)</span> and heat <span class="math">\(\chi\)</span></p></li>
-<li><p>In the turbulent transport model used here, only a mean flow due to <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-drift is used, such that the transport coefficients become a direct function of the normalized radial electric field: <span class="math">\[Z \,=\, \frac{\rho_p e E_r}{T_i}\]</span></p></li>
+<li><p>Going to higher confinement can be described as a reduction of transport coeffs.: particle <span class="math">\(D\)</span> and heat <span class="math">\(\chi\)</span></p></li>
+<li><p>In the turbulent transport model used here, only a mean flow due to <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-drift is used, such that the transport coeffs. become a direct function of the normalized radial electric field: <span class="math">\[Z \,=\, \frac{\rho_p e E_r}{T_i}\]</span></p></li>
 <li><p>To properly describe dynamics, the evolution of the radial electric field must be taken into account via Ampère's law: <span class="math">\[\epsilon \frac{\partial Z}{\partial t} \,=\, \mu \frac{\partial^2 Z}{\partial r^2} + c_n \frac{T}{n^2} \frac{\partial n}{\partial r} + \frac{c_T}{n} \frac{\partial T}{\partial r} - G(Z)\]</span></p>
 <ul>
 <li><p><span class="math">\(\epsilon \,=\, B_p^2 / (B^2 \nu_i)\)</span> is the dielectric constant</p></li>
@@ -195,7 +195,7 @@
 <li><p>The last term <span class="math">\(G\)</span> is a catch-all for every other effect, and is Taylor expanded because we need an inflection point to obtain the cusp bif.: <span class="math">\(G(Z) \,\approx\, a + b(Z - Z_s) + (Z - Z_s)^3\)</span></p></li>
 <li><p>The model must be the correct size: the outer edge of the plasma (SOL) is fixed at <span class="math">\(r = 0\)</span>; the inner boundary is at <span class="math">\(r = -\infty\)</span>; and at <span class="math">\(r = \infty\)</span>, the <span class="math">\(T\)</span> and <span class="math">\(n\)</span> are forced to drop towards zero, giving conditions in Eq. 4-38 (or Eq. 5-9).</p></li>
 </ul></li>
-<li><p>An assumption can be made about the transport coefficients, which allows us to solve the steady-state <span class="math">\(n\)</span> and <span class="math">\(T\)</span> profiles as a function of particle diffusivity alone: <span class="math">\[\chi(Z) \,=\, \frac{D(Z)}{\zeta(\gamma - 1)}\]</span></p>
+<li><p>An assumption can be made about the transport coeffs., which allows us to solve the steady-state <span class="math">\(n\)</span> and <span class="math">\(T\)</span> profiles as a function of particle diffusivity alone: <span class="math">\[\chi(Z) \,=\, \frac{D(Z)}{\zeta(\gamma - 1)}\]</span></p>
 <ul>
 <li><p>The value of the radial electric field is determined by the roots of Eq. 4-43, shown in Eq. 4.44</p>
 <ul>
@@ -260,7 +260,7 @@
 <li><p>A similar expression can be used to express the thermal conductivity.</p></li>
 <li><p>Approximation: <span class="math">\(V_{\mathbf{E}\times\mathbf{B}} \approx E_r / B\)</span></p></li>
 </ul></li>
-<li><p>We cannot expect that the L-H transition will be initiated simply by a difference in the two transport coefficients; therefore, we can make a simplification: <span class="math">\(\chi \,=\, D \,/\, \zeta(\gamma - 1)\)</span>, with <span class="math">\(\zeta\)</span> as a proportionality factor.</p>
+<li><p>We cannot expect that the L-H transition will be initiated simply by a difference in the two transport coeffs.; therefore, we can make a simplification: <span class="math">\(\chi \,=\, D \,/\, \zeta(\gamma - 1)\)</span>, with <span class="math">\(\zeta\)</span> as a proportionality factor.</p>
 <ul>
 <li>This gives the transport equations (5-6a,b) and evolution of the field (5-6c).</li>
 </ul></li>
@@ -377,13 +377,117 @@
 <li><p>Read this section again.</p></li>
 </ul>
 <h3 id="conclusion-and-discussion-2">6.6 Conclusion and Discussion</h3>
+<ul>
+<li>Since the L-H transition is very robust, it is expected that the underlying model is also robust, and therefore the nonlinear version is more likely.</li>
+</ul>
 <h3 id="a-appendix-radial-currents">6.A Appendix: Radial Currents</h3>
+<ul>
+<li><p>A changing electric field in time causes the generation of a <strong>neoclasicall polarisation current</strong>: <span class="math">\[J_{pol} \,=\, \frac{\rho c^2}{B_{\theta}} \frac{\partial E_r}{\partial t}\]</span></p></li>
+<li><p>There are 3 types of viscosities driving current:</p>
+<ol style="list-style-type: decimal">
+<li><p>Shear viscosity, which turns into the <span class="math">\(\mu \partial^2 Z / \partial r^2\)</span> term: <span class="math">\[J_{visc} \,=\, \epsilon_0 \epsilon_{\perp} \nabla \cdot \mu_i \nabla E_r\]</span></p></li>
+<li><p>Bulk viscosity, due to the inhomogeneity of the magnetic field: <span class="math">\[\Gamma_i^{bv} \,=\, f_{bv} \nu_i \rho_p n_i \frac{Z - Z_0}{1 + Z^2}\]</span></p></li>
+<li><p>Gyroviscocity, but no expression is given.</p></li>
+</ol></li>
+<li><p>More effects that lead to a radial current:</p>
+<ul>
+<li><p>Anomalous cross-field flux contains a bipolar part. The first two terms are directly influenced by the <span class="math">\(n\)</span> and <span class="math">\(T\)</span> profiles and are explicitly taken into account in the discussed models of this thesis. The third term is absorbed into <span class="math">\(G(Z)\)</span>: <span class="math">\[\Gamma_e^{anom} \,=\, -D_e n \left(\frac{n^\prime}{n} + \alpha\frac{T^\prime}{T} + \frac{Z}{\rho_p}\right)\]</span></p></li>
+<li><p>Ripple diffusion: <span class="math">\(\Gamma_i^{NC}\)</span>, a very large expression shown in Eq. 2-26</p></li>
+<li><p>Ion orbit losses (loss cone losses) with a general expression depending on the collisionality: <span class="math">\[\Gamma_i^{lc} \,=\, \frac{n_i \nu \sqrt{\epsilon} \rho_{pi}}{\sqrt{\nu_{*i} + Z^4}} \, \exp\left(-\sqrt{\nu_{*i} + Z^4}\right)\]</span></p></li>
+<li><p>Charge exchange leads to a difference in radial flux of ions compared to electrons: <span class="math">\[\Gamma_i^{cx} \,=\, -n_0 \langle \sigma_{cx}v \rangle n_i \rho_p (Z_0 + Z - qV_p / \epsilon v_{th})\]</span></p></li>
+<li><p>Lastly, an external voltage can bias the plasma, simply: <span class="math">\[J_{ext} \,=\, \text{constant}\]</span></p></li>
+</ul></li>
+<li><p>Altogether, these lead to Eq. 6-9, with 6-24 through 6-30 summed into <span class="math">\(G(Z)\)</span>.</p>
+<ul>
+<li>Reminder: we need the long polynomial to have an inflection point, and that near that point, the transport coeffs. vary some. Therefore, it is sufficient to only Taylor expand <span class="math">\(G\)</span>, up to 3rd-power.</li>
+</ul></li>
+<li><p>The influence by global changes to the plasma (triangularity and direction of the single-null divertor) could change contributions to Eq. 6-21.</p>
+<ul>
+<li>Since many terms scale with <span class="math">\(n\)</span>, the author's guess is that density is the term to control the type of L-H transition.</li>
+</ul></li>
+</ul>
 <hr />
 <h2 id="chapter-7-evaluation-and-future-prospects">Chapter 7: Evaluation and Future Prospects</h2>
 <h3 id="conclusions-and-discussion">7.1 Conclusions and Discussion</h3>
+<ul>
+<li><p>The MAIN question: How can we employ bifurcation theory to unravel the L-H transition mechanism?</p>
+<ul>
+<li>The link between L-H transition dynamics and certain bifurcations is investigated.</li>
+</ul></li>
+<li><p>What bifurcation structure can be recognized in L-H transition dynamics?</p>
+<ul>
+<li><p>Co-dimension 3 bif. that combines two fold bifs. with a Hopf bif, which is known as a degenerate Bogdanov-Takens bif.</p></li>
+<li><p>The dynamics are arranged such that the oscillatory transitions (in parameter space) are always between the smooth and sharp transitions.</p></li>
+</ul></li>
+<li><p>How can we identify the co-dimension 3 bifurcation in 1-D models?</p>
+<ol style="list-style-type: decimal">
+<li><p>The bif. analysis is a local analysis around the steady-state solution, such that Taylor expanding is considered.</p></li>
+<li><p>Two eigenvectos with vanishing eigenvalues of the linear operator of the system need to be found for the fold bifs. At the cusp bif, the second term of the Taylor expansion evaluated in the same direction as the fold bif must vanish.</p></li>
+<li><p>A vanishing inner product of the two eigenvectors.</p></li>
+</ol>
+<ul>
+<li>These conditions are summarized in Eq. 4-11, with a separate description of the Hopf bif. given in 4-15.</li>
+</ul></li>
+<li><p>How do these 1-D bifurcating models combine transitions in time and space?</p>
+<ul>
+<li><p>Investigating the system (a general nonlinear PDE, first-order deriv. in time and second-order deriv. in space, non-monotonic, with a control parameter, Eq. 5-14) lead to the formulation of a generalized equal area rul for simultaneous transitions in space and time.</p></li>
+<li><p>This generalized equal area rule is applicable to moving sharp transition fronts.</p></li>
+</ul></li>
+<li><p>What is the bifurcation structure of the model proosed by Zohm?</p>
+<ul>
+<li><p>The analysis of this 1-D model shows that the state of the plasma profiles could be determined by the edge value of the radial electric field.</p></li>
+<li><p>This model contains all three transitions, with the co-dimension 3 bif.</p></li>
+<li><p>The generalized equal area rule applied to this gives two different regimes of transport barrier widths.</p>
+<ul>
+<li>Thin-barrier H-mode (does not satisfy the generalized equal area rule) and thick-barrier H-mode (does satisfy).</li>
+</ul></li>
+</ul></li>
+<li><p>How does the bifurcation structure change when changing the transport reduction mechanism?</p>
+<ul>
+<li><p>Microscopic turbulence considerations showed that models based on <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-shearing give a more accurate description of the transport reduction.</p></li>
+<li><p>The main conclusion: in the flow shear model, all transitions occur at lower values of heat flux, and therefore the flow shear mechanism is more efficient in reducing the transport and triggering the L-H transition.</p></li>
+</ul></li>
+<li><p>How does the bifurcation structure change when adding an extra dynamical equation for turbulence?</p>
+<ul>
+<li><p>This is drastic, since the coupling between the nonlinear bifurcating variable and the passive diffusive variables became indirect, possibly adding more dynamics.</p></li>
+<li><p>Additional small scale flows (zonal flows) could cause oscillations by itself, and therefore is necessary to investigate them separately.</p>
+<ul>
+<li>The first step is to impmlement the equation governing the growth and saturation of turbulence and the reducing effect of the larger-scale, sheared mean <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flows.</li>
+</ul></li>
+</ul></li>
+<li><p>What is the best dynamical description of the turbulence reduction by sheared <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flows?</p>
+<ul>
+<li><p>Turbulence reduction mechanisms by sheared mean <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flows: either a reduction of the (linear) growth rate, or it is implemented as an enhancement of the saturation mechanism (nonlinear).</p>
+<ul>
+<li><p>The enhanced saturation is essentially equivalent with the flow shear model from Ch. 5, since its steady-state corresponds exactly with the non-dynamic description of the <span class="math">\(\mathbf{E}\times\mathbf{B}\)</span>-flow shear reduction in transport.</p></li>
+<li><p>The co-dimension 3 bifurcation structure is <strong>broken</strong> in the growth rate reduction method; only when the effectiveness (parameter <span class="math">\(\alpha\)</span>) is small, the co-dimension 3 structure reappears. For larger <span class="math">\(\alpha\)</span>, only oscillatory transitions exist.</p></li>
+</ul></li>
+</ul></li>
+</ul>
 <h3 id="outlook">7.2 Outlook</h3>
+<ul>
+<li><p>In order to convince, it is necessary to map out the experimental bifurcating behavior.</p></li>
+<li><p>It is well known that at low densities, the scaling laws start to fail. Instead of a decreaseing power threshold for decreasing density, it begins to increase again below a certain density. This is called the &quot;roll over of the power threshold.&quot;</p></li>
+<li><p>Strong conclusion: Smooth transitions at very low densities, oscillatory transitions for densities around the roll over, and sharp transitions for high densities.</p></li>
+<li><p>We should be aware that the fact that this density ordering might just be a side effect of another underlying physical mechanism, <em>e.g.</em> the penetration of neutrals.</p></li>
+<li><p>Other possible mechanisms for L-H transition: flows driven by the turbulence itself.</p></li>
+<li><p>Extensions of the models could lead to multiple types of oscillations.</p></li>
+</ul>
 <hr />
 <h2 id="summary">Summary</h2>
+<ul>
+<li><p>Bifurcation theory is necessary.</p></li>
+<li><p>The basics of all the presented models are the same: two equations describe the transport of particles and heat, and one equation describes the evolution of the radial electric field.</p></li>
+<li><p>Two models have transport coeffs. directly related to the radial electric field; the first has the coeffs. depend on the electric field, and the second on its gradient.</p></li>
+<li><p>The other two are fundamentally different, since there is an additional equation that dynamically describes the evolution of the turbulence.</p>
+<ul>
+<li><p>The effect of the radial electric field shear is to reduce the turbulence, and not directly the transport coeffs. There are two different ways to model this:</p>
+<ol style="list-style-type: decimal">
+<li><p>The radial electric field shear reduces growth rate (the third model), which is less robust than the next.</p></li>
+<li><p>The radial electric field shear enhances the saturation mechanism of the turbulence (fourth model)</p></li>
+</ol></li>
+</ul></li>
+</ul>
 <h2 id="my-own-questions">My Own Questions</h2>
 <ul>
 <li>Could the oscillatory transition explain ELMs?</li>
