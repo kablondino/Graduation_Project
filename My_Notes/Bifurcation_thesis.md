@@ -16,7 +16,7 @@
 
 ### 1.3 Research Questions
 
-+ The MAIN question: How can we employ bifurcation theory to unravel the L-H transition mechanism?
++ The MAIN question of this thesis: How can we employ bifurcation theory to unravel the L-H transition mechanism?
 
 + Since physical systems can only have a limited number of bifurcations, what bifurcation structure can be recognized in L-H transition dynamics?
 
@@ -28,7 +28,9 @@
 
 + How does the bifurcation structure change when changing the transport reduction mechanism?
 
-+ How does the bifurcation structure change when adding an extra dynamical equation for turbulence? **AND** What is the best dynamical description of the turbulence reduction by sheared $\mathbf{E}\times\mathbf{B}$-flows?
++ How does the bifurcation structure change when adding an extra dynamical equation for turbulence?
+
++ What is the best dynamical description of the turbulence reduction by sheared $\mathbf{E}\times\mathbf{B}$-flows?
 
 ---------------------------------------
 
@@ -125,7 +127,7 @@
 
 + Different types of observed transition dynamics can be recognized as certain types of bifurcations.
 
-	+ Fold bifurcations are the natural way to describe sharp transitions, such as L-H AND H-L transitions; the natural way to combine two folds is shown in Fig 3.3.
+	+ Fold bifurcations are the natural way to describe sharp transitions, such as L-H and H-L transitions; the natural way to combine two folds is shown in Fig 3.3.
 
 	+ This gives TWO critical values for $a$; this hysteresis behavior is characteristic of two co-dimension 1 fold bifurcations coming from a co-dimension 2 cusp bifurcation.
 
@@ -460,7 +462,7 @@ _NOTE:_ The rest of the section has been covered. It talks about the evolution o
 
 ### 6.A Appendix: Radial Currents
 
-+ A changing electric field in time causes the generation of a **neoclasicall polarisation current**:
++ A changing electric field in time causes the generation of a **neoclassical polarization current**:
 	$$J_{pol} \,=\, \frac{\rho c^2}{B_{\theta}} \frac{\partial E_r}{\partial t}$$
 
 + There are 3 types of viscosities driving current:
@@ -478,7 +480,7 @@ _NOTE:_ The rest of the section has been covered. It talks about the evolution o
 	+ Anomalous cross-field flux contains a bipolar part. The first two terms are directly influenced by the $n$ and $T$ profiles and are explicitly taken into account in the discussed models of this thesis. The third term is absorbed into $G(Z)$:
 		$$\Gamma_e^{anom} \,=\, -D_e n \left(\frac{n^\prime}{n} + \alpha\frac{T^\prime}{T} + \frac{Z}{\rho_p}\right)$$
 
-	+ Ripple diffusion: $\Gamma_i^{NC}$, a very large expression shown in Eq. 2-26
+	+ Ripple diffusion: $\Gamma_i^{NC}$, a very large expression shown in Eq. 6-26
 
 	+ Ion orbit losses (loss cone losses) with a general expression depending on the collisionality:
 		$$\Gamma_i^{lc} \,=\, \frac{n_i \nu \sqrt{\epsilon} \rho_{pi}}{\sqrt{\nu_{*i} + Z^4}} \, \exp\left(-\sqrt{\nu_{*i} + Z^4}\right)$$
@@ -491,7 +493,7 @@ _NOTE:_ The rest of the section has been covered. It talks about the evolution o
 
 + Altogether, these lead to Eq. 6-9, with 6-24 through 6-30 summed into $G(Z)$.
 
-	+ Reminder: we need the long polynomial to have an inflection point, and that near that point, the transport coeffs. vary some. Therefore, it is sufficient to only Taylor expand $G$, up to 3rd-power.
++ Reminder: we need the long polynomial to have an inflection point, and that near that point, the transport coeffs. vary some. Therefore, it is sufficient to only Taylor expand $G$, up to 3rd-power.
 
 + The influence by global changes to the plasma (triangularity and direction of the single-null divertor) could change contributions to Eq. 6-21.
 
@@ -503,7 +505,7 @@ _NOTE:_ The rest of the section has been covered. It talks about the evolution o
 
 ### 7.1 Conclusions and Discussion
 
-+ The MAIN question: How can we employ bifurcation theory to unravel the L-H transition mechanism?
++ The MAIN question of this thesis: How can we employ bifurcation theory to unravel the L-H transition mechanism?
 
 	+ The link between L-H transition dynamics and certain bifurcations is investigated.
 
