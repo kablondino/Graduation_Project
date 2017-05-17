@@ -31,6 +31,56 @@
 <p>Macroscopically, a radial current must flow in the plasma to provide the torque to change the plasma angular momentum, with the required value of the current density as (<span class="math">\(\rho\)</span> is mass density): <span class="math">\[\frac{j_r B_\theta}{c} \,=\, \rho \frac{\partial u_\phi}{\partial t}\]</span></p>
 <p>This give a relationship between <span class="math">\(j_r\)</span> and <span class="math">\(\dot{E_r}\)</span>, which <strong>is</strong> the neoclassical polarization current: <span class="math">\[j_r \,=\, \frac{\rho c^2}{B_\theta^2} \frac{\partial E_r}{\partial t}\]</span></p>
 <p>It is argued that both trapped and free (untrapped) particles participate with the same radial drift velocity.</p>
+<p>The expression for current can be combined with Maxwell's equation, with the radial component of <span class="math">\(\nabla\times\mathbf{B}\)</span> averaged to zero, and <span class="math">\(j_r^\text{ext}\)</span> as any external current (NBI): <span class="math">\[\frac{\partial E_r}{\partial t} \,=\, -4\pi(j_r - j_r^\text{ext})\]</span></p>
+<hr />
+<h2 id="shear-viscosity">2. Shear Viscosity</h2>
+<h3 id="notes-on-effect-of-electrode-biasing-on-the-radial-electric-field-structure-bifurcation-in-tokamak-plasmas-by-n.-kasuya-k.-itoh-and-y.-takase">Notes on <em>Effect of Electrode Biasing on the Radial Electric Field Structure Bifurcation in Tokamak Plasmas</em> by N. Kasuya, K. Itoh, and Y. Takase</h3>
+<!-- ------------ THE ABSTRACT ------------
+
+    The mechanism for formation of a steep structure in the radial electric field is a key issue in plasma confinement.
+    Properties of the radial electric field bifurcation are studied taking into account the effect of electrode biasing.
+    The radial electric field structure is determined by the charge conservation equation.
+    From the nonlinear mechanism associated with local current due to ion bulk viscosity, a transition can take place.
+    Various types of radial electric field structures with multiple peaks are allowed for the same boundary condition.
+    The ion orbit loss term breaks the symmetry of the radial current similarly to the ambipolar radial electric field.
+    A radial current driven by the electrode plays the role of a control parameter in a transition similarly to the pressure gradient.
+    A phase diagram is given in the spontaneous drive vs external drive space.
+    Differences in the radial shape of solitary electric field structures are demonstrated in the presence of spatial varying components.
+    This study clarifies the mechanisms of nonlinear structure formation in transport barriers.
+
+-->
+
+<ul>
+<li>&quot;In this paper, properties of the radial electric field transition between L-mode and H-mode are studied, taking into accout the effect of electrode biasing.&quot;</li>
+</ul>
+<p>Electrode biasing is a method in controlling the radial electric field externally.</p>
+<p>This model also includes neoclassical bulk viscosity and orbit losses as contributors. These two components have different dependencies on the radial electric field, and their competition gives structural bifurcation of the field.</p>
+<ul>
+<li>The radial electric field structure is determined by the charge conservation equation: <span class="math">\[\frac{\partial E_r}{\partial t} \,=\, -\frac{1}{\epsilon_0 \epsilon_\perp} \left(J_\text{visc} + J_r + J_\text{other} - J_\text{ext}\right)\]</span> with <span class="math">\(\epsilon_\perp\)</span> as the dielectric constant of magnetized plasma, <span class="math">\(J_\text{visc}\)</span> is current driven by shear viscocity, <span class="math">\(J_r\)</span> is local current due to ion bulk viscosity, and <span class="math">\(J_\text{other}\)</span> encompassing other, such as orbit losses and charge exchange losses.</li>
+</ul>
+<p>The shear viscocity current can be written (with <span class="math">\(\mu_i\)</span> as the shear viscocity of ions) as: <span class="math">\[J_\text{visc} \,=\, -\epsilon_0\epsilon_\perp \nabla\cdot \mu_i \nabla E_r\]</span></p>
+<ul>
+<li><p>The charge conservation equation above can be normalized as the following: <span class="math">\[\frac{\partial^2 X}{\partial x^2} - (X - X_a) f(X,y) - g(X,y) + I = 0 \\
+X \,=\, \frac{E_r}{v_{i,therm} B_\theta}, ~~~~~ y \,=\, \frac{r \nu_{ii} B}{v_{i,therm} B_\theta}, ~~~~~ I \,=\, \frac{J_\text{ext}}{v_{i,therm} B_\theta \sigma(0)}, \\
+x \,=\, \frac{r - r_0}{l}, ~~~\text{and}~~~ l \,=\, \sqrt{\frac{\mu_i \epsilon_0 \epsilon_\perp}{\sigma(0)}}\]</span> <span class="math">\(X\)</span> is (another) normalized radial electric field, <span class="math">\(X_a\)</span> is the ambipolar radial electric field, <span class="math">\(\sigma(0)\)</span> is the conductivity for zero radial electric field, <span class="math">\(y\)</span> is the normalized collision frequency, <span class="math">\(I\)</span> is the normalized external current, and <span class="math">\(x\)</span> is the minor radius normalized by <span class="math">\(l\)</span>. <span class="math">\(r_0\)</span> is chosen to be the mid-point between the electrode and limiter.</p>
+<ul>
+<li><p>The first term in the normalized DE corresponds to the shear viscocity and acts as a diffusion term.</p></li>
+<li><p>The second term arises from <span class="math">\(J_r\)</span> and is given by the neoclassical ion particle flux.</p></li>
+<li><p>The function <span class="math">\(f(X,y)\)</span> is the electrical conductivity, which is nonlinearly-dependent on the radial electric field.</p></li>
+<li><p>The function <span class="math">\(g(X,y)\)</span> comes from <span class="math">\(J(\text{other})\)</span>, specifically ion orbit losses.</p></li>
+<li><p><span class="math">\(X_a\)</span> depends on the gradient of each plasma parameter. See Eq. (6). This term is used as the control parameter that describes the plasma.</p></li>
+</ul></li>
+<li><p>The number of particles in the loss region gives the magnitude of the orbit loss term: <span class="math">\[g(X,y) \,=\, g_0(X,y) \,=\, A \frac{y}{\Pi} \, \exp\left(-\Pi\right) ~~~~~\text{with}~~~~\Pi \,\equiv\, \sqrt{\epsilon^{-3/2} y + (\alpha X)^4}\]</span></p>
+<ul>
+<li><span class="math">\(\alpha = 0.5\)</span> is the numerical constant that accounts for orbit shape, <span class="math">\(\epsilon = 0.33\)</span> is the inverse aspect ratio, and <span class="math">\(A = 3\)</span> is a constant that represents the ratio of the magnitude of the orbit loss term to the neoclassical term.</li>
+</ul></li>
+</ul>
+<p>Two nonlinear terms affect the radial electric field in this case. The ion orbit loss term breaks the symmetry of the radial current similarly to the ambipolar radial electric field that depends on <span class="math">\(\nabla p\)</span>.</p>
+<p>As <span class="math">\(\nabla p\)</span> increases, a spontaneous sharp transition takes place when the collision frequency is small and squeezing of the banana orbit is strong.</p>
+<p>The radial electric field is negative when <span class="math">\(I = 0\)</span>. When there is current in the electrode, it acts like a <span class="math">\(\nabla p\)</span>. The threshold for transition by electrode biasing changes in accordance with <span class="math">\(\nabla p\)</span>.</p>
+<ul>
+<li><span class="math">\[g(X,y,x) \,=\, g_0(X,y) \, \exp\left[\left(-\frac{x - d}{\rho_p}\right)^2\right]\]</span></li>
+</ul>
 <hr />
 </body>
 </html>
