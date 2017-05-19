@@ -98,4 +98,48 @@ The radial electric field is negative when $I = 0$. When there is current in the
 + Also, the magnitude of the orbit loss terms depends on the spatial position (assume a simple form of exponential decay):
 	$$g(X,y,x) \,=\, g_0(X,y) \, \exp\left[\left(-\frac{x - d}{\rho_p}\right)^2\right]$$
 
++ These (?) terms cause the nonlinear terms in the DE to vary in space, which produce other scale lengths.
+
+	+ Fig. 4 shows the spatial profiles of the field with nonuniform ion density. Peaks of the field tend to shift to the larger density gradient region for positive biasing.
+
++ We introduce a spatial dependency on the ambipolar field:
+	$$X_a \,=\, -\frac{p}{2d}(x + d)$$
+
+	+ The ambipolar field varies linearly from zero at the electrode to $p$ at the position of the limiter, with $p$ representing the magnitude of the spatial variation of the ambipolar field.
+
+	+ Lines a, b, and c in Figs. 4 and 5 represent the peak positions of single, double, and triple peaked structure.
+
+	+ As $p$ increases, the peak of the single begins to shift outward first, and then the peaks of the double shift next. The peaks approach the outermost peak position of the triple for large values of $p$.
+
+	+ The equation **without** spatial variance has translational invariance, and no energy is needed for parallel movement. The shape of the structure is not sensitive to the asymmetric term, but only a small nonuniformity gives a significant change in the peak position.
+
++ The selection rule (?) shows that the structure with 1 peak is formed after a transition, but this sensitivity of its position to spatial gradients indicates that the single peak appears at the peak position of the structure with the maximum number of peaks.
+
+	+ The max number of available peaks is determined by the distance between the electrode and the limiter, so a measurement of the peak position gives info on the scale of the normalizing distance $l$ and on the viscosity $\mu_i$.
+
++ It is then discussed how the peak shift is logarithmically dependent on $p$, and shows the form, in which the solution is simply a small translation $\Delta x$ added to the old, homogenous solution.
+
++ Conclusion:
+
+	+ They considered neoclassical bulk viscosity, ion orbit losses, anomalous transport, and electrode current to be the dominant contributors to the radial current, and the nonlinear responses of the former 2 terms to the radial electric field give various structures with multiple peaks for the same boundary condition.
+
+	+ **Claim**: the competition between two nonlinear terms (neoclassical bulk viscosity and ion orbit losses) explains the H-mode transition mechanism and an asymmetric bifurcation feature with respect to the electrode current term.
+
+	+ The shape of the radial electric field structure is not sensitive to the spatially asymmetric term and the properties of the basic nonlinearity persist; however, a small spatial variation can cause a large shift of the peak position.
+
+	+ Electrode biasing can be used to make wider and stronger transport barriers.
+
+---------------------------------------
+
+## 3. Bulk Viscosity?
+### Notes on _A Review of Theories of the L-H Transition_ by J.W. Connor and H.R. Wilson
+
+<!-- ------------ THE ABSTRACT ------------
+
+	After a general discussion of the experimental characteristics of the L–H transition and consideration of basic theoretical principles underlying models for it, this paper reviews the various theories of the L–H transition available in the literature, providing some background information on each theory and expressing the transition criteria in forms suitable for comparison with experiment.
+	Some conclusions on the relevance of these models for explaining the experimental data on the transition are drawn.
+
+-->
+
+
 ---------------------------------------

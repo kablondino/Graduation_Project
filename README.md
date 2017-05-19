@@ -24,28 +24,28 @@ Research at DIFFER has shown that independent of the details of the electric fie
 
 	+ Discuss if these terms make sense and what can be concluded, considering error bars.
 
-2. Can L-H transitions be linked theoretically to increase of heating power / heat flux through separatrix above the L-H power threshold?
+2. ~~Can L-H transitions be linked theoretically to increase of heating power / heat flux through separatrix above the L-H power threshold?~~
 
-	- Relate moment of transition to time-resolved separatrix power through transport modelling (seek advice Dick Hogeweij)
+	- ~~Relate moment of transition to time-resolved separatrix power through transport modelling (seek advice Dick Hogeweij)~~
 
-3. What is the scaling of the L-H power threshold?
+3. ~~What is the scaling of the L-H power threshold?~~
 
-	- Take note of existing scaling laws
+	- ~~Take note of existing scaling laws~~
 
-	- Determine scaling within the studied parameter range
+	- ~~Determine scaling within the studied parameter range~~
 
-	- Determine changes of scaling laws when moving to a different parameter range (e.g. extrapolating to reactor size)
+	- ~~Determine changes of scaling laws when moving to a different parameter range (e.g. extrapolating to reactor size)~~
 
-	- Determine "meta-scalings" including transitions between different power laws in different parameter ranges.
+	- ~~Determine "meta-scalings" including transitions between different power laws in different parameter ranges.~~
 
-4. What is the scaling with power, density, machine size, isotope?
+4. ~~What is the scaling with power, density, machine size, isotope?~~
 
-	- Again, be alert on transitions between parameter regimes where different field-generating terms dominate.
+	- ~~Again, be alert on transitions between parameter regimes where different field-generating terms dominate.~~
 
-5. What are the effects on H-mode of divertor detachment control measures such as influx of radiating impurities?
+5. ~~What are the effects on H-mode of divertor detachment control measures such as influx of radiating impurities?~~
 
-	- Look at neutral particle influx and charge exchange friction. (friction effect is probably more important than radiative cooling)
+	- ~~Look at neutral particle influx and charge exchange friction. (friction effect is probably more important than radiative cooling)~~
 
-6. What are the effects on H-mode of ELM control measures, such as edge stochastization?
+6. ~~What are the effects on H-mode of ELM control measures, such as edge stochastization?~~
 
-	- Look at effect of stochastization on the pressure gradient
+	- ~~Look at effect of stochastization on the pressure gradient~~
