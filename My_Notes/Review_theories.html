@@ -6,19 +6,86 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="notes-on-a-review-of-theories-of-the-l-h-transition-by-j.w.-connor-and-h.r.-wilson">Notes on <em>A Review of Theories of the L-H Transition</em> by J.W. Connor and H.R. Wilson</h1>
+<h1 id="notes-on-electric-field-in-a-review-of-theories-of-the-l-h-transition-by-j.w.-connor-and-h.r.-wilson">Notes on Electric Field in <em>A Review of Theories of the L-H Transition</em> by J.W. Connor and H.R. Wilson</h1>
 <h2 id="introduction">1. Introduction</h2>
 <ul>
-<li><p>ASDEX found an empirical law for the heating required for H-mode: <span class="math">\[P_{h} \,=\, 0.04 \, \bar{n}_e \, B \, S\]</span></p>
+<li><p>ASDEX found an empirical law for the heating required for H-mode (with some nuance): <span class="math display">\[P_{h} \,=\, 0.04 \, \bar{n}_e \, B \, S\]</span></p>
 <ul>
-<li>Above, in MW, with <span class="math">\(\bar{n_e}\)</span> as the line-averaged electron density in units of <span class="math">\(10^{20}\)</span> m<span class="math">\(^{-3}\)</span>, <span class="math">\(B\)</span> as the magnetic field strength, and <span class="math">\(S\)</span> as the plasma surface area.</li>
+<li>Above, in MW, with <span class="math inline">\(\bar{n_e}\)</span> as the line-averaged electron density in units of <span class="math inline">\(10^{20}\)</span> m<span class="math inline">\(^{-3}\)</span>, <span class="math inline">\(B\)</span> as the magnetic field strength, and <span class="math inline">\(S\)</span> as the plasma surface area.</li>
 </ul></li>
+<li><p>L-H transition requires less heating when the magnetic field config. is such that the ion-<span class="math inline">\(\nabla B\)</span> drift direction is towards a single null formed by the divertor geometry, rather than away from it.</p></li>
+<li><p>Wagner [11] assumes, for the above empirical law, that the transition occurs with the ion diamagnetic velocity achieves some critical value: <span class="math display">\[V_{*i} \,=\, -\frac{1}{n e B} \frac{\text{d}p_i}{\text{d}r} \,=\, V_{crit}\]</span></p></li>
+<li><p>Since the transition is an edge phenomenon, it's possible an addition atomic physics parameter is involved. This means one cannot scale the plasma temperature.</p></li>
+</ul>
+<h4 id="i-local-edge-parameters">(i) <em>Local edge parameters</em></h4>
+<ul>
+<li><p>Also, since the transition occurs at the edge, one would expect that the condition for it to occur can be expressed in terms of local parameter one would expect that the condition for it to occur can be expressed in terms of local parameters and length scales of the edge.</p>
+<ul>
+<li><p>Models are usually expressed in terms of such quantities, or equivalent dimensionless parameters such as the normalized Larmor radius <span class="math inline">\(\rho_{*} \,=\, \rho_i \,/\, a\)</span>, collisionality, and <span class="math inline">\(\beta\)</span>.</p></li>
+<li><p>In terms of local plasma parameters, hysteresis is less obvious, but the critical temperature responds to the ion-<span class="math inline">\(\nabla B\)</span> drift in the same manner as <span class="math inline">\(P_h\)</span>.</p></li>
+</ul></li>
+</ul>
+<h4 id="ii-spatial-and-temporal-characteristics">(ii) Spatial and temporal characteristics</h4>
+<ul>
+<li><p>How the edge region scales is a potential test of theories.</p>
+<ul>
+<li><p>Transition usually occurs at sub-millisecond or microsecond scales, with a slower evolution in the millisecond range.</p></li>
+<li><p>The temporal sequence of events for testing the theory: the creation of steep electric field gradients, suppression of turbulence, and steepening of density and temperature profiles.</p></li>
+<li><p>It is tackled in 3 different ways:</p>
+<ul>
+<li><p>Dimensional analysis, with confinement properties and energy balance involving cross-field transport into the SOL.</p></li>
+<li><p>Stabilization of instabilities to cause transport in L-mode</p></li>
+<li><p><strong>!!</strong> The mechanisms producing bifurcations, such as electric fields and flows. SEE REFERENCES!</p></li>
+</ul></li>
+</ul></li>
+<li><p>While the stabilization of some linear instability responsible for transport may be part of it, it is unlikely to account for the rapid changes usually observed in the L-H transition since stability criteria usually depend on parameters that change on a transport timescale.</p></li>
+<li><p>The theories are divided into 3 basic groups:</p>
+<ul>
+<li><p>Those that rely on achieving conditions of plasma parameters for the stabilization of particular instabilities or suppression of the associated turbulence. They are then subdivided into the edge of the core and those in the SOL.</p></li>
+<li><p>Those that rely on the suppression of turbulent transport by sheared radial electric fields or plasma flow, further classified by the physical processes that drive and limit these quantities.</p></li>
+<li><p>Those that are considered miscellaneous mechanisms, such as effects arising from divertor action, neoclassical theory, and particular transport models that don't fit above; for example, the role of neoclassical drifts.</p></li>
+</ul></li>
+<li><p>All of this is summarized in two tables in the appendix.</p></li>
 </ul>
 <hr />
 <h2 id="theoretical-considerations">2. Theoretical Considerations</h2>
+<h3 id="a-dimensional-analysis">2.1 <em>A dimensional analysis</em></h3>
+<ul>
+<li>In terms of plasma physics, expect to be able to represent the L-H transition condition by <span class="math inline">\(\rho \propto \beta^x \nu^y\)</span></li>
+</ul>
+<h3 id="edge-power-balance">2.2 <em>Edge power balance</em></h3>
+<ul>
+<li><p>A more consistent approach to obtaining the transition condition is to used a local edge power balance to determine radial length scales, relating to the SOL width <span class="math inline">\(\Delta\)</span>.</p>
+<ul>
+<li><p>You can relate the outflow of power into the SOL to a local model for the heat flux across the magnetic field <span class="math inline">\(q_\perp\)</span> at the edge: <span class="math display">\[P \propto a R n q_\perp \sim a R n \chi_\perp T / \Delta\]</span></p></li>
+<li><p>The power into the SOL must be transported along the field lines to the divertor plates (<span class="math inline">\(q_\parallel\)</span> is heat flux parallel to the magnetic field): <span class="math display">\[P \sim \frac{q_{\parallel} \Delta a}{q}\]</span></p></li>
+<li><p>Some assumptions are needed for the perp and parallel heat transport in the SOL: give estimates when perp transport is either Bohm or gyro-Bohm and when parallel transport is dominated by either collisional diffusion or by flow at sound speed.</p></li>
+<li><p>Balance perp and parallel heat flows in the SOL give: <span class="math display">\[\Delta(SOL) \sim \sqrt{\frac{n T \chi_\perp R q}{q_\parallel}}\]</span></p></li>
+</ul></li>
+<li><p>The results of taking each assumption is given by Eqs. 2.24 through 2.27.</p></li>
+</ul>
+<h3 id="the-shear-flow-paradigm">2.3 <em>The shear flow paradigm</em></h3>
+<ul>
+<li><p><span class="math inline">\(V_E^\prime\)</span> denotes the radial derivative of the equilibrium <span class="math inline">\(\mathbf{E}\times \mathbf{B}\)</span> velocity, <span class="math inline">\(V_E\)</span>.</p></li>
+<li><p>When turbulence is isotropic (<span class="math inline">\(\Delta r \sim r\Delta \theta\)</span>), it can be written that: <span class="math display">\[\omega_s \,=\, \frac{RB_\theta}{B} \frac{\partial}{\partial r}\left(\frac{E_r}{RB_\theta}\right)\]</span></p></li>
+</ul>
+<h3 id="radial-electric-fields">2.4 <em>Radial electric fields</em></h3>
+<ul>
+<li><p><span class="math inline">\(V_E^\prime\)</span> is determined by the radial electric field <span class="math inline">\(E_r\)</span>, which is then deduced from the radial force balance for any plasma species <span class="math inline">\(j\)</span>: <span class="math display">\[E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d} p_j}{\text{d} r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta\]</span></p>
+<ul>
+<li><p><span class="math inline">\(e_j\)</span> is charge, <span class="math inline">\(p_j\)</span> is pressure, <span class="math inline">\(n_j\)</span> is density, and <span class="math inline">\(V_{\theta j}\)</span> and <span class="math inline">\(V_{\phi j}\)</span> are the poloidal and toroidal velocities.</p></li>
+<li><p>Therefore, changes in <span class="math inline">\(E_r\)</span> can be associated with changes in <span class="math inline">\(V_{\theta j}\)</span>, <span class="math inline">\(V_{\phi j}\)</span>, or <span class="math inline">\(p_j^\prime\)</span> (the prime is the radial derivative).</p></li>
+<li><p>The ones that vary in the poloidal velocity correspond to bifurcations in the solutions of the poloidal momentum balance equation, requiring a momentum source/torque and sink.</p>
+<ul>
+<li><p>Sources: ion-orbit loss, non-ambipolar electron loss, Stringer spin-up due to poloidal asymmetries in turbulent transport, Reynolds stress from turbulence, etc.</p></li>
+<li><p>Sinks: ion parallel neoclassical viscosity, charge exchange on neutrals, etc.</p></li>
+</ul></li>
+<li><p>Models involving <span class="math inline">\(V_{\phi j}\)</span> or <span class="math inline">\(p_j^\prime\)</span> depend on sources of particles (neutrals surrounding the plasma, neutral beams), energy (heating), or toroidal momentum (neutral beams) driving <span class="math inline">\(E_r^\prime\)</span> until a transport bifurcation occurs.</p></li>
+</ul></li>
+</ul>
 <hr />
 <h2 id="instabilities-and-turbulence-at-the-plasma-edge">3. Instabilities and Turbulence at the Plasma Edge</h2>
 <hr />
@@ -29,5 +96,74 @@
 <h2 id="discussion">6. Discussion</h2>
 <hr />
 <h2 id="conclusions">7. Conclusions</h2>
+<hr />
+<h2 id="tables">Tables!</h2>
+<p>The following is the local L-H transition criteria in terms of dimensionless variables, and also in the form <span class="math inline">\(T_{crit} \,=\, C n^{\alpha_n} B^{\alpha_B}\)</span>.</p>
+<table style="width:89%;">
+<colgroup>
+<col width="29%" />
+<col width="29%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Theory</th>
+<th>Transition Criterion</th>
+<th>Critical Temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Peeling mode stability by Connor et al.</td>
+<td><span class="math display">\[\frac{\beta q^2}{\epsilon_p} &gt; \alpha_c(s))\]</span></td>
+<td><span class="math display">\[C \propto \frac{\tau}{1 + \tau} \frac{\epsilon_p}{q^2}\]</span></td>
+</tr>
+<tr class="even">
+<td>Resistive ballooning by Drake et al.</td>
+<td><span class="math display">\[\hat{\nu}_{*e} &lt; \sqrt{\frac{m_i}{m_e} \frac{\epsilon_p}{\epsilon_n^2}} \frac{1}{2\pi^2 q_a} \frac{\tau}{1 + \tau}\]</span></td>
+<td><span class="math display">\[C = 0.019 q \sqrt{\frac{1 + \tau}{\tau} R \epsilon_n} \left[\frac{1}{\epsilon_p A_i}\right]^{1/4}, ~~ \alpha_n = \frac{1}{2}, ~~ \alpha_B = 0\]</span></td>
+</tr>
+<tr class="odd">
+<td>Drift resistive ballooning, velocity shear, Stringer spin-up, by Rogers et al.</td>
+<td><span class="math display">\[\frac{\epsilon}{q s \sqrt{\epsilon_p}} &gt; 1\]</span></td>
+<td>Geometric criterion</td>
+</tr>
+<tr class="even">
+<td>Drift resistive ballooning, velocity shear, <span class="math inline">\(\mathbf{E}\times\mathbf{B}\)</span> flow by Rogers et al.</td>
+<td><span class="math display">\[\rho_{*s} &gt; \sqrt{\tau} \frac{s \epsilon_p^{3/2}}{\epsilon}\]</span></td>
+<td><span class="math display">\[C = 9.58\times 10^4 \frac{s^2 \epsilon_p^3 R^2 \tau}{A_i}, \\ \alpha_n = 0, ~~ \alpha_B = 2\]</span></td>
+</tr>
+<tr class="odd">
+<td>Ideal and drift resistive ballooning, ion temperature gradient effects by Rogers et al.</td>
+<td><span class="math display">\[\beta &gt; 0.5 \frac{\epsilon_p}{q^2}, ~~~~ \hat{\nu}_{*} &lt; \frac{2\sqrt{2}}{9} \sqrt{\frac{m_i}{\epsilon_n m_e}} \frac{1}{q}\]</span></td>
+<td><span class="math display">\[n_{cr} = 629 \left[\frac{\tau}{1 + \tau}\right]^{2/3} \frac{\epsilon_p^{2/3} B^{4/3}}{R^{1/3} q^2} \left(\frac{A_i}{\epsilon_n}\right)^{1/6} \\ n &gt; n_{cr}: C = 0.008 q \sqrt{R} \left(\right)^{1/4}, ~~ \alpha_n = 1/2, ~~ \alpha_B = 0 \\ n &lt; n_{cr}: C = 124 \frac{\tau}{1 + \tau} \frac{\epsilon_p}{q^2}, ~~ \alpha_n = -1, ~~ \alpha_B = 2\]</span></td>
+</tr>
+<tr class="even">
+<td>Resistive ballooning, Reynolds stress, Stringer spin-up by Guzdar and Hassam</td>
+<td><span class="math display">\[\frac{\hat{\nu}_{*i}}{\rho_{s}(s)\beta} &lt; \sqrt{\frac{\tau}{2}} \frac{D}{D_B} \frac{q^3}{\epsilon_n^2 \epsilon}\]</span></td>
+<td><span class="math display">\[ \text{Bohm diffusion:} ~~~C = 3.28 \frac{\tau^{5/7}}{(1 + \tau)^{2/7}} \left(\frac{\epsilon \epsilon_n R}{q}\right)^{4/7} \frac{1}{A_i^{1/7}}, ~~ \alpha_n = 0, ~~ \alpha_B = 6/7 \\ \text{Gyro-Bohm diffusion:} ~~~ C = 11.9 \frac{\tau^{5/8}}{(1 + \tau)^{1/4}} R^{3/4} \sqrt{\frac{\epsilon_n}{q}} \frac{\epsilon^{3/4}}{A_i^{1/4}}\]</span></td>
+</tr>
+<tr class="odd">
+<td>Drift resistive ballooning, 3D nonlinear simulations by Zeiler et al.</td>
+<td>See reference [86], Drake et al.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Microtearing modes by Ohyabu</td>
+<td><span class="math display">\[\hat{\nu}_{*e} &lt; \sqrt{\frac{b}{2} \frac{m_e}{m_i}} \frac{q}{\epsilon_T}\]</span></td>
+<td><span class="math display">\[\text{For } b = \text{const.:} ~~~ C = 0.225 \sqrt{\epsilon_T R} \left(\frac{A_i}{b}\right)^{1/4}, ~~ \alpha_n = 1/2, ~~ \alpha_B = 0 \\ \text{For } m = \text{const.:} ~~~ C = 3.01 \left[\frac{\epsilon_T \epsilon R^2}{m}\right]^{2/5}, ~~ \alpha_n = 2/5, ~~ \alpha_B = 2/5\]</span></td>
+</tr>
+<tr class="odd">
+<td>Low <span class="math inline">\(m\)</span> tearing modes stabilized by drift effects by Strauss</td>
+<td><span class="math display">\[\hat{\nu}_{*e} &lt; 0.49 \sqrt{\frac{m_i}{m_e}} \frac{\beta \tau}{1 + \tau} \frac{s\epsilon}{\epsilon_T(r\Delta^\prime)}\]</span></td>
+<td><span class="math display">\[C = 0.21 \left(\frac{r\Delta^\prime}{s\epsilon}\right)^{1/3} \frac{(R\epsilon_n q)^{1/3}}{A_i^{1/6}}, ~~ \alpha_n = 0, \alpha_B = 6/7\]</span></td>
+</tr>
+<tr class="even">
+<td>Low <span class="math inline">\(m\)</span> tearing modes stabilized by sound wave coupling by Strauss</td>
+<td><span class="math display">\[\hat{\nu}_{e*} &lt; 0.39 \frac{q}{s\epsilon_n} \frac{k_y a}{\rho_s (a\Delta^\prime)^2} \sqrt{\frac{m_i}{m_e}} \frac{Z\beta^2 \tau^{7/2}}{(1 + \tau)^2}\]</span></td>
+<td><span class="math display">\[C = 0.27 \left[\frac{s\epsilon_n}{\epsilon Z}\right]^{2/7} \left[\frac{(a\Delta^{\prime})^2}{k_y a}\right]^{2/7} \tau^{-3/7}, ~~ \alpha = -2/7, ~~ \alpha = 6/7\]</span></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
