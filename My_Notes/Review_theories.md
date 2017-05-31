@@ -77,14 +77,40 @@
 
 + Sheared radial electric fields reduce turbulent transport by either stabilization of linear modes or through a reduction of turbulence amplitudes, correlation lengths, or a change in phases between the fluctuations responsible for the turbulent transport fluxes.
 
-+ $V_E^\prime$ denotes the radial derivative of the equilibrium $\mathbf{E}\times \mathbf{B}$ velocity, $V_E$.
++ $V^{\prime}_E$ denotes the radial derivative of the equilibrium $\mathbf{E}\times \mathbf{B}$ velocity, $V_E$.
 
-+ When turbulence is isotropic ($\Delta r \sim r\Delta \theta$), it can be written that:
-	$$\omega_s \,=\, \frac{RB_\theta}{B} \frac{\partial}{\partial r}\left(\frac{E_r}{RB_\theta}\right)$$
++ A limit on sheared rotation was found: $\omega_s > \omega_t$:
+
+	+ $\omega_s = k_\theta \Delta r V_E^\prime$, with $\Delta r$ as the radial correlation length and $k_\theta$ as a characteristic poloidal wavenumber of the turbulence.
+
+	+ $\omega_t = 4D / (\Delta r)^2$ as the diffusive scattering rate, with $D$ being the turbulent diffusivity.
+
+	+ Turbulent eddies are torn apart by the differing $\mathbf{E}\times\mathbf{B}$ flows at different radial locations within the eddy, shown in Fig. 7.
+
+	+ Further analysis of a model equation showed that turbulence suppression occurs when $|\omega_t| < |\omega_s|$, which is known as the Biglari-Diamond-Terry (BDT) criterion, which can also be written as:
+		$$V_E^\prime > (\Delta r k_\theta \tau_c)^{-1}$$
+
+		+ $\tau_c$ is the turbulent decorrelation time, which can be considered on the order of the inverse of the diamagnetic frequency.
+
++ A more complete expression for $\omega_s$ is shown in Eq. 2.31, where $\Delta \phi$ and $\Delta \eta$ are correlation angles for the turbulence around the torus and along the field line, respectively:
+	$$\omega_s^2 \,=\, (\Delta r)^2 \left[\frac{1}{(\Delta \phi)^2} \left(\frac{\partial}{\partial r} \left(\frac{q V_e}{r}\right)\right)^2 + \frac{1}{(\Delta \eta)^2}\left(\frac{\partial}{\partial r} \left(\frac{V_\parallel}{q R}\right)\right)^2\right]$$
+
+	+ After some generalizations, and assuming the correlation 'lengths' and electrostatic potential $\Phi$ are constant on a flux surface, it can be reduced (the proportionality hold when $\Delta r$ and $\Delta \theta$ are fixed):
+		$$\omega_s \,=\, \frac{R^2 B_\theta^2}{r B_\phi} \left(\frac{\Delta r}{\Delta \theta}\right) \frac{\partial^2 \Phi}{\partial \psi^2} \,\propto\, R^3$$
+
+	+ When turbulence is isotropic ($\Delta r \sim r\Delta \theta$), it can be written that (Eq. 2.34):
+		$$\omega_s \,=\, \frac{RB_\theta}{B} \frac{\partial}{\partial r}\left(\frac{E_r}{RB_\theta}\right)$$
+
++ The curvature of $E_r$ does not have a generic effect on turbulence, but can affect specific instabilities.
+
++ The transport coefficients are taken to be suppressed by the presence of $\omega_s$:
+	$$D \,=\, \frac{D_0}{1 + c\left(\frac{\omega_s}{\omega_t}\right)^\gamma}$$
+
++ Another mechanism for reducing transport is the effect of $V_E$ on the cross-phase of the fluctuations contributing to the transport flux (source [67]).
 
 ### 2.4 _Radial electric fields_
 
-+ $V_E^\prime$ is determined by the radial electric field $E_r$, which is then deduced from the radial force balance for any plasma species $j$:
++ $V_E^\prime$ is determined by the radial electric field $E_r$, which is then deduced from the radial force balance for any plasma species $j$ (Eq. 2.38):
 	$$E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d} p_j}{\text{d} r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta$$
 
 	+ $e_j$ is charge, $p_j$ is pressure, $n_j$ is density, and $V_{\theta j}$ and $V_{\phi j}$ are the poloidal and toroidal velocities.
@@ -99,11 +125,61 @@
 
 	+ Models involving $V_{\phi j}$ or $p_j^\prime$ depend on sources of particles (neutrals surrounding the plasma, neutral beams), energy (heating), or toroidal momentum (neutral beams) driving $E_r^\prime$ until a transport bifurcation occurs.
 
++ If one balances $\omega_s$ from Eq. 2.34 using $E_r$ derived from the $p^\prime$ contribution in Eq. 2.38, then the criterion $\omega_s = \gamma_{max}$ reduces to $\rho_{*s} > \rho_{*s,\text{crit}}$, in which $\rho_{*s,\text{crit}}$ depends on the scaling of $\gamma_{max}$.
+
+### 2.5 _Bifurcations_
+
++ Bifurcations can take place when the equation has multi-valued or non-monotonic solutions as a function of an 'order' variable, such as density or temperature.
+
+	+ Multi-valued solutions cause 'hard' bifurcations. When the solution is merely non-monotonic, it is a 'soft bif., also known as a 'first-order phase transition.' When the solution remains monotonic but undergoes a change in slope, it is called a 'second-order phase transition.'
+
++ The poloidal torque balance has the potential to lead to a bif. in poloidal flow, and therefore $E_r$.
+
+	+ The following section of the paper covers this in significant detail. This includes that the particle flux has a nonlinear dependence on the radial electric field.
+
++ The simplest models for the bif. physics are local in radius, but one can introduce effects to determine the radial structure of the bif. layer.
+
+	+ A small discussion follows on determining the bif. layer width $\Delta$.
+
+		+ If the bif. in $E_r$ arises from $V_\theta$, it could be that the poloidal gyroradius and viscosity determine it.
+
+		+ However, it could be set by transport equations for density and temperature, whose gradients drive $E_r$. (READ)
+
 ---------------------------------------
 
 ## 3. Instabilities and Turbulence at the Plasma Edge
 
++ In this section, some cases where the reduction in transport fluxes resulting from a self-consistent generation of sheared flows will be noted.
 
+### 3.1 _Edge Region of the Core_
+#### 3.1.1 _Ideal MHD Modes_
+
+
+
+#### 3.1.2 _Resistive Ballooning Modes_
+
+
+
+#### 3.1.3 _Tearing Modes_
+
+
+
+
+#### 3.1.4 _Drift Waves_
+
+
+
+
+### 3.2 _Scrape-off Layer Region_
+#### 3.2.1 _Resistive Interchagees_
+
+
+
+#### 3.2.2 _Electron Temperature Gradient Modes_
+
+
+
+#### 3.2.3 _Drift Waves_
 
 ---------------------------------------
 

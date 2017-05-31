@@ -69,12 +69,30 @@
 </ul>
 <h3 id="the-shear-flow-paradigm">2.3 <em>The shear flow paradigm</em></h3>
 <ul>
-<li><p><span class="math inline">\(V_E^\prime\)</span> denotes the radial derivative of the equilibrium <span class="math inline">\(\mathbf{E}\times \mathbf{B}\)</span> velocity, <span class="math inline">\(V_E\)</span>.</p></li>
-<li><p>When turbulence is isotropic (<span class="math inline">\(\Delta r \sim r\Delta \theta\)</span>), it can be written that: <span class="math display">\[\omega_s \,=\, \frac{RB_\theta}{B} \frac{\partial}{\partial r}\left(\frac{E_r}{RB_\theta}\right)\]</span></p></li>
+<li><p>Sheared radial electric fields reduce turbulent transport by either stabilization of linear modes or through a reduction of turbulence amplitudes, correlation lengths, or a change in phases between the fluctuations responsible for the turbulent transport fluxes.</p></li>
+<li><p><span class="math inline">\(V^{\prime}_E\)</span> denotes the radial derivative of the equilibrium <span class="math inline">\(\mathbf{E}\times \mathbf{B}\)</span> velocity, <span class="math inline">\(V_E\)</span>.</p></li>
+<li><p>A limit on sheared rotation was found: <span class="math inline">\(\omega_s &gt; \omega_t\)</span>:</p>
+<ul>
+<li><p><span class="math inline">\(\omega_s = k_\theta \Delta r V_E^\prime\)</span>, with <span class="math inline">\(\Delta r\)</span> as the radial correlation length and <span class="math inline">\(k_\theta\)</span> as a characteristic poloidal wavenumber of the turbulence.</p></li>
+<li><p><span class="math inline">\(\omega_t = 4D / (\Delta r)^2\)</span> as the diffusive scattering rate, with <span class="math inline">\(D\)</span> being the turbulent diffusivity.</p></li>
+<li><p>Turbulent eddies are torn apart by the differing <span class="math inline">\(\mathbf{E}\times\mathbf{B}\)</span> flows at different radial locations within the eddy, shown in Fig. 7.</p></li>
+<li><p>Further analysis of a model equation showed that turbulence suppression occurs when <span class="math inline">\(|\omega_t| &lt; |\omega_s|\)</span>, which is known as the Biglari-Diamond-Terry (BDT) criterion, which can also be written as: <span class="math display">\[V_E^\prime &gt; (\Delta r k_\theta \tau_c)^{-1}\]</span></p>
+<ul>
+<li><span class="math inline">\(\tau_c\)</span> is the turbulent decorrelation time, which can be considered on the order of the inverse of the diamagnetic frequency.</li>
+</ul></li>
+</ul></li>
+<li><p>A more complete expression for <span class="math inline">\(\omega_s\)</span> is shown in Eq. 2.31, where <span class="math inline">\(\Delta \phi\)</span> and <span class="math inline">\(\Delta \eta\)</span> are correlation angles for the turbulence around the torus and along the field line, respectively: <span class="math display">\[\omega_s^2 \,=\, (\Delta r)^2 \left[\frac{1}{(\Delta \phi)^2} \left(\frac{\partial}{\partial r} \left(\frac{q V_e}{r}\right)\right)^2 + \frac{1}{(\Delta \eta)^2}\left(\frac{\partial}{\partial r} \left(\frac{V_\parallel}{q R}\right)\right)^2\right]\]</span></p>
+<ul>
+<li><p>After some generalizations, and assuming the correlation 'lengths' and electrostatic potential <span class="math inline">\(\Phi\)</span> are constant on a flux surface, it can be reduced (the proportionality hold when <span class="math inline">\(\Delta r\)</span> and <span class="math inline">\(\Delta \theta\)</span> are fixed): <span class="math display">\[\omega_s \,=\, \frac{R^2 B_\theta^2}{r B_\phi} \left(\frac{\Delta r}{\Delta \theta}\right) \frac{\partial^2 \Phi}{\partial \psi^2} \,\propto\, R^3\]</span></p></li>
+<li><p>When turbulence is isotropic (<span class="math inline">\(\Delta r \sim r\Delta \theta\)</span>), it can be written that (Eq. 2.34): <span class="math display">\[\omega_s \,=\, \frac{RB_\theta}{B} \frac{\partial}{\partial r}\left(\frac{E_r}{RB_\theta}\right)\]</span></p></li>
+</ul></li>
+<li><p>The curvature of <span class="math inline">\(E_r\)</span> does not have a generic effect on turbulence, but can affect specific instabilities.</p></li>
+<li><p>The transport coefficients are taken to be suppressed by the presence of <span class="math inline">\(\omega_s\)</span>: <span class="math display">\[D \,=\, \frac{D_0}{1 + c\left(\frac{\omega_s}{\omega_t}\right)^\gamma}\]</span></p></li>
+<li><p>Another mechanism for reducing transport is the effect of <span class="math inline">\(V_E\)</span> on the cross-phase of the fluctuations contributing to the transport flux (source [67]).</p></li>
 </ul>
 <h3 id="radial-electric-fields">2.4 <em>Radial electric fields</em></h3>
 <ul>
-<li><p><span class="math inline">\(V_E^\prime\)</span> is determined by the radial electric field <span class="math inline">\(E_r\)</span>, which is then deduced from the radial force balance for any plasma species <span class="math inline">\(j\)</span>: <span class="math display">\[E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d} p_j}{\text{d} r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta\]</span></p>
+<li><p><span class="math inline">\(V_E^\prime\)</span> is determined by the radial electric field <span class="math inline">\(E_r\)</span>, which is then deduced from the radial force balance for any plasma species <span class="math inline">\(j\)</span> (Eq. 2.38): <span class="math display">\[E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d} p_j}{\text{d} r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta\]</span></p>
 <ul>
 <li><p><span class="math inline">\(e_j\)</span> is charge, <span class="math inline">\(p_j\)</span> is pressure, <span class="math inline">\(n_j\)</span> is density, and <span class="math inline">\(V_{\theta j}\)</span> and <span class="math inline">\(V_{\phi j}\)</span> are the poloidal and toroidal velocities.</p></li>
 <li><p>Therefore, changes in <span class="math inline">\(E_r\)</span> can be associated with changes in <span class="math inline">\(V_{\theta j}\)</span>, <span class="math inline">\(V_{\phi j}\)</span>, or <span class="math inline">\(p_j^\prime\)</span> (the prime is the radial derivative).</p></li>
@@ -85,6 +103,7 @@
 </ul></li>
 <li><p>Models involving <span class="math inline">\(V_{\phi j}\)</span> or <span class="math inline">\(p_j^\prime\)</span> depend on sources of particles (neutrals surrounding the plasma, neutral beams), energy (heating), or toroidal momentum (neutral beams) driving <span class="math inline">\(E_r^\prime\)</span> until a transport bifurcation occurs.</p></li>
 </ul></li>
+<li><p>If one balances <span class="math inline">\(\omega_s\)</span> from Eq. 2.34 using <span class="math inline">\(E_r\)</span> derived from the <span class="math inline">\(p^\prime\)</span> contribution in Eq. 2.38, then the criterion <span class="math inline">\(\omega_s = \gamma_{max}\)</span> reduces to <span class="math inline">\(\rho_{*s} &gt; \rho_{*s,\text{crit}}\)</span>, in which <span class="math inline">\(\rho_{*s,\text{crit}}\)</span> depends on the scaling of <span class="math inline">\(\gamma_{max}\)</span></p></li>
 </ul>
 <hr />
 <h2 id="instabilities-and-turbulence-at-the-plasma-edge">3. Instabilities and Turbulence at the Plasma Edge</h2>
