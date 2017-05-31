@@ -75,6 +75,8 @@
 
 ### 2.3 _The shear flow paradigm_
 
++ Sheared radial electric fields reduce turbulent transport by either stabilization of linear modes or through a reduction of turbulence amplitudes, correlation lengths, or a change in phases between the fluctuations responsible for the turbulent transport fluxes.
+
 + $V_E^\prime$ denotes the radial derivative of the equilibrium $\mathbf{E}\times \mathbf{B}$ velocity, $V_E$.
 
 + When turbulence is isotropic ($\Delta r \sim r\Delta \theta$), it can be written that:
@@ -144,5 +146,19 @@ The following is the local L-H transition criteria in terms of dimensionless var
 | Microtearing modes by Ohyabu | $$\hat{\nu}_{*e} < \sqrt{\frac{b}{2} \frac{m_e}{m_i}} \frac{q}{\epsilon_T}$$ | $$\text{For } b = \text{const.:} ~~~ C = 0.225 \sqrt{\epsilon_T R} \left(\frac{A_i}{b}\right)^{1/4}, ~~ \alpha_n = 1/2, ~~ \alpha_B = 0 \\ \text{For } m = \text{const.:} ~~~ C = 3.01 \left[\frac{\epsilon_T \epsilon R^2}{m}\right]^{2/5}, ~~ \alpha_n = 2/5, ~~ \alpha_B = 2/5$$ |
 | Low $m$ tearing modes stabilized by drift effects by Strauss | $$\hat{\nu}_{*e} < 0.49 \sqrt{\frac{m_i}{m_e}} \frac{\beta \tau}{1 + \tau} \frac{s\epsilon}{\epsilon_T(r\Delta^\prime)}$$ | $$C = 0.21 \left(\frac{r\Delta^\prime}{s\epsilon}\right)^{1/3} \frac{(R\epsilon_n q)^{1/3}}{A_i^{1/6}}, ~~ \alpha_n = 0, \alpha_B = 6/7$$ |
 | Low $m$ tearing modes stabilized by sound wave coupling by Strauss | $$\hat{\nu}_{e*} < 0.39 \frac{q}{s\epsilon_n} \frac{k_y a}{\rho_s (a\Delta^\prime)^2} \sqrt{\frac{m_i}{m_e}} \frac{Z\beta^2 \tau^{7/2}}{(1 + \tau)^2}$$ | $$C = 0.27 \left[\frac{s\epsilon_n}{\epsilon Z}\right]^{2/7} \left[\frac{(a\Delta^{\prime})^2}{k_y a}\right]^{2/7} \tau^{-3/7}, ~~ \alpha = -2/7, ~~ \alpha = 6/7$$ |
+| Finite $\beta$ effects on collisional drift wave turbulence by Scott et al. | $$\beta > \frac{m_e}{m_i}$$ | $$C 0.135 \frac{\tau}{(1 + \tau)} \frac{1}{A_i}, ~~ \alpha_n = -1, ~~ \alpha_B = 2$$ |
+| Drift-Alfvén turbulence, $k_\parallel \sim 1 / (R q)$, $L_p \sim \Delta_{SOL}$ | $$\sqrt{\frac{m_i}{2 m_e}} \frac{\beta q}{\epsilon_p} > 1 + \left[\hat{\nu}_{*e}^2 \sqrt{\frac{2 m_i}{m_e} \frac{\epsilon_p}{q}}\right]^{1/3}$$ | $$\text{Collisionless:} ~~~ C \sim \frac{1}{(R q)^{4/5}} \frac{1}{A_i^{3/5}}, ~~ \alpha_n = -7/5, ~~ \alpha_B = 2 \\ \text{Collisional:} ~~~ C \sim \frac{(R q)^{2/15}}{A_i^{1/15}}, ~~ \alpha_n = 1 /15, ~~ \alpha_B = 2/5$$ |
+| Drift wave instabilities driven by neutrals by Rogister | $$\rho_{*s} \propto \sqrt{\frac{\ell}{a \hat{\nu}_{e}}}$$ | $$C \propto \frac{A_i q}{\epsilon}, ~~ \alpha_n = 2, ~~ \alpha_B = -2$$ |
+| Resistive interchange SOL instability, ion-orbit-loss viscocity by Pogutse et al. | $$\rho_{*s} > 10 \sqrt{\frac{m_i}{m_e}} \frac{\Delta_{SOL}^2}{R^2 q \epsilon^{3/2}} \tau$$ | $$C = 1.76\times 10^{10} \frac{\tau^2 \Delta_{SOL}^4}{R^2 \epsilon q^2}, ~~ \alpha_n 0, ~~ \alpha_B = 2$$ |
+| Resistive interchange SOL instability, sheath resistivity dominates by Pogutse et al. | $$\rho_{*s} > \frac{31.6}{\epsilon} \left(\frac{\Delta_{SOL}}{R}\right)^{3/2}$$ | $$C = 9.58\times 10^7 \frac{\Delta_{SOL}^3}{R A_i}, ~~ \alpha_n =0, ~~ \alpha_B = 2$$ |
+| Resistive MHD, drift/interchange SOL turbulence by Cordey et al. | $$\rho_{*s} > C_1 \frac{\Delta_{SOL}}{\epsilon R}$$ | $$C \propto \frac{\Delta_{SOL}^2}{a_i}, ~~ \alpha_n = 0, \alpha_B = 2$$ |
+| Electron temperature gradient modes in SOL, incorporating self-consistent calculation of $\epsilon T_e$, by Cohen an Xu| $$\beta > \beta_c \propto \rho_{*s}^{2/5} \left(\frac{a}{L_\parallel}\right)^{2/5} \frac{\tau^{2/15}}{A_i^{1/10}}$$ | $$C \propto \frac{\tau^{17/12}}{(1 + \tau)^{5/4}} \sqrt{\frac{1}{L_\parallel}} A_i^{1/8}, ~~ \alpha_n = -4/5, ~~ \alpha_B = 2$$ |
+| Resistive skin effect reduces turbulence length scales in SOL, by Chankin | $$$$ | $$$$ |
+| Ion-orbit-loss torque balancing neoclassical poloidal viscous damping, by Shaing and Crume | $$$$ | $$$$ |
+| Ion-orbit-loss, non-ambipolar electron diffusion, by Itoh and Itoh | $$$$ | $$$$ |
+| More fundamental condition on ion-orbit loss by Ohkawa and Hinton | $$$$ | $$$$ |
+|  | $$$$ | $$$$ |
+|  | $$$$ | $$$$ |
+|  | $$$$ | $$$$ |
 
 
