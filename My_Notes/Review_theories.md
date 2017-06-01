@@ -21,7 +21,7 @@
 
 	+ In terms of local plasma parameters, hysteresis is less obvious, but the critical temperature responds to the ion-$\nabla B$ drift in the same manner as $P_h$.
 
-#### (ii) Spatial and temporal characteristics
+#### (ii) _Spatial and temporal characteristics_
 
 + How the edge region scales is a potential test of theories.
 
@@ -71,7 +71,7 @@
 	+ Balance perp and parallel heat flows in the SOL give:
 		$$\Delta(SOL) \sim \sqrt{\frac{n T \chi_\perp R q}{q_\parallel}}$$
 
-+ The results of taking each assumption is given by Eqs. 2.24 through 2.27.
++ The results of taking each assumption is given by Eqs. (2.24) through (2.27).
 
 ### 2.3 _The shear flow paradigm_
 
@@ -92,13 +92,13 @@
 
 		+ $\tau_c$ is the turbulent decorrelation time, which can be considered on the order of the inverse of the diamagnetic frequency.
 
-+ A more complete expression for $\omega_s$ is shown in Eq. 2.31, where $\Delta \phi$ and $\Delta \eta$ are correlation angles for the turbulence around the torus and along the field line, respectively:
++ A more complete expression for $\omega_s$ is shown in Eq. (2.31), where $\Delta \phi$ and $\Delta \eta$ are correlation angles for the turbulence around the torus and along the field line, respectively:
 	$$\omega_s^2 \,=\, (\Delta r)^2 \left[\frac{1}{(\Delta \phi)^2} \left(\frac{\partial}{\partial r} \left(\frac{q V_e}{r}\right)\right)^2 + \frac{1}{(\Delta \eta)^2}\left(\frac{\partial}{\partial r} \left(\frac{V_\parallel}{q R}\right)\right)^2\right]$$
 
 	+ After some generalizations, and assuming the correlation 'lengths' and electrostatic potential $\Phi$ are constant on a flux surface, it can be reduced (the proportionality hold when $\Delta r$ and $\Delta \theta$ are fixed):
 		$$\omega_s \,=\, \frac{R^2 B_\theta^2}{r B_\phi} \left(\frac{\Delta r}{\Delta \theta}\right) \frac{\partial^2 \Phi}{\partial \psi^2} \,\propto\, R^3$$
 
-	+ When turbulence is isotropic ($\Delta r \sim r\Delta \theta$), it can be written that (Eq. 2.34):
+	+ When turbulence is isotropic ($\Delta r \sim r\Delta \theta$), it can be written that (Eq. (2.34)):
 		$$\omega_s \,=\, \frac{RB_\theta}{B} \frac{\partial}{\partial r}\left(\frac{E_r}{RB_\theta}\right)$$
 
 + The curvature of $E_r$ does not have a generic effect on turbulence, but can affect specific instabilities.
@@ -110,7 +110,7 @@
 
 ### 2.4 _Radial electric fields_
 
-+ $V_E^\prime$ is determined by the radial electric field $E_r$, which is then deduced from the radial force balance for any plasma species $j$ (Eq. 2.38):
++ $V_E^\prime$ is determined by the radial electric field $E_r$, which is then deduced from the radial force balance for any plasma species $j$ (Eq. (2.38)):
 	$$E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d} p_j}{\text{d} r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta$$
 
 	+ $e_j$ is charge, $p_j$ is pressure, $n_j$ is density, and $V_{\theta j}$ and $V_{\phi j}$ are the poloidal and toroidal velocities.
@@ -125,7 +125,7 @@
 
 	+ Models involving $V_{\phi j}$ or $p_j^\prime$ depend on sources of particles (neutrals surrounding the plasma, neutral beams), energy (heating), or toroidal momentum (neutral beams) driving $E_r^\prime$ until a transport bifurcation occurs.
 
-+ If one balances $\omega_s$ from Eq. 2.34 using $E_r$ derived from the $p^\prime$ contribution in Eq. 2.38, then the criterion $\omega_s = \gamma_{max}$ reduces to $\rho_{*s} > \rho_{*s,\text{crit}}$, in which $\rho_{*s,\text{crit}}$ depends on the scaling of $\gamma_{max}$.
++ If one balances $\omega_s$ from Eq. (2.34) using $E_r$ derived from the $p^\prime$ contribution in Eq. (2.38), then the criterion $\omega_s = \gamma_{max}$ reduces to $\rho_{*s} > \rho_{*s,\text{crit}}$, in which $\rho_{*s,\text{crit}}$ depends on the scaling of $\gamma_{max}$.
 
 ### 2.5 _Bifurcations_
 
@@ -154,36 +154,85 @@
 ### 3.1 _Edge Region of the Core_
 #### 3.1.1 _Ideal MHD Modes_
 
++ Bishop [77] proposes ideal MHD ballooning mode stability has a role in L-H transitions.
 
+	+ He concludes that stability properties become progressively better in a separatrix configuration in which the X-point position moves into the region of favorable curvature and that a finite edge current allows the possibility of complete stability to both ballooning and interchange modes for surfaces close to the separatrix.
+
+	+ This is due partly because regions of zero local magnetic shear are move to regions of favorable curvature.
+	+ Suggests that the L-H transition occurs well below the simple ballooning limit, Eq. (3.1)
+
++ Edge plasma current can also drive instabilities (DUH). The peeling mode occurs when a resonant surface for an ideal external kink mode lies just outside the plasma surface. In cylindrical geometry, this mode is destabilized by a finite plasma current at the edge.
+
+	+ These (mentioned in the paper) properties suggest that L-mode is considered to be unstable to the peeling mode, resulting in a high level of magnetic fluctuations at the tokamak edge and therefore an enhanced thermal diffusivity.
+
+	+ As heating is increase, $\alpha$, a parameter, will rise and eventually pass beyond the critical value required for stability; the peeling mode will then switch off and the edge confinement will improve, which can be interpreted as necessary for H-mode.
+
+	+ Whether the peeling mode is stabilized as power increases depends on the competition between the rise in $\alpha$ and the rise in temperature, providing a possible explanation in L-H transitions between large and small tokamaks.
+
+	+ (Look into context) (iv) H-mode can be accessed by reducing the edge current by current ramp-down and by pellet injection (decreases edge temperature, which increases resistivity).
 
 #### 3.1.2 _Resistive Ballooning Modes_
 
-
++ _Skipped, for now_
 
 #### 3.1.3 _Tearing Modes_
 
-
-
++ _Skipped, for now_
 
 #### 3.1.4 _Drift Waves_
 
-
-
++ _Skipped, for now_
 
 ### 3.2 _Scrape-off Layer Region_
 #### 3.2.1 _Resistive Interchagees_
 
-
++ _Skipped, for now_
 
 #### 3.2.2 _Electron Temperature Gradient Modes_
 
-
++ _Skipped, for now_
 
 #### 3.2.3 _Drift Waves_
+
++ _Skipped, for now_
 
 ---------------------------------------
 
 ## 4. Models Involving Sheared Radial Electric Field and Flows
+
++ It is possible to classify the models by sheared radial electric fields according to the processes generating it: poloidal flow drives and damping, toroidal flows, and transport processes.
+
++ In addition, one can separate the models according to whether or not they treat the evolution of gradients and fluctuations on the same footing.
+
+### 4.1 _Poloidal Torque Balance_
+
++ Balance of torques driven by radial currents against poloidal viscosity or damping.
+
+#### 4.1.1 _Ion-Orbit Loss Theories_
+
++ Earliest model that predicts a bif. in $E_r$, due to Itoh and Itoh.
+
+#### 4.1.2 _The Effects of Neutral Particles_
+
+
+
+#### 4.1.3 _Stringer Spin-up_
+
+
+
+#### 4.1.4 _Neoclassical Flows_
+
+
+
+#### 4.1.5 _Turbulent Reynolds Stress and Viscosity_
+
+
+
+### 4.2 _Transport Bifurcation Theories_
+
+
+
+### 4.3 _Phase-Transition Models_
 
 
 
