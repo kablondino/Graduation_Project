@@ -179,11 +179,64 @@
 </ul>
 <h3 id="poloidal-torque-balance">4.1 <em>Poloidal Torque Balance</em></h3>
 <ul>
-<li>Balance of torques driven by radial currents against poloidal viscosity or damping.</li>
+<li><p>Balance of torques driven by radial currents against poloidal viscosity or damping.</p>
+<ul>
+<li>The balance of these torques can lead to multiple solutions for the poloidal flow (or radial electric field); can be associated with low and high transport, <em>i.e.</em> L- and H-modes.</li>
+</ul></li>
 </ul>
 <h4 id="ion-orbit-loss-theories">4.1.1 <em>Ion-Orbit Loss Theories</em></h4>
 <ul>
-<li>Earliest model that predicts a bif. in <span class="math inline">\(E_r\)</span>, due to Itoh and Itoh.</li>
+<li><p>Earliest model that predicts a bif. in <span class="math inline">\(E_r\)</span>, due to Itoh and Itoh [69].</p>
+<ul>
+<li><p>They used ion-orbit loss at the edge and balanced it against a non-ambipolar electron diffusion to derive an expression for the equilibrium radial electric field.</p></li>
+<li><p>The non-ambipolarity comes from the emission of wave momentum which is not absorbed in the plasma but lost in the SOL. <span class="math display">\[\lambda_e \,=\, -\frac{T_e}{T_i} \rho_{pi} \left(\frac{n_e^\prime}{n_e} + c_e \frac{T_e^\prime}{T_e}\right)\]</span></p></li>
+<li><p><span class="math inline">\(c_e\)</span> is a constant of O(1) that depends on the nature of the microturbulence</p>
+<ul>
+<li><p>For <span class="math inline">\(\lambda_e &lt; \lambda_c \approx \rho_{pi}^2 \nu_{ii} / (\sqrt{\epsilon} D_e)\)</span>, only one solution exists, which corresponds to a low (negative) electric field.</p></li>
+<li><p>As <span class="math inline">\(\lambda_e\)</span> increases to <span class="math inline">\(\approx \lambda_c\)</span>, two new solutions exist with higher <span class="math inline">\(E_r\)</span>.</p></li>
+<li><p>For <span class="math inline">\(\lambda_e\)</span> increasing beyond <span class="math inline">\(\lambda_c\)</span>, the plasma is forced to jump to the high <span class="math inline">\(E_r\)</span> solution. This is considered equivalent to <span class="math inline">\(\nu_{*i}\)</span> being below a critical value. <span class="math display">\[\lambda_e = \lambda_c ~~~~\longrightarrow~~~~ \frac{D_e \tau \sqrt{\epsilon}}{\nu_{ii}\rho_{pi} L_n} \,\gtrapprox\, 1\]</span></p></li>
+<li><p>When the previous threshold is exceeded, the resulting field is positive, at odds with experimental measurements.</p></li>
+</ul></li>
+<li><p>Usually, <span class="math inline">\(\lambda_c\)</span> is of order unity, giving <span class="math inline">\(\rho_{pi} / L_n \gtrapprox 1\)</span>, where <span class="math inline">\(L_n\)</span> is the density gradient length.</p></li>
+</ul></li>
+<li><p>A later model [120] found that for a negative radial field <span class="math inline">\(E_r\)</span>, its radial derivative <span class="math inline">\(E_r^\prime\)</span> flips from being small and positive in L-mode to large and negative in H-mode. This jump is hypothesized to be the confinement improvement and associated reduction in turbulence level at the time of transition. This model also has hysteresis.</p></li>
+<li><p><span style="color:red">Another model has the generation of toroidal flow by ion-orbit loss with similar results, with an extension to a situation where additional heating generates energetic electrons, which are then lost due to magnetic field ripple trapping [121,122].</span></p>
+<ul>
+<li><p>A bifurcation condition arises, in which <span class="math inline">\(h\)</span> signifies 'hot' electrons, $ is the ripple amplitude, and <span class="math inline">\(V\)</span> is plasma volume: <span class="math display">\[\frac{n_h}{n_i}\left(\frac{T_h}{T_i}\right)^{7/2} \,&gt;\, 0.17 \frac{\epsilon^3}{\lambda_h \delta^{3/2}} \sqrt{\frac{m_i}{m_e}} \nu_{*i}^2, ~~~~~~ \lambda_h \,=\, \frac{\rho_{pi} n_h^\prime}{n_h}\]</span></p></li>
+<li><p>This give a power threshold: <span class="math display">\[P_{th} \,=\, 10\epsilon^2 \frac{T_h \rho_{pi}}{T_i a} \nu_i n_i T_i V\]</span></p></li>
+</ul></li>
+<li><p>The current diffusive ballooning mode (CDBM) model has been examined [123,124], which is based on a resistive ballooning mode turbulence, but where dissipation arises from renormalized viscosity and current diffusion coefficients associated with electron inertia (supported by simulations of turbulence) [125,126].</p>
+<ul>
+<li><p>This includes a reduction in the transport for larger <span class="math inline">\(E_r^\prime\)</span>, independent of sign. Using the results from this, the threshold for the L-H transition becomes [127]: <span class="math display">\[\sqrt{\frac{a}{m_i}} \, \frac{m_e}{e^2 B^2} \, \frac{a_0 q^2}{f(s)} \, \frac{|\text{d}T / \text{d}r|^{5/2}}{\rho_{pi} \nu_{ii} T} \,=\, 1\]</span></p>
+<ul>
+<li><p><span class="math inline">\(a_0\)</span> is a numerical coefficient and <span class="math inline">\(f(s)\)</span> is a function of magnetic shear <span class="math inline">\(s\)</span>, depending on the mode structure.</p></li>
+<li><p>When this model is incorporated into a transport code which models the self-consistent evolution of <span class="math inline">\(p^\prime\)</span> and <span class="math inline">\(E_r^\prime\)</span>, it can produce a stable edge transport barriere [128].</p></li>
+</ul></li>
+</ul></li>
+<li><p>Model of Shaing and Crume also appealed to ion-orbit loss; they balanced the change in poloidal momentum, resulting from loss of the faster ions in the tail of a Maxwellian velocity dist., against the neoclassical poloidal viscous damping ('magnetic pumping'), which is dominated by slower thermal ions.</p>
+<ul>
+<li><p>The result give solutions for the poloidal flow velocity which bifurcates as the temperature is increase: a low velocity (L-mode) and high velocity (H-mode) solution.</p></li>
+<li><p>The improvement in confinement is assumed to result from the effect of the sheared flow on the correlation length of the turbulence.</p></li>
+<li><p>The threshold conditions again can be expressed as falling below a critical ion collisionality <span class="math inline">\(\nu_{*i}\)</span>, where <span class="math inline">\(c\)</span> is a constant: <span class="math display">\[\frac{n R q}{\epsilon^{3/2} T_i^2} \,&lt;\, c\]</span></p></li>
+<li><p>Predictions of this theory include a poloidal spin-up of the plasma, hysteresis, and an associated negative radial field within a region at the plasma edge of width <span class="math inline">\(\sqrt{\epsilon} \rho_{pi} / \sqrt{s}\)</span>._</p>
+<ul>
+<li>In addition, the original theory was based on the assumption that the ions take up a Maxwellian velocity dist., that predicts high collisionality plasmas should not exhibit H-mode. <em>However</em>, the presence of a fast ion source invalidates that assumption.</li>
+</ul></li>
+</ul></li>
+<li><p>Shaing and Zhang [130] modified the previous to include stress arising from the interaction of a magnetic field perturbation <span class="math inline">\(b_r\)</span> with the vacuum vessel in the equation for the ion poloidal velocity. Relative to the orbit-loss term, they find an effective stress which can remove the possibility of a bif. in poloidal flow leading to sheared radial electric fields: <span class="math display">\[\pi_{eff} \,=\, \frac{C_A^2 a \omega \tau_W (r_s / r_W)^{2m} (b_r / B)^2}{V_{Th i}^2 w (1 + (\omega\tau_W)^2 [1 - (r_s / r_W)^{2m}]^2)}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(w\)</span> is the magnetic island width arising from <span class="math inline">\(b_r\)</span>, <span class="math inline">\(\omega\)</span> is the frequency in the lab frame, <span class="math inline">\(\tau_W\)</span> is the wall time constant, <span class="math inline">\(r_s\)</span> is the resonant surface for the islands, and <span class="math inline">\(r_W\)</span> is the wall radius.</p></li>
+<li><p>This has the consequence that increasing <span class="math inline">\(b_r\)</span> increases <span class="math inline">\(P_{Th}\)</span> for the L-H transition; conversely, for a given <span class="math inline">\(b_r\)</span>, increasing <span class="math inline">\(n\)</span> or <span class="math inline">\(T_i\)</span> assists the transition. Also, the bifurcated flow is smaller.</p></li>
+<li><p>The aforementioned effects are significant when <span class="math inline">\(\pi_{eff} \geq 1\)</span>, which can occur typically for <span class="math inline">\(b_r / B \sim 4\times 10^{-4}\)</span>.</p></li>
+</ul></li>
+<li><p>Hinton and Kim [131] have demonstrated how to link <span class="math inline">\(E_r\)</span> from the SOL to the core across the separatrix, where a radial current <span class="math inline">\(j_r\)</span> must flow, which allows divertor biasing to affect the core.</p></li>
+<li><p>Miyamoto [132] has considered ion-orbit loss in a divertor/separatrix geometry and demonstrated that bifs. in electrostatic potential are possible.</p></li>
+<li><p>Complementarily, Krasheninnikov and Yushmanov [133] show that a potential step can increase ion-orbit loss, allowing an unstable growth of potential and a L-H transition.</p></li>
+<li><p>Kim et al [134] and Hinton et al [135] noted that orbit squeezing, due to electric field gradients comparable with the ion poloidal Larmor radius, can increase ion poloidal flows, thus modifying the effect of poloidal flow damping.</p>
+<ul>
+<li>In addition, the same effect reduces the bootstrap current so that the radial field shear can inhibit the bootstrap current drive for MHD instabilities at the plasma edge.</li>
+</ul></li>
+<li><p>Change [136] has examined ion-orbit loss at the X-point, where it is most effective since the poloidal field vanishes there. A critical collisionality depending on the details of the X-point geometry and condition is found, and a layer width <span class="math inline">\(\Delta \sim \bar{\rho_{pi}}\)</span>, where <span class="math inline">\(\bar{\rho_{pi}}\)</span> is an average over the flux surface.</p></li>
 </ul>
 <h4 id="the-effects-of-neutral-particles">4.1.2 <em>The Effects of Neutral Particles</em></h4>
 <h4 id="stringer-spin-up">4.1.3 <em>Stringer Spin-up</em></h4>
@@ -301,13 +354,13 @@
 </tr>
 <tr class="even">
 <td>Resistive skin effect reduces turbulence length scales in SOL, by Chankin</td>
-<td><span class="math inline">\($\)</span>$</td>
-<td><span class="math inline">\($\)</span>$</td>
+<td><span class="math display">\[\beta &gt; \beta_c \propto \left(\frac{\epsilon}{q}\right)^{2/3} \frac{\hat{\nu_{*e}}}{\sqrt{A_i}} \rho_{*s}^{2/3} \sqrt{\frac{1 + \tau}{\tau}}\]</span></td>
+<td><span class="math display">\[C \propto \left(\frac{\tau}{1 + \tau}\right)^{3/16} \frac{(R q)^{1/8}}{A_i}^{1/16}, ~~ \alpha_n = 0, ~~ \alpha_B = 1/2\]</span></td>
 </tr>
 <tr class="odd">
 <td>Ion-orbit-loss torque balancing neoclassical poloidal viscous damping, by Shaing and Crume</td>
-<td><span class="math inline">\($\)</span>$</td>
-<td><span class="math inline">\($\)</span>$</td>
+<td><span class="math display">\[\nu_{*i} &lt; \nu_c\]</span></td>
+<td><span class="math display">\[C \propto \frac{\tau}{\epsilon^{3/4}} \sqrt{R q}, ~~ \alpha_n = 1/2, ~~ \alpha_B = 0\]</span></td>
 </tr>
 <tr class="even">
 <td>Ion-orbit-loss, non-ambipolar electron diffusion, by Itoh and Itoh</td>

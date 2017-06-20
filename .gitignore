@@ -2,6 +2,8 @@
 *.aux
 *.log
 *.out
+*.bbl
+*.toc
 
 # PDF. REMOVE IF NECESSARY
 *.pdf
