@@ -236,9 +236,35 @@
 <ul>
 <li>In addition, the same effect reduces the bootstrap current so that the radial field shear can inhibit the bootstrap current drive for MHD instabilities at the plasma edge.</li>
 </ul></li>
-<li><p>Change [136] has examined ion-orbit loss at the X-point, where it is most effective since the poloidal field vanishes there. A critical collisionality depending on the details of the X-point geometry and condition is found, and a layer width <span class="math inline">\(\Delta \sim \bar{\rho_{pi}}\)</span>, where <span class="math inline">\(\bar{\rho_{pi}}\)</span> is an average over the flux surface.</p></li>
+<li><p>Change [136] has examined ion-orbit loss at the X-point, where it is most effective since the poloidal field vanishes there. A critical collisionality depending on the details of the X-point geometry and condition is found, and a layer width <span class="math inline">\(\Delta \sim \bar{\rho}_{pi}\)</span>, where <span class="math inline">\(\bar{\rho}_{pi}\)</span> is an average over the flux surface.</p></li>
 </ul>
 <h4 id="the-effects-of-neutral-particles">4.1.2 <em>The Effects of Neutral Particles</em></h4>
+<ul>
+<li><p>Neutrals can influence ion-orbit-loss theories in 2 ways:</p>
+<ul>
+<li>Increasing both poloidal flow damping and ion-orbit losses through charge exchange with ions.??</li>
+</ul></li>
+<li><p>Itoh and Itoh [121] introduced poloidal flow damping due to momentum losses from charge exchange with neutrals. This modifies the bifurcation condition: <span class="math display">\[\frac{\lambda_e}{\lambda_c} \,=\, 1 + d_n \lambda_i, ~~~~~~~~ \lambda_i \,=\, -\rho_{pi}\left(\frac{n_i^\prime}{n_i} + \frac{c_i T_i^\prime}{T_i}\right) \\
+c_i \sim 1, ~~~~~~~ d_n \,=\, \sqrt{\epsilon} \, \frac{n_o \langle\sigma_{cx} v \rangle}{\nu_{ii}F} \frac{\ell_n}{\rho_{pi}}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(n_o\)</span> is the neutral density, <span class="math inline">\(\sigma_{cx}\)</span> is the charge exchange cross-section, <span class="math inline">\(\ell_n\)</span> is the neutral penetration length, and <span class="math inline">\(F\)</span> is a form factor <span class="math inline">\(\sim 1\)</span>. This effect increases the value of <span class="math inline">\(\lambda_c\)</span> needed for a bifurcation: <span class="math display">\[n_o \,&gt;\, \frac{c\nu_{ii}}{\sqrt{\epsilon} \langle \sigma_{cx} v \rangle} \frac{\rho_{pi}}{\ell_n}\]</span></p></li>
+<li><p>These two conditions provide limits on both electron and neutral particle densities (Eqs. 4.14 and 4.15)</p></li>
+<li><p>Neutrals were also found to increase the time for a transition to take place. The paper also considered the effects of an impurity ion.</p></li>
+</ul></li>
+<li><p>The same authors have also related the neutral population to the nature of the wall materials, showing that the condition for H-mode can be written as: <span class="math display">\[P(v_f)r_f \,&lt;\, \left[\frac{\langle \sigma_{ion} v \rangle n_e + \langle \sigma_{cx} v \rangle n_i}{\langle \sigma_{recomb} v \rangle n_e + (\nu_i \rho_{pi} / \ell_{recomb})}\right] \frac{\nu_i}{\langle \sigma_{cx} v \rangle n_i} \frac{\rho_{pi}}{\ell_{recomb}}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(r_f\)</span> is the reflection coefficient of fast neutrals at the wall; <span class="math inline">\(P(v_f)\)</span> is the probability that the neutral has a velocity <span class="math inline">\(v_f\)</span>; <span class="math inline">\(\sigma_{ion}\)</span>, <span class="math inline">\(\sigma_{cx}\)</span>, and <span class="math inline">\(\sigma_{recomb}\)</span> are the cross-sections for ionization, charge exchange, and recombination of neutrals, respectively; and <span class="math inline">\(\ell_{recomb}\)</span> is the mean-free path for recombination.</p></li>
+<li><p>Since <span class="math inline">\(r_f\)</span> is higher for wall materials with higher <span class="math inline">\(Z\)</span>, this could explain why these mitigate against H-mode.</p></li>
+</ul></li>
+<li><p>In [138], neutrals were investigated deeper at the X-point. It was found to lead to an increase in the effective collision frequency for ion-orbit loss.</p>
+<ul>
+<li><p>For a set of parameters, there is a critical value for the neutral density near the X-point for a transition: thus 'condensed' neutrals can trigger H-mode, which is consistent with experiment. It can be written: <span class="math display">\[\xi \,&lt;\, \frac{d_o \left(\frac{1}{2} + \sqrt{\nu_{*i}}\right)^3 \exp\left(\frac{1}{2} + \sqrt{\nu_{*i}}\right)}{2 \left(\frac{1}{4} + \sqrt{\nu_{*i}}\right)^{3/4} \left(\frac{3}{2} + \sqrt{\nu_{*i}}\right)} \,\equiv\, \xi_c, ~~~~~~~~~~ d_o \,=\, n_o^{main}\langle \sigma_{cx} v \rangle \frac{1 + 2q^2}{\sqrt{\epsilon} \omega_{bi} q^2}\]</span></p>
+<ul>
+<li><span class="math inline">\(\xi = \nu_{in_o}(X) / \omega_{bi}\)</span>, with <span class="math inline">\(\nu_{in_o}(X)\)</span> as the ion-neutral collision frequency at the X-point and <span class="math inline">\(\omega_{bi}\)</span> as the ion bounce frequency.</li>
+</ul></li>
+</ul></li>
+<li><p>Shaing and Hsu [139] considered charge exchange losses of poloidal momentum in the ion-orbit-loss model. They found the critical parameter is: <span class="math display">\[\hat{\nu} \,\equiv\, \frac{n_o \langle \sigma_{cx} v \rangle R q}{V_{Th,i}}, ~~~~~~~~~ \nu_{eff} \,=\, \]</span></p></li>
+</ul>
 <h4 id="stringer-spin-up">4.1.3 <em>Stringer Spin-up</em></h4>
 <h4 id="neoclassical-flows">4.1.4 <em>Neoclassical Flows</em></h4>
 <h4 id="turbulent-reynolds-stress-and-viscosity">4.1.5 <em>Turbulent Reynolds Stress and Viscosity</em></h4>

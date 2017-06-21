@@ -283,11 +283,45 @@
 
 	+ In addition, the same effect reduces the bootstrap current so that the radial field shear can inhibit the bootstrap current drive for MHD instabilities at the plasma edge.
 
-+ Change [136] has examined ion-orbit loss at the X-point, where it is most effective since the poloidal field vanishes there. A critical collisionality depending on the details of the X-point geometry and condition is found, and a layer width $\Delta \sim \bar{\rho_{pi}}$, where $\bar{\rho_{pi}}$ is an average over the flux surface.
++ Change [136] has examined ion-orbit loss at the X-point, where it is most effective since the poloidal field vanishes there. A critical collisionality depending on the details of the X-point geometry and condition is found, and a layer width $\Delta \sim \bar{\rho}_{pi}$, where $\bar{\rho}_{pi}$ is an average over the flux surface.
 
 #### 4.1.2 _The Effects of Neutral Particles_
 
++ Neutrals can influence ion-orbit-loss theories in 2 ways:
 
+	+ Increasing both poloidal flow damping and ion-orbit losses through charge exchange with ions.??
+
++ Itoh and Itoh [121] introduced poloidal flow damping due to momentum losses from charge exchange with neutrals. This modifies the bifurcation condition:
+	$$\frac{\lambda_e}{\lambda_c} \,=\, 1 + d_n \lambda_i, ~~~~~~~~ \lambda_i \,=\, -\rho_{pi}\left(\frac{n_i^\prime}{n_i} + \frac{c_i T_i^\prime}{T_i}\right) \\
+	c_i \sim 1, ~~~~~~~ d_n \,=\, \sqrt{\epsilon} \, \frac{n_o \langle\sigma_{cx} v \rangle}{\nu_{ii}F} \frac{\ell_n}{\rho_{pi}}$$
+
+	+ $n_o$ is the neutral density, $\sigma_{cx}$ is the charge exchange cross-section, $\ell_n$ is the neutral penetration length, and $F$ is a form factor $\sim 1$. This effect increases the value of $\lambda_c$ needed for a bifurcation:
+		$$n_o \,>\, \frac{c\nu_{ii}}{\sqrt{\epsilon} \langle \sigma_{cx} v \rangle} \frac{\rho_{pi}}{\ell_n}$$
+
+	+ These two conditions provide limits on both electron and neutral particle densities (Eqs. 4.14 and 4.15)
+
+	+ Neutrals were also found to increase the time for a transition to take place. The paper also considered the effects of an impurity ion.
+
++ The same authors have also related the neutral population to the nature of the wall materials, showing that the condition for H-mode can be written as:
+	$$P(v_f)r_f \,<\, \left[\frac{\langle \sigma_{ion} v \rangle n_e + \langle \sigma_{cx} v \rangle n_i}{\langle \sigma_{recomb} v \rangle n_e + (\nu_i \rho_{pi} / \ell_{recomb})}\right] \frac{\nu_i}{\langle \sigma_{cx} v \rangle n_i} \frac{\rho_{pi}}{\ell_{recomb}}$$
+
+	+ $r_f$ is the reflection coefficient of fast neutrals at the wall; $P(v_f)$ is the probability that the neutral has a velocity $v_f$; $\sigma_{ion}$, $\sigma_{cx}$, and $\sigma_{recomb}$ are the cross-sections for ionization, charge exchange, and recombination of neutrals, respectively; and $\ell_{recomb}$ is the mean-free path for recombination.
+
+	+ Since $r_f$ is higher for wall materials with higher $Z$, this could explain why these mitigate against H-mode.
+
++ In [138], neutrals were investigated deeper at the X-point. It was found to lead to an increase in the effective collision frequency for ion-orbit loss.
+
+	+ For a set of parameters, there is a critical value for the neutral density near the X-point for a transition: thus 'condensed' neutrals can trigger H-mode, which is consistent with experiment. It can be written:
+		$$\xi \,<\, \frac{d_o \left(\frac{1}{2} + \sqrt{\nu_{*i}}\right)^3 \exp\left(\frac{1}{2} + \sqrt{\nu_{*i}}\right)}{2 \left(\frac{1}{4} + \sqrt{\nu_{*i}}\right)^{3/4} \left(\frac{3}{2} + \sqrt{\nu_{*i}}\right)} \,\equiv\, \xi_c, ~~~~~~~~~~ d_o \,=\, n_o^{main}\langle \sigma_{cx} v \rangle \frac{1 + 2q^2}{\sqrt{\epsilon} \omega_{bi} q^2}$$
+
+		+ $\xi = \nu_{in_o}(X) / \omega_{bi}$, with $\nu_{in_o}(X)$ as the ion-neutral collision frequency at the X-point and $\omega_{bi}$ as the ion bounce frequency.
+
++ Shaing and Hsu [139] considered charge exchange losses of poloidal momentum in the ion-orbit-loss model. They found the critical parameter is:
+	$$\hat{\nu} \,\equiv\, \frac{n_o \langle \sigma_{cx} v \rangle R q}{V_{Th,i}}$$
+
++ Xiao et al [140] investigated the effect of charge exchange on ion orbits. They found that a negative value of $E_r$ produces an inward ion mobility so that a positive bias helps H-mode.
+
+	+ The opposite bias is less helpful, relying on detrapping and compressing of passing particle orbits.
 
 #### 4.1.3 _Stringer Spin-up_
 
