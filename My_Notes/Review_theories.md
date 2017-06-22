@@ -325,11 +325,75 @@
 
 #### 4.1.3 _Stringer Spin-up_
 
++ Pfirsch-Schlüter transport can drive a poloidal spin-up. This mechanism is damped by the magnetic pumping which exceeds the drive, so that no spin-up is predicted by neoclassical theory.
 
+	+ However, Hassam et al [70] has proposed, in reaction to higher observed transport, a 'spontaneous poloidal spin-up' associated with anomalous transport which is not constant on a flux surface. Balancing this drive against the damping from magnetic pumping gives a threshold:
+	$$\frac{1}{n r} \frac{\partial}{\partial r}(n r \widetilde{v}_r) + \epsilon \frac{1 + 2q^2}{q^2} \gamma_{MP} \,<\, 0$$
+
+	+ $\gamma_{MP}$ represents the magnetic pumping and $\widetilde{v}_r = v_r - \langle v_r \rangle$, with $v_r$ as the radial particle flow velocity and the angled bracketed one as a flux surface average.
+
+	+ A simplified condition can be deduced for the onset of the poloidal flow instability, by $v_r$ represented by a diffusive term and a pinch term that is constant on a flux surface. Also, if we assume $\gamma_{MP} \propto \nu_{ii}$, then:
+		$$\frac{\epsilon}{q^2} (1 + 2q^2) \nu_{ii} \,\lessapprox\, \delta D \left(\frac{n^{\prime\prime}}{n} + \frac{n^\prime}{n r}\right)$$
+
+	+ Hassam and Antonsen [142] have extended this to include toroidally directed, poloidally asymmetric momentum sources, but did not include diamagnetic flows or gyro-viscosity.
+
++ McCarthy et al [143] did an analytic and numerical investigation; they noted that if turbulent velocities are comparable to diamagnetic ones, then the Stringer spin-up effect is greater than the Reynolds stress by a factor of $L_n^3 / R \rho_s^2$.
+
+	+ Their model was toroidally axisymmetric but included a primitive SOL with a particle sink; a flux consisting of a poloidally asymmetric diffusive part and a pinch, and flow damping from magnetic pumping were also included.
+
+	+ Strong magnetic pumping is taken to correspond with L-mode, when it's found that poloidal flow balances the diamagnetic velocity, as in neoclassical theory.
+
+	+ For the case of low magnetic pumping, large flows in the opposite direction to the diamagnetic velocity develop, with a shear flow scale length ($\lambda_{e,mfp}$ is the electron mean-free path and $\rho_e$ is the electron Larmor radius):
+		$$L_v \,\sim\, \left(\frac{a \rho_e}{L_n \lambda_{e, mfp}}\right)^{1/4} L_n$$
+
+		+ The L-H transition would therefore be expected to relate to a change of collisionality.
+
++ The effects of a divertor X-point geometry were considered by Strauss [144] using a dissipative reduced MHD model with viscous stresses in which poloidal variations are opposed by sound wave propagation. He found that the condition for spin up was:
+	$$\frac{\chi_\perp}{L_p^2} \, \widetilde{G} \,>\, \frac{B_\theta}{B} \frac{C_s}{r}$$
+
+	+ $\chi$ is the thermal diffusivity and $\widetilde{G}$ is a form factor representing the poloidal variations of the geometry. For a Bohm-like diffusivity, this corresponds to a critical value of $\rho$.
 
 #### 4.1.4 _Neoclassical Flows_
 
++ Poloidal viscous forces in neoclassical theory produce a poloidal ion flow proportional to the ion temperature gradient:
+	$$V_{\theta,i} \,=\, \frac{k}{e B} \frac{\text{d}T_i}{\text{d}r}$$
 
+	+ $k$ depends on the ion collisionality $\nu_{*i}$. This results in a negative $E_r$, observed experimentally.
+
+	+ Plasma microturbulence is expected to produce an 'anomalous' viscosity and inertia and this might affect the poloidal momentum balance equations.
+
++ Rozhansky and Tendler [145] have taken these into account to derive an equation for the poloidal flow which balances the neoclassical visc. with the anomalous visc. and inertia, excluding toroidal flow.
+
+	+ The neoclassical terms dominates for low edge temperature gradients, which means the equation has a low poloidal flow solution (L-mode).
+
+	+ For higher edge temperature, the poloidal flow is dominated by the anomalous terms which predicts a much higher flow velocity (H-mode). The transition condition:
+		$$\frac{\text{d}^2 T_i}{\text{d}r^2} \,\gtrapprox\, \sqrt{\pi} \,\epsilon q\, \frac{n(a) C_s \tau_p}{\bar{n} a^2 (1 + 2q^2)} \frac{\text{d}T_i}{\text{d}r}$$
+
+		+ $\tau_p$ is the particle confinement time, $n(a)$ is the edge density, and $\bar{n}$ is the average density.
+
++ The role of sheared radial electric field associated with the flow (4.23) in suppressing particle diffusivity was investigated by Rozhansky [146,147]. In theirs, there is a steep drop in the diffusion coefficient when the shear suppression parameter reaches a critical value. The shear suppression parameter:
+	$$\kappa \,=\, \rho_{pi}^2 \frac{\text{d}^2 (\ln n)}{\text{d}r^2}$$
+
+	+ The steep drop in the diffusion coefficient is most easily satisfied at the edge, where $n$ is smallest. The resulting continuity equation is completed by a condition on the flux from the core and a boundary condition at the separatrix, which can represent the SOL.
+
+	+ They found a L-H transition can be triggered by a change in the core density gradient; the flux must exceed a critical value which increase $T_i$ and decreases with $n$.
+
+		+ The transition front propagates faster than any diffusion time, and shows hysteresis.
+
+		+ Introducing time scales $\tau_1$ for core changes due to the formation of the barrier and $\tau_2$ for the response of the SOL, this model can cause dithering.
+
+	+ The sensitivity of $\kappa$ to the density profile means that the transition can be triggered by pellet injection, adiabatic compression, and changes in the SOL.
+
++ Hinton [149] invoked the velocity (4.23) to develop a bif. model for the transition by retaining the collisionality dependence of $\mu$, the parallel visc., in the Pfirsh-Schlüter regime and keeping only contributions to $V_{\theta,i}^\prime$ from $T_i^\prime$. He used a transport model:
+	$$\chi \,=\, \chi_0 + \frac{\chi_1}{1 + \alpha V_{\theta,i}^{\prime \gamma}}$$
+
+	+ $\chi_0$ is residual H-mode thermal diffusivity, $\chi_1$ is L-mode diffusivity. The value of $\alpha$ can be chosen to reflect the BDT criterion, equation (2.30), for, say, drift wave turbulence, and $\gamma$ is some parameter.
+
+	+ This form leads to a transport flux which exhibits a maximum as a function of $T_i^\prime$ when the heat flux reaches a critical value; this allows a bif. to an 'H-mode' state with higher $T_i^\prime$.
+
+	+ Global solutions of the transport equations give an edge region of steep gradients whose radial extent is determined by where the heat flux from the core just exceeds the critical value. The corresponding solutions for the energy confinement time $\tau_E$ display hysteresis.
+
+	+ This model is considered generic, needing more details for $\chi$.
 
 #### 4.1.5 _Turbulent Reynolds Stress and Viscosity_
 

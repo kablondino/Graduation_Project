@@ -263,10 +263,68 @@ c_i \sim 1, ~~~~~~~ d_n \,=\, \sqrt{\epsilon} \, \frac{n_o \langle\sigma_{cx} v 
 <li><span class="math inline">\(\xi = \nu_{in_o}(X) / \omega_{bi}\)</span>, with <span class="math inline">\(\nu_{in_o}(X)\)</span> as the ion-neutral collision frequency at the X-point and <span class="math inline">\(\omega_{bi}\)</span> as the ion bounce frequency.</li>
 </ul></li>
 </ul></li>
-<li><p>Shaing and Hsu [139] considered charge exchange losses of poloidal momentum in the ion-orbit-loss model. They found the critical parameter is: <span class="math display">\[\hat{\nu} \,\equiv\, \frac{n_o \langle \sigma_{cx} v \rangle R q}{V_{Th,i}}, ~~~~~~~~~ \nu_{eff} \,=\, \]</span></p></li>
+<li><p>Shaing and Hsu [139] considered charge exchange losses of poloidal momentum in the ion-orbit-loss model. They found the critical parameter is: <span class="math display">\[\hat{\nu} \,\equiv\, \frac{n_o \langle \sigma_{cx} v \rangle R q}{V_{Th,i}}\]</span></p></li>
+<li><p>Xiao et al [140] investigated the effect of charge exchange on ion orbits. They found that a negative value of <span class="math inline">\(E_r\)</span> produces an inward ion mobility so that a positive bias helps H-mode.</p>
+<ul>
+<li>The opposite bias is less helpful, relying on detrapping and compressing of passing particle orbits.</li>
+</ul></li>
 </ul>
 <h4 id="stringer-spin-up">4.1.3 <em>Stringer Spin-up</em></h4>
+<ul>
+<li><p>Pfirsch-Schlüter transport can drive a poloidal spin-up. This mechanism is damped by the magnetic pumping which exceeds the drive, so that no spin-up is predicted by neoclassical theory.</p>
+<ul>
+<li><p>However, Hassam et al [70] has proposed, in reaction to higher observed transport, a 'spontaneous poloidal spin-up' associated with anomalous transport which is not constant on a flux surface. Balancing this drive against the damping from magnetic pumping gives a threshold: <span class="math display">\[\frac{1}{n r} \frac{\partial}{\partial r}(n r \widetilde{v}_r) + \epsilon \frac{1 + 2q^2}{q^2} \gamma_{MP} \,&lt;\, 0\]</span></p></li>
+<li><p><span class="math inline">\(\gamma_{MP}\)</span> represents the magnetic pumping and <span class="math inline">\(\widetilde{v}_r = v_r - \langle v_r \rangle\)</span>, with <span class="math inline">\(v_r\)</span> as the radial particle flow velocity and the angled bracketed one as a flux surface average.</p></li>
+<li><p>A simplified condition can be deduced for the onset of the poloidal flow instability, by <span class="math inline">\(v_r\)</span> represented by a diffusive term and a pinch term that is constant on a flux surface. Also, if we assume <span class="math inline">\(\gamma_{MP} \propto \nu_{ii}\)</span>, then: <span class="math display">\[\frac{\epsilon}{q^2} (1 + 2q^2) \nu_{ii} \,\lessapprox\, \delta D \left(\frac{n^{\prime\prime}}{n} + \frac{n^\prime}{n r}\right)\]</span></p></li>
+<li><p>Hassam and Antonsen [142] have extended this to include toroidally directed, poloidally asymmetric momentum sources, but did not include diamagnetic flows or gyro-viscosity.</p></li>
+</ul></li>
+<li><p>McCarthy et al [143] did an analytic and numerical investigation; they noted that if turbulent velocities are comparable to diamagnetic ones, then the Stringer spin-up effect is greater than the Reynolds stress by a factor of <span class="math inline">\(L_n^3 / R \rho_s^2\)</span>.</p>
+<ul>
+<li><p>Their model was toroidally axisymmetric but included a primitive SOL with a particle sink; a flux consisting of a poloidally asymmetric diffusive part and a pinch, and flow damping from magnetic pumping were also included.</p></li>
+<li><p>Strong magnetic pumping is taken to correspond with L-mode, when it's found that poloidal flow balances the diamagnetic velocity, as in neoclassical theory.</p></li>
+<li><p>For the case of low magnetic pumping, large flows in the opposite direction to the diamagnetic velocity develop, with a shear flow scale length (<span class="math inline">\(\lambda_{e,mfp}\)</span> is the electron mean-free path and <span class="math inline">\(\rho_e\)</span> is the electron Larmor radius): <span class="math display">\[L_v \,\sim\, \left(\frac{a \rho_e}{L_n \lambda_{e, mfp}}\right)^{1/4} L_n\]</span></p>
+<ul>
+<li>The L-H transition would therefore be expected to relate to a change of collisionality.</li>
+</ul></li>
+</ul></li>
+<li><p>The effects of a divertor X-point geometry were considered by Strauss [144] using a dissipative reduced MHD model with viscous stresses in which poloidal variations are opposed by sound wave propagation. He found that the condition for spin up was: <span class="math display">\[\frac{\chi_\perp}{L_p^2} \, \widetilde{G} \,&gt;\, \frac{B_\theta}{B} \frac{C_s}{r}\]</span></p>
+<ul>
+<li><span class="math inline">\(\chi\)</span> is the thermal diffusivity and <span class="math inline">\(\widetilde{G}\)</span> is a form factor representing the poloidal variations of the geometry. For a Bohm-like diffusivity, this corresponds to a critical value of <span class="math inline">\(\rho\)</span>.</li>
+</ul></li>
+</ul>
 <h4 id="neoclassical-flows">4.1.4 <em>Neoclassical Flows</em></h4>
+<ul>
+<li><p>Poloidal viscous forces in neoclassical theory produce a poloidal ion flow proportional to the ion temperature gradient: <span class="math display">\[V_{\theta,i} \,=\, \frac{k}{e B} \frac{\text{d}T_i}{\text{d}r}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(k\)</span> depends on the ion collisionality <span class="math inline">\(\nu_{*i}\)</span>. This results in a negative <span class="math inline">\(E_r\)</span>, observed experimentally.</p></li>
+<li><p>Plasma microturbulence is expected to produce an 'anomalous' viscosity and inertia and this might affect the poloidal momentum balance equations.</p></li>
+</ul></li>
+<li><p>Rozhansky and Tendler [145] have taken these into account to derive an equation for the poloidal flow which balances the neoclassical visc. with the anomalous visc. and inertia, excluding toroidal flow.</p>
+<ul>
+<li><p>The neoclassical terms dominates for low edge temperature gradients, which means the equation has a low poloidal flow solution (L-mode).</p></li>
+<li><p>For higher edge temperature, the poloidal flow is dominated by the anomalous terms which predicts a much higher flow velocity (H-mode). The transition condition: <span class="math display">\[\frac{\text{d}^2 T_i}{\text{d}r^2} \,\gtrapprox\, \sqrt{\pi} \,\epsilon q\, \frac{n(a) C_s \tau_p}{\bar{n} a^2 (1 + 2q^2)} \frac{\text{d}T_i}{\text{d}r}\]</span></p>
+<ul>
+<li><span class="math inline">\(\tau_p\)</span> is the particle confinement time, <span class="math inline">\(n(a)\)</span> is the edge density, and <span class="math inline">\(\bar{n}\)</span> is the average density.</li>
+</ul></li>
+</ul></li>
+<li><p>The role of sheared radial electric field associated with the flow (4.23) in suppressing particle diffusivity was investigated by Rozhansky [146,147]. In theirs, there is a steep drop in the diffusion coefficient when the shear suppression parameter reaches a critical value. The shear suppression parameter: <span class="math display">\[\kappa \,=\, \rho_{pi}^2 \frac{\text{d}^2 (\ln n)}{\text{d}r^2}\]</span></p>
+<ul>
+<li><p>The steep drop in the diffusion coefficient is most easily satisfied at the edge, where <span class="math inline">\(n\)</span> is smallest. The resulting continuity equation is completed by a condition on the flux from the core and a boundary condition at the separatrix, which can represent the SOL.</p></li>
+<li><p>They found a L-H transition can be triggered by a change in the core density gradient; the flux must exceed a critical value which increase <span class="math inline">\(T_i\)</span> and decreases with <span class="math inline">\(n\)</span>.</p>
+<ul>
+<li><p>The transition front propagates faster than any diffusion time, and shows hysteresis.</p></li>
+<li><p>Introducing time scales <span class="math inline">\(\tau_1\)</span> for core changes due to the formation of the barrier and <span class="math inline">\(\tau_2\)</span> for the response of the SOL, this model can cause dithering.</p></li>
+</ul></li>
+<li><p>The sensitivity of <span class="math inline">\(\kappa\)</span> to the density profile means that the transition can be triggered by pellet injection, adiabatic compression, and changes in the SOL.</p></li>
+</ul></li>
+<li><p>Hinton [149] invoked the velocity (4.23) to develop a bif. model for the transition by retaining the collisionality dependence of <span class="math inline">\(\mu\)</span>, the parallel visc., in the Pfirsh-Schlüter regime and keeping only contributions to <span class="math inline">\(V_{\theta,i}^\prime\)</span> from <span class="math inline">\(T_i^\prime\)</span>. He used a transport model: <span class="math display">\[\chi \,=\, \chi_0 + \frac{\chi_1}{1 + \alpha V_{\theta,i}^{\prime \gamma}}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\chi_0\)</span> is residual H-mode thermal diffusivity, <span class="math inline">\(\chi_1\)</span> is L-mode diffusivity. The value of <span class="math inline">\(\alpha\)</span> can be chosen to reflect the BDT criterion, equation (2.30), for, say, drift wave turbulence, and <span class="math inline">\(\gamma\)</span> is some parameter.</p></li>
+<li><p>This form leads to a transport flux which exhibits a maximum as a function of <span class="math inline">\(T_i^\prime\)</span> when the heat flux reaches a critical value; this allows a bif. to an 'H-mode' state with higher <span class="math inline">\(T_i^\prime\)</span>.</p></li>
+<li><p>Global solutions of the transport equations give an edge region of steep gradients whose radial extent is determined by where the heat flux from the core just exceeds the critical value. The corresponding solutions for the energy confinement time <span class="math inline">\(\tau_E\)</span> display hysteresis.</p></li>
+<li><p>This model is considered generic, needing more details for <span class="math inline">\(\chi\)</span>.</p></li>
+</ul></li>
+</ul>
 <h4 id="turbulent-reynolds-stress-and-viscosity">4.1.5 <em>Turbulent Reynolds Stress and Viscosity</em></h4>
 <h3 id="transport-bifurcation-theories">4.2 <em>Transport Bifurcation Theories</em></h3>
 <h3 id="phase-transition-models">4.3 <em>Phase-Transition Models</em></h3>
