@@ -326,7 +326,85 @@ c_i \sim 1, ~~~~~~~ d_n \,=\, \sqrt{\epsilon} \, \frac{n_o \langle\sigma_{cx} v 
 </ul></li>
 </ul>
 <h4 id="turbulent-reynolds-stress-and-viscosity">4.1.5 <em>Turbulent Reynolds Stress and Viscosity</em></h4>
+<ul>
+<li><p>The turbulence itself can drive flows through Reynolds stress [150].</p>
+<ul>
+<li><p>The non-ambipolar electron transport from [69] can be considered (for the alternate view of turbulent torque coming from the MHD dynamo [151]) since it corresponds to a radial current which can produce a torque.</p></li>
+<li><p>[72] calculated the effects of the turbulent Reynolds stress; they found only turbulence which supports radially propagating waves is able to drive rotation (<em>e.g.</em> drift wave turbulence).</p>
+<ul>
+<li>However, since flow shear can itself lead to this propagation, this can be amplified for other types of turbulence such as resistive interchanges [152].</li>
+</ul></li>
+<li><p>The turbulence should be radially inhomogeneous, which tends to limit rotation to the plasma edge where either</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>density and temp. gradients are sufficiently steep that they have a significant variation across a radial correlation length of turbulence or...</p></li>
+<li><p>the radial correlation length is cut off by the plasma boundary.</p></li>
+</ol></li>
+<li><p>No detailed calculations (as of this review) of the resulting steady-state flow have been done and no bif. condition is evident.</p></li>
+</ul></li>
+<li><p>Because the turbulence to generate a Reynolds stress is directional, it occurs most readily at the plasma edge (supported by experiments [153]) and exists over a width <span class="math inline">\(\Delta\)</span> related to the radial mode structure of the turbulence.</p></li>
+<li><p>This width is likely to be microscopic (such as <span class="math inline">\(\rho_i\)</span>) in the cylindrical approx., the theory of edge ballooning modes show that it could be larger in toroidal geometry.</p>
+<ul>
+<li><p>Particularly, for drift wave or ion temp. gradient turbulence, one expects <span class="math inline">\(\Delta \sim \rho_i^{2/3} a^{1/3}\)</span> [154,155].</p>
+<ul>
+<li>Indirect measurements of <span class="math inline">\(\Delta\)</span> on JET, based on the pedestal height and the assumption that the steep edge gradient is at the ideal MHD ballooning limit, are broadly consistent with this. It also offers an explanation of the isotope scaling of the pedestal temperature [20].</li>
+</ul></li>
+</ul></li>
+<li><p>The <span class="math inline">\(\eta_i\)</span> (ion temp gradient) driven mode is a strong candidate for the instability responsible for the L-mode anomalous transport [159].</p>
+<ul>
+<li><p>Considering a slab model, [160] have demonstrated that a radial electric field gradient has a strong stabilizing influence on the <span class="math inline">\(\eta_i\)</span> mode and might explain the improvement in transport observed in H-mode, although it could not explain the origin of the radial field.</p></li>
+<li><p>Later, the same authors [161] calculated the turbulent viscosity resulting from the non-linearly saturated <span class="math inline">\(\eta_i\)</span> instability. They obtained the result that this anomalous viscosity increases with radial electric field shear to some critical value beyond which it fails. This allows for the picture of H-mode as follows:</p>
+<ul>
+<li><p>Some drive (<em>i.e.</em> momentum source) spins up the plasma in a continuous way to give an equilibrium flow determined by the balance between the drive and the anomalous viscous damping.</p></li>
+<li><p>At some critical value of the drive, the radial electric field derivative reaches the critical value <span class="math inline">\(E_{r,crit}^\prime\)</span> where the viscous damping is max.: <span class="math display">\[E_{r,crit}^\prime \,=\, 2.02\times 10^4 B \sqrt{T_e / A_i} ~ \tau^{-0.77} \, L_n^{0.7} \, L_{T_i}^{-0.26} \, L_s^{-1.44} ~ \text{V m}^{-2}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(B\)</span> is in T, <span class="math inline">\(T_e\)</span> in eV, and lengths are in m. This is just a prediction.</p></li>
+<li><p>The authors postulate a smaller 'background' viscous damping which increases linearly with the electric field gradient and does not possess a max.</p></li>
+</ul></li>
+</ul></li>
+<li><p>At the critical point, the plasma jumps to the part of the curve representing background viscosity, which then determines the radial electric field in H-mode. The result corresponds to a flow shear scaling like Eq. (2.28).</p></li>
+<li><p>The improvement in confinement results from the stabilization of the <span class="math inline">\(\eta_i\)</span> mode with the sudden increase in the electric field gradient. The power threshold corresponds to the point at which the critical electric field is reached, estimated as follows:</p>
+<ul>
+<li><p>Two mechanisms may be considered for the momentum input to balance the turbulent viscosity: ion-orbit loss as [68] and a NBI source.</p></li>
+<li><p>The balance of the momentum source <span class="math inline">\(M\)</span> and the turbulent viscosity gives the following, with <span class="math inline">\(V\)</span> as the plasma volume, and <span class="math inline">\(H\)</span> as a form factor assumed to be a function of only <span class="math inline">\(E_r^{\prime}\)</span> and represents a variation of the turbulent viscosity with <span class="math inline">\(E_r^\prime\)</span>: <span class="math display">\[M \,\sim\, \frac{n T_e V \rho_s}{L_n^2} \, H\]</span></p></li>
+<li><p>Neglecting the poloidal rotation (so that <span class="math inline">\(\mathbf{E}\times\mathbf{B}\)</span> poloidal flow is balanced by the diamagnetic poloidal flow) and assuming <span class="math inline">\(M\)</span> to be given by the ion-orbit-loss mechanism, gives a condition that corresponds to a minimum collisionality: <span class="math display">\[f \, v_{*i}^{1/2} \, \gtrapprox \, \frac{\rho_s a}{L_n^2}\]</span></p></li>
+<li><p>This condition results in a power threshold assuming forms for the scaling of temps and the fraction of fast particles <span class="math inline">\(f\)</span> with power.</p></li>
+<li><p>For NBI sources, we can assume <span class="math inline">\(M \propto P\)</span> and obtain: <span class="math display">\[P \, \gtrapprox \, P_{Th} \,\sim\, \frac{n T V \rho_s C_s}{L_n^2}\]</span></p></li>
+</ul></li>
+<li><p>This theory also allows for a smooth transition. If the <span class="math inline">\(\eta_i\)</span> mode is completely stabilized by <span class="math inline">\(E_r^\prime\)</span> before the max in the anomalous viscosity is reached, the no spontaneous spin-up of the plasma occurs and the threshold power corresponds to that power which provides sufficient radial electric field gradient to stabilize the <span class="math inline">\(\eta_i\)</span> mode.</p>
+<ul>
+<li>The opposite case has a bifurcation-type H-mode with the spontaneous creation of the radial electric field.</li>
+</ul></li>
+</ul></li>
+</ul>
 <h3 id="transport-bifurcation-theories">4.2 <em>Transport Bifurcation Theories</em></h3>
+<ul>
+<li><p>In transport bif. theories, the transport suppression from <span class="math inline">\(V_E^\prime\)</span> is determined by <span class="math inline">\(E_r^\prime\)</span> arising from <span class="math inline">\(p_i^\prime\)</span> through radial force balance.</p>
+<ul>
+<li>Practically, these are closely related to [149], where <span class="math inline">\(E_r^\prime\)</span> is driven by the neoclassical <span class="math inline">\(V_{\theta,i}\)</span> equation (4.23)._</li>
+</ul></li>
+<li><p>Bifurcation becomes possible when the sources of energy and particles can drive sufficient gradients.</p></li>
+<li><p>When the poloidal and toroidal flows can be neglected, the <span class="math inline">\(\mathbf{E}\times\mathbf{B}\)</span> velocity is given by: <span class="math display">\[V_E \,=\, = -\frac{1}{n_i e B} \frac{\text{d}p_i}{\text{d}r}\]</span></p>
+<ul>
+<li><p>This expression is correct if standard neoclassical theory is valid at the edge and when the ion temp gradient is neglected. However, the inclusion of orbit-squeezing effects which result from the existence of a radial gradient in the radial electric field can lead to significant poloidal rotation (see [135]).</p></li>
+<li><p>In the case of orbit-squeezing, <span class="math inline">\(V_E\)</span> would be suppressed by a factor of <span class="math inline">\(S = 1 - m_i E_r^\prime / (e B_{\theta}^2)\)</span>, describing the orbit-squeezing, and leads to a mod of the parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\gamma\)</span> in Eq. (4.26)._</p></li>
+</ul></li>
+<li><p>Using the above eq, the particle and energy fluxes can be expressed solely in terms of density and pressure gradients (and the two parameters). Particle and energy conservation then yield expressions for the fluxes in terms of the heat and particle sources [162]. The resulting system can be solved to determine pressure and temp profiles.</p>
+<ul>
+<li><p>For a given particle flux <span class="math inline">\(\Gamma\)</span> and heat flux <span class="math inline">\(q\)</span> less than a critical value, only one solution exists for the ion density and pressure gradient pair, both of which are low (L-mode).</p></li>
+<li><p>When <span class="math inline">\(q\)</span> is above the critical value, the solution jumps to the high gradient solution, interpreted as H-mode. It is easiest to access H-mode at the plasma edge where <span class="math inline">\(\Gamma\)</span> is largest.</p></li>
+<li><p>A threshold condition is given that corresponds to the product of fluxes, where <span class="math inline">\(D_0\)</span> and <span class="math inline">\(D_1\)</span> are H- and L-mode particle diffusivities, respectively, and <span class="math inline">\(\chi_0\)</span> and <span class="math inline">\(\chi_1\)</span> are the corresponding thermal diffusivities: <span class="math display">\[(q\Gamma)_{crit} \,=\, \frac{9}{16} \frac{D_1 \chi_1}{\sqrt{3\alpha}} \left(1 + \frac{4 D_0}{3 D_1}\right) \left(1 + \frac{4 \chi_0}{3 \chi_1}\right), ~~~~~ \text{(normalized)}\]</span></p>
+<ul>
+<li>Applying the condition at the edge means that <span class="math inline">\(q\)</span> becomes the total input power per area and <span class="math inline">\(\Gamma\)</span> can be calculated from the source resulting from the neutrals diffusing in from the edge and becoming ionized inside the plasma.</li>
+</ul></li>
+<li><p>If one interprets <span class="math inline">\(D_0\)</span> and <span class="math inline">\(\chi_0\)</span> as the neoclassical diffusivities and <span class="math inline">\(D_1\)</span> and <span class="math inline">\(\chi_1\)</span> as anomalous diffusivities, the above eq complicated scaling for a power threshold, even in the limit that the neoclassical diffusivities are neglected.</p>
+<ul>
+<li><p>The model also depends on the model which is chosen for recycling.</p></li>
+<li><p>As a note, bifurcations are only possible when <span class="math inline">\(\gamma &gt; 1/2\)</span> and <span class="math inline">\(D_1/ D_0 &gt; 2\gamma / (\gamma - 1/2)^2\)</span>.</p></li>
+</ul></li>
+<li><p>Therefore, a bif. transition is expected where the edge transport is dominated by turbulent processes, and a smooth transition would occur where there is more neoclassical transport.</p></li>
+</ul></li>
+<li><p>This work has been extended to include poloidal and toroidal flows, as well as density and temp gradients [62,163]. The reduction in drift wave transport is: <span class="math display">\[D \,=\, D_0 + \frac{D_1}{1 + \alpha |S_\perp|^\gamma}, ~~~~~~~~~ S_\perp \,=\, \frac{B_\phi}{B} V_\theta^\prime + \frac{B_\theta}{B} \frac{\Pi_\theta}{\mu_\perp} + \frac{q\Gamma}{e B \chi_\perp D_\perp}\]</span></p></li>
+</ul>
 <h3 id="phase-transition-models">4.3 <em>Phase-Transition Models</em></h3>
 <hr />
 <h2 id="other-theories-for-the-l-h-transition">5. Other Theories for the L-H Transition</h2>

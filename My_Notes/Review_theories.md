@@ -397,11 +397,104 @@
 
 #### 4.1.5 _Turbulent Reynolds Stress and Viscosity_
 
++ The turbulence itself can drive flows through Reynolds stress [150].
 
+	+ The non-ambipolar electron transport from [69] can be considered (for the alternate view of turbulent torque coming from the MHD dynamo [151]) since it corresponds to a radial current which can produce a torque.
+
+	+ [72] calculated the effects of the turbulent Reynolds stress; they found only turbulence which supports radially propagating waves is able to drive rotation (_e.g._ drift wave turbulence).
+
+		+ However, since flow shear can itself lead to this propagation, this can be amplified for other types of turbulence such as resistive interchanges [152].
+
+	+ The turbulence should be radially inhomogeneous, which tends to limit rotation to the plasma edge where either
+
+		a. density and temp. gradients are sufficiently steep that they have a significant variation across a radial correlation length of turbulence or...
+
+		b. the radial correlation length is cut off by the plasma boundary.
+
+	+ No detailed calculations (as of this review) of the resulting steady-state flow have been done and no bif. condition is evident.
+
++ Because the turbulence to generate a Reynolds stress is directional, it occurs most readily at the plasma edge (supported by experiments [153]) and exists over a width $\Delta$ related to the radial mode structure of the turbulence.
+
++ This width is likely to be microscopic (such as $\rho_i$) in the cylindrical approx., the theory of edge ballooning modes show that it could be larger in toroidal geometry.
+
+	+ Particularly, for drift wave or ion temp. gradient turbulence, one expects $\Delta \sim \rho_i^{2/3} a^{1/3}$ [154,155].
+
+		+ Indirect measurements of $\Delta$ on JET, based on the pedestal height and the assumption that the steep edge gradient is at the ideal MHD ballooning limit, are broadly consistent with this. It also offers an explanation of the isotope scaling of the pedestal temperature [20].
+
++ The $\eta_i$ (ion temp gradient) driven mode is a strong candidate for the instability responsible for the L-mode anomalous transport [159].
+
+	+ Considering a slab model, [160] have demonstrated that a radial electric field gradient has a strong stabilizing influence on the $\eta_i$ mode and might explain the improvement in transport observed in H-mode, although it could not explain the origin of the radial field.
+
+	+ Later, the same authors [161] calculated the turbulent viscosity resulting from the non-linearly saturated $\eta_i$ instability. They obtained the result that this anomalous viscosity increases with radial electric field shear to some critical value beyond which it fails. This allows for the picture of H-mode as follows:
+
+		+ Some drive (_i.e._ momentum source) spins up the plasma in a continuous way to give an equilibrium flow determined by the balance between the drive and the anomalous viscous damping.
+
+		+ At some critical value of the drive, the radial electric field derivative reaches the critical value $E_{r,crit}^\prime$ where the viscous damping is max.:
+			$$E_{r,crit}^\prime \,=\, 2.02\times 10^4 B \sqrt{T_e / A_i} ~ \tau^{-0.77} \, L_n^{0.7} \, L_{T_i}^{-0.26} \, L_s^{-1.44} ~ \text{V m}^{-2}$$
+
+			+ $B$ is in T, $T_e$ in eV, and lengths are in m. This is just a prediction.
+
+			+ The authors postulate a smaller 'background' viscous damping which increases linearly with the electric field gradient and does not possess a max.
+
+	+ At the critical point, the plasma jumps to the part of the curve representing background viscosity, which then determines the radial electric field in H-mode. The result corresponds to a flow shear scaling like Eq. (2.28).
+
+	+ The improvement in confinement results from the stabilization of the $\eta_i$ mode with the sudden increase in the electric field gradient. The power threshold corresponds to the point at which the critical electric field is reached, estimated as follows:
+
+		+ Two mechanisms may be considered for the momentum input to balance the turbulent viscosity: ion-orbit loss as [68] and a NBI source.
+
+		+ The balance of the momentum source $M$ and the turbulent viscosity gives the following, with $V$ as the plasma volume, and $H$ as a form factor assumed to be a function of only $E_r^{\prime}$ and represents a variation of the turbulent viscosity with $E_r^\prime$:
+			$$M \,\sim\, \frac{n T_e V \rho_s}{L_n^2} \, H$$
+
+		+ Neglecting the poloidal rotation (so that $\mathbf{E}\times\mathbf{B}$ poloidal flow is balanced by the diamagnetic poloidal flow) and assuming $M$ to be given by the ion-orbit-loss mechanism, gives a condition that corresponds to a minimum collisionality:
+			$$f \, v_{*i}^{1/2} \, \gtrapprox \, \frac{\rho_s a}{L_n^2}$$
+
+		+ This condition results in a power threshold assuming forms for the scaling of temps and the fraction of fast particles $f$ with power.
+
+		+ For NBI sources, we can assume $M \propto P$ and obtain:
+			$$P \, \gtrapprox \, P_{Th} \,\sim\, \frac{n T V \rho_s C_s}{L_n^2}$$
+
+	+ This theory also allows for a smooth transition. If the $\eta_i$ mode is completely stabilized by $E_r^\prime$ before the max in the anomalous viscosity is reached, the no spontaneous spin-up of the plasma occurs and the threshold power corresponds to that power which provides sufficient radial electric field gradient to stabilize the $\eta_i$ mode.
+
+		+ The opposite case has a bifurcation-type H-mode with the spontaneous creation of the radial electric field.
 
 ### 4.2 _Transport Bifurcation Theories_
 
++ In transport bif. theories, the transport suppression from $V_E^\prime$ is determined by $E_r^\prime$ arising from $p_i^\prime$ through radial force balance.
 
+	+ Practically, these are closely related to [149], where $E_r^\prime$ is driven by the neoclassical $V_{\theta,i}$ equation (4.23)._
+
++ Bifurcation becomes possible when the sources of energy and particles can drive sufficient gradients.
+
++ When the poloidal and toroidal flows can be neglected, the $\mathbf{E}\times\mathbf{B}$ velocity is given by:
+	$$V_E \,=\, = -\frac{1}{n_i e B} \frac{\text{d}p_i}{\text{d}r}$$
+
+	+ This expression is correct if standard neoclassical theory is valid at the edge and when the ion temp gradient is neglected. However, the inclusion of orbit-squeezing effects which result from the existence of a radial gradient in the radial electric field can lead to significant poloidal rotation (see [135]).
+
+	+ In the case of orbit-squeezing, $V_E$ would be suppressed by a factor of $S = 1 - m_i E_r^\prime / (e B_{\theta}^2)$, describing the orbit-squeezing, and leads to a mod of the parameters $\alpha$ and $\gamma$ in Eq. (4.26)._
+
++ Using the above eq, the particle and energy fluxes can be expressed solely in terms of density and pressure gradients (and the two parameters). Particle and energy conservation then yield expressions for the fluxes in terms of the heat and particle sources [162]. The resulting system can be solved to determine pressure and temp profiles.
+
+	+ For a given particle flux $\Gamma$ and heat flux $q$ less than a critical value, only one solution exists for the ion density and pressure gradient pair, both of which are low (L-mode).
+
+	+ When $q$ is above the critical value, the solution jumps to the high gradient solution, interpreted as H-mode. It is easiest to access H-mode at the plasma edge where $\Gamma$ is largest.
+
+	+ A threshold condition is given that corresponds to the product of fluxes, where $D_0$ and $D_1$ are H- and L-mode particle diffusivities, respectively, and $\chi_0$ and $\chi_1$ are the corresponding thermal diffusivities:
+		$$(q\Gamma)_{crit} \,=\, \frac{9}{16} \frac{D_1 \chi_1}{\sqrt{3\alpha}} \left(1 + \frac{4 D_0}{3 D_1}\right) \left(1 + \frac{4 \chi_0}{3 \chi_1}\right), ~~~~~ \text{(normalized)}$$
+
+		+ Applying the condition at the edge means that $q$ becomes the total input power per area and $\Gamma$ can be calculated from the source resulting from the neutrals diffusing in from the edge and becoming ionized inside the plasma.
+
+	+ If one interprets $D_0$ and $\chi_0$ as the neoclassical diffusivities and $D_1$ and $\chi_1$ as anomalous diffusivities, the above eq complicated scaling for a power threshold, even in the limit that the neoclassical diffusivities are neglected.
+
+		+ The model also depends on the model which is chosen for recycling.
+
+		+ As a note, bifurcations are only possible when $\gamma > 1/2$ and $D_1/ D_0 > 2\gamma / (\gamma - 1/2)^2$.
+
+	+ Therefore, a bif. transition is expected where the edge transport is dominated by turbulent processes, and a smooth transition would occur where there is more neoclassical transport.
+
++ This work has been extended to include poloidal and toroidal flows, as well as density and temp gradients [62,163]. The reduction in drift wave transport is:
+	$$D \,=\, D_0 + \frac{D_1}{1 + \alpha |S_\perp|^\gamma}, ~~~~~~~~~ S_\perp \,=\, \frac{B_\phi}{B} V_\theta^\prime + \frac{B_\theta}{B} \frac{\Pi_\theta}{\mu_\perp} + \frac{q\Gamma}{e B \chi_\perp D_\perp}$$
+
+	+ $q$, $\Gamma$, and $\Pi_\theta$ are heat, particle, and toroidal momentum fluxes, with corresponding diffusivities $\chi_\perp$, $D_\perp$, and $\mu_\perp$.
 
 ### 4.3 _Phase-Transition Models_
 
