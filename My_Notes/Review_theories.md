@@ -90,7 +90,7 @@
 	+ Further analysis of a model equation showed that turbulence suppression occurs when $|\omega_t| < |\omega_s|$, which is known as the Biglari-Diamond-Terry (BDT) criterion, which can also be written as:
 		$$V_E^\prime > (\Delta r k_\theta \tau_c)^{-1}$$
 
-		+ $\tau_c$ is the turbulent decorrelation time, which can be considered on the order of the inverse of the diamagnetic frequency.
+		+ $\tau_c$ is the turbulent decorrelation time, which can be considered on the order of the inverse of the diamagnetic freq.
 
 + A more complete expression for $\omega_s$ is shown in Eq. (2.31), where $\Delta \phi$ and $\Delta \eta$ are correlation angles for the turbulence around the torus and along the field line, respectively:
 	$$\omega_s^2 \,=\, (\Delta r)^2 \left[\frac{1}{(\Delta \phi)^2} \left(\frac{\partial}{\partial r} \left(\frac{q V_e}{r}\right)\right)^2 + \frac{1}{(\Delta \eta)^2}\left(\frac{\partial}{\partial r} \left(\frac{V_\parallel}{q R}\right)\right)^2\right]$$
@@ -267,7 +267,7 @@
 + Shaing and Zhang [130] modified the previous to include stress arising from the interaction of a magnetic field perturbation $b_r$ with the vacuum vessel in the equation for the ion poloidal velocity. Relative to the orbit-loss term, they find an effective stress which can remove the possibility of a bif. in poloidal flow leading to sheared radial electric fields:
 	$$\pi_{eff} \,=\, \frac{C_A^2 a \omega \tau_W (r_s / r_W)^{2m} (b_r / B)^2}{V_{Th i}^2 w (1 + (\omega\tau_W)^2 [1 - (r_s / r_W)^{2m}]^2)}$$
 
-	+ $w$ is the magnetic island width arising from $b_r$, $\omega$ is the frequency in the lab frame, $\tau_W$ is the wall time constant, $r_s$ is the resonant surface for the islands, and $r_W$ is the wall radius.
+	+ $w$ is the magnetic island width arising from $b_r$, $\omega$ is the freq in the lab frame, $\tau_W$ is the wall time constant, $r_s$ is the resonant surface for the islands, and $r_W$ is the wall radius.
 
 	+ This has the consequence that increasing $b_r$ increases $P_{Th}$ for the L-H transition; conversely, for a given $b_r$, increasing $n$ or $T_i$ assists the transition. Also, the bifurcated flow is smaller.
 
@@ -309,12 +309,12 @@
 
 	+ Since $r_f$ is higher for wall materials with higher $Z$, this could explain why these mitigate against H-mode.
 
-+ In [138], neutrals were investigated deeper at the X-point. It was found to lead to an increase in the effective collision frequency for ion-orbit loss.
++ In [138], neutrals were investigated deeper at the X-point. It was found to lead to an increase in the effective collision freq for ion-orbit loss.
 
 	+ For a set of parameters, there is a critical value for the neutral density near the X-point for a transition: thus 'condensed' neutrals can trigger H-mode, which is consistent with experiment. It can be written:
 		$$\xi \,<\, \frac{d_o \left(\frac{1}{2} + \sqrt{\nu_{*i}}\right)^3 \exp\left(\frac{1}{2} + \sqrt{\nu_{*i}}\right)}{2 \left(\frac{1}{4} + \sqrt{\nu_{*i}}\right)^{3/4} \left(\frac{3}{2} + \sqrt{\nu_{*i}}\right)} \,\equiv\, \xi_c, ~~~~~~~~~~ d_o \,=\, n_o^{main}\langle \sigma_{cx} v \rangle \frac{1 + 2q^2}{\sqrt{\epsilon} \omega_{bi} q^2}$$
 
-		+ $\xi = \nu_{in_o}(X) / \omega_{bi}$, with $\nu_{in_o}(X)$ as the ion-neutral collision frequency at the X-point and $\omega_{bi}$ as the ion bounce frequency.
+		+ $\xi = \nu_{in_o}(X) / \omega_{bi}$, with $\nu_{in_o}(X)$ as the ion-neutral collision freq at the X-point and $\omega_{bi}$ as the ion bounce freq.
 
 + Shaing and Hsu [139] considered charge exchange losses of poloidal momentum in the ion-orbit-loss model. They found the critical parameter is:
 	$$\hat{\nu} \,\equiv\, \frac{n_o \langle \sigma_{cx} v \rangle R q}{V_{Th,i}}$$
@@ -496,9 +496,135 @@
 
 	+ $q$, $\Gamma$, and $\Pi_\theta$ are heat, particle, and toroidal momentum fluxes, with corresponding diffusivities $\chi_\perp$, $D_\perp$, and $\mu_\perp$.
 
+	+ For transitions, if $\Gamma$ is expressed in terms of the edge recycling particle flux, then the recycling coefficient $r < 0.98$.
+
+	+ The width of the edge transport barrier is $\Delta \propto \ell_i \ln(P)$, meaning it is only weakly varying with additional power and proportional to the neutral ionization depth. The barrier is formed in a few milliseconds: $\Delta \tau \sim (\Delta / a)^2 \tau_p$, for $\tau_p$ as particle conf time.
+
+	+ It also addresses the generation of poloidal flows by biased probes or ion-orbit-loss mechanisms. The threshold power reduces when $B_\phi (\text{d}V_\theta / \text{d}r) > 0, which is expected for ion-orbit loss [163].
+
+	+ The condition for orbit-squeezing to produce a large poloidal flow $\rho_{pi} / L_p > 1$ typically exceeds that needed for a transition arising from the normal pressure gradient contributions to $S_\perp$ in (4.34)._ [164]
+
++ [165] have given a simplified generic model for the transition based on ion temperature gradient turbulence and allowing for rotational shear stabilization.
+
+	+ It is the increase in rotational shear stabilization with $\nabla T$, or $q$, which allows for a bif. at a normalized power <span style="color:red">(4.35)</span>.
+
++ [166] considered situations with RF electron heating where the preferential loss of hot electrons can generate sheared radial electric fields.
+
+	+ Two cases, one with thermalized and the other with suprathermal electrons, were investigated using transport modelling and both led to transitions, but it had no specific predictions to compare with experiment other than a positive sign of $E_r$.
+
 ### 4.3 _Phase-Transition Models_
 
++ 'Phase-transition' models evolve in time a set of spatially-averaged, coupled equations for the turbulence level, the driving gradients, and the consequent radial electric field, with transport coefficients responding to the fluctuations and the radial electric field (or flow) shear [120].
 
+	+ If turbulence dynamics time scale is removed, they collapse to the transport bif type.
+
+	+ A turbulent dynamo effect amplifies the flow shear until the fluctuations are self-regulated as the flow shear suppression exerts itself.
+
+	+ The threshold power follows from the condition that the energy input rate in the absence of flow shear exceeds neoclassical or charge exchange poloidal flow damping.
+
++ [167,168] investigated the interaction between flows and turbulence in a generic system of equations. The fluctuation energy $E = |\widetilde{n}_k / n |^2$ satisfies:_
+	$$\frac{1}{2} \frac{\text{d}E}{\text{d}t} \,=\, \gamma_0 E - \alpha_1 E^2 - \alpha_2 U E$$
+
+	+ $\gamma_0$ is the linear growth rate, $\alpha_1$ is the nonlinear damping due to coupling to other helicities, and $\alpha_2 U \equiv \alpha_2 V_E^{\prime 2}$ represents the effect of a sheared $\mathbf{E}\times\mathbf{B}$ flow in stabilizing the instability.
+
+	+ The sheared $\mathbf{E}\times\mathbf{B}$ flow itself is governed by the competition between the Reynold stress drive due to the fluctuations and damping due to the parallel viscosity $\mu$ since:
+		$$V_E \,=\, -\frac{e}{B} \,=\, V_\theta - \frac{\rho_s C_s}{p_i} \frac{\text{d}p_i}{\text{d}r}$$
+
+		+ This leads to $\dfrac{1}{2} \dfrac{\text{d}U}{\text{d}t} \,=\, -\mu U + \alpha_3 U E$, where the ion pressure gradient contribution is dropped for simplicity.
+
+	+ The $\alpha_i$'s can be estimated for different types of turbulence. This system forms a 'predator-prey' model, in which the fluctuation intensity $E$ is the prey to the shear flow U (predator), and depends only on the parameters $a = \alpha_3 / \alpha_1$ and $b = \mu / \gamma_0$.
+
+	+ There are two fixed points: $E = \gamma_0 / \alpha_1$, $U = 0$ and $E = \mu / \alpha_3$, $U = (\gamma_0 - \alpha_1 \mu / \alpha_3) / \alpha_2$.
+
+		+ The first is stable if $\gamma_0 > \alpha_1 \mu / \alpha_3$ and can be identified as H-mode.
+
+	+ For a generic drift wave model, $\gamma_0 \sim k_\theta \rho_s C_s / L_T$. Power balance at the edge implies $L_T^{-1} \sim P / (n T a R \chi)$, which give the bif condition <span style="color:red">(4.39)</span>.
+
+		+ A scaling for $\alpha_1 can be obtained by assuming a decorrelation freq of order $\omega_{*}$, a radial mode width of order $\rho_s$, and taking $\chi \sim C_s \rho_s^2 / L_n$, giving <span style="color:red">(4.40)</span>. Furthermore [167,168] states that $\alpha_3 \sim C_s / L_s$ for generic drift wave turbulence, giving:
+			$$P_{th} \,=\, \mu n T L_s a R$$
+
+	+ A more direct estimate of the bif condition [167,169] leads to a critical value of the local quantity, where $\Delta r \sim \rho_i L_s / L_n \approx 2$ cm:
+		$$\lambda \,=\, \frac{V_{Th,i}}{L_s \mu} \left(\frac{\Delta r}{L_n}\right)^2$$
+
+		+ This gives a critical value of $\nu_{*i}$ in the banana region (where $\nu_{*} < 1$ in (4.42))and $\rho_{*}$ in the plateau regime (where $\nu_{*} > 1$) and is more easily satisfied in a divertor config where $L_s$ is smaller.
+
+		+ This model has also been extended to include an equation for the evolution of the ion pressure gradient and its contribution to $V_E$ [170].
+
+		+ This leads to a L-H transition (first-order phase transition) in $V_E^\prime$ and $E_r$ as a function of heat flux $q$. However, there is a 2nd, later transition to zero fluctuations.
+
+	+ The inclusion of $p_i^\prime$ (ion pressure gradient) leads to a preferred direction for a seed radial electric field gradient $E_r^\prime$. Near the transition, the $V_\theta$ contribution to $E_r$ dominates due to $p_i^\prime$ and conversely for $P \gg P_{Th}$; thus $P_{Th}$ is unaffected.
+
+	+ After the transition, the fluctuations are quenched, and therefore, the drive for $V_{\theta}^\prime$ vanishes so that only the $p_i^\prime$ contribution remains.
+
+		+ A rapid power ramp compresses the time duration of the sheared flow generation phase, which may render it unobservable.
+
+		+ On the other hand, the transition time becomes logarithmically singular at the transition point $P \sim P_{th}$, which is like a 2nd-order phase transition, _i.e._ there are jumps in temporal gradients of quantities, not in the quantities themselves.
+
++ An elaboration of the model [171] is to introduce an external torque $T_{ext}$ to drive $V_\theta$, which can be done by a biased limiter, probe, or RF waves. It results in a reduction of the critical power:
+	$$P_{Th} \,=\, P_{Th}^0 - K T_{ext}^{2/3}$$
+
+	+ Another extension [169,172] was made to describe the radial propagation of the L-H transition front by including radial diffusion effects in the equations for fluctuation energy and poloidal velocity shear. The velocity of propagation is give, with $D_1$ as the diffusion coeff and $L_p$ as the pressure gradient length in L-mode:
+		$$V_f \,=\, \frac{2D_1}{L_p} \sqrt{\frac{P}{P_{Th}} - 1}$$
+
+	+ With the 3-eq model described, one obtains a propagating form for $P \gtrapprox P_{Th}$, but at $P \gg P_{Th}, there is no propagation and the fluctuations collapse uniformly everywhere.
+
++ [173] have introduced neutrals, which increase the effective damping of $V_\theta$ by charge exchange, decrease the effective energy flux through charge exchanged and ionization, and provide a particle source. The local particle and heat fluxes act as order parameters._
+
+	+ In a model that neglects $q$ and $V_\theta$, the bif condition is symmetric in particle flux per area from the core $\Gamma_c$ and the neutral influx $\Gamma_o$:
+		$$\Gamma_c + \Gamma_o \,>\, \frac{n k_\theta \rho_s C_s}{4}, ~~~~~~~ \text{for drift wave turbulence: } k_\theta \rho_s \leq 1$$
+
+		+ This more-complete model has 4 parameters, one being $g_1 = q / T\Gamma$.
+
+	+ It was found that the threshold particle flux (the above eq) decreases with $q$ in the absence of neutrals but increases in their presence.
+
+	+ If the energy losses in the edge due to ionization and charge exchange compete with the core heat flux ($g_1 < 1$), then increasing the neutral density lowers the threshold because $n^\prime$ dominates $E_r$ and the neutral source increases $n^\prime$.
+
+		+ This case is like the simple model (4.46); it has the implication that H-modes with $L_T > L_n$ are more stable against changes in $\Gamma_o$ inducing a back transition.
+
+		+ For cases $g_1 \sim 1$, the $n^\prime$ and $T^\prime$ contributions to $E_r$ cancel and there is a max in the threshold.
+
+		+ The threshold is raised if $T_i / T_e$ is decreased, so that edge electron heating is unfavorable.
+
++ The phase-transition model can be elaborated to obtain a position and width for the barrier. The location of the transition can be obtained from the Maxwell construction [75] and in a time-dependent calculation, $x$, the radial position of the barrier at time $t$, propagates as:
+	$$x \,=\, \sqrt{\frac{D\,t\,(\Gamma - \Gamma_M)}{\Gamma_M}}$$
+
+	+ $D$ is the diffusion coeff, $\Gamma$ the flux, and $\Gamma_M$ is the Maxwell flux.
+
+	+ In the case of an edge neutral source, [174] deduced that the barrier (pedestal) width is:
+		$$\Delta_{ped} \,=\, \sqrt{\frac{D}{\nu_{ion}}} \, F\left(\frac{\Gamma_o}{\Gamma_M}\right)$$
+
+		+ $\nu_{ion}$ is the ionization rate for neutral atoms at the plasma surface and $F$ is a weak function of the incident neutral flux $\Gamma_o$ that provides an ionization source at the plasma edge.
+
++ The basis for these phase-transition models have been investigated using non-linear simulations of resistive pressure gradient driven turbulence in [175].
+
+	+ It is found that a strong cancellation between turbulent Reynolds stress drive for $V(\theta)$ and damping due to turbulent viscosity means that the transition can only occur at low fluctuation amplitudes near marginal stability. The reduction in transport in H-mode is partly due to the changed phase relationship between fluctuations.
+
++ The possibility of active control of the transition is done in [176], where it is shown that low-freq poloidal flows are more weakly damped by neoclassical viscosity than are static ones, which could allow the driving stabilization oscillating poloidal flows.
+
++ Other ideas [177], they develop a dynamical model to describe electrostatic resistive pressure gradient driven turbulence in slab geometry. This consists of 3 ODE's describing the evolution of electrostatic potential, plasma flow, and fluctuation energy.
+
+	+ It is derived from energy balance by modelling the transfer and dissipative terms, with the energy input as an order parameter (rather than having $p_i^\prime$).
+
+	+ The transition is triggerd by an increase in $T_i$, leading to a decrease in the neoclassical poloidal viscosity that opposes Reynolds stress.
+
+		+ For the transition to occur, the edge diffusivity must exceed the viscosity ($T_i \geq 50 - 100$ eV), giving Eq <span style="color:red">(4.49)</span> as a power threshold. The time for transition is usually $\sim 50 \mu$s.
+
+	+ At low densities (_i.e._ banana regime), one finds a 1st-order phase transition showing hysteresis.
+
+	+ For higher densities (plateau), a 2nd-order phase transition occurs. This model was completed and verified by [178].
+
++ [179] is a phase-transition model called the edge turbulent layer (ETL) model.
+
+	+ A transition from zero plasma flow to a finite flow with reduced turbulence occurs a critical $\nabla T$, by solving a Lorenz-like system:
+
+		+ It is done by solving a Lorenz-like system of equations for velocity shear, turbulent kinetic energy, thermal energy, and the temperature profile, with the incident heat flux and temperature $T_b$ (temperature gradient across the turbulent layer) at the core-edge interface.
+
+	+ The transition can only occur if the poloidal viscosity varies inversely with temperature. This requires $T > \sqrt{0.7 n q R} \, Z(\text{eff})^2 \epsilon^{-3/4} \times 10^-2$ keV, typically 0.26 keV.
+
+	+ This bif corresponds to the transition and can be expressed as a critical power $P_{th} = 1.23 \pi^2 n T_b R a L_t \nu_i$. It can be fitted to:
+		$$P_{th} \,\propto\, n B^2 \left(1 + \frac{c}{B n}\right)$$
+
+	+ This ETL model can be used to provide a boundary condition for a core transport code [180]. The bif occurs at a critical value of $T_b$ and on a much faster time scale that $\tau_E$.
 
 ---------------------------------------
 
@@ -521,7 +647,7 @@
 ---------------------------------------
 
 ## Tables!
-The following is the local L-H transition criteria in terms of dimensionless variables, and also in the form $T_{crit} \,=\, C n^{\alpha_n} B^{\alpha_B}$.
+<!-- The following is the local L-H transition criteria in terms of dimensionless variables, and also in the form $T_{crit} \,=\, C n^{\alpha_n} B^{\alpha_B}$.
 
 | Theory | Transition Criterion | Critical Temperature |
 |-------------------- |-------------------- |--------------------- |
@@ -550,4 +676,4 @@ The following is the local L-H transition criteria in terms of dimensionless var
 |  | $$$$ | $$$$ |
 |  | $$$$ | $$$$ |
 
-
+-->
