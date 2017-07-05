@@ -15,6 +15,7 @@
 <li><p>H-mode plasmas have a negative radial electric field well forms just inside the last-closed flux surface (LCFS)</p></li>
 <li><p>On DIII-D, the evolution of the field has been observed prior to the transition, by measuring an increase in the edge impurity poloidal velocity in the electron diamagnetic direction.</p></li>
 <li><p>The details of <span class="math inline">\(E_r\)</span> well structure vary from machine to machine, although many report similar observations.</p></li>
+<li><p><em>EDA</em> stands for Enhanced D-Alpha H-mode, and are quiescent, without ELMs but have increased particle transport.</p></li>
 </ul>
 <h2 id="ii.-the-edge-cxrs-diagnositic-on-alcator-c-mod">II. The Edge CXRS Diagnositic on Alcator C-Mod</h2>
 <p><span class="math display">\[E_r \,=\, \frac{1}{n_i Z_i e} \frac{\text{d}p_i}{\text{d}r} - V_{\theta i} B_\phi + V_{\phi i} B_\theta\]</span></p>
@@ -28,6 +29,41 @@
 <li><p>Poloidal velocity <span class="math inline">\(V_{\theta i} B_\phi\)</span></p></li>
 <li><p>Toroidal velocity <span class="math inline">\(V_{\phi i} B_\theta\)</span></p></li>
 </ul></li>
+<li><p>To calculate <span class="math inline">\(E_r\)</span> accurately, one needs the toroidal and poloidal magnetic fields and velocities, as well as the temperature and density for a particular species.</p></li>
+</ul></li>
+</ul>
+<h2 id="iii.-e_r-behaviour-in-h-mode-plasmas">III. <span class="math inline">\(E_r\)</span> Behaviour in H-mode Plasmas</h2>
+<h3 id="a.-eda-h-modes">A. EDA H-Modes</h3>
+<ul>
+<li><p>The EDA H-modes have the radial field forming within 10 mm inside the LCFS, with the full-width half-max (FWHM) between 4 and 6 mm.</p></li>
+<li><p>At smaller minor radii, the radial field is always positive and exhibits a smooth, slowly-varying profile.</p></li>
+<li><p>Shearing rate: <span class="math display">\[\omega_{\mathbf{E}\times\mathbf{B}} \,=\, \frac{r}{q(r)} \frac{\text{d}}{\text{d}r} \left[\frac{q(r)}{r} \frac{E}{B}\right]\]</span></p></li>
+<li><p>Generally, the contributions to <span class="math inline">\(E_r\)</span> in EDA H-modes are similar to each other.</p></li>
+<li><p>The poloidal velocity well depth is usually greater and narrower than the diamagnetic well depth. This means the poloidal velocity contribution tends to set the <span class="math inline">\(E_r\)</span> well width and the <span class="math inline">\(\mathbf{E}\times\mathbf{B}\)</span> shearing rate.</p></li>
+<li><p>Inside the pedestal, the positive radial field is contributed to by a combo of cocurrent toroidal rotation and slightly ion diamagnetic poloidal flow. These far outweigh the slightly negative contribution from the diamagnetic component.</p>
+<ul>
+<li>In the core, the field remains positive as a result, which is definitely dominant.</li>
+</ul></li>
+</ul>
+<h3 id="b.-elm-free-h-modes">B. ELM-free H-modes</h3>
+<ul>
+<li><p>These are inherently transient because impurities accumulate, which causes radiative collapse.</p></li>
+<li><p>The wells can be significantly deeper than the EDA H-mode wells. This also means that the ELM-free modes can have energy confinement at 30% higher and substantially higher particle confinement than EDA modes.</p>
+<ul>
+<li><p>The width of the well, however, is the same, causing a much larger shearing rate, up to 5 times as high.</p></li>
+<li><p>The depth is not constant, however. It degrades as expected.</p></li>
+</ul></li>
+<li><p>Due to particle confinement that is too high, the temperature goes down. This causes the shearing rate to decline, which indicates that the <span class="math inline">\(\mathbf{E}\times\mathbf{B}\)</span> shear is linked more strongly to the edge energy barrier than to the particle barrier.</p>
+<ul>
+<li>Also, an additional mechanism is needed to explain this; <span class="math inline">\(\mathbf{E}\times\mathbf{B}\)</span> shear is not enough.</li>
+</ul></li>
+</ul>
+<h2 id="iv.-comparison-to-main-ion-e_r-estimates">IV. Comparison to Main Ion <span class="math inline">\(E_r\)</span> Estimates</h2>
+<ul>
+<li><p>Since the radial electric field is the same for all species, info about the main ion population can be inferred by comparing the total radial field to an estimate of the main ion diamagnetic contribution.</p>
+<ul>
+<li><p>The difference between <span class="math inline">\(E_r\)</span> and the main ion diamagnetic contribution provides a measure of the main ion flow perpendicular to the magnetic field.</p></li>
+<li><p>Also this comparison can give info about the source or formation physics of the field, suggesting guidelines for creating self-consistent field profiles for modeling codes.</p></li>
 </ul></li>
 </ul>
 </body>
