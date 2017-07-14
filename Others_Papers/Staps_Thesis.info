@@ -1,0 +1,806 @@
+InfoBegin
+InfoKey: ModDate
+InfoValue: D:20170210140705+01'00'
+InfoBegin
+InfoKey: PTEX.Fullbanner
+InfoValue: This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) kpathsea version 6.2.0
+InfoBegin
+InfoKey: CreationDate
+InfoValue: D:20170210140705+01'00'
+InfoBegin
+InfoKey: Creator
+InfoValue: LaTeX with hyperref package
+InfoBegin
+InfoKey: Producer
+InfoValue: pdfTeX-1.40.15
+PdfID0: 4c8c0c3f13b035ca5a81ab2adf581b87
+PdfID1: 4c8c0c3f13b035ca5a81ab2adf581b87
+NumberOfPages: 92
+BookmarkBegin
+BookmarkTitle: Chapter 1: Introduction
+BookmarkLevel: 1
+BookmarkPageNumber: 7
+BookmarkBegin
+BookmarkTitle: 1.1 Nuclear fusion in a tokamak reactor
+BookmarkLevel: 2
+BookmarkPageNumber: 7
+BookmarkBegin
+BookmarkTitle: 1.2 Plasma operation in the H-mode
+BookmarkLevel: 2
+BookmarkPageNumber: 7
+BookmarkBegin
+BookmarkTitle: 1.3 Dynamics in the H-mode
+BookmarkLevel: 2
+BookmarkPageNumber: 8
+BookmarkBegin
+BookmarkTitle: 1.4 Challenges for plasma edge control
+BookmarkLevel: 2
+BookmarkPageNumber: 8
+BookmarkBegin
+BookmarkTitle: 1.5 Research objective
+BookmarkLevel: 2
+BookmarkPageNumber: 9
+BookmarkBegin
+BookmarkTitle: 1.6 Methodology
+BookmarkLevel: 2
+BookmarkPageNumber: 10
+BookmarkBegin
+BookmarkTitle: Chapter 2: Physics of the confinement transition and H-mode
+BookmarkLevel: 1
+BookmarkPageNumber: 11
+BookmarkBegin
+BookmarkTitle: 2.1 Order of scales
+BookmarkLevel: 2
+BookmarkPageNumber: 11
+BookmarkBegin
+BookmarkTitle: 2.2 Turbulence
+BookmarkLevel: 2
+BookmarkPageNumber: 12
+BookmarkBegin
+BookmarkTitle: 2.2.1 Dynamics
+BookmarkLevel: 3
+BookmarkPageNumber: 12
+BookmarkBegin
+BookmarkTitle: 2.2.2 Flow shear suppression of turbulence
+BookmarkLevel: 3
+BookmarkPageNumber: 13
+BookmarkBegin
+BookmarkTitle: 2.3 Plasma momentum
+BookmarkLevel: 2
+BookmarkPageNumber: 13
+BookmarkBegin
+BookmarkTitle: 2.4 Nonambipolar particle fluxes
+BookmarkLevel: 2
+BookmarkPageNumber: 14
+BookmarkBegin
+BookmarkTitle: 2.5 L-H transition model
+BookmarkLevel: 2
+BookmarkPageNumber: 15
+BookmarkBegin
+BookmarkTitle: 2.6 Radial electric field
+BookmarkLevel: 2
+BookmarkPageNumber: 17
+BookmarkBegin
+BookmarkTitle: 2.6.1 Partial differential equation
+BookmarkLevel: 3
+BookmarkPageNumber: 17
+BookmarkBegin
+BookmarkTitle: 2.6.2 Normalization
+BookmarkLevel: 3
+BookmarkPageNumber: 18
+BookmarkBegin
+BookmarkTitle: 2.6.3 Coupling
+BookmarkLevel: 3
+BookmarkPageNumber: 19
+BookmarkBegin
+BookmarkTitle: 2.6.4 Comparison
+BookmarkLevel: 3
+BookmarkPageNumber: 20
+BookmarkBegin
+BookmarkTitle: 2.7 Hysteresis
+BookmarkLevel: 2
+BookmarkPageNumber: 21
+BookmarkBegin
+BookmarkTitle: 2.8 Edge transport barrier
+BookmarkLevel: 2
+BookmarkPageNumber: 22
+BookmarkBegin
+BookmarkTitle: 2.8.1 H-mode Physics
+BookmarkLevel: 3
+BookmarkPageNumber: 22
+BookmarkBegin
+BookmarkTitle: 2.8.2 Control of edge transport barrier
+BookmarkLevel: 3
+BookmarkPageNumber: 24
+BookmarkBegin
+BookmarkTitle: 2.9 Discussion
+BookmarkLevel: 2
+BookmarkPageNumber: 24
+BookmarkBegin
+BookmarkTitle: Chapter 3: Model analysis
+BookmarkLevel: 1
+BookmarkPageNumber: 25
+BookmarkBegin
+BookmarkTitle: 3.1 Control problem
+BookmarkLevel: 2
+BookmarkPageNumber: 25
+BookmarkBegin
+BookmarkTitle: 3.3.1 Objective
+BookmarkLevel: 3
+BookmarkPageNumber: 25
+BookmarkBegin
+BookmarkTitle: 3.1.2 Physical context
+BookmarkLevel: 3
+BookmarkPageNumber: 26
+BookmarkBegin
+BookmarkTitle: 3.2 Nonlinear p.d.e. system
+BookmarkLevel: 2
+BookmarkPageNumber: 27
+BookmarkBegin
+BookmarkTitle: 3.2.1 Assumptions and definition
+BookmarkLevel: 3
+BookmarkPageNumber: 27
+BookmarkBegin
+BookmarkTitle: 3.2.2 Nominal Plant P1
+BookmarkLevel: 3
+BookmarkPageNumber: 29
+BookmarkBegin
+BookmarkTitle: 3.3 Linear p.d.e. system
+BookmarkLevel: 2
+BookmarkPageNumber: 33
+BookmarkBegin
+BookmarkTitle: 3.3.1 Linearization
+BookmarkLevel: 3
+BookmarkPageNumber: 33
+BookmarkBegin
+BookmarkTitle: 3.3.2 Constraints
+BookmarkLevel: 3
+BookmarkPageNumber: 34
+BookmarkBegin
+BookmarkTitle: 3.4 Reference p.d.e. system
+BookmarkLevel: 2
+BookmarkPageNumber: 36
+BookmarkBegin
+BookmarkTitle: 3.4.1 State transformation
+BookmarkLevel: 3
+BookmarkPageNumber: 36
+BookmarkBegin
+BookmarkTitle: 3.4.2 Constraints
+BookmarkLevel: 3
+BookmarkPageNumber: 37
+BookmarkBegin
+BookmarkTitle: 3.5 Target p.d.e. system
+BookmarkLevel: 2
+BookmarkPageNumber: 39
+BookmarkBegin
+BookmarkTitle: 3.5.1 Definition
+BookmarkLevel: 3
+BookmarkPageNumber: 39
+BookmarkBegin
+BookmarkTitle: 3.5.2 Constraints
+BookmarkLevel: 3
+BookmarkPageNumber: 40
+BookmarkBegin
+BookmarkTitle: 3.6 Discussion
+BookmarkLevel: 2
+BookmarkPageNumber: 40
+BookmarkBegin
+BookmarkTitle: Chapter 4: Boundary control
+BookmarkLevel: 1
+BookmarkPageNumber: 43
+BookmarkBegin
+BookmarkTitle: 4.1 Backstepping transformation
+BookmarkLevel: 2
+BookmarkPageNumber: 43
+BookmarkBegin
+BookmarkTitle: 4.1.1 An elementary example
+BookmarkLevel: 3
+BookmarkPageNumber: 43
+BookmarkBegin
+BookmarkTitle: 4.1.2 Description
+BookmarkLevel: 3
+BookmarkPageNumber: 45
+BookmarkBegin
+BookmarkTitle: 4.1.3 Derivation
+BookmarkLevel: 3
+BookmarkPageNumber: 47
+BookmarkBegin
+BookmarkTitle: 4.1.4 Formulation of the kernel p.d.e. system
+BookmarkLevel: 3
+BookmarkPageNumber: 48
+BookmarkBegin
+BookmarkTitle: 4.2 Kernel p.d.e. system
+BookmarkLevel: 2
+BookmarkPageNumber: 50
+BookmarkBegin
+BookmarkTitle: 4.2.1 Interpretation of the kernel conditions
+BookmarkLevel: 3
+BookmarkPageNumber: 50
+BookmarkBegin
+BookmarkTitle: 4.2.2 Stability analysis of target system
+BookmarkLevel: 3
+BookmarkPageNumber: 52
+BookmarkBegin
+BookmarkTitle: 4.3 Boundary feedback controller
+BookmarkLevel: 2
+BookmarkPageNumber: 57
+BookmarkBegin
+BookmarkTitle: 4.3.1 Procedure for numerical solution
+BookmarkLevel: 3
+BookmarkPageNumber: 57
+BookmarkBegin
+BookmarkTitle: 4.3.2 Solution of the kernel system
+BookmarkLevel: 3
+BookmarkPageNumber: 58
+BookmarkBegin
+BookmarkTitle: 4.3.3 Feedback control law for the plasma model
+BookmarkLevel: 3
+BookmarkPageNumber: 61
+BookmarkBegin
+BookmarkTitle: 4.4 Discussion
+BookmarkLevel: 2
+BookmarkPageNumber: 62
+BookmarkBegin
+BookmarkTitle: Chapter 5: Conclusion and discussion
+BookmarkLevel: 1
+BookmarkPageNumber: 63
+BookmarkBegin
+BookmarkTitle: 5.1 Conclusion
+BookmarkLevel: 2
+BookmarkPageNumber: 63
+BookmarkBegin
+BookmarkTitle: How does the radial electric field equation relate to the L-H transition physics?
+BookmarkLevel: 3
+BookmarkPageNumber: 63
+BookmarkBegin
+BookmarkTitle: How close to the H-L bifurcation can the plasma model be stabilized?
+BookmarkLevel: 3
+BookmarkPageNumber: 64
+BookmarkBegin
+BookmarkTitle: 5.2 Discussion
+BookmarkLevel: 2
+BookmarkPageNumber: 65
+BookmarkBegin
+BookmarkTitle: Plasma model
+BookmarkLevel: 3
+BookmarkPageNumber: 65
+BookmarkBegin
+BookmarkTitle: Control objective
+BookmarkLevel: 3
+BookmarkPageNumber: 65
+BookmarkBegin
+BookmarkTitle: Backstepping p.d.e. control
+BookmarkLevel: 3
+BookmarkPageNumber: 66
+BookmarkBegin
+BookmarkTitle: Appendix A: Nonambipolar particle fluxes
+BookmarkLevel: 1
+BookmarkPageNumber: 67
+BookmarkBegin
+BookmarkTitle: A.1 Tokamak and plasma parameters
+BookmarkLevel: 2
+BookmarkPageNumber: 67
+BookmarkBegin
+BookmarkTitle: A.2 Polarization current
+BookmarkLevel: 2
+BookmarkPageNumber: 68
+BookmarkBegin
+BookmarkTitle: A.3 Ion (perpendicular) shear viscosity
+BookmarkLevel: 2
+BookmarkPageNumber: 68
+BookmarkBegin
+BookmarkTitle: A.4 Ion (parallel) bulk viscosity
+BookmarkLevel: 2
+BookmarkPageNumber: 69
+BookmarkBegin
+BookmarkTitle: A.5 Residual Reynolds stress
+BookmarkLevel: 2
+BookmarkPageNumber: 70
+BookmarkBegin
+BookmarkTitle: A.6 Electron anomalous diffusion
+BookmarkLevel: 2
+BookmarkPageNumber: 71
+BookmarkBegin
+BookmarkTitle: A.7 Ion orbit loss
+BookmarkLevel: 2
+BookmarkPageNumber: 71
+BookmarkBegin
+BookmarkTitle: A.8 Charge exchange friction
+BookmarkLevel: 2
+BookmarkPageNumber: 72
+BookmarkBegin
+BookmarkTitle: A.9 Ion ripple loss
+BookmarkLevel: 2
+BookmarkPageNumber: 73
+BookmarkBegin
+BookmarkTitle: Appendix B: Linearization
+BookmarkLevel: 1
+BookmarkPageNumber: 74
+BookmarkBegin
+BookmarkTitle: Appendix C: Spatial derivatives of eigendecomposition
+BookmarkLevel: 1
+BookmarkPageNumber: 76
+BookmarkBegin
+BookmarkTitle: Appendix D: Characteristic o.d.e. for the kernel problem
+BookmarkLevel: 1
+BookmarkPageNumber: 78
+BookmarkBegin
+BookmarkTitle: Appendix E: First-order kernel problem
+BookmarkLevel: 1
+BookmarkPageNumber: 81
+BookmarkBegin
+BookmarkTitle: Appendix F: Numerical implementation of kernel problem
+BookmarkLevel: 1
+BookmarkPageNumber: 84
+BookmarkBegin
+BookmarkTitle: Bibliography
+BookmarkLevel: 1
+BookmarkPageNumber: 87
+PageMediaBegin
+PageMediaNumber: 1
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 2
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 3
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 4
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 5
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 6
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 7
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 8
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 9
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 10
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 11
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 12
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 13
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 14
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 15
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 16
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 17
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 18
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 19
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 20
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 21
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 22
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 23
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 24
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 25
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 26
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 27
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 28
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 29
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 30
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 31
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 32
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 33
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 34
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 35
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 36
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 37
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 38
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 39
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 40
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 41
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 42
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 43
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 44
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 45
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 46
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 47
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 48
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 49
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 50
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 51
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 52
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 53
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 54
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 55
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 56
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 57
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 58
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 59
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 60
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 61
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 62
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 63
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 64
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 65
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 66
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 67
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 68
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 69
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 70
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 71
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 72
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 73
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 74
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 75
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 76
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 77
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 78
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 79
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 80
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 81
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 82
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 83
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 84
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 85
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 86
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 87
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 88
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 89
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 90
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 91
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageMediaBegin
+PageMediaNumber: 92
+PageMediaRotation: 0
+PageMediaRect: 0 0 595.276 841.89
+PageMediaDimensions: 595.276 841.89
+PageLabelBegin
+PageLabelNewIndex: 1
+PageLabelStart: 1
+PageLabelNumStyle: DecimalArabicNumerals
+PageLabelBegin
+PageLabelNewIndex: 2
+PageLabelStart: 1
+PageLabelNumStyle: DecimalArabicNumerals
