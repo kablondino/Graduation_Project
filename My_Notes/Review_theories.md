@@ -236,7 +236,7 @@
 
 + <span style="color:red">Another model has the generation of toroidal flow by ion-orbit loss with similar results, with an extension to a situation where additional heating generates energetic electrons, which are then lost due to magnetic field ripple trapping [121,122].</span>
 
-	+ A bifurcation condition arises, in which $h$ signifies 'hot' electrons, \delta$ is the ripple amplitude, and $V$ is plasma volume:
+	+ A bifurcation condition arises, in which $h$ signifies 'hot' electrons, $\delta$ is the ripple amplitude, and $V$ is plasma volume:
 		$$\frac{n_h}{n_i}\left(\frac{T_h}{T_i}\right)^{7/2} \,>\, 0.17 \frac{\epsilon^3}{\lambda_h \delta^{3/2}} \sqrt{\frac{m_i}{m_e}} \nu_{*i}^2, ~~~~~~ \lambda_h \,=\, \frac{\rho_{pi} n_h^\prime}{n_h}$$
 
 	+ This give a power threshold:

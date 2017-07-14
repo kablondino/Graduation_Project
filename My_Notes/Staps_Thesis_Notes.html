@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="notes-on-backstepping-control-of-h-l-confinement-transition-in-fusion-plasma-model">Notes on <em>Backstepping control of H-L confinement transition in fusion plasma model</em></h1>
+<h2 id="chapter-2-physics-of-the-confinement-transition-and-h-mode">Chapter 2: Physics of the confinement transition and H-mode</h2>
+<h3 id="order-of-scales">2.1 Order of scales</h3>
+<ul>
+<li><p>Transport of magnetic flux is the slowest process within a tokamak plasma; therefore, the magnetic field can be treated as a constant background field during transition.</p></li>
+<li><p>Magnetic reconnection (<em>e.g.</em> sawtooth instability) occurs on a fast time scale, but is not considered for this thesis.</p></li>
+<li><p>Pressure gradients drive the turbulent modes, giving anomalous transport of particles, energy, and momentum.</p>
+<ul>
+<li>Changes in turbulence occur in the smallest of time scales; they are often inferred from fluctuations in density and electric field.</li>
+</ul></li>
+</ul>
+<h3 id="turbulence">2.2 Turbulence</h3>
+<h4 id="dynamics">2.2.1 Dynamics</h4>
+<ul>
+<li><p>The dominant modes are the ion temperature gradient mode and trapped electron mode in a collisionless plasma.</p></li>
+<li><p>Micro-instabilities give drift waves because electrons neutralize fluctuations in finite time.</p>
+<ul>
+<li>The coupling of drift waves to other plasma modes yields different types of drift-wave turbulences such as the drift resistive ballooning mode and drift Alfvén turbulence.</li>
+</ul></li>
+<li><p>Drift waves are the only type of turbulence able to drive a radial flux and therefore, drift wave turbulence determines the level of edge turbulence and associated transport. Basic model for this: <span class="math display">\[\frac{\text{d}\mathcal{E}}{\text{d}t} \,=\, \gamma_1 \mathcal{E} - \alpha_{sat}\mathcal{E}^2\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathcal{E}\)</span> is the turbulence level, <span class="math inline">\(\gamma_1\)</span> is the growth rate, and <span class="math inline">\(\alpha_{sat}\)</span> is the saturation rate._</li>
+</ul></li>
+</ul>
+<h4 id="flow-shear-suppression-of-turbulence">2.2.2 Flow shear suppression of turbulence</h4>
+<ul>
+<li><p>A radial shear in plasma flow decorrelates turbulent eddies, which are small compared to the flow length scale. As eddies are extended by the sheared plasma flow, their wave energy is transferred to larger flow structures ad the expense of small turbulent structures: <span class="math display">\[\frac{\partial V_{\mathbf{E}\times\mathbf{B}}}{\partial x} \,=\, \frac{\partial}{\partial x} \left(\frac{E_r}{B}\right) \,\approx\, \frac{1}{B_\phi} \frac{\partial E_r}{\partial x}\]</span></p></li>
+<li><p>Both zonal and mean <span class="math inline">\(\mathbf{E}\times\mathbf{B}\)</span> flow are involved in the transition.</p>
+<ul>
+<li>Zonal flows are produced by the shear of Reynolds stress arising from correlated radial and poloidal fluctuations. Its shear suppresses the drift-wave turbulence, but the mechanism is damped by ion-ion collisions or flow instabilities. Therefore, zonal flows provide a temporary sink of energy, which show their signature before the transition.</li>
+</ul></li>
+</ul>
+</body>
+</html>
