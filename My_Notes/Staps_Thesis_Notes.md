@@ -69,3 +69,33 @@
 ### 2.4 Nonambipolar particle fluxes
 
 + The total nonambipolar particle flux $\Gamma^{na}$ is split into contributions from volumetric $\Gamma_V^{na}$ and edge $\Gamma_E^{na}$ processes.
+
++ The volumetric components are summed up as:
+	$$\Gamma_V^{na} \,=\, \Gamma_{bulk viscosity}^{\pi \parallel} + \Gamma_{shear viscosity}^{\pi \perp} + \Gamma_{polarization}^{pol} + \Gamma_{Reynolds stress}^{Rey} + \Gamma_{Maxwell stress}^{Max} + \Gamma_{resonant magn. perturbations}^{\mathbf{J}\times\mathbf{B} + \Gamma_{poloidal flux transient}^{\dot{\psi}_p} + \Gamma_{external}^{S},$$
+
+	+ $\Gamma^{\pi\parallel, \pi \perp}$ is from viscous torque, $\Gamma^{pol}$ is from plasma polarization, $\Gamma^{Rey,Max}$ from fluctuation-induced Reynolds and Maxwell stress, $\Gamma^{\mathbf{J}\times\mathbf{B}}$ is non-axisymmetric resonant magnetic perturbations, $\Gamma^{\dot{\psi}_p}} from momentum transport due to poloidal flux transients, and $\Gamma^S$ as external momentums sources and sinks.
+
+		+ <span style="color:red">Gyroviscosity (viscosity in the diamagnetic direction)</span> is NOT taken into account, since its particle flux is negligible in a tokamak.
+
+		+ Also Reynolds and Maxwell stress are left out (fluctuation-induced stresses) because they consider average plasma state variables.
+
+		+ The poloidal flux transient is neglected since the magnetic field is assumed quasi-stationary around the transition time.
+
+	+ The effect of NBI (axisymmetric) resonant magnetic perturbations or ERCH may be added to the equation from the external term.
+
++ At the edge, nonambipolar processes can be active due to the transition of closed to open magnetic field lines, the finite number of coils, or atomic processes due to the presence of neutrals:
+	$$\Gamma_E^{na} \,=\, \Gamma_{anomalous diffusion}^{an} + \Gamma_{orbit loss}^{ol} + \Gamma_{charge exchange}^{cx} + \Gamma_{ripple loss}^{rl}$$
+
+	+ $\Gamma^{an}$ is from anomalous cross-field diffusion (drift waves), $\Gamma^{ol}$ is from direct orbit loss (ion vs. electron Larmor radius), $\Gamma^{cx}$ is from charge exchange friction with neutrals, and $\Gamma^{rl}$ is from ripple losses due to magnetic field inhomogeneities.
+
+		+ <span style="color:red">Ripple losses</span> are excluded because low collisionality is assumed.
+
++ This leads to a full expression, excluding the aforementioned fluxes:
+	$$\Gamma^{na} \,=\, \Gamma^{\pi \parallel} + \Gamma^{\pi \perp} + \Gamma^{pol} + \Gamma^{an} + \Gamma^{ol} + \Gamma^{cx}$$
+
+	+ Using the ambipolarity condition, the dynamics of the radial electric field can be derived from this.
+
+### 2.5 L-H transition model
+$$\frac{\partial n}{\partial t} \,=\, \frac{\partial}{\partial x} \left(D(\mathcal{E})\frac{\partial n}{\partial x}\right) \\ \frac{\partial U}{\partial t} \,=\, \frac{\partial}{\partial x}\left(\chi(\mathcal{E}) n \frac{\partial T}{\partial x} + \frac{D(\mathcal{E}) T}{\gamma - 1} \frac{\partial n}{\partial x}\right)$$
+
++ Conservation of mass and energy is above, with particle and heat diffusivities $D(\mathcal{E})$ and $\chi(\mathcal{E})$, respectively, and the ratio of ion-electron heat capacity (adiabatic index) $\gamma$.
