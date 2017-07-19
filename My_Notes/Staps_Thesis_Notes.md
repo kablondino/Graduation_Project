@@ -99,3 +99,54 @@
 $$\frac{\partial n}{\partial t} \,=\, \frac{\partial}{\partial x} \left(D(\mathcal{E})\frac{\partial n}{\partial x}\right) \\ \frac{\partial U}{\partial t} \,=\, \frac{\partial}{\partial x}\left(\chi(\mathcal{E}) n \frac{\partial T}{\partial x} + \frac{D(\mathcal{E}) T}{\gamma - 1} \frac{\partial n}{\partial x}\right)$$
 
 + Conservation of mass and energy is above, with particle and heat diffusivities $D(\mathcal{E})$ and $\chi(\mathcal{E})$, respectively, and the ratio of ion-electron heat capacity (adiabatic index) $\gamma$.
+
+	+ The particle and heat diffusivities are simplified due to the belief that different diffusivities do not alter the bif behavior qualitatively. This is the simplification:
+		$$\chi \,=\, \frac{D}{\zeta(\gamma - 1)}$$
+
+	+ The additional parameter $\zeta$ adapts the ratio between $\chi$ and $D$. Also, it is assumed that particle diffusivity scales linearly with turbulence $\mathcal{E}$, which includes neoclassical and turbulent transport:
+		$$D(\mathcal{E}) \,=\, D_{min} + (D_{max} - D_{min}) \frac{\mathcal{E}}{\mathcal{E}_{max}}$$
+
+		+ $\mathcal{E}_{max} = \gamma_1 \alpha_{sat}^{-1}$ is the max turbulence level.
+
+	+ Plasma energy is rephrased: $U \,=\, \dfrac{n T}{\gamma - 1}$. This simplifies the expression of <span style="color:red">(2.11)</span> which can then be subtracted to give an expression of only plasma temperature:
+<!---
+		$$n \frac{\partial T}{\partial t} + T \frac{\partial n}{\partial t} \,=\, \frac{\partial}{\partial x} \left(\frac{D(\mathcal{E}) n}{\zeta} \frac{\partial T}{\partial x}\right) + T \frac{\partial}{\partial x} \left(D\mathcal{E} \frac{\partial n}{\partial x}\right) + D(\mathcal{E}) \frac{\partial n}{\partial x} \frac{\partial T}{\partial x}$$
+--->
+		$$\frac{\partial T}{\partial t} \,=\, \frac{\partial}{\partial x} \left(\frac{D(\mathcal{E}) n}{\zeta} \frac{\partial T}{\partial x}\right) + \left(\frac{\zeta + 1}{\zeta} \frac{D(\mathcal{E})}{n} \frac{\partial n}{\partial x} \frac{\partial T}{\partial x}\right)$$
+
++ The radial electric field PDE has radial currents from polarization and shear viscosity explicitly. The other nonambipolar processes are partly affected by the density and temperature gradients, which couples the differential equations.
+
+	+ $G(Z)$ is a cubic polynomial that approximates the remaining electric field-induces contributions, which has an inflection point in $Z$-space denoted as $Z_S$:
+		$$\epsilon \frac{\partial Z}{\partial t} \,=\, \mu \frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)$$
+
+	+ $Z$ is the normalized electric field by normalizing $E_r$ with respect to space (ion Larmor radius $\rho_{pi}$) and energy (temperature $T$).
+		$$Z \,=\, \frac{\rho_{pi} e E_r}{T} ~~~~\text{with}~~~~ \rho_{pi} \,=\, \frac{m_i v_{ti}}{e B_\theta}$$
+
+	+ The PDE of $Z$ is not only nonlinear, but also includes a nonlinear coupling through temperature and density gradients.
+
+	+ The boundary conditions are of the Robin-type at the separatrix for $x = 0$:
+		$$\frac{\partial n}{\partial x}\Biggr_{x = 0} = \frac{n}{\lamda_n}, ~~~ \frac{\partial T}{\partial x}\Biggr_{x = 0} = \frac{T}{\lambda_T}, ~~~ \frac{\partial Z}{\partial x}\Biggr_{x = 0} = \frac{Z}{\lambda_Z}$$
+
+		+ The SOL boundary conditions force the plasma variables to zero along a typical length scale $\lambda$. The Neumann-type boundary conditions at the plasma core are given in terms of the particle and heat fluxes at $x = L$, while the radial electric field shear vanishes:
+			$$-\left[D(\mathcal{E}) \frac{\partial n}{\partial x}\right]_{x = L} = \Gamma_c, ~~~~ -\left[\frac{D(\mathcal{E})}{\zeta} \frac{\partial T}{\partial x}\right]_{x = L} = \left[\frac{(\gamma - 1) q_c - T \Gamma_c}{n}\right]_{x = L}, ~~~~ \left[ \frac{\partial Z}{\partial x}_{x = L} = 0$$
+
+			+ The (negative) fluxes flow towards the SOL, at $x = 0$, for positive gradients that increase towards the plasma core, at $x = L$.
+
+	+ The model shows different transitions (smooth, oscillatory, or sharp) depending on the coefficients $a$, $b$, and $c$ of $G$:
+		$$G(Z) \,=\, a + b(Z - Z_S) + c(Z - Z_S)^3$$
+
+### 2.6 Radial electric field
+#### 2.6.1 Partial differential equation
+
++ Amp\`{e}re's law:
+	$$\nabla \times \mathbf{B} \,=\, \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}$$
+
+	+ The divergence of the radial direction is zero, meaning the plasma and displacement current must vanish. This means we obtain an equation for the radial electric field and radial current:
+		$$\epsilon_0 \frac{\partial E_r}{\partial t} \,=\, -J_r \,=\, \sum_k \left(q_{e,i} \Gamma_{e,i}^k\right)$$
+
+		+ $k$ represents some nonambipolar process, with $q \Gamma$ as a particular radial current for electrons or ions ($q$ is charge).
+
+
+
+#### 2.6.2 Normalization
+
