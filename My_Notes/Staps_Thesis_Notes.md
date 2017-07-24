@@ -71,9 +71,9 @@
 + The total nonambipolar particle flux $\Gamma^{na}$ is split into contributions from volumetric $\Gamma_V^{na}$ and edge $\Gamma_E^{na}$ processes.
 
 + The volumetric components are summed up as:
-	$$\Gamma_V^{na} \,=\, \Gamma_{bulk viscosity}^{\pi \parallel} + \Gamma_{shear viscosity}^{\pi \perp} + \Gamma_{polarization}^{pol} + \Gamma_{Reynolds stress}^{Rey} + \Gamma_{Maxwell stress}^{Max} + \Gamma_{resonant magn. perturbations}^{\mathbf{J}\times\mathbf{B} + \Gamma_{poloidal flux transient}^{\dot{\psi}_p} + \Gamma_{external}^{S},$$
+	$$\Gamma_V^\text{na} \,=\, \underset{\substack{\text{bulk} \\ \text{viscosity}}}{\Gamma^{\pi \parallel}} + \underset{\substack{\text{shear} \\ \text{viscosity}}}{\Gamma^{\pi \perp}} + \underset{\text{polarization}}{\Gamma^\text{pol}} + \underset{\substack{\text{Reynolds} \\ \text{stress}}}{\Gamma^\text{Rey}} + \underset{\substack{\text{Maxwell} \\ \text{stress}}}{\Gamma^\text{Max}} + \underset{\substack{\text{resonant magn.} \\ \text{perturbations}}}{\Gamma^{\mathbf{J}\times\mathbf{B}}} + \underset{\substack{\text{poloidal flux} \\ \text{transient}}}{\Gamma^{\dot{\psi}_p}} + \underset{\text{external}}{\Gamma^\text{S}},$$
 
-	+ $\Gamma^{\pi\parallel, \pi \perp}$ is from viscous torque, $\Gamma^{pol}$ is from plasma polarization, $\Gamma^{Rey,Max}$ from fluctuation-induced Reynolds and Maxwell stress, $\Gamma^{\mathbf{J}\times\mathbf{B}}$ is non-axisymmetric resonant magnetic perturbations, $\Gamma^{\dot{\psi}_p}} from momentum transport due to poloidal flux transients, and $\Gamma^S$ as external momentums sources and sinks.
+	+ $\Gamma^{\pi\parallel, \pi \perp}$ is from viscous torque, $\Gamma^\text{pol}$ is from plasma polarization, $\Gamma^\text{Rey,Max}$ from fluctuation-induced Reynolds and Maxwell stress, $\Gamma^{\mathbf{J}\times\mathbf{B}}$ is non-axisymmetric resonant magnetic perturbations, $\Gamma^{\dot{\psi}_p}$ from momentum transport due to poloidal flux transients, and $\Gamma^\text{S}$ as external momentums sources and sinks._
 
 		+ <span style="color:red">Gyroviscosity (viscosity in the diamagnetic direction)</span> is NOT taken into account, since its particle flux is negligible in a tokamak.
 
@@ -84,14 +84,14 @@
 	+ The effect of NBI (axisymmetric) resonant magnetic perturbations or ERCH may be added to the equation from the external term.
 
 + At the edge, nonambipolar processes can be active due to the transition of closed to open magnetic field lines, the finite number of coils, or atomic processes due to the presence of neutrals:
-	$$\Gamma_E^{na} \,=\, \Gamma_{anomalous diffusion}^{an} + \Gamma_{orbit loss}^{ol} + \Gamma_{charge exchange}^{cx} + \Gamma_{ripple loss}^{rl}$$
+	$$\Gamma^\text{na}_E \,=\, \underset{\substack{\text{anomalous} \\ \text{diffusion}}}{\Gamma^\text{an}} + \underset{\substack{\text{orbit} \\ \text{loss}}}{\Gamma^\text{ol}} + \underset{\substack{\text{charge} \\ \text{exchange}}}{\Gamma^\text{cx}} + \underset{\substack{\text{ripple} \\ \text{loss}}}{\Gamma^\text{rl}}$$
 
-	+ $\Gamma^{an}$ is from anomalous cross-field diffusion (drift waves), $\Gamma^{ol}$ is from direct orbit loss (ion vs. electron Larmor radius), $\Gamma^{cx}$ is from charge exchange friction with neutrals, and $\Gamma^{rl}$ is from ripple losses due to magnetic field inhomogeneities.
+	+ $\Gamma^\text{an}$ is from anomalous cross-field diffusion (drift waves), $\Gamma^\text{ol}$ is from direct orbit loss (ion vs. electron Larmor radius), $\Gamma^\text{cx}$ is from charge exchange friction with neutrals, and $\Gamma^\text{rl}$ is from ripple losses due to magnetic field inhomogeneities.
 
 		+ <span style="color:red">Ripple losses</span> are excluded because low collisionality is assumed.
 
 + This leads to a full expression, excluding the aforementioned fluxes:
-	$$\Gamma^{na} \,=\, \Gamma^{\pi \parallel} + \Gamma^{\pi \perp} + \Gamma^{pol} + \Gamma^{an} + \Gamma^{ol} + \Gamma^{cx}$$
+	$$\Gamma^\text{na} \,=\, \Gamma^{\pi \parallel} + \Gamma^{\pi \perp} + \Gamma^\text{pol} + \Gamma^\text{an} + \Gamma^\text{ol} + \Gamma^\text{cx}$$
 
 	+ Using the ambipolarity condition, the dynamics of the radial electric field can be derived from this.
 
@@ -117,18 +117,18 @@ $$\frac{\partial n}{\partial t} \,=\, \frac{\partial}{\partial x} \left(D(\mathc
 + The radial electric field PDE has radial currents from polarization and shear viscosity explicitly. The other nonambipolar processes are partly affected by the density and temperature gradients, which couples the differential equations.
 
 	+ $G(Z)$ is a cubic polynomial that approximates the remaining electric field-induces contributions, which has an inflection point in $Z$-space denoted as $Z_S$:
-		$$\epsilon \frac{\partial Z}{\partial t} \,=\, \mu \frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)$$
+		$$\epsilon \frac{\partial Z}{\partial t} \,=\, \mu \frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z) ~~~~~~~~ (2.17)$$
 
 	+ $Z$ is the normalized electric field by normalizing $E_r$ with respect to space (ion Larmor radius $\rho_{pi}$) and energy (temperature $T$).
-		$$Z \,=\, \frac{\rho_{pi} e E_r}{T} ~~~~\text{with}~~~~ \rho_{pi} \,=\, \frac{m_i v_{ti}}{e B_\theta}$$
+		$$\text{NORMALIZATION:} ~~~~~ Z \,=\, \frac{\rho_{pi} e E_r}{T} ~~~~\text{with}~~~~ \rho_{pi} \,=\, \frac{m_i v_{ti}}{e B_\theta}$$
 
 	+ The PDE of $Z$ is not only nonlinear, but also includes a nonlinear coupling through temperature and density gradients.
 
 	+ The boundary conditions are of the Robin-type at the separatrix for $x = 0$:
-		$$\frac{\partial n}{\partial x}\Biggr_{x = 0} = \frac{n}{\lamda_n}, ~~~ \frac{\partial T}{\partial x}\Biggr_{x = 0} = \frac{T}{\lambda_T}, ~~~ \frac{\partial Z}{\partial x}\Biggr_{x = 0} = \frac{Z}{\lambda_Z}$$
+		$$\frac{\partial n}{\partial x}\biggr\rvert_{x = 0} = \frac{n}{\lambda_n}, ~~~~~ \frac{\partial T}{\partial x}\biggr\rvert_{x = 0} = \frac{T}{\lambda_T}, ~~~~~ \frac{\partial Z}{\partial x}\biggr\rvert_{x = 0} = \frac{Z}{\lambda_Z}$$
 
 		+ The SOL boundary conditions force the plasma variables to zero along a typical length scale $\lambda$. The Neumann-type boundary conditions at the plasma core are given in terms of the particle and heat fluxes at $x = L$, while the radial electric field shear vanishes:
-			$$-\left[D(\mathcal{E}) \frac{\partial n}{\partial x}\right]_{x = L} = \Gamma_c, ~~~~ -\left[\frac{D(\mathcal{E})}{\zeta} \frac{\partial T}{\partial x}\right]_{x = L} = \left[\frac{(\gamma - 1) q_c - T \Gamma_c}{n}\right]_{x = L}, ~~~~ \left[ \frac{\partial Z}{\partial x}_{x = L} = 0$$
+			$$-\left[D(\mathcal{E}) \frac{\partial n}{\partial x}\right]_{x = L} = \Gamma_c, ~~~~~ -\left[\frac{D(\mathcal{E})}{\zeta} \frac{\partial T}{\partial x}\right]_{x = L} = \left[\frac{(\gamma - 1) q_c - T \Gamma_c}{n}\right]_{x = L}, ~~~~~ \left[\frac{\partial Z}{\partial x}\right]_{x = L} = 0$$
 
 			+ The (negative) fluxes flow towards the SOL, at $x = 0$, for positive gradients that increase towards the plasma core, at $x = L$.
 
@@ -141,12 +141,128 @@ $$\frac{\partial n}{\partial t} \,=\, \frac{\partial}{\partial x} \left(D(\mathc
 + Amp\`{e}re's law:
 	$$\nabla \times \mathbf{B} \,=\, \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}$$
 
-	+ The divergence of the radial direction is zero, meaning the plasma and displacement current must vanish. This means we obtain an equation for the radial electric field and radial current:
+	+ The divergence in the radial direction is zero, meaning the plasma and displacement current must vanish. This means we obtain an equation for the radial electric field and radial current:
 		$$\epsilon_0 \frac{\partial E_r}{\partial t} \,=\, -J_r \,=\, \sum_k \left(q_{e,i} \Gamma_{e,i}^k\right)$$
 
-		+ $k$ represents some nonambipolar process, with $q \Gamma$ as a particular radial current for electrons or ions ($q$ is charge).
+		+ $k$ represents some nonambipolar process, with $q\,\Gamma$ as a particular radial current for electrons or ions ($q$ is charge).
 
+	+ We can substitute this into the PDE, with some substitutions found in Appendix A:
+		$$\epsilon_0 \frac{\partial E_r}{\partial t} \,=\, \underset{\text{bulk viscosity}}{e \Gamma_i^{\pi \parallel}} + \underset{\text{shear viscosity}}{\frac{\partial}{\partial x} \left(\frac{m_i n_i \mu_i}{B_\theta^2} \frac{\partial E_r}{\partial x}\right)} - \underset{\text{polarization}}{\frac{m_i n_i}{B^2} \frac{\partial E_r}{\partial t}} + \underset{\substack{\text{anomalous} \\ \text{diffusion}}}{e \Gamma_e^\text{an}} - \underset{\text{orbit loss}}{e \Gamma_i^\text{ol}} - \underset{\substack{\text{charge} \\ \text{exchange}}}{e \Gamma_i^\text{cx}}$$
 
+	+ Rearrange, and add the polarization current to the displacement current:
+		$$\epsilon_0 \left(1 + \frac{m_i n_i}{\epsilon B^2}\right) \frac{\partial E_r}{\partial t} \,=\, \frac{\partial}{\partial x} \left(\frac{m_i n_i \mu_i}{B_\theta^2} \frac{\partial E_r}{\partial x}\right) + e\left(-\Gamma_i^{\pi \parallel} + \Gamma_e^\text{an} - \Gamma_i^\text{ol} - \Gamma_i^\text{cx}\right)$$
+
+	+ The pre-factor to the time derivative can be written in terms of the Alfvén velocity $v_A$:
+		$$\epsilon_0 \left(1 + \frac{m_i n_i}{\epsilon B^2}\right) \,=\, \epsilon_0 \left(1 + \frac{m_i n_i c_0^2 \mu_0}{\epsilon B^2}\right) \,=\, \epsilon_0 \left(1 + \frac{c_0^2}{v_A^2}\right), ~~~~~ v_A \,\approx\, \frac{B}{\sqrt{\mu_0 m_i n_i}}$$
+
+		+ It is also safe to assume that $v_A \ll c_0$ at the plasma edge.
+
+	+ OVERALL, the PDE simplifies (assuming constant viscosity coefficient) to:
+		$$m_i n_i \left(\frac{B_\theta}{B}\right)^2 \frac{\partial E_r}{\partial t} \,=\, m_i n_i \mu_i \frac{\partial^2 E_r}{\partial x^2} + e B_\theta^2 \left(-\Gamma_i^{\pi \parallel} + \Gamma_e^\text{an} - \Gamma_i^\text{ol} - \Gamma_i^\text{cx}\right)$$
 
 #### 2.6.2 Normalization
 
++ After a lengthy process, the model can be normalized:
+		$$\frac{m_i n_i T_i}{e \rho_{pi}} \left(\frac{B_\theta}{B}\right)^2 \frac{\partial Z}{\partial t} \,=\, \frac{m_i n_i \mu_i T_i}{e \rho_{pi}} \frac{\partial^2 Z}{\partial x^2} + e B_\theta^2 \left(-\Gamma_i^{\pi \parallel} + \Gamma_e^\text{an} - \Gamma_i^\text{ol} - \Gamma_i^\text{cx}\right)$$
+
+	+ This model assumes the that the effects of $\dfrac{\partial T_i}{\partial x}$ and $\dfrac{\partial^2 T_i}{\partial x^2}$ on the shear viscosity are negligible.
+
+#### 2.6.3 Coupling
+
+
+
+#### 2.6.4 Comparison
+
++ The physics-based (as opposed to the 'model'-based) electric field PDE can be put into the following form:
+	$$\hat{\epsilon} \frac{\partial Z}{\partial t} \,=\, \hat{\mu} \frac{\partial^2 Z}{\partial x^2} + \frac{\hat{c}_n T}{n^2} \frac{\partial n}{\partial x} + \frac{\hat{c}_T}{n} \frac{\partial T}{\partial x} + \frac{T g(Z)}{n} ~~~~~~~~~~~ (2.38)$$
+
+	+ The electric field time scale is determined by $\hat{\epsilon}$, while $\hat{\mu}$ determines the layer thickness in which the electric field curvature is significant. These can thus be seen as time and 'length' scales:
+		$$\hat{\epsilon} \,=\, \frac{m_i T^2}{e \rho_{pi}} \left(\frac{B_\theta}{B}\right)^2, ~~~~~ \hat{\mu} \,=\, \frac{m_i \mu_i T^2}{e \rho_{pi}}$$
+
++ The thermodynamic coefficients $\hat{c}_n$ and $\hat{c}_T$ can be expressed in terms of the nonambipolar contributions affected by the density and temperature gradient, respectively <span style="color:red">(2.41)</span>.
+
+### 2.7 Hysteresis
+
++ Hysteresis is often visualized by a gradient-flux relation, _e.g._ electron pressure gradient versus separatrix heat flux: $\nabla p_e(P_{sep})$._
+
++ Here, in the model of §2.5, the existence and size of the hysteresis are governed by the parameters $b$ and $c$.
+
+### 2.8 Edge transport barrier
+#### 2.8.1 H-mode physics
+
++ The edge transport barrier is characterized by a pedestal height (maximum edge pressure) and width (radial extent of edge gradient). The pedestal width is considered an additional degree of freedom, determining the time-averaged pedestal pressure.
+
+#### 2.8.2 Control of edge transport barrier
+
+
+
+### 2.9 Discussion
+
++ Assumptions were made, most important being the basis of nonambipolar particle fluxes.
+
+## Chapter 3: Model analysis
+
+
+
+## Chapter 4: Boundary control
+
+
+
+## Chapter 5: Conclusion and discussion
+
+
+
+## Appendix A: Nonambipolar particle fluxes
+### A.1 Tokamak and plasma parameters
+
+
+
+### A.2 Polarization current
+
+
+
+### A.3 Ion (perpendicular) shear viscosity
+
+
+
+### A.4 Ion (parallel) bulk viscosity
+
+
+
+### A.5 Residual Reynolds stress
+
+
+
+### A.6 Electron anomalous diffusion
+
+
+
+### A.7 Ion orbit loss
+
+
+
+### A.8 Charge exchange friction
+
+
+
+### A.9 Ion ripple loss
+
+
+
+## Appendix B: Linearization
+
+
+
+## Appendix C: Spatial derivatives of eigendecomposition
+
+
+
+## Appendix D: Characteristic ODE for the kernel problem
+
+
+
+## Appendix E: First-order kernel problem
+
+
+
+## Appendix F: Numerical implementation of kernel problem
