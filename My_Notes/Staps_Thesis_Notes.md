@@ -47,7 +47,7 @@
 	+ Viscous stress damps the flow across flux surfaces, but also charge exchange friction with neutrals at the edge adds to damping.
 
 + Momentum is a conserved variable that can be transported across flux surfaces to add a radial component to the plasma current. In steady-state, the radial ion force balance is:
-	$$E_r \,=\, \frac{1}{n_i q_i} \nabla p_i v_\phi B_\theta - v_\theta B_\phi$$
+	$$E_r \,=\, \frac{1}{n_i q_i} \nabla p_i + v_\phi B_\theta - v_\theta B_\phi$$
 
 	+ Often, the radial field is determined experimentally by measure 3 contributions:
 
@@ -60,7 +60,7 @@
 		+ Ambipolar fluxes are equal for electrons and ions, resulting in zero radial current.
 
 		+ Nonambipolar $\Gamma^{na}$ are different for various species and may violate the ambipolarity constraint:
-			$$\langle \mathbf{J}\cdot \nabla \rho \,=\, \sum_s q_s \Gamma_s^{na} \,=\, 0$$
+			$$\langle \mathbf{J}\cdot \nabla \rho \rangle \,=\, \sum_s q_s \Gamma_s^{na} \,=\, 0$$
 
 		+ As a result, $E_r$ generates a return current such that the flux surface-averaged divergence of the plasma vanishes.
 
