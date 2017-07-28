@@ -1,6 +1,6 @@
 \documentclass[]{article}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath,fullpage}
+\usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
@@ -115,7 +115,7 @@ H-mode}\label{chapter-2-physics-of-the-confinement-transition-and-h-mode}
   \tightlist
   \item
     \(\mathcal{E}\) is the turbulence level, \(\gamma_1\) is the growth
-    rate, and \(\alpha_{sat}\) is the saturation rate.
+    rate, and \(\alpha_{sat}\) is the saturation rate.\_
   \end{itemize}
 \end{itemize}
 
@@ -180,7 +180,7 @@ turbulence}\label{flow-shear-suppression-of-turbulence}
   Momentum is a conserved variable that can be transported across flux
   surfaces to add a radial component to the plasma current. In
   steady-state, the radial ion force balance is:
-  \[E_r \,=\, \frac{1}{n_i q_i} \nabla p_i v_\phi B_\theta - v_\theta B_\phi\]
+  \[E_r \,=\, \frac{1}{n_i q_i} \nabla p_i + v_\phi B_\theta - v_\theta B_\phi\]
 
   \begin{itemize}
   \item
@@ -209,7 +209,7 @@ turbulence}\label{flow-shear-suppression-of-turbulence}
     \item
       Nonambipolar \(\Gamma^{na}\) are different for various species and
       may violate the ambipolarity constraint:
-      \[\langle \mathbf{J}\cdot \nabla \rho \,=\, \sum_s q_s \Gamma_s^{na} \,=\, 0\]
+      \[\langle \mathbf{J}\cdot \nabla \rho \rangle \,=\, \sum_s q_s \Gamma_s^{na} \,=\, 0\]
     \item
       As a result, \(E_r\) generates a return current such that the flux
       surface-averaged divergence of the plasma vanishes.
@@ -241,7 +241,7 @@ fluxes}\label{nonambipolar-particle-fluxes}
     non-axisymmetric resonant magnetic perturbations,
     \(\Gamma^{\dot{\psi}_p}\) from momentum transport due to poloidal
     flux transients, and \(\Gamma^\text{S}\) as external momentums
-    sources and sinks.
+    sources and sinks.\_
 
     \begin{itemize}
     \item
@@ -384,7 +384,7 @@ equation}\label{partial-differential-equation}
 
 \begin{itemize}
 \item
-  Amp`\{e\}re's law:
+  Ampère's law:
   \[\nabla \times \mathbf{B} \,=\, \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\]
 
   \begin{itemize}
@@ -474,7 +474,7 @@ equation}\label{partial-differential-equation}
 \item
   Hysteresis is often visualized by a gradient-flux relation,
   \emph{e.g.} electron pressure gradient versus separatrix heat flux:
-  \(\nabla p_e(P_{sep})\).
+  \(\nabla p_e(P_{sep})\).\_
 \item
   Here, in the model of §2.5, the existence and size of the hysteresis
   are governed by the parameters \(b\) and \(c\).

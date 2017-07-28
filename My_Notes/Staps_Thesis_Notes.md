@@ -138,7 +138,7 @@ $$\frac{\partial n}{\partial t} \,=\, \frac{\partial}{\partial x} \left(D(\mathc
 ### 2.6 Radial electric field
 #### 2.6.1 Partial differential equation
 
-+ Amp\`{e}re's law:
++ Ampère's law:
 	$$\nabla \times \mathbf{B} \,=\, \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}$$
 
 	+ The divergence in the radial direction is zero, meaning the plasma and displacement current must vanish. This means we obtain an equation for the radial electric field and radial current:
