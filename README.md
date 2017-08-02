@@ -16,7 +16,7 @@ Research at DIFFER has shown that independent of the details of the electric fie
 
 	+ Choose a tokamak (e.g. ASDEX-Upgrade, JET)
 
-	+ Determine tokamak edge parameters. (Focus on experiments dedicated to L-H transitions, for which relevant measurements co-exist.
+	+ Determine tokamak edge parameters. Focus on experiments dedicated to L-H transitions, for which relevant measurements co-exist.
 
 	+ Take note of electric field-generating terms that have already been estimated and published.
 
