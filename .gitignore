@@ -4,6 +4,10 @@
 *.out
 *.bbl
 *.toc
+*.blg
+*.nav
+*.snm
+*.fls
 
 # PDF. REMOVE IF NECESSARY
 *.pdf
