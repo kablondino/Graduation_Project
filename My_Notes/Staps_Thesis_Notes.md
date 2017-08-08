@@ -219,35 +219,109 @@ $$\frac{\partial n}{\partial t} \,=\, \frac{\partial}{\partial x} \left(D(\mathc
 
 ### A.2 Polarization current
 
++ Generated whenever the rate of change of the $\mathbf{E}$-field is non-zero. This is Maxwell's correction to Ampère's law.
+	$$e \Gamma^\text{pol}_e \,=\, \frac{\sum_s m_s n_s}{B^2} \frac{\partial E_r}{\partial t} \,\approx\, \frac{m_i n_i}{B^2} \frac{\partial E_r}{\partial t}$$
 
+	+ The simplification can be done because of the mass disparity between ions and electrons.
 
 ### A.3 Ion (perpendicular) shear viscosity
 
++ Ion-shear viscosity is the perpendicular component of the viscous stress tensor.
 
++ In L-H transition model, its main effect is to couple the L- and H-mode solution in the spatial domain.
+
+	+ This is because the ion viscosity coeff is presumably on the same order as the polarization time scale $\epsilon \sim \mu$. Expression comes from Itoh [83]:
+		$$J^{\pi \perp} \,=\, \nabla \left(\frac{e \rho_p n_i}{v_{T_i}} \mu_i \nabla\left(\frac{E_r}{B_\theta}\right)\right) \,=\, \nabla \left(\frac{m_i n_i}{B_\theta^2} \mu_i \nabla E_r\right)$$
+
++ For an expression of the flux, take the inner product of the expression in [64] with the radial unit vector:
+	$$e \Gamma_i^{\pi \perp} \,=\, -\epsilon_0 \epsilon_\perp \frac{\partial }{\partial x}\left(\mu_i \frac{\partial E_r}{\partial x}\right)$$
+
+	+ $\mu_i$ is the ion shear viscosity coeff and $\epsilon_\perp$ is the perpendicular permittivity of the plasma. Use the definition of $\perp$ permittivity from [90]:_
+		$$\epsilon_0 \epsilon_\perp \,=\, \epsilon_0 \left(1 + \sum_s \frac{m_s n_s}{\epsilon_0 B_\theta^2}\right) \,=\, \frac{m_i n_i}{B_\theta^2}$$
+
++ Substitute in the above into the flux:
+	$$e \Gamma_i^{\pi \perp} \,\approx\, -\frac{m_i n_i}{B_\theta^2} \frac{\partial }{\partial x}\left(\mu_i \frac{\partial E_r}{\partial x}\right) \,=\, -\frac{\partial }{\partial x}\left(\frac{m_i n_i \mu_i}{B_\theta^2} \frac{\partial E_r}{\partial x}\right)$$
 
 ### A.4 Ion (parallel) bulk viscosity
 
++ Non-axisymmetric components of the magnetic field cause damping of the plasma flow parallel to the magnetic field by transit-time magnetic pumping, ripple-trapping, and center drift of banana orbits.
 
++ Around the L-H transition, the poloidal flow is supposed to change quickly due to the $\mathbf{E}\times\mathbf{B}$ force, while the toroidal flow and pressure gradient should stay constant. However, the poloidal flow is damped on the ion-ion collision time scale.
+
+	+ Therefore, the bulk (parallel) plasma flow is damped mainly in the poloidal direction and leads to a radial current or flux surface-averaged viscous torque [52]:
+		$$e \Gamma_i^{\pi \parallel} \,=\, \langle \mathbf{B}_\theta \cdot \nabla\cdot\pi \rangle \,=\, \frac{\sqrt{\pi}}{4} \frac{\varrho^2}{r} m_i n_i v_{T_i} B (\xi_\theta u_\theta + \xi_\phi u_{\theta0})$$
+
+		+ $u$ is the poloidal flow velocities and $\xi_{\theta,\phi}$ as geometric integrals.
+			$$u_{\theta m} \,=\, Z \\
+			u_\theta \,=\, \frac{v_{T_i} B_\theta}{B} \left(u_{\theta m} + \frac{\rho_{pi}}{2} \left(\frac{1}{p_i} \frac{\partial p_i}{\partial x}\right)\right) \,=\, \frac{v_{T_i} B_\theta}{B} \left(Z + \frac{\rho_{pi}}{2} \left(\frac{1}{n_i} \frac{\partial n_i}{\partial x} + \frac{1}{T_i} \frac{\partial T_i}{\partial x}\right)\right) \\
+			u_{\theta 0} \,=\, -\frac{\rho_{pi} v_{T_i}}{2} \left(\frac{1}{T_i} \frac{\partial T_i}{\partial x}\right)$$
+
+		+ Geometric integrals containing the $\mathbf{E}\times\mathbf{B}$-induced poloidal flow $u_{\theta m}$:
+			$$\left(\begin{array}{c}\xi_\theta \\ \xi_\phi \end{array}\right) \,=\, \frac{1}{\pi} \int_0^{\nu_{*i}^{1/2}} \left(\begin{array}{c} 1 \\ \frac{5}{2} - x \end{array}\right) x^2 \exp(-x) \int_{-1}^{1} \frac{v_{*i}\varrho^{3/2} (\nu_{ei} / \nu_{ii}\sqrt{x})}{(y + u_{\theta m} / \sqrt{x})^2 + (\nu_{*i}\varrho^{3/2} (\nu_{ei} / \nu_{ii}\sqrt{x}))^2} \, \text{d}x\text{d}y$$
+
+	+ Although the bulk poloidal flow relaxes to a $\nabla T$-driven poloidal flow on the ion-ion collision time-scale,, the $\mathbf{E}\times\mathbf{B}$ flow may approach sound velocities, causing decay of the viscosity. Therefore, the ion bulk viscosity is considered in bif models, which can be expressed in terms of normalized electric field and spatial derivatives:
+		$$e \Gamma^{\pi \parallel} \,=\, \frac{\sqrt{\pi}}{4} \frac{\varrho^2}{r} m_i n v_{T_i} B \left[\xi_\theta \left(\frac{v_{T_i} B_\theta}{B}\right) \left(Z + \frac{\rho_{pi}}{2} \left(\frac{1}{n} \frac{\partial n}{\partial x} + \frac{1}{T} \frac{\partial T}{\partial x}\right)\right) \,-\, \xi_\phi \left(\frac{\rho_{pi} v_{T_i}}{2}\right) \left(\frac{1}{T} \frac{\partial T}{\partial x}\right)\right] \\
+		=\, g_n^{\pi \parallel} \frac{1}{n} \frac{\partial n}{\partial x} + g_T^{\pi \parallel} \frac{1}{T} \frac{\partial T}{\partial x} + g_Z^{\pi \parallel} Z$$
+
+		+ The functions $g^{\pi \parallel}$ are thus denoted:
+			$$g_n^{\pi \parallel} \,=\, \frac{\sqrt{\pi}}{8} \frac{\varrho^2}{a_m} n m_i \rho_{pi} (v_{T_i})^2 B_\theta \xi_\theta \\
+			g_T^{\pi \parallel} \,=\, \frac{\sqrt{\pi}}{8} \frac{\varrho^2}{a_m} n m_i \rho_{pi} (v_{T_i})^2 (B_\theta \xi_\theta - B \xi_\phi)\\
+			g_Z^{\pi \parallel} \,=\, \frac{\sqrt{\pi}}{4} \frac{\varrho^2}{a_m} n m_i (v_{T_i})^2 B_\theta \xi_\theta$$
 
 ### A.5 Residual Reynolds stress
 
++ Turbulent fluctuations cause perturbations to the plasma flow, of which the velocity components are correlated under gradient-driven transport. If the fluctuations are coherent and spatially varying, _i.e._ a radial gradient exists, a nonzero Reynolds stress causes acceleration of the poloidal flow relating to fluctuations of the electric field:
+	$$\frac{\partial v_\theta}{\partial t} \,=\, -(\widetilde{\mathbf{v}} \cdot \nabla\widetilde{\mathbf{v}})_\theta \,=\, -\frac{\partial }{\partial r}(\widetilde{v}_r \widetilde{v}_\theta) \,=\, \frac{\partial }{\partial r} \left(\frac{\widetilde{E}_r \widetilde{E}_\theta}{B^2}\right)$$
 
++ Turbulent Reynolds stress has been invoked as a mechanism for zonal flow generation; it can be considered as a precursor to the L-H transition.
 
 ### A.6 Electron anomalous diffusion
 
++ Turbulent fluctuations can also drive an nonambipolar flux, because these may interact differently with ions and electrons. As an example, when drift wave turbulence preferentially removes electron momentum across the last closed flux surface, it essentially is a nonambipolar electron flux:
+	$$e \Gamma_e^\text{an} \,=\, -e n_e D_e \left[\frac{1}{n_e} \frac{\partial n_e}{\partial x} + \frac{\alpha_\text{an}}{T_e} \frac{\partial T_e}{\partial x} + \frac{e E_r}{T_e}\right]$$
 
+	+ $\alpha_\text{an} \sim 1$ as a numerical coefficient and $D_e$ as the anomalous diffusion coefficient (bounded between 0.1 and 10):
+		$$D_e \,=\, \frac{\varrho^2 \sqrt{\pi}}{2 a_m} \frac{\rho_{pe} T_e}{B}$$
+
+	+ Written into $g$ functions:
+		$$e \Gamma^\text{an} \,\equiv\, g_n^\text{an} \frac{1}{n} \frac{\partial n}{\partial x} + g_T^\text{an}\frac{1}{T} \frac{\partial T}{\partial x} + g_Z^\text{an} Z$$
+		$$g_n^\text{an} \,=\, -e n D_{an}, ~~~~~ g_T^\text{an} \,=\, -e n D_{an} \alpha_{an}, ~~~~~ g_Z^\text{an} \,=\, \frac{-e n D_{an}}{\rho_{pi}}$$
+		$$D_{an} \,=\, \frac{\varrho^2 \sqrt{\pi}}{2 a_m} \frac{\rho_{pe} T}{B} \,=\, D_e \frac{T}{T_e}$$
 
 ### A.7 Ion orbit loss
 
++ Some small portion of ions have orbits that cross the last closed flux surface, due to the radial extend of their gyro-radius or banana orbit. The collisionless part of the ion loss cone, therefore, yields a nonambipolar ion flux, known as direct ion orbit losses $\Gamma_i^\text{ol}$.
 
+	+ The ion orbit may be squeezed by the negative electric field, making this more complicated. They have been determined to not necessarily be dominant.
+
+	$$e \Gamma^\text{ol} \,=\, \frac{e n_i \nu_\text{eff} \rho_{pi}\sqrt{\varrho}}{\sqrt{\nu_{*i} + Z^4}} \exp\left[-\sqrt{\nu_{*i} + Z^4}\right]$$
+	$$g^\text{ol} \,=\, e n \nu_\text{eff} \rho_{pi} \sqrt{\varrho}$$
+
+	+ $\nu(\text{eff})$ is the effective detrapping frequency.
+
+	+ The orbit loss curve does not change shape qualitatively for increasing temperature; the peak value for zero electric field does increase at the expense of the width.
 
 ### A.8 Charge exchange friction
 
++ Neutrals cause charge exchange with plasma ions and ionization by electron impact. Since the charge exchange rate dominates  over electron ionization impact [17], the loss of ion momentum results in a nonambipolar flux:
+	$$e \Gamma_i^\text{cx} \,=\, -\frac{m_i n_0 \langle \sigma v \rangle_\text{cx} n_i T_i}{B_\theta^2} \left(\frac{1}{n_i} \frac{\partial n_i}{\partial x} + \frac{\alpha_\text{cx}}{T_i} \frac{\partial T_i}{\partial x} - \frac{e E_r}{T_i}\right)$$
 
+	+ $\alpha_\text{cx} \sim 1$ as a numerical coeff._
+
++ The neutral population changes dynamically on the ion collision time-scale, as charge exchange generates a hot neutral population, while electron ionization impact produces a cold ion population
+
+	+ The $g$ functions:
+		$$e \Gamma^\text{cx} \,=\, g_n^\text{cx} \frac{1}{n} \frac{\partial n}{\partial x} + g_T^\text{cx} \frac{1}{T} \frac{\partial T}{\partial x} + g_Z^\text{cx} Z$$
+		$$g_n^\text{cx} \,=\, -\frac{m_i n_0 \langle \sigma v \rangle_\text{cx} n T}{B_\theta^2}, ~~~~~ g_T^\text{cx} \,=\, -\frac{\alpha_\text{cx} m_i n_0 \langle \sigma v \rangle_\text{cx} n T}{B_\theta^2} \,=\, \alpha_\text{cx} g_n^\text{cx}, \\ g_Z^\text{cx} \,=\, +\frac{m_i n_0 \langle \sigma v \rangle_\text{cx} n T}{\rho_{pi} B_\theta^2} \,=\, -\frac{g_n^\text{cx}}{\rho_{pi}}$$
 
 ### A.9 Ion ripple loss
 
++ The process of ripple loss resembles the counterpart of direct orbit losses for toroidally-trapped particles. These particles transit between adjacent toroidal field coils, while their vertical drift contributes to the radial particle flux. This is not limited to ions, but large ripples are required for electron to be lost.
 
++ Itoh [42] expression, with $s$ as the plasma species:
+	$$\Gamma_s^\text{rl} \,=\, -\varrho^2 \sqrt{\varrho_h} n_s v_D^2 \int_0^\infty \frac{w^{5/2} e^{-w} \nu_s(w)}{\nu_s^2 + 1.5\omega_\text{rot}^2 \sqrt{\varrho / \varrho_h}} \left(\frac{1}{n_s} \frac{\partial n_s}{\partial x} - \frac{e E_r}{T_s} + \frac{w - 3/2}{T_s} \frac{\partial T_s}{\partial x}\right) \, \text{d}w$$
+
+	+ It is important to note that the toroidal ripple loss varies strongly with plasma collisionality, giving different expressions.
 
 ## Appendix B: Linearization
 
@@ -266,3 +340,4 @@ $$\frac{\partial n}{\partial t} \,=\, \frac{\partial}{\partial x} \left(D(\mathc
 
 
 ## Appendix F: Numerical implementation of kernel problem
+
