@@ -8,6 +8,7 @@
 *.nav
 *.snm
 *.fls
+*.xml
 
 # PDF. REMOVE IF NECESSARY
 *.pdf
