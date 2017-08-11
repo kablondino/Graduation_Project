@@ -1,12 +1,17 @@
 \documentclass[a4paper]{article}
-\author{Kevin A. Blondino \\
-	\texttt{Supervisor: dr. H.J. de Blank}}
 \title{Radial Electric Field-Generating Terms in L-H Transitions}
+\author{{\Large Kevin A. Blondino} \\
+	Supervisor: dr. H.J. de Blank \\
+	\textsc{Eindhoven University of Technology} \\
+	\texttt{k.blondino@student.tue.nl}}
 \date{\today}
 
 %{{{ Packages
 \usepackage{fullpage,amsmath,graphicx,indentfirst}
 \usepackage[labelfont=bf]{caption}
+
+\usepackage[UKenglish]{isodate}
+\cleanlookdateon
 
 \usepackage{lipsum,xcolor}
 \newcommand\mynotes[1]{\textcolor{red}{#1}}
@@ -47,26 +52,16 @@
 
 %--------------------------------------
 
-%{{{ Abstract
 \begin{abstract}
-	From the discovery of H-mode by ASDEX in 1982, the mechanisms that cause the transition into this new operating regime have become an important topic of interest in fusion.
-	This transition is a bifurcation in the anomalous transport just inside the separatrix in a divertor tokamak.
-	It has been found that a key mechanism for the transition is the generation of a large radial electric field and corresponding $\mathbf{E}\times\mathbf{B}$ flow and flow shear near the plasma edge.
-
-	This electric field at the edge can be found by investigating the nonambipolar fluxes that generate a radial current.
-	Several of these electric field-generating terms have been proposed, each with different scalings; therefore, it is plausible that global H-mode scalings are obscured by a shift in dominance of terms.
-	Using a set of nonlinear partial differential equations with boundary conditions, the dominance of field-generating effect can be determined for a particular set of tokamak parameters.
-	Time permitting, by varying parameters that scale with machine size, it could be found how each term theoretically scales, and how this affects extrapolation.
-	This investigation will aid in determining which measurable and controllable values can predict H-mode.
+	\input{../Abstract.txt}
 \end{abstract}
-%}}}
 
 \section{Introduction and Background}
 \subsection{H-mode}
 \begin{figure}[b]
 \begin{minipage}{0.48\linewidth}
 	\centering
-	\includegraphics[width=0.9\textwidth]{../../Graphics/L-mode_H-mode_compare.png}
+	\includegraphics[width=0.8\textwidth]{../../Graphics/L-mode_H-mode_compare.png}
 \end{minipage}
 \hfill
 \begin{minipage}{0.48\linewidth}

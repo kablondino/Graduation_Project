@@ -1,0 +1,9 @@
+From the discovery of H-mode by ASDEX in 1982, the mechanisms that cause the transition into this new operating regime have become an important topic of interest in fusion.
+This transition is a bifurcation in the anomalous transport just inside the separatrix in a divertor tokamak.
+It has been found that a key mechanism is the generation of a large radial electric field and corresponding $\mathbf{E}\times\mathbf{B}$ flow and flow shear near the plasma edge, suppressing transport.
+
+This electric field at the edge can be found by investigating the nonambipolar fluxes that generate a radial current.
+Several of these electric field-generating terms have been proposed, each with different scalings; therefore, it is plausible that global H-mode scalings are obscured by a shift in dominance of terms.
+Using a set of nonlinear partial differential equations with boundary conditions, the relative strengths of field-generating effects can be determined for a particular set of tokamak parameters.
+Time permitting, by varying parameters that scale with machine size, it could be found how each term theoretically scales, and how this affects extrapolation.
+This investigation will aid in determining which measurable and controllable values can predict H-mode.
