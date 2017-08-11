@@ -1,11 +1,11 @@
 \documentclass{beamer}
-\author{Kevin A. Blondino \\
-	\texttt{Supervisor: dr. H.J. de Blank}}
 \title[$E_r$-Generating Terms in L-H Transitions]{Radial Electric Field-Generating Terms in L-H Transitions}
+\author{Kevin A. Blondino \\
+	Supervisor: dr. H.J. de Blank}
 \institute[TUe]{Eindhoven University of Technology \\
 	\medskip
 	\textit{k.blondino@student.tue.nl}}
-\date{\today}
+\date{14 August 2017}
 
 %{{{ Presentation Style and Color
 \mode<presentation>
@@ -53,13 +53,46 @@
 %\usecolortheme{whale}
 %\usecolortheme{wolverine}
 
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{bibliography item}{\insertbiblabel}
 %\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
 %\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
 
 %\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
-} %}}}
+}
+%}}}
 
-\usepackage{amsmath,natbib,graphicx,booktabs}
+\usepackage{amsmath,graphicx,booktabs}
+\usepackage{caption}
+\captionsetup{font=scriptsize,labelfont=bf}
+\usepackage[UKenglish]{isodate}
+\cleanlookdateon
+
+%{{{ Setup References
+\usepackage[backend=bibtex,url=false]{biblatex}
+\addbibresource{../../References/References.bib}
+%}}}
+
+%{{{ Two Figures Side-by-Side
+\newsavebox\IBoxA \newsavebox\IBoxB \newlength\IHeight
+\newcommand\TwoFig[6]{% Image1 Caption1 Label1 Im2 Cap2 Lab2
+	\sbox\IBoxA{\includegraphics[width=0.45\textwidth]{#1}}
+	\sbox\IBoxB{\includegraphics[width=0.45\textwidth]{#4}}%
+	\ifdim\ht\IBoxA>\ht\IBoxB
+		\setlength\IHeight{\ht\IBoxB}%
+	\else\setlength\IHeight{\ht\IBoxA}\fi
+	\begin{figure}[ht]
+		\minipage[t]{0.49\textwidth}\centering
+			\includegraphics[height=\IHeight]{#1}
+			\caption{#2}\label{#3}
+		\endminipage\hfill
+		\minipage[t]{0.49\textwidth}\centering
+			\includegraphics[height=\IHeight]{#4}
+			\caption{#5}\label{#6}
+		\endminipage
+	\end{figure}%
+}
+%}}}
 
 \begin{document}
 % Title page
@@ -75,27 +108,140 @@
 \end{frame}
 
 %--------------------------------------
-% Introduction
-\section{Introduction and Background}
+
+\section{Background}
+\subsection{H-mode}
 \begin{frame}
-\frametitle{Introduction and Background}
-In 1982 at ASDEX, H-mode was discovered.
+\frametitle{H-mode}
+	\begin{itemize}
+		\item In 1982 at ASDEX, H-mode was discovered when heating was increased, which increased confinement time by a factor of around 2 \cite{wagner_development_1984}.
+		\item Anomalous transport has been found to be the dominant transport of particles and energy.
+		\item H-mode forms as a response to significant reduction in this anomalous transport at the plasma edge.
+		\begin{itemize}
+			\item A prevailing hypothesis is that high auxiliary power develops strong sheared plasma flow.
+			\item It is characterized by its pressure profile that is significantly raised compared to L-mode, and is said to sit on a `pedestal.'
+			\item Accordingly, there is a steep gradient at the edge, creating a transport barrier.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{H-mode}
+	\begin{figure}
+		\includegraphics[width=0.5\linewidth]{../../Graphics/L-mode_H-mode_compare.png}
+		\caption{A comparison of the radial pressure profiles of L-mode and H-mode.
+		The profile of H-mode can be thought of as on a ‘pedestal,’ in which the pressure profile is increase in the core.
+		This is due to the transport barrier that is formed at the
+		edge \cite{weymiens_bifurcation_2014}.}
+		\label{fig:L-mode_H-mode_compare}
+	\end{figure}
 \end{frame}
 
 %--------------------------------------
-% 
+
+\subsection{Transition}
 \begin{frame}
-\frametitle{}
+\frametitle{Transition}
+	\begin{itemize}
+		\item The L-H transition is a bifurcation in the turbulent transport at the plasma edge.
+		\item The cusp bifurcation organizes two different transition dynamics: smooth and sharp.
+		\begin{itemize}
+			\item The smooth transition occurs for lower density plasmas.
+			\item The sharp transition is more common, and exhibits hysteresis.
+		\end{itemize}
+		\item There is a third type of transition in which the plasma will oscillate between the two modes.
+		\begin{itemize}
+			\item It occurs when there are no stable states surrounding the cusp bifurcation.
+			Mathematically, its existence is dicated by a coupling parameter above a critical value.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Transition}
+\TwoFig{../../Graphics/Bif_3D.png}
+	{Two codimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp \cite{weymiens_bifurcation_2014}.}
+	{fig:Bif_3D}
+	{../../Graphics/3_transitions_single_simple.png}
+	{Codimension 3 parameter space with the black line indicating the fold bifurcation. The parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition \cite{weymiens_bifurcation_2014}.}
+	{fig:Bif_types}
 \end{frame}
 
 %--------------------------------------
-% References
+
+\subsection{Electric Field}
+\begin{frame}
+\frametitle{Electric Field}
+\end{frame}
+
+%}}}
+%--------------------------------------
+
+
+\section{Transition Model}
+\begin{frame}
+\frametitle{Transition Model}
+	The basic model for the transition, developed first by Itoh et al. \cite{itoh_edge_1991}, later expanded by Zohm \cite{zohm_dynamic_1994},  and then into the following form by Weymiens \cite{weymiens_bifurcation_2014}
+It contains the continuity equations of energy and density to describe H-mode.
+\begin{equation}
+	\epsilon\,\frac{\partial Z}{\partial t} \,=\, \mu\,\frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)
+	\label{eq:pde}
+\end{equation}
+This model uses $Z$, the radial electric field normalized with respect to the ion Larmor (gyro-)radius $\rho_{\theta i}$ and temperature $T = T_i = T_e$.
+\begin{equation}
+	Z \,=\, \frac{\rho_{\theta i} e E_r}{T}, ~~~~~ \rho_{\theta i} \,=\, \frac{m_i v_{\phi i}}{e B_\theta}
+	\label{eq:normalization}
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{Transition Model}
+\begin{equation}
+	\epsilon\,\frac{\partial Z}{\partial t} \,=\, \mu\,\frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z) \tag{\ref{eq:pde}}
+	%\label{eq:pde}
+\end{equation}
+	\begin{itemize}
+		\item The LHS represents the radial current due to polarization.
+		\begin{itemize}
+			\item $\epsilon \,\equiv\, \dfrac{B_\theta^2}{B^2 \nu_i}$ is the dielectric constant.
+			It dictates the timescale, with smaller values corresponding to sharper temporal transitions.
+		\end{itemize}
+		\item The 2nd derivative term describes the radial current due to the anomalous shear viscosity of the $\mathbf{E}\times\mathbf{B}$ drift.
+		\begin{itemize}
+			\item $\mu$ is the ratio of viscosity to collision frequency. Smaller values result in sharper spatial transitions.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Transition Model}
+\begin{equation}
+	\epsilon\,\frac{\partial Z}{\partial t} \,=\, \mu\,\frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z) \tag{\ref{eq:pde}}
+	%\label{eq:pde}
+\end{equation}
+	\begin{itemize}
+		\item The 1st spatial derivatives are an accumulation of all 1st derivative terms from the remaining fluxes.
+		\item $G(Z)$ is a cubic polynomial that approximates the remaining non-derivative terms of the fluxes
+		\begin{equation}
+			G(Z) \,=\, a + b(Z - Z_S) + c(Z - Z_S)^3
+			\label{eq:G_func}
+		\end{equation}
+		\begin{itemize}
+			\item coeffss
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+%}}}
+%--------------------------------------
+
 \section{References}
 \begin{frame}
 \frametitle{References}
-\bibliographystyle{plain}
+\renewcommand*{\bibfont}{\scriptsize}
 %\nocite{*}
-\bibliography{../../References/References}
+\printbibliography
 \end{frame}
+%}}}
 
 \end{document}
