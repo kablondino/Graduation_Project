@@ -62,7 +62,7 @@
 }
 %}}}
 
-\usepackage{amsmath,graphicx,booktabs}
+\usepackage{amsmath,graphicx,booktabs,moresize}
 \usepackage{caption}
 \captionsetup{font=scriptsize,labelfont=bf}
 \usepackage[UKenglish]{isodate}
@@ -110,51 +110,51 @@
 %--------------------------------------
 
 \section{Background}
-\subsection{H-mode}
+%\subsection{H-mode}
 \begin{frame}
 \frametitle{H-mode}
+\begin{itemize}
+	\item In 1982 at ASDEX, H-mode was discovered when heating was increased, which increased confinement time by a factor of around 2 \cite{wagner_development_1984}.
+	\item Anomalous transport has been found to be the dominant transport of particles and energy.
+	\item H-mode forms as a response to significant reduction in this anomalous transport at the plasma edge.
 	\begin{itemize}
-		\item In 1982 at ASDEX, H-mode was discovered when heating was increased, which increased confinement time by a factor of around 2 \cite{wagner_development_1984}.
-		\item Anomalous transport has been found to be the dominant transport of particles and energy.
-		\item H-mode forms as a response to significant reduction in this anomalous transport at the plasma edge.
-		\begin{itemize}
-			\item A prevailing hypothesis is that high auxiliary power develops strong sheared plasma flow.
-			\item It is characterized by its pressure profile that is significantly raised compared to L-mode, and is said to sit on a `pedestal.'
-			\item Accordingly, there is a steep gradient at the edge, creating a transport barrier.
-		\end{itemize}
+		\item A prevailing hypothesis is that high auxiliary power develops strong sheared plasma flow.
+		\item It is characterized by its pressure profile that is significantly raised compared to L-mode, and is said to sit on a `pedestal.'
+		\item Accordingly, there is a steep gradient at the edge, creating a transport barrier.
 	\end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{H-mode}
-	\begin{figure}
-		\includegraphics[width=0.5\linewidth]{../../Graphics/L-mode_H-mode_compare.png}
-		\caption{A comparison of the radial pressure profiles of L-mode and H-mode.
-		The profile of H-mode can be thought of as on a ‘pedestal,’ in which the pressure profile is increase in the core.
-		This is due to the transport barrier that is formed at the
-		edge \cite{weymiens_bifurcation_2014}.}
-		\label{fig:L-mode_H-mode_compare}
-	\end{figure}
+\begin{figure}
+	\includegraphics[width=0.5\linewidth]{../../Graphics/L-mode_H-mode_compare.png}
+	\caption{A comparison of the radial pressure profiles of L-mode and H-mode.
+	The profile of H-mode can be thought of as on a ‘pedestal,’ in which the pressure profile is increase in the core.
+	This is due to the transport barrier that is formed at the
+	edge \cite{weymiens_bifurcation_2014}.}
+	\label{fig:L-mode_H-mode_compare}
+\end{figure}
 \end{frame}
 
 %--------------------------------------
 
-\subsection{Transition}
+%\subsection{Transition}
 \begin{frame}
 \frametitle{Transition}
+\begin{itemize}
+	\item The L-H transition is a bifurcation in the turbulent transport at the plasma edge.
+	\item The cusp bifurcation organizes two different transition dynamics: smooth and sharp.
 	\begin{itemize}
-		\item The L-H transition is a bifurcation in the turbulent transport at the plasma edge.
-		\item The cusp bifurcation organizes two different transition dynamics: smooth and sharp.
-		\begin{itemize}
-			\item The smooth transition occurs for lower density plasmas.
-			\item The sharp transition is more common, and exhibits hysteresis.
-		\end{itemize}
-		\item There is a third type of transition in which the plasma will oscillate between the two modes.
-		\begin{itemize}
-			\item It occurs when there are no stable states surrounding the cusp bifurcation.
-			Mathematically, its existence is dicated by a coupling parameter above a critical value.
-		\end{itemize}
+		\item The smooth transition occurs for lower density plasmas.
+		\item The sharp transition is more common, and exhibits hysteresis.
 	\end{itemize}
+	\item There is a third type of transition in which the plasma will oscillate between the two modes.
+	\begin{itemize}
+		\item It occurs when there are no stable states surrounding the cusp bifurcation.
+		Mathematically, its existence is dicated by a coupling parameter above a critical value.
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -169,19 +169,52 @@
 
 %--------------------------------------
 
-\subsection{Electric Field}
+%\subsection{Electric Field}
 \begin{frame}
 \frametitle{Electric Field}
+\begin{equation}
+	E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d}p_j}{\text{d}r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta
+	\label{eq:E_r}
+\end{equation}
+\begin{itemize}
+	\item The combination of the electric field with the magnetic field creates $\mathbf{E}\times\mathbf{B}$ flows and flow shear, which tears apart eddies.
+	\item Changes in the field are associated with changes in the pressure gradient or in plasma poloidal or toroidal flow.
+	\begin{itemize}
+		\item However, accurately measuring plasma flow velocities and the pressure gradient is very difficult.
+		\item Instead, utilize knowledge of the particle fluxes. Nonambipolar fluxes violate the ambipolarity constraint, generating a current.
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
+%\subsection{Nonambipolar Fluxes}
+\begin{frame}
+\frametitle{Nonambipolar Fluxes}
+A few examples:
+\begin{itemize}
+	\item Charge exchange friction
+	\begin{itemize}
+		\item There is a loss of ion momentum due to the charge exchange rate that dominates over ionization impact \cite{toda_condensed_neutrals_1997}.
+	\end{itemize}
+	\item Ion orbit loss
+	\begin{itemize}
+		\item Ions that have gyro-orbits or banana orbits that extend outside of the last closed flux surface. The fraction of these that are collisionless is a nonambipolar flux \cite{chankin_loss_1993}.
+	\end{itemize}
+	\item Reynolds stress
+	\begin{itemize}
+		\item Turbulent fluctuations cause perturbations to the flow. For coherent and spatially-varying fluctuations, a nonzero Reynolds stress accelerates poloidal flow \cite{diamond_poloidal_1991}.
+	\end{itemize}
+\item Poloidal flux transients, Maxwell stress, magnetic perturbations, etc \cite{staps_backstepping_2017}.
+\end{itemize}
+\end{frame}
 %}}}
-%--------------------------------------
+%}}}
 
+%--------------------------------------
 
 \section{Transition Model}
 \begin{frame}
 \frametitle{Transition Model}
-	The basic model for the transition, developed first by Itoh et al. \cite{itoh_edge_1991}, later expanded by Zohm \cite{zohm_dynamic_1994},  and then into the following form by Weymiens \cite{weymiens_bifurcation_2014}
+	The basic model for the transition, developed first by Itoh et al. \cite{itoh_edge_1991}, expanded by Zohm \cite{zohm_dynamic_1994}, and then into the following form by Weymiens \cite{weymiens_bifurcation_2014}.
 It contains the continuity equations of energy and density to describe H-mode.
 \begin{equation}
 	\epsilon\,\frac{\partial Z}{\partial t} \,=\, \mu\,\frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)
@@ -204,7 +237,7 @@ This model uses $Z$, the radial electric field normalized with respect to the io
 		\item The LHS represents the radial current due to polarization.
 		\begin{itemize}
 			\item $\epsilon \,\equiv\, \dfrac{B_\theta^2}{B^2 \nu_i}$ is the dielectric constant.
-			It dictates the timescale, with smaller values corresponding to sharper temporal transitions.
+			Dictates timescale, with smaller values corresponding to sharper temporal transitions.
 		\end{itemize}
 		\item The 2nd derivative term describes the radial current due to the anomalous shear viscosity of the $\mathbf{E}\times\mathbf{B}$ drift.
 		\begin{itemize}
@@ -213,7 +246,6 @@ This model uses $Z$, the radial electric field normalized with respect to the io
 	\end{itemize}
 \end{frame}
 
-
 \begin{frame}
 \frametitle{Transition Model}
 \begin{equation}
@@ -221,27 +253,41 @@ This model uses $Z$, the radial electric field normalized with respect to the io
 	%\label{eq:pde}
 \end{equation}
 	\begin{itemize}
-		\item The 1st spatial derivatives are an accumulation of all 1st derivative terms from the remaining fluxes.
-		\item $G(Z)$ is a cubic polynomial that approximates the remaining non-derivative terms of the fluxes
+		\item The spatial 1st derivatives are an accumulation of all 1st derivative terms from the remaining fluxes.
+		\item $G(Z)$ is a cubic polynomial that approximates the remaining non-derivative terms of the fluxes.
 		\begin{equation}
 			G(Z) \,=\, a + b(Z - Z_S) + c(Z - Z_S)^3
 			\label{eq:G_func}
 		\end{equation}
 		\begin{itemize}
-			\item coeffss
+			\item The coefficients $c_T$, $c_n$, and in $G$ are determined by the summation of all the relevant processes.
+			%\item $b$ and $c$ determine the transition type.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
 %}}}
+
+\section{Research Plan}
+\begin{frame}
+\frametitle{Research Plan}
+\begin{itemize}
+	\item Which nonambipolar fluxes should be considered for investigation?
+	\begin{itemize}
+		\item Some are negligible, such as magnetic ripple loss. At low collisionality, this effect ??
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
 %--------------------------------------
 
 \section{References}
 \begin{frame}
 \frametitle{References}
-\renewcommand*{\bibfont}{\scriptsize}
+\renewcommand*{\bibfont}{\tiny}
 %\nocite{*}
 \printbibliography
 \end{frame}
 %}}}
 
 \end{document}
+
