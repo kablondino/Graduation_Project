@@ -1,11 +1,12 @@
 \documentclass{beamer}
 \title[$E_r$-Generating Terms in L-H Transitions]{Radial Electric Field-Generating Terms in L-H Transitions}
-\author{Kevin A. Blondino \\
+\author[K.A. Blondino]{\includegraphics[height=1cm]{../../Graphics/tue_fusion_logo.png} \\ Kevin A. Blondino \\
 	Supervisor: dr. H.J. de Blank}
-\institute[TUe]{Eindhoven University of Technology \\
+\institute[TU/e]{Eindhoven University of Technology \\
 	\medskip
 	\textit{k.blondino@student.tue.nl}}
 \date{14 August 2017}
+%\logo{}
 
 %{{{ Presentation Style and Color
 \mode<presentation>
@@ -62,11 +63,13 @@
 }
 %}}}
 
-\usepackage{amsmath,graphicx,booktabs,moresize}
+%{{{ Packages
+\usepackage{amsmath,graphicx,booktabs,moresize,textpos}
 \usepackage{caption}
 \captionsetup{font=scriptsize,labelfont=bf}
 \usepackage[UKenglish]{isodate}
 \cleanlookdateon
+%}}}
 
 %{{{ Setup References
 \usepackage[backend=bibtex,url=false]{biblatex}
@@ -100,6 +103,13 @@
 \titlepage
 \end{frame}
 
+\addtobeamertemplate{frametitle}{}
+{
+\begin{textblock*}{100mm}(0.85\textwidth,-1cm)
+	\includegraphics[height=1cm,width=2cm]{../../Graphics/tue_fusion_logo.png}
+\end{textblock*}
+}
+
 %--------------------------------------
 % Overview
 \begin{frame}
@@ -118,7 +128,7 @@
 	\item Anomalous transport has been found to be the dominant transport of particles and energy.
 	\item H-mode forms as a response to significant reduction in this anomalous transport at the plasma edge.
 	\begin{itemize}
-		\item A prevailing hypothesis is that high auxiliary power develops strong sheared plasma flow.
+		\item The prevailing hypothesis is that high auxiliary power develops strong sheared plasma flow.
 		\item It is characterized by its pressure profile that is significantly raised compared to L-mode, and is said to sit on a `pedestal.'
 		\item Accordingly, there is a steep gradient at the edge, creating a transport barrier.
 	\end{itemize}
@@ -181,7 +191,7 @@
 	\item Changes in the field are associated with changes in the pressure gradient or in plasma poloidal or toroidal flow.
 	\begin{itemize}
 		\item However, accurately measuring plasma flow velocities and the pressure gradient is very difficult.
-		\item Instead, utilize knowledge of the particle fluxes. Nonambipolar fluxes violate the ambipolarity constraint, generating a current.
+		\item Instead, utilize knowledge of the particle fluxes; nonambipolar fluxes generate current.
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -207,7 +217,6 @@ A few examples:
 \end{itemize}
 \end{frame}
 %}}}
-%}}}
 
 %--------------------------------------
 
@@ -222,7 +231,7 @@ It contains the continuity equations of energy and density to describe H-mode.
 \end{equation}
 This model uses $Z$, the radial electric field normalized with respect to the ion Larmor (gyro-)radius $\rho_{\theta i}$ and temperature $T = T_i = T_e$.
 \begin{equation}
-	Z \,=\, \frac{\rho_{\theta i} e E_r}{T}, ~~~~~ \rho_{\theta i} \,=\, \frac{m_i v_{\phi i}}{e B_\theta}
+	Z \,=\, \frac{\rho_{\theta i} \, e \, E_r}{T}, ~~~~~ \rho_{\theta i} \,=\, \frac{m_i \, v_{\phi i}}{e B_\theta}
 	\label{eq:normalization}
 \end{equation}
 \end{frame}
@@ -261,11 +270,12 @@ This model uses $Z$, the radial electric field normalized with respect to the io
 		\end{equation}
 		\begin{itemize}
 			\item The coefficients $c_T$, $c_n$, and in $G$ are determined by the summation of all the relevant processes.
-			%\item $b$ and $c$ determine the transition type.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
 %}}}
+
+%--------------------------------------
 
 \section{Research Plan}
 \begin{frame}
@@ -273,14 +283,20 @@ This model uses $Z$, the radial electric field normalized with respect to the io
 \begin{itemize}
 	\item Which nonambipolar fluxes should be considered for investigation?
 	\begin{itemize}
-		\item Some are negligible, such as magnetic ripple loss. At low collisionality, this effect ??
+		\item Some are negligible, such as magnetic ripple loss.
 	\end{itemize}
+	\item Identify the ideal form and relative strengths of each flux.
+	\begin{itemize}
+		\item Since the model is nonlinear, it is potentially highly sensitive to relative strengths.
+	\end{itemize}
+	\item Previous investigations were somewhat limited in input power \cite{staps_backstepping_2017}. Expanding the regime could make the study more comprehensive.
+	\item Time permitting, determine how each term scales with machine size and what that implies for extrapolation.
 \end{itemize}
 \end{frame}
 
 %--------------------------------------
 
-\section{References}
+%\section{References}
 \begin{frame}
 \frametitle{References}
 \renewcommand*{\bibfont}{\tiny}
