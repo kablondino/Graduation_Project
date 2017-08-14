@@ -1,12 +1,11 @@
 \documentclass{beamer}
 \title[$E_r$-Generating Terms in L-H Transitions]{Radial Electric Field-Generating Terms in L-H Transitions}
 \author[K.A. Blondino]{\includegraphics[height=1cm]{../../Graphics/tue_fusion_logo.png} \\ Kevin A. Blondino \\
-	Supervisor: dr. H.J. de Blank}
+	Supervisor: dr. H.J. de Blank, TU/e \& DIFFER}
 \institute[TU/e]{Eindhoven University of Technology \\
 	\medskip
 	\textit{k.blondino@student.tue.nl}}
 \date{14 August 2017}
-%\logo{}
 
 %{{{ Presentation Style and Color
 \mode<presentation>
@@ -54,7 +53,7 @@
 %\usecolortheme{whale}
 %\usecolortheme{wolverine}
 
-\setbeamertemplate{caption}[numbered]
+%\setbeamertemplate{caption}[numbered]
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 %\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
 %\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
@@ -65,6 +64,7 @@
 
 %{{{ Packages
 \usepackage{amsmath,graphicx,booktabs,moresize,textpos}
+\usepackage[utf8]{inputenc}
 \usepackage{caption}
 \captionsetup{font=scriptsize,labelfont=bf}
 \usepackage[UKenglish]{isodate}
@@ -72,8 +72,9 @@
 %}}}
 
 %{{{ Setup References
-\usepackage[backend=bibtex,url=false]{biblatex}
+\usepackage[backend=biber,style=authoryear]{biblatex}
 \addbibresource{../../References/References.bib}
+\renewcommand*{\nameyeardelim}{\addcomma\addspace}
 %}}}
 
 %{{{ Two Figures Side-by-Side
@@ -124,8 +125,8 @@
 \begin{frame}
 \frametitle{H-mode}
 \begin{itemize}
-	\item In 1982 at ASDEX, H-mode was discovered when heating was increased, which increased confinement time by a factor of around 2 \cite{wagner_development_1984}.
-	\item Anomalous transport has been found to be the dominant transport of particles and energy \cite{freidberg_plasma_2007}.
+	\item In 1982 at ASDEX, H-mode was discovered when heating was increased, which increased confinement time by a factor of around 2 \parencite{wagner_development_1984}.
+	\item Anomalous transport has been found to be the dominant transport of particles and energy \parencite{freidberg_plasma_2007}.
 	\item H-mode forms as a response to significant reduction in this anomalous transport at the plasma edge.
 	\begin{itemize}
 		\item The prevailing hypothesis is that high auxiliary power develops strong sheared plasma flow.
@@ -142,7 +143,7 @@
 	\caption{A comparison of the radial pressure profiles of L-mode and H-mode.
 	The profile of H-mode can be thought of as on a ‘pedestal,’ in which the pressure profile is increase in the core.
 	This is due to the transport barrier that is formed at the
-	edge \cite{weymiens_bifurcation_2014}.}
+	edge \parencite{weymiens_bifurcation_2014}.}
 	\label{fig:L-mode_H-mode_compare}
 \end{figure}
 \end{frame}
@@ -170,10 +171,10 @@
 \begin{frame}
 \frametitle{Transition}
 \TwoFig{../../Graphics/Bif_3D.png}
-	{Two codimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp \cite{weymiens_bifurcation_2014}.}
+	{Two codimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp \parencite{weymiens_bifurcation_2014}.}
 	{fig:Bif_3D}
 	{../../Graphics/3_transitions_single_simple.png}
-	{Codimension 3 parameter space with the black line indicating the fold bifurcation. The parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition \cite{weymiens_bifurcation_2014}.}
+	{Codimension 3 parameter space with the black line indicating the fold bifurcation. The parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition \parencite{weymiens_bifurcation_2014}.}
 	{fig:Bif_types}
 \end{frame}
 
@@ -182,10 +183,10 @@
 %\subsection{Electric Field}
 \begin{frame}
 \frametitle{Electric Field}
-\begin{equation}
+\begin{equation*}
 	E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d}p_j}{\text{d}r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta
 	\label{eq:E_r}
-\end{equation}
+\end{equation*}
 \begin{itemize}
 	\item The combination of the electric field with the magnetic field creates $\mathbf{E}\times\mathbf{B}$ flows and flow shear, which tears apart eddies.
 	\item Changes in the field are associated with changes in the pressure gradient or in plasma poloidal or toroidal flow.
@@ -203,17 +204,17 @@ A few examples:
 \begin{itemize}
 	\item Charge exchange friction
 	\begin{itemize}
-		\item There is a loss of ion momentum due to the charge exchange rate that dominates over ionization impact \cite{toda_condensed_neutrals_1997}.
+		\item There is a loss of ion momentum due to the charge exchange rate that dominates over ionization impact \parencite{toda_condensed_neutrals_1997}.
 	\end{itemize}
 	\item Ion orbit loss
 	\begin{itemize}
-		\item Ions that have gyro-orbits or banana orbits that extend outside of the last closed flux surface. The fraction of these that are collisionless is a nonambipolar flux \cite{chankin_loss_1993}.
+		\item Ions that have gyro-orbits or banana orbits that extend outside of the last closed flux surface. The fraction of these that are collisionless is a nonambipolar flux \parencite{chankin_loss_1993}.
 	\end{itemize}
 	\item Reynolds stress
 	\begin{itemize}
-		\item Turbulent fluctuations cause perturbations to the flow. For coherent and spatially-varying fluctuations, a nonzero Reynolds stress accelerates poloidal flow \cite{diamond_poloidal_1991}.
+		\item Turbulent fluctuations cause perturbations to the flow. For coherent and spatially-varying fluctuations, a nonzero Reynolds stress accelerates poloidal flow \parencite{diamond_poloidal_1991}.
 	\end{itemize}
-\item Poloidal flux transients, Maxwell stress, magnetic perturbations, etc \cite{staps_backstepping_2017}.
+\item Poloidal flux transients, Maxwell stress, magnetic perturbations, etc \parencite{staps_backstepping_2017}.
 \end{itemize}
 \end{frame}
 %}}}
@@ -223,25 +224,25 @@ A few examples:
 \section{Transition Model}
 \begin{frame}
 \frametitle{Transition Model}
-	The basic model for the transition, developed first by Itoh et al. \cite{itoh_edge_1991}, expanded by Zohm \cite{zohm_dynamic_1994}, and then into the following form by Weymiens \cite{weymiens_bifurcation_2014}.
+	The basic model for the transition, developed first by \textcite{itoh_edge_1991}, expanded by \textcite{zohm_dynamic_1994}, and then into the following form by \textcite{weymiens_bifurcation_2014}.
 It contains the continuity equations of energy and density to describe H-mode.
-\begin{equation}
+\begin{equation*}
 	\epsilon\,\frac{\partial Z}{\partial t} \,=\, \mu\,\frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)
 	\label{eq:pde}
-\end{equation}
+\end{equation*}
 This model uses $Z$, the radial electric field normalized with respect to the ion Larmor (gyro-)radius $\rho_{\theta i}$ and temperature $T = T_i = T_e$.
-\begin{equation}
+\begin{equation*}
 	Z \,=\, \frac{\rho_{\theta i} \, e \, E_r}{T}, ~~~~~ \rho_{\theta i} \,=\, \frac{m_i \, v_{\phi i}}{e B_\theta}
 	\label{eq:normalization}
-\end{equation}
+\end{equation*}
 \end{frame}
 
 \begin{frame}
 \frametitle{Transition Model}
-\begin{equation}
-	\epsilon\,\frac{\partial Z}{\partial t} \,=\, \mu\,\frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z) \tag{\ref{eq:pde}}
+\begin{equation*}
+	\epsilon\,\frac{\partial Z}{\partial t} \,=\, \mu\,\frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)
 	%\label{eq:pde}
-\end{equation}
+\end{equation*}
 	\begin{itemize}
 		\item The LHS represents the radial current due to polarization.
 		\begin{itemize}
@@ -257,17 +258,17 @@ This model uses $Z$, the radial electric field normalized with respect to the io
 
 \begin{frame}
 \frametitle{Transition Model}
-\begin{equation}
-	\epsilon\,\frac{\partial Z}{\partial t} \,=\, \mu\,\frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z) \tag{\ref{eq:pde}}
+\begin{equation*}
+	\epsilon\,\frac{\partial Z}{\partial t} \,=\, \mu\,\frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)
 	%\label{eq:pde}
-\end{equation}
+\end{equation*}
 	\begin{itemize}
 		\item The spatial 1st derivatives are an accumulation of all 1st derivative terms from the remaining fluxes.
 		\item $G(Z)$ is a cubic polynomial that approximates the remaining non-derivative terms of the fluxes.
-		\begin{equation}
+		\begin{equation*}
 			G(Z) \,=\, a + b(Z - Z_S) + c(Z - Z_S)^3
 			\label{eq:G_func}
-		\end{equation}
+		\end{equation*}
 		\begin{itemize}
 			\item The coefficients $c_T$, $c_n$, and in $G$ are determined by the summation of all the relevant processes.
 		\end{itemize}
@@ -279,7 +280,24 @@ This model uses $Z$, the radial electric field normalized with respect to the io
 
 \section{Research Plan}
 \begin{frame}
+\frametitle{Current State and Central Question}
+\begin{itemize}
+	\item Because H-mode is essentially necessary for fusion in tokamaks, comprehensive knowledge of its formation is needed to predict and control.
+	\item Substantial investigation has been done in identifying processes to generate the field \parencite{connor_review_2000}.
+	\begin{itemize}
+		\item However, none have investigated comprehensively without the use of some form of scaling laws.
+	\end{itemize}
+\end{itemize}
+\vfill
+\fbox{
+	\parbox{\textwidth}{
+	\textbf{Which electric field-generating terms are dominant in concrete tokamak experiments?}
+	}}
+\end{frame}
+
+\begin{frame}
 \frametitle{Research Plan}
+Specifically, the parameters of ASDEX-U will be used in the transition model.
 \begin{itemize}
 	\item Which nonambipolar fluxes should be considered for investigation?
 	\begin{itemize}
@@ -289,8 +307,8 @@ This model uses $Z$, the radial electric field normalized with respect to the io
 	\begin{itemize}
 		\item Since the model is nonlinear, it is potentially highly sensitive to relative strengths.
 	\end{itemize}
-	\item Previous investigations were somewhat limited in input power \cite{staps_backstepping_2017}. Expanding the regime could make the study more comprehensive.
-	\item Time permitting, determine how each term scales with machine size and what that implies for extrapolation.
+	\item Previous investigations were somewhat limited in input power \parencite{staps_backstepping_2017}. Expanding the regime could make the study more comprehensive.
+	\item Time permitting, determine how each term theoretically scales with machine size and what that implies for extrapolation.
 \end{itemize}
 \end{frame}
 
