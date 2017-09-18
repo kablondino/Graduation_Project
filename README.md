@@ -2,7 +2,7 @@
 
 ## Topic: Electric field bifurcation in the tokamak edge.
 
-#### _Written by Dr. Hugo de Blank_
+#### _Intro Written by Dr. Hugo de Blank_
 
 ### Introduction:
 The transition between L-mode and H-mode is a bifurcation in the turbulent transport in the edge (just inside the separatrix) of a divertor tokamak. A key mechanism for transition to H-mode is the generation of a large radial electric field and corresponding ExB-flow and large flow shear near the edge, which suppresses the turbulent transport. Many possible mechanisms for the generation of such an electric field have been proposed. Most mechanisms can be viewed as separate contributions in a radial Poisson's law, in addition to some terms that tend to reduce the field.
@@ -49,3 +49,7 @@ Research at DIFFER has shown that independent of the details of the electric fie
 6. ~~What are the effects on H-mode of ELM control measures, such as edge stochastization?~~
 
 	- ~~Look at effect of stochastization on the pressure gradient~~
+
+### Method Used
+The PDE Solver [FEniCS](https://fenicsproject.org/) is used in conjunction with a [Jupyter](http://jupyter.org/) notebook.
+
