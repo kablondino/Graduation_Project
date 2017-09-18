@@ -9,6 +9,7 @@
 *.snm
 *.fls
 *.xml
+*.bcf
 
 # PDF. REMOVE IF NECESSARY
 *.pdf
