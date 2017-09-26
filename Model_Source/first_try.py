@@ -45,8 +45,10 @@ c_T = -n**2 / T * ((alpha_cx * m_i * cx_rate * n_0) / (B_pol**2) - (alpha_an * e
 
 G = n*T*Z * ((m_i * cx_rate) / (rho_pi * B_pol**2) - (e * aspect**2 * rho_pe * sqrt(pi)) / (2 * a_m * rho_pi * B))
 
-
 # MODEL PDE?
+Z = TrialFunction(V)
+v = TestFunction(V)
+F = 
 
 # Create VTK file
 vtkfile = File('first_try/solution.pvd')
