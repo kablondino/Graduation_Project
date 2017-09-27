@@ -25,16 +25,36 @@ mu_i = 1
 m_i = 1
 cx_rate = 1
 n_0 = 1
-aspect = 1
+aspect = 5
 a_m = 1
 rho_pe = 1
 rho_pi = 1
+
+# Xi expressions for ion bulk viscosity
+xi_pol = (108*aspect**3*nu_ai**(3.0/2)*nu_ei**2*nu_ii - 28*nu_ii**3) / (189*pi*aspect**(9.0/2)*nu_ai**(3.0/4)*nu_ei**3) + ((-36*aspect**2*nu_ai**(3.0/2.0)*nu_ei**2*nu_ii**3 + 56*nu_ii**5) / (63*pi*aspect**(15.0/2.0)*nu_ai**(11.0/4.0)*nu_ei**5)) * Z**2
+
+xi_tor = (270*aspect**2*nu_ai**(3.0/2.0)*nu_ei**2*nu_ii - 294*aspect**3*nu_ai**2*nu_ei**2*nu_ii - 70*nu_ii**3) / (189*pi*aspect) + ((-90*aspect**3*nu_ai**(3.0/2.0)*nu_ei**2*nu_ii**3 + 98*aspect**3*nu_ai**2*nu_ei**2*nu_ii**3 + 140*nu_ii**5) / (63*pi*aspect**(15.0/2.0)*nu_ai**(11.0/4.0)*nu_ei**5)) * Z**2
+
+# g_n coefficients
+g_n_pi_paral = aspect**2*sqrt(pi) / (8*a_m) * n * m_i * rho_pi * (v_T_i)**2 * B_pol * xi_pol
+g_n_
+g_n_
+
+# g_T coefficients
+g_T_pi_paral = aspect**2*sqrt(pi) / (8*a_m) * n * m_i * rho_pi * (v_T_i)**2 * (B_pol*xi_pol - B*xi_tor)
+g_T_
+g_T_
+
+# g_Z coefficients
+g_Z_pi_paral = aspect**2*sqrt(pi) / (4*a_m) * n * m_i * (v_T_i)**2 * B_pol*xi_pol
+g_Z_
+g_Z_
 
 # Functions for n and T go here
 n = 5*x**-2
 T = 10*x**-3
 
-# Coefficients and the G function(?)
+# Coefficients and the G function(?) ARE THESE NECESSARY? MAYBE NOT, as I might write out the entire thing with g-coefficients
 dielectric_const = (n * T / v_phi) * (B_pol / B**2)
 
 viscosity = n * mu_i * T / (v_pi * B_pol)
