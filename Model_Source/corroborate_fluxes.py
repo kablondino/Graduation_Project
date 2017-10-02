@@ -44,7 +44,7 @@ L_Tn = L_T / W_ped
 # Parameters
 e_p = 1 + (m_i*n + m_e*n) / (epsilon_0 * B**2)
 v_Ti = lambda T: (2 * e * T / m_i)**(1.0/2)
-rho_pi = lambda T: m_i * v_Ti / (e * B_p)
+rho_pi = lambda T: m_i * v_Ti(T) / (e * B_p)
 v_Te = lambda T: (2 * e * T / m_e)**(1.0/2)
 rho_pe = lambda T: m_e * v_Te(T) / (e * B_p)
 omega_bi = lambda T: aspect**(3.0/2) * v_Ti(T) / (q * R)
@@ -58,6 +58,24 @@ nu_eff = lambda T: nu_ii(T) + nu_in0(T)
 nu_efi = lambda T: nu_ii(T) / omega_bi(T)
 nu_efe = lambda T: nu_ei(T) / omega_be(T)
 
-for i in T:
-	print i, v_Ti(i)
+# Print labels
+print "Temperature", "v_Ti", "rho_pi", "v_Te", "rho_pe", "omega_bi", "omega_be"
 
+
+
+# Anomalous loss calculation
+g_an = []
+G_an = []
+
+for T_element in T:
+	g_an.append( -(math.sqrt(math.pi) * aspect**2) / (2*a_m) * (rho_pi(T_element)*e*T_element) / B * n )
+
+#for T_element in T:
+#	for Z_element in Z:
+#		G_an = g_an * ( 1/L_n + a_an/L_T + Z / rho_pi(T(j)) )
+
+print g_an
+
+# Print functions from above
+for j in T:
+	print j, v_Ti(j), rho_pi(j), v_Te(j), rho_pe(j), omega_bi(j), omega_be(j)
