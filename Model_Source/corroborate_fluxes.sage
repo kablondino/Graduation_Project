@@ -52,17 +52,23 @@ nu_ei(T) = 1.33e5 * (n * 1.0e-20) / (T * 1.0e-3)^(3.0/2)
 nu_ii(T) =  1.2 * (m_e / m_i)^(1.0/2) * nu_ei(T)
 nu_in0(T) =  a_in0 * omega_bi(T)
 nu_eff(T) =  nu_ii(T) + nu_in0(T)
-nu_efi(T) =  nu_ii(T) / omega_bi(T)	# nu_*i
-nu_efe(T) =  nu_ei(T) / omega_be(T)
+nu_ai(T) =  nu_ii(T) / omega_bi(T)	# nu_*i
+nu_ae(T) =  nu_ei(T) / omega_be(T)	# nu_*e (not used as of now)
+
+
+# Consolidated constant to reduce clutter
+C = nu_ai * aspect^(3.0/2) * nu_ei / nu_ii
 
 # Print labels
-print "Temperature", "v_Ti", "rho_pi", "v_Te", "rho_pe", "omega_bi", "omega_be"
+#print "Temperature", "v_Ti", "rho_pi", "v_Te", "rho_pe", "omega_bi", "omega_be"
 
 # Ion bulk (parallel) viscosity
 # Xi functions
-xi_p = (108*aspect^3*nu_efi^(3.0/2)*nu_ei^2*nu_ii - 28*nu_ii^3) / (189*pi*aspect^(9.0/2)*nu_efi^(3.0/4)*nu_ei^3) + (-36*aspect^2*nu_efi^(3.0/2)*nu_ei^2*nu_ii^3 + 56*nu_ii^5) / (63*pi*aspect^(15.0/2)*nu_efi^(11.0/4)*nu_ei^5) * Z^2
+#xi_p = (108*aspect^3*nu_ai^(3.0/2)*nu_ei^2*nu_ii - 28*nu_ii^3) / (189*pi*aspect^(9.0/2)*nu_ai^(3.0/4)*nu_ei^3) + (-36*aspect^2*nu_ai^(3.0/2)*nu_ei^2*nu_ii^3 + 56*nu_ii^5) / (63*pi*aspect^(15.0/2)*nu_ai^(11.0/4)*nu_ei^5) * Z^2
+xi_p = (4*(27*C^2*nu_ai^(7/4) - 7*nu_ai^(9/4))) / (189*pi*C^3) + (-4*(9*C^2*nu_ai^(7/4) - 14*nu_ai^(9/4))) / (63*pi*C^5)*Z^2
 
-xi_t = (270*aspect^2*nu_efi^(3.0/2)*nu_ei^2*nu_ii - 294*aspect^3*nu_efi^2*nu_ei^2*nu_ii - 70*nu_ii^3) / (189*pi*aspect) + (-90*aspect^3*nu_efi^(3.0/2)*nu_ei^2*nu_ii^3 + 98*aspect^3*nu_efi^2*nu_ei^2*nu_ii^3 + 140*nu_ii^5) / (63*pi*aspect^(15.0/2)*nu_efi^(11.0/4)*nu_ei^5) * Z^2
+#xi_t = (270*aspect^2*nu_ai^(3.0/2)*nu_ei^2*nu_ii - 294*aspect^3*nu_ai^2*nu_ei^2*nu_ii - 70*nu_ii^3) / (189*pi*aspect) + (-90*aspect^3*nu_ai^(3.0/2)*nu_ei^2*nu_ii^3 + 98*aspect^3*nu_ai^2*nu_ei^2*nu_ii^3 + 140*nu_ii^5) / (63*pi*aspect^(15.0/2)*nu_ai^(11.0/4)*nu_ei^5) * Z^2
+xi_t = (-2*(-135*C^2*nu_ai^(7/4) + 35*nu_ai^(9/4) * 147*C^2*nu_ai^(9/4))) / (189*pi*C^3) + (2*(-45*C^2*nu_ai^(7/4) + 70*nu_ai^(9/4) + 49*C^2*nu_ai(9/4))) / (63*pi*C^5) * Z^2
 
 print xi_p
 print xi_t
