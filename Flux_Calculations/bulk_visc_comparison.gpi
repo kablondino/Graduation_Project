@@ -1,0 +1,12 @@
+set dgrid3d 30,30
+set hidden3d
+set pm3d explicit
+unset key
+
+set title "xi_t Integral, Numerical"
+set xlabel "Temperature (eV)"
+set ylabel "Electric Field"
+set zlabel "$xi_t$"
+
+splot "bulk_visc.dat" u 1:2:9 with lines
+

@@ -1,0 +1,33 @@
+set dgrid3d 30,30
+set hidden3d
+unset key
+
+set xlabel "Temperature (eV)"
+set ylabel "Electric Field"
+set zlabel "$e\\Gamma$"
+
+set term png
+
+# Bulk viscosity
+set output "bulk_visc_sage.png"
+set title "Ion Bulk Viscosity"
+splot "fluxes.dat" u 1:2:12 with lines
+
+# Anomalous Diffusion
+set output "anom_loss_sage.png"
+set title "Electron Anomalous Loss"
+splot "fluxes.dat" u 1:2:13 with lines
+
+# Charge Ex
+set output "charge_ex_sage.png"
+set title "Charge Exchange Friction"
+splot "fluxes.dat" u 1:2:14 with lines
+
+# Orbit Loss
+set output "orbit_loss_sage.png"
+set title "Ion Orbit Loss"
+splot "fluxes.dat" u 1:2:15 with lines
+
+set term qt
+set output
+
