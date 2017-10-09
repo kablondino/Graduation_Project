@@ -60,3 +60,5 @@ nu_ae(T) =  nu_ei(T) / omega_be(T)	# nu_*e (not used as of now)
 # Consolidated constant to reduce clutter
 C = nu_ai * aspect^(3.0/2) * nu_ei / nu_ii
 
+print C(1e2)
+
