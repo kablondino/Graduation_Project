@@ -11,5 +11,13 @@
 *.xml
 *.bcf
 
+# Image files
+*.jpg
+*.png
+
+# Paraview files
+*.vtu
+*.pvd
+
 # PDF. REMOVE IF NECESSARY
 *.pdf
