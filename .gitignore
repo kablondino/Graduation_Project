@@ -21,3 +21,6 @@
 
 # PDF. REMOVE IF NECESSARY
 *.pdf
+*.dat
+*.txt
+
