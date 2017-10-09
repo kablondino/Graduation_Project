@@ -1,5 +1,5 @@
 # Import file with parameters, etc.
-load("/home/kabv/Documents/Masters/Graduation_Project/Model_Source/parameters.sage")
+load("/home/kabv/Documents/Masters/Graduation_Project/Flux_Calculations/parameters.sage")
 
 ## ------- MATHEMATICA definitions of xi functions --------
 # Result of integral from Taylor expanded integrand of x^2*exp(-x)*arctan(...)
@@ -19,7 +19,7 @@ t_integrand(x, T, Z) = p_integrand * (5/2 * x)
 
 
 ## ------- Dump to file -----------------------------------
-with open('/home/kabv/Documents/Masters/Graduation_Project/Model_Source/bulk_visc.dat', 'w') as the_file:
+with open('/home/kabv/Documents/Masters/Graduation_Project/Flux_Calculations/bulk_visc.dat', 'w') as the_file:
 # Print labels
 	the_file.write("T Z xi_p_math xi_t_math xi_p_math_expand xi_t_math_expand p_numerical p_numerical_error t_numerical t_numerical_error\n")
 	for i in numpy.arange(1e2, 2e3 + 25, 25):

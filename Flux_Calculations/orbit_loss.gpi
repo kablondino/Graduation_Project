@@ -1,0 +1,10 @@
+set dgrid3d 30,30
+set hidden3d
+unset key
+
+set title "Ion Orbit Loss"
+set xlabel "Temperature (eV)"
+set ylabel "Electric Field"
+set zlabel "$e\\Gamma$"
+
+splot "orbit_loss.dat" u 1:2:4 with lines
