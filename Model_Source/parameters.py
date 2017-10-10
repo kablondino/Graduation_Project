@@ -1,7 +1,5 @@
-import numpy
-import math
-
 # Global parameters and physical constants
+pi = 3.141592653589793
 a_cx = 1.0
 a_an = 1.0
 a_in0 = 0.1
@@ -11,26 +9,26 @@ m_e = 9.109e-31
 m_i = 1.673e-27
 c = 3.0e8
 epsilon_0 = 8.854187817e-12
-mu_0 = 4*math.pi*1.0e-7
+mu_0 = 4*pi*1.0e-7
 R_cx = 1.0e-14
 
 # Plasma variables n_e, T_i, n_0
-n = 1.0e19
+n = 1.0e19		# CHANGE TO FUNCTION!?
 np = 1.0e19
 Tp = 1.0e3
 n_0 = lambda T: 4.0e17 * a_in0 * ( T / 100 )**(3.0/4)
 
-# JET specifications
-a_v = 2.10
-a_h = 1.25
-a_m = math.sqrt( (a_v**2 + a_h**2) / 2.0 )
-R = 1.3
+# ASDEX-U specifications
+a_v = 0.8	# Vertical minor radius
+a_h = 0.5	# Horizontal minor radius
+a_m = ( (a_v**2 + a_h**2) / 2.0 )**(1.0/2)
+R = 1.6		# Major radius
 aspect = a_m / R
-I_p = 3.2e6
-B_t = 3.45
-B_p = mu_0 * I_p / ( 2*math.pi*a_m )
+I_p = 2.0e6
+B_t = 3.9
+B_p = mu_0 * I_p / ( 2*pi*a_m )
 q = aspect * B_t/B_p
-B = math.sqrt( B_t**2 + B_p**2 )
+B = ( B_t**2 + B_p**2 )**(1.0/2)
 
 # Length scales
 L_n = 0.02
@@ -60,5 +58,5 @@ nu_ae = lambda T: nu_ei(T) / omega_be(T)	# nu_*e (not used as of now)
 # Consolidated constant to reduce clutter
 C = lambda T: nu_ai(T) * aspect**(3.0/2) * nu_ei(T) / nu_ii(T)
 
-print C(1e2)
+print C(1e3)
 
