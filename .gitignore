@@ -19,6 +19,9 @@
 *.vtu
 *.pvd
 
+# iPython / Jupyter notebooks
+*.ipynb
+
 # PDF. REMOVE IF NECESSARY
 *.pdf
 *.dat
