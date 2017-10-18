@@ -21,6 +21,8 @@
 
 # iPython / Jupyter notebooks
 *.ipynb
+__init__.py
+*.pyc
 
 # PDF. REMOVE IF NECESSARY
 *.pdf
