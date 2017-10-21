@@ -29,7 +29,7 @@ import sys
 sys.path.append("/home/kabv/Documents/Masters/Graduation_Project/Model_Source/")
 from coefficients import *
 
-Z_0 = Expression('1.0 - (exp(L*x - L) - 1) / (exp(L*x - L) + 1)', degree=1, L=L)
+Z_0 = Expression('1.0 - (exp(L*x[0] - L) - 1) / (exp(L*x[0] - L) + 1)', degree=1, L=L)
 #Z_0 = Expression('1.0 - tanh((L / 2.0)*(x - 1))', degree=1, L=L, x=x)
 Z_n = interpolate(Z_0, V)
 
