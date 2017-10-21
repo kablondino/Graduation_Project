@@ -7,7 +7,8 @@ dt = total_T / num_steps
 
 # Create a mesh
 nx = 100
-mesh = IntervalMesh(nx, 0, 1.0)
+L = 1.0
+mesh = IntervalMesh(nx, 0, L)
 V = FunctionSpace(mesh, 'P', 1)
 x = SpatialCoordinate(mesh)
 
@@ -15,19 +16,21 @@ x = SpatialCoordinate(mesh)
 Z = Function(V)
 v = TestFunction(V)
 
+# Properly make the boundary conditions (all of them!)
 def boundary(x, on_boundary):
 	return on_boundary
 
 bc = DirichletBC(V, 0, boundary)
 
 # Temporary mu_i mysterious value
-mu_i = 1
+mu_i = 1.0
 
 import sys
 sys.path.append("/home/kabv/Documents/Masters/Graduation_Project/Model_Source/")
 from coefficients import *
 
-Z_0 = Constant(0)
+Z_0 = Expression('1.0 - (exp(L*x - L) - 1) / (exp(L*x - L) + 1)', degree=1, L=L)
+#Z_0 = Expression('1.0 - tanh((L / 2.0)*(x - 1))', degree=1, L=L, x=x)
 Z_n = interpolate(Z_0, V)
 
 ## ----------------- Z-dependent Fluxes -------------------
@@ -50,13 +53,13 @@ f_OL = Expression('g_OL*exp(-sqrt(nu_ai + pow(Z,4))) / sqrt(nu_ai + pow(Z,4))', 
 
 ## --------------------------------------------------------
 # Consolidate even more fluxes
-flux_sum = Expression('(g_n_an + g_n_cx + g_n_bulk)*L_n + (g_T_an + g_T_cx + g_T_bulk)*L_T + (g_Z_an + g_Z_cx + g_Z_bulk)*Z + f_OL', degree=1, Z=Z, g_n_an=g_n_an, g_n_cx=g_n_cx, g_n_bulk=g_n_bulk, L_n=L_n, g_T_an=g_T_an, g_T_cx=g_T_cx, g_T_bulk=g_T_bulk, L_T=L_T, g_Z_an=g_Z_an, g_Z_cx=g_Z_cx, g_Z_bulk=g_Z_bulk, f_OL=f_OL)
+#flux_sum = Expression('(g_n_an + g_n_cx + g_n_bulk)*L_n + (g_T_an + g_T_cx + g_T_bulk)*L_T + (g_Z_an + g_Z_cx + g_Z_bulk)*Z + f_OL', degree=1, Z=Z, g_n_an=g_n_an, g_n_cx=g_n_cx, g_n_bulk=g_n_bulk, L_n=L_n, g_T_an=g_T_an, g_T_cx=g_T_cx, g_T_bulk=g_T_bulk, L_T=L_T, g_Z_an=g_Z_an, g_Z_cx=g_Z_cx, g_Z_bulk=g_Z_bulk, f_OL=f_OL)
+
+flux_sum = Expression('(g_n_an + g_n_cx)*L_n + (g_T_an + g_T_cx)*L_T + (g_Z_an + g_Z_cx)*Z', degree=1, g_n_an=g_n_an, g_n_cx=g_n_cx, L_n=L_n, g_T_an=g_T_an, g_T_cx=g_T_cx, L_T=L_T, g_Z_an=g_Z_an, g_Z_cx=g_Z_cx, Z=Z)
 print flux_sum(0.5)
 
-#flux_sum = Expression('(g_n_an + g_n_cx)*L_n + (g_T_an + g_T_cx)*L_T + (g_Z_an + g_Z_cx)*Z', degree=1, g_n_an=g_n_an, g_n_cx=g_n_cx, L_n=L_n, g_T_an=g_T_an, g_T_cx=g_T_cx, L_T=L_T, g_Z_an=g_Z_an, g_Z_cx=g_Z_cx, Z=Z)
-
 F = (-(m_i*B_p**2/(e*B**2)) * n*Temp*Z*v + dt*(m_i*mu_i/(e*rho_pi) * n*Temp*dot(grad(Z), grad(v))))*dx + (m_i*B_p**2/(e*B**2)*Z_n + dt*B_p**2*flux_sum)*v*dx
-#print F
+print F
 
 # Create VTK file
 vtkfile = File('first_try_answer/solution.pvd')
