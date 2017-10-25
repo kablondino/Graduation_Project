@@ -9,10 +9,10 @@ a_in0       = .01;                                          % constant ~ 1
 
 % Plasma variables: n{e}, T{i}, n{0}
 %n = piecewise(x < 0, 1.0e19, 0 < x < 1, 1.0e19 * (1 - x), x > 1, 0)
-n = symfun( 1.0e19 * (1 - x), x )
+n = symfun( 1.0e19 * x, x )
 %Temp = piecewise(x < 0, 2000.0, 0 < x < 1, 2000.0 * (1 - x), x > 1, 0)
-Temp = symfun( 2000.0 * (1 - x), x )
-n_0  = symfun( 4e17*a_in0*(Temp(x)/100)^(3/4), x );  % [1/m^3]
+Temp = symfun( 2000.0 * x, x )
+n_0  = symfun( 4e17*a_in0*(Temp(x) / 100)^(3/4), x );  % [1/m^3]
 
 % Physical constants
 charge      = 1.602e-19;                                    % [J/eV]
