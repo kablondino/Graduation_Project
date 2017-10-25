@@ -14,9 +14,16 @@ epsilon_0 = 8.854187817e-12
 mu_0 = 4*pi*1.0e-7
 R_cx = 1.0e-14
 
-# Plasma variables n_e, T_i, n_0
-n = Expression('(x[0] <= 0) ? (1.0e+19) : ((x[0] >= 1) ? (0) :  1.0e+19 * (1 - x[0]))', degree=1)
-Temp = Expression('(x[0] <= 0) ? (2000.0) : ((x[0] >= 1) ? (0) : 2000.0 * (1 - x[0]))', degree=1)
+## Plasma profiles n_e, T_i, n_0
+# Plasma edge is at x = 1
+#n = Expression('(x[0] <= 0) ? (1.0e+19) : ((x[0] >= 1) ? (0) :  1.0e+19 * (1 - x[0]))', degree=1)
+#
+#Temp = Expression('(x[0] <= 0) ? (2000.0) : ((x[0] >= 1) ? (0) : 2000.0 * (1 - x[0]))', degree=1)
+
+# Plasma edge is at x = 0
+n = Expression('((x[0] <= 0) ? (1.0e+19) : ((x[0] >= 1) ? (0) : (-1.0e+19*x[0] + 1.0e+19)))', degree=1)
+
+Temp = Expression('((x[0] <= 0) ? (2000.0) : ((x[0] >= 1) ? (0) : (-2000.0*x[0] + 2000.0)))', degree=1)
 
 #def n_0(x): return 4.0e17 * a_in0 * ( Temp(x) / 100 )**(3.0/4.0)
 n_0 = Expression('4.0e17 * a_in0 * pow((Temp / 100.0), 3.0/4.0)', degree=1, a_in0=a_in0, Temp=Temp)
