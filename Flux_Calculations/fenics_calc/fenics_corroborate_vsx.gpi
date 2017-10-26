@@ -1,11 +1,13 @@
+set encoding utf8
 unset key
 
 set grid
 set xlabel "Position"
+set format y "%g"
 
 set term pngcairo
 
-## n coefficients
+## NON-Z dependent coefficients
 set output "x_scan/an_n_vsx.png"
 set title "g_n^{an}"
 plot "fenics_calculations_nonZ.dat" u 1:4 w l
@@ -14,16 +16,6 @@ set output "x_scan/cx_n_vsx.png"
 set title "g_n^{cx}"
 plot "fenics_calculations_nonZ.dat" u 1:5 w l
 
-set output "x_scan/bulk_n_vsx.png"
-set key bottom right
-set title "g_n^{bulk}"
-#plot "fenics_calculations_Z.dat" u (($2 <= 0.0005 && $2 >= -0.0005) ? $1 : 1/0):5 t 'Z = 0' w l#, \
-plot "fenics_calculations_Z.dat" u ($2==0.101 ? $1 : 1/0):5 t 'Z = 0' w l#, \
-#"fenics_calculations_Z.dat" u 1:8 title 'Expanded' w l, \
-#"fenics_calculations_Z.dat" u 1:($7 - $8) title 'Difference' w l
-unset key
-
-## T coefficients
 set output "x_scan/an_T_vsx.png"
 set title "g_T^{an}"
 plot "fenics_calculations_nonZ.dat" u 1:6 w l
@@ -32,15 +24,6 @@ set output "x_scan/cx_T_vsx.png"
 set title "g_T^{cx}"
 plot "fenics_calculations_nonZ.dat" u 1:7 w l
 
-set output "x_scan/bulk_T_vsx.png"
-set key bottom right
-set title "g_T^{bulk}"
-plot "fenics_calculations_Z.dat" u (($2<=0.0005 && $2>=-0.0005) ? $1 : 1/0):6 t 'Z = 0' w l#, \
-#"fenics_calculations_Z.dat" u 1:12 title 'Expanded' w l, \
-#"fenics_calculations_Z.dat" u 1:($11 - $12) title 'Difference' w l
-unset key
-
-## Z coefficients
 set output "x_scan/an_Z_vsx.png"
 set title "g_Z^{an}"
 plot "fenics_calculations_nonZ.dat" u 1:8 w l
@@ -49,23 +32,60 @@ set output "x_scan/cx_Z_vsx.png"
 set title "g_Z^{cx}"
 plot "fenics_calculations_nonZ.dat" u 1:9 w l
 
-set output "x_scan/bulk_Z_vsx.png"
-set key bottom right
+## Z-DEPENDENT coefficients
+set xrange[0.5:1]
+# n bulk
+set output "x_scan/n_bulk_comparison.png"
+set key top left
+set title "g_n^{bulk}"
+set yrange [0:7e-6]
+plot "fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 0.0 ? $5 : 1/0) t 'Z = 0.0' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 0.5 ? $5 : 1/0) t '±0.5' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 1.0 ? $5 : 1/0) t '±1.0' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 1.5 ? $5 : 1/0) t '±1.5' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 2.0 ? $5 : 1/0) t '±2.0' w l
+
+# T bulk
+set output "x_scan/T_bulk_comparison.png"
+set key center left
+set title "g_T^{bulk}"
+set yrange [-7e-5:0]
+plot "fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 0.0 ? $6 : 1/0) t 'Z = 0.0' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 0.5 ? $6 : 1/0) t '±0.5' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 1.0 ? $6 : 1/0) t '±1.0' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 1.5 ? $6 : 1/0) t '±1.5' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 2.0 ? $6 : 1/0) t '±2.0' w l
+
+# Z bulk
+set output "x_scan/Z_bulk_comparison.png"
+set key top left
 set title "g_Z^{bulk}"
-plot "fenics_calculations_Z.dat" u (($2<=0.0005 && $2>=-0.0005) ? $1 : 1/0):7 t 'Z = 0' w l#, \
-#"fenics_calculations_Z.dat" u 1:16 title 'Expanded' w l, \
-#"fenics_calculations_Z.dat" u 1:($15 - $16) title 'Difference' w l
-unset key
+set yrange [0:0.004]
+plot "fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 0.0 ? $7 : 1/0) t 'Z = 0.0' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 0.5 ? $7 : 1/0) t '±0.5' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 1.0 ? $7 : 1/0) t '±1.0' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 1.5 ? $7 : 1/0) t '±1.5' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 2.0 ? $7 : 1/0) t '±2.0' w l
+
+set autoscale x
+set autoscale y
 
 ## Orbit Loss function
-set output "x_scan/OL_vsx.png"
-set key bottom right
+set log y
+set output "x_scan/f_OL_comparison.png"
+set key bottom left
 set title "f^{OL}"
-plot "fenics_calculations_Z.dat" u (($2<=0.0005 && $2>=-0.0005) ? $1 : 1/0):8 t 'Z = 0' w l#, \
-#"fenics_calculations_Z.dat" u 1:18 title 'Expanded' w l, \
-#"fenics_calculations_Z.dat" u 1:($17 - $18) title 'Difference' w l
-unset key
+set xrange [0.5:1]
+#set yrange [0:4e-3]
+plot "fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 0.0 ? $8 : 1/0) t 'Z = 0.0' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 1.0 ? $8 : 1/0) t '±1.0' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 2.0 ? $8 : 1/0) t '±2.0' w l, \
+"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 3.0 ? $8 : 1/0) t '±3.0' w l
+#"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 4.0 ? $8 : 1/0) t '±4.0' w l, \
+#"fenics_calculations_SPECIFIC_Z.dat" u 1:($2 == 5.0 ? $8 : 1/0) t '±5.0' w l
 
+## --------------------------------
 # Reset output location
+reset
 set output
 
