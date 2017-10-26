@@ -32,11 +32,12 @@ A = 1
 B = 1
 C = 1
 D = 1
+E = 2
 
 # Define variational problem
 v = TestFunction(V)
 Z = Function(V)
-f = A + B*Z + C*Z**2 + D*Z**3
+f = A + B*Z + C*Z**2 + D*Z**3 + E*Z**-1
 F = (epsilon*Z*v + dt*mu*dot(grad(Z), grad(v)))*dx - (Z_n + dt*f)*v*dx
 
 a, L = lhs(F), rhs(F)
@@ -49,7 +50,7 @@ for n in range(num_steps):
 	t += dt
 
 	# Compute Solution
-	solve(F == 0, Z, bc, solver_parameters={"newton_solver":{"maximum_iterations":1000}})
+	solve(F == 0, Z, bc, solver_parameters={"newton_solver":{"maximum_iterations":10000}})
 
 	# Write to vtu file
 	vtkfile << (Z, t)
