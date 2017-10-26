@@ -40,7 +40,8 @@ xi_t_taylor = Expression('-(2*(-135*pow(C,2)*pow(nu_ai, 7.0/4.0) + 35*pow(nu_ai,
 def python_D_an(X): return (aspect**2 * pi**(1.0/2)) / (2*a_m) * (rho_pe(X) * Temp(X)) / B
 D_an = Expression('pow(aspect,2)*sqrt(pi) / (2*a_m) * (rho_pe * Temp) / B', degree=1, aspect=aspect, a_m=a_m, rho_pe=rho_pe, Temp=Temp, B=B)
 
-## ----------------- g_n coefficients -----------
+
+## ----------------- g_n coefficients ---------------------
 def python_g_n_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (8*a_m) * n(X) * m_i * rho_pi(X) * (v_Ti(X))**2 * B_p * xi_p(X, aZ)
 g_n_bulk = Expression('pow(aspect,2)*sqrt(pi) / (8*a_m) * n * m_i * rho_pi * pow(v_Ti,2) * B_p * xi_p', degree=1, aspect=aspect, a_m=a_m, n=n, m_i=m_i, rho_pi=rho_pi, v_Ti=v_Ti, B_p=B_p, xi_p=xi_p)
 
@@ -55,7 +56,7 @@ def python_g_n_cx(X): return -m_i*n_0(X)*R_cx *n(X)*Temp(X) / B_p**2
 g_n_cx = Expression('-m_i*n_0*R_cx *n*Temp / pow(B_p,2)', degree=1, m_i=m_i, n_0=n_0, R_cx=R_cx, n=n, Temp=Temp, B_p=B_p)
 
 
-## ----------------- g_T coefficients -----------
+## ----------------- g_T coefficients ---------------------
 def python_g_T_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (8*a_m) * n(X) * m_i * rho_pi(X) * (v_Ti(X))**2 * (B_p*xi_p(X, aZ) - B*xi_t(X, aZ))
 g_T_bulk = Expression('pow(aspect,2)*sqrt(pi) / (8*a_m) * n * m_i * rho_pi * pow(v_Ti,2) * (B_p*xi_p - B*xi_t)', degree=1, aspect=aspect, a_m=a_m, n=n, m_i=m_i, rho_pi=rho_pi, v_Ti=v_Ti, B_p=B_p, B=B, xi_p=xi_p, xi_t=xi_t)
 
@@ -70,7 +71,7 @@ def python_g_T_cx(X): return a_cx*g_n_cx(X)
 g_T_cx = Expression('a_cx*g_n_cx', degree=1, a_cx=a_cx, g_n_cx=g_n_cx)
 
 
-## ----------------- g_Z coefficients -----------
+## ----------------- g_Z coefficients ---------------------
 def python_g_Z_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (4*a_m) * n(X) * m_i * (v_Ti(X))**2 * B_p*xi_p(X, aZ)
 g_Z_bulk = Expression('pow(aspect,2)*sqrt(pi) / (4*a_m) * n * m_i * pow(v_Ti,2) * B_p*xi_p', degree=1, aspect=aspect, a_m=a_m, n=n, m_i=m_i, v_Ti=v_Ti, B_p=B_p, xi_p=xi_p)
 
@@ -84,7 +85,8 @@ g_Z_an = Expression('-charge*n*D_an / rho_pi', degree=1, charge=charge, n=n, D_a
 def python_g_Z_cx(X): return m_i*n_0(X)*R_cx *n(X)*Temp(X) / (rho_pi(X)*B_p**2)
 g_Z_cx = Expression('m_i*n_0*R_cx * n*Temp / (rho_pi*pow(B_p,2))', degree=1, m_i=m_i, n_0=n_0, R_cx=R_cx, n=n, Temp=Temp, rho_pi=rho_pi, B_p=B_p)
 
-## ----------------- g_OL coefficient -----------
+
+## ----------------- f_OL -------------------- ------------
 def python_g_OL(X): return charge*n(X)*nu_eff(X)*(aspect)**(1.0/2)*rho_pi(X)
 g_OL = Expression('charge*n*nu_eff*sqrt(aspect)*rho_pi', degree=1, charge=charge, n=n, nu_eff=nu_eff, aspect=aspect, rho_pi=rho_pi)
 
@@ -97,7 +99,7 @@ f_OL_taylor = Expression('exp(-sqrt(nu_ai))*g_OL / sqrt(nu_ai) - (exp(-sqrt(nu_a
 
 import numpy
 
-## ----------------- PRINT NON-Z Dependent Terms 
+## ----------------- PRINT NON-Z Dependent Terms ----------
 #table_head_array = ['x', 'n', 'Temp', 'g_n_an', 'g_n_cx', 'g_T_an', 'g_T_cx', 'g_Z_an', 'g_Z_cx']
 #
 #for i in range(len(table_head_array)):
@@ -106,25 +108,25 @@ import numpy
 #for j in numpy.arange(0.0, 1.0, 0.001):		# x loop
 #	print j, n(j), Temp(j), g_n_an(j), g_n_cx(j), g_T_an(j), g_T_cx(j), g_Z_an(j), g_Z_cx(j)
 
-## ----------------- PRINT Z-Dependent Terms ----
+## ----------------- PRINT Z-Dependent Terms --------------
 table_head_array_Z = ['x', 'Z', 'n', 'Temp', 'g_n_bulk', 'g_T_bulk', 'g_Z_bulk', 'f_OL']
 
 for i in range(len(table_head_array_Z)):
 	print "#" + str(i+1) + "\t" + str(table_head_array_Z[i])
 
-for j in numpy.arange(0.0, 1.0, 0.001):			# x loop
-	for k in numpy.arange(-1.5, 1.5, 0.001):	# Z loop
+Z_values = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]
+
+for k in Z_values:
+	for j in numpy.arange(0.0, 1.0, 0.001):			# x loop
 		print j, k, n(j), Temp(j), g_n_bulk(j,k), g_T_bulk(j,k), g_Z_bulk(j,k), f_OL(j,k)
 
-"""
-j = 0.5
-table_head_array_Z = ['Z', 'Python g_n_bulk', 'g_n_bulk', 'Python g_n_bulk_taylor', 'g_n_bulk_taylor', 'Python g_T_bulk', 'g_T_bulk', 'Python g_T_bulk_taylor', 'g_T_bulk_taylor', 'Python g_Z_bulk', 'g_Z_bulk', 'Python g_Z_bulk_taylor', 'g_Z_bulk_taylor', 'Python f_OL', 'f_OL', 'Python f_OL_taylor', 'f_OL_taylor']
-
-print '\n'
-for i in range(len(table_head_array_Z)):
-	print "#" + str(i+1) + "\t" + str(table_head_array_Z[i])
-
-for k in numpy.arange(-3.0, 3.0, 0.01):
-		print k, python_g_n_bulk(j,k), g_n_bulk(j,k), python_g_n_bulk_taylor(j,k), g_n_bulk_taylor(j,k), python_g_T_bulk(j,k), g_T_bulk(j,k), python_g_T_bulk_taylor(j,k), g_T_bulk_taylor(j,k), python_g_Z_bulk(j,k), g_Z_bulk(j,k), python_g_Z_bulk_taylor(j,k), g_Z_bulk_taylor(j,k), python_f_OL(j,k), f_OL(j,k), python_f_OL_taylor(j,k), f_OL_taylor(j,k)
-"""
+## ----------------- Python Comparison --------------------
+#table_head_array_Z = ['Z', 'Python g_n_bulk', 'g_n_bulk', 'Python g_n_bulk_taylor', 'g_n_bulk_taylor', 'Python g_T_bulk', 'g_T_bulk', 'Python g_T_bulk_taylor', 'g_T_bulk_taylor', 'Python g_Z_bulk', 'g_Z_bulk', 'Python g_Z_bulk_taylor', 'g_Z_bulk_taylor', 'Python f_OL', 'f_OL', 'Python f_OL_taylor', 'f_OL_taylor']
+#
+#print '\n'
+#for i in range(len(table_head_array_Z)):
+#	print "#" + str(i+1) + "\t" + str(table_head_array_Z[i])
+#
+#for k in numpy.arange(-3.0, 3.0, 0.01):
+#		print k, python_g_n_bulk(j,k), g_n_bulk(j,k), python_g_n_bulk_taylor(j,k), g_n_bulk_taylor(j,k), python_g_T_bulk(j,k), g_T_bulk(j,k), python_g_T_bulk_taylor(j,k), g_T_bulk_taylor(j,k), python_g_Z_bulk(j,k), g_Z_bulk(j,k), python_g_Z_bulk_taylor(j,k), g_Z_bulk_taylor(j,k), python_f_OL(j,k), f_OL(j,k), python_f_OL_taylor(j,k), f_OL_taylor(j,k)
 
