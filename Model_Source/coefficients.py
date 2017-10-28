@@ -109,16 +109,16 @@ import numpy
 #	print j, n(j), Temp(j), g_n_an(j), g_n_cx(j), g_T_an(j), g_T_cx(j), g_Z_an(j), g_Z_cx(j)
 
 ## ----------------- PRINT Z-Dependent Terms --------------
-table_head_array_Z = ['x', 'Z', 'n', 'Temp', 'g_n_bulk', 'g_T_bulk', 'g_Z_bulk', 'f_OL']
-
-for i in range(len(table_head_array_Z)):
-	print "#" + str(i+1) + "\t" + str(table_head_array_Z[i])
-
-Z_values = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]
-
-for k in Z_values:
-	for j in numpy.arange(0.0, 1.0, 0.001):			# x loop
-		print j, k, n(j), Temp(j), g_n_bulk(j,k), g_T_bulk(j,k), g_Z_bulk(j,k), f_OL(j,k)
+#table_head_array_Z = ['x', 'Z', 'n', 'Temp', 'g_n_bulk', 'g_T_bulk', 'g_Z_bulk', 'f_OL']
+#
+#for i in range(len(table_head_array_Z)):
+#	print "#" + str(i+1) + "\t" + str(table_head_array_Z[i])
+#
+#Z_values = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]
+#
+#for k in Z_values:
+#	for j in numpy.arange(0.0, 1.0, 0.001):			# x loop
+#		print j, k, n(j), Temp(j), g_n_bulk(j,k), g_T_bulk(j,k), g_Z_bulk(j,k), f_OL(j,k)
 
 ## ----------------- Python Comparison --------------------
 #table_head_array_Z = ['Z', 'Python g_n_bulk', 'g_n_bulk', 'Python g_n_bulk_taylor', 'g_n_bulk_taylor', 'Python g_T_bulk', 'g_T_bulk', 'Python g_T_bulk_taylor', 'g_T_bulk_taylor', 'Python g_Z_bulk', 'g_Z_bulk', 'Python g_Z_bulk_taylor', 'g_Z_bulk_taylor', 'Python f_OL', 'f_OL', 'Python f_OL_taylor', 'f_OL_taylor']
