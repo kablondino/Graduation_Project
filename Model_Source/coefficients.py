@@ -9,17 +9,6 @@
 
 from parameters import *
 
-# Create a mesh
-nx = 100
-L = 1.0
-mesh = IntervalMesh(nx, 0, L)
-#ny = 600
-#mesh = RectangleMesh(Point(0.0,-3.0), Point(L,3.0), nx, ny)
-V = FunctionSpace(mesh, 'P', 1)
-
-x = SpatialCoordinate(mesh)
-Z = Function(V)
-
 # Xi expressions for ion bulk viscosity
 def python_xi_p(X, aZ): return (4*C(X)*(27*((C(X))**2 + aZ**2)**2 - 7*((C(X))**2 - 3*aZ**2)*(nu_ai(X))**(1.0/2))*(nu_ai(X))**(7.0/4)) / (189*pi*((C(X))**2 + aZ**2)**3)
 
@@ -45,7 +34,7 @@ D_an = Expression('pow(aspect,2)*sqrt(pi) / (2*a_m) * (rho_pe * Temp) / B', degr
 def python_g_n_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (8*a_m) * n(X) * m_i * rho_pi(X) * (v_Ti(X))**2 * B_p * xi_p(X, aZ)
 g_n_bulk = Expression('pow(aspect,2)*sqrt(pi) / (8*a_m) * n * m_i * rho_pi * pow(v_Ti,2) * B_p * xi_p', degree=1, aspect=aspect, a_m=a_m, n=n, m_i=m_i, rho_pi=rho_pi, v_Ti=v_Ti, B_p=B_p, xi_p=xi_p)
 
-# TAYLOR EXPANDED VERSIONS
+# TAYLOR EXPANDED VERSION
 def python_g_n_bulk_taylor(X, aZ): return aspect**2*pi**(1.0/2.0) / (8*a_m) * n(X) * m_i * rho_pi(X) * (v_Ti(X))**2 * B_p * python_xi_p_taylor(X, aZ)
 g_n_bulk_taylor = Expression('pow(aspect,2)*sqrt(pi) / (8*a_m) * n * m_i * rho_pi * pow(v_Ti,2) * B_p * xi_p', degree=1, aspect=aspect, a_m=a_m, n=n, m_i=m_i, rho_pi=rho_pi, v_Ti=v_Ti, B_p=B_p, xi_p=xi_p_taylor)
 
@@ -60,7 +49,7 @@ g_n_cx = Expression('-m_i*n_0*R_cx *n*Temp / pow(B_p,2)', degree=1, m_i=m_i, n_0
 def python_g_T_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (8*a_m) * n(X) * m_i * rho_pi(X) * (v_Ti(X))**2 * (B_p*xi_p(X, aZ) - B*xi_t(X, aZ))
 g_T_bulk = Expression('pow(aspect,2)*sqrt(pi) / (8*a_m) * n * m_i * rho_pi * pow(v_Ti,2) * (B_p*xi_p - B*xi_t)', degree=1, aspect=aspect, a_m=a_m, n=n, m_i=m_i, rho_pi=rho_pi, v_Ti=v_Ti, B_p=B_p, B=B, xi_p=xi_p, xi_t=xi_t)
 
-# TAYLOR EXPANDED VERSIONS
+# TAYLOR EXPANDED VERSION
 def python_g_T_bulk_taylor(X, aZ): return aspect**2*pi**(1.0/2.0) / (8*a_m) * n(X) * m_i * rho_pi(X) * (v_Ti(X))**2 * (B_p*python_xi_p_taylor(X, aZ) - B*python_xi_t_taylor(X, aZ))
 g_T_bulk_taylor = Expression('pow(aspect,2)*sqrt(pi) / (8*a_m) * n * m_i * rho_pi * pow(v_Ti,2) * (B_p*xi_p - B*xi_t)', degree=1, aspect=aspect, a_m=a_m, n=n, m_i=m_i, rho_pi=rho_pi, v_Ti=v_Ti, B_p=B_p, B=B, xi_p=xi_p_taylor, xi_t=xi_t_taylor)
 
@@ -75,7 +64,7 @@ g_T_cx = Expression('a_cx*g_n_cx', degree=1, a_cx=a_cx, g_n_cx=g_n_cx)
 def python_g_Z_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (4*a_m) * n(X) * m_i * (v_Ti(X))**2 * B_p*xi_p(X, aZ)
 g_Z_bulk = Expression('pow(aspect,2)*sqrt(pi) / (4*a_m) * n * m_i * pow(v_Ti,2) * B_p*xi_p', degree=1, aspect=aspect, a_m=a_m, n=n, m_i=m_i, v_Ti=v_Ti, B_p=B_p, xi_p=xi_p)
 
-# TAYLOR EXPANDED VERSIONS
+# TAYLOR EXPANDED VERSION
 def python_g_Z_bulk_taylor(X, aZ): return aspect**2*pi**(1.0/2.0) / (4*a_m) * n(X) * m_i * (v_Ti(X))**2 * B_p*python_xi_p_taylor(X, aZ)
 g_Z_bulk_taylor = Expression('pow(aspect,2)*sqrt(pi) / (4*a_m) * n * m_i * pow(v_Ti,2) * B_p*xi_p', degree=1, aspect=aspect, a_m=a_m, n=n, m_i=m_i, v_Ti=v_Ti, B_p=B_p, xi_p=xi_p_taylor)
 
@@ -97,7 +86,7 @@ def python_f_OL_taylor(X, aZ): return exp(-(nu_ai(X))**(1.0/2.0))*python_g_OL(X)
 f_OL_taylor = Expression('exp(-sqrt(nu_ai))*g_OL / sqrt(nu_ai) - (exp(-sqrt(nu_ai))*g_OL * (1 + sqrt(nu_ai)))*pow(x[1],4) / (2*pow(nu_ai, 3.0/2.0))', degree=1, nu_ai=nu_ai, g_OL=g_OL)
 
 
-import numpy
+#import numpy
 
 ## ----------------- PRINT NON-Z Dependent Terms ----------
 #table_head_array = ['x', 'n', 'Temp', 'g_n_an', 'g_n_cx', 'g_T_an', 'g_T_cx', 'g_Z_an', 'g_Z_cx']
@@ -116,9 +105,21 @@ import numpy
 #
 #Z_values = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]
 #
-#for k in Z_values:
-#	for j in numpy.arange(0.0, 1.0, 0.001):			# x loop
+##for k in Z_values:
+#for j in numpy.arange(0.0, 1.0, 0.001):			# x loop
+#	for k in numpy.arange(0.0, 4.1, 0.01):		# Z loop
 #		print j, k, n(j), Temp(j), g_n_bulk(j,k), g_T_bulk(j,k), g_Z_bulk(j,k), f_OL(j,k)
+
+## ----------------- Full Calculation ---------------------
+#table_head_array = ['x', 'Z', 'n', 'Temp', 'g_n_an', 'g_n_cx', 'g_n_bulk', 'g_T_an', 'g_T_cx', 'g_T_bulk', 'g_Z_an', 'g_Z_cx', 'g_Z_bulk', 'f_OL']
+#
+#for i in range(len(table_head_array)):
+#	print "#" + str(i+1) + "\t" + str(table_head_array[i])
+#
+#for j in numpy.arange(0.0, 1.001, 0.001):		# x loop
+#	for k in numpy.arange(0.0, 4.1, 0.1):		# Z loop
+#		print j, k, n(j), Temp(j), g_n_an(j), g_n_cx(j), g_n_bulk(j,k), g_T_an(j), g_T_cx(j), g_T_bulk(j,k), g_Z_an(j), g_Z_cx(j), g_Z_bulk(j,k), f_OL(j,k)
+
 
 ## ----------------- Python Comparison --------------------
 #table_head_array_Z = ['Z', 'Python g_n_bulk', 'g_n_bulk', 'Python g_n_bulk_taylor', 'g_n_bulk_taylor', 'Python g_T_bulk', 'g_T_bulk', 'Python g_T_bulk_taylor', 'g_T_bulk_taylor', 'Python g_Z_bulk', 'g_Z_bulk', 'Python g_Z_bulk_taylor', 'g_Z_bulk_taylor', 'Python f_OL', 'f_OL', 'Python f_OL_taylor', 'f_OL_taylor']
