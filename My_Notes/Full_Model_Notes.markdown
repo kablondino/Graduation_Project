@@ -29,10 +29,10 @@ with $\alpha_\text{sup}$ as the suppression rate coefficient. This arises from t
 $$\delta \Omega \,=\, \left\{x, t \,\in\, \Omega ~|~ x = 0 ~~\text{and}~~ x = L\right\}$$
 
 The Neumann and Robin boundary conditions can be expressed in the form of
-$$p\left(x, t, \mathbf{v}, \dfrac{\partial \mathbf{v}}{\partial x}\right) + F\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \,=\, 0 ~~~~~ \text{for} ~~~~~ (x, t) \in \delta\Omega$$
+$$p\left(x, t, \mathbf{v}\right) + F\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \,=\, 0 ~~~~~ \text{for} ~~~~~ (x, t) \in \delta\Omega$$
 
 The $p$ term is expressed, with $\Gamma_c$ and $q_c(t)$ as actuation paramters:
-$$p(0, t) \,=\, \begin{bmatrix}
+$$p(0, t) \,=\, -\begin{bmatrix}
 				D(\partial_x Z) \dfrac{n}{\lambda_n}\\
 				\dfrac{D(\partial_x Z)}{\zeta} \dfrac{T}{\lambda_T} \\
 				\dfrac{\mu D(\partial_x Z)}{\epsilon} \dfrac{Z}{\lambda_Z}
@@ -47,6 +47,12 @@ p(L, t) \,=\, \begin{bmatrix}
 A good initial condition for $Z$:
 $$Z(x, 0) \,=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L)}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right]$$
 
+<!---
+Parameters used by Staps:
+ $\Gamma_c$  $\gamma$  $\lambda_n$  $\lambda_T$  $\lambda_Z$  $D_\text{min}$  $D_\text{max}$  $\zeta$  $c_n$  $c_T$  $q_c$  $a$  $b$  $c$  $Z_S$  $\alpha_\text{sup}$  $\mu$  $\epsilon$ 
+ -----  -----  -----  -----  -----  -----  -----  -----  -----  -----  -----  -----  -----  -----  -----  -----  -----  ----- 
+ $-\dfrac{4}{5}$  $\dfrac{5}{3}$  $\dfrac{5}{4}$  $\dfrac{3}{2}$  $\dfrac{5}{4}$  $\dfrac{2}{5}$  $2$  $\dfrac{1}{2}$  $-1.1$  $-0.9$  $-4$  $\dfrac{3}{2}$  $2$  $-1$  $-\dfrac{3}{2}$  $\dfrac{1}{2}$  $\dfrac{1}{20}$  $\dfrac{1}{25}$ 
+--->
 -----------------------------------------------------------
 
 ## Expanded Model for All Plasma Variables
