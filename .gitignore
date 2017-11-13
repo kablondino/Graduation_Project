@@ -11,10 +11,6 @@
 *.xml
 *.bcf
 
-# Image files
-*.jpg
-*.png
-
 # Paraview files
 *.vtu
 *.pvd
