@@ -45,7 +45,7 @@ p(L, t) \,=\, \begin{bmatrix}
 				\end{bmatrix}_{x = L}$$
 
 A good initial condition for $Z$:
-$$Z(x, 0) \,=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L)}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right]$$
+$$Z(x, 0) \,=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right]$$
 
 <!---
 Parameters used by Staps:
