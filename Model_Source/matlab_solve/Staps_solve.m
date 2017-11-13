@@ -1,6 +1,7 @@
 function Staps_solve
 
-global epsilon mu zeta c_n c_T D_min D_max alpha_sup g1 g2 g3 Z_S Gamma_c gamma q_c lambda_n lambda_T lambda_Z% D_shear
+global L epsilon mu zeta c_n c_T D_min D_max alpha_sup g1 g2 g3 Z_S Gamma_c gamma q_c lambda_n lambda_T lambda_Z
+L = 5.0;
 epsilon = 1.0/25.0;
 mu = 1.0/20.0;
 zeta = 0.5;
@@ -24,7 +25,7 @@ lambda_n = 1.25;
 lambda_T = 1.5;
 lambda_Z = 1.25;
 
-x = linspace(0, 1, 100);
+x = linspace(0, L, 100);	% CHANGE!
 t = linspace(0, 1, 100);
 
 sol = pdepe(0, @the_pde, @the_ic, @the_bc, x, t);
@@ -32,23 +33,27 @@ n = sol(:,:,1);
 Temp = sol(:,:,2);
 Z = sol(:,:,3);
 
-figure;
-surf(x, t, n);
-title('Density');
-xlabel('x');
-ylabel('t');
+%figure;
+%surf(x, t, n);
+%title('Density');
+%xlabel('x');
+%ylabel('t');
+%
+%figure;
+%surf(x, t, Temp);
+%title('Temperature');
+%xlabel('x');
+%ylabel('t');
+%
+%figure;
+%surf(x, t, Z);
+%title('Electric Field');
+%xlabel('x');
+%ylabel('t');
 
 figure;
-surf(x, t, Temp);
-title('Temperature');
-xlabel('x');
-ylabel('t');
-
-figure;
-surf(x, t, Z);
-title('Electric Field');
-xlabel('x');
-ylabel('t');
+plot(x,Z(end,:));
+title('A Test');
 
 	function [c, f, s] = the_pde(x, t, u, DuDx)
 	D_shear = D_min + (D_max - D_min) / (1 + alpha_sup*(DuDx(3))^2);
@@ -63,11 +68,11 @@ ylabel('t');
 
 	function u0 = the_ic(x)
 %	u0 = [-(Gamma_c*lambda_n)/(D_shear(0)); 2.0e3*x; Z_S*(1.0 - tanh(0.5*(x - 1.0)))];
-	u0 = [1.0e19*x; 2.0e3*x; Z_S*(1.0 - tanh(0.5*(x - 1.0)))];
+	u0 = [1.0e19*x; 2.0e3*x; Z_S*(1.0 - tanh((L / 2.0)*(x - 1.0)))];
 	end
 
 	function [pl, ql, pr, qr] = the_bc(xl, ul, xr, ur, t)
-	pl = -[ul(1)/lambda_n; (1.0/zeta)*ul(2)/lambda_T; mu/epsilon*ul(3)/lambda_Z];% * D_shear;
+	pl = -[ul(1)/lambda_n; (1.0/zeta)*ul(2)/lambda_T; mu/epsilon*ul(3)/lambda_Z] * (D_min + (D_max - D_min) / (1 + alpha_sup*(ul(3) / lambda_Z)^2));
 	ql = [1; 1; 1];
 	pr = [Gamma_c; ((gamma - 1)*q_c - ur(2)*Gamma_c) / ur(1); 0];
 	qr = [1; 1; 1];
