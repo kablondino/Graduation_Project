@@ -13,6 +13,10 @@ D_max = 2.0
 alpha_sup = 0.5
 Z_S = 0.5
 
+# TO BE FILLED IN
+lambda_n = ??
+Gamma_c = ??
+
 #var('D_min,D_max,alpha_sup,Z_S,L')
 
 Z = Z_S*(1 - tanh((L/2)*(x - 1)))
@@ -36,7 +40,7 @@ f = desolve( density_initial_cond, n, ivar=x, show_method=True )
 pretty_print( f )
 #pretty_print(density_initial_cond)
 
-# Plot everything!
+## ----------------- Plot everything! ---------------------
 #plotting_colors = ['red','green','blue', 'magenta', 'cyan', 'yellow']
 #
 #Z_title = 'Initial Condition of $Z(x) = Z_S\\left[1 - \\tanh\\left(\\frac{Lx - L}{2}\\right)\\right]$ and its Derivatives'
