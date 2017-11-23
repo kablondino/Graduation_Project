@@ -1,3 +1,6 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
 \documentclass[a4paper,10pt]{article}
 \usepackage{fullpage}
 \usepackage[nodisplayskipstretch]{setspace}
@@ -9,12 +12,9 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
+  \usepackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
@@ -24,18 +24,17 @@
 \usepackage[]{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
-\usepackage[unicode=true]{hyperref}
-\hypersetup{
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
 \IfFileExists{parskip.sty}{%
 \usepackage{parskip}
 }{% else
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 }
+\usepackage{hyperref}
+\hypersetup{
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -60,22 +59,18 @@
 
 \begin{document}
 
-\section{Full Model Notes}\label{full-model-notes}
+\hypertarget{full-model-notes}{%
+\section{Full Model Notes}\label{full-model-notes}}
 
-The full model acts on the domain of
-
-\begin{align}
+The full model acts on the domain of \begin{align}
     \Omega \,=\, \left\{x, t \,\in\, \mathbb{R}^2 \,|\, (0 \leq x \leq L) ~\text{and}~ (t \geq 0)\right\}.
 \end{align}
 
-The model can be reduced down to the following form:
-
-\begin{align}
+The model can be reduced down to the following form: \begin{align}
     \dfrac{\partial}{\partial t} \mathbf{v}(x,t) \,=\, \dfrac{\partial}{\partial x} F\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \,+\, S\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right).
 \end{align}
 
 The vectors \(\mathbf{v}\), \(F\), and \(S\) represent the following:
-
 \begin{align}
 \mathbf{v} \,=\,\begin{bmatrix} n(x, t) \\ T(x, t) \\ Z(x, t) \end{bmatrix}~,~~~~
 \mathbf{F} \,=\, \begin{bmatrix}
@@ -91,31 +86,27 @@ The vectors \(\mathbf{v}\), \(F\), and \(S\) represent the following:
 \end{align}
 
 The diffusivity function \(D(\mathcal{E})\) is given in a few forms:
-
 \begin{align}
     D(Z) \,&=\, \dfrac{D_\text{max} + D_\text{min}}{2} + \dfrac{(D_\text{max} - D_\text{min})\tanh(Z)}{2} ~~~~~~ &\text{Zohm} \\
     D(Z^\prime) \,&=\, D_\text{min} \,+\, \dfrac{D_\text{max} - D_\text{min}}{1 + \alpha_\text{sup}\cdot(Z^\prime)^2} ~~~~~~ &\text{Staps} \\
     D(Z, Z^\prime) \,&=\, D_\text{min} + \dfrac{D_\text{max} - D_\text{min}}{1 + a_1\,Z^2 + a_2\,Z \cdot Z^\prime + a_3\left(Z^\prime\right)^2} ~~~~~~ &\text{Flow-Shear}
 \end{align}
 
+\hypertarget{domain-boundary-boundary-conditions-and-initial-conditions}{%
 \subsubsection{Domain Boundary, Boundary Conditions, and Initial
-Conditions}\label{domain-boundary-boundary-conditions-and-initial-conditions}
+Conditions}\label{domain-boundary-boundary-conditions-and-initial-conditions}}
 
 \begin{align}
     \delta \Omega \,=\, \left\{x, t \,\in\, \Omega ~|~ x = 0 ~~\text{and}~~ x = L\right\}
 \end{align}
 
 The Neumann and Robin boundary conditions can be expressed in the form
-of
-
-\begin{align}
+of \begin{align}
     p\left(x, t, \mathbf{v}\right) \,+\, F\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \,=\, 0 ~~~ \text{for} ~~~ (x, t) \in \delta\Omega.
 \end{align}
 
 The \(p\) term is expressed, with \(\Gamma_c\) and \(q_c(t)\) as
-actuation paramters:
-
-\begin{align}
+actuation paramters: \begin{align}
 p(0, t) \,=\, -\begin{bmatrix}
                 D \cdot \dfrac{n}{\lambda_n}\\[2ex]
                 \dfrac{D}{\zeta} \cdot \dfrac{T}{\lambda_T} \\[2ex]
@@ -129,17 +120,16 @@ p(L, t) \,=\, \begin{bmatrix}
                 \end{bmatrix}_{x = L}.
 \end{align}
 
-Stap's initial condition for \(Z\), and Paquay's initial conditions for
-density and temperature:
-
-\begin{align}
-    Z(x,0) \,&=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right], \\
-    n(x,0) \,&=\, \dfrac{\Gamma_\infty \lambda_n}{D} \, \left(1 + \frac{x}{\lambda_n}\right), \\
-    T(x,0) \,&=\, q_\infty \, \dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1 - \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1 + \frac{x}{\lambda_n}\right)^{-\zeta}\right].
+Paquay's initial conditions for density and temperature, and Stap's
+initial condition for \(Z\): \begin{align}
+    n(x,0) \,&=\, -\dfrac{\Gamma_\infty \lambda_n}{D} \, \left(1 + \frac{x}{\lambda_n}\right), \\
+    T(x,0) \,&=\, q_\infty \, \dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1 - \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1 + \frac{x}{\lambda_n}\right)^{-\zeta}\right], \\
+    Z(x,0) \,&=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right].
 \end{align}
 
+\hypertarget{expanded-model-for-all-plasma-variables}{%
 \subsection{Expanded Model for All Plasma
-Variables}\label{expanded-model-for-all-plasma-variables}
+Variables}\label{expanded-model-for-all-plasma-variables}}
 
 \begin{align}
     \dfrac{\partial n}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[D \cdot n^\prime\right] \,+\, 0 \\
@@ -147,8 +137,9 @@ Variables}\label{expanded-model-for-all-plasma-variables}
     \epsilon \dfrac{\partial Z}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\mu\,D \cdot Z^\prime\right] \,+\, \dfrac{c_n T}{n^2} \cdot n^\prime \,+\, \dfrac{c_T}{n} \cdot T^\prime \,+\, G(Z)
 \end{align}
 
+\hypertarget{alternate-z-model-with-substitutions}{%
 \subsection{\texorpdfstring{Alternate \(Z\) Model, with
-Substitutions}{Alternate Z Model, with Substitutions}}\label{alternate-z-model-with-substitutions}
+Substitutions}{Alternate Z Model, with Substitutions}}\label{alternate-z-model-with-substitutions}}
 
 \begin{align}
     &\dfrac{m_i}{e \rho_{pi}} \,n T\, \left(\dfrac{B_\theta}{B}\right)^2 \dfrac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu_i}{e \rho_{pi}} \,n T\, \dfrac{\partial^2 Z}{\partial x^2} \\
@@ -201,7 +192,8 @@ Substitutions}{Alternate Z Model, with Substitutions}}\label{alternate-z-model-w
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\subsubsection{Extra Information}\label{extra-information}
+\hypertarget{extra-information}{%
+\subsubsection{Extra Information}\label{extra-information}}
 
 \begin{align}
     n\,T \,=\, \left(\gamma - 1\right)U

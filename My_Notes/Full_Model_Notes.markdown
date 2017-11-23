@@ -58,11 +58,11 @@ p(L, t) \,=\, \begin{bmatrix}
 				\end{bmatrix}_{x = L}.
 \end{align}
 
-Stap's initial condition for $Z$, and Paquay's initial conditions for density and temperature:
+Paquay's initial conditions for density and temperature, and Stap's initial condition for $Z$:
 \begin{align}
-	Z(x,0) \,&=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right], \\
-	n(x,0) \,&=\, \dfrac{\Gamma_\infty \lambda_n}{D} \, \left(1 + \frac{x}{\lambda_n}\right), \\
-	T(x,0) \,&=\, q_\infty \, \dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1 - \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1 + \frac{x}{\lambda_n}\right)^{-\zeta}\right].
+	n(x,0) \,&=\, -\dfrac{\Gamma_\infty \lambda_n}{D} \, \left(1 + \frac{x}{\lambda_n}\right), \\
+	T(x,0) \,&=\, q_\infty \, \dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1 - \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1 + \frac{x}{\lambda_n}\right)^{-\zeta}\right], \\
+	Z(x,0) \,&=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right].
 \end{align}
 
 <!---
