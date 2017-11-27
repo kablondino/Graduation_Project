@@ -23,10 +23,10 @@ x = mesh.cellCenters[0]
 t = timeStepDuration * steps
 
 # Solution variable
-density = CellVariable(name="Particle Density", mesh=mesh)
+density = CellVariable(name=r"$n$", mesh=mesh)
 
 # Initial Condition
-density_initial = CellVariable(name="Initial Condition", mesh=mesh, value=-Gamma_c*lambda_n / diffusivity * (1 + x/lambda_n))
+density_initial = CellVariable(name=r"$n_0$", mesh=mesh, value=-Gamma_c*lambda_n / diffusivity * (1 + x/lambda_n))
 density.setValue(density_initial)
 
 # Boundary conditions:
@@ -40,14 +40,13 @@ density.constrain(density_right_neumann, mesh.facesRight)
 
 
 # Set the equation
-density_equation = TransientTerm() == DiffusionTerm(coeff=diffusivity)
+density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=diffusivity, var=density)
  
 if __name__ == '__main__':
 	viewer = Viewer(vars=(density, density_initial), datamin=0.0, datamax=max(density_initial))
 
-for step in range(steps):
+for step in range(100):
 	density_equation.solve(var=density, dt=timeStepDuration)
-#	print density
 	if __name__ == '__main__':
 		viewer.plot()
 
