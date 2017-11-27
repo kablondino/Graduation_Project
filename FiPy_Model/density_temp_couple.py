@@ -1,11 +1,11 @@
 ## This file calculates the density AND temperature with naive diffusivity
 
-from fipy import Variable, CellVariable, Grid1D, TransientTerm, DiffusionTerm, Viewer
+from fipy import Variable, CellVariable, Grid1D, TransientTerm, DiffusionTerm, ExplicitDiffusionTerm, ConvectionTerm, ImplicitSourceTerm, Viewer
 
 from fipy.tools import numerix
 
 L = 5.0
-nx = 50
+nx = 100
 dx = L / nx
 mesh = Grid1D(nx=nx, dx=dx)
 
@@ -24,17 +24,16 @@ timeStepDuration = 9 * dx**2 / (2*diffusivity)
 steps = 50
 
 x = mesh.cellCenters[0]
-t = timeStepDuration * steps
 
 # Solution variable
-density = CellVariable(name="Particle Density", mesh=mesh)
-temperature = CellVariable(name="Temperature", mesh=mesh)
+density = CellVariable(name=r"$n$", mesh=mesh)
+temperature = CellVariable(name=r"$T$", mesh=mesh)
 
 # Initial Conditions
 density_initial = CellVariable(name="Initial Density", mesh=mesh, value=-Gamma_c*lambda_n / diffusivity * (1 + x/lambda_n))
 density.setValue(density_initial)
 
-temp_initial = CellVariable(name"Initial Temperature", mesh=mesh, value= q_c * (gamma - 1) / Gamma_c * (1 - (lambda_n / (zeta*lambda_T + lambda_n)) * (1 + x/lambda_n)**(-zeta)))
+temp_initial = CellVariable(name="Initial Temperature", mesh=mesh, value= q_c * (gamma - 1) / Gamma_c * (1 - (lambda_n / (zeta*lambda_T + lambda_n)) * (1 + x/lambda_n)**(-zeta)))
 temperature.setValue(temp_initial)
 
 
@@ -51,23 +50,31 @@ density.constrain(density_right_neumann, mesh.facesRight)
 #	d/dx(T(L,t)) = (T*Gamma_c - (gamma - 1)*q_c) / (diffusivity * n)
 temp_left_neumann = temperature / (lambda_T*(1 + (zeta+1)*(1/density)*density.grad))		# FIX!
 temperature.faceGrad.constrain(temp_left_neumann, mesh.facesLeft)
+#print temp_left_neumann		# How to represent derivative, not grad!
 
 temp_right_neumann = (zeta*(temperature*Gamma_c - (gamma-1)*q_c)) / (diffusivity*density)	# FIX!
 temperature.faceGrad.constrain(temp_right_neumann, mesh.facesLeft)
 
 
-# Set the equation
-density_equation = TransientTerm() == DiffusionTerm(coeff=diffusivity)
-temp_equation = TransientTerm() == DiffusionTerm(coeff=diffusivity / zeta) + Source()		# OBVIOUSLY FIX
- 
-if __name__ == '__main__':
-	viewer = Viewer(vars=(density, density_initial), datamin=0.0, datamax=max(density_initial))
+# Set the equations
+density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=diffusivity, var=density)
 
-for step in range(steps):
-	density_equation.solve(var=density, dt=timeStepDuration)
-#	print density
-	if __name__ == '__main__':
-		viewer.plot()
+S_T = (zeta + 1) / zeta * diffusivity / density * (density.grad.mag * temperature.grad.mag)
+#print S_T
+
+#print S_T * ConvectionTerm((zeta,0))# * ConvectionTerm((1.0,), var=temperature)
+temp_equation = TransientTerm(var=temperature) == ExplicitDiffusionTerm(coeff=diffusivity / zeta, var=temperature) + S_T
+
+semifull_eq = density_equation & temp_equation
+print semifull_eq
+ 
+#if __name__ == '__main__':
+#	viewer = Viewer((density, temperature), datamin=0.0, datamax=max(temp_initial))
+#
+#for step in range(steps):
+#	semifull_eq.solve(dt=timeStepDuration)
+#	if __name__ == '__main__':
+#		viewer.plot()
 
 if __name__ == '__main__':
 	raw_input("Pause. Press <return> to continue.")
