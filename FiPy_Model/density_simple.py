@@ -9,18 +9,17 @@ nx = 50
 dx = L / nx
 mesh = Grid1D(nx=nx, dx=dx)
 
+## Main coordinate
+x = mesh.cellCenters[0]
+
 # Parameters from core, SOL, etc.
 Gamma_c = -4.0/5.0
 lambda_n = 5.0/4.0
 
 # Diffusivity function(s) OR constant
-diffusivity = 5
+diffusivity = 5.0
 
-timeStepDuration = 9 * dx**2 / (2*diffusivity)
-steps = 50
-
-x = mesh.cellCenters[0]
-t = timeStepDuration * steps
+timeStepDuration = 9 * dx**2 / (2*diffusivity) # This is default to math
 
 # Solution variable
 density = CellVariable(name=r"$n$", mesh=mesh)
