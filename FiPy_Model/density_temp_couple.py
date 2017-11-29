@@ -28,15 +28,15 @@ density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True, value=density0)
 temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True, value=temp0)
 
 ## Density Boundary Conditions:
-#	D*n(0,t) / lambda_n + D*d/dx(n(0,t)) == 0
-#	Gamma_c(t) + D*d/dx(n(L,t)) == 0
+#	d/dx(n(0,t)) == n / lambda_n
+#	d/dx(n(L,t)) == D / Gamma_c
 density_left = density / lambda_n
 density.faceGrad.constrain(density_left, mesh.facesLeft)
 density_right = -Gamma_c / D
 density.faceGrad.constrain(density_right, mesh.facesRight)
 
 ## Temperature Boundary Conditions:
-#	d/dx(T(0,t)) = T / (lambda_T*(1 + (zeta+1)*(1/n)*dn/dx))
+#	d/dx(T(0,t)) = T / lambda_T
 #	d/dx(T(L,t)) = (T*Gamma_c - (gamma - 1)*q_c) / (diffusivity * n)
 temp_left = temperature / lambda_T
 temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
@@ -45,11 +45,11 @@ temp_right = (zeta / D)#*(temperature*Gamma_c - (gamma - 1)*q_c) / density
 temperature.faceGrad.constrain(temp_right, mesh.facesRight)
 
 # Density Equation
-density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=5.0, var=density)
+density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=D, var=density)
 
 # Temperature Equation
 S_T = ((zeta+1)/zeta)*(D/density)*numerix.dot(density.grad,temperature.grad)
-temp_equation = TransientTerm(var=temperature) == DiffusionTerm(coeff=5.0/0.5, var=temperature) + S_T
+temp_equation = TransientTerm(var=temperature) == DiffusionTerm(coeff=D/zeta, var=temperature) + S_T
 
 
 # Coupled Equation
