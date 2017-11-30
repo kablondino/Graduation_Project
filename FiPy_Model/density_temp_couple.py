@@ -2,14 +2,13 @@ from fipy import Grid1D, CellVariable, TransientTerm, DiffusionTerm, Viewer, Con
 
 from fipy.tools import numerix
 
-nx = 100
+nx = 10
 L = 5.0
 mesh = Grid1D(nx=nx, Lx=L)
 
 x = mesh.cellCenters[0]
 
 # Parameters
-D = 1.0
 zeta = 0.5
 Gamma_c = -4.0/5.0
 q_c = -4.0
@@ -17,31 +16,42 @@ gamma = 5.0/3.0
 lambda_n = 5.0/4.0
 lambda_T = 3.0/2.0
 
-# Initial Conditions
+# ----------------- Variable Declarations -----------------
+density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True)
+
+temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True)
+
+#D = CellVariable(name=r"$D$", mesh=mesh, hasOld=True)
+
+# ----------- Initial Conditions and Diffusivity ----------
+temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1.0) / Gamma_c) * (1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
+print temp0
+temperature.setValue(temp0)
+
+# PseudoDiffusivity
+D = (1.0 / zeta)
+print D
+
 density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / D) * (1 + x/0.5))
+print density0
+density.setValue(density0)
 
-temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1) / Gamma_c) * (1 - lambda_n / (zeta*lambda_T + lambda_n)*(1 + x/lambda_n)**(-zeta)))
-
-# Variable Declarations
-density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True, value=density0)
-
-temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True, value=temp0)
 
 ## Density Boundary Conditions:
 #	d/dx(n(0,t)) == n / lambda_n
 #	d/dx(n(L,t)) == D / Gamma_c
-density_left = density / lambda_n
+density_left = density[0] / lambda_n
 density.faceGrad.constrain(density_left, mesh.facesLeft)
-density_right = -Gamma_c / D
+density_right = -Gamma_c / temperature[nx-1]
 density.faceGrad.constrain(density_right, mesh.facesRight)
 
 ## Temperature Boundary Conditions:
 #	d/dx(T(0,t)) = T / lambda_T
 #	d/dx(T(L,t)) = (T*Gamma_c - (gamma - 1)*q_c) / (diffusivity * n)
-temp_left = temperature / lambda_T
+temp_left = temperature[0]/ lambda_T
 temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
 # THE FOLLOWING NEEDS TO BE FIXED, since the index gets messed up
-temp_right = (zeta / D)#*(temperature*Gamma_c - (gamma - 1)*q_c) / density
+temp_right = (zeta / D)*(temperature[nx-1]*Gamma_c - (gamma - 1)*q_c / density[nx-1])
 temperature.faceGrad.constrain(temp_right, mesh.facesRight)
 
 # Density Equation
