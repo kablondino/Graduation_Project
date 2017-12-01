@@ -2,7 +2,7 @@ from fipy import Grid1D, CellVariable, TransientTerm, DiffusionTerm, Viewer, Con
 
 from fipy.tools import numerix
 
-nx = 100
+nx = 1000
 L = 5.0
 mesh = Grid1D(nx=nx, Lx=L)
 
@@ -68,11 +68,9 @@ temperature.setValue(temp0)
 # Density Boundary Conditions:
 #	d/dx(n(0,t)) == n / lambda_n
 #	d/dx(n(L,t)) == D / Gamma_c
-density_left = density[0] / lambda_n
-density.faceGrad.constrain(density_left, mesh.facesLeft)
+density.faceGrad.constrain(density.faceValue / lambda_n, mesh.facesLeft)
 
-density_right = -Gamma_c / D[nx-1]
-density.faceGrad.constrain(density_right, mesh.facesRight)
+density.faceGrad.constrain(-Gamma_c / D.faceValue, mesh.facesRight)
 
 # Temperature Boundary Conditions:
 #	d/dx(T(0,t)) = T / lambda_T
@@ -85,11 +83,10 @@ temperature.faceGrad.constrain(temp_right, mesh.facesRight)
 
 # Z Boundary Conditions:
 #	d/dx(Z(0,t)) == Z / lambda_Z
+#	mu*D/epsilon * d/dx(Z(L,t)) == 0
 #	d^2/dx^2(Z(0,t)) == 0
-#	mu*D/epsilon * d/dx(Z(L,t)) == 0  ---->  Z == 0
-Z_left = Z[0] / lambda_Z
+Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
 Z.constrain(0.0, mesh.facesRight)
-Z.faceGrad.constrain(Z_left, mesh.facesLeft)
 
 Z.grad.faceGrad.constrain(0.0, mesh.facesLeft)
 
@@ -97,18 +94,15 @@ Z.grad.faceGrad.constrain(0.0, mesh.facesLeft)
 # ----------------- PDE Declarations ----------------------
 # Density Equation
 density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=D, var=density)
-print D
 
 # Temperature Equation
-S_T = ((zeta+1)/zeta)*(D/density)*numerix.dot(density.grad,temperature.grad)
-print S_T
+#S_T = ((zeta+1)/zeta)*(D/density) * numerix.dot(density.grad,temperature.grad)
+S_T = ConvectionTerm(coeff=((zeta+1)/zeta)*(D/density)*density.grad, var=temperature)
 temp_equation = TransientTerm(var=temperature) == DiffusionTerm(coeff=5.0/0.5, var=temperature) + S_T
 
 # Z Equation
 G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
-#S_Z = numerix.dot((c_n*temperature / density**2),density.grad) + numerix.dot((c_T / density), temperature.grad) + G
-#S_Z = ConvectionTerm(coeff=((c_n*temperature/density**2),), var=density) + ConvectionTerm(coeff=((c_T / density),), var=temperature) + G
-S_Z = G + (c_T*temperature / density**2)*density.grad.mag + (c_T / density)*temperature.grad.mag
+S_Z = G + (c_T / density)*temperature.grad.mag + (c_T*temperature / density**2)*density.grad.mag
 Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*D/epsilon, var=Z) + S_Z
 
 ## ALTERNATE Z Equation
@@ -120,14 +114,14 @@ Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*D/eps
 full_equation = density_equation & temp_equation & Z_equation
 
 
-#initial_viewer = Viewer((D,Z))
-#raw_input("Pause for Initial")
+initial_viewer = Viewer((density, temperature, Z, D))
+raw_input("Pause for Initial")
 
 if __name__ == '__main__':
-	viewer = Viewer((density, temperature, Z))
+	viewer = Viewer((density, temperature, Z, D), datamin=-3.0, datamax=3.0)
 	for t in range(100):
-		density.updateOld()
-		temperature.updateOld()
+		density.updateOld(); temperature.updateOld()
+		Z.updateOld(); D.updateOld()
 		full_equation.solve(dt=1.0e-2)
 		viewer.plot()
 
