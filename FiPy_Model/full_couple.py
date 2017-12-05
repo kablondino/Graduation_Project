@@ -49,13 +49,18 @@ Z0 = Z_S*(1 - numerix.tanh((L*x - L) / 2))
 Z.setValue(Z0)
 
 # Zohm's model
-#D.setValue((D_max + D_min) / 2.0 + ((D_max - D_min)*numerix.tanh(Z)) / 2.0)
+D_Zohm = (D_max + D_min) / 2.0 + ((D_max - D_min)*numerix.tanh(Z)) / 2.0
 # Stap's Model
 alpha_sup = 0.5
-#D.setValue(D_min + (D_max - D_min) / (1 + alpha_sup*(Z.grad.mag)**2))
+D_Staps = D_min + (D_max - D_min) / (1 + alpha_sup*(Z.grad.mag)**2)
 # Flow-Shear Model
 a1, a2, a3 = 0.7, 1.25, 0.5
-D.setValue(D_min + (D_max - D_min) / (1 + a1*Z**2 + a2*Z*(Z.grad) + a3*(Z.grad)**2))
+D_Shear = D_min + (D_max - D_min) / (1 + a1*Z**2 + a2*Z*(Z.grad) + a3*(Z.grad)**2)
+
+# CHOOSE DIFFUSIVITY HERE!
+D_choice = D_Shear
+
+D.setValue(D_choice)
 
 density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / D) * (1 + x/lambda_n))
 density.setValue(density0)
@@ -75,10 +80,10 @@ density.faceGrad.constrain(-Gamma_c / D.faceValue, mesh.facesRight)
 # Temperature Boundary Conditions:
 #	d/dx(T(0,t)) = T / lambda_T
 #	d/dx(T(L,t)) = (T*Gamma_c - (gamma - 1)*q_c) / (diffusivity * n)
-temp_left = temperature[0] / lambda_T
+temp_left = temperature.faceValue / lambda_T
 temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
 # THE FOLLOWING NEEDS TO BE FIXED, since the index gets messed up
-temp_right = (zeta / D[nx-1])*(temperature[nx-1]*Gamma_c - (gamma - 1)*q_c) / density[nx-1]
+temp_right = (zeta / D.faceValue)*(temperature.faceValue*Gamma_c - (gamma - 1)*q_c) / density.faceValue
 temperature.faceGrad.constrain(temp_right, mesh.facesRight)
 
 # Z Boundary Conditions:
@@ -92,6 +97,9 @@ Z.grad.faceGrad.constrain(0.0, mesh.facesLeft)
 
 
 # ----------------- PDE Declarations ----------------------
+# Diffusivity Equation
+diffusivity_equation = ImplicitSourceTerm(coeff=1.0, var=D) == D_choice
+
 # Density Equation
 density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=D, var=density)
 
@@ -111,14 +119,14 @@ Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*D/eps
 
 
 # Fully-Coupled Equation
-full_equation = density_equation & temp_equation & Z_equation
+full_equation = diffusivity_equation & density_equation & temp_equation & Z_equation
 
 
 initial_viewer = Viewer((density, temperature, Z, D))
 raw_input("Pause for Initial")
 
 if __name__ == '__main__':
-	viewer = Viewer((Z, D), datamin=-3.0, datamax=3.0)
+	viewer = Viewer((density, temperature, Z, D), datamax=3.0)
 	for t in range(100):
 		density.updateOld(); temperature.updateOld()
 		Z.updateOld(); D.updateOld()
