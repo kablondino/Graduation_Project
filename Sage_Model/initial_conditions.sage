@@ -41,7 +41,7 @@ diff_selector = diff_array[2]
 def diffusivity(aDiff_selector):
 	# Zohm model of diffusivity; considered non-realistic
 	if aDiff_selector.lower() == "zohm":
-		return ((D_max + D_min) / 2.0 + ((D_max + D_min)*tanh(Z)) / 2.0)
+		return ((D_max + D_min) / 2.0 + ((D_max - D_min)*tanh(Z)) / 2.0)
 
 	# Staps' model of diffusivity (not dependent on Z, but only on dZ/dx)
 	elif aDiff_selector.lower() == "staps":
@@ -91,6 +91,7 @@ def to_print():
 
 ## ----------------- Plot everything! ---------------------
 plotting_colors = ['red', 'green', 'blue', 'magenta', 'cyan', 'yellow']
+temp_plotting_colors = ['blue', 'orange', 'green']
 
 the_title = r"Initial Conditions with " + diffusivity_title(diff_selector)
 plot_min, plot_max = 0.0, 3.0
@@ -109,8 +110,8 @@ D_plot = plot(diffusivity(diff_selector), (x, plot_min, plot_max), gridlines=Tru
 #show(density_plot + temp_plot + Z_plot + D_plot + shear_plot, title=the_title)
 
 # Plot each diffusivity form
-D_plots = sum([plot(diffusivity(diff_array[i]), (x, plot_min, plot_max), gridlines=True, legend_label=diff_array[i], color=plotting_colors[i]) for i in range(3)])
-#show(D_plots, title= "Diffusivity Models")
+D_plots = sum([plot(diffusivity(diff_array[i]), (x, plot_min, plot_max), gridlines=True, legend_label=diff_array[i], color=temp_plotting_colors[i]) for i in range(3)])
+show(D_plots, title= "Diffusivity Models: SageMath")
 
 # ----------------- ANIMATIONS ----------------------------
 # Loop over diffusivity parameters
