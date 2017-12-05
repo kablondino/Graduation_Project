@@ -24,8 +24,8 @@ D_min = 2.0/5.0
 epsilon = 1.0/25.0
 mu = 1.0/20.0
 
-c_n = -1.1
-c_T = -0.9
+c_n = 1.1
+c_T = 0.9
 
 a = 3.0/2.0
 b = 2.0
@@ -58,7 +58,7 @@ a1, a2, a3 = 0.7, 1.25, 0.5
 D_Shear = D_min + (D_max - D_min) / (1 + a1*Z**2 + a2*Z*(Z.grad) + a3*(Z.grad)**2)
 
 # CHOOSE DIFFUSIVITY HERE!
-D_choice = D_Shear
+D_choice = D_Staps
 
 D.setValue(D_choice)
 
@@ -70,26 +70,32 @@ temperature.setValue(temp0)
 
 
 # ----------------- Boundary Conditions -------------------
-# Density Boundary Conditions:
-#	d/dx(n(0,t)) == n / lambda_n
-#	d/dx(n(L,t)) == D / Gamma_c
+"""
+	Density Boundary Conditions:
+	d/dx(n(0)) == n / lambda_n
+	d/dx(n(L)) == D / Gamma_c
+"""
 density.faceGrad.constrain(density.faceValue / lambda_n, mesh.facesLeft)
 
 density.faceGrad.constrain(-Gamma_c / D.faceValue, mesh.facesRight)
 
-# Temperature Boundary Conditions:
-#	d/dx(T(0,t)) = T / lambda_T
-#	d/dx(T(L,t)) = (T*Gamma_c - (gamma - 1)*q_c) / (diffusivity * n)
+"""
+	Temperature Boundary Conditions:
+	d/dx(T(0)) = T / lambda_T
+	d/dx(T(L)) = (T*Gamma_c - (gamma - 1)*q_c) / (diffusivity * n)
+"""
 temp_left = temperature.faceValue / lambda_T
 temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
-# THE FOLLOWING NEEDS TO BE FIXED, since the index gets messed up
+
 temp_right = (zeta / D.faceValue)*(temperature.faceValue*Gamma_c - (gamma - 1)*q_c) / density.faceValue
 temperature.faceGrad.constrain(temp_right, mesh.facesRight)
 
-# Z Boundary Conditions:
-#	d/dx(Z(0,t)) == Z / lambda_Z
-#	mu*D/epsilon * d/dx(Z(L,t)) == 0
-#	d^2/dx^2(Z(0,t)) == 0
+"""
+	Z Boundary Conditions:
+	d/dx(Z(0)) == Z / lambda_Z
+	mu*D/epsilon * d/dx(Z(L)) == 0
+	d^2/dx^2(Z(0)) == 0
+"""
 Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
 Z.constrain(0.0, mesh.facesRight)
 
@@ -113,24 +119,20 @@ G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
 S_Z = G + (c_T / density)*temperature.grad.mag + (c_T*temperature / density**2)*density.grad.mag
 Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*D/epsilon, var=Z) + S_Z
 
-## ALTERNATE Z Equation
-#S_Za = B_theta**2*((g_n_an - g_n_cx - g_n_bulk)*density.grad.mag/density + (g_T_an - g_T_cx - g_T_bulk)*temperature.grad.mag/temperature + (g_Z_an - g_Z_cx - g_Z_bulk)*Z - f_OL)
-#Z_equation = TransientTerm(coeff=, var=Z) == DiffusionTerm(coeff=, var=Z) + S_Za
-
 
 # Fully-Coupled Equation
-full_equation = diffusivity_equation & density_equation & temp_equation & Z_equation
+full_equation = density_equation & temp_equation & Z_equation & diffusivity_equation
 
 
-initial_viewer = Viewer((density, temperature, Z, D))
-raw_input("Pause for Initial")
+#initial_viewer = Viewer((density, temperature, Z, D))
+#raw_input("Pause for Initial")
 
 if __name__ == '__main__':
 	viewer = Viewer((density, temperature, Z, D), datamax=3.0)
 	for t in range(100):
 		density.updateOld(); temperature.updateOld()
-		Z.updateOld(); D.updateOld()
-		full_equation.solve(dt=1.0e-2)
+		Z.updateOld()#; D.updateOld()
+		full_equation.solve(dt=0.0005)
 		viewer.plot()
 
 	raw_input("End of Program. <return> to continue...")
