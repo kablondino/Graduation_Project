@@ -51,10 +51,10 @@ Z.setValue(Z0)
 # Zohm's model
 #D.setValue((D_max + D_min) / 2.0 + ((D_max - D_min)*numerix.tanh(Z)) / 2.0)
 # Stap's Model
-alpha_sup = 1.0
-#D = (D_min + (D_max - D_min) / (1 + alpha_sup*(Z.grad.mag)**2))
+alpha_sup = 0.5
+#D.setValue(D_min + (D_max - D_min) / (1 + alpha_sup*(Z.grad.mag)**2))
 # Flow-Shear Model
-a1, a2, a3 = 1.0, 1.0, 1.0
+a1, a2, a3 = 0.7, 1.25, 0.5
 D.setValue(D_min + (D_max - D_min) / (1 + a1*Z**2 + a2*Z*(Z.grad) + a3*(Z.grad)**2))
 
 density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / D) * (1 + x/lambda_n))
@@ -98,7 +98,7 @@ density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=D, var=dens
 # Temperature Equation
 #S_T = ((zeta+1)/zeta)*(D/density) * numerix.dot(density.grad,temperature.grad)
 S_T = ConvectionTerm(coeff=((zeta+1)/zeta)*(D/density)*density.grad, var=temperature)
-temp_equation = TransientTerm(var=temperature) == DiffusionTerm(coeff=5.0/0.5, var=temperature) + S_T
+temp_equation = TransientTerm(var=temperature) == DiffusionTerm(coeff=D/zeta, var=temperature) + S_T
 
 # Z Equation
 G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
@@ -118,7 +118,7 @@ initial_viewer = Viewer((density, temperature, Z, D))
 raw_input("Pause for Initial")
 
 if __name__ == '__main__':
-	viewer = Viewer((density, temperature, Z, D), datamin=-3.0, datamax=3.0)
+	viewer = Viewer((Z, D), datamin=-3.0, datamax=3.0)
 	for t in range(100):
 		density.updateOld(); temperature.updateOld()
 		Z.updateOld(); D.updateOld()
