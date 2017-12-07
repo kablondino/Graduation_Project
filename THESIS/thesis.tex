@@ -1,19 +1,46 @@
 \documentclass[a4paper,12pt]{report}
-\title{Radial Electric Field-Generating Terms in L-H Transitions}
-\author{{\Large Kevin A. Blondino} \\\\
-	\texttt{k.blondino@student.tue.nl} \\\\
-	Supervisor: dr. H.J. de Blank}
 
-\usepackage{fullpage, indentfirst, graphicx}
+\usepackage{lmodern}
+% Import specific style file in this directory
+\usepackage{thesis}
+
+\newcommand{\shortdoctitle}{$E_r$-Generating Terms}
+\newcommand{\doctitle}{Radial Electric Field-Generating Terms in L-H Transitions}
+\newcommand{\docsubtitle}{Master's Thesis}
+
+\newcommand{\me}{Kevin A. Blondino}
+\newcommand{\keywords}{H-mode, bifurcation}
+\newcommand{\version}{EMPTY version}
+\newcommand{\monthYear}{February 2018}
+
+\newcommand{\firstCommitteeMember}{Your First Committee Member}
+\newcommand{\secondCommitteeMember}{Your second Committee Member, usually the daily supervisor}
+\newcommand{\thirdCommitteeMember}{Your Third Committee Member, usually the external member}
+
+\title{Radial Electric Field-Generating Terms in L-H Transitions}
+\author{\me}
+
+\usepackage{fullpage, indentfirst, graphicx, amsmath}
 \usepackage[UKenglish]{isodate}
 \cleanlookdateon
-\usepackage{amsmath}
-\usepackage{hyperref}
-
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{backref}
+\usepackage{cleveref}
 %{{{ Setup References
-\usepackage[backend=bibtex,url=false]{biblatex}
+\usepackage[backend=bibtex, url=false, backref=true]{biblatex}
 \addbibresource{../References/References.bib}
 %}}}
+\usepackage{hyperref}
+
+\hypersetup
+{
+	pdfauthor={\me}
+	pdftitle={\shortdoctitle}
+	pdfsubject={\doctitle}
+	pdfkeywords={\keywords}
+}
+
 
 % Temporary Packages
 \usepackage{lipsum, xcolor}
@@ -21,9 +48,48 @@
 % ---------------------------------------------------------
 
 \begin{document}
-\maketitle
 
-FILL
+% Number the pages before the start
+\pagenumbering{roman}
+
+\include{titlepage}
+
+\normalsize
+
+\chapter*{Abstract}\label{chapter:abstract}
+%\input{ABSTRACT FILE HERE!!}
+
+\tableofcontents
+
+% ---------------------------------------------------------
+
+\chapter{Introduction}\label{chapter:introduction}
+\setcounter{page}{0}
+\pagenumbering{arabic}
+\input{Introduction/Introduction.tex}
+A TEST!\cite{snipes_h_1996}
+
+
+\clearemptydoublepage
+
+\chapter{Background}\label{chapter:background}
+\input{Background/Background.tex}
+
+
+\clearemptydoublepage
+
+\chapter{Method}\label{chapter:method}
+
+
+\clearemptydoublepage
+
+% ---------------------------------------------------------
+
+\appendix
+\addcontentsline{toc}{chapter}{Appendix}
+\input{Appendices/Appendix.tex}
+
+\printbibliography
 
 \end{document}
 
