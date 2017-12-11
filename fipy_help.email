@@ -1,0 +1,62 @@
+Hello,
+
+I have a somewhat complicated system of highly nonlinear, 1D PDE's which I am having trouble modeling. The issue is that I am not sure how to represent certain terms.
+
+Here is a the following LaTeX code for the system, as to make sure there is no ambiguity:
+\begin{align}
+	\frac{\partial n}{\partial t} \,&=\, \frac{\partial}{\partial x}\left(D \frac{\partial n}{\partial x}\right) \\
+	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x}\left(D \frac{\partial T}{\partial x}\right) + \frac{D}{n}\,\frac{\partial n}{\partial x}\,\frac{\partial T}{\partial x} \\
+	\frac{\partial Z}{\partial t} \,&=\, \frac{\partial}{\partial x}\left(D \frac{\partial Z}{\partial x}\right) + \frac{T}{n^2}\frac{\partial n}{\partial x} + \frac{1}{n}\frac{\partial T}{\partial x} + G(Z) \\
+	G(Z) \,&=\, a + b(Z - Z_S) + c(Z - Z_S)^3 \\
+	D \,&=\, 1 + \frac{1}{1 + Z^2 + Z\cdot\frac{\partial Z}{\partial x} + \left(\frac{\partial Z}{\partial x}\right)^2}
+\end{align}
+
+I have purposefully squelched many coefficients as possible to make simple.
+
+The main code I have been using to model them is as follows:
+
+	# ----------------- Variable Declarations -----------------
+	density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True)
+
+	temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True)
+
+	Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True)
+
+	## Diffusivity
+	D = CellVariable(name=r"$D$", mesh=mesh, hasOld=True)
+
+	... (initial and boundary conditions are here) ...
+
+	# ----------------- PDE Declarations ----------------------
+	# Diffusivity Equation (D)
+	diffusivity_equation = ImplicitSourceTerm(coeff=1.0, var=D) == 1.0 + 1.0 / (1 + Z**2 + Z*(Z.grad) + (Z.grad)**2)
+
+
+	# Density Equation (n)
+	density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=D, var=density)
+
+
+	# Temperature Equation (T)
+	S_T = (D/density) * numerix.dot(density.grad,temperature.grad) # ???
+	S_T_conv = ConvectionTerm(coeff=(D/density)*density.grad, var=temperature) # ??
+
+	temp_equation = TransientTerm(var=temperature) == DiffusionTerm(coeff=D, var=temperature) + S_T
+
+
+	# Z Equation
+	G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
+	S_Z = G + (1 / density)*temperature.grad.mag + (temperature / density**2)*density.grad.mag # ???
+	Z_equation = TransientTerm(coeff=1.0, var=Z) == DiffusionTerm(coeff=D, var=Z) + S_Z
+
+	# Fully-Coupled Equation
+	full_equation = density_equation & temp_equation & Z_equation & diffusivity_equation
+
+Should I model the last term in the temperature (T) equations as a convection term or explicit source term?
+What about the "S_Z" term in the Z equation?
+Is it required that I declare diffusivity (D) as a cell variable, as it is now?
+
+I appreciate any help that can be given.
+
+Thank you,
+Kevin
+
