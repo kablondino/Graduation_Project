@@ -26,6 +26,31 @@ B_p = mu_0 * I_p / ( 2*pi*a_m )
 q = aspect * B_t/B_p
 B = ( B_t**2 + B_p**2 )**(1.0/2.0)
 
+## PRESET parameters for quick calculation, many of which are chosen by Staps
+zeta = 0.5
+Gamma_c = -4.0/5.0
+q_c = -4.0
+gamma = 5.0/3.0
+
+lambda_n = 5.0/4.0
+lambda_T = 3.0/2.0
+lambda_Z = 5.0/4.0
+
+D_max = 2.0
+D_min = 2.0/5.0
+
+epsilon = 1.0/25.0
+mu = 1.0/20.0
+
+c_n = 1.1
+c_T = 0.9
+
+a = 3.0/2.0
+b = 2.0
+c = -1.0
+Z_S = -3.0/2.0
+
+
 ## Plasma Parameters
 def e_p(X): return 1.0 + (m_i*n(X) + m_e*n(X)) / (epsilon_0 * B**2)
 
@@ -79,6 +104,6 @@ def g_T_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (8*a_m) * n(X) * m_i * rho
 def g_Z_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (4*a_m) * n(X) * m_i * (v_Ti(X))**2 * B_p*xi_p(X, aZ)
 
 ## Ion Orbit Loss
-def g_OL(X, aZ) = charge * density * nu_eff * (aspect)**(1.0/2.0) * rho_pi
-def f_OL(X, aZ) = g_OL * exp(-(nu_ai + Z**4)**(1.0/2.0)) / (nu_ai + Z**4)**(1.0/2.0)
+def g_OL(X, aZ): return charge * density * nu_eff * (aspect)**(1.0/2.0) * rho_pi
+def f_OL(X, aZ): return g_OL * exp(-(nu_ai + Z**4)**(1.0/2.0)) / (nu_ai + Z**4)**(1.0/2.0)
 
