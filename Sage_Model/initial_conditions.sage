@@ -27,8 +27,8 @@ alpha_sup = 0.5
 Z_S = -1.5
 
 # Coefficients for the Flow-Shear model's denominator
-a1 = 0.7
-a2 = 1.25
+a1 = 1.0
+a2 = 0.0
 a3 = 0.5
 
 # Initial condition for Z used by Staps
