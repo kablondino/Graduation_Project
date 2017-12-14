@@ -6,10 +6,14 @@
 	variables and x.
 """
 
+
 from parameters import *
-from g_grad_system import *
+from variable_decl import *
 
 ## Plasma Parameters
+# Neutrals density in use for CX friction
+n_0 = 4.0e17 * a_in0 * (temperature / 100.0)**(3.0/4.0)
+
 e_p = 1.0 + (m_i*density + m_e*density) / (epsilon_0 * B**2)
 
 v_Ti = (2.0 * charge * temperature / m_i)**(1.0/2.0)
@@ -63,5 +67,5 @@ g_Z_cx = -g_n_cx / rho_pi
 
 ## Ion Orbit Loss
 g_OL = charge * density * nu_eff * (aspect)**(1.0/2.0) * rho_pi
-f_OL = g_OL * exp(-(nu_ai + Z**4)**(1.0/2.0)) / (nu_ai + Z**4)**(1.0/2.0)
+f_OL = g_OL * numerix.exp(-(nu_ai + Z**4)**(1.0/2.0)) / (nu_ai + Z**4)**(1.0/2.0)
 

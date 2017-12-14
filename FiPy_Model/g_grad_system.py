@@ -1,25 +1,10 @@
-from fipy import Grid1D, CellVariable, TransientTerm, DiffusionTerm, Viewer, ConvectionTerm, ImplicitSourceTerm
-
-from fipy.tools import numerix
+from fipy import TransientTerm, DiffusionTerm, Viewer, ConvectionTerm, ImplicitSourceTerm
 
 from parameters import *
-
-nx = 100
-L = 5.0
-mesh = Grid1D(nx=nx, Lx=L)
-
-x = mesh.cellCenters[0]
-
-# ----------------- Variable Declarations -----------------
-density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True)
-
-temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True)
-
-Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True)
-
+from coeffs import *
 
 # ------------- Initial Conditions and Diffusivity---------
-Z_S = -3.0/2.0
+#Z_S = -3.0/2.0
 Z0 = Z_S*(1 - numerix.tanh((L*x - L) / 2.0))
 Z.setValue(Z0)
 
@@ -36,13 +21,11 @@ D_Shear = D_min + (D_max - D_min) / (1 + a1*Z**2 + a3*numerix.dot(Z.grad, Z.grad
 Diffusivity = D_Shear
 
 
-density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / Diffusivity) * (1 + x/lambda_n))
+density0 = -(Gamma_c*lambda_n / Diffusivity) * (1 + x/lambda_n)
 density.setValue(density0)
 
-temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1) / Gamma_c) * (1 - lambda_n / (zeta*lambda_T + lambda_n)*(1 + x/lambda_n)**(-zeta)))
+temp0 = q_c*((gamma - 1) / Gamma_c) * (1 - lambda_n / (zeta*lambda_T + lambda_n)*(1 + x/lambda_n)**(-zeta))
 temperature.setValue(temp0)
-
-from coeffs import *
 
 # ----------------- Printing for testing ------------------
 
@@ -88,23 +71,25 @@ S_T = ((zeta+1)/zeta)*(Diffusivity/density) * numerix.dot(density.grad,temperatu
 temp_equation = TransientTerm(var=temperature) == DiffusionTerm(coeff=Diffusivity/zeta, var=temperature) + S_T
 
 # Z Equation
-#S_Z = B_theta**2 * ( (g_n_an - g_n_cx)/density + (g_T_an - g_T_cx)/temperature + (g_Z_an - g_Z_cx)*Z - f_OL )
+S_Z = B_theta**2 * ( (g_n_an - g_n_cx)/density + (g_T_an - g_T_cx)/temperature + (g_Z_an - g_Z_cx)*Z - f_OL )
 Z_equation = TransientTerm(coeff=(m_i * density*temperature/ (charge)*(B_theta/B)**2), var=Z) == DiffusionTerm(coeff=m_i*mu * density*temperature/ (charge), var=Z)# + S_Z
-#Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*Diffusivity, var=Z)
+Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*Diffusivity, var=Z)
+
+#print Z_equation
 
 # Fully-Coupled Equation
-#full_equation = density_equation & temp_equation & Z_equation
-#
+full_equation = density_equation & temp_equation & Z_equation
+
 #initial_viewer = Viewer((density, temperature, Z, Diffusivity))
 #raw_input("Pause for Initial")
-#
-#if __name__ == '__main__':
-#	viewer = Viewer((density, temperature, Z, Diffusivity), datamax=3.0, datamin=-1.5)
-#	for t in range(100):
-#		density.updateOld(); temperature.updateOld()
-#		Z.updateOld()#; D.updateOld()
-#		full_equation.solve(dt=0.01)
-#		viewer.plot()
-#
-#	raw_input("End of Program. <return> to continue...")
+
+if __name__ == '__main__':
+	viewer = Viewer((density, temperature, Z, Diffusivity), datamax=3.0, datamin=-1.5)
+	for t in range(100):
+		density.updateOld(); temperature.updateOld()
+		Z.updateOld()#; D.updateOld()
+		full_equation.solve(dt=0.5)
+		viewer.plot()
+
+	raw_input("End of Program. <return> to continue...")
 
