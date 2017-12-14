@@ -6,9 +6,9 @@
 	variables and x.
 """
 
-
 from parameters import *
 from variable_decl import *
+from fipy.tools import numerix
 
 ## Plasma Parameters
 # Neutrals density in use for CX friction
@@ -57,13 +57,13 @@ g_Z_cx = -g_n_cx / rho_pi
 
 ## Ion Bulk (Parallel) Viscosity
 # xi_p integral
-#def xi_p(X, aZ): return (4*C(X)*(27*((C(X))**2 + aZ**2)**2 - 7*((C(X))**2 - 3*aZ**2)*(nu_ai(X))**(1.0/2))*(nu_ai(X))**(7.0/4)) / (189*pi*((C(X))**2 + aZ**2)**3)
-## xi_t integral
-#def xi_t(X, aZ): return (2*C(X)*(135*((C(X))**2 + aZ**2)**2 - 7*(21*(C(X))**4 + 3*aZ**2*(-5 + 7*aZ**2) + (C(X))**2*(5 + 42*aZ**2))*(nu_ai(X))**(1.0/2))*(nu_ai(X))**(7.0/4)) / (189*pi*((C(X))**2 + aZ**2)**3)
-#
-#def g_n_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi(X) * (v_Ti(X))**2 * B_p * xi_p(X, aZ)
-#def g_T_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi(X) * (v_Ti(X))**2 * (B_p*xi_p(X, aZ) - B*xi_t(X, aZ))
-#def g_Z_bulk(X, aZ): return aspect**2*(pi)**(1.0/2) / (4*a_m) * density * m_i * (v_Ti(X))**2 * B_p*xi_p(X, aZ)
+xi_p = (4*N*(27*((N)**2 + Z**2)**2 - 7*((N)**2 - 3*Z**2)*(nu_ai)**(1.0/2))*(nu_ai)**(7.0/4)) / (189*pi*((N)**2 + Z**2)**3)
+# xi_t integral
+xi_t = (2*N*(135*((N)**2 + Z**2)**2 - 7*(21*(N)**4 + 3*Z**2*(-5 + 7*Z**2) + (N)**2*(5 + 42*Z**2))*(nu_ai)**(1.0/2))*(nu_ai)**(7.0/4)) / (189*pi*((N)**2 + Z**2)**3)
+
+g_n_bulk = aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi * (v_Ti)**2 * B_theta * xi_p
+g_T_bulk = aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi * (v_Ti)**2 * (B_theta*xi_p - B*xi_t)
+g_Z_bulk = aspect**2*(pi)**(1.0/2) / (4*a_m) * density * m_i * (v_Ti)**2 * B_theta*xi_p
 
 ## Ion Orbit Loss
 g_OL = charge * density * nu_eff * (aspect)**(1.0/2.0) * rho_pi
