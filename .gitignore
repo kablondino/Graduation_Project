@@ -31,6 +31,3 @@ __init__.py
 # Particular Prelude file
 Prelude/Report/Prelude_Report-blx.bib
 
-# All of the FENICS_TEST directory
-FENICS_TEST/
-
