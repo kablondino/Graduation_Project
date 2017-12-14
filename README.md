@@ -51,5 +51,6 @@ Research at DIFFER has shown that independent of the details of the electric fie
 	- ~~Look at effect of stochastization on the pressure gradient~~
 
 ### Method Used
-The PDE Solver [FEniCS](https://fenicsproject.org/) is used in conjunction with a [Jupyter](http://jupyter.org/) notebook.
+~~The PDE Solver [FEniCS](https://fenicsproject.org/) is used in conjunction with a [Jupyter](http://jupyter.org/) notebook.~~
+Changed to the finite volume solver [FiPy](https://www.ctcms.nist.gov/fipy/).
 
