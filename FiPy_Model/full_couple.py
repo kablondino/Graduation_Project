@@ -1,23 +1,9 @@
-from fipy import Grid1D, CellVariable, TransientTerm, DiffusionTerm, Viewer, ConvectionTerm, ImplicitSourceTerm
+from fipy import TransientTerm, DiffusionTerm, Viewer, ConvectionTerm, ImplicitSourceTerm
 
 from fipy.tools import numerix
 
 from parameters import *
-
-nx = 100
-L = 5.0
-mesh = Grid1D(nx=nx, Lx=L)
-
-x = mesh.cellCenters[0]
-
-
-# ----------------- Variable Declarations -----------------
-density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True)
-
-temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True)
-
-Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True)
-
+from variable_decl import *
 
 # ------------- Initial Conditions and Diffusivity---------
 Z0 = Z_S*(1 - numerix.tanh((L*x - L) / 2.0))
@@ -33,7 +19,8 @@ a1, a3 = 1.0, 0.5	# ASSUMES a2 = 0
 D_Shear = D_min + (D_max - D_min) / (1 + a1*Z**2 + a3*numerix.dot(Z.grad, Z.grad))
 
 # CHOOSE DIFFUSIVITY HERE!
-Diffusivity = D_Shear
+D_choice = D_Staps
+Diffusivity.setValue(D_choice)
 
 
 density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / Diffusivity) * (1 + x/lambda_n))
@@ -43,6 +30,10 @@ temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1) / Gamma_c
 temperature.setValue(temp0)
 
 # ----------------- Printing for testing ------------------
+#print numerix.dot([c_T / density, ], temperature.grad)
+#print c_T * numerix.dot([1.0 / density,], temperature.grad)
+
+print numerix.dot([c_T / density, ], temperature.grad) == c_T * numerix.dot([1.0 / density,], temperature.grad)
 
 # ----------------- Boundary Conditions -------------------
 """
@@ -78,6 +69,9 @@ Z.grad.faceGrad.constrain(0.0, mesh.facesLeft)
 
 
 # ----------------- PDE Declarations ----------------------
+# Diffusivity Equation
+diffusivity_equation = ImplicitSourceTerm(coeff=1.0, var=Diffusivity) == D_choice
+
 # Density Equation
 density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=Diffusivity, var=density)
 
@@ -87,23 +81,23 @@ temp_equation = TransientTerm(var=temperature) == DiffusionTerm(coeff=Diffusivit
 
 # Z Equation
 G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
-S_Z = (c_T / density)*temperature + (c_n*temperature / density**2)*density + G
+S_Z = numerix.dot([c_T / density,], temperature.grad) + numerix.dot([c_n*temperature / density**2,], density.grad) + G
 Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*Diffusivity/epsilon, var=Z) + S_Z
 
 
 # Fully-Coupled Equation
-full_equation = density_equation & temp_equation & Z_equation
+full_equation = density_equation & temp_equation & Z_equation & diffusivity_equation
 
-initial_viewer = Viewer((density, temperature, Z, Diffusivity))
-raw_input("Pause for Initial")
+#initial_viewer = Viewer((density, temperature, Z, Diffusivity))
+#raw_input("Pause for Initial")
 
-if __name__ == '__main__':
-	viewer = Viewer((density, temperature, Z, Diffusivity), datamax=3.0, datamin=-1.5)
-	for t in range(100):
-		density.updateOld(); temperature.updateOld()
-		Z.updateOld()#; D.updateOld()
-		full_equation.solve(dt=0.01)
-		viewer.plot()
-
-	raw_input("End of Program. <return> to continue...")
+#if __name__ == '__main__':
+#	viewer = Viewer((density, temperature, Z, Diffusivity), datamax=3.0, datamin=-1.5)
+#	for t in range(100):
+#		density.updateOld(); temperature.updateOld()
+#		Z.updateOld()#; D.updateOld()
+#		full_equation.solve(dt=0.01)
+#		viewer.plot()
+#
+#	raw_input("End of Program. <return> to continue...")
 
