@@ -1,9 +1,9 @@
 \documentclass[a4paper,12pt]{report}
 
-\usepackage{lmodern}
 % Import specific style file in this directory
 \usepackage{thesis}
 
+%{{{ Alias commands
 \newcommand{\shortdoctitle}{$E_r$-Generating Terms}
 \newcommand{\doctitle}{Radial Electric Field-Generating Terms in L-H Transitions}
 \newcommand{\docsubtitle}{Master's Thesis}
@@ -13,9 +13,10 @@
 \newcommand{\version}{EMPTY version}
 \newcommand{\monthYear}{February 2018}
 
-\newcommand{\firstCommitteeMember}{Your First Committee Member}
+\newcommand{\firstCommitteeMember}{dr. H.J. de Blank}
 \newcommand{\secondCommitteeMember}{Your second Committee Member, usually the daily supervisor}
 \newcommand{\thirdCommitteeMember}{Your Third Committee Member, usually the external member}
+%}}}
 
 \title{Radial Electric Field-Generating Terms in L-H Transitions}
 \author{\me}
@@ -26,14 +27,14 @@
 \cleanlookdateon
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-%\usepackage{backref}
 \usepackage{cleveref}
+
 %{{{ Setup References
 \usepackage[backend=bibtex, url=false, backref=true]{biblatex}
 \addbibresource{../References/References.bib}
 %}}}
-\usepackage{hyperref}
 
+\usepackage{hyperref}
 \hypersetup
 {
 	pdfauthor={\me}
@@ -53,7 +54,7 @@
 % Number the pages before the start
 \pagenumbering{roman}
 
-\include{titlepage}
+\input{titlepage}
 
 \normalsize
 
