@@ -29,10 +29,41 @@ H-mode is characterized by its pressure profile significantly raised compared to
 Accordingly, there is a steep gradient in the pressure at the edge of the plasma, shown and compared to L-mode in Figure~\ref{fig:L-mode_H-mode_compare} \cite{weymiens_bifurcation_2014}.
 This results in an increase temperature in the core.
 
-Another characteristic of interest is of hysteresis, discussed more in the following section.
+\section{The L-H Transition}
+The key feature that determines a divertor tokamak's operational mode is the amount of external heating power.
+It is also important to note that limiter tokamaks are relegated to stay in L-mode, as H-mode is exclusive to tokamaks with divertors.
+The transition can occur in one of three manners: sharp, smooth, and oscillatory.
 
-\section{H-mode Mechanism and Transition}
+\subsection{Bifurcation Theory and Hysteresis}
+A bifurcation is defined to be a topological or qualitative change in a system when a small and smooth change of a parameter is made.
+The dynamic behavior of the L-H transition correspond very closely to a few certain bifurcations.
+Physically, the transition is a bifurcation in the turbulent transport at the edge of the tokamak.
+Sharp and smooth transitions are features of the cusp bifurcation, a two-fold bifurcation \cite{weymiens_bifurcation_2014}. 
+The topological norm form of this behavior is
+\begin{equation}
+	\dot{x} \,=\, a - bx - x^3
+	\label{eq:sharp_bif}
+\end{equation}
+
+These two dynamics are distinguished only by density as the parameter .
+The most common transition is the sharp transition, as the plasma parameters for it are more ideal for achieving fusion.
+\TwoFig{../Graphics/Bif_3D.png}
+	{Two codimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp \cite{weymiens_bifurcation_2014}.}
+	{fig:Bif_3D}
+	{../Graphics/3_transitions_single_simple.png}
+	{Codimension 3 parameter space with the black line indicating the fold bifurcation. The parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition \cite{weymiens_bifurcation_2014}.}
+	{fig:Bif_types}
+
+The third type of transition dynamics is oscillatory, also known as dithering.
+These oscillatory solutions will only occur in the region near the cusp bifurcation point.
+
+Hysteresis is also commonly present in the system, in which the current state of the system depends on its history.
+The threshold power for the H-L transition is significantly lower than that of the L-H transition, leading to a region in which there is a non-unique solution to the plasma state.
+
+
+\section{Mechanisms}
 The prevailing hypothesis for the overarching mechanism for H-mode is that high auxiliary power develops strong sheared plasma flow and suppresses transport \cite{freidberg_plasma_2007}.
+
 The shear stress dissociates smaller turbulent structures, with their energy and momenta transferred to larger flows \cite{staps_backstepping_2017}.
-FIX!! The $\mathbf{E}\times\mathbf{B}$-velocity shear, which has been modeled many times.
+%The $\mathbf{E}\times\mathbf{B}$-velocity shear, which has been modeled many times.
 
