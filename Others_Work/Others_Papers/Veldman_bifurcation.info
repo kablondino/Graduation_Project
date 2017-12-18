@@ -1,0 +1,265 @@
+InfoBegin
+InfoKey: ModDate
+InfoValue: D:20151015183001+02'00'
+InfoBegin
+InfoKey: PTEX.Fullbanner
+InfoValue: This is MiKTeX-pdfTeX 2.9.4535 (1.40.13)
+InfoBegin
+InfoKey: CreationDate
+InfoValue: D:20151015183001+02'00'
+InfoBegin
+InfoKey: Creator
+InfoValue: TeX
+InfoBegin
+InfoKey: Producer
+InfoValue: MiKTeX pdfTeX-1.40.13
+PdfID0: 08d838134ed0226893f530741f54ee3c
+PdfID1: 08d838134ed0226893f530741f54ee3c
+NumberOfPages: 100
+BookmarkBegin
+BookmarkTitle: Chapter 1: Introduction
+BookmarkLevel: 1
+BookmarkPageNumber: 5
+BookmarkBegin
+BookmarkTitle: 1.1 Motivation
+BookmarkLevel: 2
+BookmarkPageNumber: 5
+BookmarkBegin
+BookmarkTitle: 1.2 Research questions
+BookmarkLevel: 2
+BookmarkPageNumber: 6
+BookmarkBegin
+BookmarkTitle: 1.3 Outline
+BookmarkLevel: 2
+BookmarkPageNumber: 7
+BookmarkBegin
+BookmarkTitle: Chapter 2: Bifurcation Theory
+BookmarkLevel: 1
+BookmarkPageNumber: 9
+BookmarkBegin
+BookmarkTitle: 2.1 Concepts
+BookmarkLevel: 2
+BookmarkPageNumber: 9
+BookmarkBegin
+BookmarkTitle: 2.1.1 Local bifurcations
+BookmarkLevel: 3
+BookmarkPageNumber: 10
+BookmarkBegin
+BookmarkTitle: 2.1.2 Bifurcations of limit cycles
+BookmarkLevel: 3
+BookmarkPageNumber: 11
+BookmarkBegin
+BookmarkTitle: 2.2 Different types of bifurcations
+BookmarkLevel: 2
+BookmarkPageNumber: 12
+BookmarkBegin
+BookmarkTitle: 2.2.1 Codimension 1
+BookmarkLevel: 3
+BookmarkPageNumber: 12
+BookmarkBegin
+BookmarkTitle: 2.2.2 Codimension 2
+BookmarkLevel: 3
+BookmarkPageNumber: 16
+BookmarkBegin
+BookmarkTitle: 2.3 Degenerate BT bifurcations
+BookmarkLevel: 2
+BookmarkPageNumber: 19
+BookmarkBegin
+BookmarkTitle: 2.3.2 The case a_2 = 0, b_2 != 0
+BookmarkLevel: 3
+BookmarkPageNumber: 19
+BookmarkBegin
+BookmarkTitle: 2.3.3 The case a_2 = b_2 = 0
+BookmarkLevel: 3
+BookmarkPageNumber: 20
+BookmarkBegin
+BookmarkTitle: Chapter 3: Numerical continuation of equilibria in large-scale systems
+BookmarkLevel: 1
+BookmarkPageNumber: 25
+BookmarkBegin
+BookmarkTitle: 3.1 Continuation algorithm
+BookmarkLevel: 2
+BookmarkPageNumber: 25
+BookmarkBegin
+BookmarkTitle: 3.1.1 Continuation and detection of singularities
+BookmarkLevel: 3
+BookmarkPageNumber: 25
+BookmarkBegin
+BookmarkTitle: 3.1.2 Continuation of invariant subspaces (CIS)
+BookmarkLevel: 3
+BookmarkPageNumber: 26
+BookmarkBegin
+BookmarkTitle: 3.1.3 Implementation in CL_MatcontL
+BookmarkLevel: 3
+BookmarkPageNumber: 27
+BookmarkBegin
+BookmarkTitle: 3.2 Bordered systems
+BookmarkLevel: 2
+BookmarkPageNumber: 29
+BookmarkBegin
+BookmarkTitle: 3.3 Equilibrium and bifurcation curves
+BookmarkLevel: 2
+BookmarkPageNumber: 33
+BookmarkBegin
+BookmarkTitle: 3.3.1 The equilibrium curve
+BookmarkLevel: 3
+BookmarkPageNumber: 33
+BookmarkBegin
+BookmarkTitle: 3.3.2 The LP curve
+BookmarkLevel: 3
+BookmarkPageNumber: 34
+BookmarkBegin
+BookmarkTitle: 3.3.3 The H curve
+BookmarkLevel: 3
+BookmarkPageNumber: 35
+BookmarkBegin
+BookmarkTitle: 3.3.4 The BT curve
+BookmarkLevel: 3
+BookmarkPageNumber: 36
+BookmarkBegin
+BookmarkTitle: Chapter 4: The PDE system
+BookmarkLevel: 1
+BookmarkPageNumber: 39
+BookmarkBegin
+BookmarkTitle: 4.1 L-H transition models
+BookmarkLevel: 2
+BookmarkPageNumber: 39
+BookmarkBegin
+BookmarkTitle: 4.2 Steady-state solutions
+BookmarkLevel: 2
+BookmarkPageNumber: 42
+BookmarkBegin
+BookmarkTitle: Chapter 5: Descretization
+BookmarkLevel: 1
+BookmarkPageNumber: 45
+BookmarkBegin
+BookmarkTitle: 5.1 Two discretization methods
+BookmarkLevel: 2
+BookmarkPageNumber: 45
+BookmarkBegin
+BookmarkTitle: 5.1.1 Finite Difference Method
+BookmarkLevel: 3
+BookmarkPageNumber: 46
+BookmarkBegin
+BookmarkTitle: 5.1.2 Finite Volume Method
+BookmarkLevel: 3
+BookmarkPageNumber: 47
+BookmarkBegin
+BookmarkTitle: 5.1.3 Comparison
+BookmarkLevel: 3
+BookmarkPageNumber: 48
+BookmarkBegin
+BookmarkTitle: 5.2 Grid distribution
+BookmarkLevel: 2
+BookmarkPageNumber: 49
+BookmarkBegin
+BookmarkTitle: Chapter 6: Results
+BookmarkLevel: 1
+BookmarkPageNumber: 51
+BookmarkBegin
+BookmarkTitle: 6.1 Equilibrium solutions
+BookmarkLevel: 2
+BookmarkPageNumber: 51
+BookmarkBegin
+BookmarkTitle: 6.1.1 1-parameter continuation
+BookmarkLevel: 3
+BookmarkPageNumber: 51
+BookmarkBegin
+BookmarkTitle: 6.1.2 2-parameter continuation
+BookmarkLevel: 3
+BookmarkPageNumber: 57
+BookmarkBegin
+BookmarkTitle: 6.1.3 3-parameter continuation
+BookmarkLevel: 3
+BookmarkPageNumber: 61
+BookmarkBegin
+BookmarkTitle: 6.1.4 Modifications of the model
+BookmarkLevel: 3
+BookmarkPageNumber: 64
+BookmarkBegin
+BookmarkTitle: 6.2 Periodic solutions
+BookmarkLevel: 2
+BookmarkPageNumber: 65
+BookmarkBegin
+BookmarkTitle: 6.2.1 Near the degenerate BT bifurcation at a = -0.01
+BookmarkLevel: 3
+BookmarkPageNumber: 65
+BookmarkBegin
+BookmarkTitle: 6.2.2 Far away from the degenerate BT bifurcation at a = -1
+BookmarkLevel: 3
+BookmarkPageNumber: 69
+BookmarkBegin
+BookmarkTitle: Chapter 7: Conclusion and outlook
+BookmarkLevel: 1
+BookmarkPageNumber: 75
+BookmarkBegin
+BookmarkTitle: 7.1 Conclusion
+BookmarkLevel: 2
+BookmarkPageNumber: 75
+BookmarkBegin
+BookmarkTitle: 7.2 Outlook
+BookmarkLevel: 2
+BookmarkPageNumber: 77
+BookmarkBegin
+BookmarkTitle: Appendix A: Approximate steady-state solutions
+BookmarkLevel: 1
+BookmarkPageNumber: 79
+BookmarkBegin
+BookmarkTitle: Appendix B: Discretization
+BookmarkLevel: 1
+BookmarkPageNumber: 81
+BookmarkBegin
+BookmarkTitle: B.1 Finite Difference Formulas
+BookmarkLevel: 2
+BookmarkPageNumber: 81
+BookmarkBegin
+BookmarkTitle: B.2 Finite Volume Formulas
+BookmarkLevel: 2
+BookmarkPageNumber: 82
+BookmarkBegin
+BookmarkTitle: B.3 Leading terms in the local error
+BookmarkLevel: 2
+BookmarkPageNumber: 82
+BookmarkBegin
+BookmarkTitle: B.4 Adaptive grid
+BookmarkLevel: 2
+BookmarkPageNumber: 83
+BookmarkBegin
+BookmarkTitle: Appendix C: Convergence of the spatial discretization
+BookmarkLevel: 1
+BookmarkPageNumber: 87
+BookmarkBegin
+BookmarkTitle: C.1 1-parameter continuation
+BookmarkLevel: 2
+BookmarkPageNumber: 87
+BookmarkBegin
+BookmarkTitle: C.2 2-parameter continuation
+BookmarkLevel: 2
+BookmarkPageNumber: 87
+BookmarkBegin
+BookmarkTitle: C.3 3-parameter continuation
+BookmarkLevel: 2
+BookmarkPageNumber: 87
+BookmarkBegin
+BookmarkTitle: Bibliography
+BookmarkLevel: 1
+BookmarkPageNumber: 99
+
+PageLabelBegin
+PageLabelNewIndex: 1
+PageLabelStart: 1
+PageLabelPrefix: Cover
+PageLabelNumStyle: NoNumber
+PageLabelBegin
+PageLabelNewIndex: 2
+PageLabelStart: 1
+PageLabelPrefix: 
+PageLabelNumStyle: NoNumber
+PageLabelBegin
+PageLabelNewIndex: 3
+PageLabelStart: 1
+PageLabelNumStyle: LowercaseRomanNumerals
+PageLabelBegin
+PageLabelNewIndex: 5
+PageLabelStart: 1
+PageLabelNumStyle: DecimalArabicNumerals
