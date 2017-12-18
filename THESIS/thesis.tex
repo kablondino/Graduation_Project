@@ -9,13 +9,34 @@
 \newcommand{\docsubtitle}{Master's Thesis}
 
 \newcommand{\me}{Kevin A. Blondino}
-\newcommand{\keywords}{H-mode, bifurcation}
+\newcommand{\keywords}{H-mode, bifurcation, L-mode}
 \newcommand{\version}{EMPTY version}
 \newcommand{\monthYear}{February 2018}
 
 \newcommand{\firstCommitteeMember}{dr. H.J. de Blank}
 \newcommand{\secondCommitteeMember}{Your second Committee Member, usually the daily supervisor}
 \newcommand{\thirdCommitteeMember}{Your Third Committee Member, usually the external member}
+%}}}
+
+%{{{ Two Figures Side-by-Side
+\newsavebox\IBoxA \newsavebox\IBoxB \newlength\IHeight
+\newcommand\TwoFig[6]{% Image1 Caption1 Label1 Im2 Cap2 Lab2
+	\sbox\IBoxA{\includegraphics[width=0.45\textwidth]{#1}}
+	\sbox\IBoxB{\includegraphics[width=0.45\textwidth]{#4}}%
+	\ifdim\ht\IBoxA>\ht\IBoxB
+		\setlength\IHeight{\ht\IBoxB}%
+	\else\setlength\IHeight{\ht\IBoxA}\fi
+	\begin{figure}[tb]
+		\minipage[t]{0.49\textwidth}\centering
+			\includegraphics[height=\IHeight]{#1}
+			\caption{#2}\label{#3}
+		\endminipage\hfill\vrule\hfill
+		\minipage[t]{0.49\textwidth}\centering
+			\includegraphics[height=\IHeight]{#4}
+			\caption{#5}\label{#6}
+		\endminipage
+	\end{figure}%
+}
 %}}}
 
 \title{Radial Electric Field-Generating Terms in L-H Transitions}
