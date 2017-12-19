@@ -34,7 +34,7 @@ The key feature that determines a divertor tokamak's operational mode is the amo
 It is also important to note that limiter tokamaks are relegated to stay in L-mode, as H-mode is exclusive to tokamaks with divertors.
 The transition can occur in one of three manners: sharp, smooth, and oscillatory.
 
-\subsection{Bifurcation Theory and Hysteresis}
+\subsection{Bifurcation Theory}
 A bifurcation is defined to be a topological or qualitative change in a system when a small and smooth change of a parameter is made.
 The dynamic behavior of the L-H transition correspond very closely to a few certain bifurcations.
 Physically, the transition is a bifurcation in the turbulent transport at the edge of the tokamak.
@@ -45,18 +45,24 @@ The topological norm form of this behavior is
 	\label{eq:sharp_bif}
 \end{equation}
 
-These two dynamics are distinguished only by density as the parameter .
+These two dynamics are distinguished only by density as the parameter.
 The most common transition is the sharp transition, as the plasma parameters for it are more ideal for achieving fusion.
+
+%{{{ Two figures for bifurcation
 \TwoFig{../Graphics/Bif_3D.png}
 	{Two codimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp \cite{weymiens_bifurcation_2014}.}
 	{fig:Bif_3D}
 	{../Graphics/3_transitions_single_simple.png}
 	{Codimension 3 parameter space with the black line indicating the fold bifurcation. The parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition \cite{weymiens_bifurcation_2014}.}
 	{fig:Bif_types}
+%}}}
 
 The third type of transition dynamics is oscillatory, also known as dithering.
 These oscillatory solutions will only occur in the region near the cusp bifurcation point.
 
+All three bifurcations are shown in parameter space in Fig.~\ref{fig:Bif_types}, with $b$ dictating the type \cite{weymiens_bifurcation_2014}.
+
+\subsection{Hysteresis}
 Hysteresis is also commonly present in the system, in which the current state of the system depends on its history.
 The threshold power for the H-L transition is significantly lower than that of the L-H transition, leading to a region in which there is a non-unique solution to the plasma state.
 
@@ -65,5 +71,36 @@ The threshold power for the H-L transition is significantly lower than that of t
 The prevailing hypothesis for the overarching mechanism for H-mode is that high auxiliary power develops strong sheared plasma flow and suppresses transport \cite{freidberg_plasma_2007}.
 
 The shear stress dissociates smaller turbulent structures, with their energy and momenta transferred to larger flows \cite{staps_backstepping_2017}.
-%The $\mathbf{E}\times\mathbf{B}$-velocity shear, which has been modeled many times.
+An accepted key mechanism for the transition is the generation of a large radial electric field and the corresponding $\mathbf{E}\times\mathbf{B}$ flows near the edge.
+A plethora of individual processes for the generation of such an electric field have been proposed, most of which can be viewed as separate contributions in a radial Poisson's law, with some that tend to reduce the field.
+
+The radial electric field $E_r$ is deduced from the radial force balance for any plasma species $j$, as follows:
+\begin{equation}
+	E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d} p_j}{\text{d} r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta
+	\label{eq:E_r}
+\end{equation}
+In the above, $e_j$ represents the charge of the $j$-th species, $n_j$ is the density, $p_j$ is the pressure, and $V_{\theta j}$ and $V_{\phi j}$ are the poloidal and toroidal velocities, respectively.
+This grants changes in the radial electric field to be associated with changes in radial gradient of the pressure or either velocities \cite{connor_review_2000}\cite{staps_backstepping_2017}.
+However, determining these values is difficult due to large possible error in experiment.
+
+\section{Research Questions}
+Although there have been compilations of different theories describing the transition, there is yet to be a conclusive, comprehensive one \cite{connor_review_2000}.
+There is substantial evidence, both theoretically and experimentally, that a radial electric field is an integral piece in the forming and enforcing of H-mode.
+Many of the effects in generating and suppressing the field show up as additive terms in an equation for a radial displacement current.
+Because many of these fluxes scale differently, simple scaling laws for H-mode could contrast for regimes where different effects dominate.
+It is therefore important to evaluate which terms dominate in their respective regimes before inquiring about global scalings.
+The overall problem is thus stated simply: \textbf{Which electric field-generating terms are dominant in concrete experimental tokamak conditions?}
+This is in an effort to determine which measurable and controllable values can predict H-mode.
+
+The first consideration is to decide \textbf{which terms should be considered for investigation}, as not all nonambipolar fluxes will significantly contribute to the transition.
+For example, the nonambipolar flux due to magnetic ripple loss highly depends on collisionality, in which lower collisionality results in a low flux \cite{stringer_ripple_1972}.
+Since a relatively ideal operation (temperature on the order of 1 keV at the edge) will be investigated, this flux can be neglected.
+
+\textbf{Identifying what optimal form and relative strengths of each flux and subsequently implementing them} appropriately is the crucial next step.
+Because the model is highly nonlinear, it is sensitive to the forms and relative strengths.
+The calculation is done with a finite volume method solver, in which the results requires verification with the literature.
+
+The main input heating power regime previously investigate was strictly limited to near the H-L transition \cite{staps_backstepping_2017}.
+Performing a scan of input heating power significantly above the lower threshold could show a difference in behavior of the fluxes and resulting field.
+Therefore, \textbf{what is the variation in dominance of each field-generating term across increasing input power}, including those inside and outside the regime with non-unique operational modes?
 
