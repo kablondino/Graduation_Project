@@ -1,5 +1,11 @@
+"""
+	This file generates the 1D mesh and the 4 cell
+	variables needed for the model. It can be argued that
+	Diffusivity should not be one of them.
+"""
 from fipy import Grid1D, CellVariable
 
+# ----------------- Mesh Generation -----------------------
 nx = 100
 L = 5.0
 mesh = Grid1D(nx=nx, Lx=L)

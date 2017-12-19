@@ -13,10 +13,6 @@ m_e = 9.109e-31		# Electron mass
 m_i = 1.673e-27		# Ion (H) mass
 epsilon_0 = 8.854187817e-12	# Permittivity of free space
 mu_0 = 4*pi*1.0e-7			# Permeability of free space
-alpha_cx = 0.9
-alpha_an = 1.0
-a_in0 = 0.1
-neu_react_rate = 1.0e-14		# Reaction rate of charge exchange
 
 
 ## ASDEX-U specifications
@@ -31,7 +27,8 @@ B_theta = mu_0 * I_p / ( 2*pi*a_m )
 q = aspect * B_phi/B_theta
 B = ( B_phi**2 + B_theta**2 )**(1.0/2.0)
 
-## PRESET parameters for quick calculation, many of which are chosen by Staps
+## PRESET parameters for quick calculation, many of which
+## are chosen by Staps and Paquay
 zeta = 0.5
 Gamma_c = -4.0/5.0
 q_c = -4.0
