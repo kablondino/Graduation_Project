@@ -29,7 +29,8 @@ B = ( B_phi**2 + B_theta**2 )**(1.0/2.0)
 
 ## PRESET parameters for quick calculation, many of which
 ## are chosen by Staps and Paquay
-zeta = 0.5
+#zeta = 0.5		# Stap's
+zeta = 1.1		# Paquay's
 Gamma_c = -4.0/5.0
 q_c = -4.0
 gamma = 5.0/3.0
