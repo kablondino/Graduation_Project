@@ -30,8 +30,8 @@ temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1) / Gamma_c
 temperature.setValue(temp0)
 
 # ----------------- Printing for testing ------------------
-#print numerix.dot([c_T / density, ], temperature.grad)
-#print c_T * numerix.dot([1.0 / density,], temperature.grad)
+print D_choice
+print Diffusivity
 
 print numerix.dot([c_T / density, ], temperature.grad) == c_T * numerix.dot([1.0 / density,], temperature.grad)
 
@@ -91,13 +91,13 @@ full_equation = density_equation & temp_equation & Z_equation & diffusivity_equa
 #initial_viewer = Viewer((density, temperature, Z, Diffusivity))
 #raw_input("Pause for Initial")
 
-#if __name__ == '__main__':
-#	viewer = Viewer((density, temperature, Z, Diffusivity), datamax=3.0, datamin=-1.5)
-#	for t in range(100):
-#		density.updateOld(); temperature.updateOld()
-#		Z.updateOld()#; D.updateOld()
-#		full_equation.solve(dt=0.01)
-#		viewer.plot()
-#
-#	raw_input("End of Program. <return> to continue...")
+if __name__ == '__main__':
+	viewer = Viewer((density, temperature, Z, Diffusivity), datamax=3.0, legend='best')
+	for t in range(100):
+		density.updateOld(); temperature.updateOld()
+		Z.updateOld()#; D.updateOld()
+		full_equation.solve(dt=0.01)
+		viewer.plot()
+
+	raw_input("End of Program. <return> to continue...")
 
