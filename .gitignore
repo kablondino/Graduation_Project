@@ -12,9 +12,12 @@
 *.bcf
 *-blx.bib
 
-# Paraview files
+# Paraview and data files
 *.vtu
 *.pvd
+*.tsv
+*.dat
+*.txt
 
 # Swap files
 *.swp
@@ -26,8 +29,6 @@ __init__.py
 
 # PDF. REMOVE IF NECESSARY
 *.pdf
-*.dat
-*.txt
 
 # Particular Prelude file
 #Prelude/Report/Prelude_Report-blx.bib
