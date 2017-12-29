@@ -20,7 +20,7 @@ D_Shear = D_min + (D_max - D_min) / (1 + a1*Z**2 + a3*numerix.dot(Z.grad, Z.grad
 
 # CHOOSE DIFFUSIVITY HERE!
 D_choice = D_Staps
-Diffusivity.setValue(D_choice)
+Diffusivity = D_choice
 
 
 density0 = -(Gamma_c*lambda_n / Diffusivity) * (1 + x/lambda_n)
@@ -67,7 +67,7 @@ Z.grad.faceGrad.constrain(0.0, mesh.facesLeft)
 
 # ----------------- PDE Declarations ----------------------
 # Diffusivity Equation
-diffusivity_equation = ImplicitSourceTerm(coeff=1.0, var=Diffusivity) == D_choice
+#diffusivity_equation = ImplicitSourceTerm(coeff=1.0, var=Diffusivity) == D_choice
 
 # Density Equation
 density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=Diffusivity, var=density)
@@ -84,13 +84,13 @@ Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*Diffu
 #print Z_equation
 
 # Fully-Coupled Equation
-full_equation = density_equation & temp_equation & Z_equation & diffusivity_equation
+full_equation = density_equation & temp_equation & Z_equation# & diffusivity_equation
 
-#initial_viewer = Viewer((density, temperature, Z, Diffusivity))
-#raw_input("Pause for Initial")
+initial_viewer = Viewer((density / 1.0e19, temperature / 10.0, -Z, Diffusivity))
+raw_input("Pause for Initial")
 print density, temperature
 if __name__ == '__main__':
-	viewer = Viewer((density / 1.0e19, temperature / 10.0, -Z, Diffusivity), legend='best')#, ylog=True, datamin = 1.0e-4)
+	viewer = Viewer((density / 1.0e19, temperature / 10.0, -Z), legend='best')#, ylog=True, datamin = 1.0e-4)
 #	viewer_rho_pi = Viewer((rho_pi))
 #	viewer_nu_ai = Viewer((nu_ai), name="TEST", title=None, legend=None)
 	for t in range(100):
@@ -98,7 +98,7 @@ if __name__ == '__main__':
 #		q_c = q_c - 1.0
 		Gamma_c = Gamma_c - 1.0
 		density.updateOld(); temperature.updateOld()
-		Z.updateOld(); Diffusivity.updateOld()
+		Z.updateOld()#; Diffusivity.updateOld()
 		full_equation.solve(dt=0.01)
 		viewer.plot()
 

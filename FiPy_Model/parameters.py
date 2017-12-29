@@ -53,3 +53,9 @@ b = 2.0
 c = -1.0
 Z_S = -3.0/2.0
 
+## For use in g version
+alpha_cx = 0.9
+alpha_an = 1.0
+a_in0 = 0.1
+neu_react_rate = 1.0e-14	# Reaction rate of charge exchange
+
