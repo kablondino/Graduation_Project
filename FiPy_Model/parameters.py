@@ -31,6 +31,7 @@ B = ( B_phi**2 + B_theta**2 )**(1.0/2.0)
 ## are chosen by Staps and Paquay
 #zeta = 0.5		# Stap's
 zeta = 1.1		# Paquay's
+#zeta = 0.9		# To fiddle!
 Gamma_c = -4.0/5.0
 q_c = -4.0
 gamma = 5.0/3.0
