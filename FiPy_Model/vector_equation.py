@@ -3,7 +3,7 @@ from fipy import Grid1D, CellVariable, TransientTerm, DiffusionTerm, Viewer, Con
 from fipy.tools import numerix
 
 # Import parameter file
-from para_coeffs import *
+from parameters import *
 
 nx = 100
 L = 5.0
@@ -72,15 +72,15 @@ u.faceGrad.constrain([densityR, tempR, ZR], mesh.facesRight)
 #u[2].grad.faceGrad.constrain(0.0, mesh.facesLeft)
 
 # ----------------- Equation ------------------------------
-eqn = TransientTerm([[1.0, 1.0, epsilon]], var=u) == DiffusionTerm([D_choice, D_choice/zeta, mu*D_choice], var=u)
+eqn = TransientTerm([1.0, 1.0, epsilon], var=u) == DiffusionTerm([D_choice, D_choice/zeta, mu*D_choice], var=u)
 
-print eqn
+#print eqn
 
 if __name__ == '__main__':
 	viewer = Viewer((u[0], u[1], u[2], D_choice), datamax=3.0, datamin=-1.5)
 	for t in range(100):
 		u.updateOld()
-		eqn.solve(var=u, dt=0.012)
+		eqn.solve(dt=0.01)
 		viewer.plot()
 
 	raw_input("End of Program. <return> to continue...")
