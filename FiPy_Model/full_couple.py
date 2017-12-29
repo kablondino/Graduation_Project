@@ -1,4 +1,4 @@
-from fipy import TransientTerm, DiffusionTerm, Viewer, ConvectionTerm, ImplicitSourceTerm
+from fipy import TransientTerm, DiffusionTerm, Viewer, ConvectionTerm, ImplicitSourceTerm, TSVViewer
 
 from fipy.tools import numerix
 
@@ -20,7 +20,7 @@ D_Shear = D_min + (D_max - D_min) / (1 + a1*Z**2 + a3*numerix.dot(Z.grad, Z.grad
 
 # CHOOSE DIFFUSIVITY HERE!
 D_choice = D_Staps
-Diffusivity.setValue(D_choice)
+Diffusivity = D_choice
 
 
 density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / Diffusivity) * (1 + x/lambda_n))
@@ -30,10 +30,6 @@ temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1) / Gamma_c
 temperature.setValue(temp0)
 
 # ----------------- Printing for testing ------------------
-print D_choice
-print Diffusivity
-
-print numerix.dot([c_T / density, ], temperature.grad) == c_T * numerix.dot([1.0 / density,], temperature.grad)
 
 # ----------------- Boundary Conditions -------------------
 """
@@ -70,7 +66,7 @@ Z.grad.faceGrad.constrain(0.0, mesh.facesLeft)
 
 # ----------------- PDE Declarations ----------------------
 # Diffusivity Equation
-diffusivity_equation = ImplicitSourceTerm(coeff=1.0, var=Diffusivity) == D_choice
+#diffusivity_equation = ImplicitSourceTerm(coeff=1.0, var=Diffusivity) == D_choice
 
 # Density Equation
 density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=Diffusivity, var=density)
@@ -86,16 +82,21 @@ Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*Diffu
 
 
 # Fully-Coupled Equation
-full_equation = density_equation & temp_equation & Z_equation & diffusivity_equation
+full_equation = density_equation & temp_equation & Z_equation# & diffusivity_equation
 
-#initial_viewer = Viewer((density, temperature, Z, Diffusivity))
+
+## Options for viewers
+x_min, x_max, y_min, y_max = 0.0, L, -1.0, 3.5
+
+#initial_viewer = Viewer((density, temperature, Z, Diffusivity), xmin=x_min, xmax=x_max, datamin=y_min, datamax=y_max, legend='best')
 #raw_input("Pause for Initial")
 
 if __name__ == '__main__':
-	viewer = Viewer((density, temperature, Z, Diffusivity), datamax=3.0, legend='best')
+	viewer = Viewer((density, temperature, -Z), datamin=y_min, datamax=y_max, xmin=x_min, xmax=x_max, legend='best')
 	for t in range(100):
 		density.updateOld(); temperature.updateOld()
-		Z.updateOld()#; D.updateOld()
+		Z.updateOld()#; Diffusivity.updateOld()
+#		TSVViewer(vars=(density, temperature, Z, Diffusivity)).plot(filename="full_solution/full"+str(t)+".tsv")
 		full_equation.solve(dt=0.01)
 		viewer.plot()
 
