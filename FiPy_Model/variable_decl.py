@@ -19,5 +19,5 @@ temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True)
 
 Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True)
 
-Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True)
+#Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True)
 
