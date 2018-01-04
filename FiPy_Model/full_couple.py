@@ -23,13 +23,15 @@ D_choice = D_Staps
 Diffusivity = D_choice
 
 
-density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / Diffusivity) * (1 + x/lambda_n))
+density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
 density.setValue(density0)
 
-temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1) / Gamma_c) * (1 - lambda_n / (zeta*lambda_T + lambda_n)*(1 + x/lambda_n)**(-zeta)))
+temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1.0) / Gamma_c) * (1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
 temperature.setValue(temp0)
 
 # ----------------- Printing for testing ------------------
+def printing():
+	print numerix.dot([c_T / density,], temperature.grad) == (c_T / density) * temperature.grad[0]
 
 # ----------------- Boundary Conditions -------------------
 """
@@ -49,7 +51,7 @@ density.faceGrad.constrain(-Gamma_c / Diffusivity.faceValue, mesh.facesRight)
 temp_left = temperature.faceValue / lambda_T
 temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
 
-temp_right = (zeta / Diffusivity.faceValue)*(temperature.faceValue*Gamma_c - (gamma - 1)*q_c) / density.faceValue
+temp_right = (zeta / Diffusivity.faceValue)*(temperature.faceValue*Gamma_c - (gamma - 1.0)*q_c) / density.faceValue
 temperature.faceGrad.constrain(temp_right, mesh.facesRight)
 
 """
@@ -72,12 +74,13 @@ Z.grad.faceGrad.constrain(0.0, mesh.facesLeft)
 density_equation = TransientTerm(var=density) == DiffusionTerm(coeff=Diffusivity, var=density)
 
 # Temperature Equation
-S_T = ((zeta+1)/zeta)*(Diffusivity/density) * numerix.dot(density.grad,temperature.grad)
+S_T = ((zeta+1.0)/zeta)*(Diffusivity/density) * numerix.dot(density.grad,temperature.grad)
 temp_equation = TransientTerm(var=temperature) == DiffusionTerm(coeff=Diffusivity/zeta, var=temperature) + S_T
 
 # Z Equation
 G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
-S_Z = numerix.dot([c_T / density,], temperature.grad) + numerix.dot([c_n*temperature / density**2,], density.grad) + G
+#S_Z = numerix.dot((c_T / density) * [[1.0]], temperature.grad) + numerix.dot((c_n*temperature / density**2) * [[1.0]], density.grad) + G
+S_Z = (c_T / density) * temperature.grad[0] + (c_n*temperature / density**2) * density.grad[0] + G
 Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*Diffusivity/epsilon, var=Z) + S_Z
 
 
@@ -94,11 +97,14 @@ x_min, x_max, y_min, y_max = 0.0, L, -1.0, 3.5
 if __name__ == '__main__':
 	viewer = Viewer((density, temperature, -Z), datamin=y_min, datamax=y_max, xmin=x_min, xmax=x_max, legend='best')
 	for t in range(100):
-		density.updateOld(); temperature.updateOld()
-		Z.updateOld()#; Diffusivity.updateOld()
+		density.updateOld(); temperature.updateOld(); Z.updateOld()
+		#Diffusivity.updateOld()	# Remanent of when it was a CellVariable
 #		TSVViewer(vars=(density, temperature, Z, Diffusivity)).plot(filename="full_solution/full"+str(t)+".tsv")
 		full_equation.solve(dt=0.01)
 		viewer.plot()
+
+		print "t = "+str(t)
+		printing()
 
 	raw_input("End of Program. <return> to continue...")
 
