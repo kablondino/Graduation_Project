@@ -59,7 +59,7 @@ p(L, t) \,=\, \begin{bmatrix}
 
 Generalized versions for boundary conditions at the plasma edge ($x=0$):
 \begin{align}
-	\frac{\partial n}{\partial x} \,=\, \frac{n}{\lambda_n}~, ~~~~\frac{\partial T}{\partial x} \,=\, \frac{n}{\lambda_T}~, ~~~~\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}~,~~~~ \frac{\partial^2 Z}{\partial x^2} \,=\, 0
+	\frac{\partial n}{\partial x} \,=\, \frac{n}{\lambda_n}~, ~~~~\frac{\partial T}{\partial x} \,=\, \frac{T}{\lambda_T}~, ~~~~\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}~,~~~~ \frac{\partial^2 Z}{\partial x^2} \,=\, 0
 \end{align}
 
 ...towards the core ($x=L$):
