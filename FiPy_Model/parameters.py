@@ -43,16 +43,24 @@ lambda_Z = 5.0/4.0
 D_max = 2.0
 D_min = 2.0/5.0
 
-epsilon = 1.0/25.0
+epsilon = B_theta**2 / B**2
 mu = 1.0/20.0
 
+## Stap's numbers
+#c_n = -1.1
+#c_T = -0.9
+#a = 3.0/2.0
+#b = 2.0
+#c = -1.0
+#Z_S = -3.0/2.0
+
+# Paquay's numbers
 c_n = 1.1
 c_T = 0.9
-
-a = 3.0/2.0
-b = 2.0
+a = -1.5
+b = -1.0
 c = -1.0
-Z_S = -3.0/2.0
+Z_S = 1.4
 
 ## For use in g version
 alpha_cx = 0.9
