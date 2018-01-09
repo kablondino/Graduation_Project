@@ -29,9 +29,6 @@ B = ( B_phi**2 + B_theta**2 )**(1.0/2.0)
 
 ## PRESET parameters for quick calculation, many of which
 ## are chosen by Staps and Paquay
-#zeta = 0.5		# Stap's
-zeta = 1.1		# Paquay's
-#zeta = 0.9		# To fiddle!
 Gamma_c = -4.0/5.0
 q_c = -4.0
 gamma = 5.0/3.0
@@ -46,7 +43,8 @@ D_min = 2.0/5.0
 epsilon = B_theta**2 / B**2
 mu = 1.0/20.0
 
-## Stap's numbers
+# Stap's numbers
+#zeta = 0.5
 #c_n = -1.1
 #c_T = -0.9
 #a = 3.0/2.0
@@ -55,12 +53,15 @@ mu = 1.0/20.0
 #Z_S = -3.0/2.0
 
 # Paquay's numbers
+zeta = 1.1
 c_n = 1.1
 c_T = 0.9
 a = -1.5
 b = -1.0
 c = -1.0
 Z_S = 1.4
+
+#zeta = 0.9		# To fiddle!
 
 ## For use in g version
 alpha_cx = 0.9
