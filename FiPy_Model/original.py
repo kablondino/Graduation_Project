@@ -1,42 +1,13 @@
 from fipy import TransientTerm, DiffusionTerm, Viewer, ConvectionTerm, ImplicitSourceTerm, TSVViewer
 
-from fipy.tools import numerix
-
-from parameters import *
 from variable_decl import *
-
-# ------------- Initial Conditions and Diffusivity---------
-Z0 = Z_S*(1 - numerix.tanh((L*x - L) / 2.0))
-Z.setValue(Z0)
-
-# Zohm's model
-D_Zohm = (D_max + D_min) / 2.0 + ((D_max - D_min)*numerix.tanh(Z)) / 2.0
-# Stap's Model
-alpha_sup = 0.5
-D_Staps = D_min + (D_max - D_min) / (1.0 + alpha_sup*numerix.dot(Z.grad, Z.grad))
-# Flow-Shear Model
-a1, a3 = 1.0, 0.5	# ASSUMES a2 = 0
-D_Shear = D_min + (D_max - D_min) / (1.0 + a1*Z**2 + a3*numerix.dot(Z.grad, Z.grad))
-
-# CHOOSE DIFFUSIVITY HERE!
-D_choice = D_Staps
-Diffusivity = D_choice
-
-
-density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
-density.setValue(density0)
-
-temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1.0) / Gamma_c) * (1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
-temperature.setValue(temp0)
+from coeffs import *
 
 # ----------------- Printing for testing ------------------
 def printing():
-	print density
-	print temperature
-	print density*temperature
-	
-#	printing_viewer = Viewer((density, density.faceGrad.divergence), legend='best')
-#	raw_input("Pause for Test")
+	print rho_pi
+	print nu_ai
+	print g_n_an
 
 # ----------------- Boundary Conditions -------------------
 """
@@ -103,7 +74,7 @@ if __name__ == '__main__':
 	for t in range(100):
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 		#Diffusivity.updateOld()	# Remanent of when it was a CellVariable
-#		TSVViewer(vars=(density, temperature, Z, Diffusivity)).plot(filename="full_solution/full"+str(t)+".tsv")
+		TSVViewer(vars=(density, temperature, Z, Diffusivity, rho_pi, n_0, nu_ei, nu_ii, nu_ai)).plot(filename="original_solution/original"+str(t)+".tsv")
 		full_equation.solve(dt=timeStep)
 		viewer.plot()
 
