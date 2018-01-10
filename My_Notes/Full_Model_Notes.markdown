@@ -1,6 +1,4 @@
-# Full Model Notes
-
-10 Jan 2018
+# Full Model Notes: 10 Jan 2018
 
 Domain with boundary:
 \begin{align}
@@ -60,14 +58,14 @@ Paquay's initial conditions for density and temperature, and Stap's initial cond
 \end{align}\normalsize
 
 Generalized versions for boundary conditions at the plasma edge ($x=0$):
-\begin{align}
+\small\begin{align}
 	\frac{\partial n}{\partial x} \,=\, \frac{n}{\lambda_n}~, ~~~~\frac{\partial T}{\partial x} \,=\, \frac{T}{\lambda_T}~, ~~~~\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}~,~~~~ \frac{\partial^2 Z}{\partial x^2} \,=\, 0
-\end{align}
+\end{align}\normalsize
 
 ...towards the core ($x=L$):
-\begin{align}
+\small\begin{align}
 	\frac{\partial n}{\partial x} \,=\, -\frac{\Gamma_c}{D}~, ~~~~ \frac{\partial T}{\partial x} \,=\ \frac{\zeta\left(T \Gamma_c - (\gamma - 1) q_c\right)}{n\,D}~, ~~~~\frac{\partial Z}{\partial x} \,=\, 0
-\end{align}
+\end{align}\normalsize
 
 For Matlab, the Neumann and Robin boundary conditions can be expressed in the form of
 \small\begin{align}
@@ -85,35 +83,32 @@ p(L, t) \,=\, \begin{bmatrix}
 				\end{bmatrix}_{x=L}~.
 \end{align}\normalsize
 
-### Steady-State Solutions (Verify forms)
+### Steady-State Solutions
 
 \small\begin{align}
-	&\bar{n}(x) \,=\, \bar{n}(0) - \int_0^x \frac{\Gamma_c}{D(\bar{Z}(x))}~\text{d}x, ~~ \bar{T}(x) \,=\, \frac{(\gamma - 1) q_c}{\Gamma_c} \left(1 - \lambda_g\left(\frac{\bar{n}(x)}{\bar{n}(0)}\right)^{-\zeta}\right), ~~ G(\bar{Z}(x)) \,=\, \theta\,D(\bar{Z}(x)) \\
-	&\bar{n}(0) \,=\, -\frac{\Gamma_c \lambda_n}{D(\bar{Z}(0))}, ~~ \lambda_g \,=\, \frac{\frac{\lambda_n}{\zeta \lambda_T}}{1 + \frac{\lambda_n}{\zeta \lambda_T}}, ~~ \theta \,=\, \frac{(\gamma - 1) q_c}{\Gamma_c^2 \lambda_n^2} (c_n + c_g), ~~ c_g \,=\, \frac{\zeta c_T - c_n}{1 + \zeta \frac{\lambda_T}{\lambda_n}}
+	&\bar{n}(x) \,=\, \bar{n}(0) - \int_0^x \frac{\Gamma_c}{D(\bar{Z}(x))}~\text{d}x, ~~ \bar{T}(x) \,=\, \frac{(\gamma - 1) q_c}{\Gamma_c} \left(1 - \lambda_g\left(\frac{\bar{n}(x)}{\bar{n}(0)}\right)^{-\zeta}\right) \\
+	&\bar{n}(0) \,=\, -\frac{\Gamma_c \lambda_n}{D(\bar{Z}(0))}, ~~ \lambda_g \,=\, \frac{\frac{\lambda_n}{\zeta \lambda_T}}{1 + \frac{\lambda_n}{\zeta \lambda_T}}, ~~ c_g \,=\, \frac{\zeta c_T - c_n}{1 + \zeta \frac{\lambda_T}{\lambda_n}}~, ~~ \text{Staps':} ~ \theta \,=\, \frac{(\gamma - 1) q_c}{\Gamma_c^2 \lambda_n^2} (c_n + c_g) \\
+	\text{Paquay's:}& ~ \theta \,=\, \frac{\Gamma_c^2 \lambda_n^2}{q_c \zeta (\gamma - 1)} \, \frac{\lambda_n + \zeta\lambda_T}{c_n\lambda_T + c_T\lambda_n} \,=\, \frac{1}{\text{Staps}} \,=\, \text{Weymiens}, ~~ G(\bar{Z}(x)) \,=\, \theta\,D(\bar{Z}(x))
 \end{align}\normalsize
 
-### Gradient $Z$ Model, with Substitutions
+### Gradient Model, from Staps
 \small\begin{align}
 	&\dfrac{m_i}{e \rho_{pi}} \,n T\, \left(\dfrac{B_\theta}{B}\right)^2 \dfrac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu_i}{e \rho_{pi}} \,n T\, \dfrac{\partial^2 Z}{\partial x^2} \\
 	&+\, B_\theta^2 \left[\left(g_n^\text{an} - g_n^\text{cx} - g_n^{\pi\parallel}\right) \dfrac{n^\prime}{n} + \left(g_T^\text{an} - g_T^\text{cx} - g_T^{\pi\parallel}\right) \dfrac{T^\prime}{T} + \left(g_Z^\text{an} - g_Z^\text{cx} - g_Z^{\pi\parallel}\right) Z - f^\text{OL}\right]
 \end{align}\normalsize
 
 + Electron Anomalous Diffusion:
-
 \begin{align}
 	D^\text{an} \,&=\, \dfrac{\epsilon^2 \sqrt{\pi}}{2 a_m} \dfrac{\rho_{pe} T}{B}~,~~ g_n^\text{an} \,=\, -e \,n\, D^\text{an}~,~~ g_T^\text{an} \,=\, -e \,n\, \alpha^\text{an}\, D^\text{an}~,~~ g_Z^\text{an} \,=\, \dfrac{-e \,n\, D^\text{an}}{\rho_{pi}}
 \end{align}
 
 + Charge Exchange Friction:
-
 \begin{align}
 	g_n^\text{cx} \,=\, -\dfrac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \,n T}{B_\theta^2}~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~ g_Z^\text{cx} \,=\, -\dfrac{g_n^\text{cx}}{\rho_{pi}}
 \end{align}
 
-+ Ion Bulk Viscosity:
-
++ Ion Bulk Viscosity: $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
 \begin{align}
-	\text{To consolidate:}&~~~ N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2 \\
 	\begin{pmatrix}\xi_\theta \\[1ex] \xi_\phi \end{pmatrix} \,&=\, \dfrac{1}{\pi} \int_0^{\sqrt{\nu_{*i}}} \begin{pmatrix} 1 \\ \frac{5}{2} - x \end{pmatrix} x^2 \exp(-x) \, \tan^{-1}\left(\dfrac{2 N \sqrt{x}}{N^2 + Z^2 - x}\right) \text{d}x \\
 	g_n^{\pi\parallel} \,=\, \eta \, \rho_{\pi}& B_\theta \, \xi_\theta~,~~~~ g_n^{\pi\parallel} \,=\, \eta \, \rho_{pi} \left(B_\theta\,\xi_\theta - B\,\xi_\phi\right)~,~~~~ g_Z^{\pi\parallel} \,=\, 2\eta \, B_\theta \, \xi_\theta
 \end{align}
