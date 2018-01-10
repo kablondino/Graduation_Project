@@ -62,6 +62,8 @@
 \hypertarget{full-model-notes}{%
 \section{Full Model Notes}\label{full-model-notes}}
 
+10 Jan 2018
+
 Domain with boundary: \begin{align}
     \Omega \,=\, \left\{x, t \,\in\, \mathbb{R}^2 \,|\, (0 \leq x \leq L) ~\text{and}~ (t \geq 0)\right\}, ~~~~ \delta\Omega \,=\, \{x, t \,\in\, \Omega | x = 0 ~\text{and}~ x = L \}
 \end{align}
@@ -72,18 +74,20 @@ relation: \begin{align}
 \end{align}
 
 The following form of the model references particle and heat fluxes,
-\(\Gamma\) and \(q\): \begin{align}
+\(\Gamma\) and \(q\): \small\begin{align}
     \frac{\partial n}{\partial t} \,&=\, -\frac{\partial \Gamma}{\partial x}~, &\Gamma \,&=\, -D \, \frac{\partial n}{\partial x} \\
     \frac{\partial U}{\partial t} \,&=\, -\frac{\partial q}{\partial x}~, &q \,&=\, -\chi \, n \frac{\partial T}{\partial x} + \frac{\Gamma\,T}{\gamma - 1} \\
     \epsilon \frac{\partial Z}{\partial t} \,&=\, \mu \frac{\partial^2 Z}{\partial x^2} + \frac{c_n \, T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)~, &G \,&=\, a + b(Z - Z_S) + c(Z - Z_S)^3
-\end{align}
+\end{align}\normalsize
 
-Reducing it down to equations of only \(n\), \(T\), \(Z\), and numerical
-parameters gives \emph{(Verify \(T\) equation!)} \begin{align}
-    \dfrac{\partial n}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[D \cdot n^\prime\right] \\
-    \dfrac{\partial T}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D}{\zeta} \cdot T^\prime\right] \,+\, \left(\dfrac{\zeta + 1}{\zeta}\right) \dfrac{D}{n} \cdot n^\prime \, T^\prime \,+\, \dfrac{D}{n} \, n^{\prime\prime} \, T \\
-    \epsilon \, \dfrac{\partial Z}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\mu\,D \cdot Z^\prime\right] \,+\, \dfrac{c_n T}{n^2} \cdot n^\prime \,+\, \dfrac{c_T}{n} \cdot T^\prime \,+\, G(Z)
-\end{align}
+Reducing it down to equations of only \(n\), \(T\) (of 2 possible
+forms), \(Z\), and numerical parameters gives \emph{(Verify \(T\)
+equations!)} \small\begin{align}
+    \dfrac{\partial n}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[D \cdot \dfrac{\partial n}{\partial x}\right] \\
+    \dfrac{\partial}{\partial t}(n\,T) \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D\,n}{\zeta} \cdot \dfrac{\partial T}{\partial x}\right] \,+\, \dfrac{\partial}{\partial x}\left[D\,T \cdot \dfrac{\partial n}{\partial x}\right] \\
+    \dfrac{\partial T}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D}{\zeta} \cdot \dfrac{\partial T}{\partial x}\right] \,+\, \left(\dfrac{\zeta + 1}{\zeta}\right) \dfrac{D}{n} \cdot \dfrac{\partial n}{\partial x} \, \dfrac{\partial T}{\partial x} \,+\, \dfrac{D\,T}{n} \cdot \dfrac{\partial ^2 n}{\partial x^2} \\
+    \epsilon \, \dfrac{\partial Z}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\mu\,D \cdot \dfrac{\partial Z}{\partial x}\right] \,+\, \dfrac{c_n T}{n^2} \cdot \dfrac{\partial n}{\partial x} \,+\, \dfrac{c_T}{n} \cdot \dfrac{\partial T}{\partial x} \,+\, G(Z)
+\end{align}\normalsize
 
 Staps reduced the model to the following vector form:
 \small\begin{align}
@@ -102,22 +106,22 @@ Staps reduced the model to the following vector form:
 \end{align}\normalsize
 
 The diffusivity function \(D(\mathcal{E})\) is given in a few forms:
-\begin{align}
+\small\begin{align}
     D(Z) \,&=\, \dfrac{D_\text{max} + D_\text{min}}{2} + \dfrac{(D_\text{max} - D_\text{min})\tanh(Z)}{2} ~~~~~~ &\text{Zohm} \\
     D(Z^\prime) \,&=\, D_\text{min} \,+\, \dfrac{D_\text{max} - D_\text{min}}{1 + \alpha_\text{sup}\cdot(Z^\prime)^2} ~~~~~~ &\text{Staps} \\
     D(Z, Z^\prime) \,&=\, D_\text{min} + \dfrac{D_\text{max} - D_\text{min}}{1 + a_1\,Z^2 + a_2\,Z \cdot Z^\prime + a_3\left(Z^\prime\right)^2} ~~~~~~ &\text{Flow-Shear}
-\end{align}
+\end{align}\normalsize
 
 \hypertarget{domain-boundary-initial-conditions-and-boundary-conditions}{%
 \subsubsection{Domain Boundary, Initial Conditions, and Boundary
 Conditions}\label{domain-boundary-initial-conditions-and-boundary-conditions}}
 
 Paquay's initial conditions for density and temperature, and Stap's
-initial condition for \(Z\): \begin{align}
+initial condition for \(Z\): \small\begin{align}
     n(x,0) \,&=\, -\dfrac{\Gamma_\infty \lambda_n}{D} \, \left(1 + \frac{x}{\lambda_n}\right)~, \\
     T(x,0) \,&=\, q_\infty \, \dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1 - \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1 + \frac{x}{\lambda_n}\right)^{-\zeta}\right]~, \\
     Z(x,0) \,&=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right]~.
-\end{align}
+\end{align}\normalsize
 
 Generalized versions for boundary conditions at the plasma edge
 (\(x=0\)): \begin{align}
@@ -157,10 +161,10 @@ forms)}\label{steady-state-solutions-verify-forms}}
 \subsubsection{\texorpdfstring{Gradient \(Z\) Model, with
 Substitutions}{Gradient Z Model, with Substitutions}}\label{gradient-z-model-with-substitutions}}
 
-\begin{align}
+\small\begin{align}
     &\dfrac{m_i}{e \rho_{pi}} \,n T\, \left(\dfrac{B_\theta}{B}\right)^2 \dfrac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu_i}{e \rho_{pi}} \,n T\, \dfrac{\partial^2 Z}{\partial x^2} \\
     &+\, B_\theta^2 \left[\left(g_n^\text{an} - g_n^\text{cx} - g_n^{\pi\parallel}\right) \dfrac{n^\prime}{n} + \left(g_T^\text{an} - g_T^\text{cx} - g_T^{\pi\parallel}\right) \dfrac{T^\prime}{T} + \left(g_Z^\text{an} - g_Z^\text{cx} - g_Z^{\pi\parallel}\right) Z - f^\text{OL}\right]
-\end{align}
+\end{align}\normalsize
 
 \begin{itemize}
 \tightlist
