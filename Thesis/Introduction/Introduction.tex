@@ -31,11 +31,27 @@ This results in an increase temperature in the core.
 
 \section{The L-H Transition}
 The key feature that determines a divertor tokamak's operational mode is the amount of external heating power.
-It is also important to note that limiter tokamaks are relegated to stay in L-mode, as H-mode is exclusive to tokamaks with divertors.
+Limiter tokamaks are relegated to stay in L-mode, as H-mode is an exclusive operating mode of tokamaks with divertors.
 The transition can occur in one of three manners: sharp, smooth, and oscillatory.
 
 \subsection{Bifurcation Theory}
-A bifurcation is defined to be a topological or qualitative change in a system when a small and smooth change of a parameter is made.
+A defining feature of L-H transitions is that they can occur very suddenly (the so-called sharp transition), which is characteristic of fold bifurcation behavior.
+Mathematically, a bifurcation is defined to be a topological or qualitative change in a system when a small and smooth change of a parameter is made.
+A simple example for a fold bifurcation is the following, with $a$ representing the parameter:
+\begin{equation}
+	\frac{\text{d}x}{\text{d}t} \,=\, \dot{x} \,=\, a + x^2.
+	\label{eq:simple_fold}
+\end{equation}
+This equation can behave in one of three manners:
+If $a > 0$, there are no real points of equilibrium, also known as steady-state solutions.
+For $a = 0$, there is one equilibrium point at $x = 0$, and two for $a < 0$.
+The two points are at $x = \pm\sqrt{-a}$.
+Varying $a$ from some positive real number to some negative number, the fundamental behavior of the solutions changes drastically at $a = 0$.
+
+Being in the simplest known form, Equation~\ref{eq:simple_fold} is in the simplest known form of a fold bifurcation; the simplest form for any dynamical system is known as the topological norm form.
+The co-dimension of a system refers to the lowest number of parameters required to produce the topological norm form.
+In the case of Eq.~\ref{eq:simple_fold}, the co-dimension is one, and is thus referred to as a co-dimension 1 bifurcation \cite{weymiens_bifurcation_2014}.
+
 The dynamic behavior of the L-H transition correspond very closely to a few certain bifurcations.
 Physically, the transition is a bifurcation in the turbulent transport at the edge of the tokamak.
 Sharp and smooth transitions are features of the cusp bifurcation, a two-fold bifurcation \cite{weymiens_bifurcation_2014}. 
