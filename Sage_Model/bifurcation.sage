@@ -18,7 +18,9 @@ co_1_upper = implicit_plot(co_1_root[1], (a,a_min,a_max), (x,x_min,x_max), linew
 
 co_1_zero = point((0,0), size=30, color='black')
 
-#show(co_1_lower + co_1_upper + co_1 + co_1_zero, figsize=[8,10], typeset='type1')
+co_1_total = co_1_lower + co_1_upper + co_1 + co_1_zero
+
+#show(co_1_total, figsize=[8,10], typeset='type1')
 
 
 # ----------------- Co-dimension 2 ------------------------
@@ -40,6 +42,7 @@ co_2_high = implicit_plot(f2.right() == 0, (a, a_min, a_max), (x, turning_point_
 #co_2_zero1 = point((turning_point_a, turning_point_x), size=40, color='black')
 #co_2_zero2 = point((-turning_point_a, -turning_point_x), size=40, color='black')
 
+co_2_total = co_2 + co_2_low + co_2_mid + co_2_high
 
-show(co_2 + co_2_low + co_2_mid + co_2_high, figsize=[8,10], typeset='type1')
+show(co_2_total, figsize=[8,10], typeset='type1')
 
