@@ -1,4 +1,4 @@
-# Full Model Notes: 16 Jan 2018
+# Full Model Notes: 18 Jan 2018
 
 \small\begin{align}
 	\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,&=\, a + bx - x^3 \\
@@ -27,7 +27,7 @@ Reducing it down to equations of only $n$, $T$ (of 2 possible forms), $Z$, and n
 \small\begin{align}
 	\dfrac{\partial n}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[D \cdot \dfrac{\partial n}{\partial x}\right] \\
 	\dfrac{\partial(n\,T)}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D\,n}{\zeta} \cdot \dfrac{\partial T}{\partial x}\right] \,+\, \dfrac{\partial}{\partial x}\left[D\,T \cdot \dfrac{\partial n}{\partial x}\right]~, ~~~~ \dfrac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}\left[\frac{D}{\zeta} \cdot \frac{\partial T}{\partial x}\right] \,+\, \left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \, \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x} \\
-	\epsilon \, \dfrac{\partial Z}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\mu\,D \cdot \dfrac{\partial Z}{\partial x}\right] \,+\, \dfrac{c_n T}{n^2} \cdot \dfrac{\partial n}{\partial x} \,+\, \dfrac{c_T}{n} \cdot \dfrac{\partial T}{\partial x} \,+\, G(Z)
+	\epsilon \, \dfrac{\partial Z}{\partial t} \,&=\, \mu \, \dfrac{\partial^2 Z}{\partial x^2} \,+\, \dfrac{c_n T}{n^2} \cdot \dfrac{\partial n}{\partial x} \,+\, \dfrac{c_T}{n} \cdot \dfrac{\partial T}{\partial x} \,+\, G(Z)
 \end{align}\normalsize
 
 Staps reduced the model to the following vector form:
@@ -112,7 +112,7 @@ Steady-State Solutions
 
 + Ion Bulk Viscosity: $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
 \small\begin{align}
-	\begin{pmatrix}\xi_\theta \\[1ex] \xi_\phi \end{pmatrix} \,&=\, \dfrac{1}{\pi} \int_0^{\sqrt{\nu_{*i}}} \begin{pmatrix} 1 \\ \frac{5}{2} - x \end{pmatrix} x^2 \exp(-x) \, \tan^{-1}\left(\dfrac{2 N \sqrt{x}}{N^2 + Z^2 - x}\right) \text{d}x \\
+	\begin{bmatrix}\xi_\theta \\[1ex] \xi_\phi \end{bmatrix} \,&=\, \dfrac{1}{\pi} \int_0^{\sqrt{\nu_{*i}}} \begin{bmatrix} 1 \\[1ex] \frac{5}{2} - x \end{bmatrix} x^2 \exp(-x) \, \tan^{-1}\left(\dfrac{2 N \sqrt{x}}{N^2 + Z^2 - x}\right) \text{d}x \\
 	g_n^{\pi\parallel} \,=\, \eta \, \rho_{\pi}& B_\theta \, \xi_\theta~,~~~~ g_n^{\pi\parallel} \,=\, \eta \, \rho_{pi} \left(B_\theta\,\xi_\theta - B\,\xi_\phi\right)~,~~~~ g_Z^{\pi\parallel} \,=\, 2\eta \, B_\theta \, \xi_\theta
 \end{align}\normalsize
 
