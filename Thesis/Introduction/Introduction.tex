@@ -44,27 +44,38 @@ A simple example for a fold bifurcation is the following, with $a$ representing 
 \end{equation}
 This equation can behave in one of three manners:
 If $a > 0$, there are no real points of equilibrium, also known as steady-state solutions.
-For $a = 0$, there is one equilibrium point at $x = 0$, and two for $a < 0$.
-The two points are at $x = \pm\sqrt{-a}$.
+For $a = 0$, there is one equilibrium point at $x = 0$, and two for $a < 0$, with $x = \pm\sqrt{-a}$.
 Varying $a$ from some positive real number to some negative number, the fundamental behavior of the solutions changes drastically at $a = 0$.
 
-Being in the simplest known form, Equation~\ref{eq:simple_fold} is in the simplest known form of a fold bifurcation; the simplest form for any dynamical system is known as the topological norm form.
+%{{{ Two figures for simple bifurcations
+\TwoFig{../Graphics/Simple_fold.png}
+	{Phase plot for $\dot{x} = a + x^2$ (Eq.~\ref{eq:simple_fold}), with the co-dimension 1 bifurcation occurring at $a = 0$. For $a < 0$, the system is unstable, and stable for points $a \geq 0$, shown in red and green, respectively.}
+	{fig:simple_fold}
+	{../Graphics/co-2_fold.png}
+	{Phase plot for $\dot{x} = -(a + x - x^3)$ (Eq.~\ref{eq:sharp_bif}). This system showcases two fold bifurcations, at the turning points $a_{\pm\text{crit}}$, with two stable regions, in green and blue. The red region is an intermediate}
+	{fig:co-2_fold}
+%}}}
+
+Equation~\ref{eq:simple_fold} is in the simplest known form of a fold bifurcation; the simplest form for any dynamical system is known as the topological norm form.
+A phase plot of $x$ versus $a$ in Fig.~\ref{fig:simple_fold} illustrates this.
+
 The co-dimension of a system refers to the lowest number of parameters required to produce the topological norm form.
 In the case of Eq.~\ref{eq:simple_fold}, the co-dimension is one, and is thus referred to as a co-dimension 1 bifurcation \cite{weymiens_bifurcation_2014}.
 
+\todo{{\color{red}FIX!}}
 The dynamic behavior of the L-H transition correspond very closely to a few certain bifurcations.
 Physically, the transition is a bifurcation in the turbulent transport at the edge of the tokamak.
 Sharp and smooth transitions are features of the cusp bifurcation, a two-fold bifurcation \cite{weymiens_bifurcation_2014}. 
 The topological norm form of this behavior is
 \begin{equation}
-	\dot{x} \,=\, a - bx - x^3
+	\dot{x} \,=\, -(a + bx - x^3)
 	\label{eq:sharp_bif}
 \end{equation}
 
 These two dynamics are distinguished only by density as the parameter.
 The most common transition is the sharp transition, as the plasma parameters for it are more ideal for achieving fusion.
 
-%{{{ Two figures for bifurcation
+%{{{ Two figures for complex bifurcations
 \TwoFig{../Graphics/Bif_3D.png}
 	{Two codimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp \cite{weymiens_bifurcation_2014}.}
 	{fig:Bif_3D}
