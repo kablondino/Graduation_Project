@@ -21,7 +21,7 @@ co_1_zero = point((0,0), size=30, color='black')
 
 co_1_total = co_1_lower + co_1_upper + co_1 + co_1_zero
 
-co_1_total.show()
+#co_1_total.show()
 
 
 # ----------------- Co-dimension 2 ------------------------
@@ -47,7 +47,17 @@ co_2_high = implicit_plot(f2.right() == 0, (a, a_min, a_max), (x, turning_point_
 
 co_2_total = co_2 + co_2_low + co_2_mid + co_2_high
 
-co_2_total.show()
+#co_2_total.show()
+
+import numpy
+# \dot{x} vs x phase plots
+var('x_dot')
+co_2_dot = implicit_plot(x_dot == -(a + b*x - x^3).subs(a=-2.5, b=-2.5), (x, x_min, x_max), (x_dot, -4.0, 4.0), axes=True, aspect_ratio='automatic')
+for i in numpy.arange(-2.0, 2.5, 0.5):
+	for j in numpy.arange(-2.0, 2.5, 0.5):
+		co_2_dot = co_2_dot + implicit_plot(x_dot == -(a + b*x - x^3).subs(a=i, b=j), (x, x_min, x_max), (x_dot, -4.0, 4.0), axes=True, aspect_ratio='automatic')
+
+co_2_dot.show()
 
 # ----------------- Co-dimension 2 Surface ----------------
 #f3 = diff(x,t) == -(a + b*x - x^3)
