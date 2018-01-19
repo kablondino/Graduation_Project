@@ -1,63 +1,133 @@
 reset()
 
-var('x,t,a')
+import numpy
+
+var('x,t,a,b')
 
 # ----------------- Co-dimension 1 ------------------------
-a_min, a_max = -1.5, 0.5
-x_min, x_max = -1.25, 1.25
+#a_min, a_max = -1.5, 0.5
+#x_min, x_max = -1.25, 1.25
 
-# Co-dimension 1 equation
-f1 = diff(x,t) == a + x^2
-
-co_1 = plot_vector_field((0, f1 / sqrt(a^2 + x^2)), (a, a_min, a_max), (x, x_min, x_max), color='blue', axes=True, frame=True)
-
-
-co_1_root = solve(a + x^2 == 0, x)
-co_1_lower = implicit_plot(co_1_root[0], (a,a_min,a_max), (x,x_min,x_max), linewidth=2.5, axes_labels=['$a$','$x$'], color='red', plot_points=2000, gridlines=False, fontsize=20, title="Co-dimension 1 Fold")
-co_1_upper = implicit_plot(co_1_root[1], (a,a_min,a_max), (x,x_min,x_max), linewidth=2.5, color='green', plot_points=2000, figsize=10, typeset='type1')
-
-# Zero point
-co_1_zero = point((0,0), size=30, color='black')
-
-co_1_total = co_1_lower + co_1_upper + co_1 + co_1_zero
-
-#co_1_total.show()
-
-
-# ----------------- Co-dimension 2 ------------------------
-a_min, a_max = -1.2, 1.2
-x_min, x_max = -1.5, 1.5
-var('b')
-
-# Co-dimension 2 equation
-f2 = diff(x,t) == -(a + b*x - x^3).subs(b=1.1)
-
-co_2 = plot_vector_field((0, f2), (a, a_min, a_max), (x, x_min, x_max), color='blue', axes=True, frame=True)
-
-# Points
-turning_point_a = 1/3*sqrt(3)
-turning_point_x = solve(f2.subs(a=turning_point_a), x)[0].right().real()
-
-co_2_low = implicit_plot(f2.right() == 0, (a, a_min, a_max), (x, x_min, -turning_point_a), linewidth=2.5, axes_labels=['$a$','$x$'], axes=True, fontsize=20, title="Co-dimension 2 Fold")
-co_2_mid = implicit_plot(f2.right() == 0, (a, a_min, a_max), (x, -turning_point_a, turning_point_a), linewidth=2.5, color='red', axes=True)
-co_2_high = implicit_plot(f2.right() == 0, (a, a_min, a_max), (x, turning_point_a, x_max), linewidth=2.5, color='green', axes=True, figsize=10, typeset='type1')
-
-#co_2_zero1 = point((turning_point_a, turning_point_x), size=40, color='black')
-#co_2_zero2 = point((-turning_point_a, -turning_point_x), size=40, color='black')
-
-co_2_total = co_2 + co_2_low + co_2_mid + co_2_high
+## Co-dimension 1 equation
+#f1 = diff(x,t) == a + x^2
+#
+#co_1 = plot_vector_field((0, f1 / sqrt(a^2 + x^2)), (a, a_min, a_max), (x, x_min, x_max), color='blue', axes=True, frame=True)
+#
+#
+#co_1_root = solve(a + x^2 == 0, x)
+#co_1_lower = implicit_plot(co_1_root[0], (a,a_min,a_max), (x,x_min,x_max), linewidth=2.5, axes_labels=['$a$','$x$'], color='red', plot_points=2000, gridlines=False, fontsize=20, title="Co-dimension 1 Fold")
+#co_1_upper = implicit_plot(co_1_root[1], (a,a_min,a_max), (x,x_min,x_max), linewidth=2.5, color='green', plot_points=2000, figsize=10, typeset='type1')
+#
+## Zero point
+#co_1_zero = point((0,0), size=30, color='black')
+#
+#co_1_total = co_1_lower + co_1_upper + co_1 + co_1_zero
+#
+##co_1_total.show()
+#
+#
+## ----------------- Co-dimension 2 ------------------------
+#a_min, a_max = -1.2, 1.2
+#x_min, x_max = -1.5, 1.5
+#var('b')
+#
+## Co-dimension 2 equation
+#f2 = diff(x,t) == -(a + b*x - x^3).subs(b=1.1)
+#
+#co_2 = plot_vector_field((0, f2), (a, a_min, a_max), (x, x_min, x_max), color='blue', axes=True, frame=True)
+#
+## Points
+#turning_point_a = 1/3*sqrt(3)
+#turning_point_x = solve(f2.subs(a=turning_point_a), x)[0].right().real()
+#
+#co_2_low = implicit_plot(f2.right() == 0, (a, a_min, a_max), (x, x_min, -turning_point_a), linewidth=2.5, axes_labels=['$a$','$x$'], axes=True, fontsize=20, title="Co-dimension 2 Fold")
+#co_2_mid = implicit_plot(f2.right() == 0, (a, a_min, a_max), (x, -turning_point_a, turning_point_a), linewidth=2.5, color='red', axes=True)
+#co_2_high = implicit_plot(f2.right() == 0, (a, a_min, a_max), (x, turning_point_a, x_max), linewidth=2.5, color='green', axes=True, figsize=10, typeset='type1')
+#
+##co_2_zero1 = point((turning_point_a, turning_point_x), size=40, color='black')
+##co_2_zero2 = point((-turning_point_a, -turning_point_x), size=40, color='black')
+#
+#co_2_total = co_2 + co_2_low + co_2_mid + co_2_high
 
 #co_2_total.show()
 
-import numpy
-# \dot{x} vs x phase plots
+# ----------------- \dot{x} vs x plots --------------------
 var('x_dot')
-co_2_dot = implicit_plot(x_dot == -(a + b*x - x^3).subs(a=-2.5, b=-2.5), (x, x_min, x_max), (x_dot, -4.0, 4.0), axes=True, aspect_ratio='automatic')
-for i in numpy.arange(-2.0, 2.5, 0.5):
-	for j in numpy.arange(-2.0, 2.5, 0.5):
-		co_2_dot = co_2_dot + implicit_plot(x_dot == -(a + b*x - x^3).subs(a=i, b=j), (x, x_min, x_max), (x_dot, -4.0, 4.0), axes=True, aspect_ratio='automatic')
+x_min, x_max = -2.0, 2.0
 
-co_2_dot.show()
+"""
+	ROOT FINDING function, for all of the roots.
+	Returns a sorted list of UNIQUE roots. This does NOT work when there
+	is multiplicity in the roots. Use `w.roots()` to symbolically check
+	for multiplicity.
+"""
+def find_root_recursive(func, lower_bound, upper_bound, tol=1.0e-12):
+	L = []
+	try:
+		x0 = find_root(func, lower_bound, upper_bound)
+		L.append(x0)
+		L += find_root_recursive(func, lower_bound, x0-tol, tol)
+		L += find_root_recursive(func, x0+tol, upper_bound, tol)
+	except:
+		pass
+	return L
+
+x_dot = -(a + b*x - x^3)
+
+a_list = [-2.0, 0.0, 2.0]
+b_list = [-2.5, -0.5, 1.0, 3.0]
+
+plot_list = []
+point_list = []
+
+a_selection = -0.5
+b_selection = -0.8
+
+# Create list of randomized integers from 0 to the length of a_list or b_list
+random_a_index = [k for k in range(len(a_list))]
+shuffle(random_a_index)
+#random_b_index = [j for j in range(len(b_list))]
+#shuffle(random_b_index)
+
+# Options for plotting
+the_title = 'Stationary points for $\dot{x} = -(a + bx - x^3)$ for $b = '+str(b_selection.n(prec=12))+'$'
+ax_labels = ['$x$', r'$\frac{{d}x}{{d}t}$']
+the_font_size = 20
+
+for i in range(len(a_list)):
+	this_loops_color = rainbow(len(random_a_index)+2)[random_a_index[i]]
+
+	the_label = '$a = ' + str(a_list[i].n(prec=10)) + '$'
+
+	plot_list.append(plot(x_dot.subs(a=a_list[i], b=b_selection),\
+			(x, x_min, x_max), color=this_loops_color, gridlines='major',\
+			title=the_title, frame=True, axes=False, legend_label=the_label,\
+			axes_labels=ax_labels, figsize=[10,8], fontsize=the_font_size,\
+			typeset='type1'))
+
+	# Create list of points of zeros
+	particular_roots = find_root_recursive(x_dot.subs(a=a_list[i], b=b_selection), x_min, x_max)
+#	particular_roots = [find_root(x_dot.subs(a=a_list[i], b=b_selection), x_min, x_max)]
+	for j in particular_roots:
+		point_list.append(point((j,0), color=this_loops_color, size=50))
+
+# Tangent root function
+#tangent_root_fun = x_dot.subs(a=sqrt(4*b_selection^3/27), b=b_selection)
+#
+## Equation with exactly 2 ROOTS
+#plot_list.append(plot(tangent_root_fun, (x, x_min, x_max), color='black', legend_label=r'$a = \sqrt{\frac{4\,b^3}{27}}$'))
+#
+## Find lower, tangent root
+#point_list.append(point((find_root(tangent_root_fun, x_min, 0),0), color='black', size=50))
+#
+## Find upper, non-tangent root, and make point
+#point_list.append(point((find_root_recursive(tangent_root_fun, 0, x_max)[0], 0), color='black', size=50))
+
+# Set legend options
+combined_plots = sum(plot_list) + sum(point_list)
+combined_plots.set_legend_options(font_size=the_font_size)
+
+show(combined_plots)
 
 # ----------------- Co-dimension 2 Surface ----------------
 #f3 = diff(x,t) == -(a + b*x - x^3)
