@@ -46,24 +46,38 @@ This equation can behave in one of three manners:
 If $a > 0$, there are no real points of equilibrium, also known as steady-state solutions.
 For $a = 0$, there is one equilibrium point at $x = 0$, and two for $a < 0$, with $x = \pm\sqrt{-a}$.
 Varying $a$ from some positive real number to some negative number, the fundamental behavior of the solutions changes drastically at $a = 0$.
-
-%{{{ Two figures for simple bifurcations
-\TwoFig{../Graphics/Simple_fold.png}
-	{Phase plot for $\dot{x} = a + x^2$ (Eq.~\ref{eq:simple_fold}), with the co-dimension 1 bifurcation occurring at $a = 0$. For $a < 0$, the system is unstable, and stable for points $a \geq 0$, shown in red and green, respectively.}
-	{fig:simple_fold}
-	{../Graphics/co-2_fold.png}
-	{Phase plot for $\dot{x} = -(a + x - x^3)$ (Eq.~\ref{eq:sharp_bif}). This system showcases two fold bifurcations, at the turning points $a_{\pm\text{crit}}$, with two stable regions, in green and blue. The red region is an intermediate}
-	{fig:co-2_fold}
-%}}}
-
 Equation~\ref{eq:simple_fold} is in the simplest known form of a fold bifurcation; the simplest form for any dynamical system is known as the topological norm form.
 A phase plot of $x$ versus $a$ in Fig.~\ref{fig:simple_fold} illustrates this.
 
+%{{{ Two figures for simple bifurcations (co-dimension 1)
+\TwoFig{../Graphics/Bif_Graphs/Simple_fold.png}
+	{Plot of parameter space for $\dot{x} = a + x^2$ (Eq.~\ref{eq:simple_fold}), with the co-dimension 1 bifurcation occurring at $a = 0$. %
+	For $a < 0$, the system is unstable, and stable for points $a \geq 0$, shown in red and green, respectively.}
+	{fig:simple_fold}
+	{../Graphics/Bif_Graphs/co-2_fold.png}
+	{Plot of parameter space for $\dot{x} = -(a + x - x^3)$ (Eq.~\ref{eq:sharp_bif}). %
+	This system showcases two fold (co-dimension 1) bifurcations, at the turning points $a_{\pm\text{crit}}$, with two stable regions, in green and blue. %
+	The red region is an intermediate that is unstable.}
+	{fig:co-2_fold}
+%}}}
+
+%{{{ Two figures for zeros of the co-dimension 1 bifurcations
+\TwoFigOneCap{../Graphics/Bif_Graphs/stationary_b-0_8.png}
+	{../Graphics/Bif_Graphs/stationary_b_1_1.png}
+	{Phase plots for Eq.~\ref{eq:sharp_bif}, with different values of $a$ within each plot. %
+	There is a variance in the number of zeros based on the values of $a$ in the right plot, while there is strictly one zero for all values of $a$ in the left plot. %
+	When there is multiple roots, the middle zero is always unstable.}
+	{fig:stationaries_b}
+%}}}
+
 The co-dimension of a system refers to the lowest number of parameters required to produce the topological norm form.
+Put differently, it is the number of parameters that must be varied for the bifurcation to occur.
 In the case of Eq.~\ref{eq:simple_fold}, the co-dimension is one, and is thus referred to as a co-dimension 1 bifurcation \cite{weymiens_bifurcation_2014}.
 
-\todo{{\color{red}FIX!}}
+\todo{\color{red}{FIX HERE!}}
 The dynamic behavior of the L-H transition correspond very closely to a few certain bifurcations.
+Fold bifurcations are a natural way to describe the sharp transitions
+
 Physically, the transition is a bifurcation in the turbulent transport at the edge of the tokamak.
 Sharp and smooth transitions are features of the cusp bifurcation, a two-fold bifurcation \cite{weymiens_bifurcation_2014}. 
 The topological norm form of this behavior is
@@ -76,10 +90,10 @@ These two dynamics are distinguished only by density as the parameter.
 The most common transition is the sharp transition, as the plasma parameters for it are more ideal for achieving fusion.
 
 %{{{ Two figures for complex bifurcations
-\TwoFig{../Graphics/Bif_3D.png}
+\TwoFig{../Graphics/Bif_Graphs/Bif_3D.png}
 	{Two codimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp \cite{weymiens_bifurcation_2014}.}
 	{fig:Bif_3D}
-	{../Graphics/3_transitions_single_simple.png}
+	{../Graphics/Bif_Graphs/3_transitions_single_simple.png}
 	{Codimension 3 parameter space with the black line indicating the fold bifurcation. The parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition \cite{weymiens_bifurcation_2014}.}
 	{fig:Bif_types}
 %}}}
