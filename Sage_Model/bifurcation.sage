@@ -110,13 +110,13 @@ for i in range(len(a_list)):
 	particular_roots = find_root_recursive(x_dot.subs(a=a_list[i], b=b_selection), x_min, x_max)
 #	particular_roots = [find_root(x_dot.subs(a=a_list[i], b=b_selection), x_min, x_max)]
 	for j in particular_roots:
-		point_list.append(ellipse((j,0), 0.03, 0.3, color=this_loops_color,\
+		point_list.append(ellipse((j,0), 0.03, 0.2, color=this_loops_color,\
 				thickness=5.0, aspect_ratio='automatic'))
 
 
 # Create the parameter box for b
 b_parameter_box = text('$b = ' + str(b_selection.n(prec=10)) + '$',\
-		(x_max-0.1, -6.0), bounding_box={'boxstyle':'round', 'fc':'w'},\
+		(x_max-0.1, -6.4), bounding_box={'boxstyle':'round', 'fc':'w'},\
 		fontsize=the_font_size, color='black', horizontal_alignment='right')
 
 
@@ -129,11 +129,11 @@ plot_list.append(plot(tangent_root_fun, (x, x_min, x_max), color='black',\
 
 ## Find lower, tangent root
 point_list.append(ellipse((find_root(tangent_root_fun, x_min, 0),0), 0.03,\
-		0.3, color='black', thickness=5.0, aspect_ratio='automatic'))
+		0.2, color='black', thickness=5.0, aspect_ratio='automatic'))
 
 # Find upper, non-tangent root, and make point
 point_list.append(ellipse((find_root_recursive(tangent_root_fun, 0, x_max)[0],\
-		0), 0.03, 0.3, color='black', thickness=5.0, aspect_ratio='automatic'))
+		0), 0.03, 0.2, color='black', thickness=5.0, aspect_ratio='automatic'))
 
 # Set legend options
 combined_plots = sum(plot_list) + sum(point_list)
