@@ -18,7 +18,7 @@
 \newcommand{\thirdCommitteeMember}{Third Committee Member}
 %}}}
 
-%{{{ Two Figures Side-by-Side
+%{{{ Two Figures Side-by-Side, separate captions
 \newsavebox\IBoxA \newsavebox\IBoxB \newlength\IHeight
 \newcommand\TwoFig[6]{% Image1 Caption1 Label1 Im2 Cap2 Lab2
 	\sbox\IBoxA{\includegraphics[width=0.45\textwidth]{#1}}
@@ -35,6 +35,25 @@
 			\includegraphics[height=\IHeight]{#4}
 			\caption{#5}\label{#6}
 		\endminipage
+	\end{figure}%
+}
+%}}}
+
+%{{{ Two Figures Side-by-Side, with 1 caption
+\newcommand\TwoFigOneCap[4]{% Image1 Im2 Caption Label
+	\sbox\IBoxA{\includegraphics[width=0.45\textwidth]{#1}}
+	\sbox\IBoxB{\includegraphics[width=0.45\textwidth]{#2}}%
+	\ifdim\ht\IBoxA>\ht\IBoxB
+		\setlength\IHeight{\ht\IBoxB}%
+	\else\setlength\IHeight{\ht\IBoxA}\fi
+	\begin{figure}[!htb]
+		\minipage[t]{0.48\textwidth}\centering
+			\includegraphics[height=\IHeight]{#1}
+		\endminipage\hfill
+		\minipage[t]{0.48\textwidth}\centering
+			\includegraphics[height=\IHeight]{#2}
+		\endminipage
+		\caption{#3}\label{#4}
 	\end{figure}%
 }
 %}}}
