@@ -3,7 +3,7 @@
 % Import specific style file in this directory
 \usepackage{thesis}
 
-%{{{ Alias commands
+%{{{ Alias commands specific to the thesis package
 \newcommand{\shortdoctitle}{$E_r$-Generating Terms}
 \newcommand{\doctitle}{Radial Electric Field-Generating Terms in L-H Transitions}
 \newcommand{\docsubtitle}{Master's Thesis}
@@ -26,7 +26,7 @@
 	\ifdim\ht\IBoxA>\ht\IBoxB
 		\setlength\IHeight{\ht\IBoxB}%
 	\else\setlength\IHeight{\ht\IBoxA}\fi
-	\begin{figure}[!htb]
+	\begin{figure}[htb]
 		\minipage[t]{0.48\textwidth}\centering
 			\includegraphics[height=\IHeight]{#1}
 			\caption{#2}\label{#3}
@@ -46,7 +46,7 @@
 	\ifdim\ht\IBoxA>\ht\IBoxB
 		\setlength\IHeight{\ht\IBoxB}%
 	\else\setlength\IHeight{\ht\IBoxA}\fi
-	\begin{figure}[!htb]
+	\begin{figure}[htb]
 		\minipage[t]{0.48\textwidth}\centering
 			\includegraphics[height=\IHeight]{#1}
 		\endminipage\hfill
@@ -61,7 +61,7 @@
 \title{Radial Electric Field-Generating Terms in L-H Transitions}
 \author{\me}
 
-\usepackage{fullpage, indentfirst, graphicx, amsmath}
+\usepackage{fullpage, indentfirst, graphicx, amsmath, float}
 \usepackage[labelfont=bf]{caption}
 \usepackage[UKenglish]{isodate}
 \cleanlookdateon
