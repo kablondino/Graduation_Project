@@ -58,7 +58,7 @@ Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu, var=
 # Fully-Coupled Equation
 full_equation = density_equation & temp_equation & Z_equation
 
-printing()
+#printing()
 
 ## Options for viewers
 x_min, x_max, y_min, y_max = 0.0, L, -1.0, 5.0
@@ -74,7 +74,7 @@ if __name__ == '__main__':
 	for t in range(100):
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 		#Diffusivity.updateOld()	# Remanent of when it was a CellVariable
-		TSVViewer(vars=(density, temperature, Z, Diffusivity, rho_pi, n_0, nu_ei, nu_ii, nu_ai)).plot(filename="original_solution/original"+str(t)+".tsv")
+#		TSVViewer(vars=(density, temperature, Z, Diffusivity, rho_pi, n_0, nu_ei, nu_ii, nu_ai)).plot(filename="original_solution/original"+str(t)+".tsv")
 		full_equation.solve(dt=timeStep)
 		viewer.plot()
 
