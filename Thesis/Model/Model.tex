@@ -1,5 +1,5 @@
 Fusion plasmas are inherently complicated systems, and thus are complicated to model. This is true, even when taking simplification liberties.
-The model developed by Zohm, and later refined by others, assumes that the transport barrier occurs in a thin layer at the plasma edge.
+The model developed by Zohm, and later refined by others, assumes that the transport barrier occurs in a thin layer at the plasma edge \cite{zohm_dynamic_1994}.
 The plasma edge is defined to be at the last-closed flux surface (separatrix).
 This allows for slab geometry to be used, in which $\psi$ is the usual radial coordinate.
 However, $x$ will be used as it is more distinct as a spatial coordinate.
@@ -31,24 +31,38 @@ It is therefore assumed they are proportional.
 \end{align}
 The parameter $\zeta$ determines the coupling strength of the two diffusivities. The specifics of the forms chosen for the diffusivities is discussed in Section~\ref{sec:diffusivities}.
 
-In order to simplify the model, the following substitution to the internal energy can be made:
+In order to simplify the model, substituting the definition of the internal energy can be made:
 \begin{align} % U definition
 	U \,\equiv\, \frac{n T}{\gamma - 1} \label{eq:U_definition}
 \end{align}
-Making this substitution, the substitution of the fluxes, and subsequently working out the product rules of the derivatives, much more compact forms of Equations~\ref{eq:n_continuity} and \ref{eq:U_continuity}.
+Making this substitution, along with the fluxes, and subsequently working out the product rules of the derivatives, much more compact forms of Equations~\ref{eq:n_continuity} and \ref{eq:U_continuity}.
 One convenience is that Equation~\ref{eq:n_continuity} shows up as a collection of terms within Equation \ref{eq:U_continuity}.
+This allows those terms to vanish.
 The simplified forms of these transport equations is as such:
-\begin{align}
-	\frac{\partial n}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[D \frac{\partial n}{\partial x}\right]~,\label{eq:n_compact} \\
-	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[\frac{D}{\zeta} \frac{\partial T}{\partial x}\right] \,+\, \left(1 + \frac{1}{\zeta}\right) \frac{\partial n}{\partial x} \frac{\partial T}{\partial x} \label{eq:T_compact}
+\begin{align} % Compact transport equations
+	\frac{\partial n}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[D \, \frac{\partial n}{\partial x}\right]~,\label{eq:n_compact} \\
+	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(1 + \frac{1}{\zeta}\right) \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x} \label{eq:T_compact}
 \end{align}
 
 \section{Radial Electric Field}\label{sec:Z_equation}
-Zohm's original form is as such:
-\begin{align}
-	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) + \mu \frac{\partial Z}{\partial x^2}
+A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
+However, experiments and mathematical investigations indicate that flows in the plasma can tear apart turbulent eddies, which reduces the transport radially.\todo{\color{red}{Reword?}}
+To model the dynamics of the transition fully within this scope, the radial electric field must also be evolved explicitly.
+
+Itoh \emph{et al.}, originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase \cite{itoh_edge_1991}.
+It was later expanded by Zohm \cite{zohm_dynamic_1994} and Staps \cite{staps_backstepping_2017}
+\begin{align} % Original Itoh model
+	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) + \mu \frac{\partial Z}{\partial x^2}~,\label{eq:original_z} \\
+	N(Z,g) \,&\equiv\, g - g_0 + \left[\beta Z^3 - \alpha Z\right]
 \end{align}
+The radial electric field $E_r$ is normalized into $Z$
 
 \section{Forms of Diffusivities}\label{sec:diffusivities}
+Various forms of $D$ (and subsequently $\chi$) are investigated.
+The original Itoh model has $D$ proportional to the hyperbolic tangent of the normalized radial electric field \cite{itoh_edge_1991} \cite{zohm_dynamic_1994}.
+\begin{align} % Itoh diffusivity
+	D(Z) \,&=\, \dfrac{D_\text{max} + D_\text{min}}{2} + \dfrac{(D_\text{max} - D_\text{min})\tanh(Z)}{2} \label{eq:Itoh_diffusivity}
+\end{align}
 
+However, it is now accepted that the diffusivity must be a function of the shear of the field:
 
