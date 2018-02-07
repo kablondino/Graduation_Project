@@ -1,0 +1,54 @@
+Fusion plasmas are inherently complicated systems, and thus are complicated to model. This is true, even when taking simplification liberties.
+The model developed by Zohm, and later refined by others, assumes that the transport barrier occurs in a thin layer at the plasma edge.
+The plasma edge is defined to be at the last-closed flux surface (separatrix).
+This allows for slab geometry to be used, in which $\psi$ is the usual radial coordinate.
+However, $x$ will be used as it is more distinct as a spatial coordinate.
+The slab geometry reduces the model into one (spatial) dimensional differential equations.
+One of the liberties taken to simplify the model is that a single temperature is used, \emph{i.e.} the electron and ion temperatures are identical.\todo{\color{red}{Liberties?}}
+
+\section{Transport Equations}\label{sec:transport_eqs}
+To model the transport of a fully-ionized fusion plasma, conservation of mass and energy are considered.
+These lead to continuity equations of plasma density $n$ and internal energy $U$:
+\begin{align} % n and U continuity
+	\frac{\partial n}{\partial t} \,+\, \frac{\partial \Gamma}{\partial x} \,&=\, 0~,\label{eq:n_continuity} \\
+	\frac{\partial U}{\partial t} \,+\, \frac{\partial q}{\partial x} \,&=\, 0\label{eq:U_continuity}
+\end{align}
+The particle flux $\Gamma$ is determined by some effective particle diffusion $D$ due to anomalous transport.
+The heat flux $q$, however, is determined by effective heat convection.
+This is the sum of heat diffusion $\chi n$, and advection $\Gamma T$. \todo{\color{red}{Check this statement}}
+\begin{align} % Fluxes
+	\Gamma \,&=\, -D \frac{\partial n}{\partial x}~,\label{eq:particle_flux} \\
+	q \,&=\, -\chi n \frac{\partial T}{\partial x} \,+\, \frac{\Gamma T}{\gamma - 1} \label{eq:heat_flux}
+\end{align}
+The adiabatic index $\gamma$ will be set to $5/3$, as is customary for monatomic gases.
+It is important to note that these fluxes omit explicit drift velocities as well as particle and heat sources from within the domain of the model \cite{zohm_dynamic_1994}.
+
+The particle and heat diffusivities $D$ and $\chi$ are considered to be functions of the turbulence.
+The L-H transition is not expected to be caused by a difference in form between the two diffusivities.
+It is therefore assumed they are proportional.
+\begin{align} % chi-D relation
+	\chi \,=\, \frac{D}{\zeta (\gamma - 1)} \label{eq:heat_particle_diff_relation}
+\end{align}
+The parameter $\zeta$ determines the coupling strength of the two diffusivities. The specifics of the forms chosen for the diffusivities is discussed in Section~\ref{sec:diffusivities}.
+
+In order to simplify the model, the following substitution to the internal energy can be made:
+\begin{align} % U definition
+	U \,\equiv\, \frac{n T}{\gamma - 1} \label{eq:U_definition}
+\end{align}
+Making this substitution, the substitution of the fluxes, and subsequently working out the product rules of the derivatives, much more compact forms of Equations~\ref{eq:n_continuity} and \ref{eq:U_continuity}.
+One convenience is that Equation~\ref{eq:n_continuity} shows up as a collection of terms within Equation \ref{eq:U_continuity}.
+The simplified forms of these transport equations is as such:
+\begin{align}
+	\frac{\partial n}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[D \frac{\partial n}{\partial x}\right]~,\label{eq:n_compact} \\
+	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[\frac{D}{\zeta} \frac{\partial T}{\partial x}\right] \,+\, \left(1 + \frac{1}{\zeta}\right) \frac{\partial n}{\partial x} \frac{\partial T}{\partial x} \label{eq:T_compact}
+\end{align}
+
+\section{Radial Electric Field}\label{sec:Z_equation}
+Zohm's original form is as such:
+\begin{align}
+	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) + \mu \frac{\partial Z}{\partial x^2}
+\end{align}
+
+\section{Forms of Diffusivities}\label{sec:diffusivities}
+
+
