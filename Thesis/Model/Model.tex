@@ -49,19 +49,29 @@ A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is st
 However, experiments and mathematical investigations indicate that flows in the plasma can tear apart turbulent eddies, which reduces the transport radially.\todo{\color{red}{Reword?}}
 To model the dynamics of the transition fully within this scope, the radial electric field must also be evolved explicitly.
 
+In this investigation, the radial electric field $E_r$ is normalized with the ion poloidal gyroradius $\rho_p$ into $Z$
+\begin{align} % Z definition
+	Z \,\equiv\, \frac{\rho_p e E_r}{T}~, ~~~~ \rho_p \,\equiv\, \frac{m_i v_\text{th}}{e B_\theta}~,\label{eq:Z_and_rho_definitions}
+\end{align}
+with the ion mass $m_i$, the thermal ion velocity $v_\text{th}$, the elementary charge $e$, and the poloidal magnetic field $B_\theta$.
+
 Itoh \emph{et al.}, originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase \cite{itoh_edge_1991}.
-It was later expanded by Zohm \cite{zohm_dynamic_1994} and Staps \cite{staps_backstepping_2017}
 \begin{align} % Original Itoh model
-	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) + \mu \frac{\partial Z}{\partial x^2}~,\label{eq:original_z} \\
+	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) + \mu \frac{\partial Z^2}{\partial x^2}~,\label{eq:original_z} \\
 	N(Z,g) \,&\equiv\, g - g_0 + \left[\beta Z^3 - \alpha Z\right]
 \end{align}
-The radial electric field $E_r$ is normalized into $Z$
+The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
+Paquay rewrote the equation as
+\begin{align} % Modern model
+	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \, \frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \cdot \frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \cdot \frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
+	G(Z) \,\equiv\, a + bZ + cZ^3 \label{eq:G_polynomial}
+\end{align}
 
 \section{Forms of Diffusivities}\label{sec:diffusivities}
 Various forms of $D$ (and subsequently $\chi$) are investigated.
-The original Itoh model has $D$ proportional to the hyperbolic tangent of the normalized radial electric field \cite{itoh_edge_1991} \cite{zohm_dynamic_1994}.
+The original Itoh model has $D$ proportional to the hyperbolic tangent of the normalized radial electric field \cite{itoh_edge_1991} \cite{zohm_dynamic_1994}
 \begin{align} % Itoh diffusivity
-	D(Z) \,&=\, \dfrac{D_\text{max} + D_\text{min}}{2} + \dfrac{(D_\text{max} - D_\text{min})\tanh(Z)}{2} \label{eq:Itoh_diffusivity}
+	D(Z) \,&=\, \dfrac{D_\text{max} + D_\text{min}}{2} + \dfrac{(D_\text{max} - D_\text{min})\tanh(Z)}{2}~. \label{eq:Itoh_diffusivity}
 \end{align}
 
 However, it is now accepted that the diffusivity must be a function of the shear of the field:
