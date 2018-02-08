@@ -9,6 +9,10 @@ def printing():
 	print nu_ai
 	print g_n_an
 
+# --------- Set Initial Conditions for n and T ------------
+density.setValue(density0)
+temperature.setValue(temp0)
+
 # ----------------- Boundary Conditions -------------------
 """
 	Density Boundary Conditions:
@@ -27,7 +31,8 @@ density.faceGrad.constrain(-Gamma_c / Diffusivity.faceValue, mesh.facesRight)
 temp_left = temperature.faceValue / lambda_T
 temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
 
-temp_right = (zeta / Diffusivity.faceValue)*(temperature.faceValue*Gamma_c - (gamma - 1.0)*q_c) / density.faceValue
+temp_right = (zeta / Diffusivity.faceValue)*(temperature.faceValue*Gamma_c\
+				- (gamma - 1.0)*q_c) / density.faceValue
 temperature.faceGrad.constrain(temp_right, mesh.facesRight)
 
 """
@@ -41,18 +46,33 @@ Z.constrain(0.0, mesh.facesRight)
 
 Z.faceGrad.divergence.constrain(0.0, mesh.facesLeft)
 
+"""
+	Zohm's N(Z,g) = 0 Boundary:
+	g_0 * T/n * ((dn/dx) / n + gamma*(dT/dx) / T)
+		= g_1 + alpha*Z - beta*Z^3
+"""
+#N_boundary = ((density.faceValue)**2 / (temperature.faceValue))\
+#		* (a + b*(Z.faceValue) - c*(Z.faceValue)**3) - gamma*density.faceValue\
+#		* temperature.faceGrad / temperature.faceValue
+#density.faceGrad.constrain(N_boundary, mesh.facesRight)
+#density.faceGrad.constrain(N_boundary, mesh.facesLeft)
+
 # ----------------- PDE Declarations ----------------------
 # Density Equation
-density_equation = TransientTerm(coeff=1.0, var=density) == DiffusionTerm(coeff=Diffusivity, var=density)
+density_equation = TransientTerm(coeff=1.0, var=density)\
+		== DiffusionTerm(coeff=Diffusivity, var=density)
 
 # Temperature Equation
-temp_equation = TransientTerm(coeff=density, var=temperature) == DiffusionTerm(coeff=(Diffusivity*density/zeta), var=temperature) + DiffusionTerm(coeff=Diffusivity*temperature, var=density)
+temp_equation = TransientTerm(coeff=density, var=temperature)\
+		== DiffusionTerm(coeff=(Diffusivity*density/zeta), var=temperature)\
+		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 #S_T = ((zeta + 1.0)/zeta) * (Diffusivity / density) * numerix.dot(density.grad, temperature.grad) + (Diffusivity*temperature)/density * density.faceGrad.divergence
 #temp_equation = TransientTerm(coeff=1.0, var=temperature) == DiffusionTerm(coeff=(Diffusivity/zeta), var=temperature) + S_T
 
 # Z Equation
 G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
-S_Z = ((c_n*temperature) / density**2) * density.grad[0] + (c_T / density) * temperature.grad[0] + G
+S_Z = ((c_n*temperature) / density**2) * density.grad[0]\
+		+ (c_T / density) * temperature.grad[0] + G
 Z_equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu, var=Z) + S_Z
 
 # Fully-Coupled Equation
@@ -67,10 +87,10 @@ x_min, x_max, y_min, y_max = 0.0, L, -1.0, 5.0
 #raw_input("Pause for Initial")
 
 timeStep = epsilon / 3.0
-print timeStep
 
 if __name__ == '__main__':
-	viewer = Viewer((density, temperature, Z), xmin=x_min, xmax=x_max, legend='best')
+	viewer = Viewer((density, temperature, Z), xmin=x_min,\
+			xmax=x_max, legend='best')
 	for t in range(100):
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 		#Diffusivity.updateOld()	# Remanent of when it was a CellVariable
