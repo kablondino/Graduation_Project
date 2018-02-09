@@ -33,18 +33,15 @@ temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
 
 temp_right = (zeta / Diffusivity.faceValue)*(temperature.faceValue*Gamma_c\
 				- (gamma - 1.0)*q_c) / density.faceValue
-temperature.faceGrad.constrain(temp_right, mesh.facesRight)
+#temperature.faceGrad.constrain(temp_right, mesh.facesRight)
 
 """
-	Z Boundary Conditions:
+	Paquay considered these Z Boundary Conditions:
 	d/dx(Z(0)) == Z / lambda_Z
 	mu*D/epsilon * d/dx(Z(L)) == 0
-	d^2/dx^2(Z(0)) == 0
 """
-Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
-Z.constrain(0.0, mesh.facesRight)
-
-Z.faceGrad.divergence.constrain(0.0, mesh.facesLeft)
+#Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
+Z.faceGrad.constrain(0.0, mesh.facesRight)
 
 """
 	Zohm's N(Z,g) = 0 Boundary:
@@ -81,19 +78,19 @@ full_equation = density_equation & temp_equation & Z_equation
 #printing()
 
 ## Options for viewers
-x_min, x_max, y_min, y_max = 0.0, L, -1.0, 5.0
+x_min, x_max, y_min, y_max = 0.0, L, 0.0, 5.0
 
 #initial_viewer = Viewer((density, temperature, Z, Diffusivity), xmin=x_min, xmax=x_max, datamin=y_min, datamax=y_max, legend='best')
 #raw_input("Pause for Initial")
 
-timeStep = epsilon / 3.0
+timeStep = epsilon / 15.0
 
 if __name__ == '__main__':
-	viewer = Viewer((density, temperature, Z), xmin=x_min,\
-			xmax=x_max, legend='best')
-	for t in range(100):
+	viewer = Viewer((density, temperature, Z, Diffusivity), xmin=x_min, xmax=x_max,\
+			datamin=y_min, legend='best')
+	for t in range(1000):
+		Diffusivity.setValue(D_choice) # Update by setting value
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
-		#Diffusivity.updateOld()	# Remanent of when it was a CellVariable
 #		TSVViewer(vars=(density, temperature, Z, Diffusivity, rho_pi, n_0, nu_ei, nu_ii, nu_ai)).plot(filename="original_solution/original"+str(t)+".tsv")
 		full_equation.solve(dt=timeStep)
 		viewer.plot()

@@ -14,8 +14,8 @@ nx = 100
 L = 5.0
 mesh = Grid1D(nx=nx, Lx=L)
 
-x = mesh.cellCenters[0]	# Cell position
-X = mesh.faceCenters[0] # Face position
+x = mesh.cellCenters[0] # Cell position
+X = mesh.faceCenters[0] # Face position, if needed
 
 # ----------------- Variable Declarations -----------------
 density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True)
@@ -27,9 +27,9 @@ Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True)
 Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True)
 
 # ----------- Initial Conditions of Z ---------------------
-Z0L = 0 # L--mode
-Z0H = Z_S*(1 - numerix.tanh((L*x - L) / 2.0)) # H--mode
-Z.setValue(Z0H)
+Z0L = 0.0 # L--mode
+Z0H = Z_S*(1.0 - numerix.tanh((L*x - L) / 2.0)) # H--mode
+Z.setValue(Z0L)
 
 # ----------------- Diffusivities -------------------------
 # Itohs'/Zohm's model
