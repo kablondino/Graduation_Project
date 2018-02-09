@@ -55,10 +55,10 @@ In this investigation, the radial electric field $E_r$ is normalized with the io
 \end{align}
 with the ion mass $m_i$, the thermal ion velocity $v_\text{th}$, the elementary charge $e$, and the poloidal magnetic field $B_\theta$.
 
-Itoh \emph{et al.}, originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase \cite{itoh_edge_1991}.
+Itoh \emph{et al.}, originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase \cite{itoh_edge_1991}
 \begin{align} % Original Itoh model
 	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) + \mu \frac{\partial Z^2}{\partial x^2}~,\label{eq:original_z} \\
-	N(Z,g) \,&\equiv\, g - g_0 + \left[\beta Z^3 - \alpha Z\right]
+	N(Z,g) \,&\equiv\, g - g_0 + \left[\beta Z^3 - \alpha Z\right]~.
 \end{align}
 The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
 Paquay rewrote the equation as
@@ -71,8 +71,36 @@ Paquay rewrote the equation as
 Various forms of $D$ (and subsequently $\chi$) are investigated.
 The original Itoh model has $D$ proportional to the hyperbolic tangent of the normalized radial electric field \cite{itoh_edge_1991} \cite{zohm_dynamic_1994}
 \begin{align} % Itoh diffusivity
-	D(Z) \,&=\, \dfrac{D_\text{max} + D_\text{min}}{2} + \dfrac{(D_\text{max} - D_\text{min})\tanh(Z)}{2}~. \label{eq:Itoh_diffusivity}
+	D(Z) \,&=\, \frac{D_\text{max} + D_\text{min}}{2} + \frac{(D_\text{max} - D_\text{min})\tanh(Z)}{2}~. \label{eq:Itoh_diffusivity}
 \end{align}
 
-However, it is now accepted that the diffusivity must be a function of the shear of the field:
+However, it is now accepted that the diffusivity must be a function of the shear of the field.
+This is either due to the stabilization of linear modes, or through the reduction of turbulence amplitudes, correlation lengths, or change in phases of the fluctuations \cite{connor_review_2000}.
+It was found that ``a flattened (steep) radial equilibrium gradient tends to enhance (eliminate) turbulence suppression due to the shear flow'' \cite{zhang_edge_1992}.
+\begin{align} % Shear diffusivity
+	D(Z^{\prime}) \,=\, \frac{D_\text{min}}{1 + c(Z^{\prime})^{\gamma}} \label{eq:shear_diffusivity}
+\end{align}
+Staps uses this form, with $c = 0.5$ and $\gamma = 2$ \cite{staps_backstepping_2017}.
+Another form includes both the field itself and its shear \cite{paquay_studying_2012}
+\begin{align} % Flow-Shear equation
+	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\, \frac{D_\text{max} - D_\text{min}}{1 + a_1 Z^2 + a_2 Z \cdot Z^{\prime} + a_3 (Z^{\prime})^2} \label{eq:flow-shear}
+\end{align}
+
+\section{Boundary Conditions}\label{sec:boundary_conditions}
+The set of aforementioned PDE's is evaluated in a domain that is small enough to exclude the inner (core) boundary from any possible particle and heat sources.
+In this model, this boundary to the domain is $x = L$, for some positive length $L$, with the core is assumed to be at $x \gg L$.
+It also requires the domain to be sufficiently large to fully-encompass the transport barrier and ignore any possible boundary effects of the barrier itself.
+The outer boundary of the plasma edge is assumed to be the SOL (scrape-off layer).
+This corresponds to $x = 0$.
+
+It is assumed that the SOL is passive to particle and heat fluxes, and therefore the density and temperature profiles exponentially decay.
+\begin{align} % n and T boundary conditions at SOL
+	\frac{\partial n}{\partial x}\biggr \lvert_{x=0} \,=\, \frac{n}{\lambda_n}~, ~~~~ \frac{\partial T}{\partial x}\biggr \lvert_{x=0} \,=\, \frac{T}{\lambda_T}~.\label{eq:nT_SOL_boundary}
+\end{align}
+The core side has a constant influx of particles and heat, stemming from fueling and heating.
+The electric field is to have no gradient beyond the plasma edge.
+\begin{align} % Fluxes from core
+	\Gamma(L) \,=\, \Gamma_c~, ~~~~ q(L) \,=\, q_c~,\label{eq:core_fluxes} \\
+	\frac{\partial Z}{\partial x}\biggr \lvert_{x=L} \,=\, 0 \label{eq:core_Z_cond}
+\end{align}
 
