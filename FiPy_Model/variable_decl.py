@@ -22,6 +22,8 @@ density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True)
 
 temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True)
 
+U = CellVariable(name=r"$U$", mesh=mesh, hasOld=True)
+
 Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True)
 
 Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True)
@@ -47,8 +49,19 @@ D_choice = D_Staps
 # If Diffusivity is a Cell/Face variable
 Diffusivity.setValue(D_choice)
 
+# Initial conditions for L--mode
+density0L = CellVariable(name=r"$n_{0L}$", mesh=mesh,\
+		value=-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
 
-density0 = CellVariable(name=r"$n_0$", mesh=mesh, value=-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
+temp0L = CellVariable(name=r"$T_{0L}", mesh=mesh,\
+		value = q_c*((gamma - 1.0) / Gamma_c) * \
+		(1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
 
-temp0 = CellVariable(name=r"$T_0", mesh=mesh, value = q_c*((gamma - 1.0) / Gamma_c) * (1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
+# Initial conditions for H--mode
+density0H = CellVariable(name=r"$n_0$", mesh=mesh,\
+		value=-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
+
+temp0H = CellVariable(name=r"$T_0", mesh=mesh,\
+		value = q_c*((gamma - 1.0) / Gamma_c) *\
+		(1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
 
