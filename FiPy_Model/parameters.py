@@ -20,12 +20,12 @@ a_v = 0.8	# Vertical minor radius
 a_h = 0.5	# Horizontal minor radius
 a_m = ( (a_v**2 + a_h**2) / 2.0 )**(1.0/2.0)
 R = 1.6		# Major radius
-aspect = a_m / R
-I_p = 2.0e6
-B_phi = 3.9
-B_theta = mu_0 * I_p / ( 2*pi*a_m )
-q = aspect * B_phi/B_theta
-B = ( B_phi**2 + B_theta**2 )**(1.0/2.0)
+aspect = a_m / R	# Aspect Ratio
+I_p = 2.0e6	# Plasma current
+B_phi = 3.9	# Toroidal field
+B_theta = mu_0 * I_p / ( 2*pi*a_m )	# Poloidal field
+q = aspect * B_phi/B_theta	# q value
+B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) # Full field
 
 ## PRESET parameters for quick calculation, many of which
 ## are chosen by Staps and Paquay
@@ -64,8 +64,8 @@ Z_S = 1.4
 #zeta = 0.9		# To fiddle!
 
 ## For use in g version
-alpha_cx = 0.9
-alpha_an = 1.0
-a_in0 = 0.1
+alpha_cx = 0.9	# Charge exchange coefficient
+alpha_an = 1.0	# Anomalous loss coefficient
+a_in0 = 0.1		# Neutrals coefficient
 neu_react_rate = 1.0e-14	# Reaction rate of charge exchange
 
