@@ -30,14 +30,14 @@ Accordingly, there is a steep gradient in the pressure at the edge of the plasma
 This allows for an increased temperature in the core.
 
 In addition, hysteresis is present between the modes, in which the threshold power for the transition between the two modes is based on the current mode.
-This is covered in-depth in Section~\ref{sec:hysteresis}.
+This is covered in-depth in Section~\ref{ssec:hysteresis}.
 
 \section{The L--H Transition}\label{sec:the_transition}
 The key feature that determines a divertor tokamak's operational mode is the amount of external heating power.
 Limiter tokamaks are relegated to stay in L--mode, as H--mode is an exclusive operating mode of tokamaks with divertors.
 The transition has been observed to occur in one of three manners: sharp, smooth, and oscillatory.
 
-\subsection{Bifurcation Theory}\label{sec:bif_theory}
+\subsection{Bifurcation Theory}\label{ssec:bif_theory}
 A defining feature of L--H transitions is that they can occur very suddenly (the so-called sharp transition), which is characteristic of fold bifurcation behavior.
 Mathematically, a bifurcation is defined to be a topological or qualitative change in a system when a small and smooth change of a parameter is made.
 A simple example for a fold bifurcation is the following, with $a$ representing the parameter:
@@ -66,6 +66,24 @@ A parameter plot of $x$ versus $a$ in Fig.~\ref{fig:simple_fold} illustrates thi
 	{fig:co-2_fold}
 %}}}
 
+The co-dimension of a system refers to the lowest number of parameters required to produce the topological norm form.
+Put differently, it is the number of parameters that must be varied for the bifurcation to occur.
+In the case of Eq.~\ref{eq:simple_fold}, there is only a single parameter, and is thus referred to as a co-dimension 1 bifurcation \cite{weymiens_bifurcation_2014}.
+
+\subsubsection{Sharp and Smooth Transition Bifurcations}
+
+The dynamic behavior of the L--H transition correspond very closely to a few certain bifurcations.
+Sharp and smooth transitions are features of the cusp bifurcation.
+The topological norm form of this behavior is
+\begin{equation}
+	\dot{x} \,=\, -(a + bx - x^3)~.
+	\label{eq:sharp_bif}
+\end{equation}
+Figure~\ref{fig:co-2_fold} is a plot of the parameter space, indicating the stable and unstable steady-state solutions.
+This cusp bifurcation can also be regarded as two co-dimension 1 folds, if one can view the positive and negative $x$-domains as separate co-dimension 1 bifurcations.
+The distinction between sharp and smooth transitions in this co-dimension 2 bifurcation is solely based on the $b$ parameter, shown in Figure~\ref{fig:hysteresis_b_var}.
+As $b$ approaches zero from some positive value, the size of the hysteresis shrinks.
+
 %{{{ Two figures for zeros of the co-dimension 2 bifurcations
 \TwoFigOneCap{../Graphics/Bif_Graphs/stationary_b-0_8.png}
 	{../Graphics/Bif_Graphs/stationary_b_1_1.png}
@@ -74,52 +92,6 @@ A parameter plot of $x$ versus $a$ in Fig.~\ref{fig:simple_fold} illustrates thi
 	When there is multiple roots, the middle zero is always unstable.}
 	{fig:stationaries_b}
 %}}}
-
-The co-dimension of a system refers to the lowest number of parameters required to produce the topological norm form.
-Put differently, it is the number of parameters that must be varied for the bifurcation to occur.
-In the case of Eq.~\ref{eq:simple_fold}, there is only a single parameter, and is thus referred to as a co-dimension 1 bifurcation \cite{weymiens_bifurcation_2014}.
-
-\todo{\color{red}{FIX HERE!}}
-The dynamic behavior of the L--H transition correspond very closely to a few certain bifurcations.
-Sharp and smooth transitions are features of the cusp bifurcation, a two-fold bifurcation.
-The topological norm form of this behavior is
-\begin{equation}
-	\dot{x} \,=\, -(a + bx - x^3)
-	\label{eq:sharp_bif}
-\end{equation}
-This cusp bifurcation can also be regarded as two co-dimension 1 bifurcations.
-
-%{{{ Two figures for complex bifurcations
-\TwoFigOneCap{../Graphics/Bif_Graphs/Bif_3D.png}
-	{../Graphics/Bif_Graphs/3_transitions_single_simple.png}
-	{The plot on the left shows two co-dimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp.
-	Fig.~\ref{fig:co-2_fold} is a cross-section of this.
-	The right plot showcases the FitzHugh-Nagumo model (Equations \ref{eq:FitzHugh-Nagumo}), a co-dimension 3 parameter space with the black line indicating the fold bifurcation.
-	In both cases, the parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition.
-	In a tokamak, the density would correspond to the $b$-parameter \cite{weymiens_bifurcation_2014}.}
-	{fig:Bif_3D_and_co-3}
-%}}}
-
-The third type of transition dynamics is oscillatory, also known as dithering.
-All three bifurcations are shown in parameter space in Fig.~\ref{fig:Bif_3D_and_co-3}, with $b$ dictating the type \cite{weymiens_bifurcation_2014}.
-
-Work by Weymiens proves that the ``co-dimension 3 bifurcation robustly connects the three types of transition behaviour'' and investigates using the FitzHugh-Nagumo model \cite{weymiens_bifurcation_2014}.
-The following is the aforementioned model
-\begin{subequations}
-\begin{align} % FitzHugh-Nagumo model
-	\dot{x} \,&=\, a - bx - x^3 + cy \\
-	\dot{y} \,&=\, -y - x
-\end{align}
-	\label{eq:FitzHugh-Nagumo}
-\end{subequations}
-
-\subsection{Hysteresis}\label{sec:hysteresis}
-Hysteresis is a characteristic of any system which the current state of the system depends on its history.
-The threshold power for the H--L transition is significantly lower than that of the L--H transition, leading to a region in which there is a non-unique solution to the plasma state.
-This requires two separate fold bifurcations each to govern the L--H and H--L transitions separately, which in turn, requires two types of bifurcation parameters.
-The first dictates hysteresis being present in the system; varying this allows for the disappearance of hysteresis when the aforementioned two fold bifurcations merge into a cusp bifurcation.
-Varying the second parameter can cause the two stable solutions to be replaced by with unstable solutions, in which the system will oscillate between the solutions.
-This phenomenon is called limit cycle oscillations; it is a result of a Hopf bifurcation \cite{weymiens_bifurcation_2014}.
 
 \begin{figure}[tb] % Bifurcation with varying b
 \begin{minipage}{0.49\linewidth}
@@ -133,14 +105,80 @@ This phenomenon is called limit cycle oscillations; it is a result of a Hopf bif
 \end{minipage}
 \end{figure}
 
+\subsubsection{Oscillatory Transition Bifurcation}
+The third type of transition dynamics in tokamak plasmas is oscillatory, in which the system rapidly oscillates between the two different modes \cite{ryter_survey_2013} \cite{zohm_mhd_1995}.
+This phenomenon is referred to by various names, including dithering, I--mode, predator--prey oscillations, and limit cycle oscillations.
+It is the most enigmatic of the three discussed, as the least is known about it, and requires a more-complex model than Eq.~\ref{eq:sharp_bif}.
+
+The Hopf, also known as a Poincar\'e-Andronov-Hopf, bifurcation is another co-dimension 1 bifurcation which can describe the oscillatory transition.
+It occurs when a periodic solution or limit cycle that surrounds an equilibrium point arises or disappears, when varying the parameter.
+Specifically, it occurs where the real part of complex conjugated eigenvalues vanish \cite{munoz-alicea_introduction_2011}.
+%{{{ Hopf Bif example and sub/super critical explanation
+%When a stable limit cycle encloses an unstable equilibrium point, it is denoted as supercritical.
+%For an unstable limit cycle enclosing a stable equilibrium point, it is denoted subcritical.
+%The norm form of the bifurcation is as follows,
+%\begin{align} % Hopf bifurcation
+%	\dot{x} \,=\, x\left((\lambda + i) + b|x|^2\right)~,
+%	\label{eq:hopf_bif}
+%\end{align}
+%with $x$ and $b$ as complex-valued.
+%Consider the following polar system, with $a$ as the parameter
+%\begin{subequations}
+%\begin{align} % Hopf example
+%	\dot{r} \,&=\, a r - r^3~, \\
+%	\dot{\theta} \,&=\, -1
+%\end{align}
+%\end{subequations}
+%}}}
+
+%{{{ Two figures for complex bifurcations
+\TwoFigOneCap{../Graphics/Bif_Graphs/Bif_3D.png}
+	{../Graphics/Bif_Graphs/3_transitions_single_simple.png}
+	{The plot on the left shows two co-dimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp.
+	Fig.~\ref{fig:co-2_fold} is a cross-section of this.
+	The right plot showcases the FitzHugh-Nagumo model (Equations \ref{eq:FitzHugh-Nagumo}), a co-dimension 3 parameter space with the black line indicating the fold bifurcation.
+	In both cases, the parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition.
+In a tokamak, the density would correspond to the $b$ parameter \cite{weymiens_bifurcation_2014}.}
+	{fig:Bif_3D_and_co-3}
+%}}}
+
+\subsubsection{Co-dimension 3 Bifurcation}
+In order to accurately model to our current knowledge, the oscillatory transition must be incorporated with the sharp and smooth transitions.
+Work by Weymiens \cite{weymiens_bifurcation_2014} proves that a ``co-dimension 3 bifurcation robustly connects the three types of transition behaviour'' and investigates using the FitzHugh-Nagumo model.
+\begin{subequations}
+\begin{align} % FitzHugh-Nagumo model
+	\dot{x} \,&=\, a - bx - x^3 + cy~, \\
+	\dot{y} \,&=\, -y - x~.
+\end{align}
+	\label{eq:FitzHugh-Nagumo}
+\end{subequations}
+This couples the cusp bifurcation to a damped variable, with the coupling parameter $c$.
+For as long as $c$ is below some critical value, only the cusp bifurcation will be present; a large enough value gives rise to the oscillatory transition.
+
+All three bifurcations are shown in parameter space in the right plot of Fig.~\ref{fig:Bif_3D_and_co-3}, with the value of the $b$ parameter dictating the type.
+
+\subsection{Hysteresis}\label{ssec:hysteresis}
+Hysteresis is a characteristic of any system which the current state of the system depends on its history.
+The threshold power for the H--L transition is significantly lower than that of the L--H transition, leading to a region in which there is a non-unique solution to the plasma state.
+This requires two separate fold bifurcations each to govern the L--H and H--L transitions separately, which, in turn, requires two types of bifurcation parameters.
+The first dictates hysteresis being present in the system; varying this allows for the disappearance of hysteresis when the aforementioned two fold bifurcations merge into a cusp bifurcation.
+Varying the second parameter can cause the two stable solutions to be replaced by with unstable solutions, in which the system will oscillate between the solutions.
+In the FitzHugh-Nagumo model (Eq.~\ref{eq:FitzHugh-Nagumo}), these are represented by $b$ and $c$, respectively.
+\todo{\color{red}{What to do here?}}
+
 \section{Mechanisms}\label{sec:mechanics}
+\subsection{Turbulence}\label{ssec:turbulence}
 Physically, the transition is a bifurcation in the turbulent transport at the edge of the tokamak.
 The prevailing hypothesis for the overarching mechanism for H--mode is that high auxiliary power develops strong sheared plasma flow and suppresses transport \cite{freidberg_plasma_2007}.
 
+\todo{\color{red} WORK HERE!}
+It is assumed that the particle diffusivity increases linearly with the level of turbulence \cite{diamond_dynamics_1995}.
+
 The shear stress dissociates smaller turbulent structures, with their energy and momenta transferred to larger flows \cite{staps_backstepping_2017}.
+
+\subsection{Radial Electric Field}\label{ssec:E_r}
 An accepted key mechanism for the transition is the generation of a large radial electric field and the corresponding $\mathbf{E}\times\mathbf{B}$ flows near the edge.
 A plethora of individual processes for the generation of such an electric field have been proposed, most of which can be viewed as separate contributions in a radial Poisson's law, with some that tend to reduce the field.
-
 The radial electric field $E_r$ is deduced from the radial force balance for any plasma species $j$, as follows:
 \begin{equation}
 	E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d} p_j}{\text{d} r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta
