@@ -93,17 +93,14 @@ As $b$ approaches zero from some positive value, the size of the hysteresis shri
 	{fig:stationaries_b}
 %}}}
 
-\begin{figure}[tb] % Bifurcation with varying b
-\begin{minipage}{0.49\linewidth}
-	\centering
-	\includegraphics[width=0.9\textwidth]{../Graphics/Bif_Graphs/co-2_fold_b_var.png}
-\end{minipage}
-\hfill
-\begin{minipage}{0.49\linewidth}
-	\caption{Co-dimension 2 bifurcation as described by Eq.~\ref{eq:sharp_bif}, with varying the $b$ parameter. The hysteresis behavior is solely dependent on this parameter, as hysteresis disappears for $b \leq 0$.}
-	\label{fig:hysteresis_b_var}
-\end{minipage}
-\end{figure}
+%{{{ Two figures for complex bifurcations
+\TwoFigOneCap{../Graphics/Bif_Graphs/co-2_fold_b_var.png}
+	{../Graphics/Bif_Graphs/Bif_3D.png}
+	{These plots show the mentioned co-dimension 2 cusp bifurcation, composed of two co-dimension 1 fold bifurcations, as described by Equation~\ref{eq:sharp_bif}.
+	The plot on the left shows cross-sections for different $b$ values, with the sharp-smooth boundary occuring at $b = 0$.
+	The plot on the right is the surface plot of this same model.}
+	{fig:Bif_hysteresis}
+%}}}
 
 \subsubsection{Oscillatory Transition Bifurcation}
 The third type of transition dynamics in tokamak plasmas is oscillatory, in which the system rapidly oscillates between the two different modes \cite{ryter_survey_2013} \cite{zohm_mhd_1995}.
@@ -131,16 +128,19 @@ Specifically, it occurs where the real part of complex conjugated eigenvalues va
 %\end{subequations}
 %}}}
 
-%{{{ Two figures for complex bifurcations
-\TwoFigOneCap{../Graphics/Bif_Graphs/Bif_3D.png}
-	{../Graphics/Bif_Graphs/3_transitions_single_simple.png}
-	{The plot on the left shows two co-dimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp.
-	Fig.~\ref{fig:co-2_fold} is a cross-section of this.
-	The right plot showcases the FitzHugh-Nagumo model (Equations \ref{eq:FitzHugh-Nagumo}), a co-dimension 3 parameter space with the black line indicating the fold bifurcation.
-	In both cases, the parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition.
-In a tokamak, the density would correspond to the $b$ parameter \cite{weymiens_bifurcation_2014}.}
-	{fig:Bif_3D_and_co-3}
-%}}}
+\begin{figure}[tb] % Co-dimension 3 bifurcation cross-section
+\begin{minipage}{0.49\linewidth}
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Graphics/Bif_Graphs/3_transitions_single_simple.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\linewidth}
+	\caption{A parameter plot of the FitzHugh-Nagumo model (Equations \ref{eq:FitzHugh-Nagumo}), a co-dimension 3 bifurcation with the black line indicating the fold bifurcation.
+	This model is the one under consideration for accurately describing the L--H transition in tokamak plasmas, with the $b$ parameter dictating the type of transition.
+	This $b$ parameter is akin to the density at the edge \cite{weymiens_bifurcation_2014}.}
+	\label{fig:co-3}
+\end{minipage}
+\end{figure}
 
 \subsubsection{Co-dimension 3 Bifurcation}
 In order to accurately model to our current knowledge, the oscillatory transition must be incorporated with the sharp and smooth transitions.
@@ -167,14 +167,29 @@ In the FitzHugh-Nagumo model (Eq.~\ref{eq:FitzHugh-Nagumo}), these are represent
 \todo{\color{red}{What to do here?}}
 
 \section{Mechanisms}\label{sec:mechanics}
-\subsection{Turbulence}\label{ssec:turbulence}
-Physically, the transition is a bifurcation in the turbulent transport at the edge of the tokamak.
-The prevailing hypothesis for the overarching mechanism for H--mode is that high auxiliary power develops strong sheared plasma flow and suppresses transport \cite{freidberg_plasma_2007}.
+Physically, the L--H transition is a bifurcation in the turbulent transport at the edge of the tokamak.
+The prevailing hypothesis for the overarching mechanism for H--mode that can be directly manipulated is that high auxiliary power develops strong sheared plasma flow and suppresses transport \cite{freidberg_plasma_2007}.
 
-\todo{\color{red} WORK HERE!}
-It is assumed that the particle diffusivity increases linearly with the level of turbulence \cite{diamond_dynamics_1995}.
+\subsection{Turbulence and Sheared Flow Suppression}\label{ssec:turbulence_sheared}
+Turbulence is primarily driven by the gradients of the temperature and density, which increase under higher heating.
+Drift waves are considered to be the only type of turbulence that pushes radial flux; therefore, it dictates the severity of turbulence and linked transport at the edge of the plasma.
+Particular well-known instabilities can be coupled to the drift-wave turbulence, such as the drift resistant ballooning mode, among others \cite{scott_three-dimensional_1997}.
+Therefore, a form for the turbulence level will be restricted to one that adheres to the drift wave.
 
+The turbulence evolves as the following, in the absence of sheared flow
+\begin{align} % Turbulence ODE
+	\frac{\partial\mathcal{E}}{\partial t} \,=\, \gamma_L\mathcal{E} - \alpha_\text{sat}\mathcal{E}^2~.
+	\label{eq:turbulence_ode}
+\end{align}
+This is the result from assuming the particle diffusivity increases linearly with the level of turbulence up to some maximum \cite{diamond_dynamics_1995}.
+The first term on the right-hand side is a linear growth term, with $\gamma_L$ as the growth rate, and a nonlinear saturation term, with $\alpha_\text{sat}$ as the saturation rate.
+The maximum turbulence is the ratio of the linear growth rate to the saturation rate.
+
+It is now accepted that turbulent transport at the edge is particularly suppressed by sheared flow in the radial direction \cite{terry_suppression_2000}.
 The shear stress dissociates smaller turbulent structures, with their energy and momenta transferred to larger flows \cite{staps_backstepping_2017}.
+
+\todo{\color{red}Have fun citing}
+Both zonal and mean $\mathbf{E}\times\mathbf{B}$ flows are responsible for the drift wave turbulence.
 
 \subsection{Radial Electric Field}\label{ssec:E_r}
 An accepted key mechanism for the transition is the generation of a large radial electric field and the corresponding $\mathbf{E}\times\mathbf{B}$ flows near the edge.
