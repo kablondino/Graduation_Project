@@ -81,10 +81,10 @@ The topological norm form of this behavior is
 \end{equation}
 Figure~\ref{fig:co-2_fold} is a plot of the parameter space, indicating the stable and unstable steady-state solutions.
 This cusp bifurcation can also be regarded as two co-dimension 1 folds, if one can view the positive and negative $x$-domains as separate co-dimension 1 bifurcations.
-The distinction between sharp and smooth transitions in this co-dimension 2 bifurcation is solely based on the $b$ parameter, shown in Figure~\ref{fig:hysteresis_b_var}.
+The distinction between sharp and smooth transitions in this co-dimension 2 bifurcation is solely based on the $b$ parameter, shown in the plots of Figure~\ref{fig:Bif_hysteresis}.
 As $b$ approaches zero from some positive value, the size of the hysteresis shrinks.
 
-%{{{ Two figures for zeros of the co-dimension 2 bifurcations
+%{{{ Two figures for zeros of the co-dimension 2 bifurcation
 \TwoFigOneCap{../Graphics/Bif_Graphs/stationary_b-0_8.png}
 	{../Graphics/Bif_Graphs/stationary_b_1_1.png}
 	{Phase plots for Eq.~\ref{eq:sharp_bif}, with different values of $a$ within each plot. %
@@ -93,12 +93,12 @@ As $b$ approaches zero from some positive value, the size of the hysteresis shri
 	{fig:stationaries_b}
 %}}}
 
-%{{{ Two figures for complex bifurcations
+%{{{ Two figures for co-dimension 2 bifurcation, with surface plot
 \TwoFigOneCap{../Graphics/Bif_Graphs/co-2_fold_b_var.png}
 	{../Graphics/Bif_Graphs/Bif_3D.png}
 	{These plots show the mentioned co-dimension 2 cusp bifurcation, composed of two co-dimension 1 fold bifurcations, as described by Equation~\ref{eq:sharp_bif}.
 	The plot on the left shows cross-sections for different $b$ values, with the sharp-smooth boundary occuring at $b = 0$.
-	The plot on the right is the surface plot of this same model.}
+	The plot on the right is the surface plot of this same model \cite{weymiens_bifurcation_2014}.}
 	{fig:Bif_hysteresis}
 %}}}
 
@@ -128,6 +128,7 @@ Specifically, it occurs where the real part of complex conjugated eigenvalues va
 %\end{subequations}
 %}}}
 
+\subsubsection{Co-dimension 3 Bifurcation}
 \begin{figure}[tb] % Co-dimension 3 bifurcation cross-section
 \begin{minipage}{0.49\linewidth}
 	\centering
@@ -142,9 +143,8 @@ Specifically, it occurs where the real part of complex conjugated eigenvalues va
 \end{minipage}
 \end{figure}
 
-\subsubsection{Co-dimension 3 Bifurcation}
 In order to accurately model to our current knowledge, the oscillatory transition must be incorporated with the sharp and smooth transitions.
-Work by Weymiens \cite{weymiens_bifurcation_2014} proves that a ``co-dimension 3 bifurcation robustly connects the three types of transition behaviour'' and investigates using the FitzHugh-Nagumo model.
+Work by Weymiens \cite{weymiens_bifurcation_2014} proves that a ``co-dimension 3 bifurcation robustly connects the three types of transition behavior'' and investigates using the FitzHugh-Nagumo model.
 \begin{subequations}
 \begin{align} % FitzHugh-Nagumo model
 	\dot{x} \,&=\, a - bx - x^3 + cy~, \\
@@ -155,7 +155,7 @@ Work by Weymiens \cite{weymiens_bifurcation_2014} proves that a ``co-dimension 3
 This couples the cusp bifurcation to a damped variable, with the coupling parameter $c$.
 For as long as $c$ is below some critical value, only the cusp bifurcation will be present; a large enough value gives rise to the oscillatory transition.
 
-All three bifurcations are shown in parameter space in the right plot of Fig.~\ref{fig:Bif_3D_and_co-3}, with the value of the $b$ parameter dictating the type.
+All three bifurcations are shown in parameter space in the right plot of Fig.~\ref{fig:co-3}, with the value of the $b$ parameter dictating the type.
 
 \subsection{Hysteresis}\label{ssec:hysteresis}
 Hysteresis is a characteristic of any system which the current state of the system depends on its history.
@@ -170,13 +170,13 @@ In the FitzHugh-Nagumo model (Eq.~\ref{eq:FitzHugh-Nagumo}), these are represent
 Physically, the L--H transition is a bifurcation in the turbulent transport at the edge of the tokamak.
 The prevailing hypothesis for the overarching mechanism for H--mode that can be directly manipulated is that high auxiliary power develops strong sheared plasma flow and suppresses transport \cite{freidberg_plasma_2007}.
 
-\subsection{Turbulence and Sheared Flow Suppression}\label{ssec:turbulence_sheared}
+\subsection{Turbulence and Flow Shear Suppression}\label{ssec:turbulence_sheared}
 Turbulence is primarily driven by the gradients of the temperature and density, which increase under higher heating.
 Drift waves are considered to be the only type of turbulence that pushes radial flux; therefore, it dictates the severity of turbulence and linked transport at the edge of the plasma.
 Particular well-known instabilities can be coupled to the drift-wave turbulence, such as the drift resistant ballooning mode, among others \cite{scott_three-dimensional_1997}.
 Therefore, a form for the turbulence level will be restricted to one that adheres to the drift wave.
 
-The turbulence evolves as the following, in the absence of sheared flow
+The turbulence $\mathcal{E}$ evolves as the following, in the absence of shear in the plasma flow
 \begin{align} % Turbulence ODE
 	\frac{\partial\mathcal{E}}{\partial t} \,=\, \gamma_L\mathcal{E} - \alpha_\text{sat}\mathcal{E}^2~.
 	\label{eq:turbulence_ode}
@@ -185,14 +185,31 @@ This is the result from assuming the particle diffusivity increases linearly wit
 The first term on the right-hand side is a linear growth term, with $\gamma_L$ as the growth rate, and a nonlinear saturation term, with $\alpha_\text{sat}$ as the saturation rate.
 The maximum turbulence is the ratio of the linear growth rate to the saturation rate.
 
-It is now accepted that turbulent transport at the edge is particularly suppressed by sheared flow in the radial direction \cite{terry_suppression_2000}.
-The shear stress dissociates smaller turbulent structures, with their energy and momenta transferred to larger flows \cite{staps_backstepping_2017}.
+It is now accepted that turbulent transport at the edge is particularly suppressed by shear in the flow of the (radial) $\mathbf{E}\times\mathbf{B}$ drift \cite{terry_suppression_2000}.
+The shear stress dissociates smaller turbulent structures, with their energy and momenta transferred to larger flows.
+This shear can be modeled as a ratio of the electromagnetic fields given by \cite{staps_backstepping_2017}
+\begin{align} % Shear velocity
+	\frac{\partial V_{\mathbf{E}\times\mathbf{B}}}{\partial x} \,=\, \frac{\partial}{\partial x} \left(\frac{E_r}{B}\right) \,\approx\, \frac{1}{B_\phi} \frac{\partial E_r}{\partial x}~.
+	\label{eq:velocity_shear}
+\end{align}
+Both zonal and mean $\mathbf{E}\times\mathbf{B}$ flows are responsible for the drift-wave turbulence.
+Zonal flows in particular are present in L--mode, in which the shear due to Reynolds stress comes from radial and poloidal perturbations \cite{diamond_zonal_2005}.
+However, they disappear in H--mode, leaving only mean flows present.
 
-\todo{\color{red}Have fun citing}
-Both zonal and mean $\mathbf{E}\times\mathbf{B}$ flows are responsible for the drift wave turbulence.
+The flow shear could reduce the growth rate of the turbulence \cite{diamond_self-regulating_1994}, which was coined the linear model.
+The other possibility is that flow shear can increase the saturation mechanism, which is the nonlinear model \cite{hahm_rotation_1994}.
+Each are implemented as some flow shear parameter that multiplies against their respective term in Equation~\ref{eq:turbulence_ode}.
+For example, the nonlinear model would adjust it to the following
+\begin{align} % Nonlinear Turbulence ODE
+	\frac{\partial\mathcal{E}}{\partial t} \,=\, \gamma_L\mathcal{E} - \eta_\text{NL}\alpha_\text{sat}\mathcal{E}^2~, ~~~~
+	\eta_\text{NL} \,=\, 1 + \tilde{\eta} \left|\frac{\partial V_{\mathbf{E}\times\mathbf{B}}}{\partial x}\right|^2.
+	\label{eq:nonlinear_turbulence_ode}
+\end{align}
+Both were investigated by Weymiens, and the nonlinear model proved more robust \cite{weymiens_bifurcation_2014}.
+Therefore, this nonlinear model will be used in this study.
 
 \subsection{Radial Electric Field}\label{ssec:E_r}
-An accepted key mechanism for the transition is the generation of a large radial electric field and the corresponding $\mathbf{E}\times\mathbf{B}$ flows near the edge.
+To generate a poloidal $\mathbf{E}\times\mathbf{B}$ flow with a mainly toroidal $\mathbf{B}$, an electric field must be generated.
 A plethora of individual processes for the generation of such an electric field have been proposed, most of which can be viewed as separate contributions in a radial Poisson's law, with some that tend to reduce the field.
 The radial electric field $E_r$ is deduced from the radial force balance for any plasma species $j$, as follows:
 \begin{equation}
