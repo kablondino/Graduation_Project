@@ -9,7 +9,7 @@ Transport of particles and energy in tokamaks has been discovered to be signific
 Low-confinement mode, referred to as L--mode, is dominated by this transport at the edge.
 The formation of H--mode is due to the suppression of this turbulent transport at the edge of the plasma.
 This mode is therefore categorized as having a transport barrier.
-The plasma edge is defined to be the thin boundary layer of the plasma just inside the separatrix.
+The plasma edge is defined to be the thin boundary layer of the plasma just inside the last-closed flux surface.
 
 \begin{figure}[tb] % L--H-modes compare
 \begin{minipage}{0.49\linewidth}
@@ -35,10 +35,11 @@ This is covered in-depth in Section~\ref{ssec:hysteresis}.
 \section{The L--H Transition}\label{sec:the_transition}
 The key feature that determines a divertor tokamak's operational mode is the amount of external heating power.
 Limiter tokamaks are relegated to stay in L--mode, as H--mode is an exclusive operating mode of tokamaks with divertors.
-The transition has been observed to occur in one of three manners: sharp, smooth, and oscillatory.
+The transition has been observed to occur in one of three general manners: sharp, smooth, and oscillatory.
 
 \subsection{Bifurcation Theory}\label{ssec:bif_theory}
-A defining feature of L--H transitions is that they can occur very suddenly (the so-called sharp transition), which is characteristic of fold bifurcation behavior.
+The aforementioned transitions show clear evidence of bifurcations in the plasma system.
+%A defining feature of L--H transitions is that they can occur very suddenly (the so-called sharp transition), which is characteristic of fold bifurcation behavior.
 Mathematically, a bifurcation is defined to be a topological or qualitative change in a system when a small and smooth change of a parameter is made.
 A simple example for a fold bifurcation is the following, with $a$ representing the parameter:
 \begin{equation} % Simplest fold bifurcation
@@ -51,7 +52,7 @@ For $a = 0$, there is one equilibrium point at $x = 0$, and two for $a < 0$, at 
 Varying $a$ from some positive real number to some negative number, the fundamental behavior of the solutions changes drastically at $a = 0$ with the sudden appearance of a steady-state solution.
 Equation~\ref{eq:simple_fold} is the simplest known form of a fold bifurcation, also known as the saddle-node bifurcation.
 The simplest form for any dynamical system is known as the topological norm form.
-A parameter plot of $x$ versus $a$ in Fig.~\ref{fig:simple_fold} illustrates this.
+A parameter plot of $x$ versus $a$ in Fig.~\ref{fig:simple_fold} illustrates this, with the green and red curves representing the stable and unstable steady-state solutions, respectively.
 
 %{{{ Two figures for simple bifurcations (co-dimension 1 and 2)
 \TwoFig{../Graphics/Bif_Graphs/Simple_fold.png}
@@ -71,6 +72,14 @@ Put differently, it is the number of parameters that must be varied for the bifu
 In the case of Eq.~\ref{eq:simple_fold}, there is only a single parameter, and is thus referred to as a co-dimension 1 bifurcation \cite{weymiens_bifurcation_2014}.
 
 \subsubsection{Sharp and Smooth Transition Bifurcations}
+%{{{ Two figures for zeros of the co-dimension 2 bifurcation
+\TwoFigOneCap{../Graphics/Bif_Graphs/stationary_b-0_8.png}
+	{../Graphics/Bif_Graphs/stationary_b_1_1.png}
+	{Phase plots for Eq.~\ref{eq:sharp_bif}, with different values of $a$ within each plot. %
+	There is a variance in the number of zeros based on the values of $a$ in the right plot, while there is strictly one zero for all values of $a$ in the left plot. %
+	When there is multiple roots, the middle zero is always unstable.}
+	{fig:stationaries_b}
+%}}}
 
 The dynamic behavior of the L--H transition correspond very closely to a few certain bifurcations.
 Sharp and smooth transitions are features of the cusp bifurcation.
@@ -80,18 +89,9 @@ The topological norm form of this behavior is
 	\label{eq:sharp_bif}
 \end{equation}
 Figure~\ref{fig:co-2_fold} is a plot of the parameter space, indicating the stable and unstable steady-state solutions.
-This cusp bifurcation can also be regarded as two co-dimension 1 folds, if one can view the positive and negative $x$-domains as separate co-dimension 1 bifurcations.
+This cusp bifurcation can also be regarded as two co-dimension 1 folds, if one views the positive and negative $x$-domains as separate co-dimension 1 bifurcations.
 The distinction between sharp and smooth transitions in this co-dimension 2 bifurcation is solely based on the $b$ parameter, shown in the plots of Figure~\ref{fig:Bif_hysteresis}.
-As $b$ approaches zero from some positive value, the size of the hysteresis shrinks.
-
-%{{{ Two figures for zeros of the co-dimension 2 bifurcation
-\TwoFigOneCap{../Graphics/Bif_Graphs/stationary_b-0_8.png}
-	{../Graphics/Bif_Graphs/stationary_b_1_1.png}
-	{Phase plots for Eq.~\ref{eq:sharp_bif}, with different values of $a$ within each plot. %
-	There is a variance in the number of zeros based on the values of $a$ in the right plot, while there is strictly one zero for all values of $a$ in the left plot. %
-	When there is multiple roots, the middle zero is always unstable.}
-	{fig:stationaries_b}
-%}}}
+As $b$ approaches zero from some positive value, the size of the hysteresis shrinks, with it vanishing at $b = 0$, in which the smooth transition occurs.
 
 %{{{ Two figures for co-dimension 2 bifurcation, with surface plot
 \TwoFigOneCap{../Graphics/Bif_Graphs/co-2_fold_b_var.png}
@@ -205,20 +205,53 @@ For example, the nonlinear model would adjust it to the following
 	\eta_\text{NL} \,=\, 1 + \tilde{\eta} \left|\frac{\partial V_{\mathbf{E}\times\mathbf{B}}}{\partial x}\right|^2.
 	\label{eq:nonlinear_turbulence_ode}
 \end{align}
-Both were investigated by Weymiens, and the nonlinear model proved more robust \cite{weymiens_bifurcation_2014}.
+Both forms were investigated by Weymiens, and the nonlinear model proved more robust to changes in plasma parameters \cite{weymiens_bifurcation_2014}.
 Therefore, this nonlinear model will be used in this study.
+
+In slab geometry, a radial electric field is proportional to $V_{\mathbf{E}\times\mathbf{B}}$, allowing us to substitute in $Z$, a normalized form of the radial electric field.
+The details of $Z$ are described in the following section \ref{ssec:E_r}.
+This changes the coefficient of the nonlinear turbulence model $\eta_\text{NL}$ into
+\begin{align} % New Saturation Coefficient
+	\eta_\text{NL} \,=\, 1 + \tilde{\eta} \left|\frac{\partial V_{\mathbf{E}\times\mathbf{B}}}{\partial x}\right|^2
+	\,=\, 1 + \eta\left|\frac{\partial Z}{\partial x}\right|^2~,
+	\label{eq:saturation_normalization}
+\end{align}
+with $\eta$ including the normalization.
 
 \subsection{Radial Electric Field}\label{ssec:E_r}
 To generate a poloidal $\mathbf{E}\times\mathbf{B}$ flow with a mainly toroidal $\mathbf{B}$, an electric field must be generated.
 A plethora of individual processes for the generation of such an electric field have been proposed, most of which can be viewed as separate contributions in a radial Poisson's law, with some that tend to reduce the field.
-The radial electric field $E_r$ is deduced from the radial force balance for any plasma species $j$, as follows:
+The radial electric field $E_r$ can be deduced from the radial force balance in steady-state for any plasma species $j$, as follows:
 \begin{equation}
 	E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d} p_j}{\text{d} r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta
 	\label{eq:E_r}
 \end{equation}
 In the above, $e_j$ represents the charge of the $j$-th species, $n_j$ is the density, $p_j$ is the pressure, and $V_{\theta j}$ and $V_{\phi j}$ are the poloidal and toroidal velocities, respectively.
-This grants changes in the radial electric field to be associated with changes in radial gradient of the pressure or either velocities \cite{connor_review_2000}\cite{staps_backstepping_2017}.
-However, determining these values is difficult due to large possible error in experiment.
+This grants changes in the radial electric field to be associated with changes in radial gradient of the pressure or either velocities \cite{connor_review_2000}.
+Experimentally, each term can be measured separately; however, determining these values is difficult due to large possible error.
+
+As alluded to in the previous section, a definition of the normalized radial electric field is needed.
+The definition used is
+\begin{align} % Z definition
+	Z \,\equiv\, \frac{\rho_p e E_r}{T}~, ~~~~ \rho_p \,\equiv\, \frac{m_i v_\text{th}}{e B_\theta}~,\label{eq:Z_and_rho_definitions}
+\end{align}
+with the ion mass $m_i$, the thermal ion velocity $v_\text{th}$, the elementary charge $e$, and the poloidal magnetic field $B_\theta$.
+
+Rather than looking at an overall effect, an alternate method to determine the electric field is to look for the sources.
+This means investigating the particle fluxes that go across the magnetic flux surfaces.
+Any radial fluxes can be categorized as ambipolar or nonambipolar.
+Ambipolar fluxes have an equal effect on electrons and all species of ions, resulting in no overall radial current.
+Nonambipolar fluxes affect various charged particles differently, and thus create an electric field.
+This resulting field creates a return current so that the divergence of the plasma current, on average, returns to zero.
+The evolution of the field is determined by the sum of all possible radial currents, with $\Gamma_j$ referring to only nonambipolar fluxes of species $j$, since those are the ones to contribute to the field.
+\begin{align} % Ambipolarity constraint
+	\epsilon_0 \frac{\partial E_r}{\partial t} \,=\, -\sum J_r \,=\, \sum_j q_j\Gamma_j
+	\label{eq:ambipolarity_constraint}
+\end{align}
+
+Kinetic and atomic processes contribute to the nonambipolar fluxes, in addition to fluid processes implied by the description.
+These include ion orbit loss and charge exchange friction.
+Details on the nonambipolar fluxes utilized in this investigation are described in depth in Section~\ref{sec:nonambipolar_fluxes}.
 
 \section{Research Questions}\label{sec:research_questions}
 Although there have been compilations of different theories describing the transition, there is yet to be a conclusive, comprehensive one \cite{connor_review_2000}.
