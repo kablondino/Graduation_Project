@@ -4,18 +4,19 @@ The plasma edge is defined to be at the last-closed flux surface (separatrix).
 This allows for slab geometry to be used, in which $\psi$ is the usual radial coordinate.
 However, $x$ will be used as it is more distinct as a spatial coordinate.
 The slab geometry reduces the model into one (spatial) dimensional differential equations.
-One of the liberties taken to simplify the model is that a single temperature is used, \emph{i.e.} the electron and ion temperatures are identical.\todo{\color{red}{Liberties?}}
+One of the liberties taken to simplify the model is that a single temperature is used, \emph{i.e.} the electron and ion temperatures are assumed identical.\todo{\color{red}{Liberties?}}
 
 \section{Transport Equations}\label{sec:transport_eqs}
 To model the transport of a fully-ionized fusion plasma, conservation of mass and energy are considered.
-These lead to continuity equations of plasma density $n$ and internal energy $U$:
+These lead to continuity equations of plasma density $n$ and internal energy $U$
 \begin{align} % n and U continuity
 	\frac{\partial n}{\partial t} \,+\, \frac{\partial \Gamma}{\partial x} \,&=\, 0~,\label{eq:n_continuity} \\
-	\frac{\partial U}{\partial t} \,+\, \frac{\partial q}{\partial x} \,&=\, 0\label{eq:U_continuity}
+	\frac{\partial U}{\partial t} \,+\, \frac{\partial q}{\partial x} \,&=\, 0\label{eq:U_continuity}~.
 \end{align}
 The particle flux $\Gamma$ is determined by some effective particle diffusion $D$ due to anomalous transport.
+Note that $\Gamma$ here refers to all species of particle fluxes, both ambipolar and nonambipolar.
 The heat flux $q$, however, is determined by effective heat convection.
-This is the sum of heat diffusion $\chi n$, and advection $\Gamma T$. \todo{\color{red}{Check this statement}}
+This is the sum of heat diffusion $\chi n T^\prime$, and advection $\Gamma T$. \todo{\color{red}{Check this statement}}
 \begin{align} % Fluxes
 	\Gamma \,&=\, -D \frac{\partial n}{\partial x}~,\label{eq:particle_flux} \\
 	q \,&=\, -\chi n \frac{\partial T}{\partial x} \,+\, \frac{\Gamma T}{\gamma - 1} \label{eq:heat_flux}
@@ -44,16 +45,12 @@ The simplified forms of these transport equations is as such:
 	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(1 + \frac{1}{\zeta}\right) \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x} \label{eq:T_compact}
 \end{align}
 
-\section{Radial Electric Field}\label{sec:Z_equation}
+\section{Radial Electric Field Equation}\label{sec:Z_equation}
 A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
 However, experiments and mathematical investigations indicate that flows in the plasma can tear apart turbulent eddies, which reduces the transport radially.\todo{\color{red}{Reword?}}
 To model the dynamics of the transition fully within this scope, the radial electric field must also be evolved explicitly.
 
-In this investigation, the radial electric field $E_r$ is normalized with the ion poloidal gyroradius $\rho_p$ into $Z$
-\begin{align} % Z definition
-	Z \,\equiv\, \frac{\rho_p e E_r}{T}~, ~~~~ \rho_p \,\equiv\, \frac{m_i v_\text{th}}{e B_\theta}~,\label{eq:Z_and_rho_definitions}
-\end{align}
-with the ion mass $m_i$, the thermal ion velocity $v_\text{th}$, the elementary charge $e$, and the poloidal magnetic field $B_\theta$.
+As shown previously, the radial electric field $E_r$ is normalized with the ion poloidal gyroradius $\rho_p$ into $Z$ for this investigation, shown in Equation~\ref{eq:Z_and_rho_definitions}.
 
 Itoh \emph{et al.}, originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase \cite{itoh_edge_1991}
 \begin{align} % Original Itoh model
@@ -85,6 +82,9 @@ Another form includes both the field itself and its shear \cite{paquay_studying_
 \begin{align} % Flow-Shear equation
 	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\, \frac{D_\text{max} - D_\text{min}}{1 + a_1 Z^2 + a_2 Z \cdot Z^{\prime} + a_3 (Z^{\prime})^2} \label{eq:flow-shear}
 \end{align}
+
+\section{Nonambipolar Particle Fluxes}\label{sec:nonambipolar_fluxes}
+The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}.
 
 \section{Boundary Conditions}\label{sec:boundary_conditions}
 The set of aforementioned PDE's is evaluated in a domain that is small enough to exclude the inner (core) boundary from any possible particle and heat sources.
