@@ -15,7 +15,7 @@ These lead to continuity equations of plasma density $n$ and internal energy $U$
 The particle flux $\Gamma$ is determined by some effective particle diffusion $D$ due to anomalous transport.
 Note that $\Gamma$ here refers to all species of particle fluxes, both ambipolar and nonambipolar.
 The heat flux $q$, however, is determined by effective heat convection.
-This is the sum of heat diffusion $\chi n T^\prime$, and advection $\Gamma T$. \todo{\color{red}{Check this statement}}
+This is the sum of heat diffusion $\chi n T^\prime$, and advection $\Gamma T$.
 \begin{align} % Fluxes
 	\Gamma \,&=\, -D \frac{\partial n}{\partial x}~,\label{eq:particle_flux} \\
 	q \,&=\, -\chi n \frac{\partial T}{\partial x} \,+\, \frac{\Gamma T}{\gamma - 1} \label{eq:heat_flux}
@@ -25,13 +25,13 @@ It is important to note that these fluxes omit explicit drift velocities as well
 
 The particle and heat diffusivities $D$ and $\chi$ are considered to be functions of the turbulence.
 The L-H transition is not expected to be caused by a difference in form between the two diffusivities.
-It is therefore assumed they are proportional.
+It is therefore assumed they are proportional
 \begin{align} % chi-D relation
-	\chi \,=\, \frac{D}{\zeta (\gamma - 1)} \label{eq:heat_particle_diff_relation}
+	\chi \,=\, \frac{D}{\zeta (\gamma - 1)} \label{eq:heat_particle_diff_relation}~.
 \end{align}
 The parameter $\zeta$ determines the coupling strength of the two diffusivities. The specifics of the forms chosen for the diffusivities is discussed in Section~\ref{sec:diffusivities}.
 
-In order to simplify the model, substituting the definition of the internal energy can be made:
+In order to simplify the model, substituting the following definition of the internal energy should be made.
 \begin{align} % U definition
 	U \,\equiv\, \frac{n T}{\gamma - 1} \label{eq:U_definition}
 \end{align}
@@ -40,8 +40,12 @@ Making this substitution, along with the fluxes, and subsequently working out th
 One convenience is that Equation~\ref{eq:n_continuity} shows up as a collection of terms within Equation \ref{eq:U_continuity}.
 This allows those terms to vanish, leaving these equations:
 \begin{align} % Compact transport equations
-	\frac{\partial n}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[D \, \frac{\partial n}{\partial x}\right]~,\label{eq:n_compact} \\
-	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(1 + \frac{1}{\zeta}\right) \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x}~. \label{eq:T_compact}
+	\frac{\partial n}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[D \,
+		\frac{\partial n}{\partial x}\right]~,\label{eq:n_compact} \\
+	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[\frac{D}{\zeta} 
+		\, \frac{\partial T}{\partial x}\right] \,+\,
+		\left(1 + \frac{1}{\zeta}\right) \frac{\partial n}{\partial x} \,
+		\frac{\partial T}{\partial x}~. \label{eq:T_compact}
 \end{align}
 
 \section{Radial Electric Field Equation}\label{sec:Z_equation}
@@ -58,15 +62,19 @@ Itoh \emph{et al.}, originally modeled an evolution to the radial electric field
 The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
 Paquay rewrote the equation as
 \begin{align} % Modern model
-	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \, \frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \, \frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \, \frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
+	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \, \frac{\partial^2 Z}{\partial x^2} \,+\,
+		\frac{c_n T}{n^2} \, \frac{\partial n}{\partial x} \,+\,
+		\frac{c_T}{n} \, \frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
 	G(Z) \,\equiv\, a + bZ + cZ^3 \label{eq:G_polynomial}
 \end{align}
+\todo{\color{red}Expand here}
 
 \section{Forms of Diffusivities}\label{sec:diffusivities}
 Various forms of $D$ (and subsequently $\chi$) are presented in investigations with this model.
 The original Itoh model has $D$ proportional to the hyperbolic tangent of the normalized radial electric field \cite{itoh_edge_1991} \cite{zohm_dynamic_1994}
 \begin{align} % Itoh diffusivity
-	D(Z) \,&=\, \frac{D_\text{max} + D_\text{min}}{2} + \frac{(D_\text{max} - D_\text{min})\tanh(Z)}{2}~. \label{eq:Itoh_diffusivity}
+	D(Z) \,&=\, \frac{D_\text{max} + D_\text{min}}{2} +
+		\frac{(D_\text{max} - D_\text{min})\tanh(Z)}{2}~. \label{eq:Itoh_diffusivity}
 \end{align}
 
 However, it is now accepted that the diffusivity must be a function of the shear of the field.
@@ -93,7 +101,8 @@ This corresponds to $x = 0$.
 
 It is assumed that the SOL is passive to particle and heat fluxes, and therefore the density and temperature profiles exponentially decay.
 \begin{align} % n and T boundary conditions at SOL
-	\frac{\partial n}{\partial x}\biggr \lvert_{x=0} \,=\, \frac{n}{\lambda_n}~, ~~~~ \frac{\partial T}{\partial x}\biggr \lvert_{x=0} \,=\, \frac{T}{\lambda_T}~.\label{eq:nT_SOL_boundary}
+	\frac{\partial n}{\partial x}\biggr \lvert_{x=0} \,=\, \frac{n}{\lambda_n}~, ~~~~
+		\frac{\partial T}{\partial x}\biggr \lvert_{x=0} \,=\, \frac{T}{\lambda_T}~.\label{eq:nT_SOL_boundary}
 \end{align}
 The core side has a constant influx of particles and heat, stemming from fueling and heating.
 The electric field is to have no gradient beyond the plasma edge.
