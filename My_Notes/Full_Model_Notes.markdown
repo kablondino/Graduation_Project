@@ -1,8 +1,8 @@
-# Full Model Notes: 18 Jan 2018
+# Full Model Notes: 19 Feb 2018
 
 \small\begin{align}
 	\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,&=\, a + bx - x^3 \\
-	\text{FitzHugh-Nagumo bifurcation:} ~~~~ \dot{x} \,&=\, -(a + bx + x^3) + c(x + y)~, ~~~~ \dot{y} \,=\, -(x + y)
+	\text{FitzHugh-Nagumo bifurcation:} ~~~~ \dot{x} \,&=\, a - bx - x^3 + cy~, ~~~~ \dot{y} \,=\, -x - y
 \end{align}\normalsize
 
 ### Model Forms
@@ -11,9 +11,9 @@ Domain with boundary:
 	\Omega \,=\, \left\{x, t \,\in\, \mathbb{R}^2 \,|\, (0 \leq x \leq L) ~\text{and}~ (t \geq 0)\right\}, ~~~~ \delta\Omega \,=\, \{x, t \,\in\, \Omega \,|\, x = 0 ~\text{and}~ x = L \}
 \end{align}\normalsize
 
-Electric field normalization, energy definition, and diffusivity relation:
+Electric field normalization, energy definition, diffusivity relation, dielectric constant, and viscosity:
 \small\begin{align}
-	Z \,\equiv\, \frac{\rho_p \, e \, E_r}{T}~, ~~~~ U \,=\, \frac{n\,T}{\gamma - 1}, ~~~~ \chi \,=\, \frac{D}{\zeta(\gamma - 1)}
+	Z \,\equiv\, \frac{\rho_\theta \, e \, E_r}{T}~, ~~~~ U \,=\, \frac{n\,T}{\gamma - 1}~, ~~~~ \chi \,=\, \frac{D}{\zeta(\gamma - 1)}~, ~~~~ \epsilon \,=\, \frac{B_\theta^2}{B^2 \nu_i}~, ~~~~ \mu \sim \rho_\theta^2
 \end{align}\normalsize
 
 The following form of the model references particle and heat fluxes, $\Gamma$ and $q$:
@@ -96,24 +96,24 @@ Steady-State Solutions
 
 ### Gradient Model, from Staps
 \small\begin{align}
-	&\dfrac{m_i}{e \rho_{pi}} \,n T\, \left(\dfrac{B_\theta}{B}\right)^2 \dfrac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu_i}{e \rho_{pi}} \,n T\, \dfrac{\partial^2 Z}{\partial x^2} \\
+	&\dfrac{m_i}{e \rho_{\theta i}} \,n T\, \left(\dfrac{B_\theta}{B}\right)^2 \dfrac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu_i}{e \rho_{\theta i}} \,n T\, \dfrac{\partial^2 Z}{\partial x^2} \\
 	&+\, B_\theta^2 \left[\left(g_n^\text{an} - g_n^\text{cx} - g_n^{\pi\parallel}\right) \dfrac{n^\prime}{n} + \left(g_T^\text{an} - g_T^\text{cx} - g_T^{\pi\parallel}\right) \dfrac{T^\prime}{T} + \left(g_Z^\text{an} - g_Z^\text{cx} - g_Z^{\pi\parallel}\right) Z - f^\text{OL}\right]
 \end{align}\normalsize
 
 + Electron Anomalous Diffusion:
 \small\begin{align}
-	D^\text{an} \,&=\, \dfrac{\epsilon^2 \sqrt{\pi}}{2 a_m} \dfrac{\rho_{pe} T}{B}~,~~ g_n^\text{an} \,=\, -e \,n\, D^\text{an}~,~~ g_T^\text{an} \,=\, -e \,n\, \alpha^\text{an}\, D^\text{an}~,~~ g_Z^\text{an} \,=\, \dfrac{-e \,n\, D^\text{an}}{\rho_{pi}}
+	D^\text{an} \,&=\, \dfrac{\epsilon^2 \sqrt{\pi}}{2 a_m} \dfrac{\rho_{pe} T}{B}~,~~ g_n^\text{an} \,=\, -e \,n\, D^\text{an}~,~~ g_T^\text{an} \,=\, -e \,n\, \alpha^\text{an}\, D^\text{an}~,~~ g_Z^\text{an} \,=\, \dfrac{-e \,n\, D^\text{an}}{\rho_{\theta i}}
 \end{align}\normalsize
 
 + Charge Exchange Friction:
 \small\begin{align}
-	g_n^\text{cx} \,=\, -\dfrac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \,n T}{B_\theta^2}~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~ g_Z^\text{cx} \,=\, -\dfrac{g_n^\text{cx}}{\rho_{pi}}
+	g_n^\text{cx} \,=\, -\dfrac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \,n T}{B_\theta^2}~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~ g_Z^\text{cx} \,=\, -\dfrac{g_n^\text{cx}}{\rho_{\theta i}}
 \end{align}\normalsize
 
 + Ion Bulk Viscosity: $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
 \small\begin{align}
 	\begin{bmatrix}\xi_\theta \\[1ex] \xi_\phi \end{bmatrix} \,&=\, \dfrac{1}{\pi} \int_0^{\sqrt{\nu_{*i}}} \begin{bmatrix} 1 \\[1ex] \frac{5}{2} - x \end{bmatrix} x^2 \exp(-x) \, \tan^{-1}\left(\dfrac{2 N \sqrt{x}}{N^2 + Z^2 - x}\right) \text{d}x \\
-	g_n^{\pi\parallel} \,=\, \eta \, \rho_{\pi}& B_\theta \, \xi_\theta~,~~~~ g_n^{\pi\parallel} \,=\, \eta \, \rho_{pi} \left(B_\theta\,\xi_\theta - B\,\xi_\phi\right)~,~~~~ g_Z^{\pi\parallel} \,=\, 2\eta \, B_\theta \, \xi_\theta
+	g_n^{\pi\parallel} \,=\, \eta \, \rho_{\pi}& B_\theta \, \xi_\theta~,~~~~ g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i} \left(B_\theta\,\xi_\theta - B\,\xi_\phi\right)~,~~~~ g_Z^{\pi\parallel} \,=\, 2\eta \, B_\theta \, \xi_\theta
 \end{align}\normalsize
 
 <!--- Original line for Ion Bulk Viscosity integrals
@@ -122,6 +122,6 @@ Steady-State Solutions
 
 + Ion Orbit Loss:
 \small\begin{align}
-	g^\text{OL} \,=\, e \,n\, \nu_\text{eff} \sqrt{\epsilon} \,\rho_{pi}~,~~~~ f^\text{OL} \,=\, \dfrac{g^\text{OL}\,\exp\left[-\sqrt{\nu_{*i} + Z^4}\right]}{\sqrt{\nu_{*i} + Z^4}}
+	g^\text{OL} \,=\, e \,n\, \nu_\text{eff} \sqrt{\epsilon} \,\rho_{\theta i}~,~~~~ f^\text{OL} \,=\, \dfrac{g^\text{OL}\,\exp\left[-\sqrt{\nu_{*i} + Z^4}\right]}{\sqrt{\nu_{*i} + Z^4}}
 \end{align}\normalsize
 
