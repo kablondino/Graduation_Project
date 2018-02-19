@@ -1,10 +1,9 @@
-Fusion plasmas are inherently complicated systems, and thus are complicated to model. This is true, even when taking simplification liberties.
-The model developed by Zohm, and later refined by others, assumes that the transport barrier occurs in a thin layer at the plasma edge \cite{zohm_dynamic_1994}.
+Fusion plasmas are inherently complicated systems, and thus are complicated to model, even when taking simplification liberties.
+The model developed by Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{zohm_dynamic_1994}, and later refined by others, assumes that the transport barrier occurs in a thin layer at the plasma edge.
 The plasma edge is defined to be at the last-closed flux surface (separatrix).
-This allows for slab geometry to be used, in which $\psi$ is the usual radial coordinate.
+This allows for slab geometry to be used, in which $\psi$ is a usual radial coordinate.
 However, $x$ will be used as it is more distinct as a spatial coordinate.
 The slab geometry reduces the model into one (spatial) dimensional differential equations.
-One of the liberties taken to simplify the model is that a single temperature is used, \emph{i.e.} the electron and ion temperatures are assumed identical.\todo{\color{red}{Liberties?}}
 
 \section{Transport Equations}\label{sec:transport_eqs}
 To model the transport of a fully-ionized fusion plasma, conservation of mass and energy are considered.
@@ -36,21 +35,20 @@ In order to simplify the model, substituting the definition of the internal ener
 \begin{align} % U definition
 	U \,\equiv\, \frac{n T}{\gamma - 1} \label{eq:U_definition}
 \end{align}
-Making this substitution, along with the fluxes, and subsequently working out the product rules of the derivatives, much more compact forms of Equations~\ref{eq:n_continuity} and \ref{eq:U_continuity}.
+In addition, one of the liberties taken to simplify the model is that a single temperature is used, \emph{i.e.} the electron and ion temperatures are assumed identical.
+Making this substitution, along with the fluxes, and subsequently working out the product rules of the derivatives, we can arrive at relegated forms of Equations~\ref{eq:n_continuity} and \ref{eq:U_continuity}.
 One convenience is that Equation~\ref{eq:n_continuity} shows up as a collection of terms within Equation \ref{eq:U_continuity}.
-This allows those terms to vanish.
-The simplified forms of these transport equations is as such:
+This allows those terms to vanish, leaving these equations:
 \begin{align} % Compact transport equations
 	\frac{\partial n}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[D \, \frac{\partial n}{\partial x}\right]~,\label{eq:n_compact} \\
-	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(1 + \frac{1}{\zeta}\right) \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x} \label{eq:T_compact}
+	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(1 + \frac{1}{\zeta}\right) \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x}~. \label{eq:T_compact}
 \end{align}
 
 \section{Radial Electric Field Equation}\label{sec:Z_equation}
 A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
-However, experiments and mathematical investigations indicate that flows in the plasma can tear apart turbulent eddies, which reduces the transport radially.\todo{\color{red}{Reword?}}
+%However, experiments and mathematical investigations indicate that flows in the plasma can tear apart turbulent eddies, which reduces the transport radially.\todo{\color{red}{Reword?}}
 To model the dynamics of the transition fully within this scope, the radial electric field must also be evolved explicitly.
-
-As shown previously, the radial electric field $E_r$ is normalized with the ion poloidal gyroradius $\rho_p$ into $Z$ for this investigation, shown in Equation~\ref{eq:Z_and_rho_definitions}.
+As shown previously, the radial electric field $E_r$ is normalized with the ion poloidal gyroradius $\rho_\theta$ into $Z$ for this investigation, shown in Equation~\ref{eq:Z_and_rho_definitions}.
 
 Itoh \emph{et al.}, originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase \cite{itoh_edge_1991}
 \begin{align} % Original Itoh model
@@ -60,7 +58,7 @@ Itoh \emph{et al.}, originally modeled an evolution to the radial electric field
 The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
 Paquay rewrote the equation as
 \begin{align} % Modern model
-	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \, \frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \cdot \frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \cdot \frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
+	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \, \frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \, \frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \, \frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
 	G(Z) \,\equiv\, a + bZ + cZ^3 \label{eq:G_polynomial}
 \end{align}
 
