@@ -176,7 +176,7 @@ The prevailing hypothesis for the overarching mechanism for H--mode that can be 
 
 \subsection{Turbulence and Flow Shear Suppression}\label{ssec:turbulence_sheared}
 Turbulence is primarily driven by the gradients of the temperature and density, which increase under higher heating.
-Drift waves are considered to be the only type of turbulence that pushes radial flux; therefore, it dictates the severity of turbulence and linked transport at the edge of the plasma.
+Drift waves are considered to be the only type of turbulence that pushes radial particle flux; therefore, it dictates the severity of turbulence and linked transport at the edge of the plasma.
 Particular well-known instabilities can be coupled to the drift-wave turbulence, such as the drift resistant ballooning mode, among others \cite{scott_three-dimensional_1997}.
 Therefore, a form for the turbulence level will be restricted to one that adheres to the drift wave.
 
@@ -186,12 +186,13 @@ The turbulence $\mathcal{E}$ evolves as the following, in the absence of shear i
 	\label{eq:turbulence_ode}
 \end{align}
 This is the result from assuming the particle diffusivity increases linearly with the level of turbulence up to some maximum \cite{diamond_dynamics_1995}.
-The first term on the right-hand side is a linear growth term, with $\gamma_L$ as the growth rate, and a nonlinear saturation term, with $\alpha_\text{sat}$ as the saturation rate.
+The first term on the right-hand side is a linear growth term, with $\gamma_L$ as the growth rate.
+The second term is a nonlinear saturation term, with $\alpha_\text{sat}$ as the saturation rate.
 The maximum turbulence is the ratio of the linear growth rate to the saturation rate.
 
 It is now accepted that turbulent transport at the edge is particularly suppressed by shear in the flow of the (radial) $\mathbf{E}\times\mathbf{B}$ drift \cite{terry_suppression_2000}.
 The shear stress dissociates smaller turbulent structures, with their energy and momenta transferred to larger flows.
-This shear can be modeled as a ratio of the electromagnetic fields given by \cite{staps_backstepping_2017}
+This flow shear can be modeled as a ratio of the electromagnetic fields given by \cite{staps_backstepping_2017}
 \begin{align} % Shear velocity
 	\frac{\partial V_{\mathbf{E}\times\mathbf{B}}}{\partial x} \,=\, \frac{\partial}{\partial x} \left(\frac{E_r}{B}\right) \,\approx\, \frac{1}{B_\phi} \frac{\partial E_r}{\partial x}~.
 	\label{eq:velocity_shear}
@@ -202,7 +203,7 @@ However, they disappear in H--mode, leaving only mean flows present.
 
 The flow shear could reduce the growth rate of the turbulence \cite{diamond_self-regulating_1994}, which was coined the linear model.
 The other possibility is that flow shear can increase the saturation mechanism, which is the nonlinear model \cite{hahm_rotation_1994}.
-Each are implemented as some flow shear parameter that multiplies against their respective term in Equation~\ref{eq:turbulence_ode}.
+Each are implemented as some parameter that multiplies against their respective term in Equation~\ref{eq:turbulence_ode}.
 For example, the nonlinear model would adjust it to the following
 \begin{align} % Nonlinear Turbulence ODE
 	\frac{\partial\mathcal{E}}{\partial t} \,=\, \gamma_L\mathcal{E} - \eta_\text{NL}\alpha_\text{sat}\mathcal{E}^2~, ~~~~
