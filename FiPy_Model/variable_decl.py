@@ -10,7 +10,7 @@ from fipy.tools import numerix
 from parameters import *
 
 # ----------------- Mesh Generation -----------------------
-nx = 100
+nx = 1000
 L = 5.0
 mesh = Grid1D(nx=nx, Lx=L)
 
@@ -48,20 +48,4 @@ D_choice = D_Staps
 
 # If Diffusivity is a Cell/Face variable
 Diffusivity.setValue(D_choice)
-
-# Initial conditions for L--mode
-density0L = CellVariable(name=r"$n_{0L}$", mesh=mesh,\
-		value=-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
-
-temp0L = CellVariable(name=r"$T_{0L}", mesh=mesh,\
-		value = q_c*((gamma - 1.0) / Gamma_c) * \
-		(1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
-
-# Initial conditions for H--mode
-density0H = CellVariable(name=r"$n_0$", mesh=mesh,\
-		value=-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
-
-temp0H = CellVariable(name=r"$T_0", mesh=mesh,\
-		value = q_c*((gamma - 1.0) / Gamma_c) *\
-		(1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
 
