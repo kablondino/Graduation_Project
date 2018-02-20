@@ -40,6 +40,7 @@ lambda_Z = 5.0/4.0
 D_max = 2.0
 D_min = 2.0/5.0
 
+epsilon = 1.0 / 25.0
 mu = 1.0/20.0
 
 # Stap's numbers
