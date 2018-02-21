@@ -7,7 +7,8 @@
 
 ## Global parameters and physical constants
 pi = 3.141592653589793
-charge = 1.602e-19	# Elementary charge
+charge = 1.0
+charge_true = 1.602e-19	# Elementary charge
 k_B = 8.617e-5		# Boltzmann in eV
 m_e = 9.109e-31		# Electron mass
 m_i = 1.673e-27		# Ion (H) mass
@@ -59,7 +60,7 @@ c_T = 0.9
 a = -1.5
 b = -1.0
 c = -1.0
-Z_S = -1.4
+Z_S = 1.4
 
 #zeta = 0.9		# To fiddle!
 
