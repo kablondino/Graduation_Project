@@ -66,24 +66,26 @@ x_min, x_max, y_min, y_max = 0.0, L, 0.0, 5.0
 
 #initial_viewer = Viewer((density, temperature, Z, Diffusivity),\
 #		xmin=x_min, xmax=x_max, datamin=y_min, legend='best')
-#raw_input("Pause for Initial")
+#raw_input("Pause for Initial Conditions")
 
 timeStep_denom = 50.0
 timeStep = epsilon / timeStep_denom
 total_time = 300
 
-res_tol = 1.0e-5
+res_tol = 1.0e-10
 
 
 if __name__ == '__main__':
-	viewer = Viewer((density, temperature, -Z, Diffusivity), xmin=x_min, xmax=x_max,\
+	viewer = Viewer((density, temperature, Z, Diffusivity), xmin=x_min, xmax=x_max,\
 			legend='best',\
-			title="GMRES H--Mode Start; $t = $"+str(total_time)+r", $\Delta t = \epsilon / $"+str(timeStep_denom))
+			title="GMRES H--Mode Start; $t = $"+str(total_time)+\
+			r", $\Delta t = \epsilon / $"+str(timeStep_denom))
 	for t in range(total_time):
 		# (Re)set residual value(s)
 		res_D = res_n = res_T = res_Z = res_full = 1.0e10
+
 		# Update values
-		Diffusivity.setValue(D_choice)
+		Diffusivity.setValue(D_choice_local)
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 
 		# Solve the fully coupled equation
