@@ -5,6 +5,11 @@
 	constants, and non-g model numbers.
 """
 
+import sys
+
+# Import variables from job configuration file
+job_config = __import__ (sys.argv[1].replace('.py',''))
+
 ## Global parameters and physical constants
 pi = 3.141592653589793
 charge = 1.0
@@ -45,24 +50,33 @@ epsilon = 1.0 / 25.0
 mu = 1.0/20.0
 
 # Stap's numbers
-#zeta = 0.5
-#c_n = -1.1
-#c_T = -0.9
-#a = 3.0/2.0
-#b = 2.0
-#c = -1.0
-#Z_S = -3.0/2.0
+if job_config.numerical_choice.lower() == "staps":
+	zeta = 0.5
+	c_n = -1.1
+	c_T = -0.9
+	a = 3.0/2.0
+	b = 2.0
+	c = -1.0
+	Z_S = -3.0/2.0
 
 # Paquay's numbers
-zeta = 1.1
-c_n = 1.1
-c_T = 0.9
-a = -1.5
-b = -1.0
-c = -1.0
-Z_S = 1.4
+elif job_config.numerical_choice.lower() == "paquay":
+	zeta = 1.1
+	c_n = 1.1
+	c_T = 0.9
+	a = -1.5
+	b = -1.0
+	c = -1.0
+	Z_S = 1.4
 
-#zeta = 0.9		# To fiddle!
+# Heat diffusivity coefficient choice for Gradient Model
+elif job_config.numerical_choice.lower() == "g_grad"\
+		or job_config.numerical_choice.lower() == "gradient_model":
+	zeta = 0.9
+
+else:
+	sys.exit("Parameters for Z equation not properly selected")
+
 
 ## For use in g version
 alpha_cx = 0.9	# Charge exchange coefficient

@@ -1,18 +1,20 @@
 """
-	This file generates the 1D mesh and the 3 cell
-	variables needed for the model, with optional
-	face variable for particle diffusivity.
+	This file generates the 1D mesh and the 4 cell
+	variables needed for the model (including Diffusivity.
+	It also sets the initial conditions for each variable.
+
+	A job configuration file is REQUIRED in order to
+	properly choose the initial operating mode, number of
+	cells, etc.
 """
 from fipy import Grid1D, CellVariable, FaceVariable
-
 from fipy.tools import numerix
 
 from parameters import *
 
 # ----------------- Mesh Generation -----------------------
-nx = 100
 L = 5.0
-mesh = Grid1D(nx=nx, Lx=L)
+mesh = Grid1D(nx=job_config.nx, Lx=L)
 
 x = mesh.cellCenters[0] # Cell position
 X = mesh.faceCenters[0] # Face position, if needed
@@ -29,9 +31,12 @@ Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True)
 Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True)
 
 # ----------- Initial Conditions of Z ---------------------
-Z0L = 0.0 # L--mode
-Z0H = Z_S*(1.0 - numerix.tanh((L*x - L) / 2.0)) # H--mode
-Z.setValue(Z0L)
+if job_config.Initial_H_mode == True:
+	Z.setValue(Z_S*(1.0 - numerix.tanh((L*x - L) / 2.0))) # H--mode
+elif job_config.Initial_H_mode == False:
+	Z.setValue(0.0) # L--mode
+else:
+	sys.exit("Initial working mode not properly selected")
 
 # ----------------- Diffusivities -------------------------
 # Itohs'/Zohm's model
@@ -43,30 +48,40 @@ D_Staps = D_min + (D_max - D_min) / (1.0 + alpha_sup*numerix.dot(Z.grad, Z.grad)
 a1, a3 = 1.0, 0.5	# ASSUMES a2 = 0
 D_Shear = D_min + (D_max - D_min) / (1.0 + a1*(Z)**2 + a3*numerix.dot(Z.grad, Z.grad))
 
-# CHOOSE DIFFUSIVITY HERE!
-D_choice = D_Staps
+if job_config.D_choice.lower() == "d_zohm":
+	D_choice_local = D_Zohm
+elif job_config.D_choice.lower() == "d_staps":
+	D_choice_local = D_Staps
+elif job_config.D_choice.lower() == "d_shear":
+	D_choice_local = D_Shear
+else:
+	sys.exit("Error in choosing Diffusivity model")
 
-# If Diffusivity is a Cell/Face variable
-Diffusivity.setValue(D_choice)
+Diffusivity.setValue(D_choice_local)
 
 # --------- Set Initial Conditions for n and T ------------
-# Initial conditions for L--mode
-density0L = CellVariable(name=r"$n_{0L}$", mesh=mesh,\
-		value=-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
-
-temp0L = CellVariable(name=r"$T_{0L}", mesh=mesh,\
-		value = q_c*((gamma - 1.0) / Gamma_c) * \
-		(1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
-
 # Initial conditions for H--mode
-density0H = CellVariable(name=r"$n_0$", mesh=mesh,\
-		value=-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
+if job_config.Initial_H_mode == True:
+	density0H = -(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n)
+	density.setValue(density0H)
 
-temp0H = CellVariable(name=r"$T_0", mesh=mesh,\
-		value = q_c*((gamma - 1.0) / Gamma_c) *\
-		(1.0 - lambda_n / (zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
+	temp0H = q_c*((gamma - 1.0) / Gamma_c) *(1.0 - lambda_n /\
+			(zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta))
+	temperature.setValue(temp0H)
 
-density.setValue(density0L)
-temperature.setValue(temp0L)
+# Initial conditions for L--mode
+elif job_config.Initial_H_mode == False:
+	density0L = -(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n)
+	density.setValue(density0L)
+
+	temp0L = q_c*((gamma - 1.0) / Gamma_c) * (1.0 - lambda_n /\
+			(zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta))
+	temperature.setValue(temp0L)
+
+else:
+	sys.exit("Initial working mode not properly selected")
+
 U.setValue(density*temperature / (gamma - 1.0))
+
+print "Success!"
 
