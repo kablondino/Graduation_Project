@@ -1,4 +1,4 @@
-# Full Model Notes: 19 Feb 2018
+# Full Model Notes: 26 Feb 2018
 
 \small\begin{align}
 	\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,&=\, a + bx - x^3 \\
@@ -25,9 +25,9 @@ The following form of the model references particle and heat fluxes, $\Gamma$ an
 
 Reducing it down to equations of only $n$, $T$ (of 2 possible forms), $Z$, and numerical parameters gives
 \small\begin{align}
-	\dfrac{\partial n}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[D \cdot \dfrac{\partial n}{\partial x}\right] \\
-	\dfrac{\partial(n\,T)}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D\,n}{\zeta} \cdot \dfrac{\partial T}{\partial x}\right] \,+\, \dfrac{\partial}{\partial x}\left[D\,T \cdot \dfrac{\partial n}{\partial x}\right]~, ~~~~ \dfrac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}\left[\frac{D}{\zeta} \cdot \frac{\partial T}{\partial x}\right] \,+\, \left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \, \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x} \\
-	\epsilon \, \dfrac{\partial Z}{\partial t} \,&=\, \mu \, \dfrac{\partial^2 Z}{\partial x^2} \,+\, \dfrac{c_n T}{n^2} \cdot \dfrac{\partial n}{\partial x} \,+\, \dfrac{c_T}{n} \cdot \dfrac{\partial T}{\partial x} \,+\, G(Z)
+	\dfrac{\partial n}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[D \, \dfrac{\partial n}{\partial x}\right] \\
+	\dfrac{\partial(n\,T)}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D\,n}{\zeta} \, \dfrac{\partial T}{\partial x}\right] \,+\, \dfrac{\partial}{\partial x}\left[D\,T \, \dfrac{\partial n}{\partial x}\right]~, ~~~~ \dfrac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}\left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \, \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x} \\
+	\epsilon \, \dfrac{\partial Z}{\partial t} \,&=\, \mu \, \dfrac{\partial^2 Z}{\partial x^2} \,+\, \dfrac{c_n T}{n^2} \, \dfrac{\partial n}{\partial x} \,+\, \dfrac{c_T}{n} \, \dfrac{\partial T}{\partial x} \,+\, G(Z)
 \end{align}\normalsize
 
 Staps reduced the model to the following vector form:
@@ -35,29 +35,29 @@ Staps reduced the model to the following vector form:
 	\dfrac{\partial}{\partial t} \mathbf{v}(x,t) \,=\, \dfrac{\partial}{\partial x} F&\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \,+\, S\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \\
 \mathbf{v} \,=\,\begin{bmatrix} n \\[1ex] T \\[1ex] Z \end{bmatrix}~,~~~~
 \mathbf{F} \,=\, &\begin{bmatrix}
-			D\,\cdot n^\prime \\[1ex]
-			\dfrac{D}{\zeta}\,\cdot T^\prime \\[2ex]
-			\dfrac{\mu D}{\epsilon}\,\cdot Z^\prime
+			D\,\, n^\prime \\[1ex]
+			\dfrac{D}{\zeta}\,\, T^\prime \\[2ex]
+			\dfrac{\mu D}{\epsilon}\,\, Z^\prime
 			\end{bmatrix}~,~~~~
 \mathbf{S} \,=\, \begin{bmatrix}
 			0 \\[1ex]
-			\left(\dfrac{\zeta + 1}{\zeta}\right) \dfrac{D}{n} \cdot n^\prime \, T^\prime \\[2ex]
-			\dfrac{c_n T}{\epsilon n^2} \cdot n^\prime \,+\, \dfrac{c_T}{\epsilon n} \cdot T^\prime \,+\, \dfrac{G(Z)}{\epsilon}
+			\left(\dfrac{\zeta + 1}{\zeta}\right) \dfrac{D}{n} \, n^\prime \, T^\prime \\[2ex]
+			\dfrac{c_n T}{\epsilon n^2} \, n^\prime \,+\, \dfrac{c_T}{\epsilon n} \, T^\prime \,+\, \dfrac{G(Z)}{\epsilon}
 			\end{bmatrix}~.
 \end{align}\normalsize
 
 The diffusivity function $D(\mathcal{E})$ is given in a few forms:
 \small\begin{align}
 	D(Z) \,&=\, \dfrac{D_\text{max} + D_\text{min}}{2} + \dfrac{(D_\text{max} - D_\text{min})\tanh(Z)}{2} ~~~~~~ &\text{Zohm} \\
-	D(Z^\prime) \,&=\, D_\text{min} \,+\, \dfrac{D_\text{max} - D_\text{min}}{1 + \alpha_\text{sup}\cdot(Z^\prime)^2} ~~~~~~ &\text{Staps} \\
-	D(Z, Z^\prime) \,&=\, D_\text{min} + \dfrac{D_\text{max} - D_\text{min}}{1 + a_1\,Z^2 + a_2\,Z \cdot Z^\prime + a_3\left(Z^\prime\right)^2} ~~~~~~ &\text{Flow-Shear}
+	D(Z^\prime) \,&=\, D_\text{min} \,+\, \dfrac{D_\text{max} - D_\text{min}}{1 + \alpha_\text{sup}(Z^\prime)^2} ~~~~~~ &\text{Staps} \\
+	D(Z, Z^\prime) \,&=\, D_\text{min} + \dfrac{D_\text{max} - D_\text{min}}{1 + a_1\,Z^2 + a_2\,Z Z^\prime + a_3\left(Z^\prime\right)^2} ~~~~~~ &\text{Flow-Shear}
 \end{align}\normalsize
 
 ### Boundary Conditions, Initial Conditions, and Steady-State Solutions
 
 Generalized versions for boundary conditions at the plasma edge ($x=0$):
 \small\begin{align}
-	\frac{\partial n}{\partial x} \,=\, \frac{n}{\lambda_n}~, ~~~~\frac{\partial T}{\partial x} \,=\, \frac{T}{\lambda_T}~, ~~~~\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}~,~~~~ \frac{\partial^2 Z}{\partial x^2} \,=\, 0
+	\frac{\partial n}{\partial x} \,=\, \frac{n}{\lambda_n}~, ~~~~\frac{\partial T}{\partial x} \,=\, \frac{T}{\lambda_T}~, ~~~~\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}~,
 \end{align}\normalsize
 
 ...towards the core ($x=L$):
@@ -69,9 +69,9 @@ For Matlab, the Neumann and Robin boundary conditions can be expressed in the fo
 \small\begin{align}
 	&p\left(x, t, \mathbf{v}\right) \,+\, F\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \,=\, 0 ~~~ \text{for} ~~~ (x, t) \in \delta\Omega \\
 &p(0, t) \,=\, -\begin{bmatrix}
-				D \cdot \dfrac{n}{\lambda_n}\\[2ex]
-				\dfrac{D}{\zeta} \cdot \dfrac{T}{\lambda_T} \\[2ex]
-				\dfrac{\mu D}{\epsilon} \cdot \dfrac{Z}{\lambda_Z}
+				D \, \dfrac{n}{\lambda_n}\\[2ex]
+				\dfrac{D}{\zeta} \, \dfrac{T}{\lambda_T} \\[2ex]
+				\dfrac{\mu D}{\epsilon} \, \dfrac{Z}{\lambda_Z}
 				\end{bmatrix}_{x = 0}
 ~~ \text{and} ~~
 p(L, t) \,=\, \begin{bmatrix}
@@ -102,7 +102,7 @@ Steady-State Solutions
 
 + Electron Anomalous Diffusion:
 \small\begin{align}
-	D^\text{an} \,&=\, \dfrac{\epsilon^2 \sqrt{\pi}}{2 a_m} \dfrac{\rho_{pe} T}{B}~,~~ g_n^\text{an} \,=\, -e \,n\, D^\text{an}~,~~ g_T^\text{an} \,=\, -e \,n\, \alpha^\text{an}\, D^\text{an}~,~~ g_Z^\text{an} \,=\, \dfrac{-e \,n\, D^\text{an}}{\rho_{\theta i}}
+	D^\text{an} \,&=\, \dfrac{\epsilon^2 \sqrt{\pi}}{2 a_m} \dfrac{\rho_{\theta e} T}{B}~,~~ g_n^\text{an} \,=\, -e \,n\, D^\text{an}~,~~ g_T^\text{an} \,=\, -e \,n\, \alpha^\text{an}\, D^\text{an}~,~~ g_Z^\text{an} \,=\, \dfrac{-e \,n\, D^\text{an}}{\rho_{\theta i}}
 \end{align}\normalsize
 
 + Charge Exchange Friction:
@@ -113,7 +113,7 @@ Steady-State Solutions
 + Ion Bulk Viscosity: $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
 \small\begin{align}
 	\begin{bmatrix}\xi_\theta \\[1ex] \xi_\phi \end{bmatrix} \,&=\, \dfrac{1}{\pi} \int_0^{\sqrt{\nu_{*i}}} \begin{bmatrix} 1 \\[1ex] \frac{5}{2} - x \end{bmatrix} x^2 \exp(-x) \, \tan^{-1}\left(\dfrac{2 N \sqrt{x}}{N^2 + Z^2 - x}\right) \text{d}x \\
-	g_n^{\pi\parallel} \,=\, \eta \, \rho_{\pi}& B_\theta \, \xi_\theta~,~~~~ g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i} \left(B_\theta\,\xi_\theta - B\,\xi_\phi\right)~,~~~~ g_Z^{\pi\parallel} \,=\, 2\eta \, B_\theta \, \xi_\theta
+	g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i}& B_\theta \, \xi_\theta~,~~~~ g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i} \left(B_\theta\,\xi_\theta - B\,\xi_\phi\right)~,~~~~ g_Z^{\pi\parallel} \,=\, 2\eta \, B_\theta \, \xi_\theta
 \end{align}\normalsize
 
 <!--- Original line for Ion Bulk Viscosity integrals
