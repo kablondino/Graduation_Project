@@ -16,33 +16,6 @@ from fipy.tools import numerix
 from parameters import *
 
 
-# -------------- Check Configuration Variables ------------
-# If saving data is enabled, but not a directory, exit the run.
-# It is done early as to not waste time.
-if (getattr(config, 'save_directory', None) == None and\
-		(getattr(config, 'save_plots', False) == True or\
-		getattr(config, 'save_TSVs', False) == True)):
-	sys.exit("No directory specified for saving specified files. Exiting...")
-
-if (type(getattr(config, 'nx', None)) != int or\
-		getattr(config, 'nx', None) <= 0):
-	try:
-		config.nx = int(input("nx (Grid number) not properly defined. Enter a positive integer value: "))
-		raw_input("nx set to "+str(config.nx))
-	except:
-		config.nx = 100
-		raw_input("nx defaulted to 100.")
-
-if (type(getattr(config, 'L', None)) != float or\
-		getattr(config, 'L', None) <= 0.0):
-	try:
-		config.L = float(input("Length of domain not properly defined. Enter floating-point value: "))
-		raw_input("L set to "+str(config.L))
-	except:
-		config.L = 4.0
-		raw_input("L defaulted to 4.0.")
-
-
 # ----------------- Mesh Generation -----------------------
 mesh = Grid1D(nx=config.nx, Lx=config.L)
 
@@ -61,16 +34,13 @@ Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True)
 Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True)
 
 # ----------- Initial Conditions of Z ---------------------
-if getattr(config, 'initial_H_mode', False) == False:
-	config.initial_H_mode = False
+if config.initial_H_mode == False:
 	Z.setValue(0.0) # L--mode
-	if not hasattr(config, 'initial_H_mode'):
-		raw_input("Initial working mode is defaulted to L--mode")
-		config.initial_H_mode = False
-
-elif getattr(config, 'initial_H_mode', False) == True:
+elif config.initial_H_mode == True:
 	Z.setValue(Z_S*(1.0 - numerix.tanh(\
 			(config.L*x - config.L) / 2.0))) # H--mode
+else:
+	print "The check for initial_H_mode is not working.... stop."
 
 # ----------------- Diffusivities -------------------------
 # Itohs'/Zohm's model
@@ -85,25 +55,19 @@ D_Shear = D_min + (D_max - D_min) / (1.0 + a1*(Z)**2 +\
 		a3*numerix.dot(Z.grad, Z.grad))
 
 # Set Diffusivity. It defaults to Stap's version
-if (type(getattr(config, 'D_choice', None)) != str or\
-		getattr(config, 'D_choice', None).lower() not in\	# Not quite working
-		["d_zohm", "d_shear"] or getattr(config, 'D_choice', "").lower()\
-		== "d_staps"):
-	D_choice_local = D_Staps
-	config.D_choice = "D_Staps"
-	raw_input("Diffusivity model defaulted to Stap's.")
-
-if config.D_choice.lower() == "d_staps":
-	D_choice_local = D_Staps
-elif config.D_choice.lower() == "d_zohm":
+if config.D_choice.lower() == "d_zohm":
 	D_choice_local = D_Zohm
-elif config.D_choice.lower() == "d_shear":
+elif config.D_choice.lower() == "d_staps":
+	D_choice_local = D_Staps
+elif config.D_choice.lower() == "d_shear" or\
+		config.D_choice.lower() == "d_flow_shear":
 	D_choice_local = D_Shear
 
 else:
-	raw_input("Something went horribly wrong in choosing the Diffusivity model.")
+	print "Something went horribly wrong in choosing the Diffusivity model."
 
 Diffusivity.setValue(D_choice_local)
+print "The diffusivity model is set to " + str(config.D_choice)
 
 # --------- Set Initial Conditions for n and T ------------
 # Initial conditions for L--mode

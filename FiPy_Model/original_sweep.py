@@ -2,40 +2,11 @@ from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
 
 from fipy.solvers import *
 
-# variable_decl.py, parameters.py, and fipy.tools.numerix are included in the following
+# input_handling, parameters.py, variable_decl.py, (in that order)
+# and fipy.tools.numerix are included in the following import
 from coeffs import *
 
 import os		# For saving files to a specified directory
-
-# ------------- Check time and plot title config ----------
-if (type(getattr(config, 'total_time', None)) != int or\
-		getattr(config, 'total_time', None) <= 0):
-	try:
-		config.total_time = int(input("Total number of time steps not properly defined. Enter integer value: "))
-		raw_input("Total time set to "+str(config.total_time))
-	except:
-		raw_input("Total time steps defaulted to 100.")
-		config.total_time = 100
-
-if (type(getattr(config, 'timeStep_denom', None)) != float or\
-		getattr(config, 'timeStep_denom', None) <= 0.0):
-	try:
-		config.timeStep_denom = float(input("The denomintor of the time step size is not properly defined. Enter floating-point value: "))
-		raw_input("The denominator of the time step size is set to "+str(config.timeStep_denom))
-	except:
-		config.timeStep_denom = 15.0
-		raw_input("The denominator of the time step size is defaulted to 15.0")
-
-if getattr(config, 'total_time', None) == None:
-	config.total_time = input("Total number of time steps not properly defined. Enter integer value: ")
-if getattr(config, 'timeStep_denom', None) == None:
-	config.timeStep_denom = input("The denomintor of the time step size is not properly defined. Enter floating-point value: ")
-
-if getattr(config, 'plot_title', None) == None:
-	try:
-		config.plot_title = str(input("Set the title of the plots: "))
-	except:
-		config.plot_title = ""
 
 
 # ------------- Check file-writing configuration ----------
@@ -125,7 +96,7 @@ res_tol = 1.0e-6
 if __name__ == '__main__':
 
 	# Initialize viewer
-	viewer = Viewer((density, temperature, Z, Diffusivity),\
+	viewer = Viewer((density, temperature, -Z, Diffusivity),\
 			xmin=x_min, xmax=x_max, legend='best',\
 			title = config.plot_title)
 

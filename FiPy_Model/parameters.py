@@ -5,23 +5,8 @@
 	constants, and non-g model numbers.
 
 """
-import sys
+from input_handling import *
 
-# Import variables from job configuration file
-config = __import__ (sys.argv[1].replace('.py',''))
-
-current_parameter_sets = ["staps", "paquay", "g_grad", "gradient_model"]
-
-if (type(getattr(config, 'numerical_choice', None)) != str or\
-		getattr(config, 'numerical_choice', None).lower()\
-		not in current_parameter_sets):
-	try:
-		config.numerical_choice = str(input("The set of parameters not properly chosen. Choose from the following: Staps, Paquay -> "))
-		if config.numerical_choice.lower() not in current_parameter_sets:
-			raise ValueError("FAILED")
-	except:
-		config.numerical_choice = "Paquay"
-		raw_input("Numerical choice defaulted to Paquay's set")
 
 # ----------------- Parameters ----------------------------
 ## Global parameters and physical constants
@@ -66,7 +51,7 @@ mu = 1.0/20.0
 
 ## Choose set of parameters
 # If numerical_choice is not defined, not a string, or set to Paquay:
-if config.numerical_choice.lower() == 'paquay':
+if config.numerical_choice.lower() == "paquay":
 	# Paquay's numbers
 	zeta = 1.1
 	c_n = 1.1
@@ -90,6 +75,8 @@ elif config.numerical_choice.lower() == "staps":
 elif config.numerical_choice.lower() == "g_grad"\
 		or config.numerical_choice.lower() == "gradient_model":
 	zeta = 0.9
+
+print "The numerical parameters are chosen to " + str(config.numerical_choice)
 
 
 ## For use in gradient model
