@@ -6,7 +6,6 @@
 """
 
 from variable_decl import *
-from fipy.tools import numerix
 
 ## Plasma Parameters
 e_p = 1.0 + (m_i*density + m_e*density) / (epsilon_0 * B**2)
