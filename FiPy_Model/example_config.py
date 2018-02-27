@@ -1,21 +1,20 @@
 """
-	This is an example configuration file.
-	Every configuration file MUST include these variables,
-	exactly.
+	This is an example configuration file. Read the other
+	source files to see what values get defaulted.
 """
 
 # Number of cells
-nx = 500
+nx = 200
 
 # Length of domain
-L = 5.0
+L = 4.0
 
 # Total time steps; should be ~ L^2 / D
-total_time = 300
+total_timeSteps = 2000
 
 # Size of time step denominator (delta t)
 # Either mu or epsilon is in the numerator
-timeStep_denom = 40.0
+timeStep_denom = 10.0
 
 # Choose the Diffusivity model, as a string (case does not matter)
 # D_Zohm, D_Staps, and D_Shear are the possibilities
@@ -28,9 +27,15 @@ initial_H_mode = True
 # Currently, choices are Staps, Paquay, and some variant of g_grad
 numerical_choice = "Staps"
 
+# Choose the largest acceptable residual when sweeping
+res_tol = 1.0e-6
+
 # Plot details
-plot_title = "GMRES H--Mode Start; $t = $"+str(total_time)+\
-			r", $\Delta t = \epsilon / $"+str(timeStep_denom)
+plot_title = "GMRES H--Mode Start; Staps' parameters \n $T = $"\
+		+str(total_timeSteps)+ r", $\Delta t = \mu / $"+str(timeStep_denom)
+
+# Maximum x on the plot
+plot_max = L
 
 # Should the results be saved to file?
 save_plots = False

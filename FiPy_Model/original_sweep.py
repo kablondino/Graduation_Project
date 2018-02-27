@@ -82,40 +82,39 @@ full_equation = density.equation & temperature.equation & Z.equation
 # LinearJORSolver	<-- Not working exactly
 GMRES_Solver = LinearGMRESSolver(iterations=1000, tolerance=1.0e-6)
 
-## Options for viewers
-x_min, x_max, y_min, y_max = 0.0, config.L, 0.0, 5.0
-
 #initial_viewer = Viewer((density, temperature, Z, Diffusivity),\
-#		xmin=x_min, xmax=x_max, datamin=y_min, legend='best')
+#		xmin=0.0, xmax=x_max, legend='best')
 #raw_input("Pause for Initial Conditions")
 
-timeStep = epsilon / config.timeStep_denom
+timeStep = mu / config.timeStep_denom
 
-res_tol = 1.0e-6
+config.res_tol = 1.0e-6
 
 if __name__ == '__main__':
 
 	# Initialize viewer
 	viewer = Viewer((density, temperature, -Z, Diffusivity),\
-			xmin=x_min, xmax=x_max, legend='best',\
+			xmin=0.0, xmax=config.plot_max, legend='best',\
 			title = config.plot_title)
 
 	# File writing
-	if hasattr(config, 'save_directory'):
+	if (hasattr(config, 'save_directory') and\
+			(getattr(config, 'save_plots', False) == True or\
+			getattr(config, 'save_TSVs', False) == True)):
 		if not os.path.exists(os.getcwd() +str("/")+ config.save_directory):
 			os.makedirs(os.getcwd() +str("/")+ config.save_directory)
-			raw_input("Directory created: "+str(config.save_directory))
+			raw_input("Directory created: " +str(config.save_directory))
 
-	for t in range(config.total_time):
-		# (Re)set residual value(s)
-		res_D = res_n = res_T = res_Z = res_full = 1.0e10
+	for t in range(config.total_timeSteps):
+		# (Re)set residual value
+		res_full = 1.0e10
 
 		# Update values
 		Diffusivity.setValue(D_choice_local)
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 
 		# Solve the fully coupled equation
-		while res_full > res_tol:
+		while res_full > config.res_tol:
 			print t, res_full
 			res_full = full_equation.sweep(dt=timeStep, solver=GMRES_Solver)
 

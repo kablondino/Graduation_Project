@@ -8,7 +8,6 @@ import sys
 # Import variables from job configuration file
 config = __import__ (sys.argv[1].replace('.py',''))
 
-
 parameter_sets = ["staps", "paquay", "g_grad", "gradient_model"]
 diffusivity_models = ["d_zohm", "d_staps", "d_shear", "d_flow_shear"]
 
@@ -28,9 +27,11 @@ if (getattr(config, 'numerical_choice', "").lower() not in parameter_sets\
 		config.numerical_choice = "Paquay"
 		print "Numerical choice defaulted to Paquay's set."
 
+print config.nx
 
 # Grid points
-if (type(getattr(config, 'nx', None)) != int or\
+if ((type(getattr(config, 'nx', None)) != int and\
+		type(getattr(config, 'nx', None)) != float) or\
 		getattr(config, 'nx', None) <= 0):
 	try:
 		config.nx = int(input("nx (Grid number) not properly defined. Enter a positive integer value: "))
@@ -44,9 +45,12 @@ if (type(getattr(config, 'nx', None)) != int or\
 		config.nx = 100
 		print "nx defaulted to 100."
 
+if type(config.nx) == float:
+	config.nx = int(config.nx)
 
 # Domain size
-if (type(getattr(config, 'L', None)) != float or\
+if ((type(getattr(config, 'L', None)) != float and\
+		type(getattr(config, 'L', None)) != int) or\
 		getattr(config, 'L', None) <= 0.0):
 	try:
 		config.L = float(input("Length of domain not properly defined. Enter floating-point value: "))
@@ -60,6 +64,8 @@ if (type(getattr(config, 'L', None)) != float or\
 		config.L = 4.0
 		print "L defaulted to 4.0"
 
+if type(config.L) == int:
+	config.L = float(config.L)
 
 # Choice of the diffusivity model
 if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
@@ -82,23 +88,28 @@ if type(getattr(config, 'initial_H_mode', None) != bool):
 
 
 # Total number of time steps
-if (type(getattr(config, 'total_time', None)) != int or\
-		getattr(config, 'total_time', None) <= 0):
+if ((type(getattr(config, 'total_timeSteps', None)) != int and\
+		type(getattr(config, 'total_timeSteps', None)) != float) or\
+		getattr(config, 'total_timeSteps', None) <= 0):
 	try:
-		config.total_time = int(input("Total number of time steps not properly defined. Enter integer value: "))
+		config.total_timeSteps = int(input("Total number of time steps not properly defined. Enter integer value: "))
 
-		if config.total_time <= 0:
+		if config.total_timeSteps <= 0:
 			raise ValueError
 
-		print "Total # of time steps set to " + str(config.total_time)
+		print "Total # of time steps set to " + str(config.total_timeSteps)
 
 	except (NameError, SyntaxError, EOFError, ValueError):
-		config.total_time = 100
+		config.total_timeSteps = 100
 		print "Total time steps defaulted to 100."
+
+if type(config.total_timeSteps) == float:
+	config.total_timeSteps = int(config.total_timeSteps)
 
 
 # Denominator of the delta t
-if (type(getattr(config, 'timeStep_denom', None)) != float or\
+if ((type(getattr(config, 'timeStep_denom', None)) != float and\
+		type(getattr(config, 'timeStep_denom', None)) != int) or\
 		getattr(config, 'timeStep_denom', None) <= 0.0):
 	try:
 		config.timeStep_denom = float(input("The denomintor of the time step size is not properly defined. Enter floating-point value: "))
@@ -113,13 +124,41 @@ if (type(getattr(config, 'timeStep_denom', None)) != float or\
 		config.timeStep_denom = 15.0
 		print "The denominator of the time step size is defaulted to 15.0"
 
+if type(config.timeStep_denom) == int:
+	config.timeStep_denom = float(config.timeStep_denom)
+
+
+# Maximum allowable residual when sweeping
+if ((type(getattr(config, 'res_tol', None)) != float and\
+		type(getattr(config, 'res_tol', None)) != int) or\
+		getattr(config, 'res_tol', None) <= 0):
+	try:
+		config.res_tol = float(input("The maximum allowable tolerance for the sweep residual is improperly set. Enter a floating-point value: "))
+
+		if config.res_tol <= 0:
+			raise ValueError
+
+		print "The maximum residual tolerance is set to " +str(config.res_tol)
+
+	except (NameError, SyntaxError, EOFError, ValueError):
+		config.res_tol = 1.0e-6
+		print "The maximum residual tolerance is defaulted to 1.0e-6."
+
 
 # Plot title
-if getattr(config, 'plot_title', None) != str:
-	try:
-		config.plot_title = raw_input("Set the title of the plots: ")
-	except:
-		config.plot_title = ""
+if not hasattr(config, 'plot_title'):
+	config.plot_title = ""
+
+# Maximum x on the plot
+if (type(getattr(config, 'plot_max', None)) != int and\
+		type(getattr(config, 'plot_max', None)) != float):
+	config.plot_max = config.L
+
+
+# Makes sure that the saved directory is a string
+if hasattr(config, 'save_directory'):
+	if config.save_directory != str:
+		config.save_directory = str(config.save_directory)
 
 
 # If saving data is enabled, but not a directory, exit the run.
