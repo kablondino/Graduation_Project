@@ -1,5 +1,21 @@
 """
-	This file deals with all of the inputs for the system.
+	This file deals with all of the inputs for the system. The current set
+	of inputs are the following:
+	nx:				int		The number of grid points
+	L:				float	The length of the domain
+	total_timeSteps:int		The total number of time steps
+	timeStep_denom:	float	The denominator of the time step
+	numerical_parameter:	string		The set of parameters
+	D_choice:		string	The model of the diffusivity
+	initial_H_mode:	bool	Start in L-- or H--mode?
+	res_tol:		float	The residual tolerance while solving
+	plot_title:		string	The title of the plot; can be formatted
+	plot_max:		float	The maximum x-value on the plot
+
+	save_directory: string	The name of the saving directory, from current\
+							directory being run.
+	save_plots:		bool	Should the plots be saved?
+	save_TSVs:		bool	Should TSV files be generated and saves?
 
 	Each possible input also has a default value, if nothing is set.
 """
@@ -166,4 +182,18 @@ if (getattr(config, 'save_directory', None) == None and\
 		(getattr(config, 'save_plots', False) == True or\
 		getattr(config, 'save_TSVs', False) == True)):
 	sys.exit("No directory specified for saving specified files. Exiting...")
+
+
+# Assumes save_directory exists, but not written correctly as a string
+if hasattr(config, 'save_directory'):
+	if type(config.save_directory) != str:
+		config.save_directory = str(config.save_directory)
+
+# If save_plots and/or TSVs does not exist or not booleans, set to False
+if (not hasattr(config, 'save_plots') or\
+		type(getattr(config, 'save_plots', None)) != bool) :
+	config.save_plots = False
+if (not hasattr(config, 'save_TSVs') or\
+		type(getattr(config, 'save_TSVs', None)) != bool) :
+	config.save_TSVs = False
 
