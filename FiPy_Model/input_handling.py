@@ -10,7 +10,8 @@
 	initial_H_mode:	bool	Start in L-- or H--mode?
 	res_tol:		float	The residual tolerance while solving
 	plot_title:		string	The title of the plot; can be formatted
-	plot_max:		float	The maximum x-value on the plot
+	plotx_max:		float	The maximum x-value on the plot
+	ploty_max:		float	The maximum y-value on the plot
 
 	save_directory: string	The name of the saving directory, from current\
 							directory being run.
@@ -43,7 +44,6 @@ if (getattr(config, 'numerical_choice', "").lower() not in parameter_sets\
 		config.numerical_choice = "Paquay"
 		print "Numerical choice defaulted to Paquay's set."
 
-print config.nx
 
 # Grid points
 if ((type(getattr(config, 'nx', None)) != int and\
@@ -147,7 +147,7 @@ if type(config.timeStep_denom) == int:
 # Maximum allowable residual when sweeping
 if ((type(getattr(config, 'res_tol', None)) != float and\
 		type(getattr(config, 'res_tol', None)) != int) or\
-		getattr(config, 'res_tol', None) <= 0):
+		getattr(config, 'res_tol', -1) <= 0):
 	try:
 		config.res_tol = float(input("The maximum allowable tolerance for the sweep residual is improperly set. Enter a floating-point value: "))
 
@@ -166,9 +166,12 @@ if not hasattr(config, 'plot_title'):
 	config.plot_title = ""
 
 # Maximum x on the plot
-if (type(getattr(config, 'plot_max', None)) != int and\
-		type(getattr(config, 'plot_max', None)) != float):
-	config.plot_max = config.L
+if (type(getattr(config, 'plotx_max', None)) != int and\
+		type(getattr(config, 'plotx_max', None)) != float):
+	config.plotx_max = config.L
+if (type(getattr(config, 'ploty_max', None)) != int and\
+		type(getattr(config, 'ploty_max', None)) != float):
+	config.ploty_max = None
 
 
 # Makes sure that the saved directory is a string

@@ -88,13 +88,12 @@ GMRES_Solver = LinearGMRESSolver(iterations=1000, tolerance=1.0e-6)
 
 timeStep = mu / config.timeStep_denom
 
-config.res_tol = 1.0e-6
-
 if __name__ == '__main__':
 
 	# Initialize viewer
 	viewer = Viewer((density, temperature, -Z, Diffusivity),\
-			xmin=0.0, xmax=config.plot_max, legend='best',\
+			xmin=0.0, xmax=config.plotx_max,\
+			datamax=config.ploty_max, legend='best',\
 			title = config.plot_title)
 
 	# File writing
