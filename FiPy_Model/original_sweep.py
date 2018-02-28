@@ -119,17 +119,17 @@ if __name__ == '__main__':
 			res_full = full_equation.sweep(dt=timeStep, solver=GMRES_Solver)
 
 		# Plot solution and save, if option is True
-		if getattr(config, 'save_plots', False) == True:
+		if config.save_plots == True:
 			viewer.plot(filename =\
 					config.save_directory+"/"+str(t).zfill(4)+".png")
 		else:
 			viewer.plot()
 
 		# Save TSV's
-		if getattr(config, 'save_TSVs', False) == True:
+		if config.save_TSVs == True:
 			TSVViewer(vars=(density, temperature, Z, Diffusivity)).plot(\
 					filename=config.save_directory+"/"+str(t).zfill(4)+".tsv")
 
 
-	raw_input(" =================================== End of Program. Press any key to continue. ==================================== ")
+	raw_input(" <================================== End of Program. Press any key to continue. ===================================> ")
 
