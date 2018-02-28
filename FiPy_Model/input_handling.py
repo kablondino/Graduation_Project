@@ -98,7 +98,7 @@ if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
 
 
 # Initial starting mode
-if type(getattr(config, 'initial_H_mode', None) != bool):
+if type(getattr(config, 'initial_H_mode', None)) != bool:
 	config.initial_H_mode = False
 	print "Defaulted to starting in L--mode."
 
