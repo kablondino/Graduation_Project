@@ -6,25 +6,10 @@ from fipy.solvers import *
 # and fipy.tools.numerix are included in the following import
 from coeffs import *
 
-import os		# For saving files to a specified directory
+import os # For saving files to a specified directory
 
 
-# ------------- Check file-writing configuration ----------
-# Assumes save_directory exists, but not written correctly as a string
-if hasattr(config, 'save_directory'):
-	if type(config.save_directory) != str:
-		config.save_directory = input("Directory for saving data is incorrectly written. Enter string wrapped in quotes: ")
-
-# Assumes save_plots/TSV exist, but incorrectly input-ed
-if hasattr(config, 'save_plots'):
-	if type(config.save_plots) != bool:
-		config.save_plots = input("Save plot images? Enter boolean: ")
-if hasattr(config, 'save_TSVs'):
-	if type(config.save_TSVs) != bool:
-		config.save_TSVs = input("Save numerical data? Enter boolean: ")
-
-
-# ------------------------- Boundary Conditions ----------------------------- #
+# ----------------- Boundary Conditions ------------------- #
 def set_boundary_values(AGamma_c, Aq_c):
 	"""
 		Density Boundary Conditions:
@@ -78,13 +63,15 @@ Z.equation = TransientTerm(coeff=epsilon, var=Z)\
 full_equation = density.equation & temperature.equation & Z.equation
 
 # ----------------- Choose Solver -------------------------
-# Available: LinearPCGSolver (Default), LinearGMRESSOlver, LinearLUSolver,
+# Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,
 # LinearJORSolver	<-- Not working exactly
-GMRES_Solver = LinearGMRESSolver(iterations=1000, tolerance=1.0e-6)
+PCG_Solver = LinearPCGSolver(iterations=100, tolerance=1.0e-6)
+GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
+LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
-#initial_viewer = Viewer((density, temperature, Z, Diffusivity),\
-#		xmin=0.0, xmax=x_max, legend='best')
-#raw_input("Pause for Initial Conditions")
+initial_viewer = Viewer((density, temperature, Z, Diffusivity),\
+		xmin=0.0, xmax=config.plotx_max, legend='best')
+raw_input("Pause for Initial Conditions")
 
 timeStep = mu / config.timeStep_denom
 
