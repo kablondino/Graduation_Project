@@ -5,12 +5,12 @@
 	L:				float	The length of the domain
 	total_timeSteps:int		The total number of time steps
 	timeStep_denom:	float	The denominator of the time step
-	numerical_parameter:	string		The set of parameters
+	numerical_parameter:	string		The set of predetermined parameters
 	D_choice:		string	The model of the diffusivity
 	initial_H_mode:	bool	Start in L-- or H--mode?
 	res_tol:		float	The residual tolerance while solving
 	plot_title:		string	The title of the plot; can be formatted
-	plotx_max:		float	The maximum x-value on the plot
+	plotx_max:		float	The maximum x-value on the plot (min is always 0)
 	ploty_max:		float	The maximum y-value on the plot
 
 	save_directory: string	The name of the saving directory, from current\
