@@ -70,19 +70,32 @@ Diffusivity.setValue(D_choice_local)
 print "The diffusivity model is set to " + str(config.D_choice)
 
 # --------- Set Initial Conditions for n and T ------------
+if config.SI_units == True:					# NEEDS TO BE FIXED!
+	density_si_coeff = 0.05		# x 10^20 m^-3
+	temp_si_coeff = 0.5			# eV
+elif config.SI_units == False:
+	density_si_coeff = 1.0		# m^-3
+	temp_si_coeff = 1.0			# eV
+else:
+	print "Something went horribly wrong when choosing the units."
+
 # Initial conditions for L--mode
 if config.initial_H_mode == False:
-	density.setValue(-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
+	density.setValue(-(density_si_coeff*Gamma_c*lambda_n / Diffusivity)\
+			* (1.0 + x/lambda_n))
 
-	temperature.setValue(q_c*((gamma - 1.0) / Gamma_c) *(1.0 - lambda_n /\
-			(zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
+	temperature.setValue(temp_si_coeff*q_c*((gamma - 1.0) / Gamma_c)\
+			*(1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
+			*(1.0 + x/lambda_n)**(-zeta)))
 
 # Initial conditions for H--mode
 elif config.initial_H_mode == True:
-	density.setValue(-(Gamma_c*lambda_n / Diffusivity) * (1.0 + x/lambda_n))
+	density.setValue(-(density_si_coeff*Gamma_c*lambda_n / Diffusivity)\
+			* (1.0 + x/lambda_n))
 
-	temperature.setValue(q_c*((gamma - 1.0) / Gamma_c) *(1.0 - lambda_n /\
-			(zeta*lambda_T + lambda_n)*(1.0 + x/lambda_n)**(-zeta)))
+	temperature.setValue(temp_si_coeff*q_c*((gamma - 1.0) / Gamma_c)\
+			*(1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
+			*(1.0 + x/lambda_n)**(-zeta)))
 
 else:
 	print "Something went horribly wrong in choosing initial conditions."

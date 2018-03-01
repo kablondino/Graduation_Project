@@ -10,7 +10,7 @@ nx = 200
 L = 4.0
 
 # Total time steps; should be ~ L^2 / D
-total_timeSteps = 2000
+total_timeSteps = 200
 
 # Size of time step denominator (delta t)
 # Either mu or epsilon is in the numerator
@@ -21,7 +21,10 @@ timeStep_denom = 10.0
 D_choice = "D_Staps"
 
 # Boolean, to choose what mode to have as initial conditions
-initial_H_mode = True
+initial_H_mode = False
+
+# Boolean, to choose what units are used
+SI_units = False
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
@@ -31,15 +34,16 @@ numerical_choice = "Staps"
 res_tol = 1.0e-6
 
 # Plot details
-plot_title = "GMRES H--Mode Start; Staps' parameters \n $T = $"\
-		+str(total_timeSteps)+ r", $\Delta t = \mu / $"+str(timeStep_denom)
+plot_title = "L--Mode Start; Staps' parameters; \n $T = $"\
+		+str(total_timeSteps)+ r", $\Delta t = \mu / $" +str(timeStep_denom)
 
 # Maximum x on the plot
-plot_max = L
+plotx_max = L
+ploty_max = None
 
 # Should the results be saved to file?
 save_plots = False
 save_TSVs = False
 
-save_directory = "Test"
+save_directory = ""
 

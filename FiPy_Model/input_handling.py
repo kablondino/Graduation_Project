@@ -8,6 +8,7 @@
 	numerical_parameter:	string		The set of predetermined parameters
 	D_choice:		string	The model of the diffusivity
 	initial_H_mode:	bool	Start in L-- or H--mode?
+	SI_units		bool	Determines the units of the profiles
 	res_tol:		float	The residual tolerance while solving
 	plot_title:		string	The title of the plot; can be formatted
 	plotx_max:		float	The maximum x-value on the plot (min is always 0)
@@ -101,6 +102,12 @@ if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
 if type(getattr(config, 'initial_H_mode', None)) != bool:
 	config.initial_H_mode = False
 	print "Defaulted to starting in L--mode."
+
+
+# Use SI units, or arbitrary?
+if type(getattr(config, 'SI_units', False)) != bool:
+	config.SI_units = False
+	print "The units of the profiles are arbitrary."
 
 
 # Total number of time steps
