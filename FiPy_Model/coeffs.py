@@ -38,11 +38,13 @@ D_an = CellVariable(name=r"$D_{an}$", mesh=mesh)
 g_n_an = CellVariable(name=r"$g_n^{an}$", mesh=mesh)
 g_T_an = CellVariable(name=r"$g_T^{an}$", mesh=mesh)
 g_Z_an = CellVariable(name=r"$g_Z^{an}$", mesh=mesh)
+Gamma_an = CellVariable(name=r"$e \Gamma^{an}$", mesh=mesh)
 
 ## Charge Exchange Friction
 g_n_cx = CellVariable(name=r"$g_n^{cx}$", mesh=mesh)
 g_T_cx = CellVariable(name=r"$g_T^{cx}$", mesh=mesh)
 g_Z_cx = CellVariable(name=r"$g_Z^{cx}$", mesh=mesh)
+Gamma_cx = CellVariable(name=r"$e \Gamma^{cx}$", mesh=mesh)
 
 ## Ion Bulk (Parallel) Viscosity
 # Consolidated constant to reduce clutter, listed as N on reference
@@ -55,6 +57,7 @@ xi_t = CellVariable(name=r"$\xi_\phi$", mesh=mesh)
 g_n_bulk = CellVariable(name=r"$g_n^{\pi\parallel}$", mesh=mesh)
 g_T_bulk = CellVariable(name=r"$g_T^{\pi\parallel}$", mesh=mesh)
 g_Z_bulk = CellVariable(name=r"$g_Z^{\pi\parallel}$", mesh=mesh)
+Gamma_bulk = CellVariable(name=r"$e \Gamma^{\pi\parallel}$", mesh=mesh)
 
 ## Ion Orbit Loss
 g_OL = CellVariable(name=r"$g^{OL}$", mesh=mesh)
@@ -96,15 +99,22 @@ def update_g_coeffs():
 	N.setValue(value = (nu_ai * aspect**(3.0/2.0) * nu_ei / nu_ii))
 
 	## Electron Anomalous Diffusion
-	D_an.setValue(((aspect)**2*(pi)**(1.0/2.0) / (2*a_m) * (rho_pe * temperature)/B))
-	g_n_an.setValue(-charge*density*D_an)
+	D_an.setValue((aspect)**2*(pi)**(1.0/2.0) / (2*a_m) *\
+			(rho_pe * temperature)/B)
+	g_n_an.setValue(-charge_true*density*D_an)
 	g_T_an.setValue(g_n_an * alpha_an)
 	g_Z_an.setValue(g_n_an / rho_pi)
+	Gamma_an.setValue((g_n_an*density.grad[0]/density\
+			+ g_T_an*temperature.grad[0]/temperature + g_Z_an*Z))
 
 	## Charge Exchange Friction
-	g_n_cx.setValue((-(m_i*n_0*neu_react_rate) / (B_theta**2)))
+	g_n_cx.setValue((-(m_i*n_0*neu_react_rate * density * temperature)\
+			/ (charge_true*B_theta**2))\
+			* ((B_theta**2 / (aspect*B_phi)**2) + 2.0))
 	g_T_cx.setValue(alpha_cx * g_n_cx)
 	g_Z_cx.setValue(-g_n_cx / rho_pi)
+	Gamma_cx.setValue((g_n_cx*density.grad[0]/density\
+			+ g_T_cx*temperature.grad[0]/temperature + g_Z_cx*Z))
 
 	## Ion Bulk (Parallel) Viscosity
 	# xi_p integral
@@ -115,6 +125,8 @@ def update_g_coeffs():
 	g_n_bulk.setValue(aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi * (v_Ti)**2 * B_theta * xi_p)
 	g_T_bulk.setValue(aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi * (v_Ti)**2 * (B_theta*xi_p - B*xi_t))
 	g_Z_bulk.setValue(aspect**2*(pi)**(1.0/2) / (4*a_m) * density * m_i * (v_Ti)**2 * B_theta*xi_p)
+	Gamma_bulk.setValue((1.0/charge_true) * (g_n_bulk*density.grad[0]/density\
+			+ g_T_bulk*temperature.grad[0]/temperature + g_Z_bulk*Z))
 
 	## Ion Orbit Loss
 	g_OL.setValue((charge * density * nu_eff * (aspect)**(1.0/2.0) * rho_pi))
