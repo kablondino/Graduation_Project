@@ -34,12 +34,16 @@ numerical_choice = "Staps"
 res_tol = 1.0e-6
 
 # Plot details
-plot_title = "L--Mode Start; Staps' parameters; \n $T = $"\
+plot_title1 = "L--Mode Start; Staps' parameters; \n $T = $"\
 		+str(total_timeSteps)+ r", $\Delta t = \mu / $" +str(timeStep_denom)
 
-# Maximum x on the plot
+# Maximum x on the plots
 plotx_max = L
-ploty_max = None
+# Maximum and minimum y values on the plots
+plot1y_min = None
+plot1y_max = None
+plot2y_min = None
+plot2y_max = None
 
 # Should the results be saved to file?
 save_plots = False

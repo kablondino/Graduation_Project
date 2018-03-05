@@ -168,17 +168,39 @@ if ((type(getattr(config, 'res_tol', None)) != float and\
 		print "The maximum residual tolerance is defaulted to 1.0e-6."
 
 
-# Plot title
+# Plot titles
 if not hasattr(config, 'plot_title'):
 	config.plot_title = ""
+if not hasattr(config, 'plot_title1'):
+	config.plot_title1 = ""
+if not hasattr(config, 'plot_title2'):
+	config.plot_title2 = ""
 
-# Maximum x on the plot
+# Maximum x on the plots
 if (type(getattr(config, 'plotx_max', None)) != int and\
 		type(getattr(config, 'plotx_max', None)) != float):
 	config.plotx_max = config.L
+
+# MINIMUM y values on the plots
+if (type(getattr(config, 'ploty_min', None)) != int and\
+		type(getattr(config, 'ploty_min', None)) != float):
+	config.ploty_min = None
+if (type(getattr(config, 'plot1y_min', None)) != int and\
+		type(getattr(config, 'plot1y_min', None)) != float):
+	config.plot1y_min = None
+if (type(getattr(config, 'plot2y_min', None)) != int and\
+		type(getattr(config, 'plot2y_min', None)) != float):
+	config.plot2y_min = None
+# MAXIMUM y values on the plots
 if (type(getattr(config, 'ploty_max', None)) != int and\
 		type(getattr(config, 'ploty_max', None)) != float):
 	config.ploty_max = None
+if (type(getattr(config, 'plot1y_max', None)) != int and\
+		type(getattr(config, 'plot1y_max', None)) != float):
+	config.plot1y_max = None
+if (type(getattr(config, 'plot2y_max', None)) != int and\
+		type(getattr(config, 'plot2y_max', None)) != float):
+	config.plot2y_max = None
 
 
 # Makes sure that the saved directory is a string
