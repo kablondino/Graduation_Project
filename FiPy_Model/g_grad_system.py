@@ -58,23 +58,31 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 #
 #Z.equation = TransientTerm(coeff=epsilon, var=Z) == DiffusionTerm(coeff=mu*Diffusivity, var=Z)
 
+# ORIGINAL Z Equation!
+G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
+S_Z = ((c_n*temperature) / density**2) * density.grad[0]\
+		+ (c_T / density) * temperature.grad[0] + G
+Z.equation = TransientTerm(coeff=epsilon, var=Z)\
+		== DiffusionTerm(coeff=mu, var=Z) + S_Z
 
-the_geez = (1.0) * (1.0/density) * density.grad[0]\
-		+ (1.0) * (1.0/temperature) * temperature.grad[0]\
-		+ 1.0
-transient_coeff = (m_i * density * temperature) / (charge * rho_pi * B**2)
-diffusion_coeff = (m_i * mu) / (charge * rho_pi * B_theta**2)
-
-Z.equation = TransientTerm(coeff = transient_coeff, var=Z)\
-		== DiffusionTerm(coeff = diffusion_coeff, var=Z)# + the_geez
+#the_geez = (1.0) * (1.0/density) * density.grad[0]\
+#		+ (1.0) * (1.0/temperature) * temperature.grad[0]\
+#		+ 1.0
+#transient_coeff = (m_i * density * temperature) / (charge * rho_pi * B**2)
+#diffusion_coeff = (m_i * mu) / (charge * rho_pi * B_theta**2)
+#
+#Z.equation = TransientTerm(coeff = transient_coeff, var=Z)\
+#		== DiffusionTerm(coeff = diffusion_coeff, var=Z)# + the_geez
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
 
 # ----------------- Choose Solver -------------------------
-# Available: LinearPCGSolver (Default), LinearGMRESSOlver, LinearLUSolver,
+# Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,
 # LinearJORSolver	<-- Not working exactly
-GMRES_Solver = LinearGMRESSolver(iterations=1000, tolerance=1.0e-6)
+PCG_Solver = LinearPCGSolver(iterations=100, tolerance=1.0e-6)
+GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
+LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 initial_viewer = Viewer((density, temperature, Z, Diffusivity),\
 		xmin=0.0, xmax=config.plotx_max, legend='best')
@@ -90,6 +98,14 @@ if __name__ == '__main__':
 			datamax=config.ploty_max, legend='best',\
 			title = config.plot_title)
 
+	auxiliary_viewer = Viewer((Gamma_an), xmin=0.0, xmax=config.plotx_max,\
+			datamin=config.plot1y_min, datamax=config.plot1y_max,\
+			legend='best', title = config.plot_title1)
+	auxiliary2_viewer = Viewer((Gamma_cx), xmin=0.0, xmax=config.plotx_max,\
+			datamin=config.plot2y_min, datamax=config.plot2y_max,\
+			legend='best', title = config.plot_title2)
+
+
 	# File writing
 	if (hasattr(config, 'save_directory') and\
 			(getattr(config, 'save_plots', False) == True or\
@@ -97,6 +113,7 @@ if __name__ == '__main__':
 		if not os.path.exists(os.getcwd() +str("/")+ config.save_directory):
 			os.makedirs(os.getcwd() +str("/")+ config.save_directory)
 			raw_input("Directory created: " +str(config.save_directory))
+		raw_input("Pause set for writing to file...")
 
 	for t in range(config.total_timeSteps):
 		# (Re)set residual value
@@ -105,6 +122,7 @@ if __name__ == '__main__':
 		# Update values
 		Diffusivity.setValue(D_choice_local)
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
+		update_g_coeffs()
 
 		# Solve the fully coupled equation
 		while res_full > config.res_tol:
@@ -115,13 +133,19 @@ if __name__ == '__main__':
 		if config.save_plots == True:
 			viewer.plot(filename =\
 					config.save_directory+"/"+str(t).zfill(4)+".png")
+			auxiliary_viewer.plot(filename =\
+					config.save_directory+"/an"+str(t).zfill(4)+".png")
+			auxiliary2_viewer.plot(filename =\
+					config.save_directory+"/cx"+str(t).zfill(4)+".png")
 		else:
 			viewer.plot()
+			auxiliary_viewer.plot(); auxiliary2_viewer.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:
-			TSVViewer(vars=(density, temperature, Z, Diffusivity)).plot(\
-					filename=config.save_directory+"/"+str(t).zfill(4)+".tsv")
+			TSVViewer(vars=(density, temperature, Z, Diffusivity, Gamma_an,\
+					Gamma_cx)).plot(filename=\
+					config.save_directory+"/"+str(t).zfill(4)+".tsv")
 
 
 	raw_input(" <================================== End of Program. Press any key to continue. ===================================> ")
