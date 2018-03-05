@@ -96,8 +96,9 @@ Steady-State Solutions
 
 ### Gradient Model, from Staps
 \small\begin{align}
-	&\dfrac{m_i}{e \rho_{\theta i}} \,n T\, \left(\dfrac{B_\theta}{B}\right)^2 \dfrac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu_i}{e \rho_{\theta i}} \,n T\, \dfrac{\partial^2 Z}{\partial x^2} \\
-	&+\, B_\theta^2 \left[\left(g_n^\text{an} - g_n^\text{cx} - g_n^{\pi\parallel}\right) \dfrac{n^\prime}{n} + \left(g_T^\text{an} - g_T^\text{cx} - g_T^{\pi\parallel}\right) \dfrac{T^\prime}{T} + \left(g_Z^\text{an} - g_Z^\text{cx} - g_Z^{\pi\parallel}\right) Z - f^\text{OL}\right]
+	\nonumber&\dfrac{m_i}{e \rho_{\theta i}} \,n T\, \left(\dfrac{B_\theta}{B}\right)^2 \dfrac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu_i}{e \rho_{\theta i}} \,n T\, \dfrac{\partial^2 Z}{\partial x^2} \\
+	&+\, B_\theta^2 \left[\left(g_n^\text{an} - g_n^\text{cx} - g_n^{\pi\parallel}\right) \dfrac{n^\prime}{n} + \left(g_T^\text{an} - g_T^\text{cx} - g_T^{\pi\parallel}\right) \dfrac{T^\prime}{T} + \left(g_Z^\text{an} - g_Z^\text{cx} - g_Z^{\pi\parallel}\right) Z - f^\text{OL}\right] \\
+	&\dfrac{m_i n T}{e^2 \rho_{\theta i} B^2} \frac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu}{e^2 \rho_{\theta i} B_\theta^2} \frac{\partial^2 Z}{\partial x^2} + \Gamma_e^\text{an} - \Gamma_i^{\pi\parallel} - \Gamma_i^\text{cx} - \Gamma_i^\text{OL}
 \end{align}\normalsize
 
 + Electron Anomalous Diffusion:
@@ -107,7 +108,7 @@ Steady-State Solutions
 
 + Charge Exchange Friction:
 \small\begin{align}
-	g_n^\text{cx} \,=\, -\dfrac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \,n T}{B_\theta^2}~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~ g_Z^\text{cx} \,=\, -\dfrac{g_n^\text{cx}}{\rho_{\theta i}}
+	g_n^\text{cx} \,=\, -\dfrac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \,n T}{B_\theta^2} \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~ g_Z^\text{cx} \,=\, -\dfrac{g_n^\text{cx}}{\rho_{\theta i}}
 \end{align}\normalsize
 
 + Ion Bulk Viscosity: $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
