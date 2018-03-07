@@ -22,17 +22,22 @@
 \author{\me}
 
 \usepackage{fullpage, indentfirst, graphicx, amsmath, float}
+\usepackage[dvipsnames]{xcolor}
 \usepackage[labelfont=bf]{caption}
+\usepackage[toc]{appendix}
 \usepackage[UKenglish]{isodate}
 \cleanlookdateon
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{cleveref}
 
-%{{{ Setup References
+% Minted package for printing code
+% MUST BE COMPILED with -shell-escape flag!
+\usepackage{minted}
+
+%{{{ Setup References and hyperref
 \usepackage[backend=bibtex, url=false, backref=true]{biblatex}
 \addbibresource{../References/References.bib}
-%}}}
 
 \usepackage{hyperref}
 \hypersetup
@@ -47,6 +52,7 @@
 	pdfsubject={\doctitle},%
 	pdfkeywords={\keywords}
 }
+%}}}
 
 %{{{ Two Figures Side-by-Side, separate captions
 \newsavebox\IBoxA \newsavebox\IBoxB \newlength\IHeight
@@ -90,7 +96,7 @@
 
 
 % Temporary Packages
-\usepackage{lipsum, xcolor}
+\usepackage{lipsum}
 
 % ---------------------------------------------------------
 
@@ -110,7 +116,6 @@
 
 % ---------------------------------------------------------
 
-\chapter{Introduction}\label{chapter:introduction}
 \setcounter{page}{0}
 \pagenumbering{arabic}
 \input{Introduction/Introduction.tex}
@@ -118,7 +123,7 @@
 
 \clearemptydoublepage
 
-\chapter{Model}\label{chapter:model}
+
 \input{Model/Model.tex}
 
 
@@ -131,9 +136,10 @@
 
 % ---------------------------------------------------------
 
-\appendix
-\addcontentsline{toc}{chapter}{Appendix}
-\input{Appendices/Appendix.tex}
+\begin{appendices}
+\chapter{Code}
+\input{Appendices/AppendixB.tex}
+\end{appendices}
 
 \printbibliography
 
