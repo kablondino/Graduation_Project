@@ -94,10 +94,10 @@ Accordingly, there is a steep gradient in the pressure at the edge of the plasma
 
 
 \subsection{Transition}
-\TwoFig{../../Graphics/Bif_3D.png}
+\TwoFig{../../Graphics/Bif_Graphs/Bif_3D.png}
 	{Two codimension 1 fold bifurcations, with the parameter $b$ dictating the size of the hysteresis, until the bifurcations merge into a cusp \cite{weymiens_bifurcation_2014}.}
 	{fig:Bif_3D}
-	{../../Graphics/3_transitions_single_simple.png}
+	{../../Graphics/Bif_Graphs/3_transitions_single_simple.png}
 	{Codimension 3 parameter space with the black line indicating the fold bifurcation. The parameter $b$ dictates the type of transition, including the size of the hysteresis in the sharp transition \cite{weymiens_bifurcation_2014}.}
 	{fig:Bif_types}
 
@@ -150,7 +150,7 @@ The generation of a transport barrier could then be caused by a local reduction 
 Such a model was further adapted by Weymiens \cite{weymiens_bifurcation_2014} into the following form.
 \begin{equation}
 	\epsilon \frac{\partial Z}{\partial t} \,=\, \mu \frac{\partial^2 Z}{\partial x^2} + \frac{c_n T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)
-	\label{eq:pde}
+	\label{eq:the_model}
 \end{equation}
 This model uses $Z$, the radial electric field normalized with respect to the ion Larmor (gyro-)radius $\rho_{\theta i}$ and temperature $T$.
 \begin{equation}
@@ -159,7 +159,7 @@ This model uses $Z$, the radial electric field normalized with respect to the io
 \end{equation}
 % Another way to look at this equation is that the term on the left is the polarization radial current, the 2nd-derivative is due to shear viscosity.
 The model assumes a single temperature $T_e = T_i = T$.
-The left-hand side of Eq.~\ref{eq:pde} describes the radial current due to polarization, with $\epsilon = B_\theta^2 / (B^2 \nu_i)$ as the dielectric constant.
+The left-hand side of Eq.~\ref{eq:the_model} describes the radial current due to polarization, with $\epsilon = B_\theta^2 / (B^2 \nu_i)$ as the dielectric constant.
 The magnitude of $\epsilon$ directly dictates the time-scale of the transition, with a lower value resulting in a sharper transition.
 To describe the steady-state of H-mode, the time dependence need only be removed, \emph{i.e.} set $\dot{Z} = 0$.
 The 2nd-derivative term describes the radial current due to the anomalous shear viscosity of the $\mathbf{E}\times\mathbf{B}$ drift, with $\mu$ as the ratio of viscosity to collision frequency.
@@ -188,7 +188,7 @@ The overall problem is thus stated simply: \textbf{Which electric field-generati
 This is in an effort to determine which measurable and controllable values can predict H-mode.
 
 The first logical step is to decide \textbf{which terms should be considered for investigation}, as not all nonambipolar fluxes will significantly contribute to the transition.
-For example, the nonambipolar flux due to magnetic ripple loss highly depends on collisionality, in which lower collisionality results in a low flux \cite{stringer_ripple_1972}.
+For example, the nonambipolar flux due to magnetic ripple loss highly depends on collisionality, in which lower collisionality results in a low flux \cite{stringer_effect_1972}.
 Since a relatively ideal operation (temperature on the order of 1 keV at the edge) will be investigated, this flux can be neglected.
 
 \textbf{Identifying what optimal form and relative strengths of each flux and subsequently implementing them} appropriately is the crucial next step.
