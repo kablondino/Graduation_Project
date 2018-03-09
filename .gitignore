@@ -33,3 +33,6 @@ __init__.py
 # Particular Prelude file
 #Prelude/Report/Prelude_Report-blx.bib
 
+# Minted files ignored
+/Thesis/_minted-thesis
+
