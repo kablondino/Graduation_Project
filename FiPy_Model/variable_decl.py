@@ -11,7 +11,7 @@
 	variable types to avoid errors.
 """
 from fipy import Grid1D, CellVariable, FaceVariable
-from fipy.tools import numerix
+from fipy.tools import numerix, dump
 
 from parameters import *
 
