@@ -75,7 +75,10 @@
     &\text{Plasma Dispersion Function:} ~~ X(\zeta) \,=\, i \sqrt{\pi} w(\zeta)
         \,=\, i \sqrt{\pi} \, e^{-\zeta^2} \text{erfc}(-i \zeta)
         \,=\, \frac{1}{\sqrt{\pi}} \int_{-\infty}^{+\infty} \frac{e^{-t^2}}{t - \zeta} \, \text{d}t~,
-        ~~ \zeta \,\equiv\, \frac{\omega/k}{v_T}
+        ~~ \zeta \,\equiv\, \frac{\omega/k}{v_T} \\
+    &\text{Approx. SI Units at Edge:} ~~~~ n \,\approx\, 0.5\times 10^{19}~\text{m}^{-3}~,
+        ~~ T \,\approx\, 500~e\text{V}~,~~ v_T \,\approx\, 10^5~\text{m}/\text{s}~,
+        ~~ \rho_{\theta i} \,\approx\, 10^{-4}~\text{m}
 \end{align}
 
 \normalsize
@@ -113,11 +116,12 @@ The following form of the model references particle and heat fluxes,
 
 \normalsize
 
-Reducing the equations down to equations of only \(n\) and \(T\) (of 2
-possible forms): \small
+Reducing down to equations of only \(n\) and \(T\) (of 2 possible
+forms):
+\(\dfrac{\partial n}{\partial t} \,=\, \dfrac{\partial}{\partial x}\left[D \, \dfrac{\partial n}{\partial x}\right]\)
+\small
 
 \begin{align}
-    \dfrac{\partial n}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[D \, \dfrac{\partial n}{\partial x}\right] \\
     \dfrac{\partial(n\,T)}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D\,n}{\zeta} \, \dfrac{\partial T}{\partial x}\right] \,+\, \dfrac{\partial}{\partial x}\left[D\,T \, \dfrac{\partial n}{\partial x}\right]~, ~~~~ \dfrac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}\left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \, \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x}
 \end{align}
 
