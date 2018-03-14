@@ -5,6 +5,7 @@
 	It has been written as a function.
 """
 
+import numpy
 load("parameters.sage")
 
 assume(x,'real')
@@ -103,9 +104,10 @@ var('z')
 plasma_disp(z) = I*sqrt(pi)*exp(-z^2) * erfc(-I*z)
 bulk_imag_term(x) = plasma_disp(Z + I*nu_ii*aspect*B / (v_Ti * B_theta))
 
-Kobayashi_Gamma_bulk(x) = aspect^2*density*temperature / (sqrt(pi)*B*x) * (rho_pi / 0.5 + Z) * bulk_imag_term.imag()
+bulk_imag_term_array(x) = [ plasma_disp(Z(k) + I*nu_ii(k)*aspect*B / (v_Ti(k) * B_theta)) for k in numpy.arange(0.0, L, 0.1)]
 
-plot(Kobayashi_Gamma_bulk, (x, 0, L))
+# SageMath function definition takes WAY too long
+#Kobayashi_Gamma_bulk(x) = aspect^2*density*temperature / (sqrt(pi)*B*x) * (rho_pi / 0.5 + Z) * bulk_imag_term.imag()
 
 ## Ion Orbit Loss
 g_OL = (charge * density * nu_eff * sqrt(aspect) * rho_pi)
