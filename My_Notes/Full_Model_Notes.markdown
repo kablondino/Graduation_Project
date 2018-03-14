@@ -1,8 +1,13 @@
-# Full Model Notes: 26 Feb 2018
+# Full Model Notes: 14 Mar 2018
 
 \small\begin{align}
-	\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,&=\, a + bx - x^3 \\
-	\text{FitzHugh-Nagumo bifurcation:} ~~~~ \dot{x} \,&=\, a - bx - x^3 + cy~, ~~~~ \dot{y} \,=\, -x - y
+	&\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,=\, a + bx - x^3 \\
+	&\text{FitzHugh-Nagumo bifurcation:} ~~~~ \dot{x} \,=\, a - bx - x^3 + cy~,
+		~~~~ \dot{y} \,=\, -x - y \\
+	&\text{Plasma Dispersion Function:} ~~ X(\zeta) \,=\, i \sqrt{\pi} w(\zeta)
+		\,=\, i \sqrt{\pi} \, e^{-\zeta^2} \text{erfc}(-i \zeta)
+		\,=\, \frac{1}{\sqrt{\pi}} \int_{-\infty}^{+\infty} \frac{e^{-t^2}}{t - \zeta} \, \text{d}t~,
+		~~ \zeta \,\equiv\, \frac{\omega/k}{v_T}
 \end{align}\normalsize
 
 ### Model Forms
@@ -18,16 +23,18 @@ Electric field normalization, energy definition, diffusivity relation, dielectri
 
 The following form of the model references particle and heat fluxes, $\Gamma$ and $q$:
 \small\begin{align}
-	\frac{\partial n}{\partial t} \,&=\, -\frac{\partial \Gamma}{\partial x}~, &\Gamma \,&=\, -D \, \frac{\partial n}{\partial x} \\
-	\frac{\partial U}{\partial t} \,&=\, -\frac{\partial q}{\partial x}~, &q \,&=\, -\chi \, n \frac{\partial T}{\partial x} + \frac{\Gamma\,T}{\gamma - 1} \\
-	\epsilon \frac{\partial Z}{\partial t} \,&=\, \mu \frac{\partial^2 Z}{\partial x^2} + \frac{c_n \, T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z)~, &G \,&=\, a + b(Z - Z_S) + c(Z - Z_S)^3
+	\frac{\partial n}{\partial t} \,&=\, -\frac{\partial \Gamma}{\partial x}~,~~&
+	\frac{\partial U}{\partial t} \,&=\, -\frac{\partial q}{\partial x}~,~~&
+	\epsilon \frac{\partial Z}{\partial t} \,&=\, \mu \frac{\partial^2 Z}{\partial x^2} + \frac{c_n \, T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z) \\
+	\Gamma \,&=\, -D \, \frac{\partial n}{\partial x}~,~~&
+	q \,&=\, -\chi \, n \frac{\partial T}{\partial x} + \frac{\Gamma\,T}{\gamma - 1}~,~~&
+	&G \,=\, a + b(Z - Z_S) + c(Z - Z_S)^3
 \end{align}\normalsize
 
-Reducing it down to equations of only $n$, $T$ (of 2 possible forms), $Z$, and numerical parameters gives
+Reducing the equations down to equations of only $n$ and $T$ (of 2 possible forms):
 \small\begin{align}
 	\dfrac{\partial n}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[D \, \dfrac{\partial n}{\partial x}\right] \\
-	\dfrac{\partial(n\,T)}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D\,n}{\zeta} \, \dfrac{\partial T}{\partial x}\right] \,+\, \dfrac{\partial}{\partial x}\left[D\,T \, \dfrac{\partial n}{\partial x}\right]~, ~~~~ \dfrac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}\left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \, \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x} \\
-	\epsilon \, \dfrac{\partial Z}{\partial t} \,&=\, \mu \, \dfrac{\partial^2 Z}{\partial x^2} \,+\, \dfrac{c_n T}{n^2} \, \dfrac{\partial n}{\partial x} \,+\, \dfrac{c_T}{n} \, \dfrac{\partial T}{\partial x} \,+\, G(Z)
+	\dfrac{\partial(n\,T)}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D\,n}{\zeta} \, \dfrac{\partial T}{\partial x}\right] \,+\, \dfrac{\partial}{\partial x}\left[D\,T \, \dfrac{\partial n}{\partial x}\right]~, ~~~~ \dfrac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}\left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \, \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x}
 \end{align}\normalsize
 
 Staps reduced the model to the following vector form:
@@ -57,12 +64,16 @@ The diffusivity function $D(\mathcal{E})$ is given in a few forms:
 
 Generalized versions for boundary conditions at the plasma edge ($x=0$):
 \small\begin{align}
-	\frac{\partial n}{\partial x} \,=\, \frac{n}{\lambda_n}~, ~~~~\frac{\partial T}{\partial x} \,=\, \frac{T}{\lambda_T}~, ~~~~\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}~,
+	\frac{\partial n}{\partial x} \,=\, \frac{n}{\lambda_n}~,
+		~~~~\frac{\partial T}{\partial x} \,=\, \frac{T}{\lambda_T}~,
+		~~~~\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}~;
 \end{align}\normalsize
 
 ...towards the core ($x=L$):
 \small\begin{align}
-	\frac{\partial n}{\partial x} \,=\, -\frac{\Gamma_c}{D}~, ~~~~ \frac{\partial T}{\partial x} \,=\ \frac{\zeta\left(T \Gamma_c - (\gamma - 1) q_c\right)}{n\,D}~, ~~~~\frac{\partial Z}{\partial x} \,=\, 0
+	\frac{\partial n}{\partial x} \,=\, -\frac{\Gamma_c}{D}~,
+		~~~~ \frac{\partial T}{\partial x} \,=\ \frac{\zeta\left(T \Gamma_c - (\gamma - 1) q_c\right)}{n\,D}~,
+		~~~~\frac{\partial Z}{\partial x} \,=\, 0
 \end{align}\normalsize
 
 For Matlab, the Neumann and Robin boundary conditions can be expressed in the form of
@@ -83,22 +94,31 @@ p(L, t) \,=\, \begin{bmatrix}
 
 Paquay's initial conditions for density and temperature, and Stap's initial condition for $Z$:
 \small\begin{align}
-	n(x,0) \,&=\, -\dfrac{\Gamma_\infty \lambda_n}{D} \, \left(1 + \frac{x}{\lambda_n}\right)~, ~~~~ T(x,0) \,=\, q_\infty \, \dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1 - \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1 + \frac{x}{\lambda_n}\right)^{-\zeta}\right]~, \\
+	n(x,0) \,&=\, -\dfrac{\Gamma_\infty \lambda_n}{D} \, \left(1 + \frac{x}{\lambda_n}\right)~,
+		~~~~ T(x,0) \,=\, q_\infty \, \dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1 - \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1 + \frac{x}{\lambda_n}\right)^{-\zeta}\right]~, \\
 	Z(x,0) \,&=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right]~.
 \end{align}\normalsize
 
 Steady-State Solutions
 \small\begin{align}
-	&\bar{n}(x) \,=\, \bar{n}(0) - \int_0^x \frac{\Gamma_c}{D(\bar{Z}(x))}~\text{d}x, ~~ \bar{T}(x) \,=\, \frac{(\gamma - 1) q_c}{\Gamma_c} \left(1 - \lambda_g\left(\frac{\bar{n}(x)}{\bar{n}(0)}\right)^{-\zeta}\right) \\
-	&\bar{n}(0) \,=\, -\frac{\Gamma_c \lambda_n}{D(\bar{Z}(0))}, ~~ \lambda_g \,=\, \frac{\frac{\lambda_n}{\zeta \lambda_T}}{1 + \frac{\lambda_n}{\zeta \lambda_T}}, ~~ c_g \,=\, \frac{\zeta c_T - c_n}{1 + \zeta \frac{\lambda_T}{\lambda_n}}~, ~~ G(\bar{Z}(x)) \,=\, \theta\,D(\bar{Z}(x)) \\
+	&\bar{n}(x) \,=\, \bar{n}(0) - \int_0^x \frac{\Gamma_c}{D(\bar{Z}(x))}~\text{d}x~,
+		~~ \bar{T}(x) \,=\, \frac{(\gamma - 1) q_c}{\Gamma_c} \left(1 - \lambda_g\left(\frac{\bar{n}(x)}{\bar{n}(0)}\right)^{-\zeta}\right) \\
+	&\bar{n}(0) \,=\, -\frac{\Gamma_c \lambda_n}{D(\bar{Z}(0))},
+		~~ \lambda_g \,=\, \frac{\frac{\lambda_n}{\zeta \lambda_T}}{1 + \frac{\lambda_n}{\zeta \lambda_T}}~,
+		~~ c_g \,=\, \frac{\zeta c_T - c_n}{1 + \zeta \frac{\lambda_T}{\lambda_n}}~, ~~ G(\bar{Z}(x)) \,=\, \theta\,D(\bar{Z}(x)) \\
 	\text{Staps':}& ~ \theta \,=\, \frac{(\gamma - 1) q_c}{\Gamma_c^2 \lambda_n^2} (c_n + c_g), ~~ \text{Paquay's:} ~ \theta \,=\, \frac{\Gamma_c^2 \lambda_n^2}{q_c \zeta (\gamma - 1)} \, \frac{\lambda_n + \zeta\lambda_T}{c_n\lambda_T + c_T\lambda_n} \,=\, \frac{1}{\text{Staps}} \,=\, \text{Weymiens}
 \end{align}\normalsize
 
-### Gradient Model, from Staps
+### Gradient Model
 \small\begin{align}
-	\nonumber&\dfrac{m_i}{e \rho_{\theta i}} \,n T\, \left(\dfrac{B_\theta}{B}\right)^2 \dfrac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu_i}{e \rho_{\theta i}} \,n T\, \dfrac{\partial^2 Z}{\partial x^2} \\
-	&+\, B_\theta^2 \left[\left(g_n^\text{an} - g_n^\text{cx} - g_n^{\pi\parallel}\right) \dfrac{n^\prime}{n} + \left(g_T^\text{an} - g_T^\text{cx} - g_T^{\pi\parallel}\right) \dfrac{T^\prime}{T} + \left(g_Z^\text{an} - g_Z^\text{cx} - g_Z^{\pi\parallel}\right) Z - f^\text{OL}\right] \\
-	&\dfrac{m_i n T}{e^2 \rho_{\theta i} B^2} \frac{\partial Z}{\partial t} \,=\, \dfrac{m_i \mu}{e^2 \rho_{\theta i} B_\theta^2} \frac{\partial^2 Z}{\partial x^2} + \Gamma_e^\text{an} - \Gamma_i^{\pi\parallel} - \Gamma_i^\text{cx} - \Gamma_i^\text{OL}
+	\nonumber&\dfrac{m_i n T}{e \rho_{\theta i} B^2} \, \dfrac{\partial Z}{\partial t}
+		\,=\, \dfrac{m_i \mu_i n T}{e \rho_{\theta i} B_\theta^2} \, \dfrac{\partial^2 Z}{\partial x^2} \\
+	&+\, \left(g_n^\text{an} - g_n^\text{cx} - g_n^{\pi\parallel}\right) \dfrac{n^\prime}{n}
+		+ \left(g_T^\text{an} - g_T^\text{cx} - g_T^{\pi\parallel}\right) \dfrac{T^\prime}{T}
+		+ \left(g_Z^\text{an} - g_Z^\text{cx} - g_Z^{\pi\parallel}\right) Z - e\Gamma^\text{OL} \\
+	&\dfrac{m_i n T}{e^2 \rho_{\theta i} B^2} \frac{\partial Z}{\partial t}
+		\,=\, \dfrac{m_i \mu}{e^2 \rho_{\theta i} B_\theta^2} \frac{\partial^2 Z}{\partial x^2}
+		\,+\, \Gamma_e^\text{an} \,-\, \Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{cx} \,-\, \Gamma_i^\text{OL}
 \end{align}\normalsize
 
 + Electron Anomalous Diffusion:
@@ -114,15 +134,12 @@ Steady-State Solutions
 + Ion Bulk Viscosity: $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
 \small\begin{align}
 	\begin{bmatrix}\xi_\theta \\[1ex] \xi_\phi \end{bmatrix} \,&=\, \dfrac{1}{\pi} \int_0^{\sqrt{\nu_{*i}}} \begin{bmatrix} 1 \\[1ex] \frac{5}{2} - x \end{bmatrix} x^2 \exp(-x) \, \tan^{-1}\left(\dfrac{2 N \sqrt{x}}{N^2 + Z^2 - x}\right) \text{d}x \\
-	g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i}& B_\theta \, \xi_\theta~,~~~~ g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i} \left(B_\theta\,\xi_\theta - B\,\xi_\phi\right)~,~~~~ g_Z^{\pi\parallel} \,=\, 2\eta \, B_\theta \, \xi_\theta
+	g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i}& B_\theta \, \xi_\theta~,~~~~ g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i} \left(B_\theta\,\xi_\theta - B\,\xi_\phi\right)~,~~~~ g_Z^{\pi\parallel} \,=\, 2\eta \, B_\theta \, \xi_\theta \\
+	e \Gamma_i^{\pi\parallel} \,&=\, -\frac{e n_e D_p}{\rho_i} (-\lambda - Z) \, \text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
 \end{align}\normalsize
-
-<!--- Original line for Ion Bulk Viscosity integrals
-	\begin{pmatrix}\xi_\theta \\[1ex] \xi_\phi \end{pmatrix} \,&=\, \dfrac{1}{\pi} \int_0^{\sqrt{\nu_{*i}}} \begin{pmatrix} 1 \\ \frac{5}{2} - x \end{pmatrix} x^2 \exp(-x) \left[\int_{-1}^{+1} \dfrac{N / \sqrt{x} ~~ \text{d}y}{\left(y + Z / \sqrt{x}\right)^2 + \left(N / \sqrt{x}\right)^2}\right] \text{d}x \\
---->
 
 + Ion Orbit Loss:
 \small\begin{align}
-	g^\text{OL} \,=\, e \,n\, \nu_\text{eff} \sqrt{\epsilon} \,\rho_{\theta i}~,~~~~ f^\text{OL} \,=\, \dfrac{g^\text{OL}\,\exp\left[-\sqrt{\nu_{*i} + Z^4}\right]}{\sqrt{\nu_{*i} + Z^4}}
+	g^\text{OL} \,=\, e \,n\, \nu_\text{eff} \sqrt{\epsilon} \,\rho_{\theta i}~,~~~~ e\Gamma_i^\text{OL} \,=\, \dfrac{g^\text{OL}\,\exp\left[-\sqrt{\nu_{*i} + Z^4}\right]}{\sqrt{\nu_{*i} + Z^4}}
 \end{align}\normalsize
 
