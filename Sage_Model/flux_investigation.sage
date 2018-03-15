@@ -8,6 +8,15 @@
 import numpy
 load("parameters.sage")
 
+coordinate = numpy.linspace(0.01, L, num=1000) # The x coordinate
+
+def func_to_list( Asage_func ):
+	try:
+		return [ (coordinate[j], Asage_func(coordinate[j])) for j in range(len(coordinate)) ]
+	except:
+		print "Something went wrong."
+
+
 assume(x,'real')
 assume(x >= 0)
 
@@ -27,9 +36,9 @@ density_si_coeff = 1.0e19		# Adjusts to m^-3
 temp_si_coeff = 250.0			# Adjusts to eV
 
 ## INITAL density and temperature
-density(x) = -(density_si_coeff*Gamma_c*lambda_n / D_Staps) * (1.0 + x/lambda_n)
+density(x) = density_si_coeff * -(Gamma_c*lambda_n / D_Staps) * (1.0 + x/lambda_n)
 
-temperature(x) = temp_si_coeff*q_c*((gamma - 1.0) / Gamma_c) * (1.0 - lambda_n / (zeta*lambda_T + lambda_n) * (1.0 + x/lambda_n)^(-zeta))
+temperature(x) = temp_si_coeff * q_c*((gamma - 1.0) / Gamma_c) * (1.0 - lambda_n / (zeta*lambda_T + lambda_n) * (1.0 + x/lambda_n)^(-zeta))
 
 #state_plots = plot(density, (x,0,L), color='blue', legend_label=r"$n$")\
 #		+ plot(temperature, (x,0,L), color='orange', legend_label=r"$T$")\
@@ -38,18 +47,18 @@ temperature(x) = temp_si_coeff*q_c*((gamma - 1.0) / Gamma_c) * (1.0 - lambda_n /
 #show(state_plots + plot(D_Staps, (x,0,L), color='red', legend_label=r"$D$"))
 
 # ----------------- Plasma Parameters ---------------------
-e_p = 1.0 + (m_i*density + m_e*density) / (epsilon_0 * B^2)
+#e_p = 1.0 + (m_i*density + m_e*density) / (epsilon_0 * B^2)
 
 # Neutrals density in use for CX friction
 n_0 = 4.0e17 * a_in0 * (temperature / 100.0)^(3.0/4.0)
 
 # Thermal velocities (most probable)
-v_Ti = sqrt(2.0 * charge * temperature / m_i)
-v_Te = sqrt(2.0 * charge * temperature / m_e)
+v_Ti = sqrt(2.0 * charge_true * temperature / m_i)
+v_Te = sqrt(2.0 * charge_true * temperature / m_e)
 
 # Poloidal gyro-(Larmor) radii
-rho_pi = m_i * v_Ti / (charge * B_theta)
-rho_pe = m_e * v_Te / (charge * B_theta)
+rho_pi = m_i * v_Ti / (charge_true * B_theta)
+rho_pe = m_e * v_Te / (charge_true * B_theta)
 
 # Banana orbit bounce frequencies
 omega_bi = aspect^(3.0/2.0) * v_Ti / (q * R)
@@ -80,6 +89,7 @@ g_n_an = -charge_true*density*D_an
 g_T_an = g_n_an * alpha_an
 g_Z_an = g_n_an / rho_pi
 Gamma_an(x) = g_n_an*diff(density,x)/density + g_T_an*diff(temperature,x)/temperature + g_Z_an*Z
+AN_plot = plot(Gamma_an, (x,0,L), axes_labels=[r"$x$", ""], title=r"$e\Gamma_e^{an}$", gridlines=True)
 
 ## Charge Exchange Friction
 g_n_cx = (-(m_i*n_0*neu_react_rate * density * temperature)\
@@ -88,6 +98,7 @@ g_n_cx = (-(m_i*n_0*neu_react_rate * density * temperature)\
 g_T_cx = alpha_cx * g_n_cx
 g_Z_cx = -g_n_cx / rho_pi
 Gamma_cx(x) = g_n_cx*diff(density,x)/density + g_T_cx*diff(temperature,x)/temperature + g_Z_cx*Z
+CX_plot = plot(Gamma_cx, (x,0,L), axes_labels=[r"$x$", ""], title=r"$e\Gamma_i^{cx}$", gridlines=True)
 
 ## Ion Bulk (Parallel) Viscosity ----> OLD!
 # xi_p integral
@@ -102,15 +113,16 @@ Gamma_cx(x) = g_n_cx*diff(density,x)/density + g_T_cx*diff(temperature,x)/temper
 
 var('z')
 plasma_disp(z) = I*sqrt(pi)*exp(-z^2) * erfc(-I*z)
-bulk_imag_term(x) = plasma_disp(Z + I*nu_ii*aspect*B / (v_Ti * B_theta))
+bulk_complex_term(x) = plasma_disp(Z(x) + I*nu_ii(x)*aspect*B / (v_Ti(x)*B_theta))
 
-bulk_imag_term_array(x) = [ plasma_disp(Z(k) + I*nu_ii(k)*aspect*B / (v_Ti(k) * B_theta)) for k in numpy.arange(0.0, L, 0.1)]
+bulk_term_array = [ (k, N(bulk_complex_term(k).imag())) for k in coordinate ]
 
 # SageMath function definition takes WAY too long
-#Kobayashi_Gamma_bulk(x) = aspect^2*density*temperature / (sqrt(pi)*B*x) * (rho_pi / 0.5 + Z) * bulk_imag_term.imag()
+Kobayashi_Gamma_bulk = [ (coordinate[l], aspect^2*density(coordinate[l])*temperature(coordinate[l]) / (sqrt(pi)*B*coordinate[l]) * (rho_pi(coordinate[l]) / 0.5 + Z(coordinate[l])) * bulk_term_array[l][0]) for l in range(len(coordinate)) ]
+Kobayashi_Gamma_bulk_plot = list_plot(Kobayashi_Gamma_bulk, plotjoined=True, title=r"Kobayashi $e\Gamma_i^{\pi\parallel}$", axes_labels = [r"$x$", ""], gridlines=True)
 
 ## Ion Orbit Loss
-g_OL = (charge * density * nu_eff * sqrt(aspect) * rho_pi)
+g_OL = (charge_true * density * nu_eff * sqrt(aspect) * rho_pi)
 Gamma_OL(x) = g_OL * exp(-sqrt(nu_ai + Z^4))/ sqrt(nu_ai + Z^4)
 
 # ----------------- PLOTS ---------------------------------

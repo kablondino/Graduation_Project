@@ -9,7 +9,7 @@ L = 4.0
 
 # ----------------- Parameters ----------------------------
 ## Global parameters and physical constants
-charge = 1.0					# Dummy charge
+charge_dummy = 1.0				# Dummy charge
 charge_true = 1.602e-19			# Elementary charge
 k_B = 8.617e-5					# Boltzmann in eV
 m_e = 9.109e-31					# Electron mass
