@@ -7,6 +7,9 @@
 
 from variable_decl import *
 
+import scipy.special		# For the Faddeeva (plasma dispersion) function
+import numpy
+
 ## Plasma Parameters
 e_p = 1.0 + (m_i*density + m_e*density) / (epsilon_0 * B**2)
 
@@ -118,15 +121,22 @@ def update_g_coeffs():
 
 	## Ion Bulk (Parallel) Viscosity
 	# xi_p integral
-	xi_p.setValue((4.0*N*(27.0*((N)**2 + Z**2)**2 - 7.0*((N)**2 - 3.0*Z**2)*(nu_ai)**(1.0/2.0))*(nu_ai)**(7.0/4)) / (189.0*pi*((N)**2 + Z**2)**3))
+	#xi_p.setValue((4.0*N*(27.0*((N)**2 + Z**2)**2 - 7.0*((N)**2 - 3.0*Z**2)*(nu_ai)**(1.0/2.0))*(nu_ai)**(7.0/4)) / (189.0*pi*((N)**2 + Z**2)**3))
 	# xi_t integral
-	xi_t.setValue((2.0*N*(135.0*((N)**2 + Z**2)**2 - 7.0*(21.0*(N)**4 + 3.0*Z**2*(-5.0 + 7.0*Z**2) + (N)**2*(5.0 + 42.0*Z**2))*(nu_ai)**(1.0/2))*(nu_ai)**(7.0/4)) / (189.0*pi*((N)**2 + Z**2)**3))
+	#xi_t.setValue((2.0*N*(135.0*((N)**2 + Z**2)**2 - 7.0*(21.0*(N)**4 + 3.0*Z**2*(-5.0 + 7.0*Z**2) + (N)**2*(5.0 + 42.0*Z**2))*(nu_ai)**(1.0/2))*(nu_ai)**(7.0/4)) / (189.0*pi*((N)**2 + Z**2)**3))
 
-	g_n_bulk.setValue(aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi * (v_Ti)**2 * B_theta * xi_p)
-	g_T_bulk.setValue(aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi * (v_Ti)**2 * (B_theta*xi_p - B*xi_t))
-	g_Z_bulk.setValue(aspect**2*(pi)**(1.0/2) / (4*a_m) * density * m_i * (v_Ti)**2 * B_theta*xi_p)
-	Gamma_bulk.setValue((1.0/charge_true) * (g_n_bulk*density.grad[0]/density\
-			+ g_T_bulk*temperature.grad[0]/temperature + g_Z_bulk*Z))
+	#g_n_bulk.setValue(aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi * (v_Ti)**2 * B_theta * xi_p)
+	#g_T_bulk.setValue(aspect**2*(pi)**(1.0/2) / (8*a_m) * density * m_i * rho_pi * (v_Ti)**2 * (B_theta*xi_p - B*xi_t))
+	#g_Z_bulk.setValue(aspect**2*(pi)**(1.0/2) / (4*a_m) * density * m_i * (v_Ti)**2 * B_theta*xi_p)
+	#Gamma_bulk.setValue((1.0/charge_true) * (g_n_bulk*density.grad[0]/density\
+	#		+ g_T_bulk*temperature.grad[0]/temperature + g_Z_bulk*Z))
+
+	bulk_complex_term = 1j*(pi)**(1.0/2.0)*scipy.special.wofz(Z + 1j*nu_ii*aspect*B / (v_Ti*B_theta))
+#	print numpy.imag(bulk_complex_term)
+
+	Gamma_bulk.setValue( aspect**2*density*temperature / (pi**(1.0/2.0)*B*x)\
+			* (rho_pi / 0.5 + Z) * numpy.imag(bulk_complex_term) )
+#	print Gamma_bulk
 
 	## Ion Orbit Loss
 	g_OL.setValue((charge * density * nu_eff * (aspect)**(1.0/2.0) * rho_pi))
