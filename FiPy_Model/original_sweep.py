@@ -6,7 +6,7 @@ from fipy.solvers import *
 # and fipy.tools.numerix are included in the following import
 from coeffs import *
 
-import os # For saving files to a specified directory
+import os	# For saving files to a specified directory
 
 
 # ----------------- Boundary Conditions ------------------- #
@@ -69,9 +69,10 @@ PCG_Solver = LinearPCGSolver(iterations=100, tolerance=1.0e-6)
 GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
 LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
-initial_viewer = Viewer((density, temperature, Z, Diffusivity),\
-		xmin=0.0, xmax=config.plotx_max, legend='best')
-raw_input("Pause for Initial Conditions")
+# Initial conditions viewer
+#initial_viewer = Viewer((density, temperature, Z, Diffusivity),\
+#		xmin=0.0, xmax=config.plotx_max, legend='best')
+#raw_input("Pause for Initial Conditions")
 
 timeStep = mu / config.timeStep_denom
 
