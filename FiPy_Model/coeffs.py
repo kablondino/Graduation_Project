@@ -82,7 +82,7 @@ def update_g_coeffs():
 	omega_be.setValue(aspect**(3.0/2.0) * v_Te / (q * R))
 
 	# Collision frequencies within electrons and ions
-	nu_ei.setValue((density / temperature)**(3.0/2.0))
+	nu_ei.setValue(1.33e5*(density*1.0e-20) / (temperature)**(3.0/2.0))
 	nu_ii.setValue(1.2 * (m_e / m_i)**(1.0/2.0) * nu_ei)
 
 	# Collision frequency of trapped ions and neutrals
