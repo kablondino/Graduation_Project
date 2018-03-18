@@ -82,7 +82,18 @@ if __name__ == '__main__':
 	viewer = Viewer((density, temperature, -Z, Diffusivity),\
 			xmin=0.0, xmax=config.plotx_max,\
 			datamax=config.ploty_max, legend='best',\
-			title = config.plot_title)
+			title = config.plot_title_state)
+
+	# Auxiliary viewers
+	auxiliary1_viewer = Viewer((v_Ti), xmin=0.0,\
+			xmax=config.plotx_max, datamin=config.plot1y_min,\
+			datamax=config.plot1y_max, legend='best',\
+			title = config.plot_title1)
+	auxiliary2_viewer = Viewer((v_Te), xmin=0.0,\
+			xmax=config.plotx_max, datamin=config.plot2y_min,\
+			datamax=config.plot2y_max, legend='best',\
+			title = config.plot_title2)
+
 
 	# File writing
 	if (hasattr(config, 'save_directory') and\
@@ -91,14 +102,16 @@ if __name__ == '__main__':
 		if not os.path.exists(os.getcwd() +str("/")+ config.save_directory):
 			os.makedirs(os.getcwd() +str("/")+ config.save_directory)
 			raw_input("Directory created: " +str(config.save_directory))
+		raw_input("Pause set for writing to file...")
 
 	for t in range(config.total_timeSteps):
 		# (Re)set residual value
-		res_full = 1.0e10
+		res_full = 1.0e100
 
 		# Update values
 		Diffusivity.setValue(D_choice_local)
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
+		update_g_coeffs()
 
 		# Solve the fully coupled equation
 		while res_full > config.res_tol:
@@ -109,8 +122,13 @@ if __name__ == '__main__':
 		if config.save_plots == True:
 			viewer.plot(filename =\
 					config.save_directory+"/"+str(t).zfill(4)+".png")
+			auxiliary1_viewer.plot(filename =\
+					config.save_directory+"/i"+str(t).zfill(4)+".png")
+			auxiliary2_viewer.plot(filename =\
+					config.save_directory+"/e"+str(t).zfill(4)+".png")
 		else:
 			viewer.plot()
+			auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:
