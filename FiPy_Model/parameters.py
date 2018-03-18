@@ -11,9 +11,10 @@ from input_handling import *
 # ----------------- Parameters ----------------------------
 ## Global parameters and physical constants
 pi = 3.141592653589793
-charge = 1.0					# Dummy charge
+charge_dummy = 1.0				# Dummy charge
 charge_true = 1.602e-19			# Elementary charge
-k_B = 8.617e-5					# Boltzmann in eV
+k_B_eV = 8.617e-5				# Boltzmann in eV/K
+k_B_J = 1.38e-23				# Boltzmann in J/K
 m_e = 9.109e-31					# Electron mass
 m_i = 1.673e-27					# Ion (H) mass
 epsilon_0 = 8.854187817e-12		# Permittivity of free space
@@ -82,6 +83,6 @@ print "The numerical parameters are chosen to " + str(config.numerical_choice)
 ## For use in gradient model
 alpha_cx = 0.9				# Charge exchange coefficient
 alpha_an = 1.0				# Anomalous loss coefficient
-a_in0 = 0.1					# Neutrals coefficient
+a_in0 = 0.05				# Neutrals coefficient
 neu_react_rate = 1.0e-14	# Reaction rate of charge exchange
 

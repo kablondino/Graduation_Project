@@ -34,7 +34,7 @@ numerical_choice = "Staps"
 res_tol = 1.0e-6
 
 # Plot details
-plot_title1 = "L--Mode Start; Staps' parameters; \n $T = $"\
+plot_title_state = "L--Mode Start; Staps' parameters; \n $T = $"\
 		+str(total_timeSteps)+ r", $\Delta t = \mu / $" +str(timeStep_denom)
 
 # Maximum x on the plots
