@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
 
 from fipy.solvers import *
@@ -85,15 +86,14 @@ if __name__ == '__main__':
 			title = config.plot_title_state)
 
 	# Auxiliary viewers
-	auxiliary1_viewer = Viewer((v_Ti), xmin=0.0,\
+	auxiliary1_viewer = Viewer((omega_bi), xmin=0.0,\
 			xmax=config.plotx_max, datamin=config.plot1y_min,\
 			datamax=config.plot1y_max, legend='best',\
 			title = config.plot_title1)
-	auxiliary2_viewer = Viewer((v_Te), xmin=0.0,\
+	auxiliary2_viewer = Viewer((omega_be), xmin=0.0,\
 			xmax=config.plotx_max, datamin=config.plot2y_min,\
 			datamax=config.plot2y_max, legend='best',\
 			title = config.plot_title2)
-
 
 	# File writing
 	if (hasattr(config, 'save_directory') and\
@@ -123,18 +123,22 @@ if __name__ == '__main__':
 			viewer.plot(filename =\
 					config.save_directory+"/"+str(t).zfill(4)+".png")
 			auxiliary1_viewer.plot(filename =\
-					config.save_directory+"/i"+str(t).zfill(4)+".png")
+					config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
 			auxiliary2_viewer.plot(filename =\
-					config.save_directory+"/e"+str(t).zfill(4)+".png")
+					config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
 		else:
 			viewer.plot()
 			auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:
-			TSVViewer(vars=(density, temperature, Z, Diffusivity)).plot(\
+			all_variables = (density, temperature, Z, Diffusivity, v_Ti,\
+					v_Te, rho_pi, rho_pe, omega_bi, omega_be, nu_ei, nu_ii,\
+					nu_in0, nu_eff, nu_ai, nu_ae, Gamma_an, Gamma_cx,\
+					Gamma_bulk, Gamma_OL)
+			TSVViewer(vars=all_variables).plot(\
 					filename=config.save_directory+"/"+str(t).zfill(4)+".tsv")
 
 
-	raw_input(" <================================== End of Program. Press any key to continue. ===================================> ")
+	raw_input(" <=============== End of Program. Press any key to continue. ===============> ")
 

@@ -223,9 +223,9 @@ if hasattr(config, 'save_directory'):
 
 # If save_plots and/or TSVs does not exist or not booleans, set to False
 if (not hasattr(config, 'save_plots') or\
-		type(getattr(config, 'save_plots', None)) != bool) :
+		type(getattr(config, 'save_plots', None)) != bool):
 	config.save_plots = False
 if (not hasattr(config, 'save_TSVs') or\
-		type(getattr(config, 'save_TSVs', None)) != bool) :
+		type(getattr(config, 'save_TSVs', None)) != bool):
 	config.save_TSVs = False
 
