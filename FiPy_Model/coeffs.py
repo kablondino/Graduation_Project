@@ -70,6 +70,21 @@ Gamma_bulk = CellVariable(name=r"$\Gamma_i^{\pi\parallel}$", mesh=mesh)
 g_OL = CellVariable(name=r"$g^{OL}$", mesh=mesh)
 Gamma_OL = CellVariable(name=r"$\Gamma_i^{OL}$", mesh=mesh)
 
+variable_dictionary = {\
+		'x': x, 'density': density, 'temperature': temperature, 'Z': Z,\
+		'Diffusivity': Diffusivity, 'n_0': n_0, 'v_Ti': v_Ti, 'v_Te': v_Te,\
+		'rho_pi': rho_pi, 'rho_pe': rho_pe, 'omega_bi': omega_bi,\
+		'omega_be': omega_be, 'nu_ei': nu_ei, 'nu_ii': nu_ii,\
+		'nu_in0': nu_in0, 'nu_eff': nu_eff, 'nu_ai': nu_ai, 'nu_ae': nu_ae,\
+		'D_an': D_an, 'g_n_an': g_n_an, 'g_T_an': g_T_an, 'g_Z_an': g_Z_an,\
+		'Gamma_an': Gamma_an,\
+		'g_n_cx': g_n_cx, 'g_T_cx': g_T_cx, 'g_Z_cx': g_Z_cx,\
+		'Gamma_cx': Gamma_cx, 'g_OL': g_OL, 'Gamma_OL': Gamma_OL,\
+		'g_n_bulk': g_n_bulk, 'g_T_bulk': g_T_bulk, 'g_Z_bulk': g_Z_bulk,\
+		'Gamma_bulk': Gamma_bulk,\
+		'density_adjusted': density_adjusted, 'temp_adjusted': temp_adjusted
+		}
+
 def update_g_coeffs():
 	density_adjusted.setValue(density * 1.0e19)					# [m^-3]
 	temp_adjusted.setValue(temperature * 500.0)					# [eV] !!
