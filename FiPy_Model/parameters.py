@@ -36,8 +36,6 @@ B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
 
 ## PRESET parameters for quick calculation, many of which
 ## are chosen by Staps and Paquay
-Gamma_c = -4.0/5.0
-q_c = -4.0
 gamma = 5.0/3.0
 
 lambda_n = 5.0/4.0		# Length scales for decay at edge

@@ -5,6 +5,8 @@
 	L:				float	The length of the domain
 	total_timeSteps:int		The total number of time steps
 	timeStep_denom:	float	The denominator of the time step
+	Gamma_c			float	The particle flux from the core
+	q_c				float	The heat flux from the core
 	numerical_parameter:	string		The set of predetermined parameters
 	D_choice:		string	The model of the diffusivity
 	initial_H_mode:	bool	Start in L-- or H--mode?
@@ -13,6 +15,10 @@
 	plot_title:		string	The title of the plot; can be formatted
 	plotx_max:		float	The maximum x-value on the plot (min is always 0)
 	ploty_max:		float	The maximum y-value on the plot
+	aux_plots:		bool	Turns on specified auxiliary plots
+	aux_title1:		str		Title of the first auxiliary plot
+	aux_title2:		str		............ second ...
+	aux_plot_var:	tuple	Specified variables for the auxiliary plots
 
 	save_directory: string	The name of the saving directory, from current\
 							directory being run.
@@ -31,6 +37,24 @@ diffusivity_models = ["d_zohm", "d_staps", "d_shear", "d_flow_shear"]
 
 
 # -------------- Check Configuration Variables ------------
+# Particle and heat fluxes from the core
+if (type(getattr(config, 'Gamma_c', None)) != float\
+		and type(getattr(config, 'Gamma_c', None)) != int):
+	try:
+		config.Gamma_c = int(input("The particle flux from the core Gamma_c is not chosen properly. Choose a floating-point value: "))
+	except (EOFError, NameError, SyntaxError) as e:
+		config.Gamma_c = -4.0 / 5.0
+		print "Gamma_c defaulted to -0.8"
+
+if (type(getattr(config, 'q_c', None)) != float\
+		and type(getattr(config, 'Gamma_c', None)) != int):
+	try:
+		config.Gamma_c = int(input("The heat flux from the core q_c is not chosen properly. Choose a floating-point value: "))
+	except (EOFError, NameError, SyntaxError) as e:
+		config.q_c = config.Gamma_c * 5.0
+		print "q_c defaulted to 5.0 * Gamma_c"
+
+
 # Check the choice for numerical parameters
 if (getattr(config, 'numerical_choice', "").lower() not in parameter_sets\
 		or type(getattr(config, 'numerical_choice', None)) != str):
@@ -167,14 +191,16 @@ if ((type(getattr(config, 'res_tol', None)) != float and\
 		config.res_tol = 1.0e-6
 		print "The maximum residual tolerance is defaulted to 1.0e-6."
 
+if type(getattr(config, 'aux_plots', None)) != bool:
+	config.aux_plots = False
 
 # Plot titles
 if not hasattr(config, 'plot_title'):
 	config.plot_title = ""
-if not hasattr(config, 'plot_title1'):
-	config.plot_title1 = ""
-if not hasattr(config, 'plot_title2'):
-	config.plot_title2 = ""
+if not hasattr(config, 'aux_title1'):
+	config.aux_title1 = ""
+if not hasattr(config, 'aux_title2'):
+	config.aux_title2 = ""
 
 # Maximum x on the plots
 if (type(getattr(config, 'plotx_max', None)) != int and\
@@ -185,22 +211,22 @@ if (type(getattr(config, 'plotx_max', None)) != int and\
 if (type(getattr(config, 'ploty_min', None)) != int and\
 		type(getattr(config, 'ploty_min', None)) != float):
 	config.ploty_min = None
-if (type(getattr(config, 'plot1y_min', None)) != int and\
-		type(getattr(config, 'plot1y_min', None)) != float):
-	config.plot1y_min = None
-if (type(getattr(config, 'plot2y_min', None)) != int and\
-		type(getattr(config, 'plot2y_min', None)) != float):
-	config.plot2y_min = None
+if (type(getattr(config, 'aux1y_min', None)) != int and\
+		type(getattr(config, 'aux1y_min', None)) != float):
+	config.aux1y_min = None
+if (type(getattr(config, 'aux2y_min', None)) != int and\
+		type(getattr(config, 'aux2y_min', None)) != float):
+	config.aux2y_min = None
 # MAXIMUM y values on the plots
 if (type(getattr(config, 'ploty_max', None)) != int and\
 		type(getattr(config, 'ploty_max', None)) != float):
 	config.ploty_max = None
-if (type(getattr(config, 'plot1y_max', None)) != int and\
-		type(getattr(config, 'plot1y_max', None)) != float):
-	config.plot1y_max = None
-if (type(getattr(config, 'plot2y_max', None)) != int and\
-		type(getattr(config, 'plot2y_max', None)) != float):
-	config.plot2y_max = None
+if (type(getattr(config, 'aux1y_max', None)) != int and\
+		type(getattr(config, 'aux1y_max', None)) != float):
+	config.aux1y_max = None
+if (type(getattr(config, 'aux2y_max', None)) != int and\
+		type(getattr(config, 'aux2y_max', None)) != float):
+	config.aux2y_max = None
 
 
 # Makes sure that the saved directory is a string

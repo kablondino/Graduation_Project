@@ -41,7 +41,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 	Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
 	Z.faceGrad.constrain(0.0, mesh.facesRight)
 
-set_boundary_values(Gamma_c, q_c)
+set_boundary_values(config.Gamma_c, config.q_c)
 
 # ----------------- PDE Declarations ----------------------
 # Density Equation
@@ -83,17 +83,18 @@ if __name__ == '__main__':
 	viewer = Viewer((density, temperature, -Z, Diffusivity),\
 			xmin=0.0, xmax=config.plotx_max,\
 			datamax=config.ploty_max, legend='best',\
-			title = config.plot_title_state)
+			title = config.plot_title)
 
 	# Auxiliary viewers
-	auxiliary1_viewer = Viewer((omega_bi), xmin=0.0,\
-			xmax=config.plotx_max, datamin=config.plot1y_min,\
-			datamax=config.plot1y_max, legend='best',\
-			title = config.plot_title1)
-	auxiliary2_viewer = Viewer((omega_be), xmin=0.0,\
-			xmax=config.plotx_max, datamin=config.plot2y_min,\
-			datamax=config.plot2y_max, legend='best',\
-			title = config.plot_title2)
+	if config.aux_plots == True:
+		auxiliary1_viewer = Viewer((omega_bi), xmin=0.0,\
+				xmax=config.plotx_max, datamin=config.aux1y_min,\
+				datamax=config.aux1y_max, legend='best',\
+				title = config.aux_title1)
+		auxiliary2_viewer = Viewer((omega_be), xmin=0.0,\
+				xmax=config.plotx_max, datamin=config.aux2y_min,\
+				datamax=config.aux2y_max, legend='best',\
+				title = config.aux_title2)
 
 	# File writing
 	if (hasattr(config, 'save_directory') and\
@@ -122,13 +123,15 @@ if __name__ == '__main__':
 		if config.save_plots == True:
 			viewer.plot(filename =\
 					config.save_directory+"/"+str(t).zfill(4)+".png")
-			auxiliary1_viewer.plot(filename =\
-					config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
-			auxiliary2_viewer.plot(filename =\
-					config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
+			if config.aux_plots == True:
+				auxiliary1_viewer.plot(filename =\
+						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
+				auxiliary2_viewer.plot(filename =\
+						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
 		else:
 			viewer.plot()
-			auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
+			if config.aux_plots == True:
+				auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:

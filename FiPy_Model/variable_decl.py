@@ -81,20 +81,21 @@ else:
 
 # Initial conditions for L--mode
 if config.initial_H_mode == False:
-	density.setValue(-(density_si_coeff*Gamma_c*lambda_n / Diffusivity)\
+	density.setValue(-(density_si_coeff*config.Gamma_c*lambda_n / Diffusivity)\
 			* (1.0 + x/lambda_n))
 
-	temperature.setValue(temp_si_coeff*q_c*((gamma - 1.0) / Gamma_c)\
+	temperature.setValue(temp_si_coeff*config.q_c\
+			*((gamma - 1.0) / config.Gamma_c)\
 			*(1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
 			*(1.0 + x/lambda_n)**(-zeta)))
 
 # Initial conditions for H--mode
 elif config.initial_H_mode == True:
-	density.setValue(-(density_si_coeff*Gamma_c*lambda_n / Diffusivity)\
-			* (1.0 + x/lambda_n))
+	density.setValue(-(density_si_coeff*config.Gamma_c*lambda_n\
+			/ Diffusivity) * (1.0 + x/lambda_n))
 
-	temperature.setValue(temp_si_coeff*q_c*((gamma - 1.0) / Gamma_c)\
-			*(1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
+	temperature.setValue(temp_si_coeff*config.q_c*((gamma - 1.0)\
+			/ config.Gamma_c) * (1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
 			*(1.0 + x/lambda_n)**(-zeta)))
 
 else:

@@ -3,6 +3,11 @@
 	source files to see what values get defaulted.
 """
 
+# Particle and heat flux from the core
+Gamma_c = -4.0 / 5.0
+q_c = -4.0
+print type(Gamma_c)
+
 # Number of cells
 nx = 200
 
@@ -14,7 +19,7 @@ total_timeSteps = 200
 
 # Size of time step denominator (delta t)
 # Either mu or epsilon is in the numerator
-timeStep_denom = 10.0
+timeStep_denom = 12.0
 
 # Choose the Diffusivity model, as a string (case does not matter)
 # D_Zohm, D_Staps, and D_Shear are the possibilities
@@ -34,20 +39,22 @@ numerical_choice = "Staps"
 res_tol = 1.0e-6
 
 # Plot details
-plot_title_state = "L--Mode Start; Staps' parameters; \n $T = $"\
-		+str(total_timeSteps)+ r", $\Delta t = \mu / $" +str(timeStep_denom)
+plot_title = "L--Mode Start; Staps' parameters; \n" +\
+		r"$\Gamma_c =$" +str(Gamma_c)+ \
+		r", $T = $"+str(total_timeSteps)+ r", $\Delta t = \mu / $"\
+		+str(timeStep_denom)
 
 # Maximum x on the plots
 plotx_max = L
 # Maximum and minimum y values on the plots
-plot1y_min = None
-plot1y_max = None
-plot2y_min = None
-plot2y_max = None
+aux1y_min = None
+aux1y_max = None
+aux2y_min = None
+aux2y_max = None
 
 # Should the results be saved to file?
-save_plots = False
-save_TSVs = False
+save_plots = True
+save_TSVs = True
 
-save_directory = ""
+save_directory = "Standard_4_5"
 
