@@ -81,22 +81,28 @@ else:
 
 # Initial conditions for L--mode
 if config.initial_H_mode == False:
-	density.setValue(-(density_si_coeff*config.Gamma_c*lambda_n / Diffusivity)\
-			* (1.0 + x/lambda_n))
+#	density.setValue(-(density_si_coeff*config.Gamma_c*lambda_n / Diffusivity)\
+#			* (1.0 + x/lambda_n))
+	density.setValue((2.0-0.5)*x / config.L + 0.5)
 
-	temperature.setValue(temp_si_coeff*config.q_c\
-			*((gamma - 1.0) / config.Gamma_c)\
-			*(1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
-			*(1.0 + x/lambda_n)**(-zeta)))
+#	temperature.setValue(temp_si_coeff*config.q_c\
+#			*((gamma - 1.0) / config.Gamma_c)\
+#			*(1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
+#			*(1.0 + x/lambda_n)**(-zeta)))
+	temperature.setValue(3.0 - 1.0*density**-zeta)
 
 # Initial conditions for H--mode
 elif config.initial_H_mode == True:
-	density.setValue(-(density_si_coeff*config.Gamma_c*lambda_n\
-			/ Diffusivity) * (1.0 + x/lambda_n))
+#	density.setValue(-(density_si_coeff*config.Gamma_c*lambda_n\
+#			/ Diffusivity) * (1.0 + x/lambda_n))
+	density.setValue((0.5/1.5)*x + 0.5)
+	density.setValue(3.0*x - 3.5, where = x > 1.5)
+	density.setValue((0.5/1.5)*x + (11.0/6.0)*1.0, where = x > 2.0)
 
-	temperature.setValue(temp_si_coeff*config.q_c*((gamma - 1.0)\
-			/ config.Gamma_c) * (1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
-			*(1.0 + x/lambda_n)**(-zeta)))
+#	temperature.setValue(temp_si_coeff*config.q_c*((gamma - 1.0)\
+#			/ config.Gamma_c) * (1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
+#			*(1.0 + x/lambda_n)**(-zeta)))
+	temperature.setValue(3.0 - 1.0*density**-zeta)
 
 else:
 	print "Something went horribly wrong in choosing initial conditions."
