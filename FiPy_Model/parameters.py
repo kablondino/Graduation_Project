@@ -12,10 +12,10 @@ from input_handling import *
 ## Global parameters and physical constants
 pi = 3.141592653589793
 charge_dummy = 1.0				# Dummy charge
-charge_true = 1.602e-19			# Elementary charge
-k_B_eV = 8.617e-5				# Boltzmann in eV/K
-k_B_J = 1.38e-23				# Boltzmann in J/K
-m_e = 9.109e-31					# Electron mass
+charge_true = 1.6021766208e-19	# Elementary charge
+k_B_J = 1.38064852e-23			# Boltzmann in J/K
+k_B_eV = k_B_J / charge_true	# Boltzmann in eV/K
+m_e = 9.10938356e-31			# Electron mass
 m_i = 1.673e-27					# Ion (H) mass
 epsilon_0 = 8.854187817e-12		# Permittivity of free space
 mu_0 = 4*pi*1.0e-7				# Permeability of free space
@@ -46,7 +46,7 @@ D_max = 2.0
 D_min = 2.0/5.0
 
 epsilon = 1.0 / 25.0
-mu = 1.0/20.0
+mu = 1.0 / 20.0
 
 ## Choose set of parameters
 # If numerical_choice is not defined, not a string, or set to Paquay:
