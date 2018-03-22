@@ -38,7 +38,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 		d/dx(Z(0)) == Z / lambda_Z
 		mu*D/epsilon * d/dx(Z(L)) == 0
 	"""
-	Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
+#	Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
 	Z.faceGrad.constrain(0.0, mesh.facesRight)
 
 set_boundary_values(config.Gamma_c, config.q_c)
@@ -71,11 +71,11 @@ GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
 LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 # Initial conditions viewer
-#initial_viewer = Viewer((density, temperature, Z, Diffusivity),\
-#		xmin=0.0, xmax=config.plotx_max, legend='best')
-#raw_input("Pause for Initial Conditions")
+initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
+		xmin=0.0, xmax=config.plotx_max, legend='best')
+raw_input("Pause for Initial Conditions")
 
-timeStep = mu / config.timeStep_denom
+timeStep = epsilon / config.timeStep_denom
 
 if __name__ == '__main__':
 
