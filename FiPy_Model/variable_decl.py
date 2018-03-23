@@ -70,14 +70,14 @@ if config.D_choice.lower() == "d_zohm":
 # Stap's Model
 elif config.D_choice.lower() == "d_staps":
 	D_choice_local = D_min + (D_max - D_min) / (1.0 + config.alpha_sup\
-	#		* numerix.dot(Z.grad, Z.grad))
 			* numerix.sign(Z.grad[0])*(abs(Z.grad[0]))**config.beta)
 
 # Flow-Shear Model
 elif config.D_choice.lower() == "d_shear" or\
 		config.D_choice.lower() == "d_flow_shear":
 	a1, a2, a3 = 1.0, 0.0, 1.0
-	D_choice_local = D_min + (D_max - D_min) / (1.0 + a1*(Z)**2 + a2*Z*Z.grad[0]\
+	D_choice_local = D_min + (D_max - D_min)\
+			/ (1.0 + a1*(Z)**2 + a2*Z*Z.grad[0]\
 			+ a3*numerix.dot(Z.grad, Z.grad))
 
 else:
