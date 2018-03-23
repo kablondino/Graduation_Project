@@ -10,6 +10,7 @@
 	numerical_parameter:	string		The set of predetermined parameters
 	D_choice:		string	The model of the diffusivity
 	initial_H_mode:	bool	Start in L-- or H--mode?
+	original_model:	bool	Which Z-equation model? 'False' is flux model.
 	SI_units		bool	Determines the units of the profiles
 	res_tol:		float	The residual tolerance while solving
 	plot_title:		string	The title of the plot; can be formatted
@@ -29,7 +30,7 @@
 """
 import sys
 
-# Import variables from job configuration file
+# Import variables from job configuration file, as cmd line argument
 config = __import__ (sys.argv[1].replace('.py',''))
 
 parameter_sets = ["staps", "paquay", "g_grad", "gradient_model"]
@@ -126,6 +127,12 @@ if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
 if type(getattr(config, 'initial_H_mode', None)) != bool:
 	config.initial_H_mode = False
 	print "Defaulted to starting in L--mode."
+
+
+# Z-equation model choice
+if type(getattr(config, 'original_model', None)) != bool:
+	config.original_Z_model = True
+	print "Defaulted to using the original numerical model for Z."
 
 
 # Use SI units, or arbitrary?

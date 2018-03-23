@@ -31,6 +31,10 @@ beta = 1.5
 # Boolean, to choose what mode to have as initial conditions
 initial_H_mode = True
 
+# Boolean, to choose either the original numerical model, or
+# the full flux model
+original_model = True
+
 # Boolean, to choose what units are used
 SI_units = False
 

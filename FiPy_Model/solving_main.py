@@ -1,47 +1,14 @@
 #!/usr/bin/env python
 from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
-
 from fipy.solvers import *
 
-# input_handling, parameters.py, variable_decl.py, (in that order)
-# and fipy.tools.numerix are included in the following import
-from coeffs import *
+# Order of file imports from the following inport: input_handling.py,
+# parameters.py, variable_decl.py boundary_init_cond
+from calculate_coeffs import *
+# fipy.tools.numerix is also imported from the above
 
 import os	# For saving files to a specified directory
 
-
-# ----------------- Boundary Conditions ------------------- #
-def set_boundary_values(AGamma_c, Aq_c):
-	"""
-		Density Boundary Conditions:
-		d/dx(n(0)) == n / lambda_n
-		d/dx(n(L)) == -Gamma_c / Diffusivity
-	"""
-	density.faceGrad.constrain(density.faceValue / lambda_n, mesh.facesLeft)
-	density.faceGrad.constrain(\
-			-AGamma_c / Diffusivity.faceValue, mesh.facesRight)
-
-	"""
-		Temperature Boundary Conditions:
-		d/dx(T(0)) = T / lambda_T
-		d/dx(T(L)) = zeta*(Gamma_c*T - q_c*(gamma - 1)) / (Diffusivity * n)
-	"""
-	temp_left = temperature.faceValue / lambda_T
-	temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
-	temp_right =\
-	temperature.faceGrad.constrain((zeta * (AGamma_c*temperature.faceValue -\
-			Aq_c*(gamma - 1.0))) / (Diffusivity.faceValue *\
-			density.faceValue), mesh.facesRight)
-
-	"""
-		Paquay considered these Z Boundary Conditions:
-		d/dx(Z(0)) == Z / lambda_Z
-		mu*D/epsilon * d/dx(Z(L)) == 0
-	"""
-#	Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
-	Z.faceGrad.constrain(0.0, mesh.facesRight)
-
-set_boundary_values(config.Gamma_c, config.q_c)
 
 # ----------------- PDE Declarations ----------------------
 # Density Equation
@@ -54,14 +21,26 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 
 # Z Equation
-G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
-S_Z = ((c_n*temperature) / density**2) * density.grad[0]\
-		+ (c_T / density) * temperature.grad[0] + G
-Z.equation = TransientTerm(coeff=epsilon, var=Z)\
-		== DiffusionTerm(coeff=mu, var=Z) + S_Z
+if config.original_model == False:
+	# Full Flux model
+	########## WILL BE DEFINED SOON ##########
+	print "Flux model chosen."
+	G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
+	S_Z = ((c_n*temperature) / density**2) * density.grad[0]\
+			+ (c_T / density) * temperature.grad[0] + G
+	Z.equation = TransientTerm(coeff=epsilon, var=Z)\
+			== DiffusionTerm(coeff=mu, var=Z) + S_Z
+else:
+	# Original numerical, arbitrary units model
+	G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
+	S_Z = ((c_n*temperature) / density**2) * density.grad[0]\
+			+ (c_T / density) * temperature.grad[0] + G
+	Z.equation = TransientTerm(coeff=epsilon, var=Z)\
+			== DiffusionTerm(coeff=mu, var=Z) + S_Z
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
+
 
 # ----------------- Choose Solver -------------------------
 # Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,
