@@ -1,14 +1,15 @@
 """
-	This file contains the simple numerical delcarations
+	This file contains the simple constant delcarations
 	for use in the PDE system. This includes machine
 	parameters, length scales, global physical/math
 	constants, and non-g model numbers.
 
 """
+
 from input_handling import *
 
 
-# ----------------- Parameters ----------------------------
+# ----------------- Constant Parameters -------------------
 ## Global parameters and physical constants
 pi = 3.141592653589793
 charge_dummy = 1.0				# Dummy charge
@@ -42,8 +43,8 @@ lambda_n = 5.0/4.0		# Length scales for decay at edge
 lambda_T = 3.0/2.0
 lambda_Z = 5.0/4.0
 
-D_max = 2.0
-D_min = 2.0/5.0
+D_max = 3.0
+D_min = 0.2
 
 epsilon = 1.0 / 25.0
 mu = 1.0 / 20.0
@@ -56,7 +57,7 @@ if config.numerical_choice.lower() == "paquay":
 	c_n = 1.1
 	c_T = 0.9
 	a = -1.5
-	b = -1.0
+	b = 1.0
 	c = -1.0
 	Z_S = 1.4
 
@@ -77,10 +78,9 @@ elif config.numerical_choice.lower() == "g_grad"\
 
 print "The numerical parameters are chosen to " + str(config.numerical_choice)
 
-
-## For use in gradient model
-alpha_cx = 0.9				# Charge exchange coefficient
+## For use in full flux model
 alpha_an = 1.0				# Anomalous loss coefficient
 a_in0 = 0.05				# Neutrals coefficient
 neu_react_rate = 1.0e-14	# Reaction rate of charge exchange
+alpha_cx = 0.9				# Charge exchange coefficient
 
