@@ -61,25 +61,24 @@ else:
 
 
 # ----------------- Set Diffusivity Model -----------------
+## It defaults to Stap's version
 # Itohs'/Zohm's model
-D_Zohm = (D_max + D_min) / 2.0 + ((D_max - D_min)*numerix.tanh(Z)) / 2.0
-# Stap's Model
-alpha_sup = 0.5
-D_Staps = D_min + (D_max - D_min) / (1.0 + alpha_sup\
-		*numerix.dot(Z.grad, Z.grad))
-# Flow-Shear Model
-a1, a3 = 1.0, 0.5	# ASSUMES a2 = 0
-D_Shear = D_min + (D_max - D_min) / (1.0 + a1*(Z)**2 +\
-		a3*numerix.dot(Z.grad, Z.grad))
-
-# Set Diffusivity. It defaults to Stap's version
 if config.D_choice.lower() == "d_zohm":
-	D_choice_local = D_Zohm
+	D_choice_local = (D_max + D_min) / 2.0\
+			+ ((D_max - D_min)*numerix.tanh(Z)) / 2.0
+
+# Stap's Model
 elif config.D_choice.lower() == "d_staps":
-	D_choice_local = D_Staps
+	D_choice_local = D_min + (D_max - D_min) / (1.0 + config.alpha_sup\
+	#		* numerix.dot(Z.grad, Z.grad))
+			* numerix.sign(Z.grad[0])*(abs(Z.grad[0]))**config.beta)
+
+# Flow-Shear Model
 elif config.D_choice.lower() == "d_shear" or\
 		config.D_choice.lower() == "d_flow_shear":
-	D_choice_local = D_Shear
+	a1, a2, a3 = 1.0, 0.0, 1.0
+	D_choice_local = D_min + (D_max - D_min) / (1.0 + a1*(Z)**2 + a2*Z*Z.grad[0]\
+			+ a3*numerix.dot(Z.grad, Z.grad))
 
 else:
 	print "Something went horribly wrong in choosing the Diffusivity model."
