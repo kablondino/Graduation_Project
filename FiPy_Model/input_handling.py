@@ -12,7 +12,6 @@
 	initial_H_mode:	bool	Start in L-- or H--mode?
 	original_model:	bool	Which Z-equation model? 'False' is flux model.
 	SI_units		bool	Determines the units of the profiles
-	res_tol:		float	The residual tolerance while solving
 	plot_title:		string	The title of the plot; can be formatted
 	plotx_max:		float	The maximum x-value on the plot (min is always 0)
 	ploty_max:		float	The maximum y-value on the plot
@@ -21,7 +20,7 @@
 	aux_title2:		str		............ second ...
 	aux_plot_var:	tuple	Specified variables for the auxiliary plots
 
-	save_directory: string	The name of the saving directory, from current\
+	save_directory: string	The name of the saving directory, from current
 							directory being run.
 	save_plots:		bool	Should the plots be saved?
 	save_TSVs:		bool	Should TSV files be generated and saves?
@@ -182,22 +181,7 @@ if type(config.timeStep_denom) == int:
 	config.timeStep_denom = float(config.timeStep_denom)
 
 
-# Maximum allowable residual when sweeping
-if ((type(getattr(config, 'res_tol', None)) != float and\
-		type(getattr(config, 'res_tol', None)) != int) or\
-		getattr(config, 'res_tol', -1) <= 0):
-	try:
-		config.res_tol = float(input("The maximum allowable tolerance for the sweep residual is improperly set. Enter a floating-point value: "))
-
-		if config.res_tol <= 0:
-			raise ValueError
-
-		print "The maximum residual tolerance is set to " +str(config.res_tol)
-
-	except (NameError, SyntaxError, EOFError, ValueError):
-		config.res_tol = 1.0e-6
-		print "The maximum residual tolerance is defaulted to 1.0e-6."
-
+# Set auxiliary plots
 if type(getattr(config, 'aux_plots', None)) != bool:
 	config.aux_plots = False
 
