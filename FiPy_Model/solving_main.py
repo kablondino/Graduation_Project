@@ -23,14 +23,12 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 # Z Equation
 if config.original_model == False:
 	# Full Flux model
-	########## WILL BE DEFINED SOON ##########
-	print "Flux model chosen."
-	G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
-	S_Z = ((c_n*temperature) / density**2) * density.grad[0]\
-			+ (c_T / density) * temperature.grad[0] + G
-	Z.equation = TransientTerm(coeff=epsilon, var=Z)\
-			== DiffusionTerm(coeff=mu, var=Z) + S_Z
-else:
+	Z.equation = TransientTerm(coeff=(m_i * density * temperature\
+			/ (charge_true**2 * rho_pi * B**2)), var=Z) == DiffusionTerm(\
+			coeff=(m_i * mu / (charge_true**2 * rho_pi * B_theta**2)), var=Z)\
+			+ Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL
+
+elif config.original_model == True:
 	# Original numerical, arbitrary units model
 	G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
 	S_Z = ((c_n*temperature) / density**2) * density.grad[0]\
@@ -50,19 +48,40 @@ GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
 LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 # Initial conditions viewer
-initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
-		xmin=0.0, xmax=config.plotx_max, legend='best')
-raw_input("Pause for Initial Conditions")
+if config.original_model == True:
+	initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
+			xmin=0.0, xmax=config.plotx_max, legend='best')
+	raw_input("Pause for Initial Conditions")
+elif config.original_model == False:
+	init_density_viewer = Viewer(density, xmin=0.0, xmax=config.plotx_max,\
+			legend=None, title="Density")
+	init_density_viewer = Viewer(temperature, xmin=0.0,\
+			xmax=config.plotx_max, legend=None, title="Temperature")
+	init_density_viewer = Viewer((Z, Diffusivity), xmin=0.0,\
+			xmax=config.plotx_max, legend='best',\
+			title=r"$Z$ and Diffusivity")
+	raw_input("Pause for SI Initial Conditions")
 
 timeStep = epsilon / config.timeStep_denom
 
 if __name__ == '__main__':
 
-	# Initialize viewer
-	viewer = Viewer((density, temperature, -Z, Diffusivity),\
-			xmin=0.0, xmax=config.plotx_max,\
-			datamax=config.ploty_max, legend='best',\
-			title = config.plot_title)
+	# Initialize viewers
+	if config.original_model == True:
+		viewer = Viewer((density, temperature, -Z, Diffusivity),\
+				xmin=0.0, xmax=config.plotx_max,\
+				datamax=config.ploty_max, legend='best',\
+				title = config.plot_title)
+	else:
+		density_viewer = Viewer(density, xmin=0.0, xmax=config.plotx_max,\
+				datamax=3.0e20, legend='best',\
+				title = config.plot_title)
+		temp_viewer = Viewer(temperature, xmin=0.0, xmax=config.plotx_max,\
+				datamax=2e3, legend='best',\
+				title = config.plot_title)
+		Z_viewer = Viewer((Z, Diffusivity), xmin=0.0, xmax=config.plotx_max,\
+				legend='best',\
+				title = config.plot_title)
 
 	# Auxiliary viewers
 	if config.aux_plots == True:
@@ -84,31 +103,78 @@ if __name__ == '__main__':
 			raw_input("Directory created: " +str(config.save_directory))
 		raw_input("Pause set for writing to file...")
 
+	# Set the tolerance for the full flux model
+	original_res_tol = 1.0e-7
+	density_res_tol, temp_res_tol, Z_res_tol = 1.0e12, 1.0e12, 1.0e12
+
 	for t in range(config.total_timeSteps):
-		# (Re)set residual value
-		res_full = 1.0e100
+		# (Re)set residual values
+		original_residual = 1.0e100
+		density_residual = 1.0e100
+		temp_residual = 1.0e100
+		Z_residual = 1.0e100
 
 		# Update values
 		Diffusivity.setValue(D_choice_local)
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 		update_g_coeffs()
 
-		# Solve the fully coupled equation
-		while res_full > config.res_tol:
-			print t, res_full
-			res_full = full_equation.sweep(dt=timeStep, solver=GMRES_Solver)
+		# Solve the full flux model equations
+		if config.original_model == False:
+			# Solve density equation
+			while density_residual > density_res_tol:
+				print t, density_residual, temp_residual, Z_residual
+				density_residual = density.equation.sweep(dt=timeStep,\
+							solver=GMRES_Solver)
+
+			# Solve temperature equation
+			while temp_residual > temp_res_tol:
+				print t, density_residual, temp_residual, Z_residual
+				temp_residual = temperature.equation.sweep(dt=timeStep,\
+							solver=GMRES_Solver)
+
+			# Solve Z equation
+			while Z_residual > Z_res_tol:
+				print t, density_residual, temp_residual, Z_residual
+				Z_residual = Z.equation.sweep(dt=timeStep,\
+						solver=GMRES_Solver)
+
+		# Solve the fully coupled, original model equation
+		else:
+			config.original_model == True
+			while original_residual > original_res_tol:
+				print t, original_residual
+				original_residual = full_equation.sweep(dt=timeStep,\
+						solver=GMRES_Solver)
 
 		# Plot solution and save, if option is True
 		if config.save_plots == True:
-			viewer.plot(filename =\
-					config.save_directory+"/"+str(t).zfill(4)+".png")
+			# Save full flux plots
+			if config.original_model == False:
+				density_viewer.plot(filename = config.save_directory + "/n"\
+						+str(t).zfill(4)+ ".png")
+				temp_viewer.plot(filename = config.save_directory + "/T" \
+						+str(t).zfill(4)+ ".png")
+				Z_viewer.plot(filename = config.save_directory + "/Z" \
+						+str(t).zfill(4)+ ".png")
+			# Save original model plots
+			else:
+				viewer.plot(filename =\
+						config.save_directory+"/"+str(t).zfill(4)+".png")
+
+			# Save auxiliary plots
 			if config.aux_plots == True:
 				auxiliary1_viewer.plot(filename =\
 						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
 				auxiliary2_viewer.plot(filename =\
 						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
+
 		else:
-			viewer.plot()
+			if config.original_model == False:
+				density_viewer.plot(); temp_viewer.plot(); Z_viewer.plot()
+			else:
+				viewer.plot()
+
 			if config.aux_plots == True:
 				auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
 
