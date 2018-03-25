@@ -11,7 +11,7 @@ AU_density(x) = 1.5*x / 4.0 + 0.5
 # Density in H--mode
 AU_density1 = (0.5/1.5)*x + 0.5
 AU_density2 = 3.0*x - 3.5
-AU_density3 = (0.5/1.5)*x + (11.0/6.0)*1.0
+AU_density3 = (0.5/1.5)*x + (11.0/6.0)
 
 AU_density_piece = piecewise([([0,1.5], AU_density1),\
 		((1.5,2.0), AU_density2),\
