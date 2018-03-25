@@ -17,15 +17,17 @@ X = mesh.faceCenters[0] # Face position, if needed
 
 
 # -------------- State Variable Declarations --------------
-density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True)
+density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True,\
+		unit="1.0e19*m**-3")
 
-temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True)
+temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True, unit="eV")
 
-U = CellVariable(name=r"$U$", mesh=mesh, hasOld=True)
+U = CellVariable(name=r"$U$", mesh=mesh, hasOld=True, unit="eV/m**3")
 
-Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True)
+Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True, unit="")
+print Z.unit
 
-Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True)
+Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True, unit="m**2/s")
 
 U.setValue(density*temperature / (gamma - 1.0))
 
