@@ -35,15 +35,9 @@ initial_H_mode = True
 # the full flux model
 original_model = True
 
-# Boolean, to choose what units are used
-SI_units = False
-
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
 numerical_choice = "Staps"
-
-# Choose the largest acceptable residual when sweeping
-res_tol = 1.0e-6
 
 # Plot details
 plot_title = "H--Mode Start; $D \sim (Z^\prime)^{{{:01.2f}}}$".format(beta)\
