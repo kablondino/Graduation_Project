@@ -57,7 +57,7 @@ D_max = PhysicalField(value=3.0, unit="m**2/s")
 D_min = PhysicalField(value=0.2, unit="m**2/s")
 
 epsilon = PhysicalField(value=1.0 / 25.0, unit="s")
-mu = PhysicalField(1.0 / 20.0, unit="m**2")
+mu = PhysicalField(1.0 / 20.0, unit="m**2/s")
 
 ## Choose set of parameters
 # If numerical_choice is not defined, not a string, or set to Paquay:
@@ -91,6 +91,6 @@ print "The numerical parameters are chosen to " + str(config.numerical_choice)
 ## For use in full flux model
 alpha_an = 1.0				# Anomalous loss coefficient
 a_in0 = 0.05				# Neutrals coefficient
-neu_react_rate = 1.0e-14	# Reaction rate of charge exchange
+neu_react_rate = PhysicalField(value=1.0e-14, unit="m**3/s")	# Reaction rate of charge exchange
 alpha_cx = 0.9				# Charge exchange coefficient
 
