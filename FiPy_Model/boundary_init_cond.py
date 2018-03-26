@@ -8,31 +8,26 @@
 
 from variable_decl import *
 
-if config.original_model == True:
-	density_SI_coeff, temp_SI_coeff = 1.0, 1.0
-elif config.original_model == False:
-	density_SI_coeff = 1.0e19		# Converts to m^-3
-	temp_SI_coeff = 250				# Converts to eV
 
 # ---------------- Set Initial Conditions -----------------
 # Initial conditions for L--mode
 if config.initial_H_mode == False:
-	density.setValue(density_SI_coeff*(1.5*x / 4.0 + 0.5))
+	density.setValue(1.5*x / 4.0 + 0.5)
 
-	temperature.setValue(temp_SI_coeff*(0.0125*x**2 + 0.2*x + 1.2))
+	temperature.setValue(0.0125*x**2 + 0.2*x + 1.2)
 
 	Z.setValue(0.0)
 
 # Initial conditions for H--mode
 elif config.initial_H_mode == True:
-	density.setValue(density_SI_coeff*((0.5/1.5)*x + 0.5))
-	density.setValue(density_SI_coeff*(3.0*x - 3.5), where = x > 1.5)
-	density.setValue(density_SI_coeff*((0.5/1.5)*x + (11.0/6.0)),\
+	density.setValue((0.5/1.5)*x + 0.5)
+	density.setValue(3.0*x - 3.5, where = x > 1.5)
+	density.setValue((0.5/1.5)*x + (11.0/6.0),\
 			where = x > 2.0)
 
-	temperature.setValue(temp_SI_coeff*(0.2*x + 1.2))
-	temperature.setValue(temp_SI_coeff*(1.8*x - 1.2), where = x > 1.5)
-	temperature.setValue(temp_SI_coeff*(0.2*x + 2.0), where = x > 2.0)
+	temperature.setValue(0.2*x + 1.2)
+	temperature.setValue(1.8*x - 1.2, where = x > 1.5)
+	temperature.setValue(0.2*x + 2.0, where = x > 2.0)
 
 	Z.setValue(-3.0 / (1.0 + numerix.exp(12.0*(x - 1.75))))
 
@@ -81,6 +76,9 @@ print "The diffusivity model is set to " + str(config.D_choice)
 
 # ----------------- Boundary Conditions ------------------- #
 def set_boundary_values(AGamma_c, Aq_c):
+	the_Gamma_c = PhysicalField(value=AGamma_c, unit="1 / (m**2 * s)")
+	the_q_c = PhysicalField(value=Aq_c, unit="eV / (m**2 * s)")
+
 	"""
 		Density Boundary Conditions:
 		d/dx(n(0)) == n / lambda_n
@@ -88,7 +86,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 	"""
 	density.faceGrad.constrain(density.faceValue / lambda_n, mesh.facesLeft)
 	density.faceGrad.constrain(\
-			-AGamma_c / Diffusivity.faceValue, mesh.facesRight)
+			-the_Gamma_c / Diffusivity.faceValue, mesh.facesRight)
 
 	"""
 		Temperature Boundary Conditions:
@@ -97,9 +95,9 @@ def set_boundary_values(AGamma_c, Aq_c):
 	"""
 	temp_left = temperature.faceValue / lambda_T
 	temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
-	temp_right =\
-	temperature.faceGrad.constrain((zeta * (AGamma_c*temperature.faceValue -\
-			Aq_c*(gamma - 1.0))) / (Diffusivity.faceValue *\
+	temp_right = temperature.faceGrad.constrain(\
+			(zeta * (the_Gamma_c*temperature.faceValue -\
+			the_q_c*(gamma - 1.0))) / (Diffusivity.faceValue *\
 			density.faceValue), mesh.facesRight)
 
 	"""
