@@ -8,54 +8,64 @@
 
 from input_handling import *
 
+from fipy.tools.dimensions.physicalField import *
 
 # ----------------- Constant Parameters -------------------
 ## Global parameters and physical constants
 pi = 3.141592653589793
-charge_dummy = 1.0				# Dummy charge
-charge_true = 1.6021766208e-19	# Elementary charge
+charge = PhysicalField(value=1.0, unit="e")	# Dummy charge
 k_B_J = 1.38064852e-23			# Boltzmann in J/K
-k_B_eV = k_B_J / charge_true	# Boltzmann in eV/K
-m_e = 9.10938356e-31			# Electron mass
-m_i = 1.673e-27					# Ion (H) mass
-epsilon_0 = 8.854187817e-12		# Permittivity of free space
-mu_0 = 4*pi*1.0e-7				# Permeability of free space
+k_B_eV = k_B_J / charge			# Boltzmann in eV/K
+m_e = PhysicalField(value=1.0, unit="me")	# 9.10938356e-31, Electron mass
+m_i = PhysicalField(value=1.0, unit="mp")	# 1.67262171e-27, Ion (H) mass
+epsilon_0 = PhysicalField(value=1.0, unit="eps0")	# = 8.854187817e-12, Permittivity of free space
+mu_0 = PhysicalField(value=1.0, unit="mu0")			# = 4*pi*1.0e-7, Permeability of free space
 
 
 ## ASDEX-U specifications
-a_v = 0.8									# Vertical minor radius
-a_h = 0.5									# Horizontal minor radius
-a_m = ( (a_v**2 + a_h**2) / 2.0 )**(1.0/2.0)# Mean minor radius
-R = 1.6										# Major radius
-aspect = a_m / R							# Aspect Ratio
-I_p = 2.0e6									# Plasma current
-B_phi = 3.9									# Toroidal field
-B_theta = mu_0 * I_p / ( 2*pi*a_m )			# Poloidal field
-q = aspect * B_phi/B_theta					# q value
-B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
-
+# Vertical minor radius
+a_v = PhysicalField(value=0.8, unit="m")
+# Horizontal minor radius
+a_h = PhysicalField(value=0.5, unit="m")
+# Mean minor radius
+a_m = PhysicalField(value=((a_v**2 + a_h**2) / 2.0)**(1.0/2.0), unit="m")
+# Major radius
+R = PhysicalField(value=1.6, unit="m")
+# Aspect Ratio
+aspect = PhysicalField(value=a_m / R, unit="")
+# Plasma current
+I_p = PhysicalField(value=2.0e6, unit="A")
+# Toroidal field
+B_phi = PhysicalField(value=3.9, unit="T")
+# Poloidal field
+B_theta = PhysicalField(value=mu_0 * I_p / ( 2*pi*a_m ), unit="T")
+# q value
+q = PhysicalField(value=aspect * B_phi/B_theta, unit="")
+# Full field
+B = PhysicalField(value=( B_phi**2 + B_theta**2 )**(1.0/2.0) , unit="T")
 
 ## PRESET parameters for quick calculation, many of which
 ## are chosen by Staps and Paquay
 gamma = 5.0/3.0
 
-lambda_n = 5.0/4.0		# Length scales for decay at edge
-lambda_T = 3.0/2.0
-lambda_Z = 5.0/4.0
+## Length scales for decay at edge
+lambda_n = PhysicalField(value=5.0/4.0, unit="m")
+lambda_T = PhysicalField(value=3.0/2.0, unit="m")
+lambda_Z = PhysicalField(value=5.0/4.0, unit="m")
 
-D_max = 3.0
-D_min = 0.2
+D_max = PhysicalField(value=3.0, unit="m**2/s")
+D_min = PhysicalField(value=0.2, unit="m**2/s")
 
-epsilon = 1.0 / 25.0
-mu = 1.0 / 20.0
+epsilon = PhysicalField(value=1.0 / 25.0, unit="s")
+mu = PhysicalField(1.0 / 20.0, unit="m**2")
 
 ## Choose set of parameters
 # If numerical_choice is not defined, not a string, or set to Paquay:
 if config.numerical_choice.lower() == "paquay":
 	# Paquay's numbers
 	zeta = 1.1
-	c_n = 1.1
-	c_T = 0.9
+	c_n = PhysicalField(value=1.1, unit="1.0e19 / (eV*m**3)")
+	c_T = PhysicalField(value=0.9, unit="1.0e19 / m**3")
 	a = -1.5
 	b = 1.0
 	c = -1.0
@@ -64,8 +74,8 @@ if config.numerical_choice.lower() == "paquay":
 # Stap's numbers
 elif config.numerical_choice.lower() == "staps":
 	zeta = 0.5
-	c_n = -1.1
-	c_T = -0.9
+	c_n = PhysicalField(value=-1.1, unit="1.0e19 / (eV*m**3)")
+	c_T = PhysicalField(value=-0.9, unit="1.0e19 / m**3")
 	a = 3.0/2.0
 	b = 2.0
 	c = -1.0

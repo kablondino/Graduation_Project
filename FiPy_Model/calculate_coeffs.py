@@ -19,14 +19,12 @@ def update_g_coeffs():
 			**(3.0/4.0))										# [m^-3]
 
 	# Thermal velocities (most probable)
-	v_Ti.setValue((2.0 * charge_true * temperature / m_i)\
-			**(1.0/2.0))										# [m/s]
-	v_Te.setValue((2.0 * charge_true * temperature / m_e)\
-			**(1.0/2.0))										# [m/s]
+	v_Ti.setValue((2.0 * temperature / m_i)**(1.0/2.0))			# [m/s]
+	v_Te.setValue((2.0 * temperature / m_e)**(1.0/2.0))			# [m/s]
 
 	# Poloidal gyro-(Larmor) radii
-	rho_pi.setValue(m_i * v_Ti / (charge_true * B_theta))		# [m]
-	rho_pe.setValue(m_e * v_Te / (charge_true * B_theta))		# [m]
+	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))		# [m]
+	rho_pe.setValue(m_e * v_Te / (charge * B_theta))		# [m]
 
 	# Banana orbit bounce frequencies
 	omega_bi.setValue(aspect**(3.0/2.0) * v_Ti / (q * R))		# [s^-1]
@@ -34,7 +32,7 @@ def update_g_coeffs():
 
 	# Collision frequencies within electrons and ions
 	nu_ei.setValue(1.33e5*(density*1.0e-20)\
-			/ (charge_true * temperature)**(3.0/2.0))			# [s^-1]
+			/ (temperature)**(3.0/2.0))			# [s^-1]
 	nu_ii.setValue(1.2 * (m_e / m_i)**(1.0/2.0) * nu_ei)		# [s^-1]
 
 	# Collision frequency of trapped ions and neutrals
@@ -62,7 +60,7 @@ def update_g_coeffs():
 
 	## Charge Exchange Friction
 	g_n_cx.setValue((-(m_i*n_0*neu_react_rate * density\
-			* temperature) / (charge_true*B_theta**2))\
+			* temperature) / (charge*B_theta**2))\
 			* ((B_theta**2 / (aspect*B_phi)**2) + 2.0))
 	g_T_cx.setValue(alpha_cx * g_n_cx)
 	g_Z_cx.setValue(-g_n_cx / rho_pi)
@@ -78,13 +76,13 @@ def update_g_coeffs():
 #	print numpy.imag(bulk_complex_term)
 
 	Gamma_bulk.setValue( aspect**2*density*temperature\
-			/ (pi**(1.0/2.0)*B*x*charge_true) * (rho_pi / 0.5 + Z)\
+			/ (pi**(1.0/2.0)*B*x*charge) * (rho_pi / 0.5 + Z)\
 			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
 #	print Gamma_bulk
 
 
 	## Ion Orbit Loss
-	g_OL.setValue((charge_true * density * nu_eff\
+	g_OL.setValue((charge * density * nu_eff\
 			* (aspect)**(1.0/2.0) * rho_pi))
 
 	Gamma_OL.setValue(numerix.exp(-(nu_ai + Z**4)**(1.0/2.0))\
