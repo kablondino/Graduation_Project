@@ -3,7 +3,7 @@
 	state variables needed for the model (including Diffusivity).
 """
 
-from fipy import Grid1D, CellVariable, FaceVariable
+from fipy import Grid1D, CellVariable
 from fipy.tools import numerix, dump
 
 from parameters import *
@@ -25,7 +25,6 @@ temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True, unit="eV")
 U = CellVariable(name=r"$U$", mesh=mesh, hasOld=True, unit="eV/m**3")
 
 Z = CellVariable(name=r"$Z$", mesh=mesh, hasOld=True, unit="")
-print Z.unit
 
 Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True, unit="m**2/s")
 
