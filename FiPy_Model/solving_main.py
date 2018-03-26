@@ -52,12 +52,24 @@ LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 #		legend=None, title="Density")
 #init_density_viewer = Viewer(temperature, xmin=0.0,\
 #		xmax=config.plotx_max, legend=None, title="Temperature")
-#init_density_viewer = Viewer((Z, Diffusivity), xmin=0.0,\
+#init_density_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
 #		xmax=config.plotx_max, legend='best',\
 #		title=r"$Z$ and Diffusivity")
 #raw_input("Pause for SI Initial Conditions")
 
 timeStep = epsilon / config.timeStep_denom
+
+# Debug
+update_g_coeffs()
+#print (Z_transient_unit*m_i * density * temperature / (charge**2 * rho_pi * B**2)).inBaseUnits()
+#print (Z_diffusion_unit*m_i * mu *density*temperature / (charge**2 * rho_pi * B_theta**2)).inBaseUnits()
+#print Gamma_an
+#print Gamma_cx
+##print Gamma_bulk
+#print Gamma_OL
+print aspect**2*density*temperature\
+			/ (numerix.sqrt(pi)*B*x*charge) * (rho_pi.numericValue / 0.5 + Z)\
+			* numpy.imag(bulk_complex_term)
 
 #if __name__ == '__main__':
 #
