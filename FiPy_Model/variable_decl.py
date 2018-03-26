@@ -39,7 +39,7 @@ Z_diffusion_unit = PhysicalField(value=1.0, unit="m**-2")
 
 # -------------- Other Variable Declarations --------------
 # Neutrals density in use for CX friction
-n_0 = CellVariable(name=r"$n_0$", mesh=mesh)
+n_0 = CellVariable(name=r"$n_0$", mesh=mesh, unit="m**-3")
 
 # Thermal velocities (most probable)
 v_Ti = CellVariable(name=r"$v_{th,i}$", mesh=mesh, unit="m/s")
@@ -77,16 +77,10 @@ Gamma_cx = CellVariable(name=r"$\Gamma_i^{cx}$", mesh=mesh,\
 		unit="1 / (m**2 * s)")
 
 ## Ion Bulk (Parallel) Viscosity
-# Consolidated constant to reduce clutter, listed as N on reference
-#N = CellVariable(name="Consolidated Bulk Viscosity value", mesh=mesh)
-## xi_p integral
-#xi_p = CellVariable(name=r"$\xi_\theta$", mesh=mesh)
-## xi_t integral
-#xi_t = CellVariable(name=r"$\xi_\phi$", mesh=mesh)
-
 g_n_bulk = CellVariable(name=r"$g_n^{\pi\parallel}$", mesh=mesh, unit="A/m")
 g_T_bulk = CellVariable(name=r"$g_T^{\pi\parallel}$", mesh=mesh, unit="A/m")
 g_Z_bulk = CellVariable(name=r"$g_Z^{\pi\parallel}$", mesh=mesh, unit="A/m**2")
+
 Gamma_bulk = CellVariable(name=r"$\Gamma_i^{\pi\parallel}$", mesh=mesh,\
 		unit="1 / (m**2 * s)")
 
