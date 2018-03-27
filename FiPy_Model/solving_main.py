@@ -61,15 +61,15 @@ timeStep = epsilon / config.timeStep_denom
 
 # Debug
 update_g_coeffs()
-#print (Z_transient_unit*m_i * density * temperature / (charge**2 * rho_pi * B**2)).inBaseUnits()
-#print (Z_diffusion_unit*m_i * mu *density*temperature / (charge**2 * rho_pi * B_theta**2)).inBaseUnits()
-#print Gamma_an
-#print Gamma_cx
-##print Gamma_bulk
-#print Gamma_OL
-print aspect**2*density*temperature\
-			/ (numerix.sqrt(pi)*B*x*charge) * (rho_pi.numericValue / 0.5 + Z)\
-			* numpy.imag(bulk_complex_term)
+# Transient coefficient
+print (Z_transient_unit*m_i * density * temperature / (charge**2 * rho_pi * B**2)).inBaseUnits()
+# Diffusion coefficient
+print (Z_diffusion_unit*m_i * mu *density*temperature / (charge**2 * rho_pi * B_theta**2)).inBaseUnits()
+# Fluxes
+print Gamma_an
+print Gamma_cx
+print Gamma_bulk
+print Gamma_OL
 
 #if __name__ == '__main__':
 #

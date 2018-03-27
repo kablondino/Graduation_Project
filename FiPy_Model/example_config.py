@@ -11,7 +11,7 @@ q_c = -4.0
 nx = 1000
 
 # Length of domain
-L = 4.0
+L = 0.03
 
 # Total time steps; should be ~ L^2 / D
 total_timeSteps = 200
@@ -29,7 +29,7 @@ alpha_sup = 0.5
 beta = 1.5
 
 # Boolean, to choose what mode to have as initial conditions
-initial_H_mode = True
+initial_H_mode = False
 
 # Boolean, to choose either the original numerical model, or
 # the full flux model
