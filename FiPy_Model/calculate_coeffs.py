@@ -26,9 +26,15 @@ def update_g_coeffs():
 	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))			# [m]
 	rho_pe.setValue(m_e * v_Te / (charge * B_theta))			# [m]
 
+	# Transition frequency
+	omega_t.setValue(v_Ti / (q*R))
+
 	# Banana orbit bounce frequencies
-	omega_bi.setValue(numerix.sqrt(aspect**3) * v_Ti / (q * R))	# [s^-1]
-	omega_be.setValue(numerix.sqrt(aspect**3) * v_Te / (q * R))	# [s^-1]
+	omega_bi.setValue(numerix.sqrt(aspect**3) * omega_t)		# [s^-1]
+	omega_be.setValue(numerix.sqrt(aspect**3) * omega_t)		# [s^-1]
+
+	# Banana width
+	w_bi.setValue(numerix.sqrt(aspect) * rho_pi)				# [m]
 
 	# Collision frequencies within electrons and ions
 	nu_ei.setValue(4.206e-11*(density / numerix.sqrt(temperature/charge)**3)\
@@ -72,18 +78,19 @@ def update_g_coeffs():
 
 	## Ion Bulk (Parallel) Viscosity
 	bulk_complex_term = 1j*numerix.sqrt(pi) * scipy.special.wofz(\
-			Z + 1j*(nu_ii*aspect*B / (v_Ti*B_theta)).numericValue)
-#	print numpy.imag(bulk_complex_term)
+			Z + 1j*nu_ii / omega_t )
+	D_bulk = aspect**2*rho_pi*temperature\
+			/ (x*domain_unit * charge * B * numerix.sqrt(pi))
 
-#	Gamma_bulk.setValue( aspect**2*density*temperature\
-#			/ (pi**(1.0/2.0)*B*x*charge) * (rho_pi / 0.5 + Z)\
-#			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
+	Gamma_bulk.setValue( density*D_bulk * (1.0 / lambda_Z + Z/rho_pi)\
+			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
 
 
 	## Ion Orbit Loss
 	g_OL.setValue((charge * density * nu_eff\
 			* (aspect)**(1.0/2.0) * rho_pi))
 
-	Gamma_OL.setValue(numerix.exp(-(nu_ai + Z**4)**(1.0/2.0))\
-			/ (nu_ai + Z**4)**(1.0/2.0))						# [m^-2 s^-1]
+	Gamma_OL.setValue((g_OL / charge)*numerix.exp(\
+			-numerix.sqrt(nu_ai + Z**4) ) / numerix.sqrt(nu_ai + Z**4\
+			+ (x*domain_unit - a_m) / w_bi ))	# [m^-2 s^-1]
 
