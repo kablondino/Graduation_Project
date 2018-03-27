@@ -12,12 +12,15 @@ from variable_decl import *
 # ---------------- Set Initial Conditions -----------------
 # Initial conditions for L--mode
 if config.initial_H_mode == False:
-	density.setValue(1.5*x / 4.0 + 0.5)
+#	density.setValue(1.5*x / 4.0 + 0.5)
+	density.setValue(5.0e20*x + 5.0e18)
 
-	temperature.setValue(250.0*(0.0125*x**2 + 0.2*x + 1.2))
+#	temperature.setValue(250.0*(0.0125*x**2 + 0.2*x + 1.2))
+	temperature.setValue(1.0e4*x + 1.0e2)
 
 #	Z.setValue(0.0)
-	Z.setValue(-3.0 / (1.0 + numerix.exp(12.0*(x - 1.75))))
+#	Z.setValue(-3.0 / (1.0 + numerix.exp(12.0*(x - 1.75))))
+	Z.setValue(-3.0 / (1.0 + numerix.exp(1.0e3*(x - 0.015))))
 
 # Initial conditions for H--mode
 elif config.initial_H_mode == True:

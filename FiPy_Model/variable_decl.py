@@ -18,7 +18,7 @@ X = mesh.faceCenters[0] # Face position, if needed
 
 # -------------- State Variable Declarations --------------
 density = CellVariable(name=r"$n$", mesh=mesh, hasOld=True,\
-		unit="1.0e19*m**-3")
+		unit="m**-3")
 
 temperature = CellVariable(name=r"$T$", mesh=mesh, hasOld=True, unit="eV")
 
@@ -31,8 +31,9 @@ Diffusivity = CellVariable(name=r"$D$", mesh=mesh, hasOld=True, unit="m**2/s")
 U.setValue(density*temperature / (gamma - 1.0))
 
 # Variables that properly add the units to the respective terms
+domain_unit = PhysicalField(1.0, unit="m")
 density_grad_unit = PhysicalField(value=1.0, unit="m**-4")
-temp_grad_unit = PhysicalField(value=1/charge.numericValue, unit="eV/m")
+temp_grad_unit = PhysicalField(value=1.0, unit="eV/m")
 Z_transient_unit = PhysicalField(value=1.0, unit="1/s")
 Z_diffusion_unit = PhysicalField(value=1.0, unit="m**-2")
 
@@ -52,6 +53,12 @@ rho_pe = CellVariable(name=r"$\rho_{\theta e}$", mesh=mesh, unit="m")
 # Banana orbit bounce frequencies
 omega_bi = CellVariable(name=r"$\omega_{bi}$", mesh=mesh, unit="1 / s")
 omega_be = CellVariable(name=r"$\omega_{be}$", mesh=mesh, unit="1 / s")
+
+# Banana width
+w_bi = CellVariable(name=r"$w_{bi}$", mesh=mesh, unit="m")
+
+# Transit frequency
+omega_t = CellVariable(name=r"$\omega_t$", mesh=mesh, unit="1 / s")
 
 # Collision Frequencies
 nu_ei = CellVariable(name=r"$\nu_{ei}$", mesh=mesh, unit="1 / s")
@@ -85,7 +92,8 @@ Gamma_bulk = CellVariable(name=r"$\Gamma_i^{\pi\parallel}$", mesh=mesh,\
 		unit="1 / (m**2 * s)")
 
 ## Ion Orbit Loss
-g_OL = CellVariable(name=r"$g^{OL}$", mesh=mesh)
+g_OL = CellVariable(name=r"$g^{OL}$", mesh=mesh, unit="e*m**-3*m/s")
+
 Gamma_OL = CellVariable(name=r"$\Gamma_i^{OL}$", mesh=mesh,\
 		unit="1 / (m**2 * s)")
 
