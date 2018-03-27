@@ -8,7 +8,7 @@ Gamma_c = -4.0 / 5.0
 q_c = -4.0
 
 # Number of cells
-nx = 1000
+nx = 20
 
 # Length of domain
 L = 0.03	# <-- For use in the FLUX Model

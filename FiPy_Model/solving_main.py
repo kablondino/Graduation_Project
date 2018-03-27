@@ -66,15 +66,40 @@ timeStep = epsilon / config.timeStep_denom
 update_g_coeffs()
 print density
 print temperature
+print Z
+print v_Ti
+print v_Te
+print rho_pi
+print rho_pe
+# Frequencies
+print omega_t
+print omega_bi
+print omega_be
+print w_bi
+print nu_ei
+print nu_ii
+print nu_in0
+print nu_eff
+print nu_ai
+print nu_ae
+# Fluxes
+print D_an
+print g_n_an
+print g_T_an
+print g_Z_an
+print Gamma_an
+print g_n_cx
+print g_T_cx
+print g_Z_cx
+print Gamma_cx
+print Gamma_bulk
+print g_OL
+print Gamma_OL
+
 # Transient coefficient
 print (Z_transient_unit*m_i * density * temperature / (charge**2 * rho_pi * B**2)).inBaseUnits()
 # Diffusion coefficient
 print (Z_diffusion_unit*m_i * mu *density*temperature / (charge**2 * rho_pi * B_theta**2)).inBaseUnits()
-# Fluxes
-print Gamma_an
-print Gamma_cx
-print Gamma_bulk
-print Gamma_OL
 
 #if __name__ == '__main__':
 #

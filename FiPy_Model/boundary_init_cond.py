@@ -19,7 +19,8 @@ if config.initial_H_mode == False:
 		density.setValue(1.5e19*x / 0.03 + 0.5e19)		# in m^-3
 		temperature.setValue(300.0*x / 0.03 + 100.0)	# in eV!
 
-	Z.setValue(0.0)
+#	Z.setValue(0.0) Below line is temporary for calculating fluxes!!
+	Z.setValue(-3.0 / (1.0 + numerix.exp(1.5e3*(x - 0.015))))
 
 # Initial conditions for H--mode
 elif config.initial_H_mode == True:
