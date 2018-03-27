@@ -1,4 +1,4 @@
-# Full Model Notes: 14 Mar 2018
+# Full Model Notes: 26 Mar 2018
 
 \small\begin{align}
 	&\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,=\, a + bx - x^3 \\
@@ -68,7 +68,7 @@ Generalized versions for boundary conditions at the plasma edge ($x=0$):
 \small\begin{align}
 	\frac{\partial n}{\partial x} \,=\, \frac{n}{\lambda_n}~,
 		~~~~\frac{\partial T}{\partial x} \,=\, \frac{T}{\lambda_T}~,
-		~~~~\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}~;
+		~~~~\left(\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}\right)~;
 \end{align}\normalsize
 
 ...towards the core ($x=L$):
@@ -119,7 +119,7 @@ Steady-State Solutions
 		+ \left(g_T^\text{an} - g_T^\text{cx} - g_T^{\pi\parallel}\right) \dfrac{T^\prime}{T}
 		+ \left(g_Z^\text{an} - g_Z^\text{cx} - g_Z^{\pi\parallel}\right) Z - e\Gamma^\text{OL} \\
 	&\dfrac{m_i n T}{e^2 \rho_{\theta i} B^2} \frac{\partial Z}{\partial t}
-		\,=\, \dfrac{m_i \mu}{e^2 \rho_{\theta i} B_\theta^2} \frac{\partial^2 Z}{\partial x^2}
+		\,=\, \dfrac{m_i \mu n T}{e^2 \rho_{\theta i} B_\theta^2} \frac{\partial^2 Z}{\partial x^2}
 		\,+\, \Gamma_e^\text{an} \,-\, \Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{cx} \,-\, \Gamma_i^\text{OL}
 \end{align}\normalsize
 
