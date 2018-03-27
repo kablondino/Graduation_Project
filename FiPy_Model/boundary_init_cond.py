@@ -8,31 +8,30 @@
 
 from variable_decl import *
 
-if config.original_model == True:
-	density_SI_coeff, temp_SI_coeff = 1.0, 1.0
-elif config.original_model == False:
-	density_SI_coeff = 1.0e19		# Converts to m^-3
-	temp_SI_coeff = 250				# Converts to eV
 
 # ---------------- Set Initial Conditions -----------------
 # Initial conditions for L--mode
 if config.initial_H_mode == False:
-	density.setValue(density_SI_coeff*(1.5*x / 4.0 + 0.5))
+#	density.setValue(1.5*x / 4.0 + 0.5)
+	density.setValue(5.0e20*x + 5.0e18)
 
-	temperature.setValue(temp_SI_coeff*(0.0125*x**2 + 0.2*x + 1.2))
+#	temperature.setValue(250.0*(0.0125*x**2 + 0.2*x + 1.2))
+	temperature.setValue(1.0e4*x + 1.0e2)	# in eV!
 
-	Z.setValue(0.0)
+#	Z.setValue(0.0)
+#	Z.setValue(-3.0 / (1.0 + numerix.exp(12.0*(x - 1.75))))
+	Z.setValue(-3.0 / (1.0 + numerix.exp(1.0e3*(x - 0.015))))
 
 # Initial conditions for H--mode
 elif config.initial_H_mode == True:
-	density.setValue(density_SI_coeff*((0.5/1.5)*x + 0.5))
-	density.setValue(density_SI_coeff*(3.0*x - 3.5), where = x > 1.5)
-	density.setValue(density_SI_coeff*((0.5/1.5)*x + (11.0/6.0)),\
+	density.setValue((0.5/1.5)*x + 0.5)
+	density.setValue(3.0*x - 3.5, where = x > 1.5)
+	density.setValue((0.5/1.5)*x + (11.0/6.0),\
 			where = x > 2.0)
 
-	temperature.setValue(temp_SI_coeff*(0.2*x + 1.2))
-	temperature.setValue(temp_SI_coeff*(1.8*x - 1.2), where = x > 1.5)
-	temperature.setValue(temp_SI_coeff*(0.2*x + 2.0), where = x > 2.0)
+	temperature.setValue(0.2*x + 1.2)
+	temperature.setValue(1.8*x - 1.2, where = x > 1.5)
+	temperature.setValue(0.2*x + 2.0, where = x > 2.0)
 
 	Z.setValue(-3.0 / (1.0 + numerix.exp(12.0*(x - 1.75))))
 
@@ -97,8 +96,8 @@ def set_boundary_values(AGamma_c, Aq_c):
 	"""
 	temp_left = temperature.faceValue / lambda_T
 	temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
-	temp_right =\
-	temperature.faceGrad.constrain((zeta * (AGamma_c*temperature.faceValue -\
+	temp_right = temperature.faceGrad.constrain(\
+			(zeta * (AGamma_c*temperature.faceValue -\
 			Aq_c*(gamma - 1.0))) / (Diffusivity.faceValue *\
 			density.faceValue), mesh.facesRight)
 

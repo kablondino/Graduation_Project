@@ -2,7 +2,8 @@
 	This file contains the $g$ coefficients and plasma
 	parameters for use in the alternate $Z$ equation
 	developed by Staps.
-	It has been written as a function.
+	It has been written as a function as to be called within
+	the solving loop.
 """
 
 from boundary_init_cond import *
@@ -10,19 +11,16 @@ from boundary_init_cond import *
 import scipy.special		# For the Faddeeva (plasma dispersion) function
 import numpy
 
-## Plasma Parameters
-#e_p = 1.0 + (m_i*density_adjusted + m_e*density_adjusted) / (epsilon_0 * B**2)
 
+# ASSUMES density is in m^-3 and temperature is in eV
 def update_g_coeffs():
 	# Neutrals density in use for CX friction
 	n_0.setValue(4.0e17 * a_in0 * (temperature / 100.0)\
 			**(3.0/4.0))										# [m^-3]
 
 	# Thermal velocities (most probable)
-	v_Ti.setValue((2.0 * charge * temperature / m_i)\
-			**(1.0/2.0))										# [m/s]
-	v_Te.setValue((2.0 * charge * temperature / m_e)\
-			**(1.0/2.0))										# [m/s]
+	v_Ti.setValue(numerix.sqrt(2.0 * charge * temperature / m_i))	# [m/s]
+	v_Te.setValue(numerix.sqrt(2.0 * charge * temperature / m_e))	# [m/s]
 
 	# Poloidal gyro-(Larmor) radii
 	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))		# [m]
@@ -33,14 +31,14 @@ def update_g_coeffs():
 
 	# Banana orbit bounce frequencies
 	omega_bi.setValue(aspect**(3.0/2.0) * omega_t)				# [s^-1]
-	omega_be.setValue(aspect**(3.0/2.0) * omega_t)				# [s^-1]
+	omega_be.setValue(aspect**(3.0/2.0) * v_Te / (q * R))		# [s^-1]
 
 	# Banana width
 	w_bi.setValue(numerix.sqrt(aspect) * rho_pi)				# [m]
 
 	# Collision frequencies within electrons and ions
-	nu_ei.setValue(1.33e5*(density*1.0e-20)\
-			/ (charge * temperature)**(3.0/2.0))			# [s^-1]
+	nu_ei.setValue(4.2058e-11*(density)\
+			/ (temperature)**(3.0/2.0))			# [s^-1]
 	nu_ii.setValue(1.2 * (m_e / m_i)**(1.0/2.0) * nu_ei)		# [s^-1]
 
 	# Collision frequency of trapped ions and neutrals
@@ -55,14 +53,14 @@ def update_g_coeffs():
 
 
 	## Electron Anomalous Diffusion
-	D_an.setValue(aspect**2*(pi)**(1.0/2.0) / (2*a_m) *\
-			(rho_pe * temperature/charge)/B)
+	D_an.setValue(aspect**2 * numerix.sqrt(pi) * rho_pe * temperature\
+			/ (2*a_m * B))
 	g_n_an.setValue(charge*density*D_an)
 	g_T_an.setValue(g_n_an * alpha_an)
 	g_Z_an.setValue(g_n_an / rho_pi)
 
 	Gamma_an.setValue((g_n_an*density.grad[0]\
-			/density + g_T_an*temperature.grad[0]/temperature\
+			/ density + g_T_an*temperature.grad[0]/temperature\
 			+ g_Z_an*Z) / charge)								# [m^-2 s^-1]
 
 
@@ -82,7 +80,7 @@ def update_g_coeffs():
 	bulk_complex_term = 1j * numerix.sqrt(pi) * scipy.special.wofz(\
 			Z + 1j*nu_ii / omega_t)
 	D_bulk = aspect**2 * rho_pi * temperature\
-			/ (x*charge*B* numerix.sqrt(pi))
+			/ (x * B * numerix.sqrt(pi))
 
 	Gamma_bulk.setValue( density*D_bulk * (1 / 0.5 + Z/rho_pi)\
 			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
