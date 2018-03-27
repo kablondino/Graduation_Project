@@ -24,8 +24,8 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 if config.original_model == False:
 	# Full Flux model
 	Z_transient_coeff = m_i * density * temperature\
-			/ (charge_true**2 * rho_pi * B**2)
-	Z_diffusion_coeff = m_i * mu / (charge_true**2 * rho_pi * B_theta**2)
+			/ (charge**2 * rho_pi * B**2)
+	Z_diffusion_coeff = m_i * mu / (charge**2 * rho_pi * B_theta**2)
 
 	Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
 			== DiffusionTerm(coeff=Z_diffusion_coeff, var=Z)\
