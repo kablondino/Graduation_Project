@@ -25,7 +25,8 @@ if config.original_model == False:
 	# Full Flux model
 	Z_transient_coeff = m_i * density * temperature\
 			/ (charge**2 * rho_pi * B**2)
-	Z_diffusion_coeff = m_i * mu / (charge**2 * rho_pi * B_theta**2)
+	Z_diffusion_coeff = m_i * mu * density * temperature\
+			/ (charge**2 * rho_pi * B_theta**2)
 
 	Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
 			== DiffusionTerm(coeff=Z_diffusion_coeff, var=Z)\
@@ -42,6 +43,27 @@ elif config.original_model == True:
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
 
+# For debugging and value-checking purposes
+update_g_coeffs()
+#print density
+#print temperature
+#print v_Ti
+#print v_Te
+#print rho_pi
+#print rho_pe
+#print omega_t
+#print omega_bi
+#print omega_be
+#print w_bi
+#print nu_ei
+#print nu_ii
+#print nu_ai
+#print D_an
+#print Gamma_an
+#print Gamma_cx
+#print Gamma_bulk
+#print Z_transient_coeff
+#print Z_diffusion_coeff
 
 # ----------------- Choose Solver -------------------------
 # Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,
@@ -58,11 +80,10 @@ if config.original_model == True:
 elif config.original_model == False:
 	init_density_viewer = Viewer(density, xmin=0.0, xmax=config.plotx_max,\
 			legend=None, title="Density")
-	init_density_viewer = Viewer(temperature, xmin=0.0,\
-			xmax=config.plotx_max, legend=None, title="Temperature")
-	init_density_viewer = Viewer((Z, Diffusivity), xmin=0.0,\
-			xmax=config.plotx_max, legend='best',\
-			title=r"$Z$ and Diffusivity")
+	init_temp_viewer = Viewer(temperature, xmin=0.0, xmax=config.plotx_max,\
+			legend=None, title="Temperature")
+	init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
+			xmax=config.plotx_max, legend='best', title=r"$Z$ and Diffusivity")
 	raw_input("Pause for SI Initial Conditions")
 
 timeStep = epsilon / config.timeStep_denom
@@ -75,7 +96,7 @@ if __name__ == '__main__':
 				xmin=0.0, xmax=config.plotx_max,\
 				datamax=config.ploty_max, legend='best',\
 				title = config.plot_title)
-	else:
+	elif config.original_model == False:
 		density_viewer = Viewer(density, xmin=0.0, xmax=config.plotx_max,\
 				datamax=3.0e20, legend='best',\
 				title = config.plot_title)
