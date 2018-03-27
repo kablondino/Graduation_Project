@@ -91,6 +91,6 @@ print "The numerical parameters are chosen to " + str(config.numerical_choice)
 ## For use in full flux model
 alpha_an = 1.0				# Anomalous loss coefficient
 a_in0 = 0.05				# Neutrals coefficient
-neu_react_rate = PhysicalField(value=1.0e-14, unit="m**3/s")	# Reaction rate of charge exchange
+neu_react_rate = PhysicalField(value=1.0e-6, unit="m**3/s")	# Reaction rate of charge exchange
 alpha_cx = 0.9				# Charge exchange coefficient
 
