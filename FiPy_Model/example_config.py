@@ -11,14 +11,19 @@ q_c = -4.0
 nx = 1000
 
 # Length of domain
-L = 0.03
+L = 0.03	# <-- For use in the FLUX Model
+#L = 4.0		# <-- For use in the ORIGINAL Model
+
+# Boolean, to choose either the original numerical model, or
+# the full flux model
+original_model = False
 
 # Total time steps; should be ~ L^2 / D
 total_timeSteps = 200
 
 # Size of time step denominator (delta t)
 # Either mu or epsilon is in the numerator
-timeStep_denom = 20.0
+timeStep_denom = 8.0
 
 # Choose the Diffusivity model, as a string (case does not matter)
 # D_Zohm, D_Staps, and D_Shear are the possibilities
@@ -30,10 +35,6 @@ beta = 1.5
 
 # Boolean, to choose what mode to have as initial conditions
 initial_H_mode = False
-
-# Boolean, to choose either the original numerical model, or
-# the full flux model
-original_model = True
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad

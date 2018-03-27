@@ -92,5 +92,5 @@ def update_g_coeffs():
 
 	Gamma_OL.setValue((g_OL / charge)*numerix.exp(\
 			-numerix.sqrt(nu_ai + Z**4) ) / numerix.sqrt(nu_ai + Z**4\
-			+ (x*domain_unit - a_m) / w_bi ))	# [m^-2 s^-1]
+			+ (x*domain_unit / w_bi)**4 ))						# [m^-2 s^-1]
 

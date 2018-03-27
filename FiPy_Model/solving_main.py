@@ -24,7 +24,7 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 if config.original_model == False:
 	# Full Flux model
 	Z_transient_coeff = m_i * density * temperature\
-			\ (charge**2 * rho_pi * B**2)
+			/ (charge**2 * rho_pi * B**2)
 	Z_diffusion_coeff = (m_i * mu / (charge**2 * rho_pi * B_theta**2))
 
 	Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
@@ -53,9 +53,9 @@ LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 # Initial conditions viewer
 #init_density_viewer = Viewer(density, xmin=0.0, xmax=config.plotx_max,\
 #		legend=None, title="Density")
-#init_density_viewer = Viewer(temperature, xmin=0.0,\
+#init_temp_viewer = Viewer(temperature, xmin=0.0,\
 #		xmax=config.plotx_max, legend=None, title="Temperature")
-#init_density_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
+#init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
 #		xmax=config.plotx_max, legend='best',\
 #		title=r"$Z$ and Diffusivity")
 #raw_input("Pause for SI Initial Conditions")
@@ -64,6 +64,8 @@ timeStep = epsilon / config.timeStep_denom
 
 # Debug
 update_g_coeffs()
+print density
+print temperature
 # Transient coefficient
 print (Z_transient_unit*m_i * density * temperature / (charge**2 * rho_pi * B**2)).inBaseUnits()
 # Diffusion coefficient
