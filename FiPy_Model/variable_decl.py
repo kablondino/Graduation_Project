@@ -46,6 +46,12 @@ rho_pe = CellVariable(name=r"$\rho_{\theta e}$", mesh=mesh)
 omega_bi = CellVariable(name=r"$\omega_{bi}$", mesh=mesh)
 omega_be = CellVariable(name=r"$\omega_{be}$", mesh=mesh)
 
+# Banana width
+w_bi = CellVariable(name=r"$w_{bi}$", mesh=mesh)
+
+# Transit frequency
+omega_t = CellVariable(name=r"$\omega_t$", mesh=mesh)
+
 # Collision Frequencies
 nu_ei = CellVariable(name=r"$\nu_{ei}$", mesh=mesh)
 nu_ii = CellVariable(name=r"$\nu_{ii}$", mesh=mesh)

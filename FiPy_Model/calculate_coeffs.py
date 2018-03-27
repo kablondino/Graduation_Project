@@ -19,22 +19,28 @@ def update_g_coeffs():
 			**(3.0/4.0))										# [m^-3]
 
 	# Thermal velocities (most probable)
-	v_Ti.setValue((2.0 * charge_true * temperature / m_i)\
+	v_Ti.setValue((2.0 * charge * temperature / m_i)\
 			**(1.0/2.0))										# [m/s]
-	v_Te.setValue((2.0 * charge_true * temperature / m_e)\
+	v_Te.setValue((2.0 * charge * temperature / m_e)\
 			**(1.0/2.0))										# [m/s]
 
 	# Poloidal gyro-(Larmor) radii
-	rho_pi.setValue(m_i * v_Ti / (charge_true * B_theta))		# [m]
-	rho_pe.setValue(m_e * v_Te / (charge_true * B_theta))		# [m]
+	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))		# [m]
+	rho_pe.setValue(m_e * v_Te / (charge * B_theta))		# [m]
+
+	# Transition frequency
+	omega_t.setValue(v_Ti / (q*R))
 
 	# Banana orbit bounce frequencies
-	omega_bi.setValue(aspect**(3.0/2.0) * v_Ti / (q * R))		# [s^-1]
-	omega_be.setValue(aspect**(3.0/2.0) * v_Te / (q * R))		# [s^-1]
+	omega_bi.setValue(aspect**(3.0/2.0) * omega_t)				# [s^-1]
+	omega_be.setValue(aspect**(3.0/2.0) * omega_t)				# [s^-1]
+
+	# Banana width
+	w_bi.setValue(numerix.sqrt(aspect) * rho_pi)				# [m]
 
 	# Collision frequencies within electrons and ions
 	nu_ei.setValue(1.33e5*(density*1.0e-20)\
-			/ (charge_true * temperature)**(3.0/2.0))			# [s^-1]
+			/ (charge * temperature)**(3.0/2.0))			# [s^-1]
 	nu_ii.setValue(1.2 * (m_e / m_i)**(1.0/2.0) * nu_ei)		# [s^-1]
 
 	# Collision frequency of trapped ions and neutrals
@@ -49,42 +55,41 @@ def update_g_coeffs():
 
 
 	## Electron Anomalous Diffusion
-	D_an.setValue((aspect)**2*(pi)**(1.0/2.0) / (2*a_m) *\
-			(rho_pe * temperature)/B)
-	g_n_an.setValue(density*D_an)
+	D_an.setValue(aspect**2*(pi)**(1.0/2.0) / (2*a_m) *\
+			(rho_pe * temperature/charge)/B)
+	g_n_an.setValue(charge*density*D_an)
 	g_T_an.setValue(g_n_an * alpha_an)
 	g_Z_an.setValue(g_n_an / rho_pi)
 
 	Gamma_an.setValue((g_n_an*density.grad[0]\
 			/density + g_T_an*temperature.grad[0]/temperature\
-			+ g_Z_an*Z))										# [m^-2 s^-1]
+			+ g_Z_an*Z) / charge)								# [m^-2 s^-1]
 
 
 	## Charge Exchange Friction
 	g_n_cx.setValue((-(m_i*n_0*neu_react_rate * density\
-			* temperature) / (charge_true*B_theta**2))\
+			* temperature) / (charge*B_theta**2))\
 			* ((B_theta**2 / (aspect*B_phi)**2) + 2.0))
 	g_T_cx.setValue(alpha_cx * g_n_cx)
 	g_Z_cx.setValue(-g_n_cx / rho_pi)
 
 	Gamma_cx.setValue((g_n_cx * density.grad[0]/density\
 			+ g_T_cx * temperature.grad[0]/temperature\
-			+ g_Z_cx*Z))										# [m^-2 s^-1]
+			+ g_Z_cx*Z) / charge)								# [m^-2 s^-1]
 
 
 	## Ion Bulk (Parallel) Viscosity
-	bulk_complex_term = 1j*(pi)**(1.0/2.0) * scipy.special.wofz(\
-			Z + 1j*nu_ii*aspect*B / (v_Ti*B_theta))
-#	print numpy.imag(bulk_complex_term)
+	bulk_complex_term = 1j * numerix.sqrt(pi) * scipy.special.wofz(\
+			Z + 1j*nu_ii / omega_t)
+	D_bulk = aspect**2 * rho_pi * temperature\
+			/ (x*charge*B* numerix.sqrt(pi))
 
-	Gamma_bulk.setValue( aspect**2*density*temperature\
-			/ (pi**(1.0/2.0)*B*x*charge_true) * (rho_pi / 0.5 + Z)\
+	Gamma_bulk.setValue( density*D_bulk * (1 / 0.5 + Z/rho_pi)\
 			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
-#	print Gamma_bulk
 
 
 	## Ion Orbit Loss
-	g_OL.setValue((charge_true * density * nu_eff\
+	g_OL.setValue((charge * density * nu_eff\
 			* (aspect)**(1.0/2.0) * rho_pi))
 
 	Gamma_OL.setValue(numerix.exp(-(nu_ai + Z**4)**(1.0/2.0))\
