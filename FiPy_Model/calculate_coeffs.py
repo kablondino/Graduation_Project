@@ -30,8 +30,8 @@ def update_g_coeffs():
 	omega_t.setValue(v_Ti / (q*R))
 
 	# Banana orbit bounce frequencies
-	omega_bi.setValue(numerix.sqrt(aspect**3) * omega_t)		# [s^-1]
-	omega_be.setValue(numerix.sqrt(aspect**3) * omega_t)		# [s^-1]
+	omega_bi.setValue(aspect**(3.0/2.0) * omega_t)				# [s^-1]
+	omega_be.setValue(aspect**(3.0/2.0) * v_Te / (q * R))		# [s^-1]
 
 	# Banana width
 	w_bi.setValue(numerix.sqrt(aspect) * rho_pi)				# [m]
