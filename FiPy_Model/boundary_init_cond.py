@@ -13,8 +13,8 @@ from variable_decl import *
 # Initial conditions for L--mode
 if config.initial_H_mode == False:
 	if config.original_model == True:
-		density.setValue(1.5*x / config.L + 0.5)		# in AU
-		temperature.setValue(x / config.L + 1.2)
+		density.setValue(1.5*x / L + 0.5)		# in AU
+		temperature.setValue(x / L + 1.2)
 	elif config.original_model == False:
 		density.setValue(1.5e19*x / 0.03 + 0.5e19)		# in m^-3
 		temperature.setValue(300.0*x / 0.03 + 100.0)	# in eV!
@@ -25,17 +25,28 @@ if config.initial_H_mode == False:
 # Initial conditions for H--mode
 elif config.initial_H_mode == True:
 	if config.original_model == True:
-		density.setValue((0.5/1.5)*x + 0.5)
-		density.setValue(3.0*x - 3.5, where = x > 1.5)
-		density.setValue((0.5/1.5)*x + (11.0/6.0),\
-				where = x > 2.0)
+		density.setValue((0.5/1.5)*x + 0.5, where = x <= 1.5)
+		density.setValue(3.0*x - 3.5, where = (x > 1.5) & (x < 2.0))
+		density.setValue((0.5/1.5)*x + (11.0/6.0), where = x >= 2.0)
 
-		temperature.setValue(0.2*x + 1.2)
-		temperature.setValue(1.8*x - 1.2, where = x > 1.5)
-		temperature.setValue(0.2*x + 2.0, where = x > 2.0)
+		temperature.setValue((0.2*x + 1.2)/charge**2, where = x <= 1.5)
+		temperature.setValue((1.8*x - 1.2)/charge,\
+				where = (x > 1.5) & (x < 2.0))
+		temperature.setValue((0.2*x + 2.0), where = x >= 2.0)
 
 		Z.setValue(-3.0 / (1.0 + numerix.exp(12.0*(x - 1.75))))
+
 	elif config.original_model == False:
+		density.setValue(37.5e19*x + 0.5e19, where = x < 0.01)
+		density.setValue(337.5e19*x - 2.5e19, where = (x > 0.01) & (x < 0.015))
+		density.setValue(37.5e19*x + 2.0e19, where = x > 0.015)
+
+		temperature.setValue((8.0e3*x + 100.0)/charge**2, where = x < 0.01)
+		temperature.setValue((60.0e3*x - 420.0)/charge,\
+				where = (x > 0.01) & (x < 0.015))
+		temperature.setValue(8.0e3*x + 360.0, where = x > 0.015)
+		print "Done setting temperature pieces"
+
 		Z.setValue(-3.0 / (1.0 + numerix.exp(1.5e3*(x - 0.015))))
 
 else:
@@ -78,7 +89,7 @@ print "The diffusivity model is set to " + str(config.D_choice)
 #			*(1.0 + x/lambda_n)**(-zeta)))
 
 #	Z.setValue(Z_S*(1.0 - numerix.tanh(\
-#			(config.L*x - config.L) / 2.0)))	# OLD, by Staps
+#			(L*x - L) / 2.0)))	# OLD, by Staps
 
 
 # ----------------- Boundary Conditions ------------------- #

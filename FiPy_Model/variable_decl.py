@@ -8,9 +8,13 @@ from fipy.tools import numerix, dump
 
 from parameters import *
 
+if config.original_model == True:
+	L = 4.0		# in AU
+elif config.original_model == False:
+	L = 0.03	# in m
 
 # ----------------- Mesh Generation -----------------------
-mesh = Grid1D(nx=config.nx, Lx=config.L)
+mesh = Grid1D(nx=config.nx, Lx=L)
 
 x = mesh.cellCenters[0] # Cell position
 X = mesh.faceCenters[0] # Face position, if needed

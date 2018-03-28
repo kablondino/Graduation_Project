@@ -10,13 +10,10 @@ q_c = -4.0
 # Number of cells
 nx = 20
 
-# Length of domain
-L = 0.03	# <-- For use in the FLUX Model
-#L = 4.0		# <-- For use in the ORIGINAL Model
-
 # Boolean, to choose either the original numerical model, or
-# the full flux model
-original_model = False
+# the full flux model. Note that it sets the length of the domain
+# L to be 4.0 AU in the original, and 0.03 m in the flux model.
+original_model = True
 
 # Total time steps; should be ~ L^2 / D
 total_timeSteps = 200
@@ -48,7 +45,6 @@ plot_title = "H--Mode Start; $D \sim (Z^\prime)^{{{:01.2f}}}$".format(beta)\
 		.format(timeStep_denom)
 
 # Maximum x on the plots
-plotx_max = L
 ploty_max = None
 # Maximum and minimum y values on the plots
 aux1y_min = None
