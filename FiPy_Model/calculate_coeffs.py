@@ -16,36 +16,37 @@ import numpy
 
 def update_g_coeffs():
 	# Neutrals density in use for CX friction
-	n_0.setValue(4.0e17 * a_in0 * (temperature.numericValue / 100.0)**(3.0/4.0))										# [m^-3]
+	n_0.setValue(4.0e17 * a_in0 * (temperature.numericValue / 100.0)\
+			**(3.0/4.0))											# [m^-3]
 
 	# Thermal velocities (most probable)
-	v_Ti.setValue((2.0 * temperature / m_i)**(1.0/2.0))			# [m/s]
-	v_Te.setValue((2.0 * temperature / m_e)**(1.0/2.0))			# [m/s]
+	v_Ti.setValue((2.0 * temperature / m_i)**(1.0/2.0))				# [m/s]
+	v_Te.setValue((2.0 * temperature / m_e)**(1.0/2.0))				# [m/s]
 
 	# Poloidal gyro-(Larmor) radii
-	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))			# [m]
-	rho_pe.setValue(m_e * v_Te / (charge * B_theta))			# [m]
+	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))				# [m]
+	rho_pe.setValue(m_e * v_Te / (charge * B_theta))				# [m]
 
 	# Transition frequency
 	omega_t.setValue(v_Ti / (q*R))
 
 	# Banana orbit bounce frequencies
-	omega_bi.setValue(numerix.sqrt(aspect**3.0) * omega_t)				# [s^-1]
-	omega_be.setValue(numerix.sqrt(aspect**3.0) * v_Te / (q * R))		# [s^-1]
+	omega_bi.setValue(numerix.sqrt(aspect**3.0) * omega_t)			# [s^-1]
+	omega_be.setValue(numerix.sqrt(aspect**3.0) * v_Te / (q * R))	# [s^-1]
 
 	# Banana width
-	w_bi.setValue(numerix.sqrt(aspect) * rho_pi)				# [m]
+	w_bi.setValue(numerix.sqrt(aspect) * rho_pi)					# [m]
 
 	# Collision frequencies within electrons and ions
 	nu_ei.setValue(4.206e-11*(density / numerix.sqrt(temperature/charge)**3)\
-			.numericValue)										# [s^-1]
-	nu_ii.setValue(1.2 * numerix.sqrt(m_e / m_i) * nu_ei)		# [s^-1]
+			.numericValue)											# [s^-1]
+	nu_ii.setValue(1.2 * numerix.sqrt(m_e / m_i) * nu_ei)			# [s^-1]
 
 	# Collision frequency of trapped ions and neutrals
-	nu_in0.setValue(a_in0 * omega_bi)							# [s^-1]
+	nu_in0.setValue(a_in0 * omega_bi)								# [s^-1]
 
 	# Effective detrapping frequency
-	nu_eff.setValue(nu_ii + nu_in0)								# [s^-1]
+	nu_eff.setValue(nu_ii + nu_in0)									# [s^-1]
 
 	# Effective collision frequencies
 	nu_ai.setValue(nu_ii / omega_bi)	# nu_*i
