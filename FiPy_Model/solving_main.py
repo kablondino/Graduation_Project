@@ -51,179 +51,107 @@ GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
 LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 # Initial conditions viewer
-#init_density_viewer = Viewer(density, xmin=0.0, xmax=config.plotx_max,\
-#		legend=None, title="Density")
-#init_temp_viewer = Viewer(temperature, xmin=0.0,\
-#		xmax=config.plotx_max, legend=None, title="Temperature")
-#init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
-#		xmax=config.plotx_max, legend='best',\
-#		title=r"$Z$ and Diffusivity")
-#raw_input("Pause for SI Initial Conditions")
+init_density_viewer = Viewer(density, xmin=0.0, xmax=L,\
+		legend=None, title="Density")
+if config.original_model == True:
+	init_temp_viewer = Viewer(temperature, xmin=0.0,\
+			xmax=L, legend=None, title="Temperature")
+elif config.original_model == False:
+	init_temp_viewer = Viewer(temperature/charge, xmin=0.0,\
+			xmax=L, legend=None, title="Temperature")
+init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
+		xmax=L, legend='best',\
+		title=r"$Z$ and Diffusivity")
+raw_input("Pause for SI Initial Conditions")
 
 timeStep = epsilon / config.timeStep_denom
 
 # Debug
-update_g_coeffs()
+#update_g_coeffs()
+print "\n ------------------- Density ---------------------"
 print density
+print "\n ------------------- Temperature -----------------"
 print temperature
-print Z
-print v_Ti
-print v_Te
-print rho_pi
-print rho_pe
-# Frequencies
-print omega_t
-print omega_bi
-print omega_be
-print w_bi
-print nu_ei
-print nu_ii
-print nu_in0
-print nu_eff
-print nu_ai
-print nu_ae
-# Fluxes
-print D_an
-print g_n_an
-print g_T_an
-print g_Z_an
-print Gamma_an
-print g_n_cx
-print g_T_cx
-print g_Z_cx
-print Gamma_cx
-print Gamma_bulk
-print g_OL
-print Gamma_OL
+#print "\n ------------------- Z, in H--mode ---------------"
+#print Z
+#print "\nManual E_r calc"
+#print (Z * temperature / (charge*rho_pi)).inBaseUnits()
+#print "\n ------------------- Diffusivity - ---------------"
+#print Diffusivity
+#print "\n ------------------- v_Ti ------------------------"
+#print v_Ti
+#print "\n ------------------- v_Te ------------------------"
+#print v_Te
+#print "\n ------------------- rho_pi ----------------------"
+#print rho_pi
+#print "\n ------------------- rho_pe ----------------------"
+#print rho_pe
+## Frequencies
+#print "\n ------------------- omega_t ---------------------"
+#print omega_t
+#print "\n ------------------- omega_bi --------------------"
+#print omega_bi
+#print "\n ------------------- omega_be --------------------"
+#print omega_be
+#print "\n ------------------- w_bi ------------------------"
+#print w_bi
+#print "\n ------------------- nu_ei -----------------------"
+#print nu_ei
+#print "\n ------------------- nu_ii -----------------------"
+#print nu_ii
+#print "\n ------------------- nu_in0 ----------------------"
+#print nu_in0
+#print "\n ------------------- nu_eff ----------------------"
+#print nu_eff
+#print "\n ------------------- nu_ai -----------------------"
+#print nu_ai
+#print "\n ------------------- nu_ae -----------------------"
+#print nu_ae
+#
+## Fluxes
+#print "\n ------------------- D_an ------------------------"
+#print D_an
+#print "\n ------------------- g_n_an ----------------------"
+#print g_n_an
+#print "\n ------------------- g_T_an ----------------------"
+#print g_T_an
+#print "\n ------------------- g_Z_an ----------------------"
+#print g_Z_an
+#print "\n ------------------- Gamma_an --------------------"
+#print Gamma_an
+#print "\n ------------------- g_n_cx ----------------------"
+#print g_n_cx
+#print "\n ------------------- g_T_cx ----------------------"
+#print g_T_cx
+#print "\n ------------------- g_Z_cx ----------------------"
+#print g_Z_cx
+#print "\n ------------------- Gamma_cx --------------------"
+#print Gamma_cx
+#print "\n ------------------- Gamma_bulk ------------------"
+#print Gamma_bulk
+#print "\n ------------------- g_OL ------------------------"
+#print g_OL
+#print "\n ------------------- Gamma_OL --------------------"
+#print Gamma_OL
+#
+## Transient coefficient
+#print "\n ------------------- Transient Coeff -------------"
+#print (Z_transient_unit*m_i * density * temperature / (charge**2 * rho_pi * B**2)).inBaseUnits()
+## Diffusion coefficient
+#print "\n ------------------- Diffusion Coeff -------------"
+#print (Z_diffusion_unit*m_i * mu *density*temperature / (charge**2 * rho_pi * B_theta**2)).inBaseUnits()
 
-# Transient coefficient
-print (Z_transient_unit*m_i * density * temperature / (charge**2 * rho_pi * B**2)).inBaseUnits()
-# Diffusion coefficient
-print (Z_diffusion_unit*m_i * mu *density*temperature / (charge**2 * rho_pi * B_theta**2)).inBaseUnits()
+all_variables = (density, temperature, Z, Diffusivity, v_Ti, v_Te, rho_pi,\
+		rho_pe, omega_t, omega_bi, omega_be, w_bi, nu_ei, nu_ii, nu_in0,\
+		nu_eff, nu_ai, nu_ae, D_an, g_n_an, g_T_an, g_Z_an, Gamma_an,\
+		g_n_cx, g_T_cx, g_Z_cx, Gamma_cx, g_n_bulk, g_T_bulk, g_Z_bulk,\
+		Gamma_bulk, g_OL, Gamma_OL)
+#TSVViewer(vars=all_variables).plot(filename="all_vars.tsv")
 
-#if __name__ == '__main__':
-#
-#	# Initialize viewers
-#	if config.original_model == True:
-#		viewer = Viewer((density, temperature, -Z, Diffusivity),\
-#				xmin=0.0, xmax=config.plotx_max,\
-#				datamax=config.ploty_max, legend='best',\
-#				title = config.plot_title)
-#	else:
-#		density_viewer = Viewer(density, xmin=0.0, xmax=config.plotx_max,\
-#				datamax=3.0e20, legend='best',\
-#				title = config.plot_title)
-#		temp_viewer = Viewer(temperature, xmin=0.0, xmax=config.plotx_max,\
-#				datamax=2e3, legend='best',\
-#				title = config.plot_title)
-#		Z_viewer = Viewer((Z, Diffusivity), xmin=0.0, xmax=config.plotx_max,\
-#				legend='best',\
-#				title = config.plot_title)
-#
-#	# Auxiliary viewers
-#	if config.aux_plots == True:
-#		auxiliary1_viewer = Viewer((omega_bi), xmin=0.0,\
-#				xmax=config.plotx_max, datamin=config.aux1y_min,\
-#				datamax=config.aux1y_max, legend='best',\
-#				title = config.aux_title1)
-#		auxiliary2_viewer = Viewer((omega_be), xmin=0.0,\
-#				xmax=config.plotx_max, datamin=config.aux2y_min,\
-#				datamax=config.aux2y_max, legend='best',\
-#				title = config.aux_title2)
-#
-#	# File writing
-#	if (hasattr(config, 'save_directory') and\
-#			(getattr(config, 'save_plots', False) == True or\
-#			getattr(config, 'save_TSVs', False) == True)):
-#		if not os.path.exists(os.getcwd() +str("/")+ config.save_directory):
-#			os.makedirs(os.getcwd() +str("/")+ config.save_directory)
-#			raw_input("Directory created: " +str(config.save_directory))
-#		raw_input("Pause set for writing to file...")
-#
-#	# Set the tolerance for the full flux model
-#	original_res_tol = 1.0e-7
-#	density_res_tol, temp_res_tol, Z_res_tol = 1.0e12, 1.0e12, 1.0e12
-#
-#	for t in range(config.total_timeSteps):
-#		# (Re)set residual values
-#		original_residual = 1.0e100
-#		density_residual = 1.0e100
-#		temp_residual = 1.0e100
-#		Z_residual = 1.0e100
-#
-#		# Update values
-#		Diffusivity.setValue(D_choice_local)
-#		density.updateOld(); temperature.updateOld(); Z.updateOld()
-#		update_g_coeffs()
-#
-#		# Solve the full flux model equations
-#		if config.original_model == False:
-#			# Solve density equation
-#			while density_residual > density_res_tol:
-#				print t, density_residual, temp_residual, Z_residual
-#				density_residual = density.equation.sweep(dt=timeStep,\
-#							solver=GMRES_Solver)
-#
-#			# Solve temperature equation
-#			while temp_residual > temp_res_tol:
-#				print t, density_residual, temp_residual, Z_residual
-#				temp_residual = temperature.equation.sweep(dt=timeStep,\
-#							solver=GMRES_Solver)
-#
-#			# Solve Z equation
-#			while Z_residual > Z_res_tol:
-#				print t, density_residual, temp_residual, Z_residual
-#				Z_residual = Z.equation.sweep(dt=timeStep,\
-#						solver=GMRES_Solver)
-#
-#		# Solve the fully coupled, original model equation
-#		else:
-#			config.original_model == True
-#			while original_residual > original_res_tol:
-#				print t, original_residual
-#				original_residual = full_equation.sweep(dt=timeStep,\
-#						solver=GMRES_Solver)
-#
-#		# Plot solution and save, if option is True
-#		if config.save_plots == True:
-#			# Save full flux plots
-#			if config.original_model == False:
-#				density_viewer.plot(filename = config.save_directory + "/n"\
-#						+str(t).zfill(4)+ ".png")
-#				temp_viewer.plot(filename = config.save_directory + "/T" \
-#						+str(t).zfill(4)+ ".png")
-#				Z_viewer.plot(filename = config.save_directory + "/Z" \
-#						+str(t).zfill(4)+ ".png")
-#			# Save original model plots
-#			else:
-#				viewer.plot(filename =\
-#						config.save_directory+"/"+str(t).zfill(4)+".png")
-#
-#			# Save auxiliary plots
-#			if config.aux_plots == True:
-#				auxiliary1_viewer.plot(filename =\
-#						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
-#				auxiliary2_viewer.plot(filename =\
-#						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
-#
-#		else:
-#			if config.original_model == False:
-#				density_viewer.plot(); temp_viewer.plot(); Z_viewer.plot()
-#			else:
-#				viewer.plot()
-#
-#			if config.aux_plots == True:
-#				auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
-#
-#		# Save TSV's
-#		if config.save_TSVs == True:
-#			all_variables = (density, temperature, Z, Diffusivity, v_Ti,\
-#					v_Te, rho_pi, rho_pe, omega_bi, omega_be, nu_ei, nu_ii,\
-#					nu_in0, nu_eff, nu_ai, nu_ae, Gamma_an, Gamma_cx,\
-#					Gamma_bulk, Gamma_OL)
-#			TSVViewer(vars=all_variables).plot(\
-#					filename=config.save_directory+"/"+str(t).zfill(4)+".tsv")
-#
-#
-#	raw_input(" <=============== End of Program. Press any key to continue. ===============> ")
-#
+# ----------------- NOTE ----------------------------------
+"""
+	This file is never meant to solve the system, and
+	therefore, the main solving routine has been deleted.
+	Refer to the master branch to obtain it.
+"""
+
