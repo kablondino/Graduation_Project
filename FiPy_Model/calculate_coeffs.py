@@ -23,8 +23,8 @@ def update_g_coeffs():
 	v_Te.setValue(numerix.sqrt(2.0 * charge * temperature / m_e))	# [m/s]
 
 	# Poloidal gyro-(Larmor) radii
-	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))		# [m]
-	rho_pe.setValue(m_e * v_Te / (charge * B_theta))		# [m]
+	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))			# [m]
+	rho_pe.setValue(m_e * v_Te / (charge * B_theta))			# [m]
 
 	# Transition frequency
 	omega_t.setValue(v_Ti / (q*R))
