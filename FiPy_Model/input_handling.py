@@ -2,7 +2,6 @@
 	This file deals with all of the inputs for the system. The current set
 	of inputs are the following:
 	nx:				int		The number of grid points
-	L:				float	The length of the domain
 	total_timeSteps:int		The total number of time steps
 	timeStep_denom:	float	The denominator of the time step
 	Gamma_c			float	The particle flux from the core
@@ -13,7 +12,6 @@
 	original_model:	bool	Which Z-equation model? 'False' is flux model.
 	SI_units		bool	Determines the units of the profiles
 	plot_title:		string	The title of the plot; can be formatted
-	plotx_max:		float	The maximum x-value on the plot (min is always 0)
 	ploty_max:		float	The maximum y-value on the plot
 	aux_plots:		bool	Turns on specified auxiliary plots
 	aux_title1:		str		Title of the first auxiliary plot
@@ -89,24 +87,24 @@ if ((type(getattr(config, 'nx', None)) != int and\
 if type(config.nx) == float:
 	config.nx = int(config.nx)
 
-# Domain size
-if ((type(getattr(config, 'L', None)) != float and\
-		type(getattr(config, 'L', None)) != int) or\
-		getattr(config, 'L', None) <= 0.0):
-	try:
-		config.L = float(input("Length of domain not properly defined. Enter floating-point value: "))
-
-		if config.L <= 0:
-			raise NameError
-
-		print "L set to " + str(config.L)
-
-	except (NameError, SyntaxError, EOFError, ValueError):
-		config.L = 4.0
-		print "L defaulted to 4.0"
-
-if type(config.L) == int:
-	config.L = float(config.L)
+# Domain size		NOW DEPRICATED!
+#if ((type(getattr(config, 'L', None)) != float and\
+#		type(getattr(config, 'L', None)) != int) or\
+#		getattr(config, 'L', None) <= 0.0):
+#	try:
+#		config.L = float(input("Length of domain not properly defined. Enter floating-point value: "))
+#
+#		if config.L <= 0:
+#			raise NameError
+#
+#		print "L set to " + str(config.L)
+#
+#	except (NameError, SyntaxError, EOFError, ValueError):
+#		config.L = 4.0
+#		print "L defaulted to 4.0"
+#
+#if type(config.L) == int:
+#	config.L = float(config.L)
 
 # Choice of the diffusivity model
 if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
@@ -193,10 +191,6 @@ if not hasattr(config, 'aux_title1'):
 if not hasattr(config, 'aux_title2'):
 	config.aux_title2 = ""
 
-# Maximum x on the plots
-if (type(getattr(config, 'plotx_max', None)) != int and\
-		type(getattr(config, 'plotx_max', None)) != float):
-	config.plotx_max = config.L
 
 # MINIMUM y values on the plots
 if (type(getattr(config, 'ploty_min', None)) != int and\
