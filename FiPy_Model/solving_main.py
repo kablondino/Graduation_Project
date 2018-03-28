@@ -45,8 +45,8 @@ full_equation = density.equation & temperature.equation & Z.equation
 
 # For debugging and value-checking purposes
 update_g_coeffs()
-#print density
-#print temperature
+print density
+print temperature
 #print v_Ti
 #print v_Te
 #print rho_pi
@@ -75,15 +75,15 @@ LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 # Initial conditions viewer
 if config.original_model == True:
 	initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
-			xmin=0.0, xmax=config.plotx_max, legend='best')
+			xmin=0.0, xmax=L, legend='best')
 	raw_input("Pause for Initial Conditions")
 elif config.original_model == False:
-	init_density_viewer = Viewer(density, xmin=0.0, xmax=config.plotx_max,\
+	init_density_viewer = Viewer(density, xmin=0.0, xmax=L,\
 			legend=None, title="Density")
-	init_temp_viewer = Viewer(temperature, xmin=0.0, xmax=config.plotx_max,\
+	init_temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
 			legend=None, title="Temperature")
 	init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
-			xmax=config.plotx_max, legend='best', title=r"$Z$ and Diffusivity")
+			xmax=L, legend='best', title=r"$Z$ and Diffusivity")
 	raw_input("Pause for SI Initial Conditions")
 
 timeStep = epsilon / config.timeStep_denom
@@ -93,28 +93,28 @@ if __name__ == '__main__':
 	# Initialize viewers
 	if config.original_model == True:
 		viewer = Viewer((density, temperature, -Z, Diffusivity),\
-				xmin=0.0, xmax=config.plotx_max,\
+				xmin=0.0, xmax=L,\
 				datamax=config.ploty_max, legend='best',\
 				title = config.plot_title)
 	elif config.original_model == False:
-		density_viewer = Viewer(density, xmin=0.0, xmax=config.plotx_max,\
+		density_viewer = Viewer(density, xmin=0.0, xmax=L,\
 				datamax=3.0e20, legend='best',\
 				title = config.plot_title)
-		temp_viewer = Viewer(temperature, xmin=0.0, xmax=config.plotx_max,\
+		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
 				datamax=2e3, legend='best',\
 				title = config.plot_title)
-		Z_viewer = Viewer((Z, Diffusivity), xmin=0.0, xmax=config.plotx_max,\
+		Z_viewer = Viewer((Z, Diffusivity), xmin=0.0, xmax=L,\
 				legend='best',\
 				title = config.plot_title)
 
 	# Auxiliary viewers
 	if config.aux_plots == True:
 		auxiliary1_viewer = Viewer((omega_bi), xmin=0.0,\
-				xmax=config.plotx_max, datamin=config.aux1y_min,\
+				xmax=L, datamin=config.aux1y_min,\
 				datamax=config.aux1y_max, legend='best',\
 				title = config.aux_title1)
 		auxiliary2_viewer = Viewer((omega_be), xmin=0.0,\
-				xmax=config.plotx_max, datamin=config.aux2y_min,\
+				xmax=L, datamin=config.aux2y_min,\
 				datamax=config.aux2y_max, legend='best',\
 				title = config.aux_title2)
 
