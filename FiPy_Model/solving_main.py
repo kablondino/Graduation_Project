@@ -25,8 +25,10 @@ if config.original_model == False:
 	# Full Flux model
 	Z_transient_coeff = m_i * density * temperature\
 			/ (charge**2 * rho_pi * B**2)
+	Z_transient_coeff.name = r"$\hat{epsilon}$"
 	Z_diffusion_coeff = m_i * mu * density * temperature\
 			/ (charge**2 * rho_pi * B_theta**2)
+	Z_diffusion_coeff.name = r"$\hat{mu}$"
 
 	Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
 			== DiffusionTerm(coeff=Z_diffusion_coeff, var=Z)\
@@ -44,26 +46,8 @@ elif config.original_model == True:
 full_equation = density.equation & temperature.equation & Z.equation
 
 # For debugging and value-checking purposes
-update_g_coeffs()
-print density
-print temperature
-#print v_Ti
-#print v_Te
-#print rho_pi
-#print rho_pe
-#print omega_t
-#print omega_bi
-#print omega_be
-#print w_bi
-#print nu_ei
-#print nu_ii
-#print nu_ai
-#print D_an
-#print Gamma_an
-#print Gamma_cx
-#print Gamma_bulk
-#print Z_transient_coeff
-#print Z_diffusion_coeff
+#update_g_coeffs()
+#print_variables(density, temperature, Gamma_an)
 
 # ----------------- Choose Solver -------------------------
 # Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,
@@ -175,12 +159,13 @@ if __name__ == '__main__':
 		if config.save_plots == True:
 			# Save full flux plots
 			if config.original_model == False:
-				density_viewer.plot(filename = config.save_directory + "/n"\
+				density_viewer.plot(filename=config.save_directory + "/n"\
 						+str(t).zfill(4)+ ".png")
-				temp_viewer.plot(filename = config.save_directory + "/T" \
+				temp_viewer.plot(filename=config.save_directory + "/T" \
 						+str(t).zfill(4)+ ".png")
-				Z_viewer.plot(filename = config.save_directory + "/Z" \
+				Z_viewer.plot(filename=config.save_directory + "/Z" \
 						+str(t).zfill(4)+ ".png")
+
 			# Save original model plots
 			else:
 				viewer.plot(filename =\

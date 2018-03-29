@@ -108,3 +108,9 @@ variable_dictionary = {\
 		'Gamma_bulk': Gamma_bulk
 		}
 
+# Function to print out any variable
+def print_variables(*args):
+	for v in args:
+		print "\n--------------------\t" +str(v.name)+ "\t--------------------"
+		print v
+
