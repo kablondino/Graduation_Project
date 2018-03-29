@@ -36,3 +36,6 @@ __init__.py
 # Minted files ignored
 /Thesis/_minted-thesis
 
+# Configuration files for FiPy
+*config*.py
+
