@@ -8,10 +8,7 @@ from fipy.tools import numerix, dump
 
 from parameters import *
 
-if config.original_model == True:
-	L = 4.0		# in AU
-elif config.original_model == False:
-	L = 0.03	# in m
+L = 0.03	# in m
 
 # ----------------- Mesh Generation -----------------------
 mesh = Grid1D(nx=config.nx, Lx=L)
@@ -114,4 +111,10 @@ variable_dictionary = {\
 		'g_n_bulk': g_n_bulk, 'g_T_bulk': g_T_bulk, 'g_Z_bulk': g_Z_bulk,\
 		'Gamma_bulk': Gamma_bulk
 		}
+
+# Function to print out any variable
+def print_variables(*args):
+	for v in args:
+		print "\n--------------------\t" +str(v.name)+ "\t--------------------"
+		print v
 
