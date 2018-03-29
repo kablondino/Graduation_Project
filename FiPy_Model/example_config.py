@@ -10,11 +10,6 @@ q_c = -4.0
 # Number of cells
 nx = 20
 
-# Boolean, to choose either the original numerical model, or
-# the full flux model. Note that it sets the length of the domain
-# L to be 4.0 AU in the original, and 0.03 m in the flux model.
-original_model = True
-
 # Total time steps; should be ~ L^2 / D
 total_timeSteps = 200
 
