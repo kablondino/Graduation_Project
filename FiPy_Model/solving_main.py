@@ -34,7 +34,8 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 Z_transient_coeff = m_i * density * temperature\
 		/ (charge**2 * rho_pi * B**2)
 Z_transient_coeff.name = r"$\hat{epsilon}$"
-Z_diffusion_coeff = (m_i * mu / (charge**2 * rho_pi * B_theta**2))
+Z_diffusion_coeff = (m_i * mu * density * temperature\
+		/ (charge**2 * rho_pi * B_theta**2))
 Z_diffusion_coeff.name = r"$\hat{mu}$"
 
 Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
@@ -71,14 +72,10 @@ all_variables = (density, temperature, Z, Diffusivity, v_Ti, v_Te, rho_pi,\
 
 # Debug
 update_g_coeffs()
-print m_i.inBaseUnits(), m_e.inBaseUnits()
 print_variables(density, temperature, Z, Diffusivity, v_Ti, v_Te, rho_pi,\
 		rho_pe, omega_t, omega_bi, omega_be, w_bi, nu_ei, nu_ii, nu_in0,\
 		nu_eff, nu_ai, nu_ae, D_an, g_n_an, g_T_an, g_Z_an, Gamma_an,\
 		g_n_cx, g_T_cx, g_Z_cx, Gamma_cx, D_bulk, Gamma_bulk, g_OL, Gamma_OL,\
 		Z_transient_coeff, Z_diffusion_coeff)
-
-
-raw_input("End of calculation")
 
 
