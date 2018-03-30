@@ -72,7 +72,8 @@ def update_g_coeffs():
 	g_T_cx.setValue(alpha_cx * g_n_cx)
 	g_Z_cx.setValue(-g_n_cx / rho_pi)
 
-	Gamma_cx.setValue((g_n_cx * density.grad[0]*density_grad_unit / density\
+	# Adding temporary scaling factor
+	Gamma_cx.setValue(1.0e4*(g_n_cx * density.grad[0]*density_grad_unit / density\
 			+ g_T_cx * temperature.grad[0]*temp_grad_unit / temperature\
 			+ g_Z_cx*Z) / charge)								# [m^-2 s^-1]
 
@@ -80,18 +81,20 @@ def update_g_coeffs():
 	## Ion Bulk (Parallel) Viscosity
 	bulk_complex_term = 1j*numerix.sqrt(pi) * scipy.special.wofz(\
 			Z + 1j*nu_ii / omega_t )
-	D_bulk = aspect**2*rho_pi*temperature\
-			/ (x*domain_unit * charge * B * numerix.sqrt(pi))
+	D_bulk.setValue(aspect**2*rho_pi*temperature\
+			/ (x*domain_unit * charge * B * numerix.sqrt(pi)))
 
-	Gamma_bulk.setValue( density*D_bulk * (1.0 / lambda_Z + Z/rho_pi)\
+	# Adding temporary scaling factor
+	Gamma_bulk.setValue( 1.0e-2 * density*D_bulk * (1.0/lambda_Z + Z/rho_pi)\
 			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
 
 
-	## Ion Orbit Loss
-	g_OL.setValue((charge * density * nu_eff\
-			* (aspect)**(1.0/2.0) * rho_pi))
+	## Ion Orbit Loss, KOBAYASHI DEFINITION, as well as bulk
+	g_OL.setValue(charge * density * nu_ii * nu_ai * rho_pi)
+	
+	radical_OL = numerix.sqrt(nu_ai + Z**4 + (x*domain_unit / w_bi)**4)
 
-	Gamma_OL.setValue((g_OL / charge)*numerix.exp(\
-			-numerix.sqrt(nu_ai + Z**4) ) / numerix.sqrt(nu_ai + Z**4\
-			+ (x*domain_unit / w_bi)**4 ))						# [m^-2 s^-1]
+	# Adding temporary scaling factor
+	Gamma_OL.setValue(1.0e4 * g_OL*numerix.exp(-radical_OL) / (charge*radical_OL))
+																# [m^-2 s^-1]
 
