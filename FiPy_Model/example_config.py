@@ -8,7 +8,7 @@ Gamma_c = -0.8e18
 q_c = -4.0e18
 
 # Number of cells
-nx = 20
+nx = 10
 
 # Total time steps; should be ~ L^2 / D
 total_timeSteps = 200
@@ -26,7 +26,7 @@ alpha_sup = 0.5
 beta = 1.5
 
 # Boolean, to choose what mode to have as initial conditions
-initial_H_mode = False
+initial_H_mode = True
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
