@@ -15,7 +15,7 @@ import numpy
 # ASSUMES density is in m^-3 and temperature is in eV
 def update_g_coeffs():
 	# Neutrals density in use for CX friction
-	n_0.setValue(4.0e17 * a_in0 * (temperature / 100.0)\
+	n_0.setValue(4.0e17 * a_in0 * (charge*temperature / 100.0)\
 			**(3.0/4.0))										# [m^-3]
 
 	# Thermal velocities (most probable)
@@ -80,8 +80,8 @@ def update_g_coeffs():
 	## Ion Bulk (Parallel) Viscosity
 	bulk_complex_term = 1j * numerix.sqrt(pi) * scipy.special.wofz(\
 			Z + 1j*nu_ii / omega_t)
-	D_bulk = aspect**2 * rho_pi * temperature\
-			/ (x * B * numerix.sqrt(pi))
+	D_bulk.setValue(aspect**2 * rho_pi * temperature\
+			/ (x * B * numerix.sqrt(pi)))						# [m^2 s^-1
 
 	# Adding temporary scaling factor
 	Gamma_bulk.setValue( 1.0e-2 * density*D_bulk * (1.0/lambda_Z + Z/rho_pi)\
