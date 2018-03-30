@@ -56,6 +56,15 @@ PCG_Solver = LinearPCGSolver(iterations=100, tolerance=1.0e-6)
 GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
 LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
+# LOAD pickled H--Mode data
+if (__name__ == '__main__' and config.initial_H_mode == True\
+		and config.original_model == True):
+	H_mode_data = dump.read("./L_start_pickle/state0090.dat")
+	density.setValue(H_mode_data['density'])
+	temperature.setValue(H_mode_data['temperature'])
+	Z.setValue(H_mode_data['Z'])
+	Diffusivity.setValue(D_choice_local)
+
 # Initial conditions viewer
 if config.original_model == True:
 	initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
@@ -112,7 +121,7 @@ if __name__ == '__main__':
 		raw_input("Pause set for writing to file...")
 
 	# Set the tolerance for the full flux model
-	original_res_tol = 1.0e-7
+	original_res_tol = 1.0e-5
 	density_res_tol, temp_res_tol, Z_res_tol = 1.0e12, 1.0e12, 1.0e12
 
 	for t in range(config.total_timeSteps):

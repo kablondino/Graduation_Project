@@ -8,7 +8,7 @@ Gamma_c = -4.0 / 5.0
 q_c = -4.0
 
 # Number of cells
-nx = 20
+nx = 500
 
 # Boolean, to choose either the original numerical model, or
 # the full flux model. Note that it sets the length of the domain
@@ -31,7 +31,7 @@ alpha_sup = 0.5
 beta = 1.5
 
 # Boolean, to choose what mode to have as initial conditions
-initial_H_mode = False
+initial_H_mode = True
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
