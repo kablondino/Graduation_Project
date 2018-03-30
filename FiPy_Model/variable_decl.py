@@ -78,16 +78,7 @@ g_Z_cx = CellVariable(name=r"$g_Z^{cx}$", mesh=mesh)
 Gamma_cx = CellVariable(name=r"$\Gamma_i^{cx}$", mesh=mesh)
 
 ## Ion Bulk (Parallel) Viscosity
-# Consolidated constant to reduce clutter, listed as N on reference
-#N = CellVariable(name="Consolidated Bulk Viscosity value", mesh=mesh)
-## xi_p integral
-#xi_p = CellVariable(name=r"$\xi_\theta$", mesh=mesh)
-## xi_t integral
-#xi_t = CellVariable(name=r"$\xi_\phi$", mesh=mesh)
-
-g_n_bulk = CellVariable(name=r"$g_n^{\pi\parallel}$", mesh=mesh)
-g_T_bulk = CellVariable(name=r"$g_T^{\pi\parallel}$", mesh=mesh)
-g_Z_bulk = CellVariable(name=r"$g_Z^{\pi\parallel}$", mesh=mesh)
+D_bulk = CellVariable(name=r"$D^{\pi\parallel}$", mesh=mesh)
 Gamma_bulk = CellVariable(name=r"$\Gamma_i^{\pi\parallel}$", mesh=mesh)
 
 ## Ion Orbit Loss
@@ -101,16 +92,14 @@ variable_dictionary = {\
 		'omega_be': omega_be, 'nu_ei': nu_ei, 'nu_ii': nu_ii,\
 		'nu_in0': nu_in0, 'nu_eff': nu_eff, 'nu_ai': nu_ai, 'nu_ae': nu_ae,\
 		'D_an': D_an, 'g_n_an': g_n_an, 'g_T_an': g_T_an, 'g_Z_an': g_Z_an,\
-		'Gamma_an': Gamma_an,\
-		'g_n_cx': g_n_cx, 'g_T_cx': g_T_cx, 'g_Z_cx': g_Z_cx,\
-		'Gamma_cx': Gamma_cx, 'g_OL': g_OL, 'Gamma_OL': Gamma_OL,\
-		'g_n_bulk': g_n_bulk, 'g_T_bulk': g_T_bulk, 'g_Z_bulk': g_Z_bulk,\
-		'Gamma_bulk': Gamma_bulk
-		}
+		'Gamma_an': Gamma_an, 'g_n_cx': g_n_cx, 'g_T_cx': g_T_cx,\
+		'g_Z_cx': g_Z_cx, 'Gamma_cx': Gamma_cx, 'g_OL': g_OL,\
+		'Gamma_OL': Gamma_OL, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk\
+	}
 
 # Function to print out any variable
 def print_variables(*args):
 	for v in args:
 		print "\n--------------------\t" +str(v.name)+ "\t--------------------"
-		print v
+		print v.inBaseUnits()
 
