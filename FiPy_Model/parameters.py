@@ -12,14 +12,15 @@ from input_handling import *
 # ----------------- Constant Parameters -------------------
 ## Global parameters and physical constants
 pi = 3.141592653589793
-charge_dummy = 1.0				# Dummy charge
-charge = 1.6021766208e-19		# Elementary charge
-k_B_J = 1.38064852e-23			# Boltzmann in J/K
-k_B_eV = k_B_J / charge			# Boltzmann in eV/K
-m_e = 9.10938356e-31			# Electron mass
-m_i = 1.673e-27					# Ion (H) mass
-epsilon_0 = 8.854187817e-12		# Permittivity of free space
-mu_0 = 4*pi*1.0e-7				# Permeability of free space
+charge = 1.6021766208e-19					# Elementary charge
+k_B_J = 1.38064852e-23						# Boltzmann in J/K
+k_B_eV = k_B_J / charge						# Boltzmann in eV/K
+m_e = 9.10938356e-31						# Electron mass
+m_i = 1.673e-27								# Ion (H) mass
+epsilon_0 = 8.854187817e-12					# Permittivity of free space
+mu_0 = 4*pi*1.0e-7							# Permeability of free space
+c = 1 / (epsilon_0*mu_0)**(1.0/2.0)			# Speed of light
+gamma = 5.0/3.0								# Adiabatic index for monoatomic
 
 
 ## ASDEX-U specifications
@@ -37,7 +38,6 @@ B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
 
 ## PRESET parameters for quick calculation, many of which
 ## are chosen by Staps and Paquay
-gamma = 5.0/3.0
 
 lambda_n = 5.0/4.0		# Length scales for decay at edge
 lambda_T = 3.0/2.0
@@ -81,6 +81,6 @@ print "The numerical parameters are chosen to " + str(config.numerical_choice)
 ## For use in full flux model
 alpha_an = 1.0				# Anomalous loss coefficient
 a_in0 = 0.05				# Neutrals coefficient
-neu_react_rate = 1.0e-14	# Reaction rate of charge exchange
+neu_react_rate = 1.0e-6		# Reaction rate of charge exchange
 alpha_cx = 0.9				# Charge exchange coefficient
 
