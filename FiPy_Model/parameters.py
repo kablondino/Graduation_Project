@@ -20,7 +20,7 @@ m_e = PhysicalField(value=1.0, unit="me")	# 9.10938356e-31, Electron mass
 m_i = PhysicalField(value=1.0, unit="mp")	# 1.67262171e-27, Ion (H) mass
 epsilon_0 = PhysicalField(value=1.0, unit="eps0")	# = 8.854187817e-12, Permittivity of free space
 mu_0 = PhysicalField(value=1.0, unit="mu0")			# = 4*pi*1.0e-7, Permeability of free space
-
+c = 1 / (epsilon_0*mu_0)**(1.0/2.0)
 
 ## ASDEX-U specifications
 # Vertical minor radius
