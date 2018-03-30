@@ -43,7 +43,6 @@ elif config.initial_H_mode == True:
 		temperature.setValue((60.0e3*x - 420.0),\
 				where = (x > 0.01) & (x < 0.015))
 		temperature.setValue(8.0e3*x + 360.0, where = x > 0.015)
-		print "Done setting temperature pieces"
 
 		Z.setValue(-3.0 / (1.0 + numerix.exp(1.5e3*(x - 0.015))))
 
