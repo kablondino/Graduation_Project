@@ -38,8 +38,8 @@ def update_g_coeffs():
 
 	# Collision frequencies within electrons and ions
 	nu_ei.setValue(4.2058e-11*(density)\
-			/ (temperature)**(3.0/2.0))			# [s^-1]
-	nu_ii.setValue(1.2 * (m_e / m_i)**(1.0/2.0) * nu_ei)		# [s^-1]
+			/ (temperature)**(3.0/2.0))							# [s^-1]
+	nu_ii.setValue(1.2 * numerix.sqrt(m_e / m_i) * nu_ei)		# [s^-1]
 
 	# Collision frequency of trapped ions and neutrals
 	nu_in0.setValue(a_in0 * omega_bi)							# [s^-1]
@@ -55,9 +55,9 @@ def update_g_coeffs():
 	## Electron Anomalous Diffusion
 	D_an.setValue(aspect**2 * numerix.sqrt(pi) * rho_pe * temperature\
 			/ (2*a_m * B))
-	g_n_an.setValue(charge*density*D_an)
-	g_T_an.setValue(g_n_an * alpha_an)
-	g_Z_an.setValue(g_n_an / rho_pi)
+	g_n_an.setValue(charge*density*D_an)						# [A m^-2]
+	g_T_an.setValue(g_n_an * alpha_an)							# [A m^-2]
+	g_Z_an.setValue(g_n_an / rho_pi)							# [A m^-1]
 
 	Gamma_an.setValue((g_n_an*density.grad[0]\
 			/ density + g_T_an*temperature.grad[0]/temperature\
@@ -66,12 +66,13 @@ def update_g_coeffs():
 
 	## Charge Exchange Friction
 	g_n_cx.setValue((-(m_i*n_0*neu_react_rate * density\
-			* temperature) / (charge*B_theta**2))\
-			* ((B_theta**2 / (aspect*B_phi)**2) + 2.0))
-	g_T_cx.setValue(alpha_cx * g_n_cx)
-	g_Z_cx.setValue(-g_n_cx / rho_pi)
+			* temperature) / (B_theta**2))\
+			* ((B_theta**2 / (aspect*B_phi)**2) + 2.0))			# [A m^-2]
+	g_T_cx.setValue(alpha_cx * g_n_cx)							# [A m^-2]
+	g_Z_cx.setValue(-g_n_cx / rho_pi)							# [A m^-1]
 
-	Gamma_cx.setValue((g_n_cx * density.grad[0]/density\
+	# Adding temporary scaling factor
+	Gamma_cx.setValue(1.0e4*(g_n_cx * density.grad[0]/density\
 			+ g_T_cx * temperature.grad[0]/temperature\
 			+ g_Z_cx*Z) / charge)								# [m^-2 s^-1]
 
@@ -82,14 +83,17 @@ def update_g_coeffs():
 	D_bulk = aspect**2 * rho_pi * temperature\
 			/ (x * B * numerix.sqrt(pi))
 
-	Gamma_bulk.setValue( density*D_bulk * (1 / 0.5 + Z/rho_pi)\
+	# Adding temporary scaling factor
+	Gamma_bulk.setValue( 1.0e-2 * density*D_bulk * (1.0/lambda_Z + Z/rho_pi)\
 			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
 
 
 	## Ion Orbit Loss
-	g_OL.setValue((charge * density * nu_eff\
-			* (aspect)**(1.0/2.0) * rho_pi))
+	g_OL.setValue(charge * density * nu_ii * nu_ai * rho_pi)	# [A m^-2]
 
-	Gamma_OL.setValue(numerix.exp(-(nu_ai + Z**4)**(1.0/2.0))\
-			/ (nu_ai + Z**4)**(1.0/2.0))						# [m^-2 s^-1]
+	radical_OL = numerix.sqrt(nu_ai + Z**4 + (x/w_bi)**4)
+
+	# Adding temporary scaling factor
+	Gamma_OL.setValue(1.0e4 * g_OL * numerix.exp(-radical_OL)\
+			/ (charge*radical_OL))								# [m^-2 s^-1]
 
