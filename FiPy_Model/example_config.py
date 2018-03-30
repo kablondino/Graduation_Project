@@ -4,8 +4,8 @@
 """
 
 # Particle and heat flux from the core
-Gamma_c = -4.0 / 5.0
-q_c = -4.0
+Gamma_c = -0.8e18
+q_c = -4.0e18
 
 # Number of cells
 nx = 20
