@@ -44,6 +44,12 @@ Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
 
+# LOAD pickled H--Mode data for Z
+#if __name__ == '__main__' and config.nx == 500:
+#	print "Using pickled H--mode data for Z."
+#	H_mode_data = dump.read("./L_start_pickle/state0100.dat")
+#	Z.setValue(H_mode_data['Z'])
+#	Diffusivity.setValue(D_choice_local)
 
 # Initial conditions viewer
 init_density_viewer = Viewer(density, xmin=0.0, xmax=L,\
@@ -55,27 +61,24 @@ init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
 		title=r"$Z$ and Diffusivity")
 raw_input("Pause for SI Initial Conditions")
 
-timeStep = epsilon / config.timeStep_denom
-
-# Debug
-update_g_coeffs()
-print_variables(density, temperature, Z, Diffusivity, Gamma_an, Z_diffusion_coeff)
-
-#
-## Transient coefficient
-#print "\n ------------------- Transient Coeff -------------"
-#print (Z_transient_unit*m_i * density * temperature / (charge**2 * rho_pi * B**2)).inBaseUnits()
-## Diffusion coefficient
-#print "\n ------------------- Diffusion Coeff -------------"
-#print (Z_diffusion_unit*m_i * mu *density*temperature / (charge**2 * rho_pi * B_theta**2)).inBaseUnits()
 
 all_variables = (density, temperature, Z, Diffusivity, v_Ti, v_Te, rho_pi,\
 		rho_pe, omega_t, omega_bi, omega_be, w_bi, nu_ei, nu_ii, nu_in0,\
 		nu_eff, nu_ai, nu_ae, D_an, g_n_an, g_T_an, g_Z_an, Gamma_an,\
-		g_n_cx, g_T_cx, g_Z_cx, Gamma_cx, g_n_bulk, g_T_bulk, g_Z_bulk,\
-		Gamma_bulk, g_OL, Gamma_OL)
+		g_n_cx, g_T_cx, g_Z_cx, Gamma_cx, Gamma_bulk, g_OL, Gamma_OL)
 #TSVViewer(vars=all_variables).plot(filename="all_vars.tsv")
 
 
+# Debug
+update_g_coeffs()
+print m_i.inBaseUnits(), m_e.inBaseUnits()
+print_variables(density, temperature, Z, Diffusivity, v_Ti, v_Te, rho_pi,\
+		rho_pe, omega_t, omega_bi, omega_be, w_bi, nu_ei, nu_ii, nu_in0,\
+		nu_eff, nu_ai, nu_ae, D_an, g_n_an, g_T_an, g_Z_an, Gamma_an,\
+		g_n_cx, g_T_cx, g_Z_cx, Gamma_cx, D_bulk, Gamma_bulk, g_OL, Gamma_OL,\
+		Z_transient_coeff, Z_diffusion_coeff)
+
+
 raw_input("End of calculation")
+
 
