@@ -26,7 +26,7 @@ if config.original_model == False:
 	Z_transient_coeff = m_i * density * temperature\
 			/ (charge * rho_pi * B**2)
 	Z_transient_coeff.name = r"$\hat{epsilon}$"
-	Z_diffusion_coeff = m_i * mu * density * temperature\
+	Z_diffusion_coeff = 10.0*m_i * mu * density * temperature\
 			/ (charge * rho_pi * B_theta**2)
 	Z_diffusion_coeff.name = r"$\hat{mu}$"
 
@@ -50,7 +50,7 @@ full_equation = density.equation & temperature.equation & Z.equation
 # Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,
 # LinearJORSolver	<-- Not working exactly
 PCG_Solver = LinearPCGSolver(iterations=100, tolerance=1.0e-6)
-GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
+GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e12)
 LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 # LOAD pickled H--Mode data
@@ -63,85 +63,82 @@ if (__name__ == '__main__' and config.initial_H_mode == True\
 	Diffusivity.setValue(D_choice_local)
 
 # Initial conditions viewer
-if config.original_model == True:
-	initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
-			xmin=0.0, xmax=L, legend='best')
-	raw_input("Pause for Initial Conditions")
-elif config.original_model == False:
-	init_density_viewer = Viewer(density, xmin=0.0, xmax=L,\
-			legend=None, title="Density")
-	init_temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
-			legend=None, title="Temperature")
-	init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
-			xmax=L, legend='best', title=r"$Z$ and Diffusivity")
-	raw_input("Pause for SI Initial Conditions")
+#if config.original_model == True:
+#	initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
+#			xmin=0.0, xmax=L, legend='best')
+#	raw_input("Pause for Initial Conditions")
+#elif config.original_model == False:
+#	init_density_viewer = Viewer(density, xmin=0.0, xmax=L,\
+#			legend=None, title="Density")
+#	init_temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
+#			legend=None, title="Temperature")
+#	init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
+#			xmax=L, legend='best', title=r"$Z$ and Diffusivity")
+#	raw_input("Pause for SI Initial Conditions")
 
 timeStep = epsilon / config.timeStep_denom
 
-# Debug
 update_g_coeffs()
-print_variables(density, temperature, Z, Diffusivity, v_Ti, v_Te, rho_pi,\
-		rho_pe, omega_t, omega_bi, omega_be, w_bi, nu_ei, nu_ii, nu_in0,\
-		nu_eff, nu_ai, nu_ae, D_an, g_n_an, g_T_an, g_Z_an, Gamma_an,\
-		g_n_cx, g_T_cx, g_Z_cx, Gamma_cx, D_bulk, Gamma_bulk, g_OL, Gamma_OL,\
-		Z_transient_coeff, Z_diffusion_coeff)
+print_variables(Z_transient_coeff, Z_diffusion_coeff, Gamma_an, Gamma_cx, Gamma_bulk, Gamma_OL)
 
-#if __name__ == '__main__':
-#
-#	# Initialize viewers
-#	if config.original_model == True:
-#		viewer = Viewer((density, temperature, -Z, Diffusivity),\
-#				xmin=0.0, xmax=L,\
-#				datamax=config.ploty_max, legend='best',\
-#				title = config.plot_title)
-#	elif config.original_model == False:
-#		density_viewer = Viewer(density, xmin=0.0, xmax=L,\
-#				datamax=3.0e20, legend='best',\
-#				title = config.plot_title)
-#		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
-#				datamax=2e3, legend='best',\
-#				title = config.plot_title)
-#		Z_viewer = Viewer((Z, Diffusivity), xmin=0.0, xmax=L,\
-#				legend='best',\
-#				title = config.plot_title)
-#
-#	# Auxiliary viewers
-#	if config.aux_plots == True:
-#		auxiliary1_viewer = Viewer((omega_bi), xmin=0.0,\
-#				xmax=L, datamin=config.aux1y_min,\
-#				datamax=config.aux1y_max, legend='best',\
-#				title = config.aux_title1)
-#		auxiliary2_viewer = Viewer((omega_be), xmin=0.0,\
-#				xmax=L, datamin=config.aux2y_min,\
-#				datamax=config.aux2y_max, legend='best',\
-#				title = config.aux_title2)
-#
-#	# File writing
-#	if (hasattr(config, 'save_directory') and\
-#			(getattr(config, 'save_plots', False) == True or\
-#			getattr(config, 'save_TSVs', False) == True)):
-#		if not os.path.exists(os.getcwd() +str("/")+ config.save_directory):
-#			os.makedirs(os.getcwd() +str("/")+ config.save_directory)
-#			raw_input("Directory created: " +str(config.save_directory))
-#		raw_input("Pause set for writing to file...")
-#
-#	# Set the tolerance for the full flux model
-#	original_res_tol = 1.0e-5
-#	density_res_tol, temp_res_tol, Z_res_tol = 1.0e12, 1.0e12, 1.0e12
-#
-#	for t in range(config.total_timeSteps):
-#		# (Re)set residual values
-#		original_residual = 1.0e100
-#		density_residual = 1.0e100
-#		temp_residual = 1.0e100
-#		Z_residual = 1.0e100
-#
-#		# Update values
-#		Diffusivity.setValue(D_choice_local)
-#		density.updateOld(); temperature.updateOld(); Z.updateOld()
-#		update_g_coeffs()
-#
-#		# Solve the full flux model equations
+if __name__ == '__main__':
+
+	# Initialize viewers
+	if config.original_model == True:
+		viewer = Viewer((density, temperature, -Z, Diffusivity),\
+				xmin=0.0, xmax=L,\
+				datamax=config.ploty_max, legend='best',\
+				title = config.plot_title)
+	elif config.original_model == False:
+		density_viewer = Viewer(density, xmin=0.0, xmax=L,\
+				legend='best',\
+				title = config.plot_title)
+		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
+				legend='best',\
+				title = config.plot_title)
+		Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0, xmax=L,\
+				legend='best',\
+				title = config.plot_title)
+
+	# Auxiliary viewers
+	if config.aux_plots == True:
+		auxiliary1_viewer = Viewer((omega_bi), xmin=0.0,\
+				xmax=L, datamin=config.aux1y_min,\
+				datamax=config.aux1y_max, legend='best',\
+				title = config.aux_title1)
+		auxiliary2_viewer = Viewer((omega_be), xmin=0.0,\
+				xmax=L, datamin=config.aux2y_min,\
+				datamax=config.aux2y_max, legend='best',\
+				title = config.aux_title2)
+
+	# File writing
+	if (hasattr(config, 'save_directory') and\
+			(getattr(config, 'save_plots', False) == True or\
+			getattr(config, 'save_TSVs', False) == True)):
+		if not os.path.exists(os.getcwd() +str("/")+ config.save_directory):
+			os.makedirs(os.getcwd() +str("/")+ config.save_directory)
+			raw_input("Directory created: " +str(config.save_directory))
+		raw_input("Pause set for writing to file...")
+
+	# Set the tolerance for the full flux model
+	original_res_tol = 1.0e-5
+	flux_res_tol = 1.0e22
+	density_res_tol, temp_res_tol, Z_res_tol = 4.0e21, 4.0e23, 1.0e16
+
+	for t in range(config.total_timeSteps):
+		# (Re)set residual values
+		original_residual = 1.0e100
+		flux_residual = 1.0e100
+		density_residual = 1.0e100
+		temp_residual = 1.0e100
+		Z_residual = 1.0e100
+
+		# Update values
+		Diffusivity.setValue(D_choice_local)
+		density.updateOld(); temperature.updateOld(); Z.updateOld()
+		update_g_coeffs()
+
+		# Solve the full flux model equations
 #		if config.original_model == False:
 #			# Solve density equation
 #			while density_residual > density_res_tol:
@@ -163,53 +160,59 @@ print_variables(density, temperature, Z, Diffusivity, v_Ti, v_Te, rho_pi,\
 #
 #		# Solve the fully coupled, original model equation
 #		else:
-#			config.original_model == True
+#			config.original_model = True
 #			while original_residual > original_res_tol:
 #				print t, original_residual
 #				original_residual = full_equation.sweep(dt=timeStep,\
 #						solver=GMRES_Solver)
-#
-#		# Plot solution and save, if option is True
-#		if config.save_plots == True:
-#			# Save full flux plots
-#			if config.original_model == False:
-#				density_viewer.plot(filename=config.save_directory + "/n"\
-#						+str(t).zfill(4)+ ".png")
-#				temp_viewer.plot(filename=config.save_directory + "/T" \
-#						+str(t).zfill(4)+ ".png")
-#				Z_viewer.plot(filename=config.save_directory + "/Z" \
-#						+str(t).zfill(4)+ ".png")
-#
-#			# Save original model plots
-#			else:
-#				viewer.plot(filename =\
-#						config.save_directory+"/"+str(t).zfill(4)+".png")
-#
-#			# Save auxiliary plots
-#			if config.aux_plots == True:
-#				auxiliary1_viewer.plot(filename =\
-#						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
-#				auxiliary2_viewer.plot(filename =\
-#						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
-#
-#		else:
-#			if config.original_model == False:
-#				density_viewer.plot(); temp_viewer.plot(); Z_viewer.plot()
-#			else:
-#				viewer.plot()
-#
-#			if config.aux_plots == True:
-#				auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
-#
-#		# Save TSV's
-#		if config.save_TSVs == True:
-#			all_variables = (density, temperature, Z, Diffusivity, v_Ti,\
-#					v_Te, rho_pi, rho_pe, omega_bi, omega_be, nu_ei, nu_ii,\
-#					nu_in0, nu_eff, nu_ai, nu_ae, Gamma_an, Gamma_cx,\
-#					Gamma_bulk, Gamma_OL)
-#			TSVViewer(vars=all_variables).plot(\
-#					filename=config.save_directory+"/"+str(t).zfill(4)+".tsv")
-#
-#
-#	raw_input(" <=============== End of Program. Press any key to continue. ===============> ")
-#
+
+		while flux_residual > flux_res_tol:
+			print t, flux_residual
+			flux_residual = full_equation.sweep(dt=timeStep,\
+					solver=GMRES_Solver)
+
+
+		# Plot solution and save, if option is True
+		if config.save_plots == True:
+			# Save full flux plots
+			if config.original_model == False:
+				density_viewer.plot(filename=config.save_directory + "/n"\
+						+str(t).zfill(4)+ ".png")
+				temp_viewer.plot(filename=config.save_directory + "/T" \
+						+str(t).zfill(4)+ ".png")
+				Z_viewer.plot(filename=config.save_directory + "/Z" \
+						+str(t).zfill(4)+ ".png")
+
+			# Save original model plots
+			else:
+				viewer.plot(filename =\
+						config.save_directory+"/"+str(t).zfill(4)+".png")
+
+			# Save auxiliary plots
+			if config.aux_plots == True:
+				auxiliary1_viewer.plot(filename =\
+						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
+				auxiliary2_viewer.plot(filename =\
+						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
+
+		else:
+			if config.original_model == False:
+				density_viewer.plot(); temp_viewer.plot(); Z_viewer.plot()
+			else:
+				viewer.plot()
+
+			if config.aux_plots == True:
+				auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
+
+		# Save TSV's
+		if config.save_TSVs == True:
+			all_variables = (density, temperature, Z, Diffusivity, v_Ti,\
+					v_Te, rho_pi, rho_pe, omega_bi, omega_be, nu_ei, nu_ii,\
+					nu_in0, nu_eff, nu_ai, nu_ae, Gamma_an, Gamma_cx,\
+					Gamma_bulk, Gamma_OL)
+			TSVViewer(vars=all_variables).plot(\
+					filename=config.save_directory+"/"+str(t).zfill(4)+".tsv")
+
+
+	raw_input(" <=============== End of Program. Press any key to continue. ===============> ")
+
