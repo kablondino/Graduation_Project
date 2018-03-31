@@ -85,6 +85,9 @@ Gamma_bulk = CellVariable(name=r"$\Gamma_i^{\pi\parallel}$", mesh=mesh)
 g_OL = CellVariable(name=r"$g^{OL}$", mesh=mesh)
 Gamma_OL = CellVariable(name=r"$\Gamma_i^{OL}$", mesh=mesh)
 
+Z_transient_coeff = CellVariable(name=r"$\hat{epsilon}$", mesh=mesh)
+Z_diffusion_coeff = CellVariable(name=r"$\hat{mu}$", mesh=mesh)
+
 variable_dictionary = {\
 		'x': x, 'density': density, 'temperature': temperature, 'Z': Z,\
 		'Diffusivity': Diffusivity, 'n_0': n_0, 'v_Ti': v_Ti, 'v_Te': v_Te,\
@@ -94,7 +97,9 @@ variable_dictionary = {\
 		'D_an': D_an, 'g_n_an': g_n_an, 'g_T_an': g_T_an, 'g_Z_an': g_Z_an,\
 		'Gamma_an': Gamma_an, 'g_n_cx': g_n_cx, 'g_T_cx': g_T_cx,\
 		'g_Z_cx': g_Z_cx, 'Gamma_cx': Gamma_cx, 'g_OL': g_OL,\
-		'Gamma_OL': Gamma_OL, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk\
+		'Gamma_OL': Gamma_OL, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk,\
+		'Z_transient_coeff': Z_transient_coeff,\
+		'Z_diffusion_coeff': Z_diffusion_coeff\
 	}
 
 # Function to print out any variable

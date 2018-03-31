@@ -13,8 +13,8 @@ import numpy
 
 
 # ASSUMES density is in m^-3 and temperature is in eV
-def update_g_coeffs():
-	# Neutrals density in use for CX friction
+def calculate_coeffs():
+	# Neutrals density in use for CX friction, NEEDS CHANGE!
 	n_0.setValue(4.0e17 * a_in0 * (charge*temperature / 100.0)\
 			**(3.0/4.0))										# [m^-3]
 
@@ -59,7 +59,8 @@ def update_g_coeffs():
 	g_T_an.setValue(g_n_an * alpha_an)							# [A m^-2]
 	g_Z_an.setValue(g_n_an / rho_pi)							# [A m^-1]
 
-	Gamma_an.setValue((g_n_an*density.grad[0]\
+	# Adding temporary scaling factor
+	Gamma_an.setValue(1.0e-2*(g_n_an*density.grad[0]\
 			/ density + g_T_an*temperature.grad[0]/temperature\
 			+ g_Z_an*Z) / charge)								# [m^-2 s^-1]
 
@@ -72,7 +73,7 @@ def update_g_coeffs():
 	g_Z_cx.setValue(-g_n_cx / rho_pi)							# [A m^-1]
 
 	# Adding temporary scaling factor
-	Gamma_cx.setValue(1.0e4*(g_n_cx * density.grad[0]/density\
+	Gamma_cx.setValue(1.0e3*(g_n_cx * density.grad[0]/density\
 			+ g_T_cx * temperature.grad[0]/temperature\
 			+ g_Z_cx*Z) / charge)								# [m^-2 s^-1]
 
@@ -84,7 +85,7 @@ def update_g_coeffs():
 			/ (x * B * numerix.sqrt(pi)))						# [m^2 s^-1
 
 	# Adding temporary scaling factor
-	Gamma_bulk.setValue( 1.0e-2 * density*D_bulk * (1.0/lambda_Z + Z/rho_pi)\
+	Gamma_bulk.setValue(1.0e-2*density*D_bulk * (1.0/lambda_Z + Z/rho_pi)\
 			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
 
 
@@ -94,6 +95,14 @@ def update_g_coeffs():
 	radical_OL = numerix.sqrt(nu_ai + Z**4 + (x/w_bi)**4)
 
 	# Adding temporary scaling factor
-	Gamma_OL.setValue(1.0e4 * g_OL * numerix.exp(-radical_OL)\
+	Gamma_OL.setValue(g_OL * numerix.exp(-radical_OL)\
 			/ (charge*radical_OL))								# [m^-2 s^-1]
+
+	Z_transient_coeff.setValue(m_i * density * temperature\
+			/ (charge * rho_pi * B**2))
+	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
+			/ (charge * rho_pi * B_theta**2))
+
+# Initialize all the coefficients
+calculate_coeffs()
 
