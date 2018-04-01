@@ -5,7 +5,7 @@ from fipy.solvers import *
 # Order of file imports from the following inport: input_handling.py,
 # parameters.py, variable_decl.py boundary_init_cond
 from calculate_coeffs import *
-# fipy.tools.numerix is also imported from the above
+# fipy.tools.numerix and dump is also imported from the above
 
 import os	# For saving files to a specified directory
 
@@ -23,6 +23,11 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 # Z Equation
 if config.original_model == False:
 	# Full Flux model
+#	Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
+#			== DiffusionTerm(coeff=Z_diffusion_coeff, var=Z) + B_theta**2 * (\
+#			(g_n_an - g_n_cx)*density.grad[0] / density\
+#			+ (g_T_an - g_T_cx)*temperature.grad[0] / temperature\
+#			+ (g_Z_an - g_Z_cx)*Z - charge*Gamma_bulk - charge*Gamma_OL)
 	Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
 			== DiffusionTerm(coeff=Z_diffusion_coeff, var=Z)\
 			+ Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL
@@ -55,19 +60,20 @@ if (__name__ == '__main__' and config.initial_H_mode == True\
 	Z.setValue(H_mode_data['Z'])
 	Diffusivity.setValue(D_choice_local)
 
-# Initial conditions viewer
-#if config.original_model == True:
-#	initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
-#			xmin=0.0, xmax=L, legend='best')
-#	raw_input("Pause for Initial Conditions")
-#elif config.original_model == False:
-#	init_density_viewer = Viewer(density, xmin=0.0, xmax=L,\
-#			legend=None, title="Density")
-#	init_temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
-#			legend=None, title="Temperature")
-#	init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
-#			xmax=L, legend='best', title=r"$Z$ and Diffusivity")
-#	raw_input("Pause for SI Initial Conditions")
+if config.show_initial == True:
+	# Initial conditions viewer
+	if config.original_model == True:
+		initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
+				xmin=0.0, xmax=L, legend='best')
+		raw_input("Pause for Initial Conditions")
+	elif config.original_model == False:
+		init_density_viewer = Viewer(density, xmin=0.0, xmax=L,\
+				legend=None, title="Density")
+		init_temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
+				legend=None, title="Temperature")
+		init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
+				xmax=L, legend='best', title=r"$Z$ and Diffusivity")
+		raw_input("Pause for SI Initial Conditions")
 
 timeStep = epsilon / config.timeStep_denom
 
@@ -116,54 +122,30 @@ if __name__ == '__main__':
 
 	# Set the tolerance for the full flux model
 	original_res_tol = 1.0e-5
-	flux_res_tol = 1.0e21
-	density_res_tol, temp_res_tol, Z_res_tol = 4.0e21, 4.0e23, 1.0e16
+	flux_res_tol = 1.0e14
 
 	for t in range(config.total_timeSteps):
 		# (Re)set residual values
 		original_residual = 1.0e100
 		flux_residual = 1.0e100
-		density_residual = 1.0e100
-		temp_residual = 1.0e100
-		Z_residual = 1.0e100
 
 		# Update values
-		Diffusivity.setValue(D_choice_local); calculate_coeffs()
+		calculate_coeffs(); Diffusivity.setValue(D_choice_local)
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 
 		# Solve the full flux model equations
-#		if config.original_model == False:
-#			# Solve density equation
-#			while density_residual > density_res_tol:
-#				print t, density_residual, temp_residual, Z_residual
-#				density_residual = density.equation.sweep(dt=timeStep,\
-#							solver=GMRES_Solver)
-#
-#			# Solve temperature equation
-#			while temp_residual > temp_res_tol:
-#				print t, density_residual, temp_residual, Z_residual
-#				temp_residual = temperature.equation.sweep(dt=timeStep,\
-#							solver=GMRES_Solver)
-#
-#			# Solve Z equation
-#			while Z_residual > Z_res_tol:
-#				print t, density_residual, temp_residual, Z_residual
-#				Z_residual = Z.equation.sweep(dt=timeStep,\
-#						solver=GMRES_Solver)
-
 		if config.original_model == False:
 			while flux_residual > flux_res_tol:
 				print t, flux_residual
 				flux_residual = full_equation.sweep(dt=timeStep,\
 						solver=GMRES_Solver)
 
-		# Solve the fully coupled, original model equation
+		# Solve the original model equation
 		elif config.original_model == True:
 			while original_residual > original_res_tol:
 				print t, original_residual
 				original_residual = full_equation.sweep(dt=timeStep,\
 						solver=GMRES_Solver)
-
 
 
 		# Plot solution and save, if option is True
@@ -193,7 +175,8 @@ if __name__ == '__main__':
 
 		else:
 			if config.original_model == False:
-				density_viewer.plot(); temp_viewer.plot(); Z_viewer.plot(); D_viewer.plot()
+				density_viewer.plot(); temp_viewer.plot()
+				Z_viewer.plot(); D_viewer.plot()
 			else:
 				viewer.plot()
 
@@ -202,12 +185,11 @@ if __name__ == '__main__':
 
 		# Save TSV's
 		if config.save_TSVs == True:
-			all_variables = (density, temperature, Z, Diffusivity, v_Ti,\
-					v_Te, rho_pi, rho_pe, omega_bi, omega_be, nu_ei, nu_ii,\
-					nu_in0, nu_eff, nu_ai, nu_ae, Gamma_an, Gamma_cx,\
-					Gamma_bulk, Gamma_OL)
-			TSVViewer(vars=all_variables).plot(\
-					filename=config.save_directory+"/"+str(t).zfill(4)+".tsv")
+			TSVViewer(vars=\
+					(Gamma_an, Gamma_cx, Gamma_bulk, Gamma_OL,\
+					Z_transient_coeff, Z_diffusion_coeff, density.grad[0],\
+					temperature.grad[0])).plot(filename=\
+					config.save_directory+"/"+str(t).zfill(4)+".tsv")
 
 
 	raw_input(" <=============== End of Program. Press any key to continue. ===============> ")
