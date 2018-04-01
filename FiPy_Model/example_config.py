@@ -8,7 +8,7 @@ Gamma_c = -1.0e20
 q_c = 5.0*Gamma_c
 
 # Number of cells
-nx = 200
+nx = 500
 
 # Boolean, to choose either the original numerical model, or
 # the full flux model. Note that it sets the length of the domain
@@ -20,11 +20,11 @@ total_timeSteps = 2000
 
 # Size of time step denominator (delta t)
 # Either mu or epsilon is in the numerator
-timeStep_denom = 5.0e5
+timeStep_denom = 1.0e8
 
 # Choose the Diffusivity model, as a string (case does not matter)
 # D_Zohm, D_Staps, and D_Shear are the possibilities
-D_choice = "D_Staps"
+D_choice = "D_Shear"
 # Coefficient of (Z')**beta in Stap's diffusivity
 alpha_sup = 0.5
 # Exponent of Z' in Stap's diffusivity
@@ -35,7 +35,7 @@ initial_H_mode = False
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
-numerical_choice = "gradient_model"
+numerical_choice = "Staps"
 
 # Plot details
 plot_title = "H--Mode Start; $D \sim (Z^\prime)^{{-{:01.2f}}}$".format(beta)\
@@ -46,6 +46,7 @@ plot_title = "H--Mode Start; $D \sim (Z^\prime)^{{-{:01.2f}}}$".format(beta)\
 
 # Maximum x on the plots
 ploty_max = None
+aux_plots = False
 # Maximum and minimum y values on the plots
 aux1y_min = None
 aux1y_max = None
@@ -53,8 +54,8 @@ aux2y_min = None
 aux2y_max = None
 
 # Should the results be saved to file?
-save_plots = True
-save_TSVs = True
+save_plots = False
+save_TSVs = False
 
-save_directory = "Long_Flux"
+save_directory = ""
 

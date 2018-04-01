@@ -43,8 +43,8 @@ lambda_n = 5.0/4.0		# Length scales for decay at edge
 lambda_T = 3.0/2.0
 lambda_Z = 5.0/4.0
 
-D_max = 3.0
-D_min = 0.2
+D_max = 5.0
+D_min = 1.0
 
 epsilon = 1.0 / 25.0
 mu = 1.0 / 20.0
@@ -74,13 +74,13 @@ elif config.numerical_choice.lower() == "staps":
 # Heat diffusivity coefficient choice for Gradient Model
 elif config.numerical_choice.lower() == "g_grad"\
 		or config.numerical_choice.lower() == "gradient_model":
-	zeta = 0.9
+	zeta = 0.5
 
 print "The numerical parameters are chosen to " + str(config.numerical_choice)
 
 ## For use in full flux model
 alpha_an = 1.0				# Anomalous loss coefficient
 a_in0 = 0.05				# Neutrals coefficient
-neu_react_rate = 1.0e-6		# Reaction rate of charge exchange
+neu_react_rate = 1.0e-9		# Reaction rate of charge exchange
 alpha_cx = 0.9				# Charge exchange coefficient
 
