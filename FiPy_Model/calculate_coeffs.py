@@ -59,8 +59,7 @@ def calculate_coeffs():
 	g_T_an.setValue(g_n_an * alpha_an)							# [A m^-2]
 	g_Z_an.setValue(g_n_an / rho_pi)							# [A m^-1]
 
-	# Adding temporary scaling factor
-	Gamma_an.setValue(1.0e-2*(g_n_an*density.grad[0]\
+	Gamma_an.setValue((g_n_an*density.grad[0]\
 			/ density + g_T_an*temperature.grad[0]/temperature\
 			+ g_Z_an*Z) / charge)								# [m^-2 s^-1]
 
@@ -72,8 +71,7 @@ def calculate_coeffs():
 	g_T_cx.setValue(alpha_cx * g_n_cx)							# [A m^-2]
 	g_Z_cx.setValue(-g_n_cx / rho_pi)							# [A m^-1]
 
-	# Adding temporary scaling factor
-	Gamma_cx.setValue(1.0e3*(g_n_cx * density.grad[0]/density\
+	Gamma_cx.setValue((g_n_cx * density.grad[0]/density\
 			+ g_T_cx * temperature.grad[0]/temperature\
 			+ g_Z_cx*Z) / charge)								# [m^-2 s^-1]
 
@@ -84,24 +82,22 @@ def calculate_coeffs():
 	D_bulk.setValue(aspect**2 * rho_pi * temperature\
 			/ (x * B * numerix.sqrt(pi)))						# [m^2 s^-1
 
-	# Adding temporary scaling factor
-	Gamma_bulk.setValue(1.0e-2*density*D_bulk * (1.0/lambda_Z + Z/rho_pi)\
+	Gamma_bulk.setValue(density * D_bulk * (L + Z/rho_pi)\
 			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
 
 
 	## Ion Orbit Loss
 	g_OL.setValue(charge * density * nu_ii * nu_ai * rho_pi)	# [A m^-2]
 
-	radical_OL = numerix.sqrt(nu_ai + Z**4 + (x/w_bi)**4)
+	radical_OL = numerix.sqrt(nu_ai + Z**4 + ((x)/w_bi)**4)
 
-	# Adding temporary scaling factor
 	Gamma_OL.setValue(g_OL * numerix.exp(-radical_OL)\
 			/ (charge*radical_OL))								# [m^-2 s^-1]
 
 	Z_transient_coeff.setValue(m_i * density * temperature\
-			/ (charge * rho_pi * B**2))
+			/ (charge* rho_pi * B**2))
 	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
-			/ (charge * rho_pi * B_theta**2))
+			/ (charge* rho_pi * B_theta**2))
 
 # Initialize all the coefficients
 calculate_coeffs()
