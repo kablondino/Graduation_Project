@@ -33,6 +33,9 @@ beta = 2.0
 # Boolean, to choose what mode to have as initial conditions
 initial_H_mode = False
 
+# Boolean, to show the initial conditions
+show_initial = False
+
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
 numerical_choice = "Staps"

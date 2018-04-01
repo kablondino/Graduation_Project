@@ -10,7 +10,7 @@
 	D_choice:		string	The model of the diffusivity
 	initial_H_mode:	bool	Start in L-- or H--mode?
 	original_model:	bool	Which Z-equation model? 'False' is flux model.
-	SI_units		bool	Determines the units of the profiles
+	show_initial:	bool	Show the initial conditions
 	plot_title:		string	The title of the plot; can be formatted
 	ploty_max:		float	The maximum y-value on the plot
 	aux_plots:		bool	Turns on specified auxiliary plots
@@ -132,10 +132,10 @@ if type(getattr(config, 'original_model', None)) != bool:
 	print "Defaulted to using the original numerical model for Z."
 
 
-# Use SI units, or arbitrary?
-if type(getattr(config, 'SI_units', False)) != bool:
-	config.SI_units = False
-	print "The units of the profiles are arbitrary."
+# Show initial conditions?
+if type(getattr(config, 'show_initial', None)) != bool:
+	config.show_initial = False
+	print "The initial conditions will not be shown."
 
 
 # Total number of time steps
