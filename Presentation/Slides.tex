@@ -72,8 +72,8 @@
 %}}}
 
 %{{{ Setup References
-\usepackage[backend=biber, style=authoryear]{biblatex}
-\addbibresource{../../References/References.bib}
+\usepackage[backend=bibtex, style=authoryear]{biblatex}
+\addbibresource{../References/References.bib}
 \renewcommand*{\nameyeardelim}{\addcomma\addspace}
 %}}}
 
@@ -107,13 +107,28 @@
 \addtobeamertemplate{frametitle}{}
 {
 \begin{textblock*}{100mm}(0.85\textwidth,-1cm)
-	\includegraphics[height=1cm,width=2cm]{../../Graphics/tue_fusion_logo.png}
+	\includegraphics[height=1cm,width=2cm]{../Graphics/tue_fusion_logo.png}
 \end{textblock*}
 }
 
 %--------------------------------------
+
+\begin{frame}
+	This is a test! \cite{weymiens_bifurcation_2014}
+\end{frame}
+
 %--------------------------------------
 %--------------------------------------
 %--------------------------------------
+
+%\section{References}
+\begin{frame}
+\frametitle{References}
+\renewcommand*{\bibfont}{\tiny}
+%\nocite{*}
+\printbibliography
+\end{frame}
+%}}}
+
 %--------------------------------------
 \end{document}
