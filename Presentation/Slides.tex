@@ -1,0 +1,119 @@
+\documentclass{beamer}
+\title[$E_r$-Generating Mechanisms in L-H Transitions]{Comparing Radial Electric Field-Generating Mechanisms in L--H Transitions}
+\author[K.A. Blondino]{\includegraphics[height=1cm]{../Graphics/tue_fusion_logo.png} \\ Kevin A. Blondino \\
+	Supervisor: dr. H.J. de Blank, TU/e \& DIFFER}
+\institute[TU/e]{Eindhoven University of Technology \\
+	\medskip
+	\textit{k.blondino@student.tue.nl}}
+\date{\today}
+
+%{{{ Presentation Style and Color
+\mode<presentation>
+{
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+%\usecolortheme{albatross}
+\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+%}}}
+
+%{{{ Packages
+\usepackage{amsmath,graphicx,booktabs,moresize,textpos}
+\usepackage[utf8]{inputenc}
+\usepackage{caption}
+\captionsetup{font=scriptsize,labelfont=bf}
+\usepackage[UKenglish]{isodate}
+\cleanlookdateon
+%}}}
+
+%{{{ Setup References
+\usepackage[backend=biber, style=authoryear]{biblatex}
+\addbibresource{../../References/References.bib}
+\renewcommand*{\nameyeardelim}{\addcomma\addspace}
+%}}}
+
+%{{{ Two Figures Side-by-Side
+\newsavebox\IBoxA \newsavebox\IBoxB \newlength\IHeight
+\newcommand\TwoFig[6]{% Image1 Caption1 Label1 Im2 Cap2 Lab2
+	\sbox\IBoxA{\includegraphics[width=0.45\textwidth]{#1}}
+	\sbox\IBoxB{\includegraphics[width=0.45\textwidth]{#4}}%
+	\ifdim\ht\IBoxA>\ht\IBoxB
+		\setlength\IHeight{\ht\IBoxB}%
+	\else\setlength\IHeight{\ht\IBoxA}\fi
+	\begin{figure}[ht]
+		\minipage[t]{0.49\textwidth}\centering
+			\includegraphics[height=\IHeight]{#1}
+			\caption{#2}\label{#3}
+		\endminipage\hfill
+		\minipage[t]{0.49\textwidth}\centering
+			\includegraphics[height=\IHeight]{#4}
+			\caption{#5}\label{#6}
+		\endminipage
+	\end{figure}%
+}
+%}}}
+
+\begin{document}
+% Title page
+\begin{frame}
+\titlepage
+\end{frame}
+
+\addtobeamertemplate{frametitle}{}
+{
+\begin{textblock*}{100mm}(0.85\textwidth,-1cm)
+	\includegraphics[height=1cm,width=2cm]{../../Graphics/tue_fusion_logo.png}
+\end{textblock*}
+}
+
+%--------------------------------------
+%--------------------------------------
+%--------------------------------------
+%--------------------------------------
+%--------------------------------------
+\end{document}
