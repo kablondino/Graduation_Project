@@ -12,6 +12,7 @@ from input_handling import *
 # ----------------- Constant Parameters -------------------
 ## Global parameters and physical constants
 pi = 3.141592653589793
+charge_dummy = 1.0							# 'Natural' units for charge
 charge = 1.6021766208e-19					# Elementary charge
 k_B_J = 1.38064852e-23						# Boltzmann in J/K
 k_B_eV = k_B_J / charge						# Boltzmann in eV/K
