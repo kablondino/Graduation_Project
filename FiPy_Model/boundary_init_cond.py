@@ -16,8 +16,8 @@ if config.initial_H_mode == False:
 		density.setValue(1.5*x / L + 0.5)		# in AU
 		temperature.setValue(x / L + 1.2)
 	elif config.original_model == False:
-		density.setValue(1.5e19*x / 0.03 + 0.5e19)		# in m^-3
-		temperature.setValue(300.0*x / 0.03 + 100.0)	# in eV!
+		density.setValue(1.5e19*x / L + 0.5e19)		# in m^-3
+		temperature.setValue(300.0*x / L + 100.0)	# in eV!
 
 	Z.setValue(0.0)
 
