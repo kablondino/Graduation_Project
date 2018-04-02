@@ -9,6 +9,7 @@ from fipy.solvers import *
 
 # Order of file imports from the following inport: input_handling.py,
 # parameters.py, variable_decl.py boundary_init_cond
+from boundary_init_cond import *
 from calculate_coeffs import *
 # fipy.tools.numerix and dump is also imported from the above
 
@@ -33,6 +34,9 @@ Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
 
+
+# Initialize all the coefficients and other variables
+calculate_coeffs()
 
 # ----------------- Choose Solver -------------------------
 # Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,

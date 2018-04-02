@@ -1,6 +1,8 @@
 """
 	Declares the initial conditions, including whether it
-	starts in L-- or H--mode.
+	starts in L-- or H--mode. These things are entire
+	calculated by hand. If one changes the size of the
+	domain (L), these must be recalculated.
 
 	Also declares the boundary conditions of the state
 	variables, as a function.
@@ -10,20 +12,16 @@ from variable_decl import *
 
 
 # ---------------- Set Initial Conditions -----------------
-# Initial conditions for L--mode
-if config.initial_H_mode == False:
-	if config.original_model == True:
+# ---------------- Original Model -------------------------
+if config.original_model == True:
+	# L--mode
+	if config.initial_H_mode == False:
 		density.setValue(1.5*x / L + 0.5)		# in AU
 		temperature.setValue(x / L + 1.2)
-	elif config.original_model == False:
-		density.setValue(1.5e19*x / L + 0.5e19)		# in m^-3
-		temperature.setValue(300.0*x / L + 100.0)	# in eV!
+		Z.setValue(0.0)
 
-	Z.setValue(0.0)
-
-# Initial conditions for H--mode
-elif config.initial_H_mode == True:
-	if config.original_model == True:
+	# H--mode
+	elif config.initial_H_mode == False:
 		density.setValue((0.5/1.5)*x + 0.5, where = x <= 1.5)
 		density.setValue(3.0*x - 3.5, where = (x > 1.5) & (x < 2.0))
 		density.setValue((0.5/1.5)*x + (11.0/6.0), where = x >= 2.0)
@@ -34,7 +32,16 @@ elif config.initial_H_mode == True:
 
 		Z.setValue(-3.0 / (1.0 + numerix.exp(12.0*(x - 1.75))))
 
-	elif config.original_model == False:
+# ----------------- Flux Model ----------------------------
+if config.original_model == False:
+	# L--mode
+	if config.initial_H_mode == False:
+		density.setValue(1.5e19*x / L + 0.5e19)		# in m^-3
+		temperature.setValue(300.0*x / L + 100.0)	# in eV!
+		Z.setValue(0.0)
+
+	# H--mode
+	elif config.initial_H_mode == True:
 		density.setValue(37.5e19*x + 0.5e19, where = x < 0.01)
 		density.setValue(337.5e19*x - 2.5e19, where = (x > 0.01) & (x < 0.015))
 		density.setValue(37.5e19*x + 2.0e19, where = x > 0.015)
@@ -45,9 +52,6 @@ elif config.initial_H_mode == True:
 		temperature.setValue(8.0e3*x + 360.0, where = x > 0.015)
 
 		Z.setValue(-3.0 / (1.0 + numerix.exp(1.5e3*(x - 0.015))))
-
-else:
-	print "Something went horribly wrong in choosing initial conditions."
 
 
 # ----------------- Set Diffusivity Model -----------------
@@ -108,8 +112,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 	"""
 	temp_left = temperature.faceValue / (L*0.25*lambda_T)
 	temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
-	temp_right = temperature.faceGrad.constrain(\
-			(zeta * (AGamma_c*temperature.faceValue -\
+	temperature.faceGrad.constrain( (zeta * (AGamma_c*temperature.faceValue -\
 			Aq_c*(gamma - 1.0))) / (Diffusivity.faceValue *\
 			density.faceValue), mesh.facesRight)
 
@@ -122,6 +125,6 @@ def set_boundary_values(AGamma_c, Aq_c):
 	Z.faceGrad.constrain(0.0, mesh.facesRight)
 
 
-
+# Set the boundary values now
 set_boundary_values(config.Gamma_c, config.q_c)
 

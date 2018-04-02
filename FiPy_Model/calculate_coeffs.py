@@ -6,7 +6,7 @@
 	the solving loop.
 """
 
-from boundary_init_cond import *
+from variable_decl import *
 
 import scipy.special		# For the Faddeeva (plasma dispersion) function
 import numpy
@@ -98,7 +98,4 @@ def calculate_coeffs():
 			/ (charge* rho_pi * B**2))
 	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
 			/ (charge* rho_pi * B_theta**2))
-
-# Initialize all the coefficients
-calculate_coeffs()
 
