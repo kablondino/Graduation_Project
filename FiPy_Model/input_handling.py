@@ -4,6 +4,7 @@
 	nx:				int		The number of grid points
 	total_timeSteps:int		The total number of time steps
 	timeStep_denom:	float	The denominator of the time step
+	res_tol			float	The tolerance of the residual
 	Gamma_c			float	The particle flux from the core
 	q_c				float	The heat flux from the core
 	numerical_parameter:	string		The set of predetermined parameters
@@ -106,6 +107,71 @@ if type(config.nx) == float:
 #if type(config.L) == int:
 #	config.L = float(config.L)
 
+
+# Total number of time steps
+if ((type(getattr(config, 'total_timeSteps', None)) != int and\
+		type(getattr(config, 'total_timeSteps', None)) != float) or\
+		getattr(config, 'total_timeSteps', None) <= 0):
+	try:
+		config.total_timeSteps = int(input("Total number of time steps not properly defined. Enter integer value: "))
+
+		if config.total_timeSteps <= 0:
+			raise ValueError
+
+		print "Total # of time steps set to " + str(config.total_timeSteps)
+
+	except (NameError, SyntaxError, EOFError, ValueError):
+		config.total_timeSteps = 100
+		print "Total time steps defaulted to 100."
+
+if type(config.total_timeSteps) == float:
+	config.total_timeSteps = int(config.total_timeSteps)
+
+
+# Denominator of the delta t
+if ((type(getattr(config, 'timeStep_denom', None)) != float and\
+		type(getattr(config, 'timeStep_denom', None)) != int) or\
+		getattr(config, 'timeStep_denom', None) <= 0.0):
+	try:
+		config.timeStep_denom = float(input("The denomintor of the time step size is not properly defined. Enter floating-point value: "))
+
+		if config.timeStep_denom <= 0.0:
+			raise ValueError
+
+		print "The denominator of the time step size is set to "\
+				+ str(config.timeStep_denom)
+
+	except (NameError, SyntaxError, EOFError, ValueError):
+		config.timeStep_denom = 15.0
+		print "The denominator of the time step size is defaulted to 15.0"
+
+if type(config.timeStep_denom) == int:
+	config.timeStep_denom = float(config.timeStep_denom)
+
+
+# Residual tolerance
+if ((type(getattr(config, 'res_tol', None)) != float and\
+		type(getattr(config, 'res_tol', Non)) != int) or\
+		getattr(config, 'res_tol', None) <= 0.0):
+	try:
+		config.res_tol = float(input("The residual tolerance is not properly set. Enter a positive floating-point value: "))
+
+		if config.res_tol <= 0.0:
+			raise ValueError
+
+		print "The residual tolerance is defaulted to " +str(config.res_tol)
+
+	except (NameError, SyntaxError, EOFError, ValueError):
+		if config.original_model == True:
+			config.res_tol = 1.0e-6
+		elif config.original_model == False:
+			config.res_tol = 1.0e14
+		print "The residual tolerance is defaulted to the appropriate model's value."
+
+if type(config.res_tol) == int:
+	config.res_tol = float(config.res_tol)
+
+
 # Choice of the diffusivity model
 if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
 		type(getattr(config, 'D_choice', None)) != str):
@@ -136,47 +202,6 @@ if type(getattr(config, 'original_model', None)) != bool:
 if type(getattr(config, 'show_initial', None)) != bool:
 	config.show_initial = False
 	print "The initial conditions will not be shown."
-
-
-# Total number of time steps
-if ((type(getattr(config, 'total_timeSteps', None)) != int and\
-		type(getattr(config, 'total_timeSteps', None)) != float) or\
-		getattr(config, 'total_timeSteps', None) <= 0):
-	try:
-		config.total_timeSteps = int(input("Total number of time steps not properly defined. Enter integer value: "))
-
-		if config.total_timeSteps <= 0:
-			raise ValueError
-
-		print "Total # of time steps set to " + str(config.total_timeSteps)
-
-	except (NameError, SyntaxError, EOFError, ValueError):
-		config.total_timeSteps = 100
-		print "Total time steps defaulted to 100."
-
-if type(config.total_timeSteps) == float:
-	config.total_timeSteps = int(config.total_timeSteps)
-
-
-# Denominator of the delta t
-if ((type(getattr(config, 'timeStep_denom', None)) != float and\
-		type(getattr(config, 'timeStep_denom', None)) != int) or\
-		getattr(config, 'timeStep_denom', None) <= 0.0):
-	try:
-		config.timeStep_denom = float(input("The denomintor of the time step size is not properly defined. Enter floating-point value: "))
-
-		if config.timeStep_denom <= 0:
-			raise ValueError
-
-		print "The denominator of the time step size is set to "\
-				+ str(config.timeStep_denom)
-
-	except (NameError, SyntaxError, EOFError, ValueError):
-		config.timeStep_denom = 15.0
-		print "The denominator of the time step size is defaulted to 15.0"
-
-if type(config.timeStep_denom) == int:
-	config.timeStep_denom = float(config.timeStep_denom)
 
 
 # Set auxiliary plots

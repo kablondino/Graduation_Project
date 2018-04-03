@@ -4,27 +4,29 @@
 """
 
 # Particle and heat flux from the core
-Gamma_c = -1.0e20
+Gamma_c = -0.8e19
 q_c = 5.0*Gamma_c
 
 # Number of cells
-nx = 500
+nx = 200
 
 # Boolean, to choose either the original numerical model, or
 # the full flux model. Note that it sets the length of the domain
 # L to be 4.0 AU in the original, and 0.03 m in the flux model.
 original_model = False
 
+res_tol = 1.0e13
+
 # Total time steps; should be ~ L^2 / D
 total_timeSteps = 2000
 
 # Size of time step denominator (delta t)
 # Either mu or epsilon is in the numerator
-timeStep_denom = 1.0e8
+timeStep_denom = 15.0e6
 
 # Choose the Diffusivity model, as a string (case does not matter)
 # D_Zohm, D_Staps, and D_Shear are the possibilities
-D_choice = "D_Shear"
+D_choice = "D_Staps"
 # Coefficient of (Z')**beta in Stap's diffusivity
 alpha_sup = 0.5
 # Exponent of Z' in Stap's diffusivity
@@ -34,7 +36,7 @@ beta = 2.0
 initial_H_mode = False
 
 # Boolean, to show the initial conditions
-show_initial = False
+show_initial = True
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
