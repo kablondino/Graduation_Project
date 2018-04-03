@@ -21,7 +21,7 @@ def calculate_coeffs():
 	# Neutrals density in use for CX friction, NEEDS CHANGE!
 	# The commented version cannot be properly computed
 #	n_0.setValue((-0.1*config.Gamma_c / v_Ti) * numerix.exp(\
-#			-numerix.sqrt(sigma_ion*neu_react_rate) * density[0]\
+#			-numerix.sqrt(sigma_ion*cx_rate) * density[0]\
 #			* numerix.exp(x * density.grad[0]/density)))		# [m^-3]
 	# NEED dynamic definition!
 	n_0.setValue((-0.1*config.Gamma_c / v_Ti) / (1.0 +\
@@ -70,7 +70,7 @@ def calculate_coeffs():
 
 
 	## Charge Exchange Friction
-	g_n_cx.setValue((-(m_i*n_0*neu_react_rate * density\
+	g_n_cx.setValue((-(m_i*n_0*cx_rate * density\
 			* temperature) / (B_theta**2))\
 			* ((B_theta**2 / (aspect*B_phi)**2) + 2.0))			# [A m^-2]
 	g_T_cx.setValue(alpha_cx * g_n_cx)							# [A m^-2]

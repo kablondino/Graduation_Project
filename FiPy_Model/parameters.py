@@ -82,6 +82,5 @@ print "The numerical parameters are chosen to " + str(config.numerical_choice)
 ## For use in full flux model
 alpha_an = 1.0				# Anomalous loss coefficient
 a_in0 = 0.05				# Neutrals coefficient
-neu_react_rate = 1.0e-9		# Reaction rate of charge exchange
 alpha_cx = 0.9				# Charge exchange coefficient
 

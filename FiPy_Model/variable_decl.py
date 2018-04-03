@@ -72,6 +72,11 @@ g_Z_an = CellVariable(name=r"$g_Z^{an}$", mesh=mesh)
 Gamma_an = CellVariable(name=r"$\Gamma_e^{an}$", mesh=mesh)
 
 ## Charge Exchange Friction
+ionization_rate = CellVariable(name=r"$\langle\sigma v\rangle_{ion}$",\
+		mesh=mesh)
+cx_rate = CellVariable(name=r"$\langle\sigma v\rangle_{cx}$",\
+		mesh=mesh)
+cx_rate = 1.0e-9	# TEMPORARY
 g_n_cx = CellVariable(name=r"$g_n^{cx}$", mesh=mesh)
 g_T_cx = CellVariable(name=r"$g_T^{cx}$", mesh=mesh)
 g_Z_cx = CellVariable(name=r"$g_Z^{cx}$", mesh=mesh)
@@ -101,6 +106,7 @@ variable_dictionary = {\
 		'Z_transient_coeff': Z_transient_coeff,\
 		'Z_diffusion_coeff': Z_diffusion_coeff\
 	}
+
 
 # Function to print out any variable
 def print_variables(*args):
