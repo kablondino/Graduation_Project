@@ -18,13 +18,13 @@ import os	# For saving files to a specified directory
 
 # ----------------- PDE Declarations ----------------------
 # Density Equation
-density.equation = TransientTerm(coeff=1.0e20, var=density)\
-		== DiffusionTerm(coeff=Diffusivity*1.0e20, var=density)
+density.equation = TransientTerm(coeff=1.0, var=density)\
+		== DiffusionTerm(coeff=Diffusivity, var=density)
 
 # Energy Equation
-temperature.equation = TransientTerm(coeff=density*1.0e20, var=temperature)\
-		== DiffusionTerm(coeff=(Diffusivity*density*1.0e20/zeta), var=temperature)\
-		+ DiffusionTerm(coeff=Diffusivity*temperature*1.0e20, var=density)
+temperature.equation = TransientTerm(coeff=density, var=temperature)\
+		== DiffusionTerm(coeff=(Diffusivity*density/zeta), var=temperature)\
+		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 
 # Z Equation
 Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
@@ -46,27 +46,6 @@ GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
 LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 
-# LOAD pickled H--Mode data; NONE CURRENTLY
-#if (__name__ == '__main__' and config.initial_H_mode == True\
-#		and config.original_model == True):
-#	H_mode_data = dump.read("./L_start_pickle/state0090.dat")
-#	density.setValue(H_mode_data['density'])
-#	temperature.setValue(H_mode_data['temperature'])
-#	Z.setValue(H_mode_data['Z'])
-#	Diffusivity.setValue(D_choice_local)
-
-
-# Initial conditions viewer
-if config.show_initial == True:
-	init_density_viewer = Viewer(density, xmin=0.0, xmax=L,\
-			legend=None, title="Density")
-	init_temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
-			legend=None, title="Temperature")
-	init_Z_viewer = Viewer((-Z, Diffusivity), xmin=0.0,\
-			xmax=L, legend='best', title=r"$Z$ and Diffusivity")
-	raw_input("Pause for SI Initial Conditions")
-
-
 timeStep = epsilon / config.timeStep_denom
 
 
@@ -82,6 +61,8 @@ if __name__ == '__main__':
 	ZD_viewer = Viewer((-Z, Diffusivity), xmin=0.0, xmax=L,\
 			legend='best',\
 			title = config.plot_title)
+	if config.show_initial == True:
+		raw_input("Pause for Viewing Initial Conditions")
 
 	# Auxiliary viewers
 	if config.aux_plots == True:
@@ -104,9 +85,10 @@ if __name__ == '__main__':
 		raw_input("Pause set for writing to file...")
 
 
-	# Set the tolerance for the residual
-	res_tol = 1.0
-
+	print_variables(density, temperature, v_Ti, v_Te, rho_pi, rho_pe,\
+			omega_t, w_bi, omega_bi, nu_ii, nu_ai)
+	print_variables(Z_transient_coeff, Z_diffusion_coeff, Gamma_an,\
+			Gamma_cx, Gamma_bulk, Gamma_OL, n_0)
 
 	# ----------------- Time Loop -------------------------
 	for t in range(config.total_timeSteps):
@@ -119,7 +101,7 @@ if __name__ == '__main__':
 
 
 		# --------------- Solving Loop --------------------
-		while current_residual > res_tol:
+		while current_residual > config.res_tol:
 			print t, current_residual
 			current_residual = full_equation.sweep(dt=timeStep,\
 					solver=GMRES_Solver)

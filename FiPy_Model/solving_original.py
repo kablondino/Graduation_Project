@@ -58,11 +58,6 @@ if (__name__ == '__main__' and config.initial_H_mode == True\
 	Diffusivity.setValue(D_choice_local)
 
 
-# Initial conditions viewer
-if config.show_initial == True:
-	initial_viewer = Viewer((density, temperature, -Z, Diffusivity),\
-			xmin=0.0, xmax=L, legend='best')
-	raw_input("Pause for Initial Conditions")
 
 
 timeStep = epsilon / config.timeStep_denom
@@ -75,6 +70,8 @@ if __name__ == '__main__':
 			xmin=0.0, xmax=L,\
 			datamax=config.ploty_max, legend='best',\
 			title = config.plot_title)
+	if config.show_initial == True:
+		raw_input("Pause for Initial Conditions")
 
 	# Auxiliary viewers
 	if config.aux_plots == True:
