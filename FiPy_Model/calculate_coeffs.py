@@ -14,13 +14,18 @@ import numpy
 
 # ASSUMES density is in m^-3 and temperature is in eV
 def calculate_coeffs():
-	# Neutrals density in use for CX friction, NEEDS CHANGE!
-	n_0.setValue(4.0e17 * a_in0 * (charge*temperature / 100.0)\
-			**(3.0/4.0))										# [m^-3]
-
 	# Thermal velocities (most probable)
 	v_Ti.setValue(numerix.sqrt(2.0 * charge * temperature / m_i))	# [m/s]
 	v_Te.setValue(numerix.sqrt(2.0 * charge * temperature / m_e))	# [m/s]
+
+	# Neutrals density in use for CX friction, NEEDS CHANGE!
+	# The commented version cannot be properly computed
+#	n_0.setValue((-0.1*config.Gamma_c / v_Ti) * numerix.exp(\
+#			-numerix.sqrt(sigma_ion*neu_react_rate) * density[0]\
+#			* numerix.exp(x * density.grad[0]/density)))		# [m^-3]
+	# NEED dynamic definition!
+	n_0.setValue((-0.1*config.Gamma_c / v_Ti) / (1.0 +\
+			numerix.exp(1.0e3*(x-0.01))))						# [m^-3]
 
 	# Poloidal gyro-(Larmor) radii
 	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))			# [m]

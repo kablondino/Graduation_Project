@@ -35,12 +35,12 @@ U.setValue(density*temperature / (gamma - 1.0))
 
 
 # -------------- Other Variable Declarations --------------
-# Neutrals density in use for CX friction
-n_0 = CellVariable(name=r"$n_0$", mesh=mesh)
-
 # Thermal velocities (most probable)
 v_Ti = CellVariable(name=r"$v_{th,i}$", mesh=mesh)
 v_Te = CellVariable(name=r"$v_{th,e}$", mesh=mesh)
+
+# Neutrals density in use for CX friction
+n_0 = CellVariable(name=r"$n_0$", mesh=mesh)
 
 # Poloidal gyro-(Larmor) radii
 rho_pi = CellVariable(name=r"$\rho_{\theta i}$", mesh=mesh)
