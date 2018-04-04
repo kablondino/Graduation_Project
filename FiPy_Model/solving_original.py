@@ -59,7 +59,6 @@ if (__name__ == '__main__' and config.initial_H_mode == True\
 
 
 
-
 timeStep = epsilon / config.timeStep_denom
 
 
@@ -67,7 +66,7 @@ if __name__ == '__main__':
 
 	# Declare viewer
 	viewer = Viewer((density, temperature, -Z, Diffusivity),\
-			xmin=0.0, xmax=L,\
+			xmin=0.0, xmax=L, datamin=-0.5,\
 			datamax=config.ploty_max, legend='best',\
 			title = config.plot_title)
 	if config.show_initial == True:
@@ -94,10 +93,6 @@ if __name__ == '__main__':
 		raw_input("Pause set for writing to file...")
 
 
-	# Set the tolerance for the residual
-	res_tol = 1.0e-5
-
-
 	# ----------------- Time Loop -------------------------
 	for t in range(config.total_timeSteps):
 		# (Re)set residual values
@@ -105,11 +100,11 @@ if __name__ == '__main__':
 
 		# Update values
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
-		calculate_coeffs(); Diffusivity.setValue(D_choice_local)
-
+		Diffusivity.setValue(D_choice_local)
+		#calculate_coeffs()
 
 		# --------------- Solving Loop --------------------
-		while current_residual > res_tol:
+		while current_residual > config.res_tol:
 			print t, current_residual
 			current_residual = full_equation.sweep(dt=timeStep,\
 					solver=GMRES_Solver)
