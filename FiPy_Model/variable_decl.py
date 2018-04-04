@@ -11,7 +11,7 @@ from parameters import *
 if config.original_model == True:
 	L = 4.0		# in AU
 elif config.original_model == False:
-	L = 0.03	# in m
+	L = 0.04	# in m
 
 # ----------------- Mesh Generation -----------------------
 mesh = Grid1D(nx=config.nx, Lx=L)
@@ -76,7 +76,7 @@ ionization_rate = CellVariable(name=r"$\langle\sigma v\rangle_{ion}$",\
 		mesh=mesh)
 cx_rate = CellVariable(name=r"$\langle\sigma v\rangle_{cx}$",\
 		mesh=mesh)
-cx_rate = 1.0e-9	# TEMPORARY
+cx_rate = 1.0e-10	# TEMPORARY
 g_n_cx = CellVariable(name=r"$g_n^{cx}$", mesh=mesh)
 g_T_cx = CellVariable(name=r"$g_T^{cx}$", mesh=mesh)
 g_Z_cx = CellVariable(name=r"$g_Z^{cx}$", mesh=mesh)

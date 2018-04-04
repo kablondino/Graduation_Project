@@ -21,7 +21,7 @@ if config.original_model == True:
 		Z.setValue(0.0)
 
 	# H--mode
-	elif config.initial_H_mode == False:
+	elif config.initial_H_mode == True:
 		density.setValue((0.5/1.5)*x + 0.5, where = x <= 1.5)
 		density.setValue(3.0*x - 3.5, where = (x > 1.5) & (x < 2.0))
 		density.setValue((0.5/1.5)*x + (11.0/6.0), where = x >= 2.0)
@@ -42,14 +42,15 @@ if config.original_model == False:
 
 	# H--mode
 	elif config.initial_H_mode == True:
-		density.setValue(37.5e19*x + 0.5e19, where = x < 0.01)
-		density.setValue(337.5e19*x - 2.5e19, where = (x > 0.01) & (x < 0.015))
-		density.setValue(37.5e19*x + 2.0e19, where = x > 0.015)
-
-		temperature.setValue((8.0e3*x + 100.0), where = x < 0.01)
-		temperature.setValue((60.0e3*x - 420.0),\
+		density.setValue((1.25e20*x + 0.05e20), where = x < 0.01)
+		density.setValue((7.5e20*x - 0.0125e20),\
 				where = (x > 0.01) & (x < 0.015))
-		temperature.setValue(8.0e3*x + 360.0, where = x > 0.015)
+		density.setValue((1.25e20*x + 0.08125e20),where = x > 0.015)
+
+		temperature.setValue((3.0e3*x + 100.0), where = x < 0.01)
+		temperature.setValue((18.0e3*x - 50.0),\
+				where = (x > 0.01) & (x < 0.015))
+		temperature.setValue((3.0e3*x + 175.0), where = x > 0.015)
 
 		Z.setValue(-3.0 / (1.0 + numerix.exp(1.5e3*(x - 0.015))))
 
@@ -121,7 +122,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 		d/dx(Z(0)) == Z / lambda_Z
 		mu*D/epsilon * d/dx(Z(L)) == 0
 	"""
-#	Z.faceGrad.constrain(-Z.faceValue / (L*0.25*lambda_Z), mesh.facesLeft)
+#	Z.faceGrad.constrain(Z.faceValue / (L*0.25*lambda_Z), mesh.facesLeft)
 	Z.faceGrad.constrain(0.0, mesh.facesRight)
 
 
