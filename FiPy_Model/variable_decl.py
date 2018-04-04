@@ -83,6 +83,7 @@ g_Z_cx = CellVariable(name=r"$g_Z^{cx}$", mesh=mesh)
 Gamma_cx = CellVariable(name=r"$\Gamma_i^{cx}$", mesh=mesh)
 
 ## Ion Bulk (Parallel) Viscosity
+plasma_disp = CellVariable(name=r"$X$", mesh=mesh)
 D_bulk = CellVariable(name=r"$D^{\pi\parallel}$", mesh=mesh)
 Gamma_bulk = CellVariable(name=r"$\Gamma_i^{\pi\parallel}$", mesh=mesh)
 

@@ -82,17 +82,17 @@ def calculate_coeffs():
 
 
 	## Ion Bulk (Parallel) Viscosity
-	bulk_complex_term = 1j * numerix.sqrt(pi) * scipy.special.wofz(\
-			Z + 1j*nu_ii / omega_t)
+	plasma_disp.setValue(numpy.imag(1j * numerix.sqrt(pi)\
+			* scipy.special.wofz(Z + 1j*nu_ii / omega_t)))
 	D_bulk.setValue(aspect**2 * rho_pi * temperature\
 			/ (x * B * numerix.sqrt(pi)))						# [m^2 s^-1
 
-	Gamma_bulk.setValue(density * D_bulk * (L + Z/rho_pi)\
-			* numpy.imag(bulk_complex_term) )					# [m^-2 s^-1]
+	Gamma_bulk.setValue(density * D_bulk * (1.0/L + Z/rho_pi)\
+			* plasma_disp)										# [m^-2 s^-1]
 
 
 	## Ion Orbit Loss
-	g_OL.setValue(charge * density * nu_ii * nu_ai * rho_pi)	# [A m^-2]
+	g_OL.setValue(-charge * density * nu_ii * nu_ai * rho_pi)	# [A m^-2]
 
 	radical_OL = numerix.sqrt(nu_ai + Z**4 + ((x)/w_bi)**4)
 
