@@ -22,7 +22,8 @@ total_timeSteps = 2000
 
 # Size of time step denominator (delta t)
 # Either mu or epsilon is in the numerator
-timeStep_denom = 15.0
+# DEPRICATED!
+timeStep = 1.0 / 375.0
 
 # Choose the Diffusivity model, as a string (case does not matter)
 # D_Zohm, D_Staps, and D_Shear are the possibilities

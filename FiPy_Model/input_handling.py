@@ -3,7 +3,8 @@
 	of inputs are the following:
 	nx:				int		The number of grid points
 	total_timeSteps:int		The total number of time steps
-	timeStep_denom:	float	The denominator of the time step
+	timeStep_denom:	float	The denominator of the time step; DEPRICATED
+	timeStep:		float	The overall dt in solving
 	res_tol			float	The tolerance of the residual
 	Gamma_c			float	The particle flux from the core
 	q_c				float	The heat flux from the core
@@ -36,6 +37,12 @@ diffusivity_models = ["d_zohm", "d_staps", "d_shear", "d_flow_shear"]
 
 
 # -------------- Check Configuration Variables ------------
+# Z-equation model choice
+if type(getattr(config, 'original_model', None)) != bool:
+	config.original_Z_model = True
+	print "Defaulted to using the original numerical model for Z."
+
+
 # Particle and heat fluxes from the core
 if (type(getattr(config, 'Gamma_c', None)) != float\
 		and type(getattr(config, 'Gamma_c', None)) != int):
@@ -111,7 +118,7 @@ if type(config.nx) == float:
 # Total number of time steps
 if ((type(getattr(config, 'total_timeSteps', None)) != int and\
 		type(getattr(config, 'total_timeSteps', None)) != float) or\
-		getattr(config, 'total_timeSteps', None) <= 0):
+		getattr(config, 'total_timeSteps', None) <= 0.0):
 	try:
 		config.total_timeSteps = int(input("Total number of time steps not properly defined. Enter integer value: "))
 
@@ -129,24 +136,49 @@ if type(config.total_timeSteps) == float:
 
 
 # Denominator of the delta t
-if ((type(getattr(config, 'timeStep_denom', None)) != float and\
-		type(getattr(config, 'timeStep_denom', None)) != int) or\
-		getattr(config, 'timeStep_denom', None) <= 0.0):
-	try:
-		config.timeStep_denom = float(input("The denomintor of the time step size is not properly defined. Enter floating-point value: "))
+# DEPRICATED!
+#if ((type(getattr(config, 'timeStep_denom', None)) != float and\
+#		type(getattr(config, 'timeStep_denom', None)) != int) or\
+#		getattr(config, 'timeStep_denom', None) <= 0.0):
+#	try:
+#		config.timeStep_denom = float(input("The denomintor of the time step size is not properly defined. Enter floating-point value: "))
+#
+#		if config.timeStep_denom <= 0.0:
+#			raise ValueError
+#
+#		print "The denominator of the time step size is set to "\
+#				+ str(config.timeStep_denom)
+#
+#	except (NameError, SyntaxError, EOFError, ValueError):
+#		config.timeStep_denom = 15.0
+#		print "The denominator of the time step size is defaulted to 15.0"
+#
+#if type(config.timeStep_denom) == int:
+#	config.timeStep_denom = float(config.timeStep_denom)
 
-		if config.timeStep_denom <= 0.0:
+
+# Time step
+if ((type(getattr(config, 'timeStep', None)) != float and\
+		type(getattr(config, 'timeStep', None))) or\
+		getattr(config, 'timeStep', None) <= 0.0):
+	try:
+		config.timeStep_denom = float(input("The time step size is not properly defined. Enter floating-point value: "))
+
+		if config.timeStep <= 0.0:
 			raise ValueError
 
-		print "The denominator of the time step size is set to "\
-				+ str(config.timeStep_denom)
+		print "The time step size is set to " + str(config.timeStep)
 
 	except (NameError, SyntaxError, EOFError, ValueError):
-		config.timeStep_denom = 15.0
-		print "The denominator of the time step size is defaulted to 15.0"
+		if config.original_model == True:
+			config.timeStep = 1.0 / 375.0
+			print "The time step is defaulted to 1.0 / 375.0."
+		elif config.original_model == False:
+			config.timeStep = 1.0e-9
+			print "The time step is defaulted to 1.0e-9."
 
-if type(config.timeStep_denom) == int:
-	config.timeStep_denom = float(config.timeStep_denom)
+if type(config.timeStep) == int:
+	config.timeStep = float(config.timeStep)
 
 
 # Residual tolerance
@@ -164,9 +196,10 @@ if ((type(getattr(config, 'res_tol', None)) != float and\
 	except (NameError, SyntaxError, EOFError, ValueError):
 		if config.original_model == True:
 			config.res_tol = 1.0e-6
+			print "The residual tolerance is defaulted to 1.0e-6."
 		elif config.original_model == False:
 			config.res_tol = 1.0e14
-		print "The residual tolerance is defaulted to the appropriate model's value."
+			print "The residual tolerance is defaulted to 1.0e14."
 
 if type(config.res_tol) == int:
 	config.res_tol = float(config.res_tol)
@@ -192,13 +225,7 @@ if type(getattr(config, 'initial_H_mode', None)) != bool:
 	print "Defaulted to starting in L--mode."
 
 
-# Z-equation model choice
-if type(getattr(config, 'original_model', None)) != bool:
-	config.original_Z_model = True
-	print "Defaulted to using the original numerical model for Z."
-
-
-# Show initial conditions?
+# Show initial conditions
 if type(getattr(config, 'show_initial', None)) != bool:
 	config.show_initial = False
 	print "The initial conditions will not be shown."
