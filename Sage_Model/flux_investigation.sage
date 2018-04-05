@@ -22,6 +22,7 @@ assume(x >= 0)
 
 var('density, temperature, Z')
 
+Z_S = -1.5
 Z(x) = Z_S*(1.0 - tanh((L*x - L) / 2.0))
 
 # ----------------- Diffusivities -------------------------

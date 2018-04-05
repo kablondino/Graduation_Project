@@ -5,7 +5,7 @@
 	constants, and non-g model numbers.
 
 """
-L = 4.0
+L = 0.04
 
 # ----------------- Parameters ----------------------------
 ## Global parameters and physical constants
@@ -48,33 +48,33 @@ epsilon = 1.0 / 25.0
 mu = 1.0/20.0
 
 ## Choose set of parameters
-numerical_choice = "Paquay"
-if numerical_choice.lower() == "paquay":
-	# Paquay's numbers
-	zeta = 1.1
-	c_n = 1.1
-	c_T = 0.9
-	a = -1.5
-	b = -1.0
-	c = -1.0
-	Z_S = 1.4
-
-# Stap's numbers
-elif numerical_choice.lower() == "staps":
-	zeta = 0.5
-	c_n = -1.1
-	c_T = -0.9
-	a = 3.0/2.0
-	b = 2.0
-	c = -1.0
-	Z_S = -3.0/2.0
-
-# Heat diffusivity coefficient choice for Gradient Model
-elif numerical_choice.lower() == "g_grad"\
-		or numerical_choice.lower() == "gradient_model":
-	zeta = 0.9
-
-print "The numerical parameters are chosen to " + str(numerical_choice)
+#numerical_choice = "Paquay"
+#if numerical_choice.lower() == "paquay":
+#	# Paquay's numbers
+#	zeta = 1.1
+#	c_n = 1.1
+#	c_T = 0.9
+#	a = -1.5
+#	b = -1.0
+#	c = -1.0
+#	Z_S = 1.4
+#
+## Stap's numbers
+#elif numerical_choice.lower() == "staps":
+#	zeta = 0.5
+#	c_n = -1.1
+#	c_T = -0.9
+#	a = 3.0/2.0
+#	b = 2.0
+#	c = -1.0
+#	Z_S = -3.0/2.0
+#
+## Heat diffusivity coefficient choice for Gradient Model
+#elif numerical_choice.lower() == "g_grad"\
+#		or numerical_choice.lower() == "gradient_model":
+#	zeta = 0.9
+#
+#print "The numerical parameters are chosen to " + str(numerical_choice)
 
 
 ## For use in gradient model
