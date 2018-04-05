@@ -38,7 +38,7 @@ full_equation = density.equation & temperature.equation & Z.equation
 
 
 # Initialize all the coefficients and other variables
-#calculate_coeffs()
+calculate_coeffs()
 
 # ----------------- Choose Solver -------------------------
 # Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,

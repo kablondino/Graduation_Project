@@ -29,7 +29,7 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 # Z Equation
 Z.equation = TransientTerm(coeff=Z_transient_coeff / Z_diffusion_coeff, var=Z)\
 		== DiffusionTerm(coeff=1.0, var=Z)\
-		+ (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL) / Z_diffusion_coeff
+		+ (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL) / (Z_diffusion_coeff)
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
@@ -39,10 +39,8 @@ full_equation = density.equation & temperature.equation & Z.equation
 calculate_coeffs()
 
 # LOAD pickled H--Mode data
-#if __name__ == '__main__' and config.initial_H_mode == True:
-#	H_mode_data = dump.read("./L_start_pickle/state0090.dat")
-#	density.setValue(H_mode_data['density'])
-#	temperature.setValue(H_mode_data['temperature'])
+if __name__ == '__main__' and config.initial_H_mode == True:
+	H_mode_data = dump.read("./L_start_pickle/state0090.dat")
 #	Z.setValue(-1.0*H_mode_data['Z'])
 #	Diffusivity.setValue(D_choice_local)
 
@@ -54,7 +52,7 @@ GMRES_Solver = LinearGMRESSolver(iterations=100)
 LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 
-timeStep = epsilon / config.timeStep_denom
+#timeStep = epsilon / config.timeStep_denom
 
 
 if __name__ == '__main__':
@@ -67,16 +65,17 @@ if __name__ == '__main__':
 			legend='best',\
 			title = config.plot_title)
 	Z_viewer = Viewer(Z, xmin=0.0, xmax=L,\
-			legend='best',\
+			datamax=0.4, datamin = -0.05, legend='best',\
 			title = config.plot_title)
-	D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, legend='best',\
+	D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
+			datamax=D_max + D_max/20.0, legend='best',\
 			title = config.plot_title)
 	if config.show_initial == True:
 		raw_input("Pause for Viewing Initial Conditions")
 
 	# Auxiliary viewers
 	if config.aux_plots == True:
-		auxiliary1_viewer = Viewer((plasma_disp), xmin=0.0,\
+		auxiliary1_viewer = Viewer((Gamma_an), xmin=0.0,\
 				xmax=L, datamin=config.aux1y_min,\
 				datamax=config.aux1y_max, legend='best',\
 				title = config.aux_title1)
@@ -108,7 +107,7 @@ if __name__ == '__main__':
 		# --------------- Solving Loop --------------------
 		while current_residual > config.res_tol:
 			print t, current_residual
-			current_residual = full_equation.sweep(dt=timeStep,\
+			current_residual = full_equation.sweep(dt=config.timeStep,\
 					solver=GMRES_Solver)
 
 
