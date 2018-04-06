@@ -65,7 +65,7 @@ if __name__ == '__main__':
 			legend='best',\
 			title = config.plot_title)
 	Z_viewer = Viewer(Z, xmin=0.0, xmax=L,\
-			datamax=0.4, datamin = -0.05, legend='best',\
+			legend='best',\
 			title = config.plot_title)
 	D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
 			datamax=D_max + D_max/20.0, legend='best',\
@@ -79,10 +79,18 @@ if __name__ == '__main__':
 				xmax=L, datamin=config.aux1y_min,\
 				datamax=config.aux1y_max, legend='best',\
 				title = config.aux_title1)
-		auxiliary2_viewer = Viewer((Gamma_bulk), xmin=0.0,\
+		auxiliary2_viewer = Viewer((Gamma_cx), xmin=0.0,\
 				xmax=L, datamin=config.aux2y_min,\
 				datamax=config.aux2y_max, legend='best',\
 				title = config.aux_title2)
+		auxiliary3_viewer = Viewer((Gamma_bulk), xmin=0.0,\
+				xmax=L, datamin=config.aux3y_min,\
+				datamax=config.aux3y_max, legend='best',\
+				title = config.aux_title3)
+		auxiliary4_viewer = Viewer((Gamma_OL), xmin=0.0,\
+				xmax=L, datamin=config.aux4y_min,\
+				datamax=config.aux4y_max, legend='best',\
+				title = config.aux_title4)
 
 	# File writing
 	if (hasattr(config, 'save_directory') and\
@@ -128,6 +136,10 @@ if __name__ == '__main__':
 						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
 				auxiliary2_viewer.plot(filename =\
 						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
+				auxiliary3_viewer.plot(filename =\
+						config.save_directory+"/aux3_"+str(t).zfill(4)+".png")
+				auxiliary4_viewer.plot(filename =\
+						config.save_directory+"/aux4_"+str(t).zfill(4)+".png")
 
 		elif config.save_plots == False:
 			density_viewer.plot(); temp_viewer.plot()
@@ -135,6 +147,7 @@ if __name__ == '__main__':
 
 			if config.aux_plots == True:
 				auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
+				auxiliary3_viewer.plot(); auxiliary4_viewer.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:

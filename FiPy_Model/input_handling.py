@@ -18,7 +18,16 @@
 	aux_plots:		bool	Turns on specified auxiliary plots
 	aux_title1:		str		Title of the first auxiliary plot
 	aux_title2:		str		............ second ...
-	aux_plot_var:	tuple	Specified variables for the auxiliary plots
+	aux_title3:		str		............ third ....
+	aux_title4:		str		............ fourth ...
+	aux1_ymin:		float	Minimum y value of the aux 1 plot
+	aux2_ymin:		float	.......................... 2 plot
+	aux3_ymin:		float	.......................... 3 plot
+	aux4_ymin:		float	.......................... 4 plot
+	aux1_ymax:		float	Maximum y value of the aux 1 plot
+	aux2_ymax:		float	.......................... 2 plot
+	aux3_ymax:		float	.......................... 3 plot
+	aux4_ymax:		float	.......................... 4 plot
 
 	save_directory: string	The name of the saving directory, from current
 							directory being run.
@@ -242,6 +251,10 @@ if not hasattr(config, 'aux_title1'):
 	config.aux_title1 = ""
 if not hasattr(config, 'aux_title2'):
 	config.aux_title2 = ""
+if not hasattr(config, 'aux_title3'):
+	config.aux_title3 = ""
+if not hasattr(config, 'aux_title4'):
+	config.aux_title4 = ""
 
 
 # MINIMUM y values on the plots
@@ -254,6 +267,12 @@ if (type(getattr(config, 'aux1y_min', None)) != int and\
 if (type(getattr(config, 'aux2y_min', None)) != int and\
 		type(getattr(config, 'aux2y_min', None)) != float):
 	config.aux2y_min = None
+if (type(getattr(config, 'aux3y_min', None)) != int and\
+		type(getattr(config, 'aux3y_min', None)) != float):
+	config.aux3y_min = None
+if (type(getattr(config, 'aux4y_min', None)) != int and\
+		type(getattr(config, 'aux4y_min', None)) != float):
+	config.aux4y_min = None
 # MAXIMUM y values on the plots
 if (type(getattr(config, 'ploty_max', None)) != int and\
 		type(getattr(config, 'ploty_max', None)) != float):
@@ -264,6 +283,12 @@ if (type(getattr(config, 'aux1y_max', None)) != int and\
 if (type(getattr(config, 'aux2y_max', None)) != int and\
 		type(getattr(config, 'aux2y_max', None)) != float):
 	config.aux2y_max = None
+if (type(getattr(config, 'aux3y_max', None)) != int and\
+		type(getattr(config, 'aux3y_max', None)) != float):
+	config.aux3y_max = None
+if (type(getattr(config, 'aux4y_max', None)) != int and\
+		type(getattr(config, 'aux4y_max', None)) != float):
+	config.aux4y_max = None
 
 
 # Makes sure that the saved directory is a string
