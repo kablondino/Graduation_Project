@@ -10,7 +10,7 @@ L = 0.04
 # ----------------- Parameters ----------------------------
 ## Global parameters and physical constants
 charge_dummy = 1.0				# Dummy charge
-charge_true = 1.602e-19			# Elementary charge
+charge = 1.602e-19			# Elementary charge
 k_B = 8.617e-5					# Boltzmann in eV
 m_e = 9.109e-31					# Electron mass
 m_i = 1.673e-27					# Ion (H) mass
@@ -81,5 +81,5 @@ mu = 1.0/20.0
 alpha_cx = 0.9				# Charge exchange coefficient
 alpha_an = 1.0				# Anomalous loss coefficient
 a_in0 = 0.1					# Neutrals coefficient
-neu_react_rate = 1.0e-14	# Reaction rate of charge exchange
+cx_rate = 1.0e-9			# Reaction rate of charge exchange
 
