@@ -1,4 +1,4 @@
-# Full Model Notes: 26 Mar 2018
+# Full Model Notes: 8 Apr 2018
 
 \small\begin{align}
 	&\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,=\, a + bx - x^3 \\
@@ -11,6 +11,22 @@
 	&\text{Approx. SI Units at Edge:} ~~~~ n \,\approx\, 0.5\times 10^{19}~\text{m}^{-3}~,
 		~~ T \,\approx\, 500~e\text{V}~,~~ v_T \,\approx\, 10^5~\text{m}/\text{s}~,
 		~~ \rho_{\theta i} \,\approx\, 10^{-4}~\text{m}
+\end{align}\normalsize
+
+### Plasma Parameters
+\small\begin{align}
+	v_{T_j} \,&=\, \sqrt{\frac{2 \, T}{m_j}}~,~~~
+		\rho_{\theta j} \,=\, \frac{m_j \, v_{T_j}}{e \, B_\theta}~,~~~
+		\omega_t \,=\, \frac{v_{Ti}}{q\,R}~,~~~
+		\omega_{bj} \,=\, \frac{\epsilon^{3/2} \, v_{T_j}}{q \, R}~,~~~
+		w_{bi} \,=\, \sqrt{\epsilon} \rho_{\theta i} \\
+	\nu_{ei} \,&=\, 1.33\times 10^5 \frac{n_{20}}{(T_\text{keV})^{3/2}}
+		\,=\, 4.2058\times 10^{-5} \frac{n}{(T_\text{eV})^{3/2}}~,~~~
+		\nu_{ii} \,=\, 1.2\, \nu_{ei} \, \sqrt{\frac{m_e}{m_i}}~,~~~
+		\nu_{*j} \,=\, \frac{\nu_{ji}}{\omega_{bj}} \\
+	\text{Non-formal:}& ~~ n_0 \,=\, \frac{n_0(0)}{\left(1 + \exp\left[k(x - d)\right]\right)}~,~~~
+		n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~ 0 < \theta \leq 1~,~~~
+		\langle \sigma v \rangle_{cx} \,=\, ?~~ \langle \sigma v \rangle_{ion} \,=\, ?
 \end{align}\normalsize
 
 ### Model Forms
@@ -39,6 +55,7 @@ Reducing down to equations of only $n$ and $T$ (of 2 possible forms): $\dfrac{\p
 	\dfrac{\partial(n\,T)}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D\,n}{\zeta} \, \dfrac{\partial T}{\partial x}\right] \,+\, \dfrac{\partial}{\partial x}\left[D\,T \, \dfrac{\partial n}{\partial x}\right]~, ~~~~ \dfrac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}\left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \, \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x}
 \end{align}\normalsize
 
+<!---
 Staps reduced the model to the following vector form:
 \small\begin{align}
 	\dfrac{\partial}{\partial t} \mathbf{v}(x,t) \,=\, \dfrac{\partial}{\partial x} F&\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \,+\, S\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \\
@@ -54,6 +71,7 @@ Staps reduced the model to the following vector form:
 			\dfrac{c_n T}{\epsilon n^2} \, n^\prime \,+\, \dfrac{c_T}{\epsilon n} \, T^\prime \,+\, \dfrac{G(Z)}{\epsilon}
 			\end{bmatrix}~.
 \end{align}\normalsize
+-->
 
 The diffusivity function $D(\mathcal{E})$ is given in a few forms:
 \small\begin{align}
@@ -73,11 +91,12 @@ Generalized versions for boundary conditions at the plasma edge ($x=0$):
 
 ...towards the core ($x=L$):
 \small\begin{align}
-	\frac{\partial n}{\partial x} \,=\, -\frac{\Gamma_c}{D}~,
-		~~~~ \frac{\partial T}{\partial x} \,=\ \frac{\zeta\left(T \Gamma_c - (\gamma - 1) q_c\right)}{n\,D}~,
+	\Gamma(L) \,=\, \Gamma_c ~\longrightarrow~ \frac{\partial n}{\partial x} \,=\, -\frac{\Gamma_c}{D}~;
+		~~~~ q(L) \,=\, q_c ~\longrightarrow~ \frac{\partial T}{\partial x} \,=\ \frac{\zeta\left(T \Gamma_c - (\gamma - 1) q_c\right)}{n\,D}~;
 		~~~~\frac{\partial Z}{\partial x} \,=\, 0
 \end{align}\normalsize
 
+<!---
 For Matlab, the Neumann and Robin boundary conditions can be expressed in the form of
 \small\begin{align}
 	&p\left(x, t, \mathbf{v}\right) \,+\, F\left(x, t, \mathbf{v}, \dfrac{\partial\mathbf{v}}{\partial x}\right) \,=\, 0 ~~~ \text{for} ~~~ (x, t) \in \delta\Omega \\
@@ -93,6 +112,7 @@ p(L, t) \,=\, \begin{bmatrix}
 				0
 				\end{bmatrix}_{x=L}~.
 \end{align}\normalsize
+-->
 
 Paquay's initial conditions for density and temperature, and Stap's initial condition for $Z$:
 \small\begin{align}
@@ -133,11 +153,16 @@ Steady-State Solutions
 	g_n^\text{cx} \,=\, -\dfrac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \,n T}{B_\theta^2} \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~ g_Z^\text{cx} \,=\, -\dfrac{g_n^\text{cx}}{\rho_{\theta i}}
 \end{align}\normalsize
 
-+ Ion Bulk Viscosity: $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
++ Ion Bulk Viscosity: <!--- $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
 \small\begin{align}
 	\begin{bmatrix}\xi_\theta \\[1ex] \xi_\phi \end{bmatrix} \,&=\, \dfrac{1}{\pi} \int_0^{\sqrt{\nu_{*i}}} \begin{bmatrix} 1 \\[1ex] \frac{5}{2} - x \end{bmatrix} x^2 \exp(-x) \, \tan^{-1}\left(\dfrac{2 N \sqrt{x}}{N^2 + Z^2 - x}\right) \text{d}x \\
 	g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i}& B_\theta \, \xi_\theta~,~~~~ g_n^{\pi\parallel} \,=\, \eta \, \rho_{\theta i} \left(B_\theta\,\xi_\theta - B\,\xi_\phi\right)~,~~~~ g_Z^{\pi\parallel} \,=\, 2\eta \, B_\theta \, \xi_\theta \\
-	e \Gamma_i^{\pi\parallel} \,&=\, -\frac{e n_e D_p}{\rho_i} (-\lambda - Z) \, \text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
+\end{align}\normalsize
+-->
+
+\small\begin{align}
+	D^{\pi\parallel} \,&=\, \frac{\epsilon^2 \, \rho_{\theta i} \, T}{(a_m - x) \, B \, \sqrt{\pi}} \\
+	e \Gamma_i^{\pi\parallel} \,&=\, -e n_e D^{\pi\parallel} \left(-\frac{n^\prime}{n} - \frac{Z}{\rho_{\theta i}}\right) \, \text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
 \end{align}\normalsize
 
 + Ion Orbit Loss:
