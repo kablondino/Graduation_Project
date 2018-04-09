@@ -52,7 +52,7 @@ if config.original_model == False:
 				where = (x > 0.01) & (x < 0.015))
 		temperature.setValue((3.0e3*x + 175.0), where = x > 0.015)
 
-		Z.setValue(-3.0 / (1.0 + numerix.exp(1.5e3*(x - 0.015))))
+		Z.setValue(3.0 / (1.0 + numerix.exp(1.5e3*(x - 0.015))))
 
 
 # ----------------- Set Diffusivity Model -----------------
@@ -70,7 +70,7 @@ elif config.D_choice.lower() == "d_staps":
 # Flow-Shear Model
 elif config.D_choice.lower() == "d_shear" or\
 		config.D_choice.lower() == "d_flow_shear":
-	a1, a2, a3 = 1.0, 0.0, 1.0
+	a1, a2, a3 = 1.0, 0.0, 1.0e-3
 	D_choice_local = D_min + (D_max - D_min)\
 			/ (1.0 + a1*(Z)**2 + a2*Z*Z.grad[0]\
 			+ a3*numerix.dot(Z.grad, Z.grad))
@@ -82,13 +82,13 @@ Diffusivity.setValue(D_choice_local)
 print "The diffusivity model is set to " + str(config.D_choice)
 
 
-# ------ Old definitions, which requires Diffusivity to ALREADY be set -------
+# --- Old init definitions, which requires Diffusivity to ALREADY be set -----
 #density.setValue(-(config.Gamma_c*lambda_n / Diffusivity)\
 #		* (1.0 + x/lambda_n))
 #temperature.setValue(config.q_c\
 #		* ((gamma - 1.0) / config.Gamma_c)\
 #		* (1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
-#		* (1.0 + x/lambda_n)**(-zeta)))
+#		* (1.0 + x/lambda_n)**-zeta))
 
 #Z.setValue(Z_S*(1.0 - numerix.tanh(\
 #		(L*x - L) / 2.0)))	# OLD, by Staps
@@ -101,7 +101,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 		d/dx(n(0)) == n / lambda_n
 		d/dx(n(L)) == -Gamma_c / Diffusivity
 	"""
-	density.faceGrad.constrain(density.faceValue / (L*0.25*lambda_n),\
+	density.faceGrad.constrain(density.faceValue / (lambda_n),\
 			mesh.facesLeft)
 	density.faceGrad.constrain(\
 			-AGamma_c / Diffusivity.faceValue, mesh.facesRight)
@@ -111,7 +111,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 		d/dx(T(0)) = T / lambda_T
 		d/dx(T(L)) = zeta*(Gamma_c*T - q_c*(gamma - 1)) / (Diffusivity * n)
 	"""
-	temp_left = temperature.faceValue / (L*0.25*lambda_T)
+	temp_left = temperature.faceValue / (lambda_T)
 	temperature.faceGrad.constrain(temp_left, mesh.facesLeft)
 	temperature.faceGrad.constrain( (zeta * (AGamma_c*temperature.faceValue -\
 			Aq_c*(gamma - 1.0))) / (Diffusivity.faceValue *\
@@ -122,8 +122,9 @@ def set_boundary_values(AGamma_c, Aq_c):
 		d/dx(Z(0)) == Z / lambda_Z
 		mu*D/epsilon * d/dx(Z(L)) == 0
 	"""
-#	Z.faceGrad.constrain(Z.faceValue / (L*0.25*lambda_Z), mesh.facesLeft)
+#	Z.faceGrad.constrain(Z.faceValue / (lambda_Z), mesh.facesLeft)
 	Z.faceGrad.constrain(0.0, mesh.facesRight)
+#	Z.constrain(0.0, mesh.facesRight)
 
 
 # Set the boundary values now
