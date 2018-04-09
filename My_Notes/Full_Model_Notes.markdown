@@ -26,7 +26,8 @@
 		\nu_{*j} \,=\, \frac{\nu_{ji}}{\omega_{bj}} \\
 	\text{Non-formal:}& ~~ n_0 \,=\, \frac{n_0(0)}{\left(1 + \exp\left[k(x - d)\right]\right)}~,~~~
 		n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~ 0 < \theta \leq 1~,~~~
-		\langle \sigma v \rangle_{cx} \,=\, ?~~ \langle \sigma v \rangle_{ion} \,=\, ?
+		\langle \sigma v \rangle_{cx} \,=\, ?~~ \langle \sigma v \rangle_{ion} \,=\, ? \\
+	\nu_{in0} \,&=\, a_{in0} \, \omega_{bi}~,~~~ \nu_\text{eff} \,=\, \nu_{ii} + \nu_{in0}
 \end{align}\normalsize
 
 ### Model Forms
@@ -76,7 +77,7 @@ Staps reduced the model to the following vector form:
 The diffusivity function $D(\mathcal{E})$ is given in a few forms:
 \small\begin{align}
 	D(Z) \,&=\, \dfrac{D_\text{max} + D_\text{min}}{2} + \dfrac{(D_\text{max} - D_\text{min})\tanh(Z)}{2} ~~~~~~ &\text{Zohm} \\
-	D(Z^\prime) \,&=\, D_\text{min} \,+\, \dfrac{D_\text{max} - D_\text{min}}{1 + \alpha_\text{sup}(Z^\prime)^2} ~~~~~~ &\text{Staps} \\
+	D(Z^\prime) \,&=\, D_\text{min} \,+\, \dfrac{D_\text{max} - D_\text{min}}{1 + \alpha_\text{sup}(Z^\prime)^\beta}~,~~~ \beta \approx 2 ~~~~~~ &\text{Staps} \\
 	D(Z, Z^\prime) \,&=\, D_\text{min} + \dfrac{D_\text{max} - D_\text{min}}{1 + a_1\,Z^2 + a_2\,Z Z^\prime + a_3\left(Z^\prime\right)^2} ~~~~~~ &\text{Flow-Shear}
 \end{align}\normalsize
 
@@ -133,11 +134,11 @@ Steady-State Solutions
 
 ### Gradient Model
 \small\begin{align}
-	\nonumber&\dfrac{m_i n T}{e \rho_{\theta i} B^2} \, \dfrac{\partial Z}{\partial t}
-		\,=\, \dfrac{m_i \mu_i n T}{e \rho_{\theta i} B_\theta^2} \, \dfrac{\partial^2 Z}{\partial x^2} \\
-	&+\, \left(g_n^\text{an} - g_n^\text{cx} - g_n^{\pi\parallel}\right) \dfrac{n^\prime}{n}
-		+ \left(g_T^\text{an} - g_T^\text{cx} - g_T^{\pi\parallel}\right) \dfrac{T^\prime}{T}
-		+ \left(g_Z^\text{an} - g_Z^\text{cx} - g_Z^{\pi\parallel}\right) Z - e\Gamma^\text{OL} \\
+	&\dfrac{m_i n T}{e \rho_{\theta i} B^2} \, \dfrac{\partial Z}{\partial t}
+		\,=\, \dfrac{m_i \mu_i n T}{e \rho_{\theta i} B_\theta^2} \, \dfrac{\partial^2 Z}{\partial x^2} \,
+		+\, \left(g_n^\text{an} - g_n^\text{cx}\right) \dfrac{n^\prime}{n}
+		+ \left(g_T^\text{an} - g_T^\text{cx}\right) \dfrac{T^\prime}{T}
+		+ \left(g_Z^\text{an} - g_Z^\text{cx}\right) Z - e\Gamma_i^{\pi\parallel} - e\Gamma_i^\text{OL} \\
 	&\dfrac{m_i n T}{e^2 \rho_{\theta i} B^2} \frac{\partial Z}{\partial t}
 		\,=\, \dfrac{m_i \mu n T}{e^2 \rho_{\theta i} B_\theta^2} \frac{\partial^2 Z}{\partial x^2}
 		\,+\, \Gamma_e^\text{an} \,-\, \Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{cx} \,-\, \Gamma_i^\text{OL}
@@ -161,12 +162,13 @@ Steady-State Solutions
 -->
 
 \small\begin{align}
-	D^{\pi\parallel} \,&=\, \frac{\epsilon^2 \, \rho_{\theta i} \, T}{(a_m - x) \, B \, \sqrt{\pi}} \\
-	e \Gamma_i^{\pi\parallel} \,&=\, -e n_e D^{\pi\parallel} \left(-\frac{n^\prime}{n} - \frac{Z}{\rho_{\theta i}}\right) \, \text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
+	D^{\pi\parallel} \,=\, \frac{\epsilon^2 \, \rho_{\theta i} \, T}{(a_m - x) \, B \, \sqrt{\pi}}~,~~~
+	e \Gamma_i^{\pi\parallel} \,=\, -e\,n_e\,D^{\pi\parallel} \left(-\frac{n^\prime}{n} - \frac{Z}{\rho_{\theta i}}\right) \, \text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
 \end{align}\normalsize
 
 + Ion Orbit Loss:
 \small\begin{align}
-	g^\text{OL} \,=\, e \,n\, \nu_\text{eff} \sqrt{\epsilon} \,\rho_{\theta i}~,~~~~ e\Gamma_i^\text{OL} \,=\, \dfrac{g^\text{OL}\,\exp\left[-\sqrt{\nu_{*i} + Z^4}\right]}{\sqrt{\nu_{*i} + Z^4}}
+	g^\text{OL} \,=\, e \,n\, \nu_\text{eff} \sqrt{\epsilon} \,\rho_{\theta i}~,~~~~
+	e\Gamma_i^\text{OL} \,=\, \dfrac{g^\text{OL}\,\exp\left[-\sqrt{\nu_{*i} + Z^4 + \frac{x^4}{w_{bi}^4}}\right]}{\sqrt{\nu_{*i} + Z^4 + \frac{x^4}{w_{bi}^4}}}
 \end{align}\normalsize
 
