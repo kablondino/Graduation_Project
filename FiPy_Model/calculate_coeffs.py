@@ -60,7 +60,7 @@ def calculate_coeffs():
 	## Electron Anomalous Diffusion
 	D_an.setValue(aspect**2 * numerix.sqrt(pi) * rho_pe * temperature\
 			/ (2*a_m * B))
-	g_n_an.setValue(-charge*density*D_an)						# [A m^-2]
+	g_n_an.setValue(charge*density*D_an)						# [A m^-2]
 	g_T_an.setValue(g_n_an * alpha_an)							# [A m^-2]
 	g_Z_an.setValue(g_n_an / rho_pi)							# [A m^-1]
 
@@ -70,8 +70,10 @@ def calculate_coeffs():
 
 
 	## Charge Exchange Friction
-	g_n_cx.setValue((-(m_i*n_0*cx_rate * density\
-			* temperature) / (B_theta**2))\
+	cx_rate.setValue(1.0e-6 / numerix.sqrt(m_i)\
+			* numerix.exp(-13.6 / temperature))		#!!!!!!		# [m^3 s^-1]?
+	g_n_cx.setValue((-(m_i * n_0 * cx_rate * density\
+			* temperature * charge) / (B_theta**2))\
 			* ((B_theta**2 / (aspect*B_phi)**2) + 2.0))			# [A m^-2]
 	g_T_cx.setValue(alpha_cx * g_n_cx)							# [A m^-2]
 	g_Z_cx.setValue(-g_n_cx / rho_pi)							# [A m^-1]
@@ -87,18 +89,16 @@ def calculate_coeffs():
 	D_bulk.setValue(aspect**2 * rho_pi * temperature\
 			/ ((a_m - x) * B * numerix.sqrt(pi)))				# [m^2 s^-1]
 
-	Gamma_bulk.setValue(density * D_bulk * (1.0e-3/L + Z/rho_pi)\
-			* plasma_disp)										# [m^-2 s^-1]
+	Gamma_bulk.setValue(density * D_bulk * (density.grad[0] / density\
+			+ Z/rho_pi) * plasma_disp)							# [m^-2 s^-1]
 
 
 	## Ion Orbit Loss
 	g_OL.setValue(-charge * density * nu_ii * nu_ai * rho_pi)	# [A m^-2]
-#	radical_OL = 
+	radical_OL = numerix.sqrt(nu_ai + (Z)**4 + ((x)/w_bi)**4)
 
-	Gamma_OL.setValue(g_OL * numerix.exp(-numerix.sqrt(\
-			nu_ai + (Z)**4 + ((x)/w_bi)**4))\
-			/ (charge*numerix.sqrt(nu_ai + (Z)**4\
-			+ ((x)/w_bi)**4)))								# [m^-2 s^-1]
+	Gamma_OL.setValue(g_OL * numerix.exp(-radical_OL)\
+			/ (charge * radical_OL))							# [m^-2 s^-1]
 
 	Z_transient_coeff.setValue(m_i * density * temperature\
 			/ (charge* rho_pi * B**2))
