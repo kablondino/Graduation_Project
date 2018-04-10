@@ -16,6 +16,9 @@ from calculate_coeffs import *
 import os	# For saving files to a specified directory
 
 
+# Initialize all the coefficients and other variables
+calculate_coeffs()
+
 # ----------------- PDE Declarations ----------------------
 # Density Equation
 density.equation = TransientTerm(coeff=1.0, var=density)\
@@ -29,14 +32,11 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 # Z Equation
 Z.equation = TransientTerm(coeff=Z_transient_coeff / Z_diffusion_coeff, var=Z)\
 		== DiffusionTerm(coeff=1.0, var=Z)\
-		+ (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL) / (Z_diffusion_coeff)
+		+ (Gamma_an - Gamma_cx + Gamma_bulk - Gamma_OL) / Z_diffusion_coeff
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
 
-
-# Initialize all the coefficients and other variables
-calculate_coeffs()
 
 # LOAD pickled H--Mode data
 if __name__ == '__main__' and config.initial_H_mode == True:
@@ -52,9 +52,6 @@ GMRES_Solver = LinearGMRESSolver(iterations=100)
 LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 
-#timeStep = epsilon / config.timeStep_denom
-
-
 if __name__ == '__main__':
 
 	# Declare viewers
@@ -68,8 +65,8 @@ if __name__ == '__main__':
 			legend='best',\
 			title = config.plot_title)
 	D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
-			datamax=D_max + D_max/20.0, legend='best',\
-			title = config.plot_title)
+			datamax=D_max + D_max/10.0, legend='best',\
+			title = config.plot_title + diff_title)
 	if config.show_initial == True:
 		raw_input("Pause for Viewing Initial Conditions")
 

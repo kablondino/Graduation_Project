@@ -70,8 +70,10 @@ def calculate_coeffs():
 
 
 	## Charge Exchange Friction
+	ionization_rate.setValue(1.0e8 / numerix.sqrt(temperature)\
+			* numerix.exp(-13.6 / temperature))					# [m^3 s^-1]
 	cx_rate.setValue(1.0e-6 / numerix.sqrt(m_i)\
-			* numerix.exp(-13.6 / temperature))		#!!!!!!		# [m^3 s^-1]?
+			* numerix.exp(-13.6 / temperature))		#!!!!!!		# [m^3 s^-1]
 	g_n_cx.setValue((-(m_i * n_0 * cx_rate * density\
 			* temperature * charge) / (B_theta**2))\
 			* ((B_theta**2 / (aspect*B_phi)**2) + 2.0))			# [A m^-2]
