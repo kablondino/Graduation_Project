@@ -63,8 +63,8 @@
 
 \begin{document}
 
-\section{Full Model Notes: 8 Apr
-2018}\label{full-model-notes-8-apr-2018}
+\section{Full Model Notes: 12 Apr
+2018}\label{full-model-notes-12-apr-2018}
 
 \small
 
@@ -72,7 +72,7 @@
     &\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,=\, a + bx - x^3 \\
     &\text{FitzHugh-Nagumo bifurcation:} ~~~~ \dot{x} \,=\, a - bx - x^3 + cy~,
         ~~~~ \dot{y} \,=\, -x - y \\
-    &\text{Plasma Dispersion Function:} ~~ X(\zeta) \,=\, i \sqrt{\pi} w(\zeta)
+    &\text{Plasma Dispersion Function:} ~~ X(\zeta) \,=\, i \sqrt{\pi}\,w(\zeta)
         \,=\, i \sqrt{\pi} \, e^{-\zeta^2} \text{erfc}(-i \zeta)
         \,=\, \frac{1}{\sqrt{\pi}} \int_{-\infty}^{+\infty} \frac{e^{-t^2}}{t - \zeta} \, \text{d}t~,
         ~~ \zeta \,\equiv\, \frac{\omega/k}{v_T} \\
@@ -96,10 +96,11 @@
     \nu_{ei} \,&=\, 1.33\times 10^5 \frac{n_{20}}{(T_\text{keV})^{3/2}}
         \,=\, 4.2058\times 10^{-5} \frac{n}{(T_\text{eV})^{3/2}}~,~~~
         \nu_{ii} \,=\, 1.2\, \nu_{ei} \, \sqrt{\frac{m_e}{m_i}}~,~~~
-        \nu_{*j} \,=\, \frac{\nu_{ji}}{\omega_{bj}} \\
+        \nu_{*j} \,=\, \frac{\nu_{ij}}{\omega_{bj}} \\
     \text{Non-formal:}& ~~ n_0 \,=\, \frac{n_0(0)}{\left(1 + \exp\left[k(x - d)\right]\right)}~,~~~
-        n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~ 0 < \theta \leq 1~,~~~
-        \langle \sigma v \rangle_{cx} \,=\, ?~~ \langle \sigma v \rangle_{ion} \,=\, ? \\
+        n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~ 0 < \theta \leq 1 \\
+    \langle \sigma v \rangle_{cx} \,&=\, \frac{C_\text{cx}}{\sqrt{m_i}} \, \exp\left(-\frac{E_0}{T}\right)~,~~~
+        \langle \sigma v \rangle_{ion} \,=\, \frac{C_\text{ion}}{\sqrt{T}} \, \exp\left(-\frac{E_0}{T}\right) \\
     \nu_{in0} \,&=\, a_{in0} \, \omega_{bi}~,~~~ \nu_\text{eff} \,=\, \nu_{ii} + \nu_{in0}
 \end{align}
 
@@ -249,7 +250,7 @@ Steady-State Solutions \small
 \small
 
 \begin{align}
-    D^{\pi\parallel} \,=\, \frac{\epsilon^2 \, \rho_{\theta i} \, T}{(a_m - x) \, B \, \sqrt{\pi}}~,~~~
+    D^{\pi\parallel} \,=\, \frac{\epsilon^2 \, \rho_{\theta i} \, T}{(x - a_m) \, B \, \sqrt{\pi}}~,~~~
     e \Gamma_i^{\pi\parallel} \,=\, -e\,n_e\,D^{\pi\parallel} \left(-\frac{n^\prime}{n} - \frac{Z}{\rho_{\theta i}}\right) \, \text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
 \end{align}
 
