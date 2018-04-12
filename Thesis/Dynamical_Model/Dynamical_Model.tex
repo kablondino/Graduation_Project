@@ -4,7 +4,7 @@ The model developed by Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{z
 The plasma edge is defined to be at the last-closed flux surface (separatrix).
 This allows for slab geometry to be used, in which $\psi$ is a usual radial coordinate.
 However, $x$ will be used as it is more distinct as a spatial coordinate.
-The slab geometry reduces the model into one (spatial) dimensional differential equations.
+The slab geometry reduces the model into a system of one (spatial) dimensional partial differential equations.
 
 \section{Transport Equations}\label{sec:transport_eqs}
 To model the transport of a fully-ionized fusion plasma, conservation of mass and energy are considered.
@@ -37,17 +37,54 @@ In order to simplify the model, substituting the following definition of the int
 	U \,\equiv\, \frac{n T}{\gamma - 1} \label{eq:U_definition}
 \end{align}
 In addition, one of the liberties taken to simplify the model is that a single temperature is used, \emph{i.e.} the electron and ion temperatures are assumed identical.
-Making this substitution, along with the fluxes, and subsequently working out the product rules of the derivatives, we can arrive at relegated forms of Equations~\ref{eq:n_continuity} and \ref{eq:U_continuity}.
-One convenience is that Equation~\ref{eq:n_continuity} shows up as a collection of terms within Equation \ref{eq:U_continuity}.
-This allows those terms to vanish, leaving these equations:
+Making this substitution, along with the particle and heat fluxes, we can arrive at relegated forms of Equations~\ref{eq:n_continuity} and \ref{eq:U_continuity}.
+
 \begin{align} % Compact transport equations
 	\frac{\partial n}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[D \,
 		\frac{\partial n}{\partial x}\right]~,\label{eq:n_compact} \\
+	\frac{\partial(n\,T)}{\partial t} \,&=\, \frac{\partial}{\partial x}
+		\left[\frac{D\,n}{\zeta} \, \frac{\partial T}{\partial x}\right]
+		\,+\, \frac{\partial}{\partial x}
+		\left[D\,T \, \frac{\partial n}{\partial x}\right]~. \label{eq:U_compact}
+\end{align}
+
+The product rules of the derivatives can subsequently be worked out to obtain a further-reduced form.
+One convenience is that Equation~\ref{eq:n_continuity} shows up as a collection of terms within Equation \ref{eq:U_compact}.
+This allows those terms to vanish:
+\begin{align} % More reduced temperature equation
 	\frac{\partial T}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[\frac{D}{\zeta} 
 		\, \frac{\partial T}{\partial x}\right] \,+\,
 		\left(1 + \frac{1}{\zeta}\right) \frac{\partial n}{\partial x} \,
 		\frac{\partial T}{\partial x}~. \label{eq:T_compact}
 \end{align}
+
+\section{Nonambipolar Particle Fluxes}\label{sec:nonambipolar_fluxes}
+As described in Section~\ref{ssec:E_r}, the dynamics of the radial electric field will be determined by investigating the various nonambipolar fluxes.
+The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}, Itoh and Itoh \cite{itoh_role_1996}, and Stringer \cite{stringer_explanation_1993}. \todo{\color{red}Needed??}
+
+\subsection{Polarization Current}\label{ssec:polarization_current}
+In Maxwell's correction of Amp\`ere's law, a polarization current is induced whenever the time derivative of an electric field is non-zero.
+This is from the changing state of polarization.
+\begin{align} % Polarization current
+	J_\text{pol} \,=\, \frac{\rho}{\epsilon_0\,\mu_0 \, B_\theta^2} \, \frac{\partial E_r}{\partial t}
+		\,=\, \frac{\sum_j m_j n_j}{B_\theta^2} \, \frac{\partial E_r}{\partial t}
+		\label{eq:polarization_current_original}
+\end{align}
+This is larger than the classical polarization by a factor of $B^2 / B_\theta^2$ \cite{hinton_neoclassical_1984}.
+\todo{\color{red}FINISH!}
+
+\subsection{Shear Viscosity}\label{ssec:shear_viscosity}
+The ion shear (perpendicular) viscosity is the perpendicular component of the viscous stress tensor.
+In the L--H transition, it can be viewed as coupling the L-- and H--mode solutions spatially.
+It can be expressed as 
+
+\subsection{Bulk Viscosity}\label{ssec:bulk_viscosity}
+
+\subsection{Electron Anomalous Diffusion}\label{ssec:an_diffusion}
+
+\subsection{Charge Exchange Friction}\label{ssec:cx_friction}
+
+\subsection{Ion Orbit Loss}\label{ssec:ol_loss}
 
 \section{Radial Electric Field Equation}\label{sec:Z_equation}
 A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
@@ -68,6 +105,7 @@ Paquay rewrote the equation as
 		\frac{c_T}{n} \, \frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
 	G(Z) \,\equiv\, a + bZ + cZ^3 \label{eq:G_polynomial}
 \end{align}
+\todo{\color{red}Move and expand}
 
 \section{Forms of Diffusivities}\label{sec:diffusivities}
 Various forms of $D$ (and subsequently $\chi$) are presented in investigations with this model.
@@ -88,9 +126,6 @@ Another form includes both the field itself and its shear \cite{paquay_studying_
 \begin{align} % Flow-Shear equation
 	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\, \frac{D_\text{max} - D_\text{min}}{1 + a_1 Z^2 + a_2 Z \cdot Z^{\prime} + a_3 (Z^{\prime})^2} \label{eq:flow-shear}
 \end{align}
-
-\section{Nonambipolar Particle Fluxes}\label{sec:nonambipolar_fluxes}
-The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}.
 
 \section{Boundary Conditions}\label{sec:boundary_conditions}
 The set of aforementioned PDE's is evaluated in a domain that is small enough to exclude the inner (core) boundary from any possible particle and heat sources.
