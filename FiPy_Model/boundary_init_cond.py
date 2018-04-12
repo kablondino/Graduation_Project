@@ -75,6 +75,10 @@ elif config.D_choice.lower() == "d_shear" or\
 			/ (1.0 + a1*(Z)**2 + a2*Z*Z.grad[0]\
 			+ a3*numerix.dot(Z.grad, Z.grad))
 
+elif config.D_choice.lower() == "d_weymiens_l":
+	D_choice_local = D_min + (D_max - D_min) * (1 - config.alpha_sup\
+			* numerix.dot(Z.grad, Z.grad))
+
 else:
 	print "Something went horribly wrong in choosing the Diffusivity model."
 

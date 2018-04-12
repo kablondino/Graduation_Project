@@ -42,7 +42,8 @@ import sys
 config = __import__ (sys.argv[1].replace('.py',''))
 
 parameter_sets = ["staps", "paquay", "g_grad", "gradient_model"]
-diffusivity_models = ["d_zohm", "d_staps", "d_shear", "d_flow_shear"]
+diffusivity_models = ["d_zohm", "d_staps", "d_shear", "d_flow_shear",\
+		"d_weymiens_l"]
 
 
 # -------------- Check Configuration Variables ------------
@@ -218,7 +219,7 @@ if type(config.res_tol) == int:
 if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
 		type(getattr(config, 'D_choice', None)) != str):
 	try:
-		config.D_choice = raw_input("The diffusivity model is not properly chosen. Choose from the following: Zohm, Staps, Shear -> ")
+		config.D_choice = raw_input("The diffusivity model is not properly chosen. Choose from the following: Zohm, Weymiens_L, Staps, Shear -> ")
 
 		if config.D_choice.lower() not in diffusivity_models:
 			raise IndexError()
