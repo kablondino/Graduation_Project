@@ -89,7 +89,7 @@ def calculate_coeffs():
 	plasma_disp.setValue(numpy.imag(1j * numerix.sqrt(pi)\
 			* scipy.special.wofz(Z + 1j*nu_ii / omega_t)))
 	D_bulk.setValue(aspect**2 * rho_pi * temperature\
-			/ ((a_m - x) * B * numerix.sqrt(pi)))				# [m^2 s^-1]
+			/ ((x - a_m) * B * numerix.sqrt(pi)))				# [m^2 s^-1]
 
 	Gamma_bulk.setValue(density * D_bulk * (density.grad[0] / density\
 			+ Z/rho_pi) * plasma_disp)							# [m^-2 s^-1]
