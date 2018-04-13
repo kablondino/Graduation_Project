@@ -134,7 +134,7 @@ Varying the second parameter can cause the two stable solutions to be replaced b
 In the FitzHugh-Nagumo model (Eq.~\ref{eq:FitzHugh-Nagumo}), these are represented by $b$ and $c$, respectively.
 
 
-\section{Mechanisms}\label{sec:mechanics}
+\section{Mechanics}\label{sec:mechanics}
 Physically, the L--H transition is a bifurcation in the turbulent transport at the edge of the tokamak.
 The prevailing hypothesis for the overarching mechanism for H--mode that can be directly manipulated is that high auxiliary power develops strong sheared plasma flow and suppresses transport \cite{freidberg_plasma_2007}.
 
@@ -158,8 +158,9 @@ It is now accepted that turbulent transport at the edge is particularly suppress
 The shear stress dissociates smaller turbulent structures, with their energy and momenta transferred to larger flows.
 This flow shear can be modeled as a ratio of the electromagnetic fields given by \cite{staps_backstepping_2017}
 \begin{align} % Shear velocity
-	\frac{\partial V_{\mathbf{E}\times\mathbf{B}}}{\partial x} \,=\, \frac{\partial}{\partial x}
-			\left(\frac{E_r}{B}\right) \,\approx\, \frac{1}{B_\phi} \frac{\partial E_r}{\partial x}~.
+	\frac{\partial V_{\mathbf{E}\times\mathbf{B}}}{\partial x} \,=\,
+		\frac{\partial}{\partial x} \left(\frac{E_r}{B}\right) \,\approx\,
+		\frac{1}{B_\phi} \frac{\partial E_r}{\partial x}~.
 	\label{eq:velocity_shear}
 \end{align}
 Both zonal and mean $\mathbf{E}\times\mathbf{B}$ flows are responsible for the drift-wave turbulence.
@@ -205,10 +206,11 @@ Experimentally, each term can be measured separately; however, determining these
 As alluded to in the previous section, a definition of the normalized radial electric field is needed.
 The definition used is
 \begin{align} % Z definition
-	Z \,\equiv\, \frac{\rho_\theta e E_r}{T}~, ~~~~
-		\rho_\theta \,\equiv\, \frac{m_i v_\text{th}}{e B_\theta}~,\label{eq:Z_and_rho_definitions}
+	Z \,\equiv\, \frac{\rho_{\theta i} \, e \, E_r}{T_i}~, ~~~~
+		\rho_{\theta i} \,\equiv\, \frac{m_i \, v_{T_i}}{e \, B_\theta}~,
+		\label{eq:Z_and_rho_definitions}
 \end{align}
-with the ion mass $m_i$, the thermal ion velocity $v_\text{th}$, the elementary charge $e$, and the poloidal magnetic field $B_\theta$.
+with the ion mass $m_i$, the thermal ion velocity $v_{T_i}$, the elementary charge $e$, and the poloidal magnetic field $B_\theta$.
 
 Rather than looking at an overall effect, an alternate method to determine the electric field is to look for the sources.
 This means investigating the particle fluxes that go across the magnetic flux surfaces.

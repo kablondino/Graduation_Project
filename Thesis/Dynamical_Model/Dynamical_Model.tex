@@ -5,6 +5,7 @@ The plasma edge is defined to be at the last-closed flux surface (separatrix).
 This allows for slab geometry to be used, in which $\psi$ is a usual radial coordinate.
 However, $x$ will be used as it is more distinct as a spatial coordinate.
 The slab geometry reduces the model into a system of one (spatial) dimensional partial differential equations.
+The domain of the model is $0 \,\leq\, x \,\leq\, L$, in which $x = 0$ is the plasma outer edge, and $x = L$ is some depth towards the core.
 
 \section{Transport Equations}\label{sec:transport_eqs}
 To model the transport of a fully-ionized fusion plasma, conservation of mass and energy are considered.
@@ -79,12 +80,81 @@ In the L--H transition, it can be viewed as coupling the L-- and H--mode solutio
 It can be expressed as 
 
 \subsection{Bulk Viscosity}\label{ssec:bulk_viscosity}
+Two mathematical forms of the parallel ion (bulk) viscosity have been developed in the literature.
+One by Shaing and Crume \cite{shaing_bifurcation_1990} involves
+
+\begin{align}% Shaing Bulk Viscosity
+	\langle \mathbf{B}_\theta \cdot \nabla \cdot \boldsymbol{\pi} \rangle \,=\,
+		\frac{\epsilon^2 \sqrt{\pi}}{4 x} \, n\,m_i\,v_{T_i}\,B
+		\left(I_\theta U_\theta \,+\, I_\phi U_{\theta 0}\right)
+		\label{eq:shaing_bulk}
+\end{align}
+Here, $\boldsymbol{\pi}$ is the ion viscosity tensor, and $U_\theta$ and $U_{\theta 0}$ indicate poloidal flow velocities.
+The terms $I_\phi$ and $I_\theta$ represent large poloidal and toroidal integrals, respectively, which are quite taxing to compute.
+
+However, in an effort to circumvent the direct calculations of flow velocities, a different form is used in this investigation, introduced by Stringer \cite{stringer_explanation_1993}.
+\begin{align} % Stringer Bulk Viscosity
+	\Gamma_i^{\pi\parallel} \,=\, \,n_e\,&D_{\pi\parallel}
+		\left(\frac{n^\prime}{n} + \frac{Z}{\rho_{\theta i}}\right) \,
+		\text{Im}\left[X\left(Z + i\,\frac{\nu_{ii}}{\omega_t}\right)\right]
+		\label{eq:stringer_Gamma_bulk} \\
+	&D_{\pi\parallel} \,=\, \frac{\epsilon^2\,\rho_{\theta i}\,T}
+		{(x - a_m)\sqrt{\pi}\,B} \label{eq:stringer_D_bulk}
+\end{align}
+The complex function $X(z)$ is referred to as the plasma dispersion function.
+It appears in the dispersion equation for linearized waves in a non-relativistic plasma when the velocity distribution is Maxwellian \cite{fried_plasma_2015}.
+\begin{align} % Plasma Dispersion Function
+	X(z) \,\equiv\, i\,\sqrt{\pi} \, e^{-z^2} \, \text{erfc}(-i\,z) \,=\,
+		\frac{1}{\sqrt{\pi}} \int_{-\infty}^{+\infty} \frac{e^{-t^2}}{t - z}
+		\, \text{d}t \label{eq:plasma_disp}
+\end{align}
+\emph{Note} that function is usually denoted as $Z$, but I am breaking this standard notation to avoid ambiguity with the normalized radial electric field.
 
 \subsection{Electron Anomalous Diffusion}\label{ssec:an_diffusion}
+Turbulence affects ions and electrons differently, which can cause a nonambipolar flux.
+In particular, when a drift wave turbulence interacts with the edge of plasma, it preferentially removes electron momentum across the last-closed flux surface \cite{itoh_model_1988}.
+The particle flux for this effect can be written as
+\begin{align} % Gamma_an original and D_an
+	\Gamma_e^\text{an} \,=\, -n_e \, &D^\text{an} \left(\frac{n^\prime}{n} \,+\,
+		\frac{\alpha_\text{an}\,T_e^\prime}{T_e} \,+\, \frac{e\,E_r}{T_e}\right)
+		\label{eq:Gamma_an_orig} \\
+	&D_\text{an} \,=\, \frac{\epsilon^2 \sqrt{\pi}}{2 a_m}
+		\frac{\rho_{\theta e} \, T_e}{B} \label{eq:D_an}
+\end{align}
+The numerical constant $\alpha_\text{an}$ is on the order of unity, and $D_\text{an}$ is the diffusion coefficient for this process.
+We can normalize the electric field, rewrite the terms with gradient coefficients $g_l^\text{k}$.
+\begin{align} % Gamma_an g's
+	e\,\Gamma_e^\text{an} \,&=\, g_n^\text{an}\,\frac{n^\prime}{n} \,+\,
+		g_T^\text{an}\,\frac{T^\prime}{T} \,+\,
+		g_Z^\text{an}\,Z \label{eq:Gamma_an_g} \\
+	g_n^\text{an} \,=\, -e \, n \, &D_\text{an}~,~~~~
+		g_T^\text{an} \,=\, \alpha_\text{an} \, g_n^\text{an}~,~~~~
+		g_Z^\text{an} \,=\, \frac{g_n^\text{an}}{\rho_{\theta i}}
+		\label{eq:g_an}
+\end{align}
 
 \subsection{Charge Exchange Friction}\label{ssec:cx_friction}
+\begin{align}
+	\langle \sigma v\rangle_\text{cx} \,=\, \frac{C_\text{cx}}{\sqrt{m_i}} \,
+		\exp\left[-\frac{13.6~\text{eV}}{T}\right] \label{eq:cx_rate}
+\end{align}
+\begin{align}
+	e\,\Gamma_e^\text{cx} \,&=\, g_n^\text{cx}\,\frac{n^\prime}{n} \,+\,
+		g_T^\text{cx}\,\frac{T^\prime}{T} \,+\,
+		g_Z^\text{cx}\,Z \label{eq:Gamma_cx_g} \\
+	g_n^\text{cx} \,=\, -\frac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \,n T}
+		{B_\theta^2}& \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]
+		~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~
+		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
+		\label{eq:g_cx}
+\end{align}
 
 \subsection{Ion Orbit Loss}\label{ssec:ol_loss}
+\begin{align}
+	\Gamma_i^\text{OL} \,=\, n\, \nu_\text{eff} \sqrt{\epsilon}\,\rho_{\theta i}\,
+		\frac{\exp\left[-\sqrt{\nu_{*i} + Z^4 + \left(\frac{x}{w_{bi}}\right)^4}\right]}
+		{\sqrt{\nu_{*i} + Z^4 + \left(\frac{x}{w_{bi}}\right)^4}}
+\end{align}
 
 \section{Radial Electric Field Equation}\label{sec:Z_equation}
 A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
@@ -126,6 +196,7 @@ Another form includes both the field itself and its shear \cite{paquay_studying_
 \begin{align} % Flow-Shear equation
 	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\, \frac{D_\text{max} - D_\text{min}}{1 + a_1 Z^2 + a_2 Z \cdot Z^{\prime} + a_3 (Z^{\prime})^2} \label{eq:flow-shear}
 \end{align}
+\todo{\color{red}Expand more!}
 
 \section{Boundary Conditions}\label{sec:boundary_conditions}
 The set of aforementioned PDE's is evaluated in a domain that is small enough to exclude the inner (core) boundary from any possible particle and heat sources.
@@ -136,12 +207,15 @@ This corresponds to $x = 0$.
 
 It is assumed that the SOL is passive to particle and heat fluxes, and therefore the density and temperature profiles exponentially decay.
 \begin{align} % n and T boundary conditions at SOL
-	\frac{\partial n}{\partial x}\biggr \lvert_{x=0} \,=\, \frac{n}{\lambda_n}~, ~~~~
-		\frac{\partial T}{\partial x}\biggr \lvert_{x=0} \,=\, \frac{T}{\lambda_T}~.\label{eq:nT_SOL_boundary}
+	n^\prime(0) \,=\, \frac{n}{\lambda_n}~, ~~~~
+		T^\prime(0) \,=\, \frac{T}{\lambda_T}~.\label{eq:nT_SOL_boundary}
 \end{align}
 The core side has a constant influx of particles and heat, stemming from fueling and heating.
 \begin{align} % Fluxes from core
-	\Gamma(L) \,=\, \Gamma_c~, ~~~~ q(L) \,=\, q_c~,\label{eq:core_fluxes}
+	\Gamma(L) \,&=\, \Gamma_c ~\longrightarrow~ n^\prime(L)
+		\,=\, \frac{\Gamma_c}{D} \label{eq:core_particle_flux}\\
+	q(L) \,&=\, q_c ~\longrightarrow~ T^\prime(L) \,=\, \frac{\zeta(
+		\Gamma_c \, T - (\gamma - 1)\,q_c)}{D \, n} \label{eq:core_heat_flux}
 \end{align}
 There are hypothesized boundary conditions for the electric field at the core, but are not confirmed in any way.
 
