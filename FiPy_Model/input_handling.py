@@ -3,20 +3,31 @@
 	of inputs are the following:
 	nx:				int		The number of grid points
 	total_timeSteps:int		The total number of time steps
-	timeStep_denom:	float	The denominator of the time step
+	timeStep_denom:	float	The denominator of the time step; DEPRICATED
+	timeStep:		float	The overall dt in solving
+	res_tol			float	The tolerance of the residual
 	Gamma_c			float	The particle flux from the core
 	q_c				float	The heat flux from the core
 	numerical_parameter:	string		The set of predetermined parameters
 	D_choice:		string	The model of the diffusivity
 	initial_H_mode:	bool	Start in L-- or H--mode?
 	original_model:	bool	Which Z-equation model? 'False' is flux model.
-	SI_units		bool	Determines the units of the profiles
+	show_initial:	bool	Show the initial conditions
 	plot_title:		string	The title of the plot; can be formatted
 	ploty_max:		float	The maximum y-value on the plot
 	aux_plots:		bool	Turns on specified auxiliary plots
 	aux_title1:		str		Title of the first auxiliary plot
 	aux_title2:		str		............ second ...
-	aux_plot_var:	tuple	Specified variables for the auxiliary plots
+	aux_title3:		str		............ third ....
+	aux_title4:		str		............ fourth ...
+	aux1_ymin:		float	Minimum y value of the aux 1 plot
+	aux2_ymin:		float	.......................... 2 plot
+	aux3_ymin:		float	.......................... 3 plot
+	aux4_ymin:		float	.......................... 4 plot
+	aux1_ymax:		float	Maximum y value of the aux 1 plot
+	aux2_ymax:		float	.......................... 2 plot
+	aux3_ymax:		float	.......................... 3 plot
+	aux4_ymax:		float	.......................... 4 plot
 
 	save_directory: string	The name of the saving directory, from current
 							directory being run.
@@ -31,10 +42,17 @@ import sys
 config = __import__ (sys.argv[1].replace('.py',''))
 
 parameter_sets = ["staps", "paquay", "g_grad", "gradient_model"]
-diffusivity_models = ["d_zohm", "d_staps", "d_shear", "d_flow_shear"]
+diffusivity_models = ["d_zohm", "d_staps", "d_shear", "d_flow_shear",\
+		"d_weymiens_l"]
 
 
 # -------------- Check Configuration Variables ------------
+# Z-equation model choice
+if type(getattr(config, 'original_model', None)) != bool:
+	config.original_Z_model = True
+	print "Defaulted to using the original numerical model for Z."
+
+
 # Particle and heat fluxes from the core
 if (type(getattr(config, 'Gamma_c', None)) != float\
 		and type(getattr(config, 'Gamma_c', None)) != int):
@@ -106,42 +124,11 @@ if type(config.nx) == float:
 #if type(config.L) == int:
 #	config.L = float(config.L)
 
-# Choice of the diffusivity model
-if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
-		type(getattr(config, 'D_choice', None)) != str):
-	try:
-		config.D_choice = raw_input("The diffusivity model is not properly chosen. Choose from the following: Zohm, Staps, Shear -> ")
-
-		if config.D_choice.lower() not in diffusivity_models:
-			raise IndexError()
-
-	except (IndexError, EOFError):
-		config.D_choice = "d_staps"
-		print "Diffusivity model defaulted to Staps'."
-
-
-# Initial starting mode
-if type(getattr(config, 'initial_H_mode', None)) != bool:
-	config.initial_H_mode = False
-	print "Defaulted to starting in L--mode."
-
-
-# Z-equation model choice
-if type(getattr(config, 'original_model', None)) != bool:
-	config.original_Z_model = True
-	print "Defaulted to using the original numerical model for Z."
-
-
-# Use SI units, or arbitrary?
-if type(getattr(config, 'SI_units', False)) != bool:
-	config.SI_units = False
-	print "The units of the profiles are arbitrary."
-
 
 # Total number of time steps
 if ((type(getattr(config, 'total_timeSteps', None)) != int and\
 		type(getattr(config, 'total_timeSteps', None)) != float) or\
-		getattr(config, 'total_timeSteps', None) <= 0):
+		getattr(config, 'total_timeSteps', None) <= 0.0):
 	try:
 		config.total_timeSteps = int(input("Total number of time steps not properly defined. Enter integer value: "))
 
@@ -159,24 +146,99 @@ if type(config.total_timeSteps) == float:
 
 
 # Denominator of the delta t
-if ((type(getattr(config, 'timeStep_denom', None)) != float and\
-		type(getattr(config, 'timeStep_denom', None)) != int) or\
-		getattr(config, 'timeStep_denom', None) <= 0.0):
-	try:
-		config.timeStep_denom = float(input("The denomintor of the time step size is not properly defined. Enter floating-point value: "))
+# DEPRICATED!
+#if ((type(getattr(config, 'timeStep_denom', None)) != float and\
+#		type(getattr(config, 'timeStep_denom', None)) != int) or\
+#		getattr(config, 'timeStep_denom', None) <= 0.0):
+#	try:
+#		config.timeStep_denom = float(input("The denomintor of the time step size is not properly defined. Enter floating-point value: "))
+#
+#		if config.timeStep_denom <= 0.0:
+#			raise ValueError
+#
+#		print "The denominator of the time step size is set to "\
+#				+ str(config.timeStep_denom)
+#
+#	except (NameError, SyntaxError, EOFError, ValueError):
+#		config.timeStep_denom = 15.0
+#		print "The denominator of the time step size is defaulted to 15.0"
+#
+#if type(config.timeStep_denom) == int:
+#	config.timeStep_denom = float(config.timeStep_denom)
 
-		if config.timeStep_denom <= 0:
+
+# Time step
+if ((type(getattr(config, 'timeStep', None)) != float and\
+		type(getattr(config, 'timeStep', None))) or\
+		getattr(config, 'timeStep', None) <= 0.0):
+	try:
+		config.timeStep_denom = float(input("The time step size is not properly defined. Enter floating-point value: "))
+
+		if config.timeStep <= 0.0:
 			raise ValueError
 
-		print "The denominator of the time step size is set to "\
-				+ str(config.timeStep_denom)
+		print "The time step size is set to " + str(config.timeStep)
 
 	except (NameError, SyntaxError, EOFError, ValueError):
-		config.timeStep_denom = 15.0
-		print "The denominator of the time step size is defaulted to 15.0"
+		if config.original_model == True:
+			config.timeStep = 1.0 / 375.0
+			print "The time step is defaulted to 1.0 / 375.0."
+		elif config.original_model == False:
+			config.timeStep = 1.0e-9
+			print "The time step is defaulted to 1.0e-9."
 
-if type(config.timeStep_denom) == int:
-	config.timeStep_denom = float(config.timeStep_denom)
+if type(config.timeStep) == int:
+	config.timeStep = float(config.timeStep)
+
+
+# Residual tolerance
+if ((type(getattr(config, 'res_tol', None)) != float and\
+		type(getattr(config, 'res_tol', Non)) != int) or\
+		getattr(config, 'res_tol', None) <= 0.0):
+	try:
+		config.res_tol = float(input("The residual tolerance is not properly set. Enter a positive floating-point value: "))
+
+		if config.res_tol <= 0.0:
+			raise ValueError
+
+		print "The residual tolerance is defaulted to " +str(config.res_tol)
+
+	except (NameError, SyntaxError, EOFError, ValueError):
+		if config.original_model == True:
+			config.res_tol = 1.0e-6
+			print "The residual tolerance is defaulted to 1.0e-6."
+		elif config.original_model == False:
+			config.res_tol = 1.0e14
+			print "The residual tolerance is defaulted to 1.0e14."
+
+if type(config.res_tol) == int:
+	config.res_tol = float(config.res_tol)
+
+
+# Choice of the diffusivity model
+if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
+		type(getattr(config, 'D_choice', None)) != str):
+	try:
+		config.D_choice = raw_input("The diffusivity model is not properly chosen. Choose from the following: Zohm, Weymiens_L, Staps, Shear -> ")
+
+		if config.D_choice.lower() not in diffusivity_models:
+			raise IndexError()
+
+	except (IndexError, EOFError):
+		config.D_choice = "d_staps"
+		print "Diffusivity model defaulted to Staps'."
+
+
+# Initial starting mode
+if type(getattr(config, 'initial_H_mode', None)) != bool:
+	config.initial_H_mode = False
+	print "Defaulted to starting in L--mode."
+
+
+# Show initial conditions
+if type(getattr(config, 'show_initial', None)) != bool:
+	config.show_initial = False
+	print "The initial conditions will not be shown."
 
 
 # Set auxiliary plots
@@ -190,6 +252,10 @@ if not hasattr(config, 'aux_title1'):
 	config.aux_title1 = ""
 if not hasattr(config, 'aux_title2'):
 	config.aux_title2 = ""
+if not hasattr(config, 'aux_title3'):
+	config.aux_title3 = ""
+if not hasattr(config, 'aux_title4'):
+	config.aux_title4 = ""
 
 
 # MINIMUM y values on the plots
@@ -202,6 +268,12 @@ if (type(getattr(config, 'aux1y_min', None)) != int and\
 if (type(getattr(config, 'aux2y_min', None)) != int and\
 		type(getattr(config, 'aux2y_min', None)) != float):
 	config.aux2y_min = None
+if (type(getattr(config, 'aux3y_min', None)) != int and\
+		type(getattr(config, 'aux3y_min', None)) != float):
+	config.aux3y_min = None
+if (type(getattr(config, 'aux4y_min', None)) != int and\
+		type(getattr(config, 'aux4y_min', None)) != float):
+	config.aux4y_min = None
 # MAXIMUM y values on the plots
 if (type(getattr(config, 'ploty_max', None)) != int and\
 		type(getattr(config, 'ploty_max', None)) != float):
@@ -212,6 +284,12 @@ if (type(getattr(config, 'aux1y_max', None)) != int and\
 if (type(getattr(config, 'aux2y_max', None)) != int and\
 		type(getattr(config, 'aux2y_max', None)) != float):
 	config.aux2y_max = None
+if (type(getattr(config, 'aux3y_max', None)) != int and\
+		type(getattr(config, 'aux3y_max', None)) != float):
+	config.aux3y_max = None
+if (type(getattr(config, 'aux4y_max', None)) != int and\
+		type(getattr(config, 'aux4y_max', None)) != float):
+	config.aux4y_max = None
 
 
 # Makes sure that the saved directory is a string

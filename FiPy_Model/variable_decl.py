@@ -78,6 +78,10 @@ Gamma_an = CellVariable(name=r"$\Gamma_e^{an}$", mesh=mesh,\
 		unit="1 / (m**2 * s)")
 
 ## Charge Exchange Friction
+ionization_rate = CellVariable(name=r"$\langle\sigma v\rangle_{ion}$",\
+		mesh=mesh, unit="m**3 / s")
+cx_rate = CellVariable(name=r"$\langle\sigma v\rangle_{cx}$",\
+		mesh=mesh, unit="m**3 / s")
 g_n_cx = CellVariable(name=r"$g_n^{cx}$", mesh=mesh, unit="A/m")
 g_T_cx = CellVariable(name=r"$g_T^{cx}$", mesh=mesh, unit="A/m")
 g_Z_cx = CellVariable(name=r"$g_Z^{cx}$", mesh=mesh, unit="A/m**2")
@@ -85,6 +89,7 @@ Gamma_cx = CellVariable(name=r"$\Gamma_i^{cx}$", mesh=mesh,\
 		unit="1 / (m**2 * s)")
 
 ## Ion Bulk (Parallel) Viscosity
+plasma_disp = CellVariable(name=r"$X$", mesh=mesh)
 D_bulk = CellVariable(name=r"$D^{\pi\parallel}$", mesh=mesh, unit="m**2/s")
 Gamma_bulk = CellVariable(name=r"$\Gamma_i^{\pi\parallel}$", mesh=mesh,\
 		unit="1 / (m**2 * s)")
@@ -95,6 +100,14 @@ g_OL = CellVariable(name=r"$g^{OL}$", mesh=mesh, unit="e*m**-3*m/s")
 Gamma_OL = CellVariable(name=r"$\Gamma_i^{OL}$", mesh=mesh,\
 		unit="1 / (m**2 * s)")
 
+Z_transient_coeff = CellVariable(name=r"$\hat{epsilon}$", mesh=mesh,\
+		unit="")
+Z_diffusion_coeff = CellVariable(name=r"$\hat{mu}$", mesh=mesh,\
+		unit="")
+Flux_coeff = CellVariable(name=\
+		r"$\frac{e^2 \rho_{\theta i} B_\theta^2}{m_i n T}$", mesh=mesh)#,\
+#		unit="m**2*s")
+
 variable_dictionary = {\
 		'x': x, 'density': density, 'temperature': temperature, 'Z': Z,\
 		'Diffusivity': Diffusivity, 'n_0': n_0, 'v_Ti': v_Ti, 'v_Te': v_Te,\
@@ -104,7 +117,9 @@ variable_dictionary = {\
 		'D_an': D_an, 'g_n_an': g_n_an, 'g_T_an': g_T_an, 'g_Z_an': g_Z_an,\
 		'Gamma_an': Gamma_an, 'g_n_cx': g_n_cx, 'g_T_cx': g_T_cx,\
 		'g_Z_cx': g_Z_cx, 'Gamma_cx': Gamma_cx, 'g_OL': g_OL,\
-		'Gamma_OL': Gamma_OL, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk\
+		'Gamma_OL': Gamma_OL, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk,\
+		'Z_transient_coeff': Z_transient_coeff,\
+		'Z_diffusion_coeff': Z_diffusion_coeff\
 	}
 
 # Function to print out any variable
