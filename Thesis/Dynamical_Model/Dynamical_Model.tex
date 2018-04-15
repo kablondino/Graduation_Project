@@ -67,7 +67,7 @@ The fluxes chosen for this analysis comes from a compilation by Callen \cite{cal
 In Maxwell's correction of Amp\`ere's law, a polarization current is induced whenever the time derivative of an electric field is non-zero.
 This is from the changing state of polarization.
 \begin{align} % Polarization current
-	J_\text{pol} \,=\, \frac{\rho}{\epsilon_0\,\mu_0 \, B_\theta^2} \, \frac{\partial E_r}{\partial t}
+	J_\text{pol} \,=\, \frac{m_i \, n}{\epsilon_0\,\mu_0 \, B_\theta^2} \, \frac{\partial E_r}{\partial t}
 		\,=\, \frac{\sum_j m_j n_j}{B_\theta^2} \, \frac{\partial E_r}{\partial t}
 		\label{eq:polarization_current_original}
 \end{align}
@@ -79,14 +79,14 @@ The ion shear (perpendicular) viscosity is the perpendicular component of the vi
 In the L--H transition, it can be viewed as coupling the L-- and H--mode solutions spatially.
 It is expressed by Itoh \emph{et al.} \cite{itoh_elmy_1993} as
 \begin{align} % Shear Viscosity Current
-	J^{\pi\perp} \,=\, \nabla \left(\frac{e \, \rho_\theta \, n_i \, \mu_i}
+	J^{\pi\perp} \,=\, \nabla \left(\frac{e \, \mu_i \, n \, \rho_{\theta i}}
 		{v_{T_i}} \, \nabla\left(\frac{E_r}{B_\theta}\right)\right)
 \end{align}
 
+
 \subsection{Bulk Viscosity}\label{ssec:bulk_viscosity}
 Two mathematical forms of the parallel ion (bulk) viscosity have been developed in the literature.
-One by Shaing and Crume \cite{shaing_bifurcation_1990} involves
-
+Shaing \emph{et al.} \cite{shaing_bifurcation_1990} derives an expression directly for the viscosity by solving the drift kinetic equation with mass flow velocity.
 \begin{align}% Shaing Bulk Viscosity
 	\langle \mathbf{B}_\theta \cdot \nabla \cdot \boldsymbol{\pi} \rangle \,=\,
 		\frac{\epsilon^2 \sqrt{\pi}}{4 x} \, n\,m_i\,v_{T_i}\,B
@@ -105,7 +105,7 @@ However, in an effort to circumvent the direct calculations of flow velocities, 
 	&D_{\pi\parallel} \,=\, \frac{\epsilon^2\,\rho_{\theta i}\,T}
 		{(x - a_m)\sqrt{\pi}\,B} \label{eq:stringer_D_bulk}
 \end{align}
-The complex function $X(z)$ is referred to as the plasma dispersion function.
+The complex function $X(z)$ is the plasma dispersion function.
 It appears in the dispersion equation for linearized waves in a non-relativistic plasma when the velocity distribution is Maxwellian \cite{fried_plasma_2015}.
 \begin{align} % Plasma Dispersion Function
 	X(z) \,\equiv\, i\,\sqrt{\pi} \, e^{-z^2} \, \text{erfc}(-i\,z) \,=\,
