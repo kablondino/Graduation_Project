@@ -30,9 +30,13 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 
 # Z Equation
-Z.equation = TransientTerm(coeff=Z_transient_coeff / Z_diffusion_coeff, var=Z)\
+#Z.equation = TransientTerm(coeff=Z_transient_coeff / Z_diffusion_coeff, var=Z)\
+#		== DiffusionTerm(coeff=1.0, var=Z)\
+#		+ (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL) / Z_diffusion_coeff
+Z.equation = TransientTerm(coeff=1.0, var=Z)\
 		== DiffusionTerm(coeff=1.0, var=Z)\
-		+ (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL) / Z_diffusion_coeff
+		+ (charge * rho_pi * B_theta**2 / (m_i * density * temperature))\
+		* (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL)
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
@@ -53,6 +57,8 @@ LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 
 if __name__ == '__main__':
+
+	print_variables(Flux_coeff)
 
 	# Declare viewers
 	density_viewer = Viewer(density, xmin=0.0, xmax=L,\
