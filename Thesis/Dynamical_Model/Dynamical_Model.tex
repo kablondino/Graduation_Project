@@ -80,8 +80,32 @@ In the L--H transition, it can be viewed as coupling the L-- and H--mode solutio
 It is expressed by Itoh \emph{et al.} \cite{itoh_elmy_1993} as
 \begin{align} % Shear Viscosity Current
 	J^{\pi\perp} \,=\, \nabla \left(\frac{e \, \mu_i \, n \, \rho_{\theta i}}
-		{v_{T_i}} \, \nabla\left(\frac{E_r}{B_\theta}\right)\right)
+		{v_{T_i}} \, \nabla\left(\frac{E_r}{B_\theta}\right)\right) \,=\,
+		\nabla \left(\frac{m_i \, n \, \mu_i}{B_\theta^2} \, \nabla E_r\right)~.
+		\label{eq:shear_visc_current_definition}
 \end{align}
+The ion shear viscosity coefficient $\mu_i$ is assumed to be constant over space for simplicity.
+Reducing this expression to the one radial direction, and introducing the perpendicular dielectric permittivity $\epsilon_\perp$ \cite{kiviniemi_numerical_2001} gives
+\begin{align} % Current with perpendicular permittivity
+	J^{\pi\perp} \,=\, e\,\Gamma_i^{\pi\perp} \,&=\,
+		-\epsilon_0\,\epsilon_\perp \frac{\partial}{\partial x}
+		\left(\mu_i \, \frac{\partial E_r}{\partial x}\right)~, \\
+	\epsilon_\perp \,&=\, 1 + \sum_j \frac{m_j \, n_j}{\epsilon_0 \, B_\theta^2}~.
+		\label{eq:perp_permittivity}
+\end{align}
+If one assumes that $n_i \approx n_e$ and $m_i \gg m_e$, then the sum for Eq.~\ref{eq:perp_permittivity} is only the ion term and the shear viscosity current is written
+\begin{align} % Definition of perpendicular permittivity
+	e \, \Gamma_i^{\pi\perp} \,=\, -\frac{m_i}{B_\theta^2} \,
+		\frac{\partial}{\partial x} \left(n \, \mu_i \,
+		\frac{\partial E_r}{\partial x}\right)~. \label{eq:shear_current_E_r}
+\end{align}
+
+Normalizing this expression such that it is expressed in terms of $Z$ results in
+\begin{align} % Final result of shear viscosity flux, normalized
+	\Gamma^{\pi\perp} \,=\, \frac{m_i \, \mu_i \, n \, T}{e^2 \, \rho_{\theta i}}
+		\, \frac{\partial^2 Z}{\partial x^2} \label{eq:shear_current_Z}
+\end{align}
+Refer to Appendix \ref{chapter:Normalization} to see the derivation.
 
 
 \subsection{Bulk Viscosity}\label{ssec:bulk_viscosity}
@@ -112,11 +136,11 @@ It appears in the dispersion equation for linearized waves in a non-relativistic
 		\frac{1}{\sqrt{\pi}} \int_{-\infty}^{+\infty} \frac{e^{-t^2}}{t - z}
 		\, \text{d}t \label{eq:plasma_disp}
 \end{align}
-\emph{Note} that function is usually denoted as $Z$, but I am breaking this standard notation to avoid ambiguity with the normalized radial electric field.
+\emph{\textbf{Note}} that this function is usually denoted as $Z$, but I am breaking this standard notation to avoid ambiguity with the normalized radial electric field.
 
 \subsection{Electron Anomalous Diffusion}\label{ssec:an_diffusion}
 Turbulence affects ions and electrons differently, which can cause a nonambipolar flux.
-In particular, when a drift wave turbulence interacts with the edge of plasma, it preferentially removes electron momentum across the last-closed flux surface \cite{itoh_model_1988}.
+In particular, when a drift wave turbulence interacts with the edge of plasma, it preferentially removes electron momentum out of the confined plasma \cite{itoh_model_1988} \cite{stringer_non-ambipolar_1995}.
 The particle flux for this effect can be written as
 \begin{align} % Gamma_an original and D_an
 	\Gamma_e^\text{an} \,=\, -n_e \, &D^\text{an} \left(\frac{n^\prime}{n} \,+\,
@@ -138,11 +162,11 @@ We can normalize the electric field, rewrite the terms with gradient coefficient
 \end{align}
 
 \subsection{Charge Exchange Friction}\label{ssec:cx_friction}
-\begin{align}
+\begin{align} % Charge exchange rate
 	\langle \sigma v\rangle_\text{cx} \,=\, \frac{C_\text{cx}}{\sqrt{m_i}} \,
 		\exp\left[-\frac{13.6~\text{eV}}{T}\right] \label{eq:cx_rate}
 \end{align}
-\begin{align}
+\begin{align} % Charge exchange g's
 	e\,\Gamma_e^\text{cx} \,&=\, g_n^\text{cx}\,\frac{n^\prime}{n} \,+\,
 		g_T^\text{cx}\,\frac{T^\prime}{T} \,+\,
 		g_Z^\text{cx}\,Z \label{eq:Gamma_cx_g} \\
@@ -152,13 +176,22 @@ We can normalize the electric field, rewrite the terms with gradient coefficient
 		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
 		\label{eq:g_cx}
 \end{align}
+\todo{\color{red}FINISH}
 
 \subsection{Ion Orbit Loss}\label{ssec:ol_loss}
-\begin{align}
-	\Gamma_i^\text{OL} \,=\, n\, \nu_\text{eff} \sqrt{\epsilon}\,\rho_{\theta i}\,
-		\frac{\exp\left[-\sqrt{\nu_{*i} + Z^4 + \left(\frac{x}{w_{bi}}\right)^4}\right]}
-		{\sqrt{\nu_{*i} + Z^4 + \left(\frac{x}{w_{bi}}\right)^4}}
+The loss of ions due to each's individual orbit is a radial current that has certainly been seen in experiments \cite{weisen_boundary_1991}.
+Again, due to the fact that ions are significantly more massive than electrons, the size of their gyroradius and banana orbits are significantly different.
+When an ion follows a field line which is less than the distance of one gyroradius away from the last close flux surface, the ion is lost.
+This current, also referred to as the ion loss cone, is compounded by the fact that it is highly affected by the electric field.
+\begin{align} % Ion orbit loss definition
+	\Gamma_i^\text{OL} \,=\, n \, \rho_{\theta i} \, (\nu_{ii} + \nu_{in_0})
+		\sqrt{\epsilon} \, \frac{\exp\left[-\sqrt{\nu_{*i} + Z^4 +
+		\left(\frac{x}{w_{bi}}\right)^4}\right]}{\sqrt{\nu_{*i} + Z^4 +
+		\left(\frac{x}{w_{bi}}\right)^4}} \label{eq:Gamma_OL}
 \end{align}
+The term $\nu_{*i}$ is the ion-ion collision frequency upon the ion banana bounce frequency, and $\nu_{in_0}$ is the ion-neutral collision frequency.
+The sum of the ion-ion and ion-neutral frequency serves as the effective detrapping frequency.
+This particular form highly localizes the effect of the radial electric field \cite{kobayashi_experimental_2016}.
 
 \section{Radial Electric Field Equation}\label{sec:Z_equation}
 A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
