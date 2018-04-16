@@ -110,31 +110,18 @@ if __name__ == '__main__':
 
 			# Save auxiliary plots
 			if config.aux_plots == True:
-				for z in range(len(aux_plot_array)):
-					aux_plot_array[z].plot(filename = config.save_directory +\
-							"/aux" +str(z)+ "_" +str(t).zfill(4)+\
-							".png")
-
-#				if getattr(config, 'aux2_var', None) in variable_dictionary:
-#					auxiliary1_viewer.plot(filename =\
-#						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
-#				if getattr(config, 'aux2_var', None) in variable_dictionary:
-#					auxiliary2_viewer.plot(filename =\
-#						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
-#				if getattr(config, 'aux2_var', None) in variable_dictionary:
-#					auxiliary3_viewer.plot(filename =\
-#						config.save_directory+"/aux3_"+str(t).zfill(4)+".png")
-#				if getattr(config, 'aux2_var', None) in variable_dictionary:
-#					auxiliary4_viewer.plot(filename =\
-#						config.save_directory+"/aux4_"+str(t).zfill(4)+".png")
+				for current_aux in range(len(aux_plot_array)):
+					aux_plot_array[current_aux].plot(filename =\
+							config.save_directory + "/aux" +str(current_aux)+\
+							"_" +str(t).zfill(4)+ ".png")
 
 		# If not set to save
 		elif config.save_plots == False:
 			viewer.plot()
 
 			if config.aux_plots == True:
-				for i in aux_plot_array:
-					i.plot()
+				for current_aux in aux_plot_array:
+					current_aux.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:
