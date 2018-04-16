@@ -55,8 +55,8 @@ omega_t = CellVariable(name=r"$\omega_t$", mesh=mesh)
 # Collision Frequencies
 nu_ei = CellVariable(name=r"$\nu_{ei}$", mesh=mesh)
 nu_ii = CellVariable(name=r"$\nu_{ii}$", mesh=mesh)
-nu_in0 = CellVariable(name=r"$\nu_{i0}$", mesh=mesh)
-nu_eff = CellVariable(name=r"$\nu_{eff}$", mesh=mesh)
+#nu_in0 = CellVariable(name=r"$\nu_{i0}$", mesh=mesh) # DEPRICATED
+#nu_eff = CellVariable(name=r"$\nu_{eff}$", mesh=mesh) # DEPRICATED
 nu_ai = CellVariable(name=r"$\nu_{*i}$", mesh=mesh)
 nu_ae = CellVariable(name=r"$\nu_{*e}$", mesh=mesh)
 
@@ -72,7 +72,6 @@ ionization_rate = CellVariable(name=r"$\langle\sigma v\rangle_{ion}$",\
 		mesh=mesh)
 cx_rate = CellVariable(name=r"$\langle\sigma v\rangle_{cx}$",\
 		mesh=mesh)
-#cx_rate.setValue(1.0e7)			# TEMPORARY
 g_n_cx = CellVariable(name=r"$g_n^{cx}$", mesh=mesh)
 g_T_cx = CellVariable(name=r"$g_T^{cx}$", mesh=mesh)
 g_Z_cx = CellVariable(name=r"$g_Z^{cx}$", mesh=mesh)
@@ -97,15 +96,26 @@ variable_dictionary = {\
 		'Diffusivity': Diffusivity, 'n_0': n_0, 'v_Ti': v_Ti, 'v_Te': v_Te,\
 		'rho_pi': rho_pi, 'rho_pe': rho_pe, 'omega_bi': omega_bi,\
 		'omega_be': omega_be, 'nu_ei': nu_ei, 'nu_ii': nu_ii,\
-		'nu_in0': nu_in0, 'nu_eff': nu_eff, 'nu_ai': nu_ai, 'nu_ae': nu_ae,\
+		#'nu_in0': nu_in0, 'nu_eff': nu_eff,\ DEPRICATED
+		'nu_ai': nu_ai, 'nu_ae': nu_ae,\
 		'D_an': D_an, 'g_n_an': g_n_an, 'g_T_an': g_T_an, 'g_Z_an': g_Z_an,\
 		'Gamma_an': Gamma_an, 'g_n_cx': g_n_cx, 'g_T_cx': g_T_cx,\
 		'g_Z_cx': g_Z_cx, 'Gamma_cx': Gamma_cx, 'g_OL': g_OL,\
 		'Gamma_OL': Gamma_OL, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk,\
 		'Z_transient_coeff': Z_transient_coeff,\
-		'Z_diffusion_coeff': Z_diffusion_coeff\
+		'Z_diffusion_coeff': Z_diffusion_coeff, 'Flux_coeff': Flux_coeff\
 	}
 
+
+# Remove entire entry in aux plot details arrays if aux_vars is not a string
+k = 0
+while k < len(config.aux_vars):
+	if config.aux_vars[k] in variable_dictionary:
+		k = k + 1
+	elif config.aux_vars[k] not in variable_dictionary:
+		del config.aux_vars[k]; del config.aux_titles[k]
+		del config.aux_ymin[k]; del config.aux_ymax[k]
+del k
 
 # Function to print out any variable
 def print_variables(*args):

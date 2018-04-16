@@ -16,6 +16,9 @@ from calculate_coeffs import *
 import os	# For saving files to a specified directory
 
 
+# Initialize all the coefficients and other variables
+calculate_coeffs()
+
 # ----------------- PDE Declarations ----------------------
 # Density Equation
 density.equation = TransientTerm(coeff=1.0, var=density)\
@@ -37,20 +40,8 @@ Z.equation = TransientTerm(coeff=epsilon, var=Z)\
 full_equation = density.equation & temperature.equation & Z.equation
 
 
-# Initialize all the coefficients and other variables
-calculate_coeffs()
-
-# ----------------- Choose Solver -------------------------
-# Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,
-# LinearJORSolver	<-- Not working exactly
-PCG_Solver = LinearPCGSolver(iterations=100, tolerance=1.0e-6)
-GMRES_Solver = LinearGMRESSolver(iterations=100, tolerance=1.0e-6)
-LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
-
-
 # LOAD pickled H--Mode data
-if (__name__ == '__main__' and config.initial_H_mode == True\
-		and config.original_model == True):
+if __name__ == '__main__' and config.initial_H_mode == True:
 	H_mode_data = dump.read("./L_start_pickle/state0090.dat")
 	density.setValue(H_mode_data['density'])
 	temperature.setValue(H_mode_data['temperature'])
@@ -58,8 +49,12 @@ if (__name__ == '__main__' and config.initial_H_mode == True\
 	Diffusivity.setValue(D_choice_local)
 
 
-
-timeStep = epsilon / config.timeStep_denom
+# ----------------- Choose Solver -------------------------
+# Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,
+# LinearJORSolver	<-- Not working exactly
+PCG_Solver = LinearPCGSolver(iterations=100, tolerance=1.0e-6)
+GMRES_Solver = LinearGMRESSolver(iterations=100)
+LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 
 if __name__ == '__main__':
@@ -74,14 +69,12 @@ if __name__ == '__main__':
 
 	# Auxiliary viewers
 	if config.aux_plots == True:
-		auxiliary1_viewer = Viewer((Gamma_an), xmin=0.0,\
-				xmax=L, datamin=config.aux1y_min,\
-				datamax=config.aux1y_max, legend='best',\
-				title = config.aux_title1)
-		auxiliary2_viewer = Viewer((Gamma_bulk), xmin=0.0,\
-				xmax=L, datamin=config.aux2y_min,\
-				datamax=config.aux2y_max, legend='best',\
-				title = config.aux_title2)
+		aux_plot_array = []
+		for k in range(len(config.aux_vars)):
+			aux_plot_array.append(Viewer(variable_dictionary\
+					[config.aux_vars[k]], xmin=0.0, xmax=L,\
+					datamin=config.aux_ymin[k], datamax=config.aux_ymax[k],\
+					legend='best', title=config.aux_titles[k]))
 
 	# File writing
 	if (hasattr(config, 'save_directory') and\
@@ -101,12 +94,12 @@ if __name__ == '__main__':
 		# Update values
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 		Diffusivity.setValue(D_choice_local)
-		#calculate_coeffs()
+		calculate_coeffs()
 
 		# --------------- Solving Loop --------------------
 		while current_residual > config.res_tol:
 			print t, current_residual
-			current_residual = full_equation.sweep(dt=timeStep,\
+			current_residual = full_equation.sweep(dt=config.timeStep,\
 					solver=GMRES_Solver)
 
 
@@ -117,23 +110,37 @@ if __name__ == '__main__':
 
 			# Save auxiliary plots
 			if config.aux_plots == True:
-				auxiliary1_viewer.plot(filename =\
-						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
-				auxiliary2_viewer.plot(filename =\
-						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
+				for z in range(len(aux_plot_array)):
+					aux_plot_array[z].plot(filename = config.save_directory +\
+							"/aux" +str(z)+ "_" +str(t).zfill(4)+\
+							".png")
 
+#				if getattr(config, 'aux2_var', None) in variable_dictionary:
+#					auxiliary1_viewer.plot(filename =\
+#						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
+#				if getattr(config, 'aux2_var', None) in variable_dictionary:
+#					auxiliary2_viewer.plot(filename =\
+#						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
+#				if getattr(config, 'aux2_var', None) in variable_dictionary:
+#					auxiliary3_viewer.plot(filename =\
+#						config.save_directory+"/aux3_"+str(t).zfill(4)+".png")
+#				if getattr(config, 'aux2_var', None) in variable_dictionary:
+#					auxiliary4_viewer.plot(filename =\
+#						config.save_directory+"/aux4_"+str(t).zfill(4)+".png")
+
+		# If not set to save
 		elif config.save_plots == False:
 			viewer.plot()
 
 			if config.aux_plots == True:
-				auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
+				for i in aux_plot_array:
+					i.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:
 			TSVViewer(vars=\
 					(Gamma_an, Gamma_cx, Gamma_bulk, Gamma_OL,\
-					Z_transient_coeff, Z_diffusion_coeff, density.grad[0],\
-					temperature.grad[0])).plot(filename=\
+					Z_transient_coeff, Z_diffusion_coeff)).plot(filename=\
 					config.save_directory+"/"+str(t).zfill(4)+".tsv")
 
 

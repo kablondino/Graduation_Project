@@ -16,18 +16,10 @@
 	plot_title:		string	The title of the plot; can be formatted
 	ploty_max:		float	The maximum y-value on the plot
 	aux_plots:		bool	Turns on specified auxiliary plots
-	aux_title1:		str		Title of the first auxiliary plot
-	aux_title2:		str		............ second ...
-	aux_title3:		str		............ third ....
-	aux_title4:		str		............ fourth ...
-	aux1_ymin:		float	Minimum y value of the aux 1 plot
-	aux2_ymin:		float	.......................... 2 plot
-	aux3_ymin:		float	.......................... 3 plot
-	aux4_ymin:		float	.......................... 4 plot
-	aux1_ymax:		float	Maximum y value of the aux 1 plot
-	aux2_ymax:		float	.......................... 2 plot
-	aux3_ymax:		float	.......................... 3 plot
-	aux4_ymax:		float	.......................... 4 plot
+	aux_vars:		list	List of strings for auxiliary plots
+	aux_titles:		list	Title of the aux plots
+	aux_ymin:		float	Minimum y value of the aux plots
+	aux_ymax:		float	Maximum y value of the aux plots
 
 	save_directory: string	The name of the saving directory, from current
 							directory being run.
@@ -35,6 +27,10 @@
 	save_TSVs:		bool	Should TSV files be generated and saves?
 
 	Each possible input also has a default value, if nothing is set.
+
+	NOTE that the auxiliary variables 'aux_vars' is only checked for
+	variable type (list of strings) in this file. The
+	validity of the contents is checked in the solving file.
 """
 import sys
 
@@ -241,55 +237,53 @@ if type(getattr(config, 'show_initial', None)) != bool:
 	print "The initial conditions will not be shown."
 
 
-# Set auxiliary plots
-if type(getattr(config, 'aux_plots', None)) != bool:
-	config.aux_plots = False
-
-# Plot titles
+# Plot title
 if not hasattr(config, 'plot_title'):
 	config.plot_title = ""
-if not hasattr(config, 'aux_title1'):
-	config.aux_title1 = ""
-if not hasattr(config, 'aux_title2'):
-	config.aux_title2 = ""
-if not hasattr(config, 'aux_title3'):
-	config.aux_title3 = ""
-if not hasattr(config, 'aux_title4'):
-	config.aux_title4 = ""
 
 
-# MINIMUM y values on the plots
-if (type(getattr(config, 'ploty_min', None)) != int and\
-		type(getattr(config, 'ploty_min', None)) != float):
-	config.ploty_min = None
-if (type(getattr(config, 'aux1y_min', None)) != int and\
-		type(getattr(config, 'aux1y_min', None)) != float):
-	config.aux1y_min = None
-if (type(getattr(config, 'aux2y_min', None)) != int and\
-		type(getattr(config, 'aux2y_min', None)) != float):
-	config.aux2y_min = None
-if (type(getattr(config, 'aux3y_min', None)) != int and\
-		type(getattr(config, 'aux3y_min', None)) != float):
-	config.aux3y_min = None
-if (type(getattr(config, 'aux4y_min', None)) != int and\
-		type(getattr(config, 'aux4y_min', None)) != float):
-	config.aux4y_min = None
-# MAXIMUM y values on the plots
-if (type(getattr(config, 'ploty_max', None)) != int and\
-		type(getattr(config, 'ploty_max', None)) != float):
-	config.ploty_max = None
-if (type(getattr(config, 'aux1y_max', None)) != int and\
-		type(getattr(config, 'aux1y_max', None)) != float):
-	config.aux1y_max = None
-if (type(getattr(config, 'aux2y_max', None)) != int and\
-		type(getattr(config, 'aux2y_max', None)) != float):
-	config.aux2y_max = None
-if (type(getattr(config, 'aux3y_max', None)) != int and\
-		type(getattr(config, 'aux3y_max', None)) != float):
-	config.aux3y_max = None
-if (type(getattr(config, 'aux4y_max', None)) != int and\
-		type(getattr(config, 'aux4y_max', None)) != float):
-	config.aux4y_max = None
+## Auxiliary plots
+# Check for type
+if (type(getattr(config, 'aux_plots', None)) != bool or\
+		type(getattr(config, 'aux_vars', None)) != list):
+	config.aux_plots = False
+
+if config.aux_plots == True:
+	# Forces all variable calls and titles to strings
+	if all(isinstance(i, str) for i in config.aux_vars) == False:
+		for i in range(len(config.aux_vars)):
+			config.aux_vars[i] = str(config.aux_vars[i])
+	if all(isinstance(i, str) for i in config.aux_titles) == False:
+		for i in range(len(config.aux_titles)):
+			config.aux_titles[i] = str(config.aux_titles[i])
+
+	# Create aux_titles, _ymin, and _ymax lists if they don't exist
+	if not hasattr(config, 'aux_titles'):
+		config.aux_titles = []
+	if not hasattr(config, 'aux_ymin'):
+		config.aux_ymin = []
+	if not hasattr(config, 'aux_ymax'):
+		config.aux_ymax = []
+	
+	# Make the aux_titles, _ymin, and _ymax lists long enough
+	while len(config.aux_vars) > len(config.aux_titles):
+		config.aux_titles.append(None)
+	while len(config.aux_vars) > len(config.aux_ymin):
+		config.aux_ymin.append(None)
+	while len(config.aux_vars) > len(config.aux_ymax):
+		config.aux_ymax.append(None)
+
+	for j in range(len(config.aux_vars)):
+		if type(config.aux_titles[j]) != str:
+			config.aux_titles[j] = None
+
+		# If the datamins/maxes for aux plots are bad, set them to None
+		if (type(config.aux_ymin[j]) != float and\
+				type(config.aux_ymin[j]) != int):
+			config.aux_ymin[j] = None
+		if (type(config.aux_ymax[j]) != float and\
+				type(config.aux_ymax[j]) != int):
+			config.aux_ymax[j] = None
 
 
 # Makes sure that the saved directory is a string
