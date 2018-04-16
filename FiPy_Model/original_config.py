@@ -37,7 +37,7 @@ beta = 2.0
 initial_H_mode = False
 
 # Boolean, to show the initial conditions
-show_initial = False
+show_initial = True
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
@@ -47,17 +47,24 @@ numerical_choice = "Staps"
 plot_title = "H--Mode Start; $D \sim (Z^\prime)^{{-{:01.2f}}}$".format(beta)\
 		+"\n" + r"$\Gamma_c = {:.3g},\, T \,=\, {:d},\,$"\
 		.format(Gamma_c, total_timeSteps)\
-		+ r"$\Delta t \,=\, \frac{{\epsilon}}{{{:2.0f}}}$"\
-		.format(timeStep_denom)
+		+ r"$\Delta t \,=\, {:.3e}$"\
+		.format(timeStep)
 
 # Maximum x on the plots
 ploty_max = None
-aux_plots = False
-# Maximum and minimum y values on the plots
-aux1y_min = None
-aux1y_max = None
-aux2y_min = None
-aux2y_max = None
+
+aux_plots = True
+
+# Aux plots details
+# aux_vars MUST be an list of strings
+aux_vars = ['rho_pi', 1.2541, 'v_Ti']
+# The second entry in all of the aux plot arrays will be deleted, due
+# to bad data type.
+
+aux_titles = ["RHO", "1.2541", "v_Ti"]
+aux_ymin = [0.0, 5.0, 0.0]
+aux_ymax = []
+# The above are optional
 
 # Should the results be saved to file?
 save_plots = False
