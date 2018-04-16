@@ -46,11 +46,11 @@ def calculate_coeffs():
 			/ (temperature)**(3.0/2.0))							# [s^-1]
 	nu_ii.setValue(1.2 * numerix.sqrt(m_e / m_i) * nu_ei)		# [s^-1]
 
-	# Collision frequency of trapped ions and neutrals
-	nu_in0.setValue(a_in0 * omega_bi)							# [s^-1]
+	# Collision frequency of trapped ions and neutrals, DEPRICATED
+	#nu_in0.setValue(a_in0 * omega_bi)							# [s^-1]
 
-	# Effective detrapping frequency
-	nu_eff.setValue(nu_ii + nu_in0)								# [s^-1]
+	# Effective detrapping frequency, DEPRICATED
+	#nu_eff.setValue(nu_ii + nu_in0)								# [s^-1]
 
 	# Effective collision frequencies
 	nu_ai.setValue(nu_ii / omega_bi)	# nu_*i
