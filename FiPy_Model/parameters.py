@@ -56,10 +56,10 @@ if config.original_model == True:
 	lambda_T = 3.0/2.0
 	lambda_Z = 5.0/4.0
 elif config.original_model == False:
-	L = 0.04								# in m
-	lambda_n = 0.001						# Length scales for decay at edge
-	lambda_T = 0.002
-	lambda_Z = 0.001
+	L = 0.05							# in m
+	lambda_n = 0.01						# Length scales for decay at edge
+	lambda_T = 0.02
+	lambda_Z = 0.01
 
 
 D_max = 5.0

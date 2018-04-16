@@ -70,7 +70,7 @@ elif config.D_choice.lower() == "d_staps":
 # Flow-Shear Model
 elif config.D_choice.lower() == "d_shear" or\
 		config.D_choice.lower() == "d_flow_shear":
-	a1, a2, a3 = 1.0, 0.0, 5.0e-2
+	a1, a2, a3 = 1.0, 0.0, 5.0e-1
 	D_choice_local = D_min + (D_max - D_min)\
 			/ (1.0 + a1*(Z)**2 + a2*Z*Z.grad[0]\
 			+ a3*numerix.dot(Z.grad, Z.grad))
@@ -96,7 +96,7 @@ diff_title = "\n" + r"$D \sim [1 \,+\, ({:.1f}) Z^2$".format(a1)\
 #		* ((gamma - 1.0) / config.Gamma_c)\
 #		* (1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
 #		* (1.0 + x/lambda_n)**-zeta))
-
+#
 #Z.setValue(Z_S*(1.0 - numerix.tanh(\
 #		(L*x - L) / 2.0)))	# OLD, by Staps
 
@@ -130,7 +130,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 		mu*D/epsilon * d/dx(Z(L)) == 0
 	"""
 #	Z.faceGrad.constrain(Z.faceValue / (lambda_Z), mesh.facesLeft)
-#	Z.faceGrad.constrain(0.0, mesh.facesRight)
+	Z.faceGrad.constrain(0.0, mesh.facesRight)
 #	Z.constrain(0.0, mesh.facesRight)
 
 
