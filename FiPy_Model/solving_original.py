@@ -65,7 +65,7 @@ if __name__ == '__main__':
 			datamax=config.ploty_max, legend='best',\
 			title = config.plot_title)
 	if config.show_initial == True:
-		raw_input("Pause for Initial Conditions")
+		raw_input("Pause for Viewing Initial Conditions")
 
 	# Auxiliary viewers
 	if config.aux_plots == True:
