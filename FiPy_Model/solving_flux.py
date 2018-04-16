@@ -30,23 +30,25 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 
 # Z Equation
-#Z.equation = TransientTerm(coeff=Z_transient_coeff / Z_diffusion_coeff, var=Z)\
-#		== DiffusionTerm(coeff=1.0, var=Z)\
-#		+ (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL) / Z_diffusion_coeff
-Z.equation = TransientTerm(coeff=1.0, var=Z)\
+Z.equation = TransientTerm(coeff=Z_transient_coeff / Z_diffusion_coeff, var=Z)\
 		== DiffusionTerm(coeff=1.0, var=Z)\
-		+ (charge * rho_pi * B_theta**2 / (m_i * density * temperature))\
-		* (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL)
+		+ (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL) / Z_diffusion_coeff
+#Z.equation = TransientTerm(coeff=1.0, var=Z)\
+#		== DiffusionTerm(coeff=1.0, var=Z)\
+#		+ Flux_coeff * (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL)
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
 
 
 # LOAD pickled H--Mode data
-if __name__ == '__main__' and config.initial_H_mode == True:
-	H_mode_data = dump.read("./L_start_pickle/state0090.dat")
-#	Z.setValue(-1.0*H_mode_data['Z'])
+#if __name__ == '__main__' and config.initial_H_mode == True:
+#	H_mode_data = dump.read("./L_start_pickle/state0090.dat")
+#	density.setValue(H_mode_data['density'])
+#	temperature.setValue(H_mode_data['temperature'])
+#	Z.setValue(H_mode_data['Z'])
 #	Diffusivity.setValue(D_choice_local)
+
 
 # ----------------- Choose Solver -------------------------
 # Available: LinearPCGSolver (Default), LinearGMRESSolver, LinearLUSolver,
@@ -58,9 +60,7 @@ LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 
 if __name__ == '__main__':
 
-	print_variables(Flux_coeff)
-
-	# Declare viewers
+	# Declare viewer
 	density_viewer = Viewer(density, xmin=0.0, xmax=L,\
 			legend='best',\
 			title = config.plot_title)
@@ -78,22 +78,12 @@ if __name__ == '__main__':
 
 	# Auxiliary viewers
 	if config.aux_plots == True:
-		auxiliary1_viewer = Viewer((Gamma_an), xmin=0.0,\
-				xmax=L, datamin=config.aux1y_min,\
-				datamax=config.aux1y_max, legend='best',\
-				title = config.aux_title1)
-		auxiliary2_viewer = Viewer((Gamma_cx), xmin=0.0,\
-				xmax=L, datamin=config.aux2y_min,\
-				datamax=config.aux2y_max, legend='best',\
-				title = config.aux_title2)
-		auxiliary3_viewer = Viewer((Gamma_bulk), xmin=0.0,\
-				xmax=L, datamin=config.aux3y_min,\
-				datamax=config.aux3y_max, legend='best',\
-				title = config.aux_title3)
-		auxiliary4_viewer = Viewer((Gamma_OL), xmin=0.0,\
-				xmax=L, datamin=config.aux4y_min,\
-				datamax=config.aux4y_max, legend='best',\
-				title = config.aux_title4)
+		aux_plot_array = []
+		for k in range(len(config.aux_vars)):
+			aux_plot_array.append(Viewer(variable_dictionary\
+					[config.aux_vars[k]], xmin=0.0, xmax=L,\
+					datamin=config.aux_ymin[k], datamax=config.aux_ymax[k],\
+					legend='best', title=config.aux_titles[k]))
 
 	# File writing
 	if (hasattr(config, 'save_directory') and\
@@ -135,22 +125,19 @@ if __name__ == '__main__':
 
 			# Save auxiliary plots
 			if config.aux_plots == True:
-				auxiliary1_viewer.plot(filename =\
-						config.save_directory+"/aux1_"+str(t).zfill(4)+".png")
-				auxiliary2_viewer.plot(filename =\
-						config.save_directory+"/aux2_"+str(t).zfill(4)+".png")
-				auxiliary3_viewer.plot(filename =\
-						config.save_directory+"/aux3_"+str(t).zfill(4)+".png")
-				auxiliary4_viewer.plot(filename =\
-						config.save_directory+"/aux4_"+str(t).zfill(4)+".png")
+				for current_aux in range(len(aux_plot_array)):
+					aux_plot_array[current_aux].plot(filename =\
+							config.save_directory + "/aux" +str(current_aux)+\
+							"_" +str(t).zfill(4)+ ".png")
 
+		# If not set to save
 		elif config.save_plots == False:
 			density_viewer.plot(); temp_viewer.plot()
 			Z_viewer.plot(); D_viewer.plot()
 
 			if config.aux_plots == True:
-				auxiliary1_viewer.plot(); auxiliary2_viewer.plot()
-				auxiliary3_viewer.plot(); auxiliary4_viewer.plot()
+				for current_aux in aux_plot_array:
+					current_aux.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:
