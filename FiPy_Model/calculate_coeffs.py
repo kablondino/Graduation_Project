@@ -8,7 +8,7 @@
 
 from variable_decl import *
 
-import scipy.special		# For the Faddeeva (plasma dispersion) function
+#import scipy.special		# For the Faddeeva (plasma dispersion) function
 import numpy
 
 
@@ -70,9 +70,9 @@ def calculate_coeffs():
 
 
 	## Charge Exchange Friction
-	ionization_rate.setValue(1.0e8 / numerix.sqrt(temperature)\
+	ionization_rate.setValue(1.0e8 / numerix.sqrt(m_i)\
 			* numerix.exp(-13.6 / temperature))					# [m^3 s^-1]
-	cx_rate.setValue(1.0e-6 / numerix.sqrt(m_i)\
+	cx_rate.setValue(1.0e-6 / numerix.sqrt(temperature)\
 			* numerix.exp(-13.6 / temperature))		#!!!!!!		# [m^3 s^-1]
 	g_n_cx.setValue((-(m_i * n_0 * cx_rate * density\
 			* temperature * charge) / (B_theta**2))\
