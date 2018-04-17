@@ -61,11 +61,13 @@ This allows those terms to vanish:
 
 \section{Nonambipolar Particle Fluxes}\label{sec:nonambipolar_fluxes}
 As described in Section~\ref{ssec:E_r}, the dynamics of the radial electric field will be determined by investigating the various nonambipolar fluxes.
-The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}, Itoh and Itoh \cite{itoh_role_1996}, and Stringer \cite{stringer_explanation_1993}. \todo{\color{red}Needed??}
+The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}, Itoh and Itoh \cite{itoh_role_1996}, and Stringer \cite{stringer_explanation_1993}.
+
+For added context, the profiles of these fluxes will also be given with a typical L-- and H--mode density, temperature, and $Z$ profiles, given in Figures~.
 
 \subsection{Polarization Current}\label{ssec:polarization_current}
 In Maxwell's correction of Amp\`ere's law, a polarization current is induced whenever the time derivative of an electric field is non-zero.
-This is from the changing state of polarization.
+This originates from the changing state of polarization.
 \begin{align} % Polarization current
 	J_\text{pol} \,=\, \frac{m_i \, n}{\epsilon_0\,\mu_0 \, B_\theta^2} \, \frac{\partial E_r}{\partial t}
 		\,=\, \frac{\sum_j m_j n_j}{B_\theta^2} \, \frac{\partial E_r}{\partial t}
@@ -129,7 +131,8 @@ However, in an effort to circumvent the direct calculations of flow velocities, 
 	&D_{\pi\parallel} \,=\, \frac{\epsilon^2\,\rho_{\theta i}\,T}
 		{(x - a_m)\sqrt{\pi}\,B} \label{eq:stringer_D_bulk}
 \end{align}
-The complex function $X(z)$ is the plasma dispersion function.
+The particle diffusivity for this process is $D_{\pi\parallel}$, which is on the order of ?? \todo{\color{red}CALCULATE}
+The complex-valued function $X(z)$ is the plasma dispersion function.
 It appears in the dispersion equation for linearized waves in a non-relativistic plasma when the velocity distribution is Maxwellian \cite{fried_plasma_2015}.
 \begin{align} % Plasma Dispersion Function
 	X(z) \,\equiv\, i\,\sqrt{\pi} \, e^{-z^2} \, \text{erfc}(-i\,z) \,=\,
@@ -137,6 +140,8 @@ It appears in the dispersion equation for linearized waves in a non-relativistic
 		\, \text{d}t \label{eq:plasma_disp}
 \end{align}
 \emph{\textbf{Note}} that this function is usually denoted as $Z$, but I am breaking this standard notation to avoid ambiguity with the normalized radial electric field.
+
+In addition, although this flux, at first glance, may take a similar shape to subsequently-presented fluxes, the plasma dispersion function does not allow for a direct comparison in the form of Eq.~\ref{eq:Gamma_an_g}.\todo{\color{red}REMOVE?}
 
 \subsection{Electron Anomalous Diffusion}\label{ssec:an_diffusion}
 Turbulence affects ions and electrons differently, which can cause a nonambipolar flux.
@@ -150,7 +155,7 @@ The particle flux for this effect can be written as
 		\frac{\rho_{\theta e} \, T_e}{B} \label{eq:D_an}
 \end{align}
 The numerical constant $\alpha_\text{an}$ is on the order of unity, and $D_\text{an}$ is the diffusion coefficient for this process.
-We can normalize the electric field, rewrite the terms with gradient coefficients $g_l^\text{k}$.
+We can normalize the electric field, rewrite the terms with `gradient' coefficients $g_l^\text{k}$ for coefficient $l$ and mechanism $\text{k}$.
 \begin{align} % Gamma_an g's
 	e\,\Gamma_e^\text{an} \,&=\, g_n^\text{an}\,\frac{n^\prime}{n} \,+\,
 		g_T^\text{an}\,\frac{T^\prime}{T} \,+\,
@@ -162,15 +167,29 @@ We can normalize the electric field, rewrite the terms with gradient coefficient
 \end{align}
 
 \subsection{Charge Exchange Friction}\label{ssec:cx_friction}
+With toroidal rotation, the charge exchange process between ions and neutrals causes a momentum imbalance for the charged plasma, as the momentum goes to the neutrals.
+This momentum loss causes a charge imbalance, leading to a current \cite{toda_theoretical_1997}.
+
+The charge exchange rate is obtained from a qualitative scheme by Connor and Wilson \cite{connor_review_2000}, in which the ``weak function'' $\phi_\text{cx}$ is an exponential decay.
 \begin{align} % Charge exchange rate
-	\langle \sigma v\rangle_\text{cx} \,=\, \frac{C_\text{cx}}{\sqrt{m_i}} \,
-		\exp\left[-\frac{13.6~\text{eV}}{T}\right] \label{eq:cx_rate}
+	\langle \sigma v\rangle_\text{cx} \,=\, \frac{C_\text{cx}}{\sqrt{T}} \,
+		\exp\left[-\frac{E_0}{T}\right] \label{eq:cx_rate}
 \end{align}
+Electrons are not exchanged above a particular temperature threshold, but rather fully ionized and lost to the bulk plasma.
+The term $E_0$ is simply the ionization energy for the particular species used; hydrogen is investigated in this project, and the term is thus set to 13.6 eV.
+The coefficient $C_\text{cx}$ is a numerical constant that chooses the maximum rate.
+
+\begin{align} % Charge exchange current
+	e\,\Gamma_e^\text{cx} \,&=\,
+		-\frac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \, n\,T}{B_\theta^2}
+		\, \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right] \,
+		\left(\frac{n^\prime}{n} \,+\, \frac{\alpha_\text{cx}\,T^\prime}
+		{T} - \frac{Z}{\rho_{\theta i}}\right) \label{eq:Gamma_cx}
+\end{align}
+
+We can write the terms in a similar fashion to Eqs.~\ref{eq:Gamma_an_g} as comparison.
 \begin{align} % Charge exchange g's
-	e\,\Gamma_e^\text{cx} \,&=\, g_n^\text{cx}\,\frac{n^\prime}{n} \,+\,
-		g_T^\text{cx}\,\frac{T^\prime}{T} \,+\,
-		g_Z^\text{cx}\,Z \label{eq:Gamma_cx_g} \\
-	g_n^\text{cx} \,=\, -\frac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \,n T}
+	g_n^\text{cx} \,=\, -\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \,n T}
 		{B_\theta^2}& \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]
 		~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~
 		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
@@ -205,7 +224,7 @@ Itoh \emph{et al.}, originally modeled an evolution to the radial electric field
 	N(Z,g) \,&\equiv\, g - g_0 + \left[\beta Z^3 - \alpha Z\right]~.
 \end{align}
 The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
-Paquay rewrote the equation as
+Weymiens \cite{weymiens_bifurcation_2012} rewrote the equation as
 \begin{align} % Modern model
 	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \, \frac{\partial^2 Z}{\partial x^2} \,+\,
 		\frac{c_n T}{n^2} \, \frac{\partial n}{\partial x} \,+\,
