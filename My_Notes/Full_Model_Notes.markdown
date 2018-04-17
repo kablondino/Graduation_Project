@@ -1,4 +1,4 @@
-# Full Model Notes: 12 Apr 2018
+# Full Model Notes: 17 Apr 2018
 
 \small\begin{align}
 	&\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,=\, a + bx - x^3 \\
@@ -6,8 +6,9 @@
 		~~~~ \dot{y} \,=\, -x - y \\
 	&\text{Plasma Dispersion Function:} ~~ X(\zeta) \,=\, i \sqrt{\pi}\,w(\zeta)
 		\,=\, i \sqrt{\pi} \, e^{-\zeta^2} \text{erfc}(-i \zeta)
-		\,=\, \frac{1}{\sqrt{\pi}} \int_{-\infty}^{+\infty} \frac{e^{-t^2}}{t - \zeta} \, \text{d}t~,
-		~~ \zeta \,\equiv\, \frac{\omega/k}{v_T} \\
+		\,=\, \frac{1}{\sqrt{\pi}} \int_{-\infty}^{+\infty}
+		\frac{e^{-t^2}}{t - \zeta} \, \text{d}t~,~~
+		\zeta \,\equiv\, \frac{\omega/k}{v_T} \\
 	&\text{Approx. SI Units at Edge:} ~~~~ n \,\approx\, 0.5\times 10^{19}~\text{m}^{-3}~,
 		~~ T \,\approx\, 500~e\text{V}~,~~ v_T \,\approx\, 10^5~\text{m}/\text{s}~,
 		~~ \rho_{\theta i} \,\approx\, 10^{-4}~\text{m}
@@ -19,42 +20,64 @@
 		\rho_{\theta j} \,=\, \frac{m_j \, v_{T_j}}{e \, B_\theta}~,~~~
 		\omega_t \,=\, \frac{v_{Ti}}{q\,R}~,~~~
 		\omega_{bj} \,=\, \frac{\epsilon^{3/2} \, v_{T_j}}{q \, R}~,~~~
-		w_{bi} \,=\, \sqrt{\epsilon} \rho_{\theta i} \\
+		w_{bi} \,=\, \rho_{\theta i} \, \sqrt{\epsilon} \\
 	\nu_{ei} \,&=\, 1.33\times 10^5 \frac{n_{20}}{(T_\text{keV})^{3/2}}
 		\,=\, 4.2058\times 10^{-5} \frac{n}{(T_\text{eV})^{3/2}}~,~~~
 		\nu_{ii} \,=\, 1.2\, \nu_{ei} \, \sqrt{\frac{m_e}{m_i}}~,~~~
 		\nu_{*j} \,=\, \frac{\nu_{ij}}{\omega_{bj}} \\
-	\text{Non-formal:}& ~~ n_0 \,=\, \frac{n_0(0)}{\left(1 + \exp\left[k(x - d)\right]\right)}~,~~~
-		n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~ 0 < \theta \leq 1 \\
-	\langle \sigma v \rangle_{cx} \,&=\, \frac{C_\text{cx}}{\sqrt{m_i}} \, \exp\left(-\frac{E_0}{T}\right)~,~~~
-		\langle \sigma v \rangle_{ion} \,=\, \frac{C_\text{ion}}{\sqrt{T}} \, \exp\left(-\frac{E_0}{T}\right) \\
-	\nu_{in0} \,&=\, a_{in0} \, \omega_{bi}~,~~~ \nu_\text{eff} \,=\, \nu_{ii} + \nu_{in0}
+	\text{Non-formal:}& ~~ n_0 \,=\, \frac{n_0(0)}
+		{\left(1 + \exp\left[k(x - d)\right]\right)}~,~~~
+		n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~
+		0 < \theta \leq 1 \\
+	\langle \sigma_\text{cx} v \rangle \,&=\, \frac{C_\text{cx}}{\sqrt{T}} \,
+		\exp\left(-\frac{E_0}{T}\right)~,~~~
+		\langle \sigma_\text{ion} v \rangle \,=\, \frac{C_\text{ion}}{\sqrt{m_i}} \,
+		\exp\left(-\frac{E_0}{T}\right) \\
+	\text{Depricated:}&~\nu_{in0} \,=\, a_{in0} \, \omega_{bi}~,~~~
+		\nu_\text{eff} \,=\, \nu_{ii} + \nu_{in0}
 \end{align}\normalsize
 
 ### Model Forms
 Domain with boundary:
 \small\begin{align}
-	\Omega \,=\, \left\{x, t \,\in\, \mathbb{R}^2 \,|\, (0 \leq x \leq L) ~\text{and}~ (t \geq 0)\right\}, ~~~~ \delta\Omega \,=\, \{x, t \,\in\, \Omega \,|\, x = 0 ~\text{and}~ x = L \}
+	\Omega \,=\, \left\{x, t \,\in\, \mathbb{R}^2 \,|\, (0 \leq x \leq L)
+		~\text{and}~ (t \geq 0)\right\}, ~~~~ \delta\Omega \,=\,
+		\{x, t \,\in\, \Omega \,|\, x = 0 ~\text{and}~ x = L \}
 \end{align}\normalsize
 
 Electric field normalization, energy definition, diffusivity relation, dielectric constant, and viscosity:
 \small\begin{align}
-	Z \,\equiv\, \frac{\rho_\theta \, e \, E_r}{T}~, ~~~~ U \,=\, \frac{n\,T}{\gamma - 1}~, ~~~~ \chi \,=\, \frac{D}{\zeta(\gamma - 1)}~, ~~~~ \epsilon \,=\, \frac{B_\theta^2}{B^2 \nu_i}~, ~~~~ \mu \sim \rho_\theta^2
+	Z \,\equiv\, \frac{\rho_\theta \, e \, E_r}{T}~, ~~~~
+		U \,=\, \frac{n\,T}{\gamma - 1}~, ~~~~
+		\chi \,=\, \frac{D}{\zeta(\gamma - 1)}~, ~~~~
+		\epsilon \,=\, \frac{B_\theta^2}{B^2 \nu_i}~, ~~~~\mu \sim \rho_\theta^2
 \end{align}\normalsize
 
 The following form of the model references particle and heat fluxes, $\Gamma$ and $q$:
 \small\begin{align}
 	\frac{\partial n}{\partial t} \,&=\, -\frac{\partial \Gamma}{\partial x}~,~~&
 	\frac{\partial U}{\partial t} \,&=\, -\frac{\partial q}{\partial x}~,~~&
-	\epsilon \frac{\partial Z}{\partial t} \,&=\, \mu \frac{\partial^2 Z}{\partial x^2} + \frac{c_n \, T}{n^2} \frac{\partial n}{\partial x} + \frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z) \\
+	\epsilon \frac{\partial Z}{\partial t} \,&=\,
+		\mu \frac{\partial^2 Z}{\partial x^2} + \frac{c_n \, T}{n^2}
+		\frac{\partial n}{\partial x} +
+		\frac{c_T}{n} \frac{\partial T}{\partial x} + G(Z) \\
 	\Gamma \,&=\, -D \, \frac{\partial n}{\partial x}~,~~&
-	q \,&=\, -\chi \, n \frac{\partial T}{\partial x} + \frac{\Gamma\,T}{\gamma - 1}~,~~&
+	q \,&=\, -\chi \, n \frac{\partial T}{\partial x} +
+		\frac{\Gamma\,T}{\gamma - 1}~,~~&
 	&G \,=\, a + b(Z - Z_S) + c(Z - Z_S)^3
 \end{align}\normalsize
 
 Reducing down to equations of only $n$ and $T$ (of 2 possible forms): $\dfrac{\partial n}{\partial t} \,=\, \dfrac{\partial}{\partial x}\left[D \, \dfrac{\partial n}{\partial x}\right]$
 \small\begin{align}
-	\dfrac{\partial(n\,T)}{\partial t} \,&=\, \dfrac{\partial}{\partial x}\left[\dfrac{D\,n}{\zeta} \, \dfrac{\partial T}{\partial x}\right] \,+\, \dfrac{\partial}{\partial x}\left[D\,T \, \dfrac{\partial n}{\partial x}\right]~, ~~~~ \dfrac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}\left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\, \left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \, \frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x}
+	\frac{\partial(n\,T)}{\partial t} \,&=\,
+		\frac{\partial}{\partial x}\left[\frac{D\,n}{\zeta} \,
+		\frac{\partial T}{\partial x}\right] \,+\,
+		\frac{\partial}{\partial x}\left[D\,T \,
+		\frac{\partial n}{\partial x}\right]~, ~~~~
+		\frac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}
+		\left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\,
+		\left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \,
+		\frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x}
 \end{align}\normalsize
 
 <!---
@@ -77,9 +100,14 @@ Staps reduced the model to the following vector form:
 
 The diffusivity function $D(\mathcal{E})$ is given in a few forms:
 \small\begin{align}
-	D(Z) \,&=\, \dfrac{D_\text{max} + D_\text{min}}{2} + \dfrac{(D_\text{max} - D_\text{min})\tanh(Z)}{2} ~~~~~~ &\text{Zohm} \\
-	D(Z^\prime) \,&=\, D_\text{min} \,+\, \dfrac{D_\text{max} - D_\text{min}}{1 + \alpha_\text{sup}(Z^\prime)^\beta}~,~~~ \beta \approx 2 ~~~~~~ &\text{Staps} \\
-	D(Z, Z^\prime) \,&=\, D_\text{min} + \dfrac{D_\text{max} - D_\text{min}}{1 + a_1\,Z^2 + a_2\,Z Z^\prime + a_3\left(Z^\prime\right)^2} ~~~~~~ &\text{Flow-Shear}
+	D(Z) \,&=\, \frac{D_\text{max} + D_\text{min}}{2} +
+		\frac{(D_\text{max} - D_\text{min})\tanh(Z)}{2} ~~~~~~ &\text{Zohm} \\
+	D(Z^\prime) \,&=\, D_\text{min} \,+\, \frac{D_\text{max} - D_\text{min}}
+		{1 + \alpha_\text{sup}(Z^\prime)^\beta}~,~~~ \beta \approx 2 ~~~~~~
+		&\text{Staps} \\
+	D(Z, Z^\prime) \,&=\, D_\text{min} + \frac{D_\text{max} - D_\text{min}}
+		{1 + a_1\,Z^2 + a_2\,Z Z^\prime + a_3\left(Z^\prime\right)^2} ~~~~~~
+		&\text{Flow-Shear}
 \end{align}\normalsize
 
 ### Boundary Conditions, Initial Conditions, and Steady-State Solutions
@@ -135,24 +163,35 @@ Steady-State Solutions
 
 ### Gradient Model
 \small\begin{align}
-	&\dfrac{m_i n T}{e \rho_{\theta i} B^2} \, \dfrac{\partial Z}{\partial t}
-		\,=\, \dfrac{m_i \mu_i n T}{e \rho_{\theta i} B_\theta^2} \, \dfrac{\partial^2 Z}{\partial x^2} \,
-		+\, \left(g_n^\text{an} - g_n^\text{cx}\right) \dfrac{n^\prime}{n}
-		+ \left(g_T^\text{an} - g_T^\text{cx}\right) \dfrac{T^\prime}{T}
-		+ \left(g_Z^\text{an} - g_Z^\text{cx}\right) Z - e\Gamma_i^{\pi\parallel} - e\Gamma_i^\text{OL} \\
-	&\dfrac{m_i n T}{e^2 \rho_{\theta i} B^2} \frac{\partial Z}{\partial t}
-		\,=\, \dfrac{m_i \mu n T}{e^2 \rho_{\theta i} B_\theta^2} \frac{\partial^2 Z}{\partial x^2}
-		\,+\, \Gamma_e^\text{an} \,-\, \Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{cx} \,-\, \Gamma_i^\text{OL}
+	&\frac{m_i n T}{e \rho_{\theta i} B^2} \, \frac{\partial Z}{\partial t}
+		\,=\, \frac{m_i \mu_i n T}{e \rho_{\theta i} B_\theta^2} \,
+		\frac{\partial^2 Z}{\partial x^2} \,+\, \left(g_n^\text{an} -
+		g_n^\text{cx}\right) \frac{n^\prime}{n} \,+\, \left(g_T^\text{an} -
+		g_T^\text{cx}\right) \frac{T^\prime}{T} \,+\, \left(g_Z^\text{an} -
+		g_Z^\text{cx}\right) Z - e\Gamma_i^{\pi\parallel} - e\Gamma_i^\text{OL} \\
+	&\frac{m_i n T}{e^2 \rho_{\theta i} B^2} \frac{\partial Z}{\partial t}
+		\,=\, \frac{m_i \mu n T}{e^2 \rho_{\theta i} B_\theta^2} \, 
+		\frac{\partial^2 Z}{\partial x^2} \,+\, \Gamma_e^\text{an} \,-\,
+		\Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{cx} \,-\,
+		\Gamma_i^\text{OL}
 \end{align}\normalsize
 
 + Electron Anomalous Diffusion:
 \small\begin{align}
-	D^\text{an} \,&=\, \dfrac{\epsilon^2 \sqrt{\pi}}{2 a_m} \dfrac{\rho_{\theta e} T}{B}~,~~ g_n^\text{an} \,=\, -e \,n\, D^\text{an}~,~~ g_T^\text{an} \,=\, -e \,n\, \alpha^\text{an}\, D^\text{an}~,~~ g_Z^\text{an} \,=\, \dfrac{-e \,n\, D^\text{an}}{\rho_{\theta i}}
+	D^\text{an} \,&=\, \frac{\epsilon^2 \sqrt{\pi}}{2 a_m}
+		\frac{\rho_{\theta e} T}{B}~,~~
+		g_n^\text{an} \,=\, -e \,n\, D^\text{an}~,~~
+		g_T^\text{an} \,=\, -e \,n\, \alpha^\text{an}\, D^\text{an}~,~~
+		g_Z^\text{an} \,=\, \frac{-e \,n\, D^\text{an}}{\rho_{\theta i}}
 \end{align}\normalsize
 
 + Charge Exchange Friction:
 \small\begin{align}
-	g_n^\text{cx} \,=\, -\dfrac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \,n T}{B_\theta^2} \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~ g_Z^\text{cx} \,=\, -\dfrac{g_n^\text{cx}}{\rho_{\theta i}}
+	g_n^\text{cx} \,=\,
+		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \,n T}{B_\theta^2}
+		\left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]~,~~~~
+		g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~
+		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
 \end{align}\normalsize
 
 + Ion Bulk Viscosity: <!--- $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
@@ -163,13 +202,18 @@ Steady-State Solutions
 -->
 
 \small\begin{align}
-	D^{\pi\parallel} \,=\, \frac{\epsilon^2 \, \rho_{\theta i} \, T}{(x - a_m) \, B \, \sqrt{\pi}}~,~~~
-	e \Gamma_i^{\pi\parallel} \,=\, -e\,n_e\,D^{\pi\parallel} \left(-\frac{n^\prime}{n} - \frac{Z}{\rho_{\theta i}}\right) \, \text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
+	D^{\pi\parallel} \,=\, \frac{\epsilon^2 \, \rho_{\theta i} \, T}
+		{(x - a_m) \, B \, \sqrt{\pi}}~,~~~
+	e \Gamma_i^{\pi\parallel} \,=\, -e\,n_e\,D^{\pi\parallel}
+		\left(-\frac{n^\prime}{n} - \frac{Z}{\rho_{\theta i}}\right) \,
+		\text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
 \end{align}\normalsize
 
 + Ion Orbit Loss:
 \small\begin{align}
-	g^\text{OL} \,=\, e \,n\, \nu_\text{eff} \sqrt{\epsilon} \,\rho_{\theta i}~,~~~~
-	e\Gamma_i^\text{OL} \,=\, \dfrac{g^\text{OL}\,\exp\left[-\sqrt{\nu_{*i} + Z^4 + \frac{x^4}{w_{bi}^4}}\right]}{\sqrt{\nu_{*i} + Z^4 + \frac{x^4}{w_{bi}^4}}}
+	g^\text{OL} \,=\, e \,n\, \nu_{ii} \, \nu_{*i} \, \rho_{\theta i}~,~~~~
+	e\Gamma_i^\text{OL} \,=\, \dfrac{g^\text{OL}\,
+		\exp\left[-\sqrt{\nu_{*i} + Z^4 + \frac{x^4}{w_{bi}^4}}\right]}
+		{\sqrt{\nu_{*i} + Z^4 + \frac{x^4}{w_{bi}^4}}}
 \end{align}\normalsize
 
