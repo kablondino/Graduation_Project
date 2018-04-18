@@ -249,14 +249,6 @@ if (type(getattr(config, 'aux_plots', None)) != bool or\
 	config.aux_plots = False
 
 if config.aux_plots == True:
-	# Forces all variable calls and titles to strings
-	if all(isinstance(i, str) for i in config.aux_vars) == False:
-		for i in range(len(config.aux_vars)):
-			config.aux_vars[i] = str(config.aux_vars[i])
-	if all(isinstance(i, str) for i in config.aux_titles) == False:
-		for i in range(len(config.aux_titles)):
-			config.aux_titles[i] = str(config.aux_titles[i])
-
 	# Create aux_titles, _ymin, and _ymax lists if they don't exist
 	if not hasattr(config, 'aux_titles'):
 		config.aux_titles = []
@@ -265,6 +257,14 @@ if config.aux_plots == True:
 	if not hasattr(config, 'aux_ymax'):
 		config.aux_ymax = []
 	
+	# Forces all variable calls and titles to strings
+	if all(isinstance(i, str) for i in config.aux_vars) == False:
+		for i in range(len(config.aux_vars)):
+			config.aux_vars[i] = str(config.aux_vars[i])
+	if all(isinstance(i, str) for i in config.aux_titles) == False:
+		for i in range(len(config.aux_titles)):
+			config.aux_titles[i] = str(config.aux_titles[i])
+
 	# Make the aux_titles, _ymin, and _ymax lists long enough
 	while len(config.aux_vars) > len(config.aux_titles):
 		config.aux_titles.append(None)
