@@ -109,7 +109,7 @@ variable_dictionary = {\
 
 # Remove entire entry in aux plot details arrays if aux_vars is not a string
 k = 0
-while k < len(config.aux_vars):
+while k < len(config.aux_vars) and config.aux_plots == True:
 	if config.aux_vars[k] in variable_dictionary:
 		k = k + 1
 	elif config.aux_vars[k] not in variable_dictionary:
