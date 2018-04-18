@@ -5,7 +5,7 @@
 	constants, and non-g model numbers.
 
 """
-L = 0.04
+L = 0.05
 
 # ----------------- Parameters ----------------------------
 ## Global parameters and physical constants
@@ -81,5 +81,5 @@ mu = 1.0/20.0
 alpha_cx = 0.9				# Charge exchange coefficient
 alpha_an = 1.0				# Anomalous loss coefficient
 a_in0 = 0.1					# Neutrals coefficient
-cx_rate = 1.0e-9			# Reaction rate of charge exchange
+#cx_rate = 1.0e-9			# Reaction rate of charge exchange
 
