@@ -115,7 +115,7 @@ Two mathematical forms of the parallel ion (bulk) viscosity have been developed 
 Shaing \emph{et al.} \cite{shaing_bifurcation_1990} derives an expression directly for the viscosity by solving the drift kinetic equation with mass flow velocity.
 \begin{align}% Shaing Bulk Viscosity
 	\langle \mathbf{B}_\theta \cdot \nabla \cdot \boldsymbol{\pi} \rangle \,=\,
-		\frac{\epsilon^2 \sqrt{\pi}}{4 x} \, n\,m_i\,v_{T_i}\,B
+		\frac{\epsilon^2 \, m_i \, B \sqrt{\pi}}{4} \, \frac{n\,v_{T_i}}{x}
 		\left(I_\theta U_\theta \,+\, I_\phi U_{\theta 0}\right)
 		\label{eq:shaing_bulk}
 \end{align}
@@ -131,7 +131,7 @@ However, in an effort to circumvent the direct calculations of flow velocities, 
 	&D_{\pi\parallel} \,=\, \frac{\epsilon^2\,\rho_{\theta i}\,T}
 		{(x - a_m)\sqrt{\pi}\,B} \label{eq:stringer_D_bulk}
 \end{align}
-The particle diffusivity for this process is $D_{\pi\parallel}$, which is on the order of ?? \todo{\color{red}CALCULATE}
+The particle diffusivity for this process is $D_{\pi\parallel}$, which is on the order of $10^{-2}$~m$^2 / $s.
 The complex-valued function $X(z)$ is the plasma dispersion function.
 It appears in the dispersion equation for linearized waves in a non-relativistic plasma when the velocity distribution is Maxwellian \cite{fried_plasma_2015}.
 \begin{align} % Plasma Dispersion Function
@@ -172,7 +172,7 @@ This momentum loss causes a charge imbalance, leading to a current \cite{toda_th
 
 The charge exchange rate is obtained from a qualitative scheme by Connor and Wilson \cite{connor_review_2000}, in which the ``weak function'' $\phi_\text{cx}$ is an exponential decay.
 \begin{align} % Charge exchange rate
-	\langle \sigma v\rangle_\text{cx} \,=\, \frac{C_\text{cx}}{\sqrt{T}} \,
+	\langle \sigma_\text{cx} v\rangle \,=\, \frac{C_\text{cx}}{\sqrt{T}} \,
 		\exp\left[-\frac{E_0}{T}\right] \label{eq:cx_rate}
 \end{align}
 Electrons are not exchanged above a particular temperature threshold, but rather fully ionized and lost to the bulk plasma.
@@ -181,7 +181,7 @@ The coefficient $C_\text{cx}$ is a numerical constant that chooses the maximum r
 
 \begin{align} % Charge exchange current
 	e\,\Gamma_e^\text{cx} \,&=\,
-		-\frac{m_i \,n_0 \langle\sigma v\rangle_\text{cx} \, n\,T}{B_\theta^2}
+		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \, n\,T}{B_\theta^2}
 		\, \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right] \,
 		\left(\frac{n^\prime}{n} \,+\, \frac{\alpha_\text{cx}\,T^\prime}
 		{T} - \frac{Z}{\rho_{\theta i}}\right) \label{eq:Gamma_cx}
