@@ -8,7 +8,7 @@
 
 from variable_decl import *
 
-#import scipy.special		# For the Faddeeva (plasma dispersion) function
+import scipy.special		# For the Faddeeva (plasma dispersion) function
 import numpy
 
 
@@ -60,23 +60,23 @@ def calculate_coeffs():
 	## Electron Anomalous Diffusion
 	D_an.setValue(aspect**2 * numerix.sqrt(pi) * rho_pe * temperature\
 			/ (2*a_m * B))
-	g_n_an.setValue(charge*density*D_an)						# [A m^-2]
+	g_n_an.setValue(charge * density * D_an)					# [A m^-2]
 	g_T_an.setValue(g_n_an * alpha_an)							# [A m^-2]
 	g_Z_an.setValue(g_n_an / rho_pi)							# [A m^-1]
 
-	Gamma_an.setValue((g_n_an*density.grad[0]\
-			/ density + g_T_an*temperature.grad[0]/temperature\
-			+ g_Z_an*Z) / charge)								# [m^-2 s^-1]
+	Gamma_an.setValue((g_n_an * density.grad[0]\
+			/ density + g_T_an * temperature.grad[0] / temperature\
+			+ g_Z_an * Z) / charge)								# [m^-2 s^-1]
 
 
 	## Charge Exchange Friction
-	ionization_rate.setValue(1.0e8 / numerix.sqrt(m_i)\
+	ionization_rate.setValue(1.0e-6 / numerix.sqrt(m_i)\
 			* numerix.exp(-13.6 / temperature))					# [m^3 s^-1]
-	cx_rate.setValue(1.0e-6 / numerix.sqrt(temperature)\
+	cx_rate.setValue(1.0e8 / numerix.sqrt(temperature)\
 			* numerix.exp(-13.6 / temperature))		#!!!!!!		# [m^3 s^-1]
 	g_n_cx.setValue((-(m_i * n_0 * cx_rate * density\
 			* temperature * charge) / (B_theta**2))\
-			* ((B_theta**2 / (aspect*B_phi)**2) + 2.0))			# [A m^-2]
+			* ((B_theta**2 / (aspect * B_phi)**2) + 2.0))		# [A m^-2]
 	g_T_cx.setValue(alpha_cx * g_n_cx)							# [A m^-2]
 	g_Z_cx.setValue(-g_n_cx / rho_pi)							# [A m^-1]
 
