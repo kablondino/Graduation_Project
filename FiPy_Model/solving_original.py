@@ -9,10 +9,6 @@ from boundary_init_cond import *
 from calculate_coeffs import *
 # fipy.tools.numerix and dump is also imported from the above
 
-if config.view_matplotlib == True:
-	import matplotlib.pyplot as plt
-	from fipy import MatplotlibViewer
-
 from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
 from fipy.solvers import *
 
@@ -20,7 +16,7 @@ import os	# For saving files to a specified directory
 
 
 # Initialize all the coefficients and other variables
-calculate_coeffs()
+#calculate_coeffs()
 
 # ----------------- PDE Declarations ----------------------
 # Density Equation
@@ -63,28 +59,21 @@ LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 if __name__ == '__main__':
 
 	# Declare viewer
-	if config.view_matplotlib == True:
-		state_fig = plt.fig()
-
-	elif config.view_matplotlib == False:
+	if config.generate_plots == True:
 		viewer = Viewer((density, temperature, -Z, Diffusivity),\
 				xmin=0.0, xmax=L, datamin=-0.5,\
 				datamax=config.ploty_max, legend='best',\
 				title = config.plot_title)
-
-	if config.show_initial == True:
-		if config.view_matplotlib == True:
-			state_fig.show()
 		raw_input("Pause for Viewing Initial Conditions")
 
-	# Auxiliary viewers
-	if config.aux_plots == True:
-		aux_plot_array = []
-		for k in range(len(config.aux_vars)):
-			aux_plot_array.append(Viewer(variable_dictionary\
-					[config.aux_vars[k]], xmin=0.0, xmax=L,\
-					datamin=config.aux_ymin[k], datamax=config.aux_ymax[k],\
-					legend='best', title=config.aux_titles[k]))
+		# Auxiliary viewers
+		if config.aux_plots == True:
+			aux_plot_array = []
+			for k in range(len(config.aux_vars)):
+				aux_plot_array.append(Viewer(variable_dictionary\
+						[config.aux_vars[k]], xmin=0.0, xmax=L,\
+						datamin=config.aux_ymin[k], datamax=config.aux_ymax[k],\
+						legend='best', title=config.aux_titles[k]))
 
 	# File writing
 	if (hasattr(config, 'save_directory') and\
@@ -104,7 +93,7 @@ if __name__ == '__main__':
 		# Update values
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 		Diffusivity.setValue(D_choice_local)
-		calculate_coeffs()
+#		calculate_coeffs()
 
 		# --------------- Solving Loop --------------------
 		while current_residual > config.res_tol:
@@ -114,29 +103,30 @@ if __name__ == '__main__':
 
 
 		# Plot solution and save, if option is True
-		if config.save_plots == True:
-			viewer.plot(filename =\
-					config.save_directory+"/"+str(t).zfill(4)+".png")
+		if config.generate_plots == True:
+			if config.save_plots == True:
+				viewer.plot(filename =\
+						config.save_directory+"/"+str(t).zfill(4)+".png")
 
-			# Save auxiliary plots
-			if config.aux_plots == True:
-				for current_aux in range(len(aux_plot_array)):
-					aux_plot_array[current_aux].plot(filename =\
-							config.save_directory + "/aux" +str(current_aux)+\
-							"_" +str(t).zfill(4)+ ".png")
+				# Save auxiliary plots
+				if config.aux_plots == True:
+					for current_aux in range(len(aux_plot_array)):
+						aux_plot_array[current_aux].plot(filename =\
+								config.save_directory + "/aux"\
+								+str(current_aux)+"_"+str(t).zfill(4)+ ".png")
 
-		# If not set to save
-		elif config.save_plots == False:
-			viewer.plot()
+			# If not set to save
+			elif config.save_plots == False:
+				viewer.plot()
 
-			if config.aux_plots == True:
-				for current_aux in aux_plot_array:
-					current_aux.plot()
+				if config.aux_plots == True:
+					for current_aux in aux_plot_array:
+						current_aux.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:
 			TSVViewer(vars=\
-					(Gamma_an, Gamma_cx, Gamma_bulk, Gamma_OL,\
+					(density, temperature, Z, Diffusivity,\
 					Z_transient_coeff, Z_diffusion_coeff)).plot(filename=\
 					config.save_directory+"/"+str(t).zfill(4)+".tsv")
 
