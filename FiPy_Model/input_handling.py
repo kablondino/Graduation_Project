@@ -89,8 +89,8 @@ if (getattr(config, 'numerical_choice', "").lower() not in parameter_sets\
 			raise TypeError
 
 	except (EOFError, TypeError):
-		config.numerical_choice = "Paquay"
-		print "Numerical choice defaulted to Paquay's set."
+		config.numerical_choice = "Staps"
+		print "Numerical choice defaulted to Staps' set."
 
 
 ## ---------------- Diffusivity Options -------------------
@@ -119,14 +119,14 @@ if config.D_choice.lower() == 'd_staps':
 			config.alpha_sup = 0.5
 			print "The suppression coefficient in the diffusivity is defaulted to 0.5"
 
-if (type(getattr(config, 'beta', None)) != int and\
-		type(getattr(config, 'beta', None)) != float):
-	try:
-		config.beta = float(input("The exponent of the electric field shear is improperly set. Enter a floating-point number or integer: "))
+	if (type(getattr(config, 'beta', None)) != int and\
+			type(getattr(config, 'beta', None)) != float):
+		try:
+			config.beta = float(input("The exponent of the electric field shear is improperly set. Enter a floating-point number or integer: "))
 
-	except (NameError, SyntaxError, EOFError, ValueError):
-		config.beta = 2.0
-		print "The exponent of the electric field shear in the diffusivity is defaulted to 2.0."
+		except (NameError, SyntaxError, EOFError, ValueError):
+			config.beta = 2.0
+			print "The exponent of the electric field shear in the diffusivity is defaulted to 2.0."
 
 
 if (config.D_choice.lower() == 'd_shear' or\
