@@ -110,7 +110,7 @@ if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
 
 # Diffusivity parameters, i.e. coefficients
 if config.D_choice.lower() == 'd_staps':
-	if (type(getattr(config, 'alpha_sup', None)) != int or\
+	if (type(getattr(config, 'alpha_sup', None)) != int and\
 			type(getattr(config, 'alpha_sup', None)) != float):
 		try:
 			config.alpha_sup = float(input("The suppression coefficient in the diffusivity is not set. Enter an integer or float: "))
@@ -119,7 +119,7 @@ if config.D_choice.lower() == 'd_staps':
 			config.alpha_sup = 0.5
 			print "The suppression coefficient in the diffusivity is defaulted to 0.5"
 
-if (type(getattr(config, 'beta', None)) != int or\
+if (type(getattr(config, 'beta', None)) != int and\
 		type(getattr(config, 'beta', None)) != float):
 	try:
 		config.beta = float(input("The exponent of the electric field shear is improperly set. Enter a floating-point number or integer: "))
@@ -131,11 +131,11 @@ if (type(getattr(config, 'beta', None)) != int or\
 
 if (config.D_choice.lower() == 'd_shear' or\
 		config.D_choice.lower() == 'd_flow-shear'):
-	if (type(getattr(config, 'shear_a1', None)) != int or\
-			type(getattr(config, 'shear_a1', None)) != float or\
-			type(getattr(config, 'shear_a2', None)) != int or\
-			type(getattr(config, 'shear_a2', None)) != float or\
-			type(getattr(config, 'shear_a3', None)) != int or\
+	if (type(getattr(config, 'shear_a1', None)) != int and\
+			type(getattr(config, 'shear_a1', None)) != float and\
+			type(getattr(config, 'shear_a2', None)) != int and\
+			type(getattr(config, 'shear_a2', None)) != float and\
+			type(getattr(config, 'shear_a3', None)) != int and\
 			type(getattr(config, 'shear_a3', None)) != float):
 		try:
 			config.shear_a1, config.shear_a2, config.shear_a3 = float(input("One of the parameters of the flow-shear diffusivity model is improperly set. Enter 3 floating-point numbers, separated by commas: ").split(","))
