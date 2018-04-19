@@ -9,10 +9,6 @@ from boundary_init_cond import *
 from calculate_coeffs import *
 # fipy.tools.numerix and dump is also imported from the above
 
-if config.view_matplotlib == True:
-	import matplotlib.pyplot as plt
-	from fipy import MatplotlibViewer
-
 from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
 from fipy.solvers import *
 
@@ -64,26 +60,7 @@ LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 if __name__ == '__main__':
 
 	# Declare viewer
-	if config.view_matplotlib == True:
-		state_fig = plt.figure()
-
-		density_ax = plt.subplot((221))
-		temp_ax = plt.subplot((222))
-		Z_ax = plt.subplot((223))
-		D_ax = plt.subplot((224))
-
-		density_viewer = MatplotlibViewer(density, xmin=0.0, xmax=L,\
-				datamin=0.0, datamax=3.0e19, legend='best', axes=density_ax)
-		temp_viewer = MatplotlibViewer(temperature, xmin=0.0, xmax=L,\
-				datamin=80.0, datamax=500.0, legend='best', axes=temp_ax)
-		Z_viewer = MatplotlibViewer(Z, xmin=0.0, xmax=L,\
-				legend='best', axes=Z_ax)
-		D_viewer = MatplotlibViewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
-				datamax=D_max + D_max/10.0, legend='best', axes=D_ax)
-
-		plt.suptitle(config.plot_title + diff_title)
-
-	elif config.view_matplotlib == False:
+	if config.generate_plots == True:
 		density_viewer = Viewer(density, xmin=0.0, xmax=L,\
 				datamin=0.0, datamax=3.0e19, legend='best')
 		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
@@ -92,21 +69,17 @@ if __name__ == '__main__':
 				legend='best')
 		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
 				datamax=D_max + D_max/10.0, legend='best')
-
-	if config.show_initial == True:
-		if config.view_matplotlib == True:
-			state_fig.show()
 		raw_input("Pause for Viewing Initial Conditions")
 
 	# Auxiliary viewers
-	if config.aux_plots == True:
-		aux_plot_array = []
-		for k in range(len(config.aux_vars)):
-			aux_plot_array.append(Viewer(variable_dictionary\
-					[config.aux_vars[k]], xmin=0.0, xmax=L,\
-					datamin=config.aux_ymin[k], datamax=config.aux_ymax[k],\
-					legend='best', title=config.aux_titles[k]))
-		raw_input("Pause for Viewing Initial Auxiliary Plots")
+		if config.aux_plots == True:
+			aux_plot_array = []
+			for k in range(len(config.aux_vars)):
+				aux_plot_array.append(Viewer(variable_dictionary\
+						[config.aux_vars[k]], xmin=0.0, xmax=L,\
+						datamin=config.aux_ymin[k], datamax=config.aux_ymax[k],\
+						legend='best', title=config.aux_titles[k]))
+			raw_input("Pause for Viewing Initial Auxiliary Plots")
 
 
 	# File writing
@@ -137,31 +110,32 @@ if __name__ == '__main__':
 
 
 		# Plot solution and save, if option is True
-		if config.save_plots == True:
-			density_viewer.plot(filename=config.save_directory + "/n"\
-					+str(t).zfill(4)+ ".png")
-			temp_viewer.plot(filename=config.save_directory + "/T" \
-					+str(t).zfill(4)+ ".png")
-			Z_viewer.plot(filename=config.save_directory + "/Z" \
-					+str(t).zfill(4)+ ".png")
-			D_viewer.plot(filename=config.save_directory + "/D" \
-					+str(t).zfill(4)+ ".png")
+		if config.generate_plots == True:
+			if config.save_plots == True:
+				density_viewer.plot(filename=config.save_directory + "/n"\
+						+str(t).zfill(4)+ ".png")
+				temp_viewer.plot(filename=config.save_directory + "/T" \
+						+str(t).zfill(4)+ ".png")
+				Z_viewer.plot(filename=config.save_directory + "/Z" \
+						+str(t).zfill(4)+ ".png")
+				D_viewer.plot(filename=config.save_directory + "/D" \
+						+str(t).zfill(4)+ ".png")
 
-			# Save auxiliary plots
-			if config.aux_plots == True:
-				for current_aux in range(len(aux_plot_array)):
-					aux_plot_array[current_aux].plot(filename =\
-							config.save_directory + "/aux" +str(current_aux)+\
-							"_" +str(t).zfill(4)+ ".png")
+				# Save auxiliary plots
+				if config.aux_plots == True:
+					for current_aux in range(len(aux_plot_array)):
+						aux_plot_array[current_aux].plot(filename =\
+								config.save_directory + "/aux"\
+								+str(current_aux)+"_"+str(t).zfill(4)+ ".png")
 
-		# If not set to save
-		elif config.save_plots == False:
-			density_viewer.plot(); temp_viewer.plot()
-			Z_viewer.plot(); D_viewer.plot()
+			# If not set to save
+			elif config.save_plots == False:
+				density_viewer.plot(); temp_viewer.plot()
+				Z_viewer.plot(); D_viewer.plot()
 
-			if config.aux_plots == True:
-				for current_aux in aux_plot_array:
-					current_aux.plot()
+				if config.aux_plots == True:
+					for current_aux in aux_plot_array:
+						current_aux.plot()
 
 		# Save TSV's
 		if config.save_TSVs == True:
