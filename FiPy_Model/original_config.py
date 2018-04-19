@@ -40,7 +40,7 @@ shear_a1, shear_a2, shear_a3 = 1.0, 0.0, 0.5
 # Boolean, to choose what mode to have as initial conditions
 initial_H_mode = False
 
-# Boolean, to show the initial conditions
+# Boolean, to show plots
 generate_plots = True
 
 # Choose numerical values for non-gradient Z-equation

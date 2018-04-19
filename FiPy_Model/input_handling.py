@@ -130,7 +130,7 @@ if (type(getattr(config, 'beta', None)) != int and\
 
 
 if (config.D_choice.lower() == 'd_shear' or\
-		config.D_choice.lower() == 'd_flow-shear'):
+		config.D_choice.lower() == 'd_flow_shear'):
 	if (type(getattr(config, 'shear_a1', None)) != int and\
 			type(getattr(config, 'shear_a1', None)) != float and\
 			type(getattr(config, 'shear_a2', None)) != int and\
