@@ -12,6 +12,7 @@
 	D_choice:		string	The model of the diffusivity
 	initial_H_mode:	bool	Start in L-- or H--mode?
 	original_model:	bool	Which Z-equation model? 'False' is flux model.
+	view_matplotlib	bool	Should use base (non-FiPy) matplotlib?
 	show_initial:	bool	Show the initial conditions
 	plot_title:		string	The title of the plot; can be formatted
 	ploty_max:		float	The maximum y-value on the plot
@@ -237,6 +238,12 @@ if type(getattr(config, 'show_initial', None)) != bool:
 	print "The initial conditions will not be shown."
 
 
+# Matplotlib option
+if type(getattr(config, 'view_matplotlib', None)) != bool:
+	config.view_matplotlib = False
+	print "The default FiPy viewers will be used."
+
+
 # Plot title
 if not hasattr(config, 'plot_title'):
 	config.plot_title = ""
@@ -249,14 +256,6 @@ if (type(getattr(config, 'aux_plots', None)) != bool or\
 	config.aux_plots = False
 
 if config.aux_plots == True:
-	# Forces all variable calls and titles to strings
-	if all(isinstance(i, str) for i in config.aux_vars) == False:
-		for i in range(len(config.aux_vars)):
-			config.aux_vars[i] = str(config.aux_vars[i])
-	if all(isinstance(i, str) for i in config.aux_titles) == False:
-		for i in range(len(config.aux_titles)):
-			config.aux_titles[i] = str(config.aux_titles[i])
-
 	# Create aux_titles, _ymin, and _ymax lists if they don't exist
 	if not hasattr(config, 'aux_titles'):
 		config.aux_titles = []
@@ -265,6 +264,14 @@ if config.aux_plots == True:
 	if not hasattr(config, 'aux_ymax'):
 		config.aux_ymax = []
 	
+	# Forces all variable calls and titles to strings
+	if all(isinstance(i, str) for i in config.aux_vars) == False:
+		for i in range(len(config.aux_vars)):
+			config.aux_vars[i] = str(config.aux_vars[i])
+	if all(isinstance(i, str) for i in config.aux_titles) == False:
+		for i in range(len(config.aux_titles)):
+			config.aux_titles[i] = str(config.aux_titles[i])
+
 	# Make the aux_titles, _ymin, and _ymax lists long enough
 	while len(config.aux_vars) > len(config.aux_titles):
 		config.aux_titles.append(None)

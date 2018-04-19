@@ -3,15 +3,18 @@
 	This file sets the equation system and does the solving
 	and viewing of the full flux model.
 """
-
-from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
-from fipy.solvers import *
-
 # Order of file imports from the following inport: input_handling.py,
 # parameters.py, variable_decl.py boundary_init_cond
 from boundary_init_cond import *
 from calculate_coeffs import *
 # fipy.tools.numerix and dump is also imported from the above
+
+if config.view_matplotlib == True:
+	import matplotlib.pyplot as plt
+	from fipy import MatplotlibViewer
+
+from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
+from fipy.solvers import *
 
 import os	# For saving files to a specified directory
 
@@ -30,9 +33,9 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 
 # Z Equation
-Z.equation = TransientTerm(coeff=Z_transient_coeff / Z_diffusion_coeff, var=Z)\
-		== DiffusionTerm(coeff=1.0, var=Z)\
-		+ (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL) / Z_diffusion_coeff
+Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
+		== DiffusionTerm(coeff=Z_diffusion_coeff, var=Z)\
+		+ (Gamma_an - Gamma_cx  - Gamma_OL)
 #Z.equation = TransientTerm(coeff=1.0, var=Z)\
 #		== DiffusionTerm(coeff=1.0, var=Z)\
 #		+ Flux_coeff * (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL)
@@ -61,19 +64,38 @@ LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 if __name__ == '__main__':
 
 	# Declare viewer
-	density_viewer = Viewer(density, xmin=0.0, xmax=L,\
-			legend='best',\
-			title = config.plot_title)
-	temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
-			legend='best',\
-			title = config.plot_title)
-	Z_viewer = Viewer(Z, xmin=0.0, xmax=L,\
-			legend='best',\
-			title = config.plot_title)
-	D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
-			datamax=D_max + D_max/10.0, legend='best',\
-			title = config.plot_title + diff_title)
+	if config.view_matplotlib == True:
+		state_fig = plt.figure()
+
+		density_ax = plt.subplot((221))
+		temp_ax = plt.subplot((222))
+		Z_ax = plt.subplot((223))
+		D_ax = plt.subplot((224))
+
+		density_viewer = MatplotlibViewer(density, xmin=0.0, xmax=L,\
+				datamin=0.0, datamax=3.0e19, legend='best', axes=density_ax)
+		temp_viewer = MatplotlibViewer(temperature, xmin=0.0, xmax=L,\
+				datamin=80.0, datamax=500.0, legend='best', axes=temp_ax)
+		Z_viewer = MatplotlibViewer(Z, xmin=0.0, xmax=L,\
+				legend='best', axes=Z_ax)
+		D_viewer = MatplotlibViewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
+				datamax=D_max + D_max/10.0, legend='best', axes=D_ax)
+
+		plt.suptitle(config.plot_title + diff_title)
+
+	elif config.view_matplotlib == False:
+		density_viewer = Viewer(density, xmin=0.0, xmax=L,\
+				datamin=0.0, datamax=3.0e19, legend='best')
+		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
+				datamin=80.0, datamax=500.0, legend='best')
+		Z_viewer = Viewer(Z, xmin=0.0, xmax=L,\
+				legend='best')
+		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
+				datamax=D_max + D_max/10.0, legend='best')
+
 	if config.show_initial == True:
+		if config.view_matplotlib == True:
+			state_fig.show()
 		raw_input("Pause for Viewing Initial Conditions")
 
 	# Auxiliary viewers
@@ -84,6 +106,8 @@ if __name__ == '__main__':
 					[config.aux_vars[k]], xmin=0.0, xmax=L,\
 					datamin=config.aux_ymin[k], datamax=config.aux_ymax[k],\
 					legend='best', title=config.aux_titles[k]))
+		raw_input("Pause for Viewing Initial Auxiliary Plots")
+
 
 	# File writing
 	if (hasattr(config, 'save_directory') and\

@@ -27,7 +27,7 @@ timeStep = 1.0 / 375.0
 
 # Choose the Diffusivity model, as a string (case does not matter)
 # D_Zohm, D_Staps, and D_Shear are the possibilities
-D_choice = "D_Shear"
+D_choice = "D_Staps"
 # Coefficient of (Z')**beta in Stap's diffusivity
 alpha_sup = 0.5
 # Exponent of Z' in Stap's diffusivity
@@ -38,6 +38,9 @@ initial_H_mode = False
 
 # Boolean, to show the initial conditions
 show_initial = True
+
+# Matplotlib option
+view_matplotlib = False
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad

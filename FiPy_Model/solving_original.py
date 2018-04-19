@@ -3,15 +3,18 @@
 	This file sets the equation system and does the solving
 	and viewing of the original model.
 """
-
-from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
-from fipy.solvers import *
-
 # Order of file imports from the following inport: input_handling.py,
 # parameters.py, variable_decl.py boundary_init_cond
 from boundary_init_cond import *
 from calculate_coeffs import *
 # fipy.tools.numerix and dump is also imported from the above
+
+if config.view_matplotlib == True:
+	import matplotlib.pyplot as plt
+	from fipy import MatplotlibViewer
+
+from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
+from fipy.solvers import *
 
 import os	# For saving files to a specified directory
 
@@ -60,11 +63,18 @@ LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
 if __name__ == '__main__':
 
 	# Declare viewer
-	viewer = Viewer((density, temperature, -Z, Diffusivity),\
-			xmin=0.0, xmax=L, datamin=-0.5,\
-			datamax=config.ploty_max, legend='best',\
-			title = config.plot_title)
+	if config.view_matplotlib == True:
+		state_fig = plt.fig()
+
+	elif config.view_matplotlib == False:
+		viewer = Viewer((density, temperature, -Z, Diffusivity),\
+				xmin=0.0, xmax=L, datamin=-0.5,\
+				datamax=config.ploty_max, legend='best',\
+				title = config.plot_title)
+
 	if config.show_initial == True:
+		if config.view_matplotlib == True:
+			state_fig.show()
 		raw_input("Pause for Viewing Initial Conditions")
 
 	# Auxiliary viewers
