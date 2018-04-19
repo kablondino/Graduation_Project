@@ -70,10 +70,9 @@ elif config.D_choice.lower() == "d_staps":
 # Flow-Shear Model
 elif config.D_choice.lower() == "d_shear" or\
 		config.D_choice.lower() == "d_flow_shear":
-	a1, a2, a3 = 1.0, 0.0, 5.0e-1
 	D_choice_local = D_min + (D_max - D_min)\
-			/ (1.0 + a1*(Z)**2 + a2*Z*Z.grad[0]\
-			+ a3*numerix.dot(Z.grad, Z.grad))
+			/ (1.0 + config.shear_a1*(Z)**2 + config.shear_a2*Z*Z.grad[0]\
+			+ config.shear_a3*numerix.dot(Z.grad, Z.grad))
 
 elif config.D_choice.lower() == "d_weymiens_l":
 	D_choice_local = D_min + (D_max - D_min) * (1 - config.alpha_sup\
@@ -84,10 +83,6 @@ else:
 
 Diffusivity.setValue(D_choice_local)
 print "The diffusivity model is set to " + str(config.D_choice)
-diff_title = "\n" + r"$D \sim [1 \,+\, ({:.1f}) Z^2$".format(a1)\
-		+ r"$ \,+\, ({:.1f}) Z\,Z^\prime$".format(a2)\
-		+ r"$ \,+\, ({:.1e}) (Z^\prime)^2]^{{-1}}$".format(a3)
-
 
 # --- Old init definitions, which requires Diffusivity to ALREADY be set -----
 #density.setValue(-(config.Gamma_c*lambda_n / Diffusivity)\

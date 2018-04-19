@@ -1,6 +1,7 @@
 """
 	This file deals with all of the inputs for the system. The current set
 	of inputs are the following:
+
 	nx:				int		The number of grid points
 	total_timeSteps:int		The total number of time steps
 	timeStep_denom:	float	The denominator of the time step; DEPRICATED
@@ -8,12 +9,16 @@
 	res_tol			float	The tolerance of the residual
 	Gamma_c			float	The particle flux from the core
 	q_c				float	The heat flux from the core
+	alpha_sup		float	Suppression coeff in Stap's diffusivity
+	beta			float	Exponent value in Stap's diffusivity
+	shear_a1		float	The a1 coefficient in the Flow-Shear diffusivity
+	shear_a2		float	... a2 .........................................
+	shear_a3		float	... a3 .........................................
 	numerical_parameter:	string		The set of predetermined parameters
 	D_choice:		string	The model of the diffusivity
 	initial_H_mode:	bool	Start in L-- or H--mode?
 	original_model:	bool	Which Z-equation model? 'False' is flux model.
-	view_matplotlib	bool	Should use base (non-FiPy) matplotlib?
-	show_initial:	bool	Show the initial conditions
+	generate_plots	bool	Should the plots be made?
 	plot_title:		string	The title of the plot; can be formatted
 	ploty_max:		float	The maximum y-value on the plot
 	aux_plots:		bool	Turns on specified auxiliary plots
@@ -21,7 +26,6 @@
 	aux_titles:		list	Title of the aux plots
 	aux_ymin:		float	Minimum y value of the aux plots
 	aux_ymax:		float	Maximum y value of the aux plots
-
 	save_directory: string	The name of the saving directory, from current
 							directory being run.
 	save_plots:		bool	Should the plots be saved?
@@ -43,13 +47,19 @@ diffusivity_models = ["d_zohm", "d_staps", "d_shear", "d_flow_shear",\
 		"d_weymiens_l"]
 
 
-# -------------- Check Configuration Variables ------------
 # Z-equation model choice
 if type(getattr(config, 'original_model', None)) != bool:
 	config.original_Z_model = True
 	print "Defaulted to using the original numerical model for Z."
 
 
+# Initial starting mode
+if type(getattr(config, 'initial_H_mode', None)) != bool:
+	config.initial_H_mode = False
+	print "Defaulted to starting in L--mode."
+
+
+# -------------- Numerical Choices ------------------------
 # Particle and heat fluxes from the core
 if (type(getattr(config, 'Gamma_c', None)) != float\
 		and type(getattr(config, 'Gamma_c', None)) != int):
@@ -83,6 +93,60 @@ if (getattr(config, 'numerical_choice', "").lower() not in parameter_sets\
 		print "Numerical choice defaulted to Paquay's set."
 
 
+## ---------------- Diffusivity Options -------------------
+# Choice of the diffusivity model
+if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
+		type(getattr(config, 'D_choice', None)) != str):
+	try:
+		config.D_choice = raw_input("The diffusivity model is not properly chosen. Choose from the following: Zohm, Weymiens_L, Staps, Shear -> ")
+
+		if config.D_choice.lower() not in diffusivity_models:
+			raise IndexError()
+
+	except (IndexError, EOFError):
+		config.D_choice = "d_staps"
+		print "Diffusivity model defaulted to Staps'."
+
+
+# Diffusivity parameters, i.e. coefficients
+if config.D_choice.lower() == 'd_staps':
+	if (type(getattr(config, 'alpha_sup', None)) != int or\
+			type(getattr(config, 'alpha_sup', None)) != float):
+		try:
+			config.alpha_sup = float(input("The suppression coefficient in the diffusivity is not set. Enter an integer or float: "))
+
+		except (NameError, SyntaxError, EOFError, ValueError):
+			config.alpha_sup = 0.5
+			print "The suppression coefficient in the diffusivity is defaulted to 0.5"
+
+if (type(getattr(config, 'beta', None)) != int or\
+		type(getattr(config, 'beta', None)) != float):
+	try:
+		config.beta = float(input("The exponent of the electric field shear is improperly set. Enter a floating-point number or integer: "))
+
+	except (NameError, SyntaxError, EOFError, ValueError):
+		config.beta = 2.0
+		print "The exponent of the electric field shear in the diffusivity is defaulted to 2.0."
+
+
+if (config.D_choice.lower() == 'd_shear' or\
+		config.D_choice.lower() == 'd_flow-shear'):
+	if (type(getattr(config, 'shear_a1', None)) != int or\
+			type(getattr(config, 'shear_a1', None)) != float or\
+			type(getattr(config, 'shear_a2', None)) != int or\
+			type(getattr(config, 'shear_a2', None)) != float or\
+			type(getattr(config, 'shear_a3', None)) != int or\
+			type(getattr(config, 'shear_a3', None)) != float):
+		try:
+			config.shear_a1, config.shear_a2, config.shear_a3 = float(input("One of the parameters of the flow-shear diffusivity model is improperly set. Enter 3 floating-point numbers, separated by commas: ").split(","))
+
+		except (NameError, SyntaxError, EOFError, ValueError):
+			config.shear_a1, config.shear_a2, config.shear_a3 = 1.0, 0.0, 0.5
+			print "The parameters for the flow-shear diffusivity are defaulted to a1 = 1.0, a2 = 0.0, and a3 = 0.5."
+
+
+
+# ----------------- Solver-specific Choices ---------------
 # Grid points
 if ((type(getattr(config, 'nx', None)) != int and\
 		type(getattr(config, 'nx', None)) != float) or\
@@ -169,7 +233,7 @@ if ((type(getattr(config, 'timeStep', None)) != float and\
 		type(getattr(config, 'timeStep', None))) or\
 		getattr(config, 'timeStep', None) <= 0.0):
 	try:
-		config.timeStep_denom = float(input("The time step size is not properly defined. Enter floating-point value: "))
+		config.timeStep = float(input("The time step size is not properly defined. Enter floating-point value: "))
 
 		if config.timeStep <= 0.0:
 			raise ValueError
@@ -181,7 +245,7 @@ if ((type(getattr(config, 'timeStep', None)) != float and\
 			config.timeStep = 1.0 / 375.0
 			print "The time step is defaulted to 1.0 / 375.0."
 		elif config.original_model == False:
-			config.timeStep = 1.0e-9
+			config.timeStep = 1.0e-8
 			print "The time step is defaulted to 1.0e-9."
 
 if type(config.timeStep) == int:
@@ -198,8 +262,6 @@ if ((type(getattr(config, 'res_tol', None)) != float and\
 		if config.res_tol <= 0.0:
 			raise ValueError
 
-		print "The residual tolerance is defaulted to " +str(config.res_tol)
-
 	except (NameError, SyntaxError, EOFError, ValueError):
 		if config.original_model == True:
 			config.res_tol = 1.0e-6
@@ -212,36 +274,11 @@ if type(config.res_tol) == int:
 	config.res_tol = float(config.res_tol)
 
 
-# Choice of the diffusivity model
-if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
-		type(getattr(config, 'D_choice', None)) != str):
-	try:
-		config.D_choice = raw_input("The diffusivity model is not properly chosen. Choose from the following: Zohm, Weymiens_L, Staps, Shear -> ")
-
-		if config.D_choice.lower() not in diffusivity_models:
-			raise IndexError()
-
-	except (IndexError, EOFError):
-		config.D_choice = "d_staps"
-		print "Diffusivity model defaulted to Staps'."
-
-
-# Initial starting mode
-if type(getattr(config, 'initial_H_mode', None)) != bool:
-	config.initial_H_mode = False
-	print "Defaulted to starting in L--mode."
-
-
-# Show initial conditions
-if type(getattr(config, 'show_initial', None)) != bool:
-	config.show_initial = False
-	print "The initial conditions will not be shown."
-
-
-# Matplotlib option
-if type(getattr(config, 'view_matplotlib', None)) != bool:
-	config.view_matplotlib = False
-	print "The default FiPy viewers will be used."
+# ----------------- Plotting and Saving Options -----------
+# Generation of plots
+if type(getattr(config, 'generate_plots', None)) != bool:
+	config.generate_plots = False
+	print "NOTE! The plots are NOT going to be generated."
 
 
 # Plot title

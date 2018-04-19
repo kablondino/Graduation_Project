@@ -8,7 +8,7 @@ Gamma_c = -0.8
 q_c = 5.0*Gamma_c
 
 # Number of cells
-nx = 500
+nx = 200
 
 # Boolean, to choose either the original numerical model, or
 # the full flux model. Note that it sets the length of the domain
@@ -18,11 +18,12 @@ original_model = True
 res_tol = 1.0e-6
 
 # Total time steps; should be ~ L^2 / D
-total_timeSteps = 2000
+total_timeSteps = 500
 
 # Size of time step denominator (delta t)
-# Either mu or epsilon is in the numerator
-# DEPRICATED!
+# Either mu or epsilon is in the numerator, NOW DEPRICATED
+
+# Size of the time step
 timeStep = 1.0 / 375.0
 
 # Choose the Diffusivity model, as a string (case does not matter)
@@ -33,14 +34,14 @@ alpha_sup = 0.5
 # Exponent of Z' in Stap's diffusivity
 beta = 2.0
 
+# If the D_choice is set to the flow-shear model, this would be the parameters
+shear_a1, shear_a2, shear_a3 = 1.0, 0.0, 0.5
+
 # Boolean, to choose what mode to have as initial conditions
 initial_H_mode = False
 
 # Boolean, to show the initial conditions
-show_initial = True
-
-# Matplotlib option
-view_matplotlib = False
+generate_plots = False
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
