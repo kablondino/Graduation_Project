@@ -98,7 +98,7 @@ elif config.numerical_choice.lower() == "g_grad"\
 print "The numerical parameters are chosen to " + str(config.numerical_choice)
 
 ## For use in full flux model
-alpha_an = 5.0				# Anomalous loss coefficient
+alpha_an = 2.0				# Anomalous loss coefficient
 a_in0 = 0.05				# Neutrals coefficient
-alpha_cx = 0.9				# Charge exchange coefficient
+alpha_cx = 0.7				# Charge exchange coefficient
 

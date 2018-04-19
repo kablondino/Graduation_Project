@@ -80,8 +80,8 @@ def calculate_coeffs():
 	g_T_cx.setValue(alpha_cx * g_n_cx)							# [A m^-2]
 	g_Z_cx.setValue(-g_n_cx / rho_pi)							# [A m^-1]
 
-	Gamma_cx.setValue((g_n_cx * density.grad[0]/density\
-			+ g_T_cx * temperature.grad[0]/temperature\
+	Gamma_cx.setValue((g_n_cx * density.grad[0] / density\
+			+ g_T_cx * temperature.grad[0] / temperature\
 			+ g_Z_cx*Z) / charge)								# [m^-2 s^-1]
 
 
@@ -97,7 +97,7 @@ def calculate_coeffs():
 
 	## Ion Orbit Loss
 	g_OL.setValue(-charge * density * nu_ii * nu_ai * rho_pi)	# [A m^-2]
-	radical_OL = numerix.sqrt(nu_ai + (Z)**4 + ((x)/w_bi)**4)
+	radical_OL = numerix.sqrt(nu_ai + (Z)**4 + ((x) / w_bi)**4)
 
 	Gamma_OL.setValue(g_OL * numerix.exp(-radical_OL)\
 			/ (charge * radical_OL))							# [m^-2 s^-1]
