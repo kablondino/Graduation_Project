@@ -41,7 +41,7 @@ shear_a1, shear_a2, shear_a3 = 1.0, 0.0, 0.5
 initial_H_mode = False
 
 # Boolean, to show the initial conditions
-generate_plots = False
+generate_plots = True
 
 # Choose numerical values for non-gradient Z-equation
 # Currently, choices are Staps, Paquay, and some variant of g_grad
@@ -57,7 +57,7 @@ plot_title = "H--Mode Start; $D \sim (Z^\prime)^{{-{:01.2f}}}$".format(beta)\
 # Maximum x on the plots
 ploty_max = None
 
-aux_plots = True
+aux_plots = False
 
 # Aux plots details
 # aux_vars MUST be an list of strings

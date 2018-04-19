@@ -15,9 +15,6 @@ from fipy.solvers import *
 import os	# For saving files to a specified directory
 
 
-# Initialize all the coefficients and other variables
-#calculate_coeffs()
-
 # ----------------- PDE Declarations ----------------------
 # Density Equation
 density.equation = TransientTerm(coeff=1.0, var=density)\
