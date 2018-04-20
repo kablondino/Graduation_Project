@@ -1,2 +1,18 @@
 \chapter{Numerical Method}\label{chapter:numerical_method}
+The finite volume method (FVM) is a numerical method of evaluating and representing partial differential equations.
+It is sometimes, confusingly, referred to as the finite difference \emph{scheme} or the cell-centered difference scheme, the former which clashes in name with the finite difference method.
+There are some characteristics it has in common with the two other well-known schemes, the finite difference method and the finite element method (FEM).
+
+All three methods involve nodes generated on a discrete mesh.
+In the FVM, the nodes are surrounded by the discrete elements called control volumes, with space variables able to be defined at the volume's centers or faces.
+In solving, volume integrals that contain a divergence term are converted by the divergence theorem to surface integrals.
+The terms are evaluated as fluxes at the surfaces of each control volume, and are accounted for between volumes, \emph{i.e.} conserved.
+It also allows for discontinuities of the coefficients, assuming it occurs on the boundaries of the volumes.
+Equations \ref{eq:shear_diffusivity} and \ref{eq:flow_shear_diffusivity} contain electric field shear term(s) to some exponent, potentially generating these discontinuities.
+This makes the method popular for computational fluid dynamics, of which one could consider this investigation \cite{eymard_finite_2003}.
+
+%%%%%%%%
+%The FEM is based on the variational formulation of the problem; it is obtained by multiplying the original equation by a test function.
+%The unknown variable is then approximated by some linear combination of ``shape'' functions, which then the equation in each element is integrated \cite{eymard_finite_2003}.
+%%%%%%%%
 
