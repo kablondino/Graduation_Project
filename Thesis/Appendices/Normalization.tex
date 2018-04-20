@@ -1,7 +1,26 @@
 \chapter{Polarization and Shear Viscosity Currents Normalization}\label{chapter:Normalization}
 \begin{align}
-	\frac{\partial^2 Z}{\partial x^2} \,=\, e \, \frac{\partial}{\partial x}
-		\left(\frac{\partial}{\partial x} \left(\frac{\rho_{\theta i} \, E_r}
-		{T}\right)\right)
+	Z^{\prime\prime} \,=\, e \, \frac{\partial^2}{\partial x^2}
+		\left(\frac{\rho_{\theta i} \, E_r}{T}\right) \,=\, e \, \left(
+		\frac{\rho_{\theta i}}{T} \, E_r^{\prime\prime} \,+\, \frac{E_r}{T} \,
+		\rho_{\theta i}^{\prime\prime} \,+\, \rho_{\theta i}\, E_r \,
+		\frac{\partial^2}{\partial x^2}\left(\frac{1}{T}\right)\right)
 \end{align}
+Using the equation for $\rho_{\theta i}$ in \ref{eq:Z_and_rho_definitions} and the given definition of thermal ion velocity, its derivative can be expanded.
+\begin{align}
+	\frac{E_r}{T} \, \rho_{\theta i}^{\prime\prime} \,=\,
+		\frac{m_i}{e\,B_\theta} \, \frac{E_r}{T} \,\sqrt{\frac{2\,e}{m_i}} \,
+		\frac{\partial^2}{\partial x^2}\left(\sqrt{T}\right)
+\end{align}
+We can substitute this into our equation; however
+
+\begin{align}
+	Z^{\prime\prime} \,&=\, e \, \left(\frac{\rho_{\theta i}}{T} \,
+		E_r^{\prime\prime} \,+\, \frac{m_i}{e\,B_\theta} \, \frac{E_r}{T} \,
+		\sqrt{\frac{2\,e}{m_i}} \, \cancel{\frac{\partial^2}{\partial x^2}
+		\left(\sqrt{T}\right)} \,+\, \rho_{\theta i}\, E_r \, \cancel{
+		\frac{\partial^2}{\partial x^2} \left(\frac{1}{T}\right)}\right) \\
+		&\approx\, \frac{e\,\rho_{\theta i}}{T} \, E_r^{\prime\prime}
+\end{align}
+\todo{\color{red}FIX!}
 
