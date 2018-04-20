@@ -45,3 +45,6 @@ __init__.py
 # Configuration files for FiPy
 *config*.py
 
+# Perl files
+*.pl
+
