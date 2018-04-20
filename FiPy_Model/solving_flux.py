@@ -62,11 +62,10 @@ if __name__ == '__main__':
 	# Declare viewer
 	if config.generate_plots == True:
 		density_viewer = Viewer(density, xmin=0.0, xmax=L,\
-				datamin=0.0, datamax=3.0e19, legend='best')
+				datamin=0.0, datamax=2.1e19, legend='best')
 		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
 				datamin=80.0, datamax=500.0, legend='best')
-		Z_viewer = Viewer(Z, xmin=0.0, xmax=L,\
-				legend='best')
+		Z_viewer = Viewer(Z, xmin=0.0, xmax=L, datamax=2.0, legend='best')
 		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
 				datamax=D_max + D_max/10.0, legend='best')
 		raw_input("Pause for Viewing Initial Conditions")

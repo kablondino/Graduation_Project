@@ -95,14 +95,14 @@ variable_dictionary = {\
 		'x': x, 'density': density, 'temperature': temperature, 'Z': Z,\
 		'Diffusivity': Diffusivity, 'n_0': n_0, 'v_Ti': v_Ti, 'v_Te': v_Te,\
 		'rho_pi': rho_pi, 'rho_pe': rho_pe, 'omega_bi': omega_bi,\
-		'omega_be': omega_be, 'nu_ei': nu_ei, 'nu_ii': nu_ii,\
+		'omega_be': omega_be, 'omega_t': omega_t, 'nu_ei': nu_ei,
+		'nu_ii': nu_ii, 'nu_ai': nu_ai, 'nu_ae': nu_ae,\
 		#'nu_in0': nu_in0, 'nu_eff': nu_eff,\ DEPRICATED
-		'nu_ai': nu_ai, 'nu_ae': nu_ae,\
 		'D_an': D_an, 'g_n_an': g_n_an, 'g_T_an': g_T_an, 'g_Z_an': g_Z_an,\
 		'Gamma_an': Gamma_an, 'g_n_cx': g_n_cx, 'g_T_cx': g_T_cx,\
 		'g_Z_cx': g_Z_cx, 'Gamma_cx': Gamma_cx, 'g_OL': g_OL,\
 		'Gamma_OL': Gamma_OL, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk,\
-		'Z_transient_coeff': Z_transient_coeff,\
+		'plasma_disp': plasma_disp, 'Z_transient_coeff': Z_transient_coeff,\
 		'Z_diffusion_coeff': Z_diffusion_coeff, 'Flux_coeff': Flux_coeff\
 	}
 
