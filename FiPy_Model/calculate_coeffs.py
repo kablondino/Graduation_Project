@@ -66,7 +66,7 @@ def calculate_coeffs():
 
 	Gamma_an.setValue((g_n_an * density.grad[0]\
 			/ density + g_T_an * temperature.grad[0] / temperature\
-			+ g_Z_an * Z) / charge)								# [m^-2 s^-1]
+			+ g_Z_an * Z) / charge)							# [m^-2 s^-1]
 
 
 	## Charge Exchange Friction
@@ -102,10 +102,13 @@ def calculate_coeffs():
 	Gamma_OL.setValue(g_OL * numerix.exp(-radical_OL)\
 			/ (charge * radical_OL))							# [m^-2 s^-1]
 
-	Z_transient_coeff.setValue(m_i * density * temperature\
-			/ (charge* rho_pi * B**2))
-	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
-			/ (charge* rho_pi * B_theta**2))
+#	Z_transient_coeff.setValue(m_i * density * temperature\
+#			/ (charge* rho_pi * B**2))
+#	Z_transient_coeff.setValue(density * rho_pi * B_theta**2\
+#			/ (2 * B**2))
+#	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
+#			/ (charge* rho_pi * B_theta**2))
+#	Z_diffusion_coeff.setValue(density * rho_pi * mu / 2)
 
 	Flux_coeff.setValue(charge * rho_pi * B_theta**2\
 			/ (m_i * density * temperature))					# [m^2 s]
