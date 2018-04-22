@@ -33,7 +33,7 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 # Z Equation, Full Flux model
 Z.equation = TransientTerm(coeff=Z_transient_coeff, var=Z)\
 		== DiffusionTerm(coeff=Z_diffusion_coeff, var=Z)\
-		+ Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL
+		+ charge*(Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL)
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
