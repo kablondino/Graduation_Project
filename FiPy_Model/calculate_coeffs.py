@@ -15,8 +15,8 @@ import numpy
 # ASSUMES density is in m^-3 and temperature is in eV
 def calculate_coeffs():
 	# Thermal velocities (most probable)
-	v_Ti.setValue(numerix.sqrt(2.0 * charge * temperature / m_i))	# [m/s]
-	v_Te.setValue(numerix.sqrt(2.0 * charge * temperature / m_e))	# [m/s]
+	v_Ti.setValue(numerix.sqrt(2.0 * temperature / m_i))	# [m/s]
+	v_Te.setValue(numerix.sqrt(2.0 * temperature / m_e))	# [m/s]
 
 	# Neutrals density in use for CX friction, NEEDS CHANGE!
 	# The commented version cannot be properly computed
@@ -32,7 +32,7 @@ def calculate_coeffs():
 	rho_pe.setValue(m_e * v_Te / (charge * B_theta))			# [m]
 
 	# Transition frequency
-	omega_t.setValue(v_Ti / (q*R))
+	omega_t.setValue(v_Ti / (q * R))
 
 	# Banana orbit bounce frequencies
 	omega_bi.setValue(numerix.sqrt(aspect**3) * omega_t)		# [s^-1]
@@ -43,7 +43,7 @@ def calculate_coeffs():
 
 	# Collision frequencies within electrons and ions
 	nu_ei.setValue(4.2058e-11*((density)\
-			/ numerix.sqrt(temperature**3)).numericValue)		# [s^-1]
+			/ numerix.sqrt((temperature/charge)**3)).numericValue)	# [s^-1]
 	nu_ii.setValue(1.2 * numerix.sqrt(m_e / m_i) * nu_ei)		# [s^-1]
 
 	# Collision frequency of trapped ions and neutrals
@@ -102,10 +102,13 @@ def calculate_coeffs():
 	Gamma_OL.setValue(g_OL * numerix.exp(-radical_OL)\
 			/ (charge * radical_OL))							# [m^-2 s^-1]
 
-	Z_transient_coeff.setValue(m_i * density * temperature\
-			/ (charge* rho_pi * B**2))
-	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
-			/ (charge* rho_pi * B_theta**2))
+#	Z_transient_coeff.setValue(m_i * density * temperature\
+#			/ (charge* rho_pi * B**2))
+	Z_transient_coeff.setValue(charge * density * rho_pi * B_theta**2\
+			/ (2 * B**2))
+#	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
+#			/ (charge* rho_pi * B_theta**2))
+	Z_diffusion_coeff.setValue(charge * mu * rho_pi * density / 2)
 
 	Flux_coeff.setValue(charge * rho_pi * B_theta**2\
 			/ (m_i * density * temperature))					# [m^2 s]

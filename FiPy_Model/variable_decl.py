@@ -38,6 +38,8 @@ temp_grad_unit = PhysicalField(value=1.0, unit="eV/m")
 Z_transient_unit = PhysicalField(value=1.0, unit="1/s")
 Z_diffusion_unit = PhysicalField(value=1.0, unit="m**-2")
 
+E_r_unit = PhysicalField(value=1.0, unit="kg*m/(A*s**3)")
+
 
 # -------------- Other Variable Declarations --------------
 # Neutrals density in use for CX friction
@@ -101,9 +103,9 @@ Gamma_OL = CellVariable(name=r"$\Gamma_i^{OL}$", mesh=mesh,\
 		unit="1 / (m**2 * s)")
 
 Z_transient_coeff = CellVariable(name=r"$\hat{epsilon}$", mesh=mesh,\
-		unit="")
+		unit="A*s/m**2")
 Z_diffusion_coeff = CellVariable(name=r"$\hat{mu}$", mesh=mesh,\
-		unit="")
+		unit="A")
 Flux_coeff = CellVariable(name=\
 		r"$\frac{e^2 \rho_{\theta i} B_\theta^2}{m_i n T}$", mesh=mesh)#,\
 #		unit="m**2*s")
