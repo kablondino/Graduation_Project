@@ -58,23 +58,27 @@ if config.original_model == False:
 # ----------------- Set Diffusivity Model -----------------
 ## It defaults to Stap's version
 # Itohs'/Zohm's model
-if config.D_choice.lower() == "d_zohm":
+if config.D_choice.lower() == "d_zohm" or config.D_choice.lower() == "zohm":
 	D_choice_local = (D_max + D_min) / 2.0\
 			+ ((D_max - D_min)*numerix.tanh(Z)) / 2.0
 
 # Stap's Model
-elif config.D_choice.lower() == "d_staps":
+elif (config.D_choice.lower() == "d_staps" or config.D_choice.lower()\
+		== "staps"):
 	D_choice_local = D_min + (D_max - D_min) / (1.0 + config.alpha_sup\
 			* numerix.sign(Z.grad[0])*(abs(Z.grad[0]))**config.beta)
 
 # Flow-Shear Model
-elif config.D_choice.lower() == "d_shear" or\
-		config.D_choice.lower() == "d_flow_shear":
+elif (config.D_choice.lower() == "d_shear" or config.D_choice.lower()\
+		== "d_flow_shear" or config.D_choice.lower() == "d_flow-shear" or\
+		config.D_choice.lower() == "flow_shear" or config.D_choice.lower()\
+		== "flow-shear" or config.D_choice.lower() == "shear"):
 	D_choice_local = D_min + (D_max - D_min)\
 			/ (1.0 + config.shear_a1*(Z)**2 + config.shear_a2*Z*Z.grad[0]\
 			+ config.shear_a3*numerix.dot(Z.grad, Z.grad))
 
-elif config.D_choice.lower() == "d_weymiens_l":
+elif (config.D_choice.lower() == "d_weymiens_l" or config.D_choice.lower()\
+		== "weymiens_l" or config.D_choice.lower() == "weymiens"):
 	D_choice_local = D_min + (D_max - D_min) * (1 - config.alpha_sup\
 			* numerix.dot(Z.grad, Z.grad))
 
@@ -82,7 +86,7 @@ else:
 	print "Something went horribly wrong in choosing the Diffusivity model."
 
 Diffusivity.setValue(D_choice_local)
-print "The diffusivity model is set to " + str(config.D_choice)
+print "The diffusivity CHECK is set to " +str(config.D_choice)
 
 # --- Old init definitions, which requires Diffusivity to ALREADY be set -----
 #density.setValue(-(config.Gamma_c*lambda_n / Diffusivity)\

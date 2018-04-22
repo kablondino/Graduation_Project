@@ -43,8 +43,9 @@ import sys
 config = __import__ (sys.argv[1].replace('.py',''))
 
 parameter_sets = ["staps", "paquay", "g_grad", "gradient_model"]
-diffusivity_models = ["d_zohm", "d_staps", "d_shear", "d_flow_shear",\
-		"d_weymiens_l"]
+diffusivity_models = ["d_zohm", "zohm", "d_staps", "staps", "d_shear",\
+		"d_flow_shear", "d_flow-shear", "flow_shear", "flow-shear", "shear", \
+		"d_weymiens_l", "weymiens_l", "weymiens"]
 
 
 # Z-equation model choice
@@ -98,9 +99,9 @@ if (getattr(config, 'numerical_choice', "").lower() not in parameter_sets\
 if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
 		type(getattr(config, 'D_choice', None)) != str):
 	try:
-		config.D_choice = raw_input("The diffusivity model is not properly chosen. Choose from the following: Zohm, Weymiens_L, Staps, Shear -> ")
+		config.D_choice = raw_input("The diffusivity model is not properly chosen. Choose from the following: Zohm, Weymiens_L, Staps, Flow-Shear -> ")
 
-		if config.D_choice.lower() not in diffusivity_models:
+		if str(config.D_choice).lower() not in diffusivity_models:
 			raise IndexError()
 
 	except (IndexError, EOFError):
@@ -109,7 +110,7 @@ if (getattr(config, 'D_choice', "").lower() not in diffusivity_models or\
 
 
 # Diffusivity parameters, i.e. coefficients
-if config.D_choice.lower() == 'd_staps':
+if config.D_choice.lower() == "d_staps":
 	if (type(getattr(config, 'alpha_sup', None)) != int and\
 			type(getattr(config, 'alpha_sup', None)) != float):
 		try:
@@ -129,8 +130,11 @@ if config.D_choice.lower() == 'd_staps':
 			print "The exponent of the electric field shear in the diffusivity is defaulted to 2.0."
 
 
-if (config.D_choice.lower() == 'd_shear' or\
-		config.D_choice.lower() == 'd_flow_shear'):
+if (config.D_choice.lower() == "d_shear" or\
+		config.D_choice.lower() == "d_flow_shear" or\
+		config.D_choice.lower() == "shear" or\
+		config.D_choice.lower() == "flow_shear" or\
+		config.D_choice.lower() == "flow-shear"):
 	if (type(getattr(config, 'shear_a1', None)) != int and\
 			type(getattr(config, 'shear_a1', None)) != float and\
 			type(getattr(config, 'shear_a2', None)) != int and\

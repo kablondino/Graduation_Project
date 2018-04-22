@@ -35,15 +35,15 @@ def calculate_coeffs():
 	omega_t.setValue(v_Ti / (q*R))
 
 	# Banana orbit bounce frequencies
-	omega_bi.setValue(aspect**(3.0/2.0) * omega_t)				# [s^-1]
-	omega_be.setValue(aspect**(3.0/2.0) * v_Te / (q * R))		# [s^-1]
+	omega_bi.setValue(numerix.sqrt(aspect**3) * omega_t)		# [s^-1]
+	omega_be.setValue(numerix.sqrt(aspect**3) * v_Te / (q * R))	# [s^-1]
 
 	# Banana width
 	w_bi.setValue(numerix.sqrt(aspect) * rho_pi)				# [m]
 
 	# Collision frequencies within electrons and ions
 	nu_ei.setValue(4.2058e-11*(density)\
-			/ (temperature)**(3.0/2.0))							# [s^-1]
+			/ numerix.sqrt(temperature**3))						# [s^-1]
 	nu_ii.setValue(1.2 * numerix.sqrt(m_e / m_i) * nu_ei)		# [s^-1]
 
 	# Collision frequency of trapped ions and neutrals, DEPRICATED
@@ -66,7 +66,7 @@ def calculate_coeffs():
 
 	Gamma_an.setValue((g_n_an * density.grad[0]\
 			/ density + g_T_an * temperature.grad[0] / temperature\
-			+ g_Z_an * Z) / charge)								# [m^-2 s^-1]
+			+ g_Z_an * Z) / charge)							# [m^-2 s^-1]
 
 
 	## Charge Exchange Friction
@@ -102,10 +102,13 @@ def calculate_coeffs():
 	Gamma_OL.setValue(g_OL * numerix.exp(-radical_OL)\
 			/ (charge * radical_OL))							# [m^-2 s^-1]
 
-	Z_transient_coeff.setValue(m_i * density * temperature\
-			/ (charge* rho_pi * B**2))
-	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
-			/ (charge* rho_pi * B_theta**2))
+#	Z_transient_coeff.setValue(m_i * density * temperature\
+#			/ (charge* rho_pi * B**2))
+#	Z_transient_coeff.setValue(density * rho_pi * B_theta**2\
+#			/ (2 * B**2))
+#	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
+#			/ (charge* rho_pi * B_theta**2))
+#	Z_diffusion_coeff.setValue(density * rho_pi * mu / 2)
 
 	Flux_coeff.setValue(charge * rho_pi * B_theta**2\
 			/ (m_i * density * temperature))					# [m^2 s]

@@ -7,24 +7,23 @@
 """
 
 from input_handling import *
+from scipy import constants
 
 
-# ----------------- Constant Parameters -------------------
-## Global parameters and physical constants
-pi = 3.141592653589793
+# ----------------- Physical Constants --------------------
+pi = constants.pi
 charge_dummy = 1.0							# 'Natural' units for charge
-charge = 1.6021766208e-19					# Elementary charge
-k_B_J = 1.38064852e-23						# Boltzmann in J/K
+charge = constants.e					# Elementary charge
+k_B_J = constants.k					# Boltzmann in J/K
 k_B_eV = k_B_J / charge						# Boltzmann in eV/K
-m_e = 9.10938356e-31						# Electron mass
-m_i = 1.673e-27								# Ion (H) mass
-epsilon_0 = 8.854187817e-12					# Permittivity of free space
-mu_0 = 4*pi*1.0e-7							# Permeability of free space
-c = 1 / (epsilon_0*mu_0)**(1.0/2.0)			# Speed of light
+m_e = constants.m_e					# Electron mass
+m_i = constants.m_p					# Ion (H) mass
+epsilon_0 = constants.epsilon_0		# Permittivity of free space
+mu_0 = constants.mu_0					# Permeability of free space
 gamma = 5.0/3.0								# Adiabatic index for monoatomic
 
 
-## ASDEX-U specifications
+# ----------------- ASDEX-U Specifications ----------------
 a_v = 0.8									# Vertical minor radius
 a_h = 0.5									# Horizontal minor radius
 a_m = ( (a_v**2 + a_h**2) / 2.0 )**(1.0/2.0)# Mean minor radius
@@ -35,7 +34,7 @@ B_theta = mu_0 * I_p / ( 2*pi*a_m )			# Poloidal field
 B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
 
 
-## ITER specifications
+# ----------------- ITER Specifications -------------------
 #a_m = 2.0									# Mean minor radius
 #R = 6.2										# Major radius
 #I_p = 15.0e6								# Plasma current
@@ -95,10 +94,8 @@ elif config.numerical_choice.lower() == "g_grad"\
 		or config.numerical_choice.lower() == "gradient_model":
 	zeta = 0.5
 
-print "The numerical parameters are chosen to " + str(config.numerical_choice)
-
 ## For use in full flux model
-alpha_an = 2.0				# Anomalous loss coefficient
+alpha_an = 0.2				# Anomalous loss coefficient
 a_in0 = 0.05				# Neutrals coefficient
-alpha_cx = 0.7				# Charge exchange coefficient
+alpha_cx = 0.9				# Charge exchange coefficient
 
