@@ -58,8 +58,8 @@ def calculate_coeffs():
 
 
 	## Electron Anomalous Diffusion
-	D_an.setValue(aspect**2 * numerix.sqrt(pi) * rho_pe * temperature\
-			/ (2*charge*a_m * B))
+	D_an.setValue(aspect**2 * numerix.sqrt(pi) * rho_pe * (temperature/charge)\
+			/ (2*a_m * B))
 	g_n_an.setValue(charge*density*D_an)						# [A m^-2]
 	g_T_an.setValue(g_n_an * alpha_an)							# [A m^-2]
 	g_Z_an.setValue(g_n_an / rho_pi)							# [A m^-1]
@@ -70,9 +70,9 @@ def calculate_coeffs():
 
 
 	## Charge Exchange Friction
-	ionization_rate.setValue(1.0e8 / numerix.sqrt(temperature)\
+	ionization_rate.setValue(1.0e8 / numerix.sqrt(m_i.numericValue)\
 			* numerix.exp(-13.6 / temperature))					# [m^3 s^-1]
-	cx_rate.setValue(1.0e-6 / numerix.sqrt(m_i.numericValue)\
+	cx_rate.setValue(1.0e-6 / numerix.sqrt(temperature.numericValue)\
 			* numerix.exp(-13.6 / temperature.numericValue))	# [m^3 s^-1]
 #	g_n_cx.setValue((-(m_i * n_0 * cx_rate * density\
 #			* temperature * charge) / (B_theta**2))\
@@ -86,13 +86,13 @@ def calculate_coeffs():
 
 
 	## Ion Bulk (Parallel) Viscosity
-#	plasma_disp.setValue(numpy.imag(1j * numerix.sqrt(pi)\
-#			* scipy.special.wofz(Z + 1j*nu_ii / omega_t)))
-#	D_bulk.setValue(aspect**2 * rho_pi * temperature\
-#			/ ((x- a_m)*domain_unit * B * numerix.sqrt(pi)))	# [m^2 s^-1]
-#
-#	Gamma_bulk.setValue(density * D_bulk * (density.grad[0]*density_grad_unit\
-#			/ density + Z/rho_pi) * plasma_disp)				# [m^-2 s^-1]
+	plasma_disp.setValue(numpy.imag(1j * numerix.sqrt(pi)\
+			* scipy.special.wofz(Z + 1j*nu_ii / omega_t)))
+	D_bulk.setValue(aspect**2 * rho_pi * (temperature/charge)\
+			/ ((x*domain_unit - a_m) * B * numerix.sqrt(pi)))	# [m^2 s^-1]
+
+	Gamma_bulk.setValue(density * D_bulk * (density.grad[0]*density_grad_unit\
+			/ density + Z/rho_pi) * plasma_disp)				# [m^-2 s^-1]
 
 
 	## Ion Orbit Loss
