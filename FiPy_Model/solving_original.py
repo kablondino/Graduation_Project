@@ -90,7 +90,7 @@ if __name__ == '__main__':
 		# Update values
 		density.updateOld(); temperature.updateOld(); Z.updateOld()
 		Diffusivity.setValue(D_choice_local)
-#		calculate_coeffs()
+		calculate_coeffs()
 
 		# --------------- Solving Loop --------------------
 		while current_residual > config.res_tol:
@@ -123,8 +123,7 @@ if __name__ == '__main__':
 		# Save TSV's
 		if config.save_TSVs == True:
 			TSVViewer(vars=\
-					(density, temperature, Z, Diffusivity,\
-					Z_transient_coeff, Z_diffusion_coeff)).plot(filename=\
+					(density, temperature, Z, Diffusivity)).plot(filename=\
 					config.save_directory+"/"+str(t).zfill(4)+".tsv")
 
 
