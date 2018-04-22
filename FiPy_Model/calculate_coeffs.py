@@ -35,15 +35,15 @@ def calculate_coeffs():
 	omega_t.setValue(v_Ti / (q*R))
 
 	# Banana orbit bounce frequencies
-	omega_bi.setValue(aspect**(3.0/2.0) * omega_t)				# [s^-1]
-	omega_be.setValue(aspect**(3.0/2.0) * v_Te / (q * R))		# [s^-1]
+	omega_bi.setValue(numerix.sqrt(aspect**3) * omega_t)		# [s^-1]
+	omega_be.setValue(numerix.sqrt(aspect**3) * v_Te / (q * R))	# [s^-1]
 
 	# Banana width
 	w_bi.setValue(numerix.sqrt(aspect) * rho_pi)				# [m]
 
 	# Collision frequencies within electrons and ions
 	nu_ei.setValue(4.2058e-11*(density)\
-			/ (temperature)**(3.0/2.0))							# [s^-1]
+			/ numerix.sqrt(temperature**3))						# [s^-1]
 	nu_ii.setValue(1.2 * numerix.sqrt(m_e / m_i) * nu_ei)		# [s^-1]
 
 	# Collision frequency of trapped ions and neutrals, DEPRICATED
