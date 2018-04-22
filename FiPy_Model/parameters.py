@@ -21,6 +21,7 @@ m_i = PhysicalField(value=1.0, unit="mp")	# 1.67262171e-27, Ion (H) mass
 epsilon_0 = PhysicalField(value=1.0, unit="eps0")	# = 8.854187817e-12, Permittivity of free space
 mu_0 = PhysicalField(value=1.0, unit="mu0")			# = 4*pi*1.0e-7, Permeability of free space
 c = 1 / (epsilon_0*mu_0)**(1.0/2.0)
+gamma = 5.0/3.0
 
 ## ASDEX-U specifications
 # Vertical minor radius
@@ -31,22 +32,30 @@ a_h = PhysicalField(value=0.5, unit="m")
 a_m = PhysicalField(value=((a_v**2 + a_h**2) / 2.0)**(1.0/2.0), unit="m")
 # Major radius
 R = PhysicalField(value=1.6, unit="m")
-# Aspect Ratio
-aspect = PhysicalField(value=a_m / R, unit="")
 # Plasma current
 I_p = PhysicalField(value=2.0e6, unit="A")
 # Toroidal field
 B_phi = PhysicalField(value=3.9, unit="T")
 # Poloidal field
 B_theta = PhysicalField(value=mu_0 * I_p / ( 2*pi*a_m ), unit="T")
-# q value
-q = PhysicalField(value=aspect * B_phi/B_theta, unit="")
 # Full field
 B = PhysicalField(value=( B_phi**2 + B_theta**2 )**(1.0/2.0) , unit="T")
 
+## ITER specifications
+#a_m = 2.0									# Mean minor radius
+#R = 6.2										# Major radius
+#I_p = 15.0e6								# Plasma current
+#B_phi = 5.3									# Toroidal field
+#B_theta = mu_0 * I_p / ( 2*pi*a_m )			# Poloidal field
+#B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
+
+# Aspect Ratio
+aspect = PhysicalField(value=a_m / R, unit="")
+# q value
+q = PhysicalField(value=aspect * B_phi/B_theta, unit="")
+
 ## PRESET parameters for quick calculation, many of which
 ## are chosen by Staps and Paquay
-gamma = 5.0/3.0
 
 ## Length scales for decay at edge
 lambda_n = PhysicalField(value=5.0/4.0, unit="m")
@@ -89,8 +98,7 @@ elif config.numerical_choice.lower() == "g_grad"\
 print "The numerical parameters are chosen to " + str(config.numerical_choice)
 
 ## For use in full flux model
-alpha_an = 1.0				# Anomalous loss coefficient
+alpha_an = 2.0				# Anomalous loss coefficient
 a_in0 = 0.05				# Neutrals coefficient
-neu_react_rate = PhysicalField(value=1.0e-6, unit="m**3/s")	# Reaction rate of charge exchange
-alpha_cx = 0.9				# Charge exchange coefficient
+alpha_cx = 0.7				# Charge exchange coefficient
 
