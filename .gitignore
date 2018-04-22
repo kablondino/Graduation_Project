@@ -30,6 +30,12 @@ __init__.py
 # PDF. REMOVE IF NECESSARY
 *.pdf
 
+# Image and video files
+*.png
+*.mp4
+*.avi
+*.mkv
+
 # Particular Prelude file
 #Prelude/Report/Prelude_Report-blx.bib
 
@@ -38,4 +44,7 @@ __init__.py
 
 # Configuration files for FiPy
 *config*.py
+
+# Perl files
+*.pl
 
