@@ -77,10 +77,8 @@ print "The diffusivity model is set to " + str(config.D_choice)
 #			(L*x - L) / 2.0)))	# OLD, by Staps
 
 # SPECIAL! Converts core fluxes into appropriate "fields"
-print config.Gamma_c, config.q_c
 Gamma_c = PhysicalField(value=config.Gamma_c, unit="1 / (m**2 * s)")
 q_c = PhysicalField(value=config.q_c, unit="eV / (m**2 * s)")
-print Gamma_c, q_c
 
 # ----------------- Boundary Conditions ------------------- #
 #def set_boundary_values(AGamma_c, Aq_c):
