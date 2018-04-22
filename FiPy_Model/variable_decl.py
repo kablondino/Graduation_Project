@@ -88,8 +88,6 @@ Gamma_OL = CellVariable(name=r"$\Gamma_i^{OL}$", mesh=mesh)
 
 Z_transient_coeff = CellVariable(name=r"$\hat{epsilon}$", mesh=mesh)
 Z_diffusion_coeff = CellVariable(name=r"$\hat{mu}$", mesh=mesh)
-Flux_coeff = CellVariable(name=\
-		r"$\frac{e^2 \rho_{\theta i} B_\theta^2}{m_i n T}$", mesh=mesh)
 
 variable_dictionary = {\
 		'x': x, 'density': density, 'temperature': temperature, 'Z': Z,\
@@ -103,7 +101,7 @@ variable_dictionary = {\
 		'g_Z_cx': g_Z_cx, 'Gamma_cx': Gamma_cx, 'g_OL': g_OL,\
 		'Gamma_OL': Gamma_OL, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk,\
 		'plasma_disp': plasma_disp, 'Z_transient_coeff': Z_transient_coeff,\
-		'Z_diffusion_coeff': Z_diffusion_coeff, 'Flux_coeff': Flux_coeff\
+		'Z_diffusion_coeff': Z_diffusion_coeff\
 	}
 
 

@@ -32,9 +32,7 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 Z.equation = TransientTerm(coeff=density * B_theta**2 / B**2, var=Z)\
 		== DiffusionTerm(coeff=mu * density, var=Z)\
 		+ (2.0 / rho_pi) * (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL)
-#Z.equation = TransientTerm(coeff=1.0, var=Z)\
-#		== DiffusionTerm(coeff=1.0, var=Z)\
-#		+ Flux_coeff * (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL)
+
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
@@ -139,8 +137,7 @@ if __name__ == '__main__':
 		# Save TSV's
 		if config.save_TSVs == True:
 			TSVViewer(vars=\
-					(Gamma_an, Gamma_cx, Gamma_bulk, Gamma_OL,\
-					Z_transient_coeff, Z_diffusion_coeff)).plot(filename=\
+					(D_an, Gamma_an, Gamma_cx, D_bulk, Gamma_bulk, Gamma_OL)).plot(filename=\
 					config.save_directory+"/"+str(t).zfill(4)+".tsv")
 
 

@@ -110,6 +110,3 @@ def calculate_coeffs():
 #			/ (charge* rho_pi * B_theta**2))
 #	Z_diffusion_coeff.setValue(density * rho_pi * mu / 2)
 
-	Flux_coeff.setValue(charge * rho_pi * B_theta**2\
-			/ (m_i * density * temperature))					# [m^2 s]
-
