@@ -63,8 +63,8 @@
 
 \begin{document}
 
-\section{Full Model Notes: 17 Apr
-2018}\label{full-model-notes-17-apr-2018}
+\section{Full Model Notes: 23 Apr
+2018}\label{full-model-notes-23-apr-2018}
 
 \small
 
@@ -98,16 +98,16 @@
         \,=\, 4.2058\times 10^{-5} \frac{n}{(T_\text{eV})^{3/2}}~,~~~
         \nu_{ii} \,=\, 1.2\, \nu_{ei} \, \sqrt{\frac{m_e}{m_i}}~,~~~
         \nu_{*j} \,=\, \frac{\nu_{ij}}{\omega_{bj}} \\
-    \text{Non-formal:}& ~~ n_0 \,=\, \frac{n_0(0)}
-        {\left(1 + \exp\left[k(x - d)\right]\right)}~,~~~
-        n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~
-        0 < \theta \leq 1 \\
     \langle \sigma_\text{cx} v \rangle \,&=\, \frac{C_\text{cx}}{\sqrt{T}} \,
         \exp\left(-\frac{E_0}{T}\right)~,~~~
         \langle \sigma_\text{ion} v \rangle \,=\, \frac{C_\text{ion}}{\sqrt{m_i}} \,
         \exp\left(-\frac{E_0}{T}\right) \\
-    \text{Depricated:}&~\nu_{in0} \,=\, a_{in0} \, \omega_{bi}~,~~~
-        \nu_\text{eff} \,=\, \nu_{ii} + \nu_{in0}
+    \text{Non-formal:}& ~~ n_0 \,=\, \frac{n_0(0)}
+        {\left(1 + \exp\left[k(x - d)\right]\right)}~,~~~
+        n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~
+        0 < \theta \leq 1 \\
+    \text{Depricated:}&~\nu_{in_0} \,=\, a_{in_0} \, \omega_{bi}~,~~~
+        \nu_\text{eff} \,=\, \nu_{ii} + \nu_{in_0}
 \end{align}
 
 \normalsize
@@ -206,20 +206,27 @@ Generalized versions for boundary conditions at the plasma edge
 \ldots{}towards the core (\(x=L\)): \small
 
 \begin{align}
-    \Gamma(L) \,=\, \Gamma_c ~\longrightarrow~ \frac{\partial n}{\partial x} \,=\, -\frac{\Gamma_c}{D}~;
-        ~~~~ q(L) \,=\, q_c ~\longrightarrow~ \frac{\partial T}{\partial x} \,=\ \frac{\zeta\left(T \Gamma_c - (\gamma - 1) q_c\right)}{n\,D}~;
-        ~~~~\frac{\partial Z}{\partial x} \,=\, 0
+    \Gamma(L) \,=\, \Gamma_c ~\longrightarrow~ n^\prime(L) \,=\,
+        -\frac{\Gamma_c}{D}~; ~~~~
+        q(L) \,=\, q_c ~\longrightarrow~ T^\prime(L) \,=\
+        \frac{\zeta\left(T \Gamma_c - (\gamma - 1) q_c\right)}{n\,D}~; ~~~~
+        Z^\prime(L) \,=\, 0
 \end{align}
 
 \normalsize
 
-Paquay's initial conditions for density and temperature, and Stap's
+Paquay's initial conditions for density and temperature, and Staps'
 initial condition for \(Z\): \small
 
 \begin{align}
-    n(x,0) \,&=\, -\dfrac{\Gamma_\infty \lambda_n}{D} \, \left(1 + \frac{x}{\lambda_n}\right)~,
-        ~~~~ T(x,0) \,=\, q_\infty \, \dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1 - \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1 + \frac{x}{\lambda_n}\right)^{-\zeta}\right]~, \\
-    Z(x,0) \,&=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right] \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L) + 1}\right]~.
+    n(x,0) \,&=\, -\dfrac{\Gamma_\infty \lambda_n}{D} \,
+        \left(1 + \frac{x}{\lambda_n}\right)~, ~~~~ T(x,0) \,=\, q_\infty \,
+        \dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1
+        - \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1
+        + \frac{x}{\lambda_n}\right)^{-\zeta}\right]~, \\
+    Z(x,0) \,&=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right]
+        \,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L)
+        + 1}\right]~.
 \end{align}
 
 \normalsize
@@ -239,7 +246,7 @@ Steady-State Solutions \small
 
 \subsubsection{Gradient Model}\label{gradient-model}
 
-\small
+Staps' derivation, now known to be slightly incorrect: \small
 
 \begin{align}
     &\frac{m_i n T}{e \rho_{\theta i} B^2} \, \frac{\partial Z}{\partial t}
@@ -252,6 +259,23 @@ Steady-State Solutions \small
         \,=\, \frac{m_i \mu n T}{e^2 \rho_{\theta i} B_\theta^2} \, 
         \frac{\partial^2 Z}{\partial x^2} \,+\, \Gamma_e^\text{an} \,-\,
         \Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{cx} \,-\,
+        \Gamma_i^\text{OL}
+\end{align}
+
+\normalsize
+
+Corrected version, which is used: \small
+
+\begin{align}
+    \text{Currents:} ~~~~ \frac{e \, n \, \rho_{\theta i}}{2} \,
+        \frac{\partial Z}{\partial t} \,&=\, \frac{e \, \mu \, \rho_{\theta i}}
+        {2} \, \frac{\partial}{\partial x} \left[n \, \frac{\partial Z}
+        {\partial x}\right] \,+\, \sum_\text{k} e \, \Gamma^\text{k} \\
+    \text{Reduced:} ~~~~ n \, \frac{\partial Z}{\partial t} \,&=\, \mu \,
+        \frac{\partial}{\partial x} \left[n \, \frac{\partial Z}{\partial x}
+        \right] \,+\, \frac{2}{\rho_{\theta i}} \sum_\text{k} \Gamma^\text{k} \\
+    \sum_\text{k} \Gamma^\text{k} \,&=\, \Gamma_e^\text{an} \,-\,
+        \Gamma_i^\text{cx} \,-\, \Gamma_i^{\pi\parallel} \,-\,
         \Gamma_i^\text{OL}
 \end{align}
 
