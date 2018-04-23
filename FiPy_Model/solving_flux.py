@@ -29,7 +29,7 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 
 # Z Equation
-Z.equation = TransientTerm(coeff=density * B_theta**2 / B**2, var=Z)\
+Z.equation = TransientTerm(coeff=density, var=Z)\
 		== DiffusionTerm(coeff=mu * density, var=Z)\
 		+ (2.0 / rho_pi) * (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL)
 
@@ -63,7 +63,7 @@ if __name__ == '__main__':
 				datamin=0.0, datamax=2.1e19, legend='best')
 		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
 				datamin=80.0, datamax=500.0, legend='best')
-		Z_viewer = Viewer(Z, xmin=0.0, xmax=L, datamax=2.0, legend='best')
+		Z_viewer = Viewer(Z, xmin=0.0, xmax=L, datamax=None, legend='best')
 		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
 				datamax=D_max + D_max/10.0, legend='best')
 		raw_input("Pause for Viewing Initial Conditions")
@@ -137,8 +137,9 @@ if __name__ == '__main__':
 		# Save TSV's
 		if config.save_TSVs == True:
 			TSVViewer(vars=\
-					(D_an, Gamma_an, Gamma_cx, D_bulk, Gamma_bulk, Gamma_OL)).plot(filename=\
-					config.save_directory+"/"+str(t).zfill(4)+".tsv")
+					(D_an, Gamma_an, Gamma_cx, D_bulk, Gamma_bulk,\
+					Gamma_OL)).plot(filename=config.save_directory+\
+					"/"+str(t).zfill(4)+".tsv")
 
 
 	raw_input(" <=============== End of Program. Press any key to continue. ===============> ")
