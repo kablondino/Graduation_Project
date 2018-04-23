@@ -26,7 +26,7 @@
 \linespread{1.1}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[labelfont=bf]{caption}
-\usepackage[toc,title]{appendix}
+\usepackage[title,titletoc]{appendix}
 \usepackage[UKenglish]{isodate}
 \cleanlookdateon
 \usepackage[T1]{fontenc}
@@ -118,9 +118,9 @@
 %\input{ABSTRACT FILE HERE!!}
 \addcontentsline{toc}{chapter}{Abstract}
 
-\clearemptydoublepage
+\cleardoublepage
 \tableofcontents
-\newpage
+\cleardoublepage
 
 % ---------------------------------------------------------
 
@@ -128,31 +128,32 @@
 \pagenumbering{arabic}
 \input{Introduction/Introduction.tex}
 
-\clearemptydoublepage
+\cleardoublepage
 
 \input{Physics_Bifurcation/Physics_Bifurcation.tex}
 
-\clearemptydoublepage
+\cleardoublepage
 
 \input{Dynamical_Model/Dynamical_Model.tex}
 
-\clearemptydoublepage
+\cleardoublepage
 
 \input{Numerical_Method/Numerical_Method.tex}
 
-\clearemptydoublepage
+\cleardoublepage
 
 \input{Results/Results.tex}
 
-\clearemptydoublepage
+\cleardoublepage
 
 \input{Conclusion/Conclusion.tex}
 
-\clearemptydoublepage
+\cleardoublepage
 
 % ---------------------------------------------------------
 
 \begin{appendices}
+\setcounter{tocdepth}{0}
 \input{Appendices/Code.tex}
 \input{Appendices/Normalization.tex}
 \end{appendices}

@@ -74,23 +74,25 @@ For added context, the profiles of these fluxes will also be given with abstract
 
 
 \subsection{Polarization Current}\label{ssec:polarization_current}
-In Maxwell's correction of Amp\`ere's law, a polarization current is induced whenever the time derivative of an electric field is non-zero.
-This originates from the changing state of polarization.
+In Maxwell's correction of Amp\`ere's law, a current is induced whenever the time derivative of an electric field is non-zero in a medium, which originates from the changing state of polarization.
+The bounced-average motion of trapped ions has been shown to have a radial drift, on top of the toroidal precession.
+Macroscopically, a radial current must flow to provide the torque that changes the angular momentum, and is referred to as the neoclassical polarization current \cite{hinton_neoclassical_1984}.
 \begin{align} % Polarization current
-	J^\text{pol} \,=\, \frac{m_i \, n}{\epsilon_0\,\mu_0 \, B_\theta^2} \, \frac{\partial E_r}{\partial t}
-		\,=\, \frac{\sum_j m_j n_j}{B_\theta^2} \, \frac{\partial E_r}{\partial t}
+	J^\text{pol} \,&=\, \frac{\rho}{B_\theta^2} \,
+		\frac{\partial E_r}{\partial t} \,=\, \sum_j \frac{m_j \, n_j }
+		{B_\theta^2} \, \frac{\partial E_r}{\partial t} \\
+	\,&\approx\, \frac{m_i \, n}{B_\theta^2} \, \frac{\partial E_r}{\partial t}
 		\label{eq:polarization_current_original}
 \end{align}
-This is larger than the classical polarization by a factor of $B^2 / B_\theta^2$ \cite{hinton_neoclassical_1984}.
+This is larger than the classical polarization current by a factor of $B^2 / B_\theta^2 \sim 10^1$.
+In this equation, in units of $\text{A}/\text{m}^2$ (contrasting with the original form), $\rho$ is the total mass density, and is summed over all the plasma species.
+Because electrons are $\approx 2000$ times less massive than ions, they are ignored.
 
-It is written with the normalized electric field as
+It is written with the normalized electric field as the following, with the steps in between shown in Appendix \ref{chapter:Normalization}.
 \begin{align} % Normalized polarization current
 	J^\text{pol} \,&=\, \frac{e \, n \, \rho_{\theta i}}{2} \,
-		\left(\frac{B_\theta}{B_?}\right)^2 \frac{\partial Z}{\partial t}
-		\label{eq:polarization_current_normalized}
+		\frac{\partial Z}{\partial t} \label{eq:polarization_current_normalized}
 \end{align}
-The steps between the two form are shown in Appendix \ref{chapter:Normalization}.
-\todo{\color{red}FINISH!}
 
 
 \subsection{Shear Viscosity}\label{ssec:shear_viscosity}
@@ -112,18 +114,20 @@ Reducing this expression to the one radial direction, and introducing the perpen
 	\epsilon_\perp \,&=\, 1 + \sum_j \frac{m_j \, n_j}{\epsilon_0 \, B_\theta^2}~.
 		\label{eq:perp_permittivity}
 \end{align}
-If one assumes that $n_i \approx n_e$ and $m_i \gg m_e$, then the sum for Eq.~\ref{eq:perp_permittivity} is only the ion term and the shear viscosity current is written
+If one assumes that $n_i \approx n_e$ and $m_i \gg m_e$, then the sum for Eq.~\ref{eq:perp_permittivity} is only the ion term and the shear viscosity current is written as
 \begin{align} % Definition of perpendicular permittivity
 	J^{\pi\perp} \,=\, -\frac{m_i}{B_\theta^2} \,
-		\frac{\partial}{\partial x} \left[n \, \mu_i \,
+		\frac{\partial}{\partial x} \left[n \, \mu \,
 		\frac{\partial E_r}{\partial x}\right]~. \label{eq:shear_current_E_r}
 \end{align}
+Another liberty taken is assuming the viscosity $\mu$ is a constant in space and time.
 Normalizing this expression such that it is expressed in terms of $Z$ results in
 \begin{align} % Final result of shear viscosity current, normalized
 	J^{\pi\perp} \,&=\, -\frac{e \, \mu \, \rho_{\theta i}}{2} \,
 		\frac{\partial}{\partial x} \left[n \, \frac{\partial Z}
 		{\partial x}\right] \label{eq:shear_current_normalized}
 \end{align}
+Note that the temperature gradient and concavity has traditionally been ignored for this flux.
 Refer to Appendix \ref{chapter:Normalization} to see the derivation of this normalized form.
 
 
@@ -146,7 +150,7 @@ However, in an effort to circumvent the direct calculations of flow velocities, 
 \begin{align} % Stringer Bulk Viscosity
 	\Gamma_i^{\pi\parallel} \,=\, \,n_e\,&D_{\pi\parallel}
 		\left(\frac{n^\prime}{n} + \frac{Z}{\rho_{\theta i}}\right) \,
-		\text{Im}\left[X\left(Z + i\,\frac{\nu_{ii}}{\omega_t}\right)\right]
+		\text{Im}\left[X\left(Z \,+\, i\,\frac{\nu_{ii}}{\omega_t}\right)\right]
 		\label{eq:stringer_Gamma_bulk} \\
 	&D_{\pi\parallel} \,=\, \frac{\epsilon^2\,\rho_{\theta i}\,T}
 		{(x - a_m)\sqrt{\pi}\,B} \label{eq:stringer_D_bulk}
@@ -168,13 +172,14 @@ In addition, although this flux, at first glance, may take a similar shape to su
 When a drift wave turbulence interacts with the edge of plasma, it preferentially removes electron momentum out of the confined plasma \cite{itoh_model_1988} \cite{stringer_non-ambipolar_1995}.
 The particle flux for this effect can be written as
 \begin{align} % Gamma_an original and D_an
-	\Gamma_e^\text{an} \,=\, -n_e \, &D^\text{an} \left(\frac{n^\prime}{n} \,+\,
+	\Gamma_e^\text{an} \,=\, -n_e \, &D_\text{an} \left(\frac{n^\prime}{n} \,+\,
 		\frac{\alpha_\text{an}\,T_e^\prime}{T_e} \,+\, \frac{e\,E_r}{T_e}\right)
 		\label{eq:Gamma_an_orig} \\
 	&D_\text{an} \,=\, \frac{\epsilon^2 \sqrt{\pi}}{2 a_m}
 		\frac{\rho_{\theta e} \, T_e}{B} \label{eq:D_an}
 \end{align}
 The numerical constant $\alpha_\text{an}$ is on the order of unity, and $D_\text{an}$ is the diffusion coefficient for this process.
+Note that the electron poloidal gyroradius $\rho_{\theta e}$ is used, which differs only by mass in its definition.
 We can normalize the electric field, rewrite the terms with `gradient' coefficients $g_l^\text{k}$ for coefficient $l$ and mechanism $\text{k}$.
 \begin{align} % Gamma_an g's
 	e\,\Gamma_e^\text{an} \,&=\, g_n^\text{an}\,\frac{n^\prime}{n} \,+\,
@@ -202,7 +207,7 @@ The coefficient $C_\text{cx}$ is a numerical constant that chooses the maximum r
 
 In the domain of the problem, the origin of neutrals is that of recycled particles from the divertor, and not that of the NBI.
 The profile of these therefore have a penetration depth from the edge, and drops off rapidly.
-\begin{align}
+\begin{align} % Neutrals profile
 	n_0 \,=\, \frac{\theta\,\Gamma_c}{v_{T_i}\left[1 \,+\,
 	\exp{(k(x - d))}\right]} \label{eq:neutral_density}
 \end{align}
@@ -216,7 +221,7 @@ The penetration depth is $d$, with the rate of drop off determined by $k$.
 		\left(\frac{n^\prime}{n} \,+\, \frac{\alpha_\text{cx}\,T^\prime}
 		{T} - \frac{Z}{\rho_{\theta i}}\right) \label{eq:Gamma_cx}
 \end{align}
-
+Similar to $\alpha_\text{an}$, the coefficient $\alpha_\text{cx}$ is on the order unity.
 We can write the terms in a similar fashion to Eqs.~\ref{eq:Gamma_an_g} as comparison.
 \begin{align} % Charge exchange g's
 	g_n^\text{cx} \,=\, -\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \,n T}
@@ -234,12 +239,12 @@ Again, due to the fact that ions are significantly more massive than electrons, 
 When an ion follows a field line which is less than the distance of one gyroradius away from the last close flux surface, the ion is lost.
 This current, also referred to as the ion loss cone, is compounded by the fact that it is highly affected by the electric field.
 \begin{align} % Ion orbit loss definition
-	\Gamma_i^\text{OL} \,=\, n \, \rho_{\theta i} \, \nu_{ii} \, \nu_{*i}
-		\sqrt{\epsilon} \, \frac{\exp\left[-\sqrt{\nu_{*i} + Z^4 +
-		\left(\frac{x}{w_{bi}}\right)^4}\right]}{\sqrt{\nu_{*i} + Z^4 +
-		\left(\frac{x}{w_{bi}}\right)^4}} \label{eq:Gamma_OL}
+	\Gamma_i^\text{ol} \,=\, n \, \rho_{\theta i} \, \nu_{ii} \, \nu_{*i} \,
+		\frac{\exp\left[-\sqrt{\nu_{*i} + Z^4
+		+ \left(\frac{x}{w_{bi}}\right)^4}\right]}{\sqrt{\nu_{*i} + Z^4
+		+ \left(\frac{x}{w_{bi}}\right)^4}} \label{eq:Gamma_ol}
 \end{align}
-The term $\nu_{*i}$ is the ion-ion collision frequency upon the ion banana bounce frequency.%, and $\nu_{in_0}$ is the ion-neutral collision frequency.
+The term $\nu_{*i}$ is the ion-ion collision frequency upon the ion banana bounce frequency. %, and $\nu_{in_0}$ is the ion-neutral collision frequency.
 %The sum of the ion-ion and ion-neutral frequency serves as the effective detrapping frequency.
 This particular form highly localizes the effect of the radial electric field \cite{kobayashi_experimental_2016}.
 
@@ -250,7 +255,9 @@ Similar to bulk viscosity, and contrasting charge exchange friction and electron
 A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
 %However, experiments and mathematical investigations indicate that flows in the plasma can tear apart turbulent eddies, which reduces the transport radially.\todo{\color{red}{Reword?}}
 To model the dynamics of the transition fully within this scope, the radial electric field must also be evolved explicitly.
+Two forms of the field equation are presented, with the latter being of more interest.
 
+\subsection{Original Model}\label{ssec:original_Z_equation}
 Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{zohm_dynamic_1994} originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase
 \begin{align} % Original Itoh model
 	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) + \mu \frac{\partial Z^2}{\partial x^2}~,\label{eq:original_z} \\
@@ -270,28 +277,78 @@ All other possible sources of current are consolidated as the remaining terms, b
 The polynomial $G(Z)$ is cubic with an inflection point at $Z_S$, giving the transition behavior.
 The type of transition is wholly dictated by the values of the coefficients $a$, $b$, and $c$.
 
+\subsection{Flux Model}\label{ssec:flux_Z_equation}
+Rather than qualitatively creating an equation as the original model, a synthesis of the nonambipolar fluxes from Section~\ref{sec:nonambipolar_fluxes} is substituted into Eq.~\ref{eq:ambipolarity_constraint}.
+\begin{align}
+	\epsilon_0 \, \frac{\partial E_r}{\partial x} \,&=\, -J^\text{pol}
+		+ J^{\pi\perp} - J^{\pi\parallel} + J^\text{an} - J^\text{cx}
+		- J^\text{ol} \label{eq:current_sum}
+%	&=\, -\frac{e \, n \, \rho_{\theta i}}{2} \, \frac{\partial Z}{\partial t}
+%		\,+\, \frac{e \, \mu \, \rho_{\theta i}}{2} \, \frac{\partial}
+%		{\partial x} \left[n \, \frac{\partial Z}{\partial x}\right]
+%		\,-\, n_e \, D_{\pi\parallel} \left(\frac{n^\prime}{n} + \frac{Z}
+%		{\rho_{\theta i}}\right) \, \text{Im}\left[X\left(Z
+%		\,+\, i\,\frac{\nu_{ii}}{\omega_t}\right)\right] \\ &\,+\,
+%		-n_e \, D^\text{an} \left(\frac{n^\prime}{n} \,+\,
+%		\frac{\alpha_\text{an}\,T_e^\prime}{T_e} \,+\,
+%	\frac{e\,E_r}{T_e}\right) \\ &\,-\, -\frac{m_i \,n_0
+%		\langle\sigma_\text{cx} v\rangle \, n\,T}{B_\theta^2}
+%		\, \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right] \,
+%		\left(\frac{n^\prime}{n} \,+\, \frac{\alpha_\text{cx}\,T^\prime}
+%		{T} - \frac{Z}{\rho_{\theta i}}\right) \\
+%		&\,-\, n \, \rho_{\theta i} \, \nu_{ii} \, \nu_{*i} \,
+%		\frac{\exp\left[-\sqrt{\nu_{*i} + Z^4
+%		+ \left(\frac{x}{w_{bi}}\right)^4}\right]}{\sqrt{\nu_{*i} + Z^4
+%		+ \left(\frac{x}{w_{bi}}\right)^4}}
+\end{align}
+It is advantageous to bundle the neoclassical polarization current $J^\text{pol}$ with the left-hand side before it is normalized, \emph{i.e.} Eq.~\ref{eq:polarization_current_original}.
+\begin{align}
+	\left(\epsilon_0 \,+\, \frac{m_i \, n}{B_\theta^2}\right) \,
+	\frac{\partial E_r}{\partial x} \,&=\, J^{\pi\perp} \,-\, J^{\pi\parallel} \,+\, J^\text{an} \,-\, J^\text{cx} - J^\text{ol}
+\end{align}
+With typical plasma parameters at the edge, \emph{i.e.} $n \sim 10^{19}~\text{m}^{-3}$, $B_\theta \sim 10^{-1}$, the coefficient in $J^\text{pol}$ is 4 orders of magnitude larger than $\epsilon_0$, and therefore dominates.
+After normalizing this and the shear viscosity, the balance of currents is
+\begin{align}
+	\frac{e \, n \, \rho_{\theta i}}{2} \, \frac{\partial Z}{\partial t}
+		\,=\, \frac{e \, \mu \, \rho_{\theta i}}{2} \frac{\partial}{\partial x}
+		\left[n \, \frac{\partial Z}{\partial x}\right] \,-\,
+		J^{\pi\parallel} \,+\, J^\text{an} \,-\, J^\text{cx} - J^\text{ol}
+		\label{eq:normalized_Z_equation}
+\end{align}
+A further simplification can be done by multiplying everything by $2 / (e \, \rho_{\theta i})$.
+\begin{align}
+	n \, \frac{\partial Z}{\partial t} \,=\, \mu \, \frac{\partial}{\partial x}
+		\left[n \, \frac{\partial Z}{\partial x}\right] \,+\,
+		\frac{2}{\rho_{\theta i}} \left(-\Gamma^{\pi\parallel} \,+\,
+		\Gamma^\text{an} \,-\, \Gamma^\text{cx} \,-\, \Gamma^\text{ol}\right)
+		\label{eq:reduced_normalized_Z_equation}
+\end{align}
+
 \section{Forms of Diffusivities}\label{sec:diffusivities}
 Various forms of $D$ (and subsequently $\chi$) are presented in investigations with this model.
 The original Itoh model has $D$ as a sigmoid function of the normalized radial electric field.
 Specifically, it was proportional to the hyperbolic tangent of the field, with a minimum and maximum diffusivity \cite{itoh_edge_1991, zohm_dynamic_1994}
 \begin{align} % Itoh diffusivity
-	D(Z) \,&=\, \frac{D_\text{max} + D_\text{min}}{2} +
-		\frac{(D_\text{max} - D_\text{min})\tanh(Z)}{2}~. \label{eq:Itoh_diffusivity}
+	D(Z) \,&=\, \frac{D_\text{max} + D_\text{min}}{2} \,+\,
+		\frac{(D_\text{max} - D_\text{min})\tanh(Z)}{2}~.
+		\label{eq:Itoh_diffusivity}
 \end{align}
 
 However, it is now accepted that the diffusivity must be a function of the shear of the field.
 This is either due to the stabilization of linear modes, or through the reduction of turbulence amplitudes, correlation lengths, or change in phases of the fluctuations \cite{connor_review_2000}.
 It was found that ``a flattened (steep) radial equilibrium gradient tends to enhance (eliminate) turbulence suppression due to the shear flow'' \cite{zhang_edge_1992}.
 \begin{align} % Shear diffusivity
-	D(Z^{\prime}) \,=\, \frac{D_\text{min}}{1 + c(Z^{\prime})^{\gamma}} \label{eq:shear_diffusivity}
+	D(Z^{\prime}) \,=\, D_\text{min} \,+\, \frac{D_\text{max} - D_\text{min}}
+		{1 \,+\, c(Z^{\prime})^{\beta}} \label{eq:shear_diffusivity}
 \end{align}
-Previous investigations using this form have had a variety of choices for the parameters, including $c = 0.25, \gamma = 2$, and $c = 1, \gamma = 2/3$ \cite{connor_review_2000} \cite{itoh_theoretical_1994}.
+Previous investigations using this form have had a variety of choices for the parameters, including $c = 0.25, \beta = 2$, and $c = 1, \beta = 2/3$ \cite{connor_review_2000} \cite{itoh_theoretical_1994}.
 
 Another form includes both the field itself and its shear \cite{paquay_studying_2012}, and will be referred to as the Flow-Shear model.
 \begin{align} % Flow-Shear equation
 	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\,
-		\frac{D_\text{max} - D_\text{min}}{1 + a_1 Z^2 + a_2 Z \cdot Z^{\prime}
-		+ a_3 (Z^{\prime})^2} \label{eq:flow_shear_diffusivity}
+		\frac{D_\text{max} - D_\text{min}}{1 \,+\, a_1 Z^2 \,+\,
+		a_2 Z \cdot Z^{\prime} \,+\, a_3 (Z^{\prime})^2}
+		\label{eq:flow_shear_diffusivity}
 \end{align}
 
 \section{Boundary Conditions and Initial Profiles}\label{sec:boundary_conditions}
