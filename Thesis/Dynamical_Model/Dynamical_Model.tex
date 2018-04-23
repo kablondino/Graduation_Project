@@ -33,7 +33,7 @@ It is therefore assumed they are proportional as
 \end{align}
 The parameter $\zeta$ determines the coupling strength of the two diffusivities.
 It is customarily set to 0.5, giving the relation of $\chi = 3 D$.
-The specifics of the forms chosen for the diffusivities is discussed in Section~\ref{sec:diffusivities}.
+The specifics of the forms chosen for the diffusivities is discussed in Section~\ref{sec:diffusivity}.
 
 In order to simplify the model, substituting the following definition of the internal energy density should be made.
 \begin{align} % U definition
@@ -71,7 +71,6 @@ Ultimately, these effects lead to some form of charge separation, inducing a non
 The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}, Itoh and Itoh \cite{itoh_role_1996}, and Stringer \cite{stringer_explanation_1993}.
 
 For added context, the profiles of these fluxes will also be given with abstract L-- and H--mode density, temperature, and $Z$ profiles, given in Figures~.\todo{\color{red}FIGURES!}
-
 
 \subsection{Polarization Current}\label{ssec:polarization_current}
 In Maxwell's correction of Amp\`ere's law, a current is induced whenever the time derivative of an electric field is non-zero in a medium, which originates from the changing state of polarization.
@@ -224,13 +223,12 @@ The penetration depth is $d$, with the rate of drop off determined by $k$.
 Similar to $\alpha_\text{an}$, the coefficient $\alpha_\text{cx}$ is on the order unity.
 We can write the terms in a similar fashion to Eqs.~\ref{eq:Gamma_an_g} as comparison.
 \begin{align} % Charge exchange g's
-	g_n^\text{cx} \,=\, -\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \,n T}
+	g_n^\text{cx} \,=\, -\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \, n \, T}
 		{B_\theta^2}& \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]
 		~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~
 		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
 		\label{eq:g_cx}
 \end{align}
-\todo{\color{red}FINISH}
 
 
 \subsection{Ion Orbit Loss}\label{ssec:ol_loss}
@@ -324,7 +322,7 @@ A further simplification can be done by multiplying everything by $2 / (e \, \rh
 		\label{eq:reduced_normalized_Z_equation}
 \end{align}
 
-\section{Forms of Diffusivities}\label{sec:diffusivities}
+\section{Forms of Diffusivity}\label{sec:diffusivity}
 Various forms of $D$ (and subsequently $\chi$) are presented in investigations with this model.
 The original Itoh model has $D$ as a sigmoid function of the normalized radial electric field.
 Specifically, it was proportional to the hyperbolic tangent of the field, with a minimum and maximum diffusivity \cite{itoh_edge_1991, zohm_dynamic_1994}
