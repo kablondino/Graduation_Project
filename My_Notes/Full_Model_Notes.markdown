@@ -176,12 +176,12 @@ Staps' derivation, now known to be slightly incorrect:
 		\frac{\partial^2 Z}{\partial x^2} \,+\, \left(g_n^\text{an} -
 		g_n^\text{cx}\right) \frac{n^\prime}{n} \,+\, \left(g_T^\text{an} -
 		g_T^\text{cx}\right) \frac{T^\prime}{T} \,+\, \left(g_Z^\text{an} -
-		g_Z^\text{cx}\right) Z - e\Gamma_i^{\pi\parallel} - e\Gamma_i^\text{OL} \\
+		g_Z^\text{cx}\right) Z - e\Gamma_i^{\pi\parallel} - e\Gamma_i^\text{ol} \\
 	&\frac{m_i n T}{e^2 \rho_{\theta i} B^2} \frac{\partial Z}{\partial t}
 		\,=\, \frac{m_i \mu n T}{e^2 \rho_{\theta i} B_\theta^2} \, 
 		\frac{\partial^2 Z}{\partial x^2} \,+\, \Gamma_e^\text{an} \,-\,
 		\Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{cx} \,-\,
-		\Gamma_i^\text{OL}
+		\Gamma_i^\text{ol}
 \end{align}\normalsize
 
 Corrected version, which is used:
@@ -195,25 +195,7 @@ Corrected version, which is used:
 		\right] \,+\, \frac{2}{\rho_{\theta i}} \sum_\text{k} \Gamma^\text{k} \\
 	\sum_\text{k} \Gamma^\text{k} \,&=\, \Gamma_e^\text{an} \,-\,
 		\Gamma_i^\text{cx} \,-\, \Gamma_i^{\pi\parallel} \,-\,
-		\Gamma_i^\text{OL}
-\end{align}\normalsize
-
-+ Electron Anomalous Diffusion:
-\small\begin{align}
-	D^\text{an} \,&=\, \frac{\epsilon^2 \sqrt{\pi}}{2 a_m}
-		\frac{\rho_{\theta e} T}{B}~,~~
-		g_n^\text{an} \,=\, -e \,n\, D^\text{an}~,~~
-		g_T^\text{an} \,=\, -e \,n\, \alpha^\text{an}\, D^\text{an}~,~~
-		g_Z^\text{an} \,=\, \frac{-e \,n\, D^\text{an}}{\rho_{\theta i}}
-\end{align}\normalsize
-
-+ Charge Exchange Friction:
-\small\begin{align}
-	g_n^\text{cx} \,=\,
-		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \,n T}{B_\theta^2}
-		\left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]~,~~~~
-		g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~
-		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
+		\Gamma_i^\text{ol}
 \end{align}\normalsize
 
 + Ion Bulk Viscosity: <!--- $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
@@ -224,17 +206,35 @@ Corrected version, which is used:
 -->
 
 \small\begin{align}
-	D^{\pi\parallel} \,=\, \frac{\epsilon^2 \, \rho_{\theta i} \, T}
-		{(x - a_m) \, B \, \sqrt{\pi}}~,~~~
-	e \Gamma_i^{\pi\parallel} \,=\, -e\,n_e\,D^{\pi\parallel}
+	D_{\pi\parallel} \,=\, \frac{\epsilon^2}{(x - a_m) \sqrt{\pi}}\,
+		\frac{\rho_{\theta i} \, T}{B}~,~~~
+	e \Gamma_i^{\pi\parallel} \,=\, -e\,n_e\,D_{\pi\parallel}
 		\left(-\frac{n^\prime}{n} - \frac{Z}{\rho_{\theta i}}\right) \,
 		\text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
 \end{align}\normalsize
 
++ Electron Anomalous Diffusion:
+\small\begin{align}
+	D_\text{an} \,&=\, \frac{\epsilon^2 \sqrt{\pi}}{2 a_m}
+		\frac{\rho_{\theta e} T}{B}~,~~
+		g_n^\text{an} \,=\, -e \,n\, D_\text{an}~,~~
+		g_T^\text{an} \,=\, -e \,n\, \alpha_\text{an}\, D_\text{an}~,~~
+		g_Z^\text{an} \,=\, \frac{-e \,n\, D_\text{an}}{\rho_{\theta i}}
+\end{align}\normalsize
+
++ Charge Exchange Friction:
+\small\begin{align}
+	g_n^\text{cx} \,=\,
+		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \,n T}{B_\theta^2}
+		\left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]~,~~~~
+		g_T^\text{cx} \,=\, \alpha_\text{cx}\,g_n^\text{cx}~,~~~~
+		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
+\end{align}\normalsize
+
 + Ion Orbit Loss:
 \small\begin{align}
-	g^\text{OL} \,=\, e \,n\, \nu_{ii} \, \nu_{*i} \, \rho_{\theta i}~,~~~~
-	e\Gamma_i^\text{OL} \,=\, \dfrac{g^\text{OL}\,
+	g^\text{ol} \,=\, e \,n\, \nu_{ii} \, \nu_{*i} \, \rho_{\theta i}~,~~~~
+	e\Gamma_i^\text{ol} \,=\, g^\text{ol} \, \frac{
 		\exp\left[-\sqrt{\nu_{*i} + Z^4 + \frac{x^4}{w_{bi}^4}}\right]}
 		{\sqrt{\nu_{*i} + Z^4 + \frac{x^4}{w_{bi}^4}}}
 \end{align}\normalsize
