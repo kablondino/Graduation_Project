@@ -3,7 +3,7 @@ Fusion plasmas are inherently complicated systems, and thus are complicated to m
 The model developed by Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{zohm_dynamic_1994}, and later refined by others, assumes that the transport barrier occurs in a thin layer at the plasma edge.
 The plasma edge is defined to be at the last-closed flux surface (separatrix).
 This allows for slab geometry to be used, in which $\psi$ is a usual radial coordinate.
-However, $x$ will be used as it is more distinct as a spatial coordinate.
+However, $x$ will be used as it is more distinctly recognized as a spatial coordinate.
 The slab geometry reduces the model into a system of one (spatial) dimensional partial differential equations.
 The domain of the model is $0 \,\leq\, x \,\leq\, L$, in which $x = 0$ is the plasma outer edge, and $x = L$ is some depth towards the core.
 
@@ -18,7 +18,7 @@ The particle flux $\Gamma$ is determined by some effective particle diffusion $D
 Note that $\Gamma$ here refers to all species of particle fluxes, both ambipolar and nonambipolar.
 The heat flux $q$, however, is determined by effective heat convection.
 This is the sum of heat diffusion $\chi n T^\prime$, and advection $\Gamma T$.
-\begin{align} % Fluxes
+\begin{align} % Full Particle and Heat Fluxes
 	\Gamma \,&=\, -D \frac{\partial n}{\partial x}~,\label{eq:particle_flux} \\
 	q \,&=\, -\chi n \frac{\partial T}{\partial x} \,+\, \frac{\Gamma T}{\gamma - 1} \label{eq:heat_flux}
 \end{align}
@@ -37,11 +37,13 @@ The specifics of the forms chosen for the diffusivities is discussed in Section~
 
 In order to simplify the model, substituting the following definition of the internal energy density should be made.
 \begin{align} % U definition
-	U \,\equiv\, \frac{n T}{\gamma - 1} \label{eq:U_definition}
+	U \,\equiv\, \frac{n \, T}{\gamma - 1} \label{eq:U_definition}
 \end{align}
 In addition, one of the liberties taken to simplify the model is that a single temperature is used, \emph{i.e.} the electron and ion temperatures are assumed identical.
-Making this substitution, along with the particle and heat fluxes, we can arrive at abridged forms of Equations~\ref{eq:n_continuity} and \ref{eq:U_continuity}.
+This is certainly not the most realistic of choices, as ECRH obviously heats electrons more than ions.
+Nevertheless, this is not always the case, as it becomes less pronounced with higher densities \cite{sauter_l--_2012}.
 
+Making this substitution, along with the particle and heat fluxes, we can arrive at abridged forms of Equations~\ref{eq:n_continuity} and \ref{eq:U_continuity}.
 \begin{align} % Compact transport equations
 	\frac{\partial n}{\partial t} \,&=\, \frac{\partial}{\partial x} \left[D \,
 		\frac{\partial n}{\partial x}\right]~,\label{eq:n_compact} \\
@@ -68,18 +70,26 @@ Particular turbulent and neoclassical phenomena affect ions and electrons differ
 Ultimately, these effects lead to some form of charge separation, inducing a nonambipolar particle flux.
 The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}, Itoh and Itoh \cite{itoh_role_1996}, and Stringer \cite{stringer_explanation_1993}.
 
-For added context, the profiles of these fluxes will also be given with abstract L-- and H--mode density, temperature, and $Z$ profiles, given in Figures~.
+For added context, the profiles of these fluxes will also be given with abstract L-- and H--mode density, temperature, and $Z$ profiles, given in Figures~.\todo{\color{red}FIGURES!}
 
 
 \subsection{Polarization Current}\label{ssec:polarization_current}
 In Maxwell's correction of Amp\`ere's law, a polarization current is induced whenever the time derivative of an electric field is non-zero.
 This originates from the changing state of polarization.
 \begin{align} % Polarization current
-	J_\text{pol} \,=\, \frac{m_i \, n}{\epsilon_0\,\mu_0 \, B_\theta^2} \, \frac{\partial E_r}{\partial t}
+	J^\text{pol} \,=\, \frac{m_i \, n}{\epsilon_0\,\mu_0 \, B_\theta^2} \, \frac{\partial E_r}{\partial t}
 		\,=\, \frac{\sum_j m_j n_j}{B_\theta^2} \, \frac{\partial E_r}{\partial t}
 		\label{eq:polarization_current_original}
 \end{align}
 This is larger than the classical polarization by a factor of $B^2 / B_\theta^2$ \cite{hinton_neoclassical_1984}.
+
+It is written with the normalized electric field as
+\begin{align} % Normalized polarization current
+	J^\text{pol} \,&=\, \frac{e \, n \, \rho_{\theta i}}{2} \,
+		\left(\frac{B_\theta}{B_?}\right)^2 \frac{\partial Z}{\partial t}
+		\label{eq:polarization_current_normalized}
+\end{align}
+The steps between the two form are shown in Appendix \ref{chapter:Normalization}.
 \todo{\color{red}FINISH!}
 
 
@@ -88,12 +98,12 @@ The ion shear (perpendicular) viscosity is the perpendicular component of the vi
 In the L--H transition, it can be viewed as coupling the L-- and H--mode solutions spatially.
 It is expressed by Itoh \emph{et al.} \cite{itoh_elmy_1993} as
 \begin{align} % Shear Viscosity Current
-	J^{\pi\perp} \,=\, \nabla \cdot \left(\frac{e \, \mu_i \, n \, \rho_{\theta i}}
-		{v_{T_i}} \, \nabla\left(\frac{E_r}{B_\theta}\right)\right) \,=\,
-		\nabla \cdot \left(\frac{m_i \, n \, \mu_i}{B_\theta^2} \,
+	J^{\pi\perp} \,=\, \nabla \cdot \left(\frac{e \, \mu \, n \, \rho_{\theta i}}
+		{v_{T_i}} \, \nabla\left(\frac{E_r}{B_\theta}\right)\right)
+		\,=\, \nabla \cdot \left(\frac{m_i \, \mu \, n}{B_\theta^2} \,
 		\nabla E_r\right)~. \label{eq:shear_visc_current_definition}
 \end{align}
-The ion shear viscosity coefficient $\mu_i$ is assumed to be constant over space for simplicity.
+The ion shear kinematic viscosity $\mu$ is assumed to be constant over space for simplicity.
 Reducing this expression to the one radial direction, and introducing the perpendicular dielectric permittivity $\epsilon_\perp$ \cite{kiviniemi_numerical_2001} gives
 \begin{align} % Current with perpendicular permittivity
 	J^{\pi\perp} \,=\, e\,\Gamma_i^{\pi\perp} \,&=\,
@@ -104,20 +114,22 @@ Reducing this expression to the one radial direction, and introducing the perpen
 \end{align}
 If one assumes that $n_i \approx n_e$ and $m_i \gg m_e$, then the sum for Eq.~\ref{eq:perp_permittivity} is only the ion term and the shear viscosity current is written
 \begin{align} % Definition of perpendicular permittivity
-	e \, \Gamma_i^{\pi\perp} \,=\, -\frac{m_i}{B_\theta^2} \,
-		\frac{\partial}{\partial x} \left(n \, \mu_i \,
-		\frac{\partial E_r}{\partial x}\right)~. \label{eq:shear_current_E_r}
+	J^{\pi\perp} \,=\, -\frac{m_i}{B_\theta^2} \,
+		\frac{\partial}{\partial x} \left[n \, \mu_i \,
+		\frac{\partial E_r}{\partial x}\right]~. \label{eq:shear_current_E_r}
 \end{align}
-
 Normalizing this expression such that it is expressed in terms of $Z$ results in
-\begin{align} % Final result of shear viscosity flux, normalized
-	\Gamma^{\pi\perp} \,=\, \frac{m_i \, \mu_i \, n \, T}{e^2 \, \rho_{\theta i}}
-		\, \frac{\partial^2 Z}{\partial x^2} \label{eq:shear_current_Z}
+\begin{align} % Final result of shear viscosity current, normalized
+	J^{\pi\perp} \,&=\, -\frac{e \, \mu \, \rho_{\theta i}}{2} \,
+		\frac{\partial}{\partial x} \left[n \, \frac{\partial Z}
+		{\partial x}\right] \label{eq:shear_current_normalized}
 \end{align}
 Refer to Appendix \ref{chapter:Normalization} to see the derivation of this normalized form.
 
 
 \subsection{Bulk Viscosity}\label{ssec:bulk_viscosity}
+When a compressible fluid experiences expansion without shear, it can still exhibit some internal friction.
+This friction is referred to as the bulk or volume viscosity.
 The neoclassical bulk viscosity current originates in the different trajectories between electrons and ions due to their mass difference and inhomogeneity in the magnetic field along the field lines \cite{kobayashi_model_2017}.
 Two mathematical forms of the parallel ion (bulk) viscosity have been developed in the literature.
 Shaing \emph{et al.} \cite{shaing_bifurcation_1990} derives an expression directly for the viscosity by solving the drift kinetic equation with mass flow velocity.
@@ -238,9 +250,8 @@ Similar to bulk viscosity, and contrasting charge exchange friction and electron
 A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
 %However, experiments and mathematical investigations indicate that flows in the plasma can tear apart turbulent eddies, which reduces the transport radially.\todo{\color{red}{Reword?}}
 To model the dynamics of the transition fully within this scope, the radial electric field must also be evolved explicitly.
-As shown previously, the radial electric field $E_r$ is normalized with the ion poloidal gyroradius $\rho_\theta$ into $Z$ for this investigation, shown in Equation~\ref{eq:Z_and_rho_definitions}.
 
-Itoh \emph{et al.}, originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase \cite{itoh_edge_1991}
+Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{zohm_dynamic_1994} originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase
 \begin{align} % Original Itoh model
 	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) + \mu \frac{\partial Z^2}{\partial x^2}~,\label{eq:original_z} \\
 	N(Z,g) \,&\equiv\, g - g_0 + \left[\beta Z^3 - \alpha Z\right]~.
@@ -248,16 +259,21 @@ Itoh \emph{et al.}, originally modeled an evolution to the radial electric field
 The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
 Weymiens \cite{weymiens_bifurcation_2012} rewrote the equation as
 \begin{align} % Modern model
-	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \, \frac{\partial^2 Z}{\partial x^2} \,+\,
-		\frac{c_n T}{n^2} \, \frac{\partial n}{\partial x} \,+\,
-		\frac{c_T}{n} \, \frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
-	G(Z) \,\equiv\, a + bZ + cZ^3 \label{eq:G_polynomial}
+	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \,
+		\frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \,
+		\frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \,
+		\frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
+	G(Z) \,\equiv\, a + b(Z - Z_S) + c(Z - Z_S)^3 \label{eq:G_polynomial}
 \end{align}
-\todo{\color{red}Move and expand}
+This form has includes the polarization current on the left-hand side and the shear viscosity as the first term on the right-hand side.
+All other possible sources of current are consolidated as the remaining terms, bundling the density and temperature gradient terms accordingly.
+The polynomial $G(Z)$ is cubic with an inflection point at $Z_S$, giving the transition behavior.
+The type of transition is wholly dictated by the values of the coefficients $a$, $b$, and $c$.
 
 \section{Forms of Diffusivities}\label{sec:diffusivities}
 Various forms of $D$ (and subsequently $\chi$) are presented in investigations with this model.
-The original Itoh model has $D$ proportional to the hyperbolic tangent of the normalized radial electric field \cite{itoh_edge_1991, zohm_dynamic_1994}
+The original Itoh model has $D$ as a sigmoid function of the normalized radial electric field.
+Specifically, it was proportional to the hyperbolic tangent of the field, with a minimum and maximum diffusivity \cite{itoh_edge_1991, zohm_dynamic_1994}
 \begin{align} % Itoh diffusivity
 	D(Z) \,&=\, \frac{D_\text{max} + D_\text{min}}{2} +
 		\frac{(D_\text{max} - D_\text{min})\tanh(Z)}{2}~. \label{eq:Itoh_diffusivity}
@@ -269,16 +285,16 @@ It was found that ``a flattened (steep) radial equilibrium gradient tends to enh
 \begin{align} % Shear diffusivity
 	D(Z^{\prime}) \,=\, \frac{D_\text{min}}{1 + c(Z^{\prime})^{\gamma}} \label{eq:shear_diffusivity}
 \end{align}
-Staps uses this form, with $c = 0.5$ and $\gamma = 2$ \cite{staps_backstepping_2017}.
-Another form includes both the field itself and its shear \cite{paquay_studying_2012}
+Previous investigations using this form have had a variety of choices for the parameters, including $c = 0.25, \gamma = 2$, and $c = 1, \gamma = 2/3$ \cite{connor_review_2000} \cite{itoh_theoretical_1994}.
+
+Another form includes both the field itself and its shear \cite{paquay_studying_2012}, and will be referred to as the Flow-Shear model.
 \begin{align} % Flow-Shear equation
 	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\,
 		\frac{D_\text{max} - D_\text{min}}{1 + a_1 Z^2 + a_2 Z \cdot Z^{\prime}
 		+ a_3 (Z^{\prime})^2} \label{eq:flow_shear_diffusivity}
 \end{align}
-\todo{\color{red}Expand more!}
 
-\section{Boundary Conditions and Initial Values}\label{sec:boundary_conditions}
+\section{Boundary Conditions and Initial Profiles}\label{sec:boundary_conditions}
 The set of aforementioned PDE's is evaluated in a domain that is small enough to exclude the inner (core) boundary from any possible particle and heat sources.
 In this model, this boundary to the domain is $x = L$, for some positive length $L$, with the core is assumed to be at $x \gg L$.
 It also requires the domain to be sufficiently large to fully-encompass the transport barrier and ignore any possible boundary effects of the barrier itself.
@@ -288,14 +304,24 @@ This corresponds to $x = 0$.
 It is assumed that the SOL is passive to particle and heat fluxes, and therefore the density and temperature profiles exponentially decay.
 \begin{align} % n and T boundary conditions at SOL
 	n^\prime(0) \,=\, \frac{n}{\lambda_n}~, ~~~~
-		T^\prime(0) \,=\, \frac{T}{\lambda_T}~.\label{eq:nT_SOL_boundary}
+		T^\prime(0) \,=\, \frac{T}{\lambda_T}~, ~~~~
+		\left(Z^\prime(0) \,=\, \frac{Z}{\lambda_Z}\right)~. \label{eq:SOL_boundary}
 \end{align}
+There are hypothesized boundary conditions for the electric field at the edge, but have not been confirmed.
+The system does, however, still exhibit bifurcating behavior (dithering, hysteresis) with this boundary condition \cite{paquay_studying_2012}.
+
 The core side has a constant influx of particles and heat, stemming from fueling and heating.
+Using Eqs.~\ref{eq:particle_flux} and \ref{eq:heat_flux}, we can arrive at Neumann- and Robin-type boundary conditions, respectively.
 \begin{align} % Fluxes from core
 	\Gamma(L) \,&=\, \Gamma_c ~\longrightarrow~ n^\prime(L)
 		\,=\, \frac{\Gamma_c}{D} \label{eq:core_particle_flux}\\
 	q(L) \,&=\, q_c ~\longrightarrow~ T^\prime(L) \,=\, \frac{\zeta(
 		\Gamma_c \, T - (\gamma - 1)\,q_c)}{D \, n} \label{eq:core_heat_flux}
 \end{align}
-There are hypothesized boundary conditions for the electric field at the core, but are not confirmed in any way.
+The electric field shear must vanish as it approaches the core.
+\begin{align} % Electric field towards the core
+	Z^\prime(L) \,=\, 0 \label{eq:core_Z_boundary}
+\end{align}
+
+\todo{\color{red}Initial conditions?}
 

@@ -1,26 +1,64 @@
-\chapter{Polarization and Shear Viscosity Currents Normalization}\label{chapter:Normalization}
-\begin{align}
-	Z^{\prime\prime} \,=\, e \, \frac{\partial^2}{\partial x^2}
-		\left(\frac{\rho_{\theta i} \, E_r}{T}\right) \,=\, e \, \left(
-		\frac{\rho_{\theta i}}{T} \, E_r^{\prime\prime} \,+\, \frac{E_r}{T} \,
-		\rho_{\theta i}^{\prime\prime} \,+\, \rho_{\theta i}\, E_r \,
-		\frac{\partial^2}{\partial x^2}\left(\frac{1}{T}\right)\right)
+\section{\texorpdfstring{$J^\textnormal{pol}$}{J pol} and \texorpdfstring{$J^{\pi\perp}$}{J bulk} Normalization}\label{chapter:Normalization}
+A useful substitution in normalizing these currents is that of the poloidal gyroradius explicitly as a function of temperature.
+\begin{align} % Rho_pi as a function of T
+	\rho_{\theta i} \,=\, \sqrt{\frac{2 \, m_i \, T}{e \, B_\theta^2}}
 \end{align}
-Using the equation for $\rho_{\theta i}$ in \ref{eq:Z_and_rho_definitions} and the given definition of thermal ion velocity, its derivative can be expanded.
-\begin{align}
-	\frac{E_r}{T} \, \rho_{\theta i}^{\prime\prime} \,=\,
-		\frac{m_i}{e\,B_\theta} \, \frac{E_r}{T} \,\sqrt{\frac{2\,e}{m_i}} \,
-		\frac{\partial^2}{\partial x^2}\left(\sqrt{T}\right)
-\end{align}
-We can substitute this into our equation; however
+This assumes the temperature is measured in eV.
 
-\begin{align}
-	Z^{\prime\prime} \,&=\, e \, \left(\frac{\rho_{\theta i}}{T} \,
-		E_r^{\prime\prime} \,+\, \frac{m_i}{e\,B_\theta} \, \frac{E_r}{T} \,
-		\sqrt{\frac{2\,e}{m_i}} \, \cancel{\frac{\partial^2}{\partial x^2}
-		\left(\sqrt{T}\right)} \,+\, \rho_{\theta i}\, E_r \, \cancel{
-		\frac{\partial^2}{\partial x^2} \left(\frac{1}{T}\right)}\right) \\
-		&\approx\, \frac{e\,\rho_{\theta i}}{T} \, E_r^{\prime\prime}
+For the polarization current, start with substituting the definition of the normalized electric field, Eq.~\ref{eq:Z_and_rho_definitions}, into Eq.~\ref{eq:polarization_current_original}.
+\begin{align} % Normalize polarization
+	J^\text{pol} \,&=\, \frac{m_i\,n}{B_?^2}\, \frac{\partial E_r}{\partial t}
+		\,=\, \frac{m_i \, n}{B_?^2} \, \frac{\partial}{\partial t}
+		\left(\frac{Z \, T}{e \, \rho_{\theta i}}\right)
+		\,=\, \frac{m_i \, n}{B_?^2} \frac{\partial}{\partial t}
+		\left(\frac{Z \, T}{\cancel{e}} \, \sqrt{\frac{\cancel{e^2} \,
+		B_\theta^2}{2 \, m_i \, T}} \right) \\
+	&=\, \frac{n \, B_\theta}{B_?^2} \sqrt{\frac{m_i \, T}{2}} \,
+		\frac{\partial Z}{\partial t} \,\cdot\, \frac{e\,B_\theta\sqrt{2}}
+		{e\,B_\theta\sqrt{2}}
+		\,=\, \frac{e \, n}{2} \, \left(\frac{B_\theta}{B_?}\right)^2
+		\sqrt{\frac{2 \, m_i \, T}{e^2 \, B_\theta^2}} \,
+		\frac{\partial Z}{\partial t} \\
+	J^\text{pol} \,&=\, \frac{e \, n \, \rho_{\theta i}}{2} \,
+		\left(\frac{B_\theta}{B_?}\right)^2 \frac{\partial Z}{\partial t}
+		\tag*{\eqref{eq:polarization_current_normalized}}
 \end{align}
-\todo{\color{red}FIX!}
+
+Shear Viscosity
+\begin{align} % Normalize shear viscosity
+	J^{\pi\perp} \,&=\, -\frac{m_i \, \mu}{B_\theta^2} \,
+		\frac{\partial}{\partial x} \left[n \, \frac{\partial E_r}
+		{\partial x}\right]
+		\,=\, \frac{m_i \, \mu}{B_\theta^2} \, \frac{\partial}{\partial x}
+		\left[n \, \frac{\partial}{\partial x} \left(\frac{Z \, T}
+		{e \, \rho_{\theta i}}\right)\right] \\
+	=\, -\frac{m_i \, \mu}{B_\theta^{\bcancel{2}}} &\frac{\partial}{\partial x}
+		\left[n \, \frac{\partial}{\partial x}\left(\frac{Z \, T}{\cancel{e}}
+		\sqrt{\frac{\cancel{e^2} \, \cancel{B_\theta^{2}}}{2 \, m_i \, T}}
+		\right)\right]
+		\,=\, \frac{m_i \, \mu}{B_\theta \sqrt{2 \, m_i}}
+		\frac{\partial}{\partial x} \, \left[n \, \frac{\partial}{\partial x}
+		\left(Z \sqrt{T}\right)\right] \\
+	\nonumber\vdots \\
+	=\, -\frac{\mu}{B_\theta} \sqrt{\frac{m_i}{2}} &\left\{\sqrt{T} \,
+		\frac{\partial}{\partial x} \left[n \, Z^\prime\right] \,+\,
+		\frac{n \, Z}{2\sqrt{T}} \, T^{\prime\prime} \,+\,
+		\frac{T^\prime}{2\sqrt{T}} \left(2 \, n \, Z + n \, Z^\prime -
+		\frac{n \, Z}{2 \, T}\right)\right\}
+\end{align}
+The skipped steps involve taking many product and chain rules, with the prime notation denoting the spatial derivative.
+Previous formulations of the shear viscosity has ignored the temperature gradient and concavity, \emph{i.e.} $T^\prime = T^{\prime\prime} = 0$.
+This is continued here in an effort for simplicity, as solving the system of equations would be overly complex, and to serve a comparison with previous investigations.
+\begin{align} % Ignored temperature gradient and concavity
+	\rightarrow\, &\approx\, -\frac{m_i \, \mu}{B_\theta}
+		\sqrt{\frac{T}{2 \, m_i}} \, \frac{\partial}{\partial x} \left[n \,
+		\frac{\partial Z}{\partial x} \right] \,\cdot\,
+		\frac{e\sqrt{2}}{e\sqrt{2}}
+		\,=\, \frac{e \, \mu}{2} \sqrt{\frac{2 \, m_i \, T}{e^2 \, B_\theta^2}}
+		\, \frac{\partial}{\partial x} \left[n \, \frac{\partial Z}{\partial x}
+		\right] \\
+	J^{\pi\perp} \,&=\, -\frac{e \, \mu \, \rho_{\theta i}}{2} \,
+		\frac{\partial}{\partial x} \left[n \, \frac{\partial Z}
+		{\partial x}\right] \tag*{\eqref{eq:shear_current_normalized}}
+\end{align}
 

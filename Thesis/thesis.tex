@@ -26,7 +26,7 @@
 \linespread{1.1}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[labelfont=bf]{caption}
-\usepackage[toc]{appendix}
+\usepackage[toc,title]{appendix}
 \usepackage[UKenglish]{isodate}
 \cleanlookdateon
 \usepackage[T1]{fontenc}
@@ -40,10 +40,12 @@
 %{{{ Setup References and hyperref
 \usepackage[backend=bibtex, url=false, backref=true]{biblatex}
 \addbibresource{../References/References.bib}
+\DefineBibliographyStrings{english}{bibliography = {References}}
 
 \usepackage{hyperref}
 \hypersetup
 {
+	unicode=true,%
 	bookmarks=true,%
 	colorlinks=false,%
 	linkbordercolor={0.980 0.500 0.449},%
@@ -156,6 +158,7 @@
 \end{appendices}
 
 \printbibliography
+\addcontentsline{toc}{chapter}{References}
 
 \end{document}
 
