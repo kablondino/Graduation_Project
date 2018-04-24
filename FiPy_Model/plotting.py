@@ -1,5 +1,5 @@
 import matplotlib
-matplotlib.use('Cairo')
+matplotlib.use('ps')
 import matplotlib.pyplot as plt
 import numpy
 
@@ -16,7 +16,7 @@ file_list = []
 for filename in os.listdir('./'+str(data_directory)):
 	file_list.append(filename)
 
-
+i = 0 # Looping counter
 for filename in file_list:
 	data = numpy.loadtxt(data_directory+'/'+filename, skiprows=1)
 	x = data[:,0]
@@ -31,10 +31,11 @@ for filename in file_list:
 	plt.plot(x, temperature)
 	plt.plot(x, -Z)
 	plt.plot(x, Diffusivity)
-	plt.legend([r"$n$", r"$T$", r"$Z$", r"$D$"], loc='best')
-	plt.title(r"$\Gamma_c = -0.2, D \sim (Z^\prime)^{-2}$")
+	plt.legend([r"$n$", r"$T$", r"$Z$", r"$D$"], loc='upper right')
+	plt.title(r"$\Gamma_c = -0.8~, ~~ D \sim 1 / (1 + (Z^\prime)^{-2})$" +"\n"+ "$t = "+ str(filename_sans_ext)+ "$")
 	plt.savefig(data_directory +'/'+ filename_sans_ext +'.png')
 
-#	print "Saved " + str(filename_sans_ext) + ".png"
+	print str(i) + "\t| Saved " + str(filename_sans_ext) + ".png"
+	i = i + 1
 	plt.clf()
 

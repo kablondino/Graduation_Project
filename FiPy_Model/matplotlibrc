@@ -1,0 +1,7 @@
+backend : PS
+font.family : serif
+text.usetex : True
+text.antialiased : True
+
+axes.grid : True
+
