@@ -295,6 +295,7 @@ if not hasattr(config, 'plot_title'):
 if (type(getattr(config, 'aux_plots', None)) != bool or\
 		type(getattr(config, 'aux_vars', None)) != list):
 	config.aux_plots = False
+	config.aux_vars = []
 
 if config.aux_plots == True:
 	# Create aux_titles, _ymin, and _ymax lists if they don't exist

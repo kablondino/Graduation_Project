@@ -12,14 +12,13 @@ from scipy import constants
 
 # ----------------- Physical Constants --------------------
 pi = constants.pi
-charge_dummy = 1.0							# 'Natural' units for charge
-charge = constants.e					# Elementary charge
-k_B_J = constants.k					# Boltzmann in J/K
+charge = constants.e						# Elementary charge
+k_B_J = constants.k							# Boltzmann in J/K
 k_B_eV = k_B_J / charge						# Boltzmann in eV/K
-m_e = constants.m_e					# Electron mass
-m_i = constants.m_p					# Ion (H) mass
-epsilon_0 = constants.epsilon_0		# Permittivity of free space
-mu_0 = constants.mu_0					# Permeability of free space
+m_e = constants.m_e							# Electron mass
+m_i = constants.m_p							# Ion (H) mass
+epsilon_0 = constants.epsilon_0				# Permittivity of free space
+mu_0 = constants.mu_0						# Permeability of free space
 gamma = 5.0/3.0								# Adiabatic index for monoatomic
 
 
@@ -54,18 +53,19 @@ if config.original_model == True:
 	lambda_n = 5.0/4.0						# Length scales for decay at edge
 	lambda_T = 3.0/2.0
 	lambda_Z = 5.0/4.0
+	mu = 1.0 / 20.0
 elif config.original_model == False:
 	L = 0.05							# in m
-	lambda_n = 0.01						# Length scales for decay at edge
-	lambda_T = 0.02
-	lambda_Z = 0.01
+	lambda_n = 0.0125						# Length scales for decay at edge
+	lambda_T = 0.015
+	lambda_Z = 0.0125
+	mu = 1.0 / 200.0
 
 
 D_max = 5.0
-D_min = 1.0/5.0
+D_min = 2.0/5.0
 
 epsilon = 1.0 / 25.0
-mu = 1.0 / 20.0
 
 ## Choose set of parameters
 # If numerical_choice is not defined, not a string, or set to Paquay:
@@ -89,10 +89,6 @@ elif config.numerical_choice.lower() == "staps":
 	c = -1.0
 	Z_S = -3.0/2.0
 
-# Heat diffusivity coefficient choice for Gradient Model
-elif config.numerical_choice.lower() == "g_grad"\
-		or config.numerical_choice.lower() == "gradient_model":
-	zeta = 0.5
 
 ## For use in full flux model
 alpha_an = 0.2				# Anomalous loss coefficient
