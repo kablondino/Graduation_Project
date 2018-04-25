@@ -3,7 +3,6 @@
 	for use in the PDE system. This includes machine
 	parameters, length scales, global physical/math
 	constants, and non-g model numbers.
-
 """
 
 from input_handling import *
@@ -45,6 +44,7 @@ B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
 aspect = a_m / R							# Aspect Ratio
 q = aspect * B_phi/B_theta					# q value
 
+
 ## PRESET parameters for quick calculation, many of which
 ## are chosen by Staps and Paquay
 
@@ -59,7 +59,7 @@ elif config.original_model == False:
 	lambda_n = 0.0125						# Length scales for decay at edge
 	lambda_T = 0.015
 	lambda_Z = 0.0125
-	mu = 1.0 / 200.0
+	mu = 1.0 / 100.0
 
 
 D_max = 5.0

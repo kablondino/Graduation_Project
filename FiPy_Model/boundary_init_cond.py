@@ -86,7 +86,7 @@ else:
 	print "Something went horribly wrong in choosing the Diffusivity model."
 
 Diffusivity.setValue(D_choice_local)
-print "The diffusivity CHECK is set to " +str(config.D_choice)
+print "The diffusivity is set to " +str(config.D_choice)
 
 # --- Old init definitions, which requires Diffusivity to ALREADY be set -----
 #density.setValue(-(config.Gamma_c*lambda_n / Diffusivity)\
