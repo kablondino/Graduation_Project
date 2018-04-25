@@ -200,6 +200,7 @@ The charge exchange rate is obtained from a qualitative scheme by Connor and Wil
 	\langle \sigma_\text{cx} v\rangle \,=\, \frac{C_\text{cx}}{\sqrt{T}} \,
 		\exp\left[-\frac{E_0}{T}\right] \label{eq:cx_rate}
 \end{align}
+\todo{\color{red}COULD BE COMPLETELY INCORRECT. Found forms to replace.}
 Electrons are not exchanged above a particular temperature threshold, but rather fully ionized and lost to the bulk plasma.
 The term $E_0$ is simply the ionization energy for the particular species used; hydrogen is investigated in this project, and the term is thus set to 13.6 eV.
 The coefficient $C_\text{cx}$ is a numerical constant that chooses the maximum rate.
@@ -348,6 +349,7 @@ Another form includes both the field itself and its shear \cite{paquay_studying_
 		a_2 Z \cdot Z^{\prime} \,+\, a_3 (Z^{\prime})^2}
 		\label{eq:flow_shear_diffusivity}
 \end{align}
+This form has no literature support for $a_2$, and is therefore set to zero.
 
 \section{Boundary Conditions and Initial Profiles}\label{sec:boundary_conditions}
 The set of aforementioned PDE's is evaluated in a domain that is small enough to exclude the inner (core) boundary from any possible particle and heat sources.
