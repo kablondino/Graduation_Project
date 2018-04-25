@@ -96,6 +96,7 @@ variable_dictionary = {\
 		'omega_be': omega_be, 'omega_t': omega_t, 'nu_ei': nu_ei,
 		'nu_ii': nu_ii, 'nu_ai': nu_ai, 'nu_ae': nu_ae,\
 		#'nu_in0': nu_in0, 'nu_eff': nu_eff,\ DEPRICATED
+		'ionization_rate': ionization_rate, 'cx_rate': cx_rate,\
 		'D_an': D_an, 'g_n_an': g_n_an, 'g_T_an': g_T_an, 'g_Z_an': g_Z_an,\
 		'Gamma_an': Gamma_an, 'g_n_cx': g_n_cx, 'g_T_cx': g_T_cx,\
 		'g_Z_cx': g_Z_cx, 'Gamma_cx': Gamma_cx, 'g_ol': g_ol,\
