@@ -15,10 +15,12 @@
 \end{align}\normalsize
 
 ### Plasma Parameters
+All temperatures are in eV.
 \small\begin{align}
-	v_{T_j} \,&=\, \sqrt{\frac{2 \, T}{m_j}}~,~~~
-		\rho_{\theta j} \,=\, \frac{m_j \, v_{T_j}}{e \, B_\theta}~,~~~
-		\omega_t \,=\, \frac{v_{Ti}}{q\,R}~,~~~
+	v_{T_j} \,&=\, \sqrt{\frac{2 \, e \, T}{m_j}}~,~~~
+		\rho_{\theta j} \,=\, \frac{m_j \, v_{T_j}}{e \, B_\theta} \,=\,
+			\sqrt{\frac{2 \, m_j \, T}{e^2 \, B_\theta^2}}~,~~~
+		\omega_t \,=\, \frac{v_{T_i}}{q\,R}~,~~~
 		\omega_{bj} \,=\, \frac{\epsilon^{3/2} \, v_{T_j}}{q \, R}~,~~~
 		w_{bi} \,=\, \rho_{\theta i} \, \sqrt{\epsilon} \\
 	\nu_{ei} \,&=\, 1.33\times 10^5 \frac{n_{20}}{(T_\text{keV})^{3/2}}
