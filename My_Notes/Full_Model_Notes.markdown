@@ -1,4 +1,4 @@
-# Full Model Notes: 23 Apr 2018
+# Full Model Notes: 25 Apr 2018
 
 \small\begin{align}
 	&\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,=\, a + bx - x^3 \\
@@ -10,7 +10,7 @@
 		\frac{e^{-t^2}}{t - \zeta} \, \text{d}t~,~~
 		\zeta \,\equiv\, \frac{\omega/k}{v_T} \\
 	&\text{Approx. SI Units at Edge:} ~~~~ n \,\approx\, 0.5\times 10^{19}~\text{m}^{-3}~,
-		~~ T \,\approx\, 500~e\text{V}~,~~ v_T \,\approx\, 10^5~\text{m}/\text{s}~,
+		~~ T \,\approx\, 100~e\text{V}~,~~ v_{T_i} \,\approx\, 10^5~\text{m}/\text{s}~,
 		~~ \rho_{\theta i} \,\approx\, 10^{-4}~\text{m}
 \end{align}\normalsize
 
@@ -52,7 +52,8 @@ Electric field normalization, energy definition, diffusivity relation, dielectri
 	Z \,\equiv\, \frac{\rho_\theta \, e \, E_r}{T}~, ~~~~
 		U \,=\, \frac{n\,T}{\gamma - 1}~, ~~~~
 		\chi \,=\, \frac{D}{\zeta(\gamma - 1)}~, ~~~~
-		\epsilon \,=\, \frac{B_\theta^2}{B^2 \nu_i}~, ~~~~\mu \sim \rho_\theta^2
+		\epsilon \,=\, \frac{B_\theta^2}{B^2 \nu_i}~, ~~~~
+		\mu \approx m_i \, n \, v_{T_i} \, \lambda
 \end{align}\normalsize
 
 The following form of the model references particle and heat fluxes, $\Gamma$ and $q$:
