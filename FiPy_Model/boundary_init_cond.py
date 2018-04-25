@@ -100,7 +100,7 @@ print "The diffusivity is set to " +str(config.D_choice)
 #		(L*x - L) / 2.0)))	# OLD, by Staps
 
 
-# ----------------- Boundary Conditions ------------------- #
+# ----------------- Boundary Conditions -------------------
 def set_boundary_values(AGamma_c, Aq_c):
 	"""
 		Density Boundary Conditions:

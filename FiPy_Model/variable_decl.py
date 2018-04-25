@@ -83,8 +83,8 @@ D_bulk = CellVariable(name=r"$D_{\pi\parallel}$", mesh=mesh)
 Gamma_bulk = CellVariable(name=r"$\Gamma_i^{\pi\parallel}$", mesh=mesh)
 
 ## Ion Orbit Loss
-g_OL = CellVariable(name=r"$g^{OL}$", mesh=mesh)
-Gamma_OL = CellVariable(name=r"$\Gamma_i^{OL}$", mesh=mesh)
+g_ol = CellVariable(name=r"$g^{ol}$", mesh=mesh)
+Gamma_ol = CellVariable(name=r"$\Gamma_i^{ol}$", mesh=mesh)
 
 Z_transient_coeff = CellVariable(name=r"$\hat{epsilon}$", mesh=mesh)
 Z_diffusion_coeff = CellVariable(name=r"$\hat{mu}$", mesh=mesh)
@@ -98,8 +98,8 @@ variable_dictionary = {\
 		#'nu_in0': nu_in0, 'nu_eff': nu_eff,\ DEPRICATED
 		'D_an': D_an, 'g_n_an': g_n_an, 'g_T_an': g_T_an, 'g_Z_an': g_Z_an,\
 		'Gamma_an': Gamma_an, 'g_n_cx': g_n_cx, 'g_T_cx': g_T_cx,\
-		'g_Z_cx': g_Z_cx, 'Gamma_cx': Gamma_cx, 'g_OL': g_OL,\
-		'Gamma_OL': Gamma_OL, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk,\
+		'g_Z_cx': g_Z_cx, 'Gamma_cx': Gamma_cx, 'g_ol': g_ol,\
+		'Gamma_ol': Gamma_ol, 'D_bulk': D_bulk, 'Gamma_bulk': Gamma_bulk,\
 		'plasma_disp': plasma_disp, 'Z_transient_coeff': Z_transient_coeff,\
 		'Z_diffusion_coeff': Z_diffusion_coeff\
 	}

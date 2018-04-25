@@ -31,7 +31,7 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 # Z Equation
 Z.equation = TransientTerm(coeff=density, var=Z)\
 		== DiffusionTerm(coeff=mu * density, var=Z)\
-		+ (2.0 / rho_pi) * (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_OL)
+		+ (2.0 / rho_pi) * (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_ol)
 
 
 # Fully-Coupled Equation
@@ -138,7 +138,7 @@ if __name__ == '__main__':
 		if config.save_TSVs == True:
 			TSVViewer(vars=(density, temperature, Z, Diffusivity,\
 					D_an, Gamma_an, Gamma_cx, D_bulk, Gamma_bulk,\
-					Gamma_OL)).plot(filename=config.save_directory+\
+					Gamma_ol)).plot(filename=config.save_directory+\
 					"/"+str(t).zfill(4)+".tsv")
 
 
