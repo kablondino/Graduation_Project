@@ -52,7 +52,7 @@ full_equation = density.equation & temperature.equation & Z.equation
 # LinearJORSolver	<-- Not working exactly
 PCG_Solver = LinearPCGSolver(iterations=100, tolerance=1.0e-6)
 GMRES_Solver = LinearGMRESSolver(iterations=100)
-LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
+LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6) # Does not work
 
 
 if __name__ == '__main__':
@@ -62,7 +62,7 @@ if __name__ == '__main__':
 		density_viewer = Viewer(density, xmin=0.0, xmax=L,\
 				datamin=0.0, datamax=2.1e19, legend='best')
 		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
-				datamin=80.0, datamax=500.0, legend='best')
+				datamin=80.0, datamax=450.0, legend='best')
 		Z_viewer = Viewer(Z, xmin=0.0, xmax=L, datamin=0.0, legend='best')
 		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
 				datamax=D_max + D_max/10.0, legend='best')
