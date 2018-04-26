@@ -82,16 +82,8 @@ if (type(getattr(config, 'q_c', None)) != float\
 # Check the choice for numerical parameters
 if (getattr(config, 'numerical_choice', "").lower() not in parameter_sets\
 		or type(getattr(config, 'numerical_choice', None)) != str):
-	try:
-		config.numerical_choice =\
-			raw_input("The set of parameters not properly chosen. Choose from the following: Staps, Paquay -> ")
-
-		if config.numerical_choice.lower() not in parameter_sets:
-			raise TypeError
-
-	except (EOFError, TypeError):
-		config.numerical_choice = "Staps"
-		print "Numerical choice defaulted to Staps' set."
+	config.numerical_choice = "Staps"
+	print "Numerical choice defaulted to Staps' set."
 
 
 ## ---------------- Diffusivity Options -------------------
