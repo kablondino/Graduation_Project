@@ -68,9 +68,9 @@ g_Z_an = CellVariable(name=r"$g_Z^{an}$", mesh=mesh)
 Gamma_an = CellVariable(name=r"$\Gamma_e^{an}$", mesh=mesh)
 
 ## Charge Exchange Friction
-ionization_rate = CellVariable(name=r"$\langle\sigma v\rangle_{ion}$",\
+ionization_rate = CellVariable(name=r"$\langle\sigma_{ion} v\rangle$",\
 		mesh=mesh)
-cx_rate = CellVariable(name=r"$\langle\sigma v\rangle_{cx}$",\
+cx_rate = CellVariable(name=r"$\langle\sigma_{cx} v\rangle$",\
 		mesh=mesh)
 g_n_cx = CellVariable(name=r"$g_n^{cx}$", mesh=mesh)
 g_T_cx = CellVariable(name=r"$g_T^{cx}$", mesh=mesh)

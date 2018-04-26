@@ -71,15 +71,22 @@ def calculate_coeffs():
 
 	## Charge Exchange Friction
 	####### POSSIBLE WRONG!
-	ionization_rate.setValue(1.0e-6 / numerix.sqrt(m_i)\
-			* numerix.exp(-13.6 / temperature))					# [m^3 s^-1]
+#	ionization_rate.setValue(1.0e-6 / numerix.sqrt(m_i)\
+#			* numerix.exp(-13.6 / temperature))					# [m^3 s^-1]
 #	cx_rate.setValue(1.0e8 / numerix.sqrt(temperature)\
 #			* numerix.exp(-13.6 / temperature))		#!!!!!!		# [m^3 s^-1]
 	#######
-	cx_rate.setValue(1.985e-14 * numerix.sqrt(temperature\
-			/charge))											# [m^3 s^-1]
+	ionization_rate.setValue(5.0e-14 * (100.0 * temperature)\
+			**(-1.0/4.0))	# Itoh 1989							# [m^3 s^-1]
+
+	# Rozhansky cx rate
+#	cx_rate.setValue(1.985e-14 * numerix.sqrt(temperature))		# [m^3 s^-1]
+
+	cx_rate.setValue(1.0e-14 * (100*temperature)\
+			**(1.0 / 3.0))	# Itoh 1989							# [m^3 s^-1]
+
 	g_n_cx.setValue((-(m_i * n_0 * cx_rate * density\
-			* temperature * charge) / (B_theta**2))\
+			* temperature) / (B_theta**2))\
 			* ((B_theta**2 / (aspect * B_phi)**2) + 2.0))		# [A m^-2]
 	g_T_cx.setValue(alpha_cx * g_n_cx)							# [A m^-2]
 	g_Z_cx.setValue(-g_n_cx / rho_pi)							# [A m^-1]
