@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy
+from matplotlib.ticker import FormatStrFormatter
+import csv
 
 import os
 import sys
@@ -10,6 +12,7 @@ data_directory = sys.argv[1]
 
 # Create list of files
 file_list = []
+big_data = []
 
 # Function to remove first and last y-axis tick labels
 def remove_yticks(*the_axes):
@@ -17,21 +20,29 @@ def remove_yticks(*the_axes):
 		plt.setp(axis.get_yticklabels()[0], visible=False)
 		plt.setp(axis.get_yticklabels()[-1], visible=False)
 
+def min_max_ylim(the_big_data, the_column, the_axis):
+	sum(the_big_data[:,the_column])
+
 for filename in os.listdir('./'+str(data_directory)):
 	file_list.append(filename)
+	big_data.append(numpy.loadtxt(data_directory+'/'+filename, skiprows=1))
+
 
 i = 0 # Looping counter
 for filename in file_list:
-	data = numpy.loadtxt('0987.tsv', skiprows=1)
+	filename_sans_ext = os.path.splitext(filename)[0]
+
+	data = numpy.loadtxt(data_directory+'/'+filename, skiprows=1)
+
+	# The data
 	x = data[:,0]
 	density = data[:,1]
 	temperature = data[:,2]
 	Z = data[:,3]
 	Diffusivity = data[:,4]
 
-	filename_sans_ext = os.path.splitext(filename)[0]
-
-	fig = plt.subplots(2, 1, sharex=True, squeeze=True)[0]
+	# Generate the figure
+	fig = plt.subplots(2, 1, sharex=True, squeeze=True, figsize=(12,12))[0]
 	fig.subplots_adjust(hspace=0)
 
 	# TOP PLOT
@@ -49,6 +60,7 @@ for filename in file_list:
 
 	ax_n.grid(True)
 	ax_T.grid(True)
+	ax_T.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
 
 	# BOTTOM PLOT
 	ax_Z = plt.subplot(2,1,2)
@@ -63,7 +75,9 @@ for filename in file_list:
 			len(ax_D.get_yticks())))
 
 	ax_Z.grid(True)
+	ax_Z.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
 	ax_D.grid(True)
+	ax_D.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 
 	ax_Z.set_xlabel(r"$x$", fontsize='large')
 
@@ -77,13 +91,13 @@ for filename in file_list:
 	ax_D.legend(bottom_plot, bottom_labels, loc='best')
 
 
-	fig.suptitle(r"$\Gamma_c = -1.0~, ~~ D \sim 1 / (1 + (Z^\prime)^{-2})$" +"\n"+ "$t = " +"$")
+	fig.suptitle(r"$\Gamma_c = -1.0\times 10^{18}~, ~~ D = 1 / (1 + 0.01\,Z^2 + 0.001\,(Z^\prime)^{-2})$" +"\n"+ "$t = " +str(filename_sans_ext)+ "$")
 	fig.tight_layout(pad=0.2, w_pad=0.0)
-	plt.subplots_adjust(top=0.92)
+	plt.subplots_adjust(top=0.9)
 
-	plt.savefig(data_directory +'/'+ filename_sans_ext +'.png')
+#	plt.savefig(data_directory +'/'+ filename_sans_ext +'.png')
 
-#	print str(i) + "\t| Saved " + str(filename_sans_ext) + ".png"
+	print str(i) + "\t| Saved " + str(filename_sans_ext) + ".png"
 	i = i + 1
 	plt.clf()
 
