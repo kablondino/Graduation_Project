@@ -1,7 +1,7 @@
 backend 			: qt4agg
 font.family 		: sans-serif
 font.size 			: 16
-text.usetex 		: True
+#text.usetex 		: True
 text.antialiased 	: True
 
 #axes.grid 			: True
