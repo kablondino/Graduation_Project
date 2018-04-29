@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy
 from matplotlib.ticker import FormatStrFormatter
-import csv
 
 import os
 import sys
@@ -25,10 +24,11 @@ for filename in os.listdir('./'+str(data_directory)):
 	file_list.append(filename)
 
 # Sort the file_list
-file_list.sort(); big_data_list = []
+file_list.sort(); big_data_list = []; ax_list = []
 
 for filename in file_list:
-	big_data_list.append(numpy.genfromtxt(data_directory+'/'+filename, delimiter='\t', unpack=True, skiprows=1))
+	big_data_list.append(numpy.genfromtxt(data_directory+'/'+filename,\
+			delimiter='\t', unpack=True, skiprows=1))
 
 # Stack the arrays
 stacked_data = numpy.dstack(tuple(big_data_list))
@@ -37,8 +37,8 @@ the_mins = numpy.amin(numpy.amin(stacked_data, axis=2), axis=1)
 the_maxs = numpy.amax(numpy.amax(stacked_data, axis=2), axis=1)
 
 
-ax_list = []
 i = 0 # Looping counter
+# State plots
 for filename in file_list:
 	filename_sans_ext = os.path.splitext(filename)[0]
 	data = numpy.loadtxt(data_directory+'/'+filename, unpack=True, skiprows=1)
@@ -47,19 +47,23 @@ for filename in file_list:
 	x, density, temperature, Z, Diffusivity, D_an, Gamma_an, Gamma_cx,\
 			D_bulk, Gamma_bulk, Gamma_ol = data[:]
 
-	# Generate the figure
-	fig = plt.subplots(2, 1, sharex=True, squeeze=True, figsize=(12,12))[0]
-	fig.subplots_adjust(hspace=0)
+	# Generate the figures
+	fig_state = plt.figure()
+	fig_state = plt.subplots(2, 1, sharex=True, squeeze=True, figsize=(12,12))[0]
+	fig_state.subplots_adjust(hspace=0)
 
-	# TOP PLOT
+
+	# TOP STATE PLOT
 	ax_list.append(plt.subplot(2,1,1))
-	density_plot = ax_list[0].plot(x, density, label=r"$n$", color='blue', linewidth=2)
+	density_plot = ax_list[0].plot(x, density, label=r"$n$",\
+			color='blue', linewidth=2)
 	ax_list[0].set_ylabel(r"$n$", fontsize='large', rotation=0, labelpad=20)
 	ax_list[0].tick_params(axis='x', labelbottom='off') # Remove top plot's x-axis labels
 	plt.ylim((the_mins[1], the_maxs[1]))
 
 	ax_list.append(ax_list[0].twinx())
-	temp_plot = ax_list[1].plot(x, temperature, label=r"$T$", color='red', linewidth=2)
+	temp_plot = ax_list[1].plot(x, temperature, label=r"$T$",\
+			color='red', linewidth=2)
 	ax_list[1].set_ylabel(r"$T$", fontsize='large', rotation=0, labelpad=20)
 	plt.ylim((the_mins[2], the_maxs[2]))
 
@@ -70,14 +74,16 @@ for filename in file_list:
 	ax_list[1].grid(True)
 	ax_list[1].yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
 
-	# BOTTOM PLOT
+
+	# BOTTOM STATE PLOT
 	ax_list.append(plt.subplot(2,1,2))
 	Z_plot = ax_list[2].plot(x, Z, label=r"$Z$", color='green', linewidth=2)
 	ax_list[2].set_ylabel(r"$Z$", fontsize='large', rotation=0, labelpad=20)
 	plt.ylim((the_mins[3], the_maxs[3]))
 
 	ax_list.append(ax_list[2].twinx())
-	D_plot = ax_list[3].plot(x, Diffusivity, label=r"$D$", color='orange', linewidth=2)
+	D_plot = ax_list[3].plot(x, Diffusivity, label=r"$D$",\
+			color='orange', linewidth=2)
 	ax_list[3].set_ylabel(r"$D$", fontsize='large', rotation=0, labelpad=20)
 	plt.ylim((the_mins[3], the_maxs[3]))
 
@@ -101,16 +107,17 @@ for filename in file_list:
 	ax_list[3].legend(bottom_plot, bottom_labels, loc='best')
 
 
-	fig.suptitle(r"$\Gamma_c = -1.0\times 10^{20}~, ~~ D = 1 / (1 + 0.01\,Z^2 + 0.001\,(Z^\prime)^{2})$" +"\n"+ "$t = " +str(int(filename_sans_ext))+ "$",\
+	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{20}~, ~~ D = 1 / (1 + 0.01\,Z^2 + 0.001\,(Z^\prime)^{2})$" +"\n"+ "$t = " +str(int(filename_sans_ext))+ "$",\
 			fontsize=22)
-	fig.tight_layout(pad=0.2, w_pad=0.0)
+	fig_state.tight_layout(pad=0.2, w_pad=0.0)
 	plt.subplots_adjust(top=0.92)
 
-	plt.savefig(data_directory +'/'+ filename_sans_ext +'.png')
+	fig_state.savefig(data_directory +'/'+ filename_sans_ext +'.png')
 
 #	print str(i) + "\t| Saved " + str(filename_sans_ext) + ".png"
 	i = i + 1
 	# Clear things
-	plt.clf(); ax_list = []
+	plt.clf(); fig_state.clf(); ax_list = []
+	break
 
 
