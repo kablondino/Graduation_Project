@@ -29,7 +29,7 @@ file_list.sort(); big_data_list = []; ax_list = []
 
 for filename in file_list:
 	big_data_list.append(numpy.genfromtxt(data_directory+'/'+filename,\
-			delimiter='\t', unpack=True, skiprows=1))
+			delimiter='\t', unpack=True, skip_header=1))
 
 # Stack the arrays
 stacked_data = numpy.dstack(tuple(big_data_list))
