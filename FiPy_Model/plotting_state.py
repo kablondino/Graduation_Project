@@ -21,7 +21,8 @@ def remove_yticks(*the_axes):
 
 # Make the file_list and ALL the data
 for filename in os.listdir('./'+str(data_directory)):
-	file_list.append(filename)
+	if filename.endswith(".tsv"):
+		file_list.append(filename)
 
 # Sort the file_list
 file_list.sort(); big_data_list = []; ax_list = []
@@ -73,6 +74,7 @@ for filename in file_list:
 			ax_list[1].get_yticks()[-1], len(ax_list[0].get_yticks())))
 
 	ax_list[0].grid(True)
+	ax_list[0].yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
 	ax_list[1].grid(True)
 	ax_list[1].yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
 
@@ -81,16 +83,16 @@ for filename in file_list:
 	ax_list.append(plt.subplot(2,1,2))
 	Z_plot = ax_list[2].plot(x, Z, label=r"$Z$", color='green', linewidth=2)
 	ax_list[2].set_ylabel(r"$Z$", fontsize='large', rotation=0, labelpad=20)
-	plt.ylim((the_mins[3], the_maxs[3]))
+	plt.ylim((0.0, the_maxs[4]+0.1))
 
 	ax_list.append(ax_list[2].twinx())
 	D_plot = ax_list[3].plot(x, Diffusivity, label=r"$D$",\
 			color='orange', linewidth=2)
 	ax_list[3].set_ylabel(r"$D$", fontsize='large', rotation=0, labelpad=20)
-	plt.ylim((the_mins[3], the_maxs[3]))
+	plt.ylim((0.0, the_maxs[4]+0.1))
 
-	ax_list[2].set_yticks(numpy.linspace(ax_list[2].get_yticks()[0],\
-			ax_list[2].get_yticks()[-1], len(ax_list[3].get_yticks())))
+#	ax_list[2].set_yticks(numpy.linspace(ax_list[2].get_yticks()[0],\
+#			ax_list[2].get_yticks()[-1], len(ax_list[3].get_yticks())))
 
 	ax_list[2].grid(True)
 	ax_list[2].yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
@@ -109,7 +111,7 @@ for filename in file_list:
 	ax_list[3].legend(bottom_plot, bottom_labels, loc='best')
 
 
-	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{20}~, ~~ D = 1 / (1 + 0.01\,Z^2 + 0.001\,(Z^\prime)^{2})$" +"\n"+ "$t = " +str(int(filename_sans_ext))+ "$",\
+	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{18}~, ~~ D = 1 / (1 + 0.01\,Z^2 + 0.001\,(Z^\prime)^{2})$" +"\n"+ "$t = " +str(int(filename_sans_ext))+ "$",\
 			fontsize=22)
 	fig_state.tight_layout(pad=0.2, w_pad=0.0)
 	plt.subplots_adjust(top=0.92)
@@ -117,6 +119,8 @@ for filename in file_list:
 	fig_state.savefig(data_directory +'/'+ filename_sans_ext +'.png')
 
 #	print str(i) + "\t| Saved " + str(filename_sans_ext) + ".png"
+#	fig_state.show()
+#	raw_input("BREAK"); break
 	i = i + 1
 	# Clear things
 	plt.clf(); fig_state.clf(); ax_list = []
