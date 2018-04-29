@@ -119,7 +119,7 @@ for filename in file_list:
 		ax_list[k].yaxis.tick_right()
 		ax_list[k].tick_params(axis='y', labelsize='medium')
 
-	fig_flux.suptitle(r"$\Gamma_c = -1.0\times 10^{18}~, ~~ D = 1 / (1 + 0.01\,Z^2 + 0.001\,(Z^\prime)^{2})$" +"\n"+ "$t = " +str(int(filename_sans_ext))+ "$",\
+	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{18}$, $D = 1 / [1 + 0.01 (Z)^2 + 0.001 (Z_x)^2]$"+ "\n" +"$t = " +str(int(filename_sans_ext))+ "$",\
 			fontsize=22)
 	fig_flux.tight_layout(pad=0.05, w_pad=0.0)
 	plt.subplots_adjust(top=0.95)

@@ -111,7 +111,7 @@ for filename in file_list:
 	ax_list[3].legend(bottom_plot, bottom_labels, loc='best')
 
 
-	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{18}~, ~~ D = 1 / (1 + 0.01\,Z^2 + 0.001\,(Z^\prime)^{2})$" +"\n"+ "$t = " +str(int(filename_sans_ext))+ "$",\
+	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{18}$, $D = 1 / [1 + 0.01 (Z)^2 + 0.001 (Z_x)^2]$"+ "\n" +"$t = " +str(int(filename_sans_ext))+ "$",\
 			fontsize=22)
 	fig_state.tight_layout(pad=0.2, w_pad=0.0)
 	plt.subplots_adjust(top=0.92)
