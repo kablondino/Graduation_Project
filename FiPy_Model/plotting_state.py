@@ -36,6 +36,8 @@ stacked_data = numpy.dstack(tuple(big_data_list))
 the_mins = numpy.amin(numpy.amin(stacked_data, axis=2), axis=1)
 the_maxs = numpy.amax(numpy.amax(stacked_data, axis=2), axis=1)
 
+big_data_list = []
+del big_data_list
 
 i = 0 # Looping counter
 # State plots
@@ -118,6 +120,5 @@ for filename in file_list:
 	i = i + 1
 	# Clear things
 	plt.clf(); fig_state.clf(); ax_list = []
-	break
 
 
