@@ -137,8 +137,8 @@ if __name__ == '__main__':
 
 		# Save TSV's
 		if config.save_TSVs == True:
-			TSVViewer(vars=(density, temperature, Z, Diffusivity,\
-					D_an, Gamma_an, Gamma_cx, D_bulk, Gamma_bulk,\
+			TSVViewer(vars=(density, temperature, Z, Diffusivity, D_an,\
+					Gamma_an, n_0, cx_rate, Gamma_cx, D_bulk, Gamma_bulk,\
 					Gamma_ol)).plot(filename=config.save_directory+\
 					"/"+str(t).zfill(4)+".tsv")
 

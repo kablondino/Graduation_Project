@@ -53,14 +53,13 @@ if config.original_model == True:
 	lambda_n = 5.0/4.0						# Length scales for decay at edge
 	lambda_T = 3.0/2.0
 	lambda_Z = 5.0/4.0
-	mu = 1.0 / 20.0
 elif config.original_model == False:
 	L = 0.05							# in m
 	lambda_n = 0.0125						# Length scales for decay at edge
 	lambda_T = 0.015
 	lambda_Z = 0.0125
-	mu = 1.0 / 150.0
 
+mu = 1.0 / 20.0
 
 D_max = 5.0
 D_min = 2.0/5.0
