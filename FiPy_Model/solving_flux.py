@@ -85,7 +85,8 @@ if __name__ == '__main__':
 			getattr(config, 'save_TSVs', False) == True)):
 		if not os.path.exists(os.getcwd() +str("/")+ config.save_directory):
 			os.makedirs(os.getcwd() +str("/")+ config.save_directory)
-			raw_input("Directory created: " +str(config.save_directory))
+			print "Directory created: " +str(config.save_directory)
+		copyfile(config_file, config.save_directory +"/"+ config_file)
 		raw_input("Pause set for writing to file...")
 
 
