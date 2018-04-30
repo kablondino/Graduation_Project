@@ -195,12 +195,16 @@ We can normalize the electric field, rewrite the terms with `gradient' coefficie
 With toroidal rotation, the charge exchange process between ions and neutrals causes a momentum imbalance for the charged plasma, as the momentum goes to the neutrals.
 This momentum loss causes a charge imbalance, leading to a current \cite{toda_theoretical_1997}.
 
-The charge exchange rate is obtained from a qualitative scheme by Connor and Wilson \cite{connor_review_2000}, in which the ``weak function'' $\phi_\text{cx}$ is an exponential decay.
-\begin{align} % Charge exchange rate
-	\langle \sigma_\text{cx} v\rangle \,=\, \frac{C_\text{cx}}{\sqrt{T}} \,
-		\exp\left[-\frac{E_0}{T}\right] \label{eq:cx_rate}
+One form of the charge exchange rate is obtained from a qualitative scheme by Connor and Wilson \cite{connor_review_2000}, with a ``weak function'' $\phi_\text{cx}$.
+\begin{align} % Connor and Wilson's charge exchange rate
+	\langle \sigma_\text{cx} v\rangle \,=\, \frac{C_\text{cx}}{\sqrt{m_i}} \,
+		\phi_\text{cx}\left(\frac{E_0}{T}\right) \label{eq:connor_cx_rate}
 \end{align}
-\todo{\color{red}COULD BE COMPLETELY INCORRECT. Found forms to replace.}
+Another form, by Itoh, \emph{et. al} \cite{itoh_model_1989}, follows this idea by making it proportional to the cube root of the temperature.
+\begin{align} % Itoh's charge exchange rate
+	\langle \sigma_\text{cx} v\rangle \,=\, 10^{-14}
+		\left(100 \, T\right)^{1/3} \label{eq:itoh_cx_rate}
+\end{align}
 Electrons are not exchanged above a particular temperature threshold, but rather fully ionized and lost to the bulk plasma.
 The term $E_0$ is simply the ionization energy for the particular species used; hydrogen is investigated in this project, and the term is thus set to 13.6 eV.
 The coefficient $C_\text{cx}$ is a numerical constant that chooses the maximum rate.
@@ -214,12 +218,13 @@ The profile of these therefore have a penetration depth from the edge, and drops
 The maximum value of the neutrals is governed by $\frac{\theta\,\Gamma_c}{v_{T_i}}$, in which $\theta$ is some small value between 0 and 0.2.
 The penetration depth is $d$, with the rate of drop off determined by $k$.
 
+Combining the neutrals density and charge exchange rate into a nonambipolar flux gives
 \begin{align} % Charge exchange current
 	e\,\Gamma_e^\text{cx} \,&=\,
 		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \, n\,T}{B_\theta^2}
 		\, \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right] \,
 		\left(\frac{n^\prime}{n} \,+\, \frac{\alpha_\text{cx}\,T^\prime}
-		{T} - \frac{Z}{\rho_{\theta i}}\right) \label{eq:Gamma_cx}
+		{T} - \frac{Z}{\rho_{\theta i}}\right)~. \label{eq:Gamma_cx}
 \end{align}
 Similar to $\alpha_\text{an}$, the coefficient $\alpha_\text{cx}$ is on the order unity.
 We can write the terms in a similar fashion to Eqs.~\ref{eq:Gamma_an_g} as comparison.
