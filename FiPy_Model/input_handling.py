@@ -41,6 +41,7 @@ import sys
 
 # Import variables from job configuration file, as cmd line argument
 config = __import__ (sys.argv[1].replace('.py',''))
+config_file = sys.argv[1]
 
 parameter_sets = ["staps", "paquay", "g_grad", "gradient_model"]
 diffusivity_models = ["d_zohm", "zohm", "d_staps", "staps", "d_shear",\
