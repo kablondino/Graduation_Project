@@ -13,6 +13,7 @@ from fipy import TransientTerm, DiffusionTerm, Viewer, TSVViewer
 from fipy.solvers import *
 
 import os	# For saving files to a specified directory
+from shutil import copyfile
 
 
 # Initialize all the coefficients and other variables
