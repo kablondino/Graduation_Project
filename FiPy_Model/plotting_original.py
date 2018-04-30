@@ -14,7 +14,8 @@ data_directory = sys.argv[1]
 file_list = []
 
 for filename in os.listdir('./'+str(data_directory)):
-	file_list.append(filename)
+	if filename.endswith(".tsv"):
+		file_list.append(filename)
 
 i = 0 # Looping counter
 for filename in file_list:
@@ -35,7 +36,7 @@ for filename in file_list:
 	plt.title(r"$\Gamma_c = -0.8~, ~~ D \sim 1 / (1 + (Z^\prime)^{-2})$" +"\n"+ "$t = "+ str(filename_sans_ext)+ "$")
 	plt.savefig(data_directory +'/'+ filename_sans_ext +'.png')
 
-	print str(i) + "\t| Saved " + str(filename_sans_ext) + ".png"
+#	print str(i) + "\t| Saved " + str(filename_sans_ext) + ".png"
 	i = i + 1
 	plt.clf()
 
