@@ -61,10 +61,11 @@ if __name__ == '__main__':
 	# Declare viewers
 	if config.generate_plots == True:
 		density_viewer = Viewer(density, xmin=0.0, xmax=L,\
-				datamin=0.0, datamax=2.1e19, legend='best')
+				datamin=0.0, datamax=None, legend='best')
 		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
-				datamin=80.0, datamax=450.0, legend='best')
-		Z_viewer = Viewer(Z, xmin=0.0, xmax=L, datamin=0.0, legend='best')
+				datamin=80.0, datamax=None, legend='best')
+		Z_viewer = Viewer(Z, xmin=0.0, xmax=L, datamin=0.0, datamax=None,\
+				legend='best')
 		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
 				datamax=D_max + D_max/10.0, legend='best')
 		raw_input("Pause for Viewing Initial Conditions")
@@ -106,6 +107,12 @@ if __name__ == '__main__':
 			print t, current_residual
 			current_residual = full_equation.sweep(dt=config.timeStep,\
 					solver=GMRES_Solver)
+
+		# "Turn on" NBI
+		if t == 200:
+			config.Gamma_c = 1.0e2*config.Gamma_c
+			config.q_c = 5.0e2*config.Gamma_c
+			set_boundary_values(config.Gamma_c, config.q_c)
 
 
 		# Plot solution and save, if option is True

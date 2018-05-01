@@ -18,7 +18,7 @@ m_e = constants.m_e							# Electron mass
 m_i = constants.m_p							# Ion (H) mass
 epsilon_0 = constants.epsilon_0				# Permittivity of free space
 mu_0 = constants.mu_0						# Permeability of free space
-gamma = 5.0/3.0								# Adiabatic index for monoatomic
+gamma = 5.0 / 3.0							# Adiabatic index for monoatomic
 
 
 # ----------------- ASDEX-U Specifications ----------------
@@ -54,7 +54,7 @@ if config.original_model == True:
 	lambda_T = 3.0/2.0
 	lambda_Z = 5.0/4.0
 elif config.original_model == False:
-	L = 0.05							# in m
+	L = 0.05								# in m
 	lambda_n = 0.0125						# Length scales for decay at edge
 	lambda_T = 0.015
 	lambda_Z = 0.0125
@@ -90,7 +90,7 @@ elif config.numerical_choice.lower() == "staps":
 
 
 ## For use in full flux model
-alpha_an = 0.2				# Anomalous loss coefficient
-a_in0 = 0.05				# Neutrals coefficient
-alpha_cx = 0.9				# Charge exchange coefficient
+alpha_an = 0.7				# Anomalous loss coefficient
+#a_in0 = 0.05				# Neutrals coefficient # DEPRICATED
+alpha_cx = 1.0				# Charge exchange coefficient
 
