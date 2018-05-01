@@ -48,3 +48,9 @@ __init__.py
 # Perl files
 *.pl
 
+# Zipped files and archives
+*.tar
+*.tar.gz
+*.tar.bz2
+*.zip
+
