@@ -1,4 +1,4 @@
-# Full Model Notes: 25 Apr 2018
+# Full Model Notes: 1 May 2018
 
 \small\begin{align}
 	&\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,=\, a + bx - x^3 \\
@@ -27,10 +27,9 @@ All temperatures are in eV.
 		\,=\, 4.2058\times 10^{-5} \frac{n}{(T_\text{eV})^{3/2}}~,~~~
 		\nu_{ii} \,=\, 1.2\, \nu_{ei} \, \sqrt{\frac{m_e}{m_i}}~,~~~
 		\nu_{*j} \,=\, \frac{\nu_{ij}}{\omega_{bj}} \\
-	\langle \sigma_\text{cx} v \rangle \,&=\, \frac{C_\text{cx}}{\sqrt{T}} \,
-		\exp\left(-\frac{E_0}{T}\right)~,~~~
-		\langle \sigma_\text{ion} v \rangle \,=\, \frac{C_\text{ion}}{\sqrt{m_i}} \,
-		\exp\left(-\frac{E_0}{T}\right) \\
+	\langle \sigma_\text{cx} v \rangle \,&=\, 10^{-14} \sqrt[3]{100 \, T}
+		\,=\, 1.985\times 10^{-14} \sqrt{T} \\
+		&~~~~~~\text{Itoh 1989} ~~~~~~~~~ \text{Rozhansky 2001} \\
 	\text{Non-formal:}& ~~ n_0 \,=\, \frac{n_0(0)}
 		{\left(1 + \exp\left[k(x - d)\right]\right)}~,~~~
 		n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~
@@ -38,6 +37,12 @@ All temperatures are in eV.
 	\text{Depricated:}&~\nu_{in_0} \,=\, a_{in_0} \, \omega_{bi}~,~~~
 		\nu_\text{eff} \,=\, \nu_{ii} + \nu_{in_0}
 \end{align}\normalsize
+
+<!--- OLD CHARGE EXCHANGE REACTION and IONIZATION RATE
+	\langle \sigma_\text{cx} v \rangle \,&=\, \frac{C_\text{cx}}{\sqrt{T}} \,
+		\exp\left(-\frac{E_0}{T}\right)~,~~~
+		\langle \sigma_\text{ion} v \rangle \,=\, \frac{C_\text{ion}}{\sqrt{m_i}} \,
+		\exp\left(-\frac{E_0}{T}\right) \\-->
 
 ### Model Forms
 Domain with boundary:
@@ -49,7 +54,7 @@ Domain with boundary:
 
 Electric field normalization, energy definition, diffusivity relation, dielectric constant, and viscosity:
 \small\begin{align}
-	Z \,\equiv\, \frac{\rho_\theta \, e \, E_r}{T}~, ~~~~
+	Z \,\equiv\, \frac{e \, \rho_\theta \, E_r}{T}~, ~~~~
 		U \,=\, \frac{n\,T}{\gamma - 1}~, ~~~~
 		\chi \,=\, \frac{D}{\zeta(\gamma - 1)}~, ~~~~
 		\epsilon \,=\, \frac{B_\theta^2}{B^2 \nu_i}~, ~~~~
@@ -77,7 +82,7 @@ Reducing down to equations of only $n$ and $T$ (of 2 possible forms): $\dfrac{\p
 		\frac{\partial T}{\partial x}\right] \,+\,
 		\frac{\partial}{\partial x}\left[D\,T \,
 		\frac{\partial n}{\partial x}\right]~, ~~~~
-		\frac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}
+	  \frac{\partial T}{\partial t} \,=\, \frac{\partial }{\partial x}
 		\left[\frac{D}{\zeta} \, \frac{\partial T}{\partial x}\right] \,+\,
 		\left(\frac{1}{\zeta} + 1\right) \frac{D}{n} \,
 		\frac{\partial n}{\partial x} \, \frac{\partial T}{\partial x}
@@ -171,8 +176,9 @@ Steady-State Solutions
 	\text{Staps':}& ~ \theta \,=\, \frac{(\gamma - 1) q_c}{\Gamma_c^2 \lambda_n^2} (c_n + c_g), ~~ \text{Paquay's:} ~ \theta \,=\, \frac{\Gamma_c^2 \lambda_n^2}{q_c \zeta (\gamma - 1)} \, \frac{\lambda_n + \zeta\lambda_T}{c_n\lambda_T + c_T\lambda_n} \,=\, \frac{1}{\text{Staps}} \,=\, \text{Weymiens}
 \end{align}\normalsize
 
-### Gradient Model
-Staps' derivation, now known to be slightly incorrect:
+### Physical Model
+As a starting point, the nonambipolar currents are used, rather than some cubic polynomial.
+Start with Staps' derivation, now known to be slightly incorrect, since the polarization current is defined slightly incorrectly in his version:
 \small\begin{align}
 	&\frac{m_i n T}{e \rho_{\theta i} B^2} \, \frac{\partial Z}{\partial t}
 		\,=\, \frac{m_i \mu_i n T}{e \rho_{\theta i} B_\theta^2} \,
@@ -190,15 +196,15 @@ Staps' derivation, now known to be slightly incorrect:
 Corrected version, which is used:
 \small\begin{align}
 	\text{Currents:} ~~~~ \frac{e \, n \, \rho_{\theta i}}{2} \,
-		\frac{\partial Z}{\partial t} \,&=\, \frac{e \, \mu \, \rho_{\theta i}}
-		{2} \, \frac{\partial}{\partial x} \left[n \, \frac{\partial Z}
+		\frac{\partial Z}{\partial t} \,&=\, \frac{e \, \rho_{\theta i}}
+		{2} \, \frac{\partial}{\partial x} \left[\mu \, n \, \frac{\partial Z}
 		{\partial x}\right] \,+\, \sum_\text{k} e \, \Gamma^\text{k} \\
-	\text{Reduced:} ~~~~ n \, \frac{\partial Z}{\partial t} \,&=\, \mu \,
-		\frac{\partial}{\partial x} \left[n \, \frac{\partial Z}{\partial x}
-		\right] \,+\, \frac{2}{\rho_{\theta i}} \sum_\text{k} \Gamma^\text{k} \\
-	\sum_\text{k} \Gamma^\text{k} \,&=\, \Gamma_e^\text{an} \,-\,
-		\Gamma_i^\text{cx} \,-\, \Gamma_i^{\pi\parallel} \,-\,
-		\Gamma_i^\text{ol}
+	\text{Reduced:} ~~~~ n \, \frac{\partial Z}{\partial t} \,&=\, 
+		\frac{\partial}{\partial x} \left[\mu \, n \,
+		\frac{\partial Z}{\partial x} \right] \,+\, \frac{2}{\rho_{\theta i}}
+		\sum_\text{k} \Gamma^\text{k}~, ~~~ \sum_\text{k} \Gamma^\text{k}
+		\,=\, \Gamma_e^\text{an} \,-\, \Gamma_i^\text{cx}
+		\,-\, \Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{ol}
 \end{align}\normalsize
 
 + Ion Bulk Viscosity: <!--- $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
@@ -228,7 +234,7 @@ Corrected version, which is used:
 + Charge Exchange Friction:
 \small\begin{align}
 	g_n^\text{cx} \,=\,
-		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \,n T}{B_\theta^2}
+		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \,n \,T}{B_\theta^2}
 		\left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]~,~~~~
 		g_T^\text{cx} \,=\, \alpha_\text{cx}\,g_n^\text{cx}~,~~~~
 		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
