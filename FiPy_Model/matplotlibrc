@@ -1,4 +1,4 @@
-backend 			: qt4agg
+backend 			: cairo
 font.family 		: sans-serif
 font.size 			: 16
 #text.usetex 		: True

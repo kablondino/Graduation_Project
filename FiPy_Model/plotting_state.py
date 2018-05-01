@@ -47,8 +47,8 @@ for filename in file_list:
 	data = numpy.loadtxt(data_directory+'/'+filename, unpack=True, skiprows=1)
 
 	# The data
-	x, density, temperature, Z, Diffusivity, D_an, Gamma_an, Gamma_cx,\
-			D_bulk, Gamma_bulk, Gamma_ol = data[:]
+	x, density, temperature, Z, Diffusivity, D_an, Gamma_an, n_0, cx_rate,\
+			Gamma_cx, D_bulk, Gamma_bulk, Gamma_ol = data[:]
 
 	# Generate the figures
 	fig_state = plt.figure()
@@ -111,7 +111,7 @@ for filename in file_list:
 	ax_list[3].legend(bottom_plot, bottom_labels, loc='best')
 
 
-	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{18}$, $D = 1 / [1 + 0.01 (Z)^2 + 0.001 (Z_x)^2]$"+ "\n" +"$t = " +str(int(filename_sans_ext))+ "$",\
+	fig_state.suptitle(r"$\Gamma_c = -6.0\times 10^{20}$, $D \sim 1 / [1 + 0.01 (Z)^2 + 0.001 (Z_x)^2]$"+ "\n" +"$\mu = 0.05$, $t = " +str(int(filename_sans_ext))+ "$",\
 			fontsize=22)
 	fig_state.tight_layout(pad=0.2, w_pad=0.0)
 	plt.subplots_adjust(top=0.9)
