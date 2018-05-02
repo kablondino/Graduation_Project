@@ -34,8 +34,9 @@ for filename in file_list:
 # Stack the arrays
 stacked_data = numpy.dstack(tuple(big_data_list))
 # Get the minima and maxima
-the_mins = numpy.amin(numpy.amin(stacked_data, axis=2), axis=1)
-the_maxs = numpy.amax(numpy.amax(stacked_data, axis=2), axis=1)
+the_mins = numpy.nanmin(numpy.nanmin(stacked_data, axis=2), axis=1)
+the_maxs = numpy.nanmax(numpy.nanmax(stacked_data, axis=2), axis=1)
+#print the_mins, the_maxs
 
 big_data_list = []
 del big_data_list
@@ -119,7 +120,7 @@ for filename in file_list:
 		ax_list[k].yaxis.tick_right()
 		ax_list[k].tick_params(axis='y', labelsize='medium')
 
-	fig_flux.suptitle(r"$\Gamma_c = -6.0\times 10^{20}$, $D \sim 1 / [1 + 0.01 (Z)^2 + 5.0e-4 (Z_x)^2]$"+ "\n" +"$\mu = 0.05$, $t = " +str(int(filename_sans_ext))+ "$",\
+	fig_flux.suptitle(r"$\Gamma_c = -1.0\times 10^{19} -> -1.0\times 10^{21}$, $D \sim 1 / [1 + 0.001 (Z)^2 + 3.0e-3 (Z_x)^2]$"+ "\n" +"$\mu = 0.05$, $t = " +str(int(filename_sans_ext))+ r"\cdot 5 \mu s$",\
 			fontsize=22)
 	fig_flux.tight_layout(pad=0.05, w_pad=0.0)
 	plt.subplots_adjust(top=0.92)
@@ -132,4 +133,5 @@ for filename in file_list:
 #	raw_input("ADSF"); break
 	# Clear things
 	plt.clf(); fig_flux.clf(); ax_list = []
+	plt.close()
 
