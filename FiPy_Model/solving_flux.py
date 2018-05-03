@@ -63,11 +63,11 @@ if __name__ == '__main__':
 		density_viewer = Viewer(density, xmin=0.0, xmax=L,\
 				datamin=0.0, datamax=None, legend='best')
 		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
-				datamin=80.0, datamax=None, legend='best')
-		Z_viewer = Viewer(Z, xmin=0.0, xmax=L, datamin=0.0, datamax=None,\
-				legend='best')
-		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
-				datamax=D_max + D_max/10.0, legend='best')
+				datamin=0.0, datamax=None, legend='best')
+		ZD_viewer = Viewer((Z, Diffusivity), xmin=0.0, xmax=L, datamin=0.0,\
+				datamax=D_max+0.2, legend='best')
+#		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
+#				datamax=D_max + D_max/10.0, legend='lower right')
 		raw_input("Pause for Viewing Initial Conditions")
 
 		# Auxiliary viewers
@@ -109,10 +109,10 @@ if __name__ == '__main__':
 					solver=GMRES_Solver)
 
 		# "Turn on" NBI
-		if t == 200:
-			config.Gamma_c = 1.0e2*config.Gamma_c
-			config.q_c = 5.0e2*config.Gamma_c
-			set_boundary_values(config.Gamma_c, config.q_c)
+#		if t == 50:
+#			config.Gamma_c = 1.0e1*config.Gamma_c
+#			config.q_c = 5.0e2*config.Gamma_c
+#			set_boundary_values(config.Gamma_c, config.q_c)
 
 
 		# Plot solution and save, if option is True
@@ -122,10 +122,10 @@ if __name__ == '__main__':
 						+str(t).zfill(4)+ ".png")
 				temp_viewer.plot(filename=config.save_directory + "/T" \
 						+str(t).zfill(4)+ ".png")
-				Z_viewer.plot(filename=config.save_directory + "/Z" \
+				ZD_viewer.plot(filename=config.save_directory + "/Z" \
 						+str(t).zfill(4)+ ".png")
-				D_viewer.plot(filename=config.save_directory + "/D" \
-						+str(t).zfill(4)+ ".png")
+#				D_viewer.plot(filename=config.save_directory + "/D" \
+#						+str(t).zfill(4)+ ".png")
 
 				# Save auxiliary plots
 				if config.aux_plots == True:
@@ -137,7 +137,7 @@ if __name__ == '__main__':
 			# If not set to save
 			elif config.save_plots == False:
 				density_viewer.plot(); temp_viewer.plot()
-				Z_viewer.plot(); D_viewer.plot()
+				ZD_viewer.plot()#; D_viewer.plot()
 
 				if config.aux_plots == True:
 					for current_aux in aux_plot_array:
