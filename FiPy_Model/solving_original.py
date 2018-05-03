@@ -59,7 +59,7 @@ if __name__ == '__main__':
 	# Declare viewer
 	if config.generate_plots == True:
 		viewer = Viewer((density, temperature, -Z, Diffusivity),\
-				xmin=0.0, xmax=L, datamin=-0.5,\
+				xmin=0.0, xmax=L, datamin=-0.2,\
 				datamax=config.ploty_max, legend='best',\
 				title = config.plot_title)
 		raw_input("Pause for Viewing Initial Conditions")
