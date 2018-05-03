@@ -48,16 +48,17 @@ q = aspect * B_phi/B_theta					# q value
 ## PRESET parameters for quick calculation, many of which
 ## are chosen by Staps and Paquay
 
+
 if config.original_model == True:
 	L = 4.0									# in AU
-	lambda_n = 5.0/4.0						# Length scales for decay at edge
-	lambda_T = 3.0/2.0
-	lambda_Z = 5.0/4.0
+	lambda_n = 5.0 / 4.0					# Length scales for decay at edge
+	lambda_T = 3.0 / 2.0
+	lambda_Z = 5.0 / 4.0
 elif config.original_model == False:
 	L = 0.05								# in m
-	lambda_n = 0.0125						# Length scales for decay at edge
-	lambda_T = 0.015
-	lambda_Z = 0.0125
+	lambda_n = 0.01
+	lambda_T = 0.0125
+	lambda_Z = 0.01
 
 mu = 1.0 / 20.0
 
@@ -90,7 +91,7 @@ elif config.numerical_choice.lower() == "staps":
 
 
 ## For use in full flux model
-alpha_an = 0.7				# Anomalous loss coefficient
+alpha_an = 1.5				# Anomalous loss coefficient
 #a_in0 = 0.05				# Neutrals coefficient # DEPRICATED
-alpha_cx = 1.0				# Charge exchange coefficient
+alpha_cx = 1.5				# Charge exchange coefficient
 
