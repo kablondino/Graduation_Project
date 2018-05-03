@@ -89,7 +89,7 @@ def calculate_coeffs():
 			* temperature) / (B_theta**2))\
 			* ((B_theta**2 / (aspect * B_phi)**2) + 2.0))		# [A m^-2]
 	g_T_cx.setValue(alpha_cx * g_n_cx)							# [A m^-2]
-	g_Z_cx.setValue(-g_n_cx / rho_pi)							# [A m^-1]
+	g_Z_cx.setValue(g_n_cx / rho_pi)							# [A m^-1]
 
 	Gamma_cx.setValue((g_n_cx * density.grad[0] / density\
 			+ g_T_cx * temperature.grad[0] / temperature\
