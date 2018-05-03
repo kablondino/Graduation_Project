@@ -36,8 +36,8 @@ if config.original_model == True:
 #if config.original_model == False:
 #	# L--mode
 #	if config.initial_H_mode == False:
-#		density.setValue(1.5e18*x / L + 0.5e18)		# in m^-3
-#		temperature.setValue(300.0*x / L + 100.0)	# in eV!
+#		density.setValue(((1.0e19 - 3.0e18)/0.05)*x + 3.0e18)	# in m^-3
+#		temperature.setValue(((500.0 - 100.0)/0.05)*x + 100.0)	# in eV!
 #		Z.setValue(0.0)
 #
 #	# H--mode
@@ -89,10 +89,9 @@ Diffusivity.setValue(D_choice_local)
 print "The diffusivity is set to " +str(config.D_choice)
 
 # --- Old init definitions, which requires Diffusivity to ALREADY be set -----
-density.setValue(-(config.Gamma_c*lambda_n / Diffusivity)\
+density.setValue((1.0e21*lambda_n / Diffusivity)\
 		* (1.0 + x/lambda_n))
-temperature.setValue(config.q_c\
-		* ((gamma - 1.0) / config.Gamma_c)\
+temperature.setValue(5.0e23 * ((gamma - 1.0) / 1.0e21)\
 		* (1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
 		* (1.0 + x/lambda_n)**-zeta))
 
@@ -107,7 +106,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 		d/dx(n(0)) == n / lambda_n
 		d/dx(n(L)) == -Gamma_c / Diffusivity
 	"""
-	density.faceGrad.constrain(density.faceValue / (lambda_n),\
+	density.faceGrad.constrain(density.faceValue / lambda_n,\
 			mesh.facesLeft)
 	density.faceGrad.constrain(\
 			-AGamma_c / Diffusivity.faceValue, mesh.facesRight)
@@ -117,7 +116,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 		d/dx(T(0)) = T / lambda_T
 		d/dx(T(L)) = zeta*(Gamma_c*T - q_c*(gamma - 1)) / (Diffusivity * n)
 	"""
-	temperature.faceGrad.constrain(temperature.faceValue / (lambda_T),\
+	temperature.faceGrad.constrain(temperature.faceValue / lambda_T,\
 			mesh.facesLeft)
 	temperature.faceGrad.constrain( (zeta * (AGamma_c*temperature.faceValue\
 			- Aq_c*(gamma - 1.0))) / (Diffusivity.faceValue\
@@ -128,7 +127,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 		d/dx(Z(0)) == Z / lambda_Z
 		mu*D/epsilon * d/dx(Z(L)) == 0
 	"""
-#	Z.faceGrad.constrain(Z.faceValue / (lambda_Z), mesh.facesLeft)
+	Z.faceGrad.constrain(abs(Z.faceValue) / lambda_Z, mesh.facesLeft)
 	Z.faceGrad.constrain(0.0, mesh.facesRight)
 #	Z.constrain(0.0, mesh.facesRight)
 
