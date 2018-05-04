@@ -83,7 +83,7 @@ for filename in file_list:
 	ax_list.append(plt.subplot(2,1,2))
 	Z_plot = ax_list[2].plot(x, Z, label=r"$Z$", color='green', linewidth=2)
 	ax_list[2].set_ylabel(r"$Z$", fontsize='large', rotation=0, labelpad=20)
-	plt.ylim((0.0, the_maxs[4]+0.1))
+	plt.ylim((0.0, the_maxs[3]))
 
 	ax_list.append(ax_list[2].twinx())
 	D_plot = ax_list[3].plot(x, Diffusivity, label=r"$D$",\
