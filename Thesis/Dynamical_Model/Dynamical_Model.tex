@@ -120,10 +120,11 @@ If one assumes that $n_i \approx n_e$ and $m_i \gg m_e$, then the sum for Eq.~\r
 		\frac{\partial E_r}{\partial x}\right]~. \label{eq:shear_current_E_r}
 \end{align}
 Another liberty taken is assuming the viscosity $\mu$ is a constant in space and time.
+However, it will still be written here as though it is not constant.
 Normalizing this expression such that it is expressed in terms of $Z$ results in
 \begin{align} % Final result of shear viscosity current, normalized
-	J^{\pi\perp} \,&=\, -\frac{e \, \mu \, \rho_{\theta i}}{2} \,
-		\frac{\partial}{\partial x} \left[n \, \frac{\partial Z}
+	J^{\pi\perp} \,&=\, -\frac{e \, \rho_{\theta i}}{2} \,
+		\frac{\partial}{\partial x} \left[\mu \, n \, \frac{\partial Z}
 		{\partial x}\right] \label{eq:shear_current_normalized}
 \end{align}
 Note that the temperature gradient and concavity has traditionally been ignored for this flux.
@@ -262,19 +263,22 @@ To model the dynamics of the transition fully within this scope, the radial elec
 Two forms of the field equation are presented, with the latter being of more interest.
 
 \subsection{Original Model}\label{ssec:original_Z_equation}
-Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{zohm_dynamic_1994} originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase
+Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{zohm_dynamic_1994} originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase.
+It was incorporated from the FitzHugh-Nagumo model, Eq.~\ref{eq:FitzHugh-Nagumo}.
 \begin{align} % Original Itoh model
-	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) + \mu \frac{\partial Z^2}{\partial x^2}~,\label{eq:original_z} \\
-	N(Z,g) \,&\equiv\, g - g_0 + \left[\beta Z^3 - \alpha Z\right]~.
+	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) \,+\, \mu
+		\frac{\partial Z^2}{\partial x^2}~,\label{eq:original_z} \\
+	N(Z,g) \,&\equiv\, g \,-\, g_0 \,+\, \left[\beta Z^3 \,-\, \alpha Z\right]~.
 \end{align}
 The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
 Weymiens \cite{weymiens_bifurcation_2012} rewrote the equation as
-\begin{align} % Modern model
+\begin{align} % Weymiens model
 	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \,
 		\frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \,
 		\frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \,
 		\frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
-	G(Z) \,\equiv\, a + b(Z - Z_S) + c(Z - Z_S)^3 \label{eq:G_polynomial}
+	G(Z) \,\equiv\, a \,+\, b(Z - Z_S) \,+\, c(Z - Z_S)^3~.
+		\label{eq:G_polynomial}
 \end{align}
 This form has includes the polarization current on the left-hand side and the shear viscosity as the first term on the right-hand side.
 All other possible sources of current are consolidated as the remaining terms, bundling the density and temperature gradient terms accordingly.
@@ -306,23 +310,23 @@ Rather than qualitatively creating an equation as the original model, a synthesi
 %		+ \left(\frac{x}{w_{bi}}\right)^4}}
 \end{align}
 It is advantageous to bundle the neoclassical polarization current $J^\text{pol}$ with the left-hand side before it is normalized, \emph{i.e.} Eq.~\ref{eq:polarization_current_original}.
-\begin{align}
+\begin{align} % Non-normalized current equation
 	\left(\epsilon_0 \,+\, \frac{m_i \, n}{B_\theta^2}\right) \,
 	\frac{\partial E_r}{\partial x} \,&=\, J^{\pi\perp} \,-\, J^{\pi\parallel} \,+\, J^\text{an} \,-\, J^\text{cx} - J^\text{ol}
 \end{align}
 With typical plasma parameters at the edge, \emph{i.e.} $n \sim 10^{19}~\text{m}^{-3}$, $B_\theta \sim 10^{-1}$, the coefficient in $J^\text{pol}$ is 4 orders of magnitude larger than $\epsilon_0$, and therefore dominates.
 After normalizing this and the shear viscosity, the balance of currents is
-\begin{align}
+\begin{align} % Currents equation
 	\frac{e \, n \, \rho_{\theta i}}{2} \, \frac{\partial Z}{\partial t}
-		\,=\, \frac{e \, \mu \, \rho_{\theta i}}{2} \frac{\partial}{\partial x}
-		\left[n \, \frac{\partial Z}{\partial x}\right] \,-\,
+		\,=\, \frac{e \, \rho_{\theta i}}{2} \frac{\partial}{\partial x}
+		\left[\mu \, n \, \frac{\partial Z}{\partial x}\right] \,-\,
 		J^{\pi\parallel} \,+\, J^\text{an} \,-\, J^\text{cx} - J^\text{ol}
 		\label{eq:normalized_Z_equation}
 \end{align}
 A further simplification can be done by multiplying everything by $2 / (e \, \rho_{\theta i})$.
-\begin{align}
-	n \, \frac{\partial Z}{\partial t} \,=\, \mu \, \frac{\partial}{\partial x}
-		\left[n \, \frac{\partial Z}{\partial x}\right] \,+\,
+\begin{align} % Final Equation!
+	n \, \frac{\partial Z}{\partial t} \,=\, \frac{\partial}{\partial x}
+		\left[\mu \, n \, \frac{\partial Z}{\partial x}\right] \,+\,
 		\frac{2}{\rho_{\theta i}} \left(-\Gamma^{\pi\parallel} \,+\,
 		\Gamma^\text{an} \,-\, \Gamma^\text{cx} \,-\, \Gamma^\text{ol}\right)
 		\label{eq:reduced_normalized_Z_equation}
@@ -346,6 +350,7 @@ It was found that ``a flattened (steep) radial equilibrium gradient tends to enh
 		{1 \,+\, c(Z^{\prime})^{\beta}} \label{eq:shear_diffusivity}
 \end{align}
 Previous investigations using this form have had a variety of choices for the parameters, including $c = 0.25, \beta = 2$, and $c = 1, \beta = 2/3$ \cite{connor_review_2000} \cite{itoh_theoretical_1994}.
+In the cases of non-integer values of $\beta$, the absolute value of the derivative is used.
 
 Another form includes both the field itself and its shear \cite{paquay_studying_2012}, and will be referred to as the Flow-Shear model.
 \begin{align} % Flow-Shear equation
@@ -354,6 +359,7 @@ Another form includes both the field itself and its shear \cite{paquay_studying_
 		a_2 Z \cdot Z^{\prime} \,+\, a_3 (Z^{\prime})^2}
 		\label{eq:flow_shear_diffusivity}
 \end{align}
+The constant $a_1$ allows for the value of the radial electric field to also contribute to the diffusivity.
 This form has no literature support for $a_2$, and is therefore set to zero.
 
 \section{Boundary Conditions and Initial Profiles}\label{sec:boundary_conditions}

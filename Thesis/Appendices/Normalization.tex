@@ -1,9 +1,8 @@
 \chapter{\texorpdfstring{$J^\textnormal{pol}$}{J pol} and \texorpdfstring{$J^{\pi\perp}$}{J bulk} Normalization}\label{chapter:Normalization}
-A useful substitution in normalizing these currents is that of the poloidal gyroradius explicitly as a function of temperature.
-\begin{align} % Rho_pi as a function of T
+A useful substitution in normalizing these currents is that of the poloidal gyroradius explicitly as a function of temperature (here in eV).
+\begin{align} % rho_pi as a function of T
 	\rho_{\theta i} \,=\, \sqrt{\frac{2 \, m_i \, T}{e^2 \, B_\theta^2}}
 \end{align}
-This assumes the temperature is measured in eV.
 
 For the polarization current, start with substituting the definition of the normalized electric field, Eq.~\ref{eq:Z_and_rho_definitions}, into Eq.~\ref{eq:polarization_current_original}.
 It is assumed that the timescales of rate of change of $T$ and of $\rho_{\theta i}$ are much greater than the electric field, and are thus ignored.
@@ -25,19 +24,19 @@ It is assumed that the timescales of rate of change of $T$ and of $\rho_{\theta 
 
 The normalization of the shear viscosity follows a similar fashion as the polarization current, with one important distinction.
 \begin{align} % Normalize shear viscosity
-	J^{\pi\perp} \,&=\, -\frac{m_i \, \mu}{B_\theta^2} \,
-		\frac{\partial}{\partial x} \left[n \, \frac{\partial E_r}
+	J^{\pi\perp} \,&=\, -\frac{m_i}{B_\theta^2} \,
+		\frac{\partial}{\partial x} \left[\mu \, n \, \frac{\partial E_r}
 		{\partial x}\right]
-		\,=\, \frac{m_i \, \mu}{B_\theta^2} \, \frac{\partial}{\partial x}
-		\left[n \, \frac{\partial}{\partial x} \left(\frac{Z \, T}
+		\,=\, \frac{m_i}{B_\theta^2} \, \frac{\partial}{\partial x}
+		\left[\mu \, n \, \frac{\partial}{\partial x} \left(\frac{Z \, T}
 		{e \, \rho_{\theta i}}\right)\right] \\
-	=\, -\frac{m_i \, \mu}{B_\theta^{\bcancel{2}}} &\frac{\partial}{\partial x}
-		\left[n \, \frac{\partial}{\partial x}\left(\frac{Z \, T}{\cancel{e}}
-		\sqrt{\frac{\cancel{e^2} \, \cancel{B_\theta^{2}}}{2 \, m_i \, T}}
-		\right)\right]
-		\,=\, \frac{m_i \, \mu}{B_\theta \sqrt{2 \, m_i}}
-		\frac{\partial}{\partial x} \, \left[n \, \frac{\partial}{\partial x}
-		\left(Z \sqrt{T}\right)\right] \\
+	=\, -\frac{m_i}{B_\theta^{\bcancel{2}}} &\frac{\partial}{\partial x}
+		\left[\mu \, n \, \frac{\partial}{\partial x}\left(\frac{Z \, T}
+		{\cancel{e}} \sqrt{\frac{\cancel{e^2} \,
+		\cancel{B_\theta^{2}}}{2 \, m_i \, T}}\right)\right]
+		\,=\, \frac{m_i}{B_\theta \sqrt{2 \, m_i}}
+		\frac{\partial}{\partial x} \, \left[\mu \, n \, \frac{\partial}
+		{\partial x} \left(Z \sqrt{T}\right)\right] \\
 	\nonumber\vdots \\
 	=\, -\frac{\mu}{B_\theta} \sqrt{\frac{m_i}{2}} &\left\{\sqrt{T} \,
 		\frac{\partial}{\partial x} \left[n \, Z^\prime\right] \,+\,
@@ -46,18 +45,22 @@ The normalization of the shear viscosity follows a similar fashion as the polari
 		\frac{n \, Z}{2 \, T}\right)\right\}
 \end{align}
 The skipped steps involve taking many product and chain rules, with the prime notation denoting the spatial derivative.
+This includes the assumption that the dynamic viscosity $\mu$ is set to constant.
+The final form here, however, will include it in the appropriate place.
+One could make the reasonable assumption that, if it does not vary much over space, it's derivatives go to zero as well.
+
 Previous formulations of the shear viscosity has ignored the temperature gradient and concavity, \emph{i.e.} $T^\prime = T^{\prime\prime} = 0$.
 This is continued here in an effort for simplicity, as solving the system of equations would be overly complex, and to serve a comparison with previous investigations \cite{staps_backstepping_2017}.
 \begin{align} % Ignored temperature gradient and concavity
-	\rightarrow\, &\approx\, -\frac{m_i \, \mu}{B_\theta}
-		\sqrt{\frac{T}{2 \, m_i}} \, \frac{\partial}{\partial x} \left[n \,
-		\frac{\partial Z}{\partial x} \right] \,\cdot\,
+	\rightarrow\, &\approx\, -\frac{m_i}{B_\theta}
+		\sqrt{\frac{T}{2 \, m_i}} \, \frac{\partial}{\partial x} \left[\mu \,
+		n \, \frac{\partial Z}{\partial x} \right] \,\cdot\,
 		\frac{e\sqrt{2}}{e\sqrt{2}}
-		\,=\, \frac{e \, \mu}{2} \sqrt{\frac{2 \, m_i \, T}{e^2 \, B_\theta^2}}
-		\, \frac{\partial}{\partial x} \left[n \, \frac{\partial Z}{\partial x}
-		\right] \\
-	J^{\pi\perp} \,&=\, -\frac{e \, \mu \, \rho_{\theta i}}{2} \,
-		\frac{\partial}{\partial x} \left[n \, \frac{\partial Z}
+		\,=\, \frac{e}{2} \sqrt{\frac{2 \, m_i \, T}{e^2 \, B_\theta^2}}
+		\, \frac{\partial}{\partial x} \left[\mu \, n \, \frac{\partial Z}
+		{\partial x} \right] \\
+	J^{\pi\perp} \,&=\, -\frac{e \, \rho_{\theta i}}{2} \,
+		\frac{\partial}{\partial x} \left[\mu \, n \, \frac{\partial Z}
 		{\partial x}\right] \tag*{\eqref{eq:shear_current_normalized}}
 \end{align}
 
