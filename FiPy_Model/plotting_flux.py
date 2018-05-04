@@ -120,7 +120,7 @@ for filename in file_list:
 		ax_list[k].yaxis.tick_right()
 		ax_list[k].tick_params(axis='y', labelsize='medium')
 
-	fig_flux.suptitle(r"$\Gamma_c = -1.0\times 10^{19} -> -1.0\times 10^{21}$, $D \sim 1 / [1 + 0.001 (Z)^2 + 3.0e-3 (Z_x)^2]$"+ "\n" +"$\mu = 0.05$, $t = " +str(int(filename_sans_ext))+ r"\cdot 5 \mu s$",\
+	fig_flux.suptitle(r"$\Gamma_c = -1.0\times 10^{21}$, $D \sim 1 / [1 + 0.001 (Z)^2 + 0.0005 (Z_x)^2]$"+ "\n" +"$\mu = 0.05$, $t = " +str(int(filename_sans_ext))+ r"\cdot 5 \mu s$",\
 			fontsize=22)
 	fig_flux.tight_layout(pad=0.05, w_pad=0.0)
 	plt.subplots_adjust(top=0.92)

@@ -83,13 +83,13 @@ for filename in file_list:
 	ax_list.append(plt.subplot(2,1,2))
 	Z_plot = ax_list[2].plot(x, Z, label=r"$Z$", color='green', linewidth=2)
 	ax_list[2].set_ylabel(r"$Z$", fontsize='large', rotation=0, labelpad=20)
-	plt.ylim((0.0, the_maxs[3]))
+	plt.ylim((min(the_mins[3],the_mins[4]), max(the_maxs[3], the_maxs[4]+0.1)))
 
 	ax_list.append(ax_list[2].twinx())
 	D_plot = ax_list[3].plot(x, Diffusivity, label=r"$D$",\
 			color='orange', linewidth=2)
 	ax_list[3].set_ylabel(r"$D$", fontsize='large', rotation=0, labelpad=20)
-	plt.ylim((0.0, the_maxs[4]+0.1))
+	plt.ylim((min(the_mins[3],the_mins[4]), max(the_maxs[3], the_maxs[4]+0.1)))
 
 #	ax_list[2].set_yticks(numpy.linspace(ax_list[2].get_yticks()[0],\
 #			ax_list[2].get_yticks()[-1], len(ax_list[3].get_yticks())))
@@ -111,7 +111,7 @@ for filename in file_list:
 	ax_list[3].legend(bottom_plot, bottom_labels, loc='best')
 
 
-	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{19} -> -1.0\times 10^{21}$, $D \sim 1 / [1 + 0.001 (Z)^2 + 3.0e-3 (Z_x)^2]$"+ "\n" +"$\mu = 0.05$, $t = " +str(int(filename_sans_ext))+ r"\cdot 5 \mu s$",\
+	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{21}$, $D \sim 1 / [1 + 0.001 (Z)^2 + 0.0005 (Z_x)^2]$"+ "\n" +"$\mu = 0.05$, $t = " +str(int(filename_sans_ext))+ r"\cdot 5 \mu s$",\
 			fontsize=22)
 	fig_state.tight_layout(pad=0.2, w_pad=0.0)
 	plt.subplots_adjust(top=0.9)
