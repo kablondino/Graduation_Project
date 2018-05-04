@@ -1,17 +1,17 @@
 reset()
 
-var('z')
+var('x,z')
 
 plasma_disp(z) = I*sqrt(pi)*exp(-z^2) * erfc(-I*z)
 
-the_title = r"$X(z) = i\sqrt{\pi} \, e^{-z^2} \, $erfc$(-i z) = 2i \, e^{-z^2} \int_{-\infty}^{ix} e^{-t^2} \, dt$"
+complex_one(x) = imag(plasma_disp.subs(z=x + 1*i))
+complex_onetenth(x) = imag(plasma_disp.subs(z=x + 0.1*i))
 
-real_plot = plot(plasma_disp(z).real(), (z,-5,5), color='red',\
-		legend_label=r"Re$(X)$", axes_labels=[r"$z$", ""],\
-		title=the_title)
-imag_plot = plot(plasma_disp(z).imag(), (z,-5,5), color='green',\
-		legend_label=r"Im$(X)$")
+complex_one_plot = plot(complex_one, (x,-4,4), color='olive', legend_label=r"Im$[X(Z + 1i)]$")
+complex_onetenth_plot = plot(complex_onetenth, (x,-4,4), color='turquoise', legend_label=r"Im$[X(Z + 0.1i)]$")
 
-combined_plot = real_plot + imag_plot
-combined_plot.show()
+non_complex_plot = plot(sqrt(pi)*exp(-(x)^2), (x,-4,4), color='blue', legend_label=r"$\sqrt{\pi} \, \exp(-Z^2)$", axes_labels=['$Z$', ''], gridlines=True)
+
+combined_plots = complex_one_plot + complex_onetenth_plot + non_complex_plot
+combined_plots.show()
 
