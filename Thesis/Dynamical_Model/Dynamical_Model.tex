@@ -19,10 +19,12 @@ Note that $\Gamma$ here refers to all species of particle fluxes, both ambipolar
 The heat flux $q$, however, is determined by effective heat convection.
 This is the sum of heat diffusion $\chi n T^\prime$, and advection $\Gamma T$.
 \begin{align} % Full Particle and Heat Fluxes
-	\Gamma \,&=\, -D \frac{\partial n}{\partial x}~,\label{eq:particle_flux} \\
-	q \,&=\, -\chi n \frac{\partial T}{\partial x} \,+\, \frac{\Gamma T}{\gamma - 1} \label{eq:heat_flux}
+	\Gamma \,&=\, -D \, \frac{\partial n}{\partial x}~,
+		\label{eq:particle_flux} \\
+	q \,&=\, -\chi \, n \, \frac{\partial T}{\partial x} \,+\,
+		\frac{\Gamma \, T}{\gamma - 1} \label{eq:heat_flux}
 \end{align}
-The adiabatic index $\gamma$ will be set to $5/3$, as is customary for monatomic gases.
+The adiabatic index $\gamma$ will be set to $5/3$, as is customary for monatomic gases / plasmas.
 It is important to note that these fluxes omit explicit drift velocities as well as particle and heat sources from within the domain of the model \cite{zohm_dynamic_1994}.
 
 The particle and heat diffusivities $D$ and $\chi$ are considered to be functions of the turbulence.
@@ -70,7 +72,7 @@ Particular turbulent and neoclassical phenomena affect ions and electrons differ
 Ultimately, these effects lead to some form of charge separation, inducing a nonambipolar particle flux.
 The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}, Itoh and Itoh \cite{itoh_role_1996}, and Stringer \cite{stringer_explanation_1993}.
 
-For added context, the profiles of these fluxes will also be given with abstract L-- and H--mode density, temperature, and $Z$ profiles, given in Figures~.\todo{\color{red}FIGURES!}
+For added context, the profiles of these fluxes will also be given with abstract L-- and H--mode density, temperature, and $Z$ profiles, given in Figures~.\todo{\color{red}FIGURES MAYBE??!}
 
 \subsection{Polarization Current}\label{ssec:polarization_current}
 In Maxwell's correction of Amp\`ere's law, a current is induced whenever the time derivative of an electric field is non-zero in a medium, which originates from the changing state of polarization.
@@ -84,8 +86,9 @@ Macroscopically, a radial current must flow to provide the torque that changes t
 		\label{eq:polarization_current_original}
 \end{align}
 This is larger than the classical polarization current by a factor of $B^2 / B_\theta^2 \sim 10^1$.
-In this equation, in units of $\text{A}/\text{m}^2$ (contrasting with the original form), $\rho$ is the total mass density, and is summed over all the plasma species.
+The total mass density $\rho$ is summed over all the plasma species.
 Because electrons are $\approx 2000$ times less massive than ions, they are ignored.
+The referenced definition differs by a factor of $c^2$.
 
 It is written with the normalized electric field as the following, with the steps in between shown in Appendix \ref{chapter:Normalization}.
 \begin{align} % Normalized polarization current
@@ -99,12 +102,12 @@ The ion shear (perpendicular) viscosity is the perpendicular component of the vi
 In the L--H transition, it can be viewed as coupling the L-- and H--mode solutions spatially.
 It is expressed by Itoh \emph{et al.} \cite{itoh_elmy_1993} as
 \begin{align} % Shear Viscosity Current
-	J^{\pi\perp} \,=\, \nabla \cdot \left(\frac{e \, \mu \, n \, \rho_{\theta i}}
-		{v_{T_i}} \, \nabla\left(\frac{E_r}{B_\theta}\right)\right)
-		\,=\, \nabla \cdot \left(\frac{m_i \, \mu \, n}{B_\theta^2} \,
-		\nabla E_r\right)~. \label{eq:shear_visc_current_definition}
+	J^{\pi\perp} \,=\, \nabla \cdot \left[\frac{e \, \mu \, n \,
+		\rho_{\theta i}}{v_{T_i}} \, \nabla\left(\frac{E_r}{B_\theta}\right)
+		\right]
+		\,=\, \nabla \cdot \left[\frac{m_i \, \mu \, n}{B_\theta^2} \,
+		\nabla E_r\right]~. \label{eq:shear_visc_current_definition}
 \end{align}
-The ion shear kinematic viscosity $\mu$ is assumed to be constant over space for simplicity.
 Reducing this expression to the one radial direction, and introducing the perpendicular dielectric permittivity $\epsilon_\perp$ \cite{kiviniemi_numerical_2001} gives
 \begin{align} % Current with perpendicular permittivity
 	J^{\pi\perp} \,=\, e\,\Gamma_i^{\pi\perp} \,&=\,
@@ -116,10 +119,10 @@ Reducing this expression to the one radial direction, and introducing the perpen
 If one assumes that $n_i \approx n_e$ and $m_i \gg m_e$, then the sum for Eq.~\ref{eq:perp_permittivity} is only the ion term and the shear viscosity current is written as
 \begin{align} % Definition of perpendicular permittivity
 	J^{\pi\perp} \,=\, -\frac{m_i}{B_\theta^2} \,
-		\frac{\partial}{\partial x} \left[n \, \mu \,
+		\frac{\partial}{\partial x} \left[\mu \, n \,
 		\frac{\partial E_r}{\partial x}\right]~. \label{eq:shear_current_E_r}
 \end{align}
-Another liberty taken is assuming the viscosity $\mu$ is a constant in space and time.
+Another liberty taken is assuming the ion kinematic viscosity $\mu$ is a constant in space and time.
 However, it will still be written here as though it is not constant.
 Normalizing this expression such that it is expressed in terms of $Z$ results in
 \begin{align} % Final result of shear viscosity current, normalized
@@ -156,6 +159,9 @@ However, in an effort to circumvent the direct calculations of flow velocities, 
 		{(x - a_m)\sqrt{\pi}\,B} \label{eq:stringer_D_bulk}
 \end{align}
 The particle diffusivity for this process is $D_{\pi\parallel}$, which is on the order of $10^{-2}$~m$^2 / $s.
+The ion-ion collision frequency is $\nu_{ii}$, the ion angular transition frequency is $\omega_t$, and the mean minor radius is $a_m$.
+These parameters are defined in Appendix \todo{APPENDIX!!}.
+
 The complex-valued function $X(z)$ is the plasma dispersion function.
 It appears in the dispersion equation for linearized waves in a non-relativistic plasma when the velocity distribution is Maxwellian \cite{fried_plasma_2015}.
 \begin{align} % Plasma Dispersion Function
@@ -164,11 +170,23 @@ It appears in the dispersion equation for linearized waves in a non-relativistic
 		\, \text{d}t \label{eq:plasma_disp}
 \end{align}
 \emph{\textbf{Note}} that this function is usually denoted as $Z$, but I am breaking this standard notation to avoid ambiguity with the normalized radial electric field.
-\todo{\color{red}Explain why we are ditching the complex version for a gaussian}
+
+In simulating the dynamics, oscillations in the radial electric field began occurring with with frequency much larger than any chosen time step size.
+This adjustment was handled by eliminating any complex-valued function in the definition of this nonambipolar flux.
+In the limit as $\nu_{ii} / \omega_t$ goes to zero, the plasma dispersion function reduces to a Gaussian, shown in Figure~\ref{fig:bulk_definition_comparison}.
+\begin{align} % Reduction of the plasma dispersion function into a gaussian
+	\lim_{b \to 0} \, \text{Im}\left[X(Z \,+\, b\,i)\right] \,=\, \sqrt{\pi} \,
+		\exp(-Z^2) \label{eq:plasma_disp_reduction}
+\end{align}
+This is reasonable, as $\omega_t$ is consistently two orders of magnitude larger than $\nu_{ii}$.
+The complementary error function goes to unity as its real component goes to zero while its imaginary portion is nonzero.
+More investigation is needed into the robustness of this form of the bulk viscosity, as well as a comparison with Eq.~\ref{eq:shaing_bulk}.
+
 \begin{figure}[tb] % Comparison of complex-valued plasma dispersion with simple gaussian
 	\centering
 	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Bulk_Definition_Comparison.png}
-	\caption{FILL??}
+	\caption{A visualization of the plasma dispersion function under the condition of Eq.~\ref{eq:plasma_disp_reduction}.
+	As the imaginary portion of the argument tends towards zero, the complementary error function with the imaginary argument tends towards unity.}
 	\label{fig:bulk_definition_comparison}
 \end{figure}
 
