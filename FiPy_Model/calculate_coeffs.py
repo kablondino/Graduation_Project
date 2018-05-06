@@ -25,7 +25,7 @@ def calculate_coeffs():
 #			* numerix.exp(x * density.grad[0]/density)))		# [m^-3]
 	# NEED dynamic definition!
 	n_0.setValue((-0.1*config.Gamma_c / v_Ti) / (1.0 +\
-			numerix.exp(1.0e3*(x-0.01))))						# [m^-3]
+			numerix.exp(1.0e3*(x-0.02))))						# [m^-3]
 
 	# Poloidal gyro-(Larmor) radii
 	rho_pi.setValue(m_i * v_Ti / (charge * B_theta))			# [m]
@@ -99,10 +99,12 @@ def calculate_coeffs():
 	## Ion Bulk (Parallel) Viscosity
 	plasma_disp.setValue(numpy.imag(1j * numerix.sqrt(pi)\
 			* scipy.special.wofz(Z + 1j*nu_ii / omega_t)))
+#	plasma_disp.setValue(numerix.sqrt(pi) * numerix.exp(-Z**2))
 	D_bulk.setValue(aspect**2 * rho_pi * temperature\
 			/ ((x - a_m) * B * numerix.sqrt(pi)))				# [m^2 s^-1]
 
 	Gamma_bulk.setValue(density * D_bulk * (density.grad[0] / density\
+#			+ 1.2*temperature.grad[0] / temperature\
 			+ Z/rho_pi) * plasma_disp)							# [m^-2 s^-1]
 
 
