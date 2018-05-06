@@ -51,7 +51,7 @@ if __name__ == '__main__' and config.initial_H_mode == True:
 # LinearJORSolver	<-- Not working exactly
 PCG_Solver = LinearPCGSolver(iterations=100, tolerance=1.0e-6)
 GMRES_Solver = LinearGMRESSolver(iterations=100)
-LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6)
+LLU_Solver = LinearLUSolver(iterations=100, tolerance=1.0e-6) # Does not work
 
 
 if __name__ == '__main__':
@@ -72,6 +72,8 @@ if __name__ == '__main__':
 						[config.aux_vars[k]], xmin=0.0, xmax=L,\
 						datamin=config.aux_ymin[k], datamax=config.aux_ymax[k],\
 						legend='best', title=config.aux_titles[k]))
+			raw_input("Pause for Viewing Initial Auxiliary Plots")
+
 
 	# File writing
 	if (hasattr(config, 'save_directory') and\
