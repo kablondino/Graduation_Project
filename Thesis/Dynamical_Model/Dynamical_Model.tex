@@ -149,7 +149,7 @@ Shaing \emph{et al.} \cite{shaing_bifurcation_1990} derives an expression direct
 Here, $\boldsymbol{\pi}$ is the ion viscosity tensor, and $U_\theta$ and $U_{\theta 0}$ indicate poloidal flow velocities.
 The terms $I_\phi$ and $I_\theta$ represent large poloidal and toroidal integrals, respectively, which are quite taxing to compute.
 
-However, in an effort to circumvent the direct calculations of flow velocities, a different form is used in this investigation, introduced by Stringer \cite{stringer_explanation_1993}.
+However, in an effort to circumvent the direct calculations of flow velocities, a different form is introduced by Stringer \cite{stringer_explanation_1993}.
 \begin{align} % Stringer Bulk Viscosity
 	\Gamma_i^{\pi\parallel} \,=\, \,n_e\,&D_{\pi\parallel}
 		\left(\frac{n^\prime}{n} + \frac{Z}{\rho_{\theta i}}\right) \,
@@ -173,15 +173,6 @@ It appears in the dispersion equation for linearized waves in a non-relativistic
 
 In simulating the dynamics, oscillations in the radial electric field began occurring with with frequency much larger than any chosen time step size.
 This adjustment was handled by eliminating any complex-valued function in the definition of this nonambipolar flux.
-In the limit as $\nu_{ii} / \omega_t$ goes to zero, the plasma dispersion function reduces to a Gaussian, shown in Figure~\ref{fig:bulk_definition_comparison}.
-\begin{align} % Reduction of the plasma dispersion function into a gaussian
-	\lim_{b \to 0} \, \text{Im}\left[X(Z \,+\, b\,i)\right] \,=\, \sqrt{\pi} \,
-		\exp(-Z^2) \label{eq:plasma_disp_reduction}
-\end{align}
-This is reasonable, as $\omega_t$ is consistently two orders of magnitude larger than $\nu_{ii}$.
-The complementary error function goes to unity as its real component goes to zero while its imaginary portion is nonzero.
-More investigation is needed into the robustness of this form of the bulk viscosity, as well as a comparison with Eq.~\ref{eq:shaing_bulk}.
-
 \begin{figure}[tb] % Comparison of complex-valued plasma dispersion with simple gaussian
 	\centering
 	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Bulk_Definition_Comparison.png}
@@ -189,6 +180,22 @@ More investigation is needed into the robustness of this form of the bulk viscos
 	As the imaginary portion of the argument tends towards zero, the complementary error function with the imaginary argument tends towards unity.}
 	\label{fig:bulk_definition_comparison}
 \end{figure}
+
+In the limit as $\nu_{ii} / \omega_t$ goes to zero, the plasma dispersion function reduces to a Gaussian, shown in Figure~\ref{fig:bulk_definition_comparison}.
+\begin{align} % Reduction of the plasma dispersion function into a gaussian
+	\lim_{b \,\to\, 0} \, \text{Im}\left[X(Z \,+\, b\,i)\right] \,=\, \sqrt{\pi} \,
+		\exp(-Z^2) \label{eq:plasma_disp_reduction}
+\end{align}
+This is reasonable, as $\omega_t$ is consistently two orders of magnitude larger than $\nu_{ii}$.
+The complementary error function goes to unity as its real component goes to zero while its imaginary portion is nonzero.
+More investigation is needed into the robustness of this form of the bulk viscosity, as well as a comparison with Eq.~\ref{eq:shaing_bulk}.
+
+With this modification, the final form used for this investigation is
+\begin{align} % Final form of Bulk Viscosity
+	\Gamma_i^{\pi\parallel} \,=\, \,n_e \, \sqrt{\pi} \, D_{\pi\parallel}
+		\left(\frac{n^\prime}{n} + \frac{Z}{\rho_{\theta i}}\right) \,
+		\exp\left(-Z^2\right) \label{eq:Gamma_bulk_final}
+\end{align}
 
 In addition, although this flux, at first glance, may take a similar shape to subsequently-presented fluxes, the plasma dispersion function does not allow for a direct comparison in the form of Eq.~\ref{eq:Gamma_an_g}.
 

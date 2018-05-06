@@ -1,10 +1,10 @@
 \chapter{Code}\label{chapter:Code}
 As covered Chapter~\ref{chapter:numerical_method}, the finite volume method solver FiPy \cite{guyer_fipy:_2009} is used to solve the system of equations.
 This section will obviously not be comprehensive, but it should give an idea on the manner by which the equations were declared.
-\inputminted[firstline=21, lastline=39, tabsize=4, breaklines=true, fontsize=\footnotesize, frame=single, linenos=true]{python}{../FiPy_Model/solving_flux.py}
+\inputminted[firstline=22, lastline=43, tabsize=4, breaklines=true, fontsize=\footnotesize, frame=single, linenos=true]{python}{../FiPy_Model/solving_flux.py}
 
 Because the system is highly nonlinear, it is required to ``sweep'' for the solution.
 This is where the solver attempts a solution, and returns a residual.
 The user is required to choose a tolerance which the residual must be less than for the solver to move to the next time iteration.
-\inputminted[firstline=92, lastline=107, tabsize=4, breaklines=true, fontsize=\footnotesize, frame=single, linenos=true]{python}{../FiPy_Model/solving_flux.py}
+\inputminted[firstline=98, lastline=113, tabsize=4, breaklines=true, fontsize=\footnotesize, frame=single, linenos=true]{python}{../FiPy_Model/solving_flux.py}
 
