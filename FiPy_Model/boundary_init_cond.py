@@ -123,13 +123,18 @@ def set_boundary_values(AGamma_c, Aq_c):
 			* density.faceValue), mesh.facesRight)
 
 	"""
-		Paquay considered these Z Boundary Conditions:
+		Paquay considered these Z Boundary Conditions at the edge:
+		Z(0) = const.
+		d/dx(Z(0)) == 0
 		d/dx(Z(0)) == Z / lambda_Z
-		mu*D/epsilon * d/dx(Z(L)) == 0
+		d^2/dx^2(Z(0)) == 0		<- This one is default in the FVM
+
+		Mandatory core boundary condition:
+		d/dx(Z(L)) == 0
 	"""
-	Z.faceGrad.constrain(abs(Z.faceValue) / lambda_Z, mesh.facesLeft)
+#	Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
+#	Z.faceGrad.constrain(0.0, mesh.facesLeft)
 	Z.faceGrad.constrain(0.0, mesh.facesRight)
-#	Z.constrain(0.0, mesh.facesRight)
 
 
 # Set the boundary values now
