@@ -67,6 +67,8 @@ elif (config.D_choice.lower() == "d_staps" or config.D_choice.lower()\
 		== "staps"):
 	D_choice_local = D_min + (D_max - D_min) / (1.0 + config.alpha_sup\
 			* -numerix.sign(Z.grad[0])*(abs(Z.grad[0]))**config.beta)
+#	D_choice_local = D_min + (D_max - D_min) / (1.0 + config.alpha_sup\
+#			* (Z.grad[0])**2.0)
 
 # Flow-Shear Model
 elif (config.D_choice.lower() == "d_shear" or config.D_choice.lower()\
@@ -133,7 +135,7 @@ def set_boundary_values(AGamma_c, Aq_c):
 		d/dx(Z(L)) == 0
 	"""
 #	Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
-#	Z.faceGrad.constrain(0.0, mesh.facesLeft)
+	Z.faceGrad.constrain(0.0, mesh.facesLeft)
 	Z.faceGrad.constrain(0.0, mesh.facesRight)
 
 
