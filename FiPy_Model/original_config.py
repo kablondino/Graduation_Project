@@ -18,7 +18,7 @@ original_model = True
 res_tol = 1.0e-6
 
 # Total time steps; should be ~ L^2 / D
-total_timeSteps = 500
+total_timeSteps = 2000
 
 # Size of time step denominator (delta t)
 # Either mu or epsilon is in the numerator, NOW DEPRICATED
@@ -30,12 +30,12 @@ timeStep = 1.0 / 375.0
 # D_Zohm, D_Staps, and D_Shear are the possibilities
 D_choice = "D_Staps"
 # Coefficient of (Z')**beta in Stap's diffusivity
-alpha_sup = 0.5
+alpha_sup = 0.25
 # Exponent of Z' in Stap's diffusivity
 beta = 2.0
 
 # If the D_choice is set to the flow-shear model, this would be the parameters
-shear_a1, shear_a2, shear_a3 = 1.0, 0.0, 0.5
+shear_a1, shear_a2, shear_a3 = 0.1, 0.0, 0.5
 
 # Boolean, to choose what mode to have as initial conditions
 initial_H_mode = False
@@ -48,14 +48,13 @@ generate_plots = True
 numerical_choice = "Staps"
 
 # Plot details
-plot_title = "H--Mode Start; $D \sim (Z^\prime)^{{-{:01.2f}}}$".format(beta)\
+plot_title = "$D \sim 1 / [1 + 0.25 (Z^\prime)^{2}]$"\
 		+"\n" + r"$\Gamma_c = {:.3g},\, T \,=\, {:d},\,$"\
 		.format(Gamma_c, total_timeSteps)\
-		+ r"$\Delta t \,=\, {:.3e}$"\
-		.format(timeStep)
+		+ r"$\Delta t \,=\, {:.3e}$".format(timeStep)
 
 # Maximum x on the plots
-ploty_max = None
+ploty_max = 5.2
 
 aux_plots = False
 
