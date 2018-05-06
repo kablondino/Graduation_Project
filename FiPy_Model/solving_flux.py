@@ -30,10 +30,13 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 
 # Z Equation
-Z.equation = TransientTerm(coeff=density, var=Z)\
-		== DiffusionTerm(coeff=mu * density, var=Z)\
-		+ (2.0 / rho_pi) * (Gamma_an - Gamma_cx - Gamma_bulk - Gamma_ol)
-
+Z.equation = TransientTerm(coeff=density, var=Z) ==\
+		DiffusionTerm(coeff=mu * density, var=Z) - (2.0 / rho_pi) * (\
+		+ Gamma_an\
+		- Gamma_bulk\
+		- Gamma_cx\
+		- Gamma_ol\
+		)
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
@@ -64,7 +67,7 @@ if __name__ == '__main__':
 				datamin=0.0, datamax=None, legend='best')
 		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
 				datamin=0.0, datamax=None, legend='best')
-		ZD_viewer = Viewer((Z, Diffusivity), xmin=0.0, xmax=L, datamin=0.0,\
+		ZD_viewer = Viewer((-Z, Diffusivity), xmin=0.0, xmax=L, datamin=0.0,\
 				datamax=D_max+0.2, legend='best')
 #		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
 #				datamax=D_max + D_max/10.0, legend='lower right')
