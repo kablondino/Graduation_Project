@@ -105,7 +105,7 @@ def calculate_coeffs():
 
 	Gamma_bulk.setValue(density * D_bulk * (density.grad[0] / density\
 #			+ 1.2*temperature.grad[0] / temperature\
-			+ Z/rho_pi) * plasma_disp)							# [m^-2 s^-1]
+			+ Z / rho_pi) * plasma_disp)						# [m^-2 s^-1]
 
 
 	## Ion Orbit Loss
@@ -114,12 +114,4 @@ def calculate_coeffs():
 
 	Gamma_ol.setValue(g_ol * numerix.exp(-radical_ol)\
 			/ (charge * radical_ol))							# [m^-2 s^-1]
-
-#	Z_transient_coeff.setValue(m_i * density * temperature\
-#			/ (charge* rho_pi * B**2))
-#	Z_transient_coeff.setValue(density * rho_pi * B_theta**2\
-#			/ (2 * B**2))
-#	Z_diffusion_coeff.setValue(m_i * mu * density * temperature\
-#			/ (charge* rho_pi * B_theta**2))
-#	Z_diffusion_coeff.setValue(density * rho_pi * mu / 2)
 
