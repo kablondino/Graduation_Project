@@ -6,6 +6,7 @@ This allows for slab geometry to be used, in which $\psi$ is a usual radial coor
 However, $x$ will be used as it is more distinctly recognized as a spatial coordinate.
 The slab geometry reduces the model into a system of one (spatial) dimensional partial differential equations.
 The domain of the model is $0 \,\leq\, x \,\leq\, L$, in which $x = 0$ is the plasma outer edge, and $x = L$ is some depth towards the core.
+This differs from past investigations, with $-L \,\leq\, x \,\leq\, 0$, with $x = 0$ also as the outer edge.
 
 \section{Transport Equations}\label{sec:transport_eqs}
 To model the transport of a fully-ionized fusion plasma, conservation of mass and energy are considered.
@@ -160,7 +161,7 @@ However, in an effort to circumvent the direct calculations of flow velocities, 
 \end{align}
 The particle diffusivity for this process is $D_{\pi\parallel}$, which is on the order of $10^{-2}$~m$^2 / $s.
 The ion-ion collision frequency is $\nu_{ii}$, the ion angular transition frequency is $\omega_t$, and the mean minor radius is $a_m$.
-These parameters are defined in Appendix \todo{APPENDIX!!}.
+These parameters are defined in Appendix \ref{chapter:Plasma_Parameters}.
 
 The complex-valued function $X(z)$ is the plasma dispersion function.
 It appears in the dispersion equation for linearized waves in a non-relativistic plasma when the velocity distribution is Maxwellian \cite{fried_plasma_2015}.
@@ -229,6 +230,7 @@ With toroidal rotation, the charge exchange process between ions and neutrals ca
 This momentum loss causes a charge imbalance, leading to a current \cite{toda_theoretical_1997}.
 
 One form of the charge exchange rate is obtained from a qualitative scheme by Connor and Wilson \cite{connor_review_2000}, with a ``weak function'' $\phi_\text{cx}$.
+\todo{\color{red}WHAT TO DO!}
 \begin{align} % Connor and Wilson's charge exchange rate
 	\langle \sigma_\text{cx} v\rangle \,=\, \frac{C_\text{cx}}{\sqrt{m_i}} \,
 		\phi_\text{cx}\left(\frac{E_0}{T}\right) \label{eq:connor_cx_rate}
@@ -245,10 +247,10 @@ The coefficient $C_\text{cx}$ is a numerical constant that chooses the maximum r
 In the domain of the problem, the origin of neutrals is that of recycled particles from the divertor, and not that of the NBI.
 The profile of these therefore have a penetration depth from the edge, and drops off rapidly.
 \begin{align} % Neutrals profile
-	n_0 \,=\, \frac{\theta\,\Gamma_c}{v_{T_i}\left[1 \,+\,
+	n_0 \,\propto\, \frac{\theta\,\Gamma_c}{v_{T_i}\left[1 \,+\,
 	\exp{(k(x - d))}\right]} \label{eq:neutral_density}
 \end{align}
-The maximum value of the neutrals is governed by $\frac{\theta\,\Gamma_c}{v_{T_i}}$, in which $\theta$ is some small value between 0 and 0.2.
+The maximum value of the neutrals is governed by $\frac{\theta\,\Gamma_c}{v_{T_i}}$, in which $\theta$ is some small value less than unity.
 The penetration depth is $d$, with the rate of drop off determined by $k$.
 
 Combining the neutrals density and charge exchange rate into a nonambipolar flux gives
@@ -257,7 +259,7 @@ Combining the neutrals density and charge exchange rate into a nonambipolar flux
 		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \, n\,T}{B_\theta^2}
 		\, \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right] \,
 		\left(\frac{n^\prime}{n} \,+\, \frac{\alpha_\text{cx}\,T^\prime}
-		{T} - \frac{Z}{\rho_{\theta i}}\right)~. \label{eq:Gamma_cx}
+		{T} + \frac{Z}{\rho_{\theta i}}\right)~. \label{eq:Gamma_cx}
 \end{align}
 Similar to $\alpha_\text{an}$, the coefficient $\alpha_\text{cx}$ is on the order unity.
 We can write the terms in a similar fashion to Eqs.~\ref{eq:Gamma_an_g} as comparison.
@@ -265,7 +267,7 @@ We can write the terms in a similar fashion to Eqs.~\ref{eq:Gamma_an_g} as compa
 	g_n^\text{cx} \,=\, -\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \, n \, T}
 		{B_\theta^2}& \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]
 		~,~~~~ g_T^\text{cx} \,=\, \alpha^\text{cx}\,g_n^\text{cx}~,~~~~
-		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
+		g_Z^\text{cx} \,=\, \frac{g_n^\text{cx}}{\rho_{\theta i}}
 		\label{eq:g_cx}
 \end{align}
 
@@ -317,11 +319,20 @@ All other possible sources of current are consolidated as the remaining terms, b
 The polynomial $G(Z)$ is cubic with an inflection point at $Z_S$, giving the transition behavior.
 The type of transition is wholly dictated by the values of the coefficients $a$, $b$, and $c$.
 
+The coefficients that are chosen for demonstration are the following:
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccccccc}
+	$\epsilon$ & $\mu$ & $c_n$ & $c_T$ & $a$ & $b$ & $c$ & $Z_S$ & $\zeta$ \\ \hline
+	$\frac{1}{25}$ & $\frac{1}{20}$ & -1.1 & -0.9 & 1.5 & 2.0 & -1.0 & -1.5 & 0.5
+\end{tabular}
+\end{table}
+
 \subsection{Flux Model}\label{ssec:flux_Z_equation}
 Rather than qualitatively creating an equation as the original model, a synthesis of the nonambipolar fluxes from Section~\ref{sec:nonambipolar_fluxes} is substituted into Eq.~\ref{eq:ambipolarity_constraint}.
-\begin{align}
+\begin{align} % Sum of the currents
 	\epsilon_0 \, \frac{\partial E_r}{\partial x} \,&=\, -J^\text{pol}
-		+ J^{\pi\perp} - J^{\pi\parallel} + J^\text{an} - J^\text{cx}
+		- J^{\pi\perp} - J^{\pi\parallel} + J^\text{an} - J^\text{cx}
 		- J^\text{ol} \label{eq:current_sum}
 %	&=\, -\frac{e \, n \, \rho_{\theta i}}{2} \, \frac{\partial Z}{\partial t}
 %		\,+\, \frac{e \, \mu \, \rho_{\theta i}}{2} \, \frac{\partial}
@@ -344,7 +355,8 @@ Rather than qualitatively creating an equation as the original model, a synthesi
 It is advantageous to bundle the neoclassical polarization current $J^\text{pol}$ with the left-hand side before it is normalized, \emph{i.e.} Eq.~\ref{eq:polarization_current_original}.
 \begin{align} % Non-normalized current equation
 	\left(\epsilon_0 \,+\, \frac{m_i \, n}{B_\theta^2}\right) \,
-	\frac{\partial E_r}{\partial x} \,&=\, J^{\pi\perp} \,-\, J^{\pi\parallel} \,+\, J^\text{an} \,-\, J^\text{cx} - J^\text{ol}
+	\frac{\partial E_r}{\partial x} \,&=\, -J^{\pi\perp} \,-\, J^{\pi\parallel}
+		\,+\, J^\text{an} \,-\, J^\text{cx} - J^\text{ol}
 \end{align}
 With typical plasma parameters at the edge, \emph{i.e.} $n \sim 10^{19}~\text{m}^{-3}$, $B_\theta \sim 10^{-1}$, the coefficient in $J^\text{pol}$ is 4 orders of magnitude larger than $\epsilon_0$, and therefore dominates.
 After normalizing this and the shear viscosity, the balance of currents is
@@ -392,7 +404,7 @@ Another form includes both the field itself and its shear \cite{paquay_studying_
 		\label{eq:flow_shear_diffusivity}
 \end{align}
 The constant $a_1$ allows for the value of the radial electric field to also contribute to the diffusivity.
-This form has no literature support for $a_2$, and is therefore set to zero.
+This form has no literature support (and physical support, for that matter) for $a_2$, and therefore $a_2$ is set to zero.
 
 \section{Boundary Conditions and Initial Profiles}\label{sec:boundary_conditions}
 The set of aforementioned PDE's is evaluated in a domain that is small enough to exclude the inner (core) boundary from any possible particle and heat sources.
@@ -404,11 +416,25 @@ This corresponds to $x = 0$.
 It is assumed that the SOL is passive to particle and heat fluxes, and therefore the density and temperature profiles exponentially decay.
 \begin{align} % n and T boundary conditions at SOL
 	n^\prime(0) \,=\, \frac{n}{\lambda_n}~, ~~~~
-		T^\prime(0) \,=\, \frac{T}{\lambda_T}~, ~~~~
-		\left(Z^\prime(0) \,=\, \frac{Z}{\lambda_Z}\right)~. \label{eq:SOL_boundary}
+		T^\prime(0) \,=\, \frac{T}{\lambda_T}~. \label{eq:SOL_boundary}
 \end{align}
 There are hypothesized boundary conditions for the electric field at the edge, but have not been confirmed.
 The system does, however, still exhibit bifurcating behavior (dithering, hysteresis) with this boundary condition \cite{paquay_studying_2012}.
+Two of these are the following:
+\begin{align}
+	Z^\prime(0) \,=\, \frac{Z}{\lambda_Z} ~~~ \text{or} ~~~ Z^\prime(0) \,=\,
+		0 \label{eq:Z_edge_conds}
+\end{align}
+
+The typical decay length scales are chosen as the following:
+\begin{table}[h]
+\centering
+\begin{tabular}{r|ccc}
+	& $\lambda_n$ & $\lambda_T$ & $\lambda_Z$ \\ \hline
+	Original & 1.25 & 1.5 & 1.25 \\ \hline
+	Flux & 0.01 & 0.0125 & 0.01
+\end{tabular}
+\end{table}
 
 The core side has a constant influx of particles and heat, stemming from fueling and heating.
 Using Eqs.~\ref{eq:particle_flux} and \ref{eq:heat_flux}, we can arrive at Neumann- and Robin-type boundary conditions, respectively.
@@ -423,5 +449,15 @@ The electric field shear must vanish as it approaches the core.
 	Z^\prime(L) \,=\, 0 \label{eq:core_Z_boundary}
 \end{align}
 
-\todo{\color{red}Initial conditions?}
+The initial conditions of this system are not one of huge importance if chosen reasonably.
+Nevertheless, for consistency, the conditions put forth by Paquay \cite{paquay_studying_2012} are used.
+They are derived for when $Z$ is a constant and in steady-state.
+\begin{align}
+	n(x,0) \,&=\, -\frac{\Gamma_c \, \lambda_n}{D} \left(1 \,+\,
+		\frac{x}{\lambda_n}\right) \label{eq:n_initial} \\
+	T(x,0) \,&=\, \frac{q_c (\gamma \,-\, 1)}{\Gamma_c} \left[1 \,-\,
+		\frac{\lambda_n}{\zeta\lambda_T \,+\, \lambda_n} \left(1 \,+\,
+		\frac{x}{\lambda_n}\right)^{-\zeta}\right]\label{eq:T_initial}
+\end{align}
+One could also conceivably choose simple linear profiles, as the system would go into its steady-state relatively quickly.
 

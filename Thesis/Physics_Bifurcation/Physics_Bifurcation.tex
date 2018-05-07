@@ -218,10 +218,10 @@ Any radial fluxes can be categorized as ambipolar or nonambipolar.
 Ambipolar fluxes have an equal effect on electrons and all species of ions, resulting in no overall radial current.
 Nonambipolar fluxes affect various charged particles differently, and thus create an electric field.
 This resulting field creates a return current so that the divergence of the plasma current, on average, returns to zero.
-The evolution of the field is determined by the sum of all possible radial currents, with $\Gamma_j$ referring to only nonambipolar fluxes of species $j$, since those are the ones to contribute to the field.
+The evolution of the field is determined by the sum of all possible radial currents, with $\Gamma_j^\text{k}$ referring to only nonambipolar fluxes of species $j$, since those are the ones to contribute to the field.
 \begin{align} % Ambipolarity constraint
-	\epsilon_0 \frac{\partial E_r}{\partial t} \,=\, -\sum J_r \,=\, \sum_j q_j\Gamma_j
-	\label{eq:ambipolarity_constraint}
+	\epsilon_0 \frac{\partial E_r}{\partial t} \,=\, -\sum J_r \,=\,
+		\sum_\text{k} q_j\Gamma_j^\text{k} \label{eq:ambipolarity_constraint}
 \end{align}
 
 Kinetic and atomic processes contribute to the nonambipolar fluxes, in addition to fluid processes implied by the description.
