@@ -2,35 +2,48 @@
 
 \begin{itemize}
 	\item \textbf{Which electric field-generating mechanisms are dominant in concrete experimental tokamak conditions?}
-
-	Bulk viscosity consistently has the largest effect on the field.
-	Ion orbit loss becomes highly suppressed once there is a nonzero value of the electric field at the edge.
 \end{itemize}
 
-
-\begin{itemize}
-	\item \textbf{What mechanisms, and therefore necessary parameters, should be investigated?}
-\end{itemize}
+The ion bulk viscosity $\Gamma_i^{\pi\perp}$ and the anomalous electron loss $\Gamma_e^\text{an}$ consistently has the largest effect on the field, with the former resulting in strong oscillations.
+Ion orbit loss $\Gamma_i^\text{ol}$ becomes highly suppressed once there is a nonzero value of the electric field at the edge, and thus is not dominant in H--mode.
+The charge exchange friction $\Gamma_i^\text{cx}$ is highly dependent on the neutrals density, and therefore processes resulting in a higher neutrals density dictate its dominance.
+In this investigation, it was found to not supersede the two first mentioned.
 
 
 \begin{itemize}
 	\item \textbf{What are the appropriate forms of each flux for the model and what are the relative sensitivities and sources of uncertainty?}
-
-	Ion orbit loss $\Gamma_i^\text{ol}$ is highly suppressed by nonzero values of $Z$.
-	Also, due to its high spatial sensitivity, this also pins it to the edge.
-	Uncertainties in the position or value of $Z$ highly affect this term, but does not manifest in any significant change in $Z$ itself.
-
-	The shear viscosity $J^{\pi\perp}$ is sensitive only to the dynamic viscosity $\mu$, and is completely necessary to have the system at all.
-
-	The parameters of the diffusivity are extremely sensitive, as a small change to the coefficient of the shear viscosity $a_3$ can change the fundamental behavior of the entire system.
-	Due to this being a qualitative model, in which the parameters are chosen rather than calculated,...
 \end{itemize}
+
+Ion orbit loss is highly suppressed by nonzero values of $Z$.
+Also, the high spatial sensitivity pins it directly to the edge.
+The transport barrier typically forms a centimeter or two into the plasma, relatively distant from the area which the ion orbit loss is present.
+Uncertainties in the position or value of $Z$ highly affect this term, but does not manifest in any significant change in $Z$ itself.
+
+The shear viscosity is sensitive only to the dynamic viscosity $\mu$, and is completely necessary to have the system at all.
+However, the charge exchange friction and anomalous electron loss both significantly depend on the density and temperature gradients.
+Real-world calculation hypothetically become difficult since error is compounded in measurements of these.
+
+The parameters of the diffusivity are extremely sensitive, as a small change to the coefficient of the shear viscosity $a_3$ can change the fundamental behavior of the entire system.
+Due to this being a qualitative model, in which the parameters are chosen rather than calculated,...
 
 
 \begin{itemize}
 	\item \textbf{What is the variation in dominance of each field-generating mechanism across increasing input power?}
-
-	As of now, charge exchange friction is directly proportional to the core particle flux $\Gamma_c$, giving it artificially-high relation on initialization.
-	However, the bulk viscosity $\Gamma_i^{\pi\parallel}$
 \end{itemize}
+
+As of now, charge exchange friction is directly proportional to the core particle flux $\Gamma_c$, giving it artificially-high relation on initialization.
+However, the bulk viscosity $\Gamma_i^{\pi\parallel}$ seems to be more heavily affected, potentially giving rise to unphysical oscillations.
+Unsurprisingly, ion orbit loss is least affected by input heat and particle flux from the core.
+
+
+\begin{itemize}
+	\item \textbf{Future possible work and the outlook on the topic.}
+\end{itemize}
+
+A more-robust form of the charge exchange friction must be established and updated, since the neutrals form takes a qualitative approach, and is implemented weakly dynamically.
+There must be a comparison of the two bulk viscosity models, with experimental verification.
+As of now, there is no indication of one form having an advantage over the other, except in raw calculation.
+
+In addition, bifurcation analysis is required to prove that the sum of the nonambipolar fluxes provides the same bifurcating behavior the original model has.
+Any newly-included mechanisms, such as Reynolds stress, should be subject to the same rigor.
 
