@@ -92,7 +92,7 @@ for filename in file_list:
 	ax_list[2].set_ylabel(r"$\Gamma_i^{\pi\parallel}$", fontsize='x-large',\
 			rotation=0, labelpad=15)
 	ax_list[2].tick_params(axis='x', labelbottom='off')
-	plt.ylim((the_mins[11], the_maxs[11]+5.0e18))
+	plt.ylim((the_mins[11], the_maxs[11]))
 
 	ax_list[2].grid(True)
 	ax_list[2].yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1e'))
@@ -105,7 +105,7 @@ for filename in file_list:
 			color='darkcyan', linewidth=2)
 	ax_list[3].set_ylabel(r"$\Gamma_i^{ol}$", fontsize='x-large',\
 			rotation=0, labelpad=15)
-	plt.ylim((the_mins[12], the_maxs[12]))
+	plt.ylim((the_mins[12], the_maxs[12]+5.0e18))
 
 	ax_list[3].grid(True)
 	ax_list[3].yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1e'))
