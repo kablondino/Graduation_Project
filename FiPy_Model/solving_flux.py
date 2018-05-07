@@ -33,7 +33,7 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 Z.equation = TransientTerm(coeff=density, var=Z) ==\
 		DiffusionTerm(coeff=mu * density, var=Z) + (2.0 / rho_pi) * (\
 		+ Gamma_an\
-#		- Gamma_bulk\
+		- Gamma_bulk\
 		- Gamma_cx\
 		- Gamma_ol\
 		)
