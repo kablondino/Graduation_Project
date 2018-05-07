@@ -37,7 +37,11 @@ beta = 2.0
 # If the D_choice is set to the flow-shear model, this would be the parameters
 shear_a1, shear_a2, shear_a3 = 0.1, 0.0, 0.5
 
-# Boolean, to choose what mode to have as initial conditions
+# Initial condition choice, with True representing Paquay's initial conditions,
+# and False representing linear profiles.
+initial_conds = False
+
+# Boolean, to choose what mode to have as initial conditions, as linear piecewise
 initial_H_mode = False
 
 # Boolean, to show plots

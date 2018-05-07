@@ -33,26 +33,26 @@ if config.original_model == True:
 		Z.setValue(-3.0 / (1.0 + numerix.exp(12.0*(x - 1.75))))
 
 # ----------------- Flux Model ----------------------------
-#if config.original_model == False:
-#	# L--mode
-#	if config.initial_H_mode == False:
-#		density.setValue(((1.0e19 - 3.0e18)/0.05)*x + 3.0e18)	# in m^-3
-#		temperature.setValue(((500.0 - 100.0)/0.05)*x + 100.0)	# in eV!
-#		Z.setValue(0.0)
-#
-#	# H--mode
-#	elif config.initial_H_mode == True:
-#		density.setValue((1.25e20*x + 0.05e20), where = x < 0.01)
-#		density.setValue((7.5e20*x - 0.0125e20),\
-#				where = (x > 0.01) & (x < 0.015))
-#		density.setValue((1.25e20*x + 0.08125e20),where = x > 0.015)
-#
-#		temperature.setValue((3.0e3*x + 100.0), where = x < 0.01)
-#		temperature.setValue((18.0e3*x - 50.0),\
-#				where = (x > 0.01) & (x < 0.015))
-#		temperature.setValue((3.0e3*x + 175.0), where = x > 0.015)
-#
-#		Z.setValue(3.0 / (1.0 + numerix.exp(1.5e3*(x - 0.015))))
+if config.original_model == False:
+	# L--mode
+	if config.initial_H_mode == False:
+		density.setValue(((8.0e18 - 3.0e18)/0.05)*x + 3.0e18)	# in m^-3
+		temperature.setValue(((300.0 - 100.0)/0.05)*x + 100.0)	# in eV!
+		Z.setValue(0.0)
+
+	# H--mode
+	elif config.initial_H_mode == True:
+		density.setValue((1.25e20*x + 0.05e20), where = x < 0.01)
+		density.setValue((7.5e20*x - 0.0125e20),\
+				where = (x > 0.01) & (x < 0.015))
+		density.setValue((1.25e20*x + 0.08125e20),where = x > 0.015)
+
+		temperature.setValue((3.0e3*x + 100.0), where = x < 0.01)
+		temperature.setValue((18.0e3*x - 50.0),\
+				where = (x > 0.01) & (x < 0.015))
+		temperature.setValue((3.0e3*x + 175.0), where = x > 0.015)
+
+		Z.setValue(3.0 / (1.0 + numerix.exp(1.5e3*(x - 0.015))))
 
 
 # ----------------- Set Diffusivity Model -----------------
@@ -91,14 +91,15 @@ Diffusivity.setValue(D_choice_local)
 print "The diffusivity is set to " +str(config.D_choice)
 
 # --- Old init definitions, which requires Diffusivity to ALREADY be set -----
-density.setValue((1.0e21*lambda_n / Diffusivity)\
-		* (1.0 + x/lambda_n))
-temperature.setValue(5.0e23 * ((gamma - 1.0) / 1.0e21)\
-		* (1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
-		* (1.0 + x/lambda_n)**-zeta))
+if config.initial_conds == True:
+	density.setValue(-(config.Gamma_c * lambda_n / Diffusivity)\
+			* (1.0 + x / lambda_n))
+	temperature.setValue(config.q_c * ((gamma - 1.0) / config.Gamma_c)\
+			* (1.0 - lambda_n / (zeta*lambda_T + lambda_n)\
+			* (1.0 + x/lambda_n)**-zeta))
 
-#Z.setValue(Z_S*(1.0 - numerix.tanh(\
-#		(L*x - L) / 2.0)))	# OLD, by Staps
+#	Z.setValue(Z_S*(1.0 - numerix.tanh(\
+#			(L*x - L) / 2.0)))					# OLD, by Staps
 
 
 # ----------------- Boundary Conditions -------------------
