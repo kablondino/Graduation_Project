@@ -64,18 +64,12 @@ def calculate_coeffs():
 	g_T_an.setValue(g_n_an * alpha_an)							# [A m^-2]
 	g_Z_an.setValue(g_n_an / rho_pi)							# [A m^-1]
 
-	Gamma_an.setValue((g_n_an * density.grad[0]\
+	Gamma_an.setValue(g_n_an * density.grad[0]\
 			/ density + g_T_an * temperature.grad[0] / temperature\
-			+ g_Z_an * Z) / charge)							# [m^-2 s^-1]
+			+ g_Z_an * Z)							# [m^-2 s^-1]
 
 
 	## Charge Exchange Friction
-	####### POSSIBLE WRONG!
-#	ionization_rate.setValue(1.0e-6 / numerix.sqrt(m_i)\
-#			* numerix.exp(-13.6 / temperature))					# [m^3 s^-1]
-#	cx_rate.setValue(1.0e8 / numerix.sqrt(temperature)\
-#			* numerix.exp(-13.6 / temperature))		#!!!!!!		# [m^3 s^-1]
-	#######
 	ionization_rate.setValue(5.0e-14 * (100.0 * temperature)\
 			**(-1.0/4.0))	# Itoh 1989							# [m^3 s^-1]
 
