@@ -30,15 +30,15 @@ The normalization of the shear viscosity follows a similar fashion as the polari
 		\,=\, \frac{m_i}{B_\theta^2} \, \frac{\partial}{\partial x}
 		\left[\mu \, n \, \frac{\partial}{\partial x} \left(\frac{Z \, T}
 		{e \, \rho_{\theta i}}\right)\right] \\
-	=\, -\frac{m_i}{B_\theta^{\bcancel{2}}} &\frac{\partial}{\partial x}
+	&=\, -\frac{m_i}{B_\theta^{\bcancel{2}}} \frac{\partial}{\partial x}
 		\left[\mu \, n \, \frac{\partial}{\partial x}\left(\frac{Z \, T}
 		{\cancel{e}} \sqrt{\frac{\cancel{e^2} \,
 		\cancel{B_\theta^{2}}}{2 \, m_i \, T}}\right)\right]
 		\,=\, \frac{m_i}{B_\theta \sqrt{2 \, m_i}}
 		\frac{\partial}{\partial x} \, \left[\mu \, n \, \frac{\partial}
 		{\partial x} \left(Z \sqrt{T}\right)\right] \\
-	\nonumber\vdots \\
-	=\, -\frac{\mu}{B_\theta} \sqrt{\frac{m_i}{2}} &\left\{\sqrt{T} \,
+	\nonumber&\quad\vdots \\
+	&=\, -\frac{\mu}{B_\theta} \sqrt{\frac{m_i}{2}} \left\{\sqrt{T} \,
 		\frac{\partial}{\partial x} \left[n \, Z^\prime\right] \,+\,
 		\frac{n \, Z}{2\sqrt{T}} \, T^{\prime\prime} \,+\,
 		\frac{T^\prime}{2\sqrt{T}} \left(2 \, n \, Z + n \, Z^\prime -
@@ -46,7 +46,7 @@ The normalization of the shear viscosity follows a similar fashion as the polari
 \end{align}
 The skipped steps involve taking many product and chain rules, with the prime notation denoting the spatial derivative.
 This includes the assumption that the dynamic viscosity $\mu$ is set to constant.
-The final form here, however, will include it in the appropriate place.
+The final form here, however, will include it in the appropriate place, as though it were not constant.
 One could make the reasonable assumption that, if it does not vary much over space, it's derivatives go to zero as well.
 
 Previous formulations of the shear viscosity has ignored the temperature gradient and concavity, \emph{i.e.} $T^\prime = T^{\prime\prime} = 0$.
