@@ -58,7 +58,7 @@ def calculate_coeffs():
 
 
 	## Electron Anomalous Diffusion
-	D_an.setValue(aspect**2 * numerix.sqrt(pi) * rho_pe * temperature\
+	D_an.setValue(aspect**2 * numerix.sqrt(pi) * rho_pe * (temperature/charge)\
 			/ (2*a_m * B))
 	g_n_an.setValue(charge * density * D_an)					# [A m^-2]
 	g_T_an.setValue(g_n_an * alpha_an)							# [A m^-2]
@@ -86,14 +86,14 @@ def calculate_coeffs():
 			**(1.0 / 3.0))	# Itoh 1989							# [m^3 s^-1]
 
 	g_n_cx.setValue((-(m_i * n_0 * cx_rate * density\
-			* temperature) / (B_theta**2))\
+			* (temperature/charge)) / (B_theta**2))\
 			* ((B_theta**2 / (aspect * B_phi)**2) + 2.0))		# [A m^-2]
 	g_T_cx.setValue(alpha_cx * g_n_cx)							# [A m^-2]
 	g_Z_cx.setValue(g_n_cx / rho_pi)							# [A m^-1]
 
-	Gamma_cx.setValue((g_n_cx * density.grad[0] / density\
+	Gamma_cx.setValue(g_n_cx * density.grad[0] / density\
 			+ g_T_cx * temperature.grad[0] / temperature\
-			+ g_Z_cx*Z) / charge)								# [m^-2 s^-1]
+			+ g_Z_cx*Z)											# [m^-2 s^-1]
 
 
 	## Ion Bulk (Parallel) Viscosity
