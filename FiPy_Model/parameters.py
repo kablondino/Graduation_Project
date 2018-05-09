@@ -26,18 +26,18 @@ a_v = 0.8									# Vertical minor radius
 a_h = 0.5									# Horizontal minor radius
 a_m = ( (a_v**2 + a_h**2) / 2.0 )**(1.0/2.0)# Mean minor radius
 R = 1.6										# Major radius
-I_p = 2.0e6									# Plasma current
+I_phi = 2.0e6								# Plasma current
 B_phi = 3.9									# Toroidal field
-B_theta = mu_0 * I_p / ( 2*pi*a_m )			# Poloidal field
+B_theta = mu_0 * I_phi / ( 2*pi*a_m )		# Poloidal field
 B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
 
 
 # ----------------- ITER Specifications -------------------
 #a_m = 2.0									# Mean minor radius
 #R = 6.2										# Major radius
-#I_p = 15.0e6								# Plasma current
+#I_phi = 15.0e6								# Plasma current
 #B_phi = 5.3									# Toroidal field
-#B_theta = mu_0 * I_p / ( 2*pi*a_m )			# Poloidal field
+#B_theta = mu_0 * I_phi / ( 2*pi*a_m )			# Poloidal field
 #B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
 
 
