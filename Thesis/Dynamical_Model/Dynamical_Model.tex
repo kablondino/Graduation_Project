@@ -230,7 +230,6 @@ With toroidal rotation, the charge exchange process between ions and neutrals ca
 This momentum loss causes a charge imbalance, leading to a current \cite{toda_theoretical_1997}.
 
 One form of the charge exchange rate is obtained from a qualitative scheme by Connor and Wilson \cite{connor_review_2000}, with a ``weak function'' $\phi_\text{cx}$.
-\todo{\color{red}WHAT TO DO!}
 \begin{align} % Connor and Wilson's charge exchange rate
 	\langle \sigma_\text{cx} v\rangle \,=\, \frac{C_\text{cx}}{\sqrt{m_i}} \,
 		\phi_\text{cx}\left(\frac{E_0}{T}\right) \label{eq:connor_cx_rate}
@@ -239,6 +238,13 @@ Another form, by Itoh, \emph{et. al} \cite{itoh_model_1989}, follows this idea b
 \begin{align} % Itoh's charge exchange rate
 	\langle \sigma_\text{cx} v\rangle \,=\, 10^{-14}
 		\left(100 \, T\right)^{1/3} \label{eq:itoh_cx_rate}
+\end{align}
+We can equate these two, assuming the weak function $\phi_\text{cx}(z) \propto z^{-1/3}$.
+\begin{align}
+	\frac{C_\text{cx}}{\sqrt{m_i}} \, \left(\frac{E_0}{\cancel{T}}\right)^{-1/3}
+		\,=\, 10^{-14} \, (100)^{1/3} \, \cancel{T^{1/3}} \\
+	C_\text{cx} \,=\, \frac{4.642\times 10^{-14} \sqrt{m_i}}{\sqrt[3]{E_0}}
+		\,\approx\, 7.953\times 10^{-28}
 \end{align}
 Electrons are not exchanged above a particular temperature threshold, but rather fully ionized and lost to the bulk plasma.
 The term $E_0$ is simply the ionization energy for the particular species used; hydrogen is investigated in this project, and the term is thus set to 13.6 eV.
@@ -306,11 +312,11 @@ It was incorporated from the FitzHugh-Nagumo model, Eq.~\ref{eq:FitzHugh-Nagumo}
 \end{align}
 The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
 Weymiens \cite{weymiens_bifurcation_2012} rewrote the equation as
-\begin{align} % Weymiens model
+\begin{align} % Weymiens ('original') model
 	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \,
 		\frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \,
 		\frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \,
-		\frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:paquay_Z} \\
+		\frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:original_Z_equation} \\
 	G(Z) \,\equiv\, a \,+\, b(Z - Z_S) \,+\, c(Z - Z_S)^3~.
 		\label{eq:G_polynomial}
 \end{align}
@@ -319,12 +325,13 @@ All other possible sources of current are consolidated as the remaining terms, b
 The polynomial $G(Z)$ is cubic with an inflection point at $Z_S$, giving the transition behavior.
 The type of transition is wholly dictated by the values of the coefficients $a$, $b$, and $c$.
 
-The coefficients that are chosen for demonstration are the following:
-\begin{table}[h]
+The coefficients that are chosen for demonstration are the following.
+The particle-thermal diffusivity coupling constant $\zeta$ and the dynamic viscosity $\mu$ are used both in the original and flux models.
+\begin{table}[h] % Chosen parameters
 \centering
-\begin{tabular}{ccccccccc}
-	$\epsilon$ & $\mu$ & $c_n$ & $c_T$ & $a$ & $b$ & $c$ & $Z_S$ & $\zeta$ \\ \hline
-	$\frac{1}{25}$ & $\frac{1}{20}$ & -1.1 & -0.9 & 1.5 & 2.0 & -1.0 & -1.5 & 0.5
+\begin{tabular}{cc|ccccccc}
+	$\zeta$ & $\mu$ & $\epsilon$ & $c_n$ & $c_T$ & $a$ & $b$ & $c$ & $Z_S$ \\ \hline
+	0.5 & $\frac{1}{20}$ & $\frac{1}{25}$ & -1.1 & -0.9 & 1.5 & 2.0 & -1.0 & -1.5
 \end{tabular}
 \end{table}
 
@@ -410,8 +417,7 @@ This form has no literature support (and physical support, for that matter) for 
 The set of aforementioned PDE's is evaluated in a domain that is small enough to exclude the inner (core) boundary from any possible particle and heat sources.
 In this model, this boundary to the domain is $x = L$, for some positive length $L$, with the core is assumed to be at $x \gg L$.
 It also requires the domain to be sufficiently large to fully-encompass the transport barrier and ignore any possible boundary effects of the barrier itself.
-The outer boundary of the plasma edge is assumed to be the SOL (scrape-off layer).
-This corresponds to $x = 0$.
+The outer boundary of the plasma edge is assumed to be the start of the SOL (scrape-off layer); this corresponds to $x = 0$.
 
 It is assumed that the SOL is passive to particle and heat fluxes, and therefore the density and temperature profiles exponentially decay.
 \begin{align} % n and T boundary conditions at SOL
@@ -421,13 +427,13 @@ It is assumed that the SOL is passive to particle and heat fluxes, and therefore
 There are hypothesized boundary conditions for the electric field at the edge, but have not been confirmed.
 The system does, however, still exhibit bifurcating behavior (dithering, hysteresis) with this boundary condition \cite{paquay_studying_2012}.
 Two of these are the following:
-\begin{align}
+\begin{align} % Edge Z conditions
 	Z^\prime(0) \,=\, \frac{Z}{\lambda_Z} ~~~ \text{or} ~~~ Z^\prime(0) \,=\,
 		0 \label{eq:Z_edge_conds}
 \end{align}
 
-The typical decay length scales are chosen as the following:
-\begin{table}[h]
+The typical decay length scales are chosen as the following, with ``Original'' referring to the system solving Eq.~\ref{eq:original_Z_equation}, and ``Flux'' referring to the system solving Eq.~\ref{eq:reduced_normalized_Z_equation}.
+\begin{table}[h] % Decay lengths at the edge
 \centering
 \begin{tabular}{r|ccc}
 	& $\lambda_n$ & $\lambda_T$ & $\lambda_Z$ \\ \hline
@@ -452,7 +458,7 @@ The electric field shear must vanish as it approaches the core.
 The initial conditions of this system are not one of huge importance if chosen reasonably.
 Nevertheless, for consistency, the conditions put forth by Paquay \cite{paquay_studying_2012} are used.
 They are derived for when $Z$ is a constant and in steady-state.
-\begin{align}
+\begin{align} % Paquay's initial conditions
 	n(x,0) \,&=\, -\frac{\Gamma_c \, \lambda_n}{D} \left(1 \,+\,
 		\frac{x}{\lambda_n}\right) \label{eq:n_initial} \\
 	T(x,0) \,&=\, \frac{q_c (\gamma \,-\, 1)}{\Gamma_c} \left[1 \,-\,
@@ -462,5 +468,5 @@ They are derived for when $Z$ is a constant and in steady-state.
 One could also conceivably choose simple linear profiles, as the system would go into its steady-state relatively quickly.
 
 Together with Appendix~\ref{chapter:Plasma_Parameters}, the model is ready to be implemented in one's PDE solver of choice.
-The following chapter describes the choice made for this investigation using FiPy, a solver written in Python  that uses the Finite Volume Method.
+The following chapter describes the choice made for this investigation using FiPy \cite{guyer_fipy:_2009}, a solver written in Python  that uses the Finite Volume Method.
 
