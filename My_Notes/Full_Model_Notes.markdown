@@ -1,4 +1,4 @@
-# Full Model Notes: 1 May 2018
+# Full Model Notes: 9 May 2018
 
 \small\begin{align}
 	&\text{Co-dimension 2 cusp bifurcation:} ~~~~ \dot{x} \,=\, a + bx - x^3 \\
@@ -17,25 +17,28 @@
 ### Plasma Parameters
 All temperatures are in eV.
 \small\begin{align}
-	v_{T_j} \,&=\, \sqrt{\frac{2 \, e \, T}{m_j}}~,~~~
-		\rho_{\theta j} \,=\, \frac{m_j \, v_{T_j}}{e \, B_\theta} \,=\,
-			\sqrt{\frac{2 \, m_j \, T}{e^2 \, B_\theta^2}}~,~~~
-		\omega_t \,=\, \frac{v_{T_i}}{q\,R}~,~~~
-		\omega_{bj} \,=\, \frac{\epsilon^{3/2} \, v_{T_j}}{q \, R}~,~~~
-		w_{bi} \,=\, \rho_{\theta i} \, \sqrt{\epsilon} \\
+	\epsilon \,&=\, \frac{a_m}{R}~,~~~ q \,=\,
+		\frac{\epsilon \, B_\phi}{B_\theta}~,~~~ v_{T_j} \,=\,
+		\sqrt{\frac{2 \, e \, T}{m_j}}~,~~~ \rho_{\theta j} \,=\,
+		\frac{m_j \, v_{T_j}}{e \, B_\theta} \,=\,
+		\sqrt{\frac{2 \, m_j \, T}{e^2 \, B_\theta^2}} \\
+	 B_\theta \,&=\, \frac{\mu_0 \, I_\phi}{2 \pi \, a_m}~,~~~ \omega_t \,=\,
+		\frac{v_{T_i}}{q\,R}~,~~~ \omega_{bj} \,=\,
+		\frac{\epsilon^{3/2} \, v_{T_j}}{q \, R}~,~~~ w_{bi} \,=\,
+		\rho_{\theta i} \, \sqrt{\epsilon} \\
 	\nu_{ei} \,&=\, 1.33\times 10^5 \frac{n_{20}}{(T_\text{keV})^{3/2}}
 		\,=\, 4.2058\times 10^{-5} \frac{n}{(T_\text{eV})^{3/2}}~,~~~
 		\nu_{ii} \,=\, 1.2\, \nu_{ei} \, \sqrt{\frac{m_e}{m_i}}~,~~~
 		\nu_{*j} \,=\, \frac{\nu_{ij}}{\omega_{bj}} \\
 	\langle \sigma_\text{cx} v \rangle \,&=\, 10^{-14} \sqrt[3]{100 \, T}
-		\,=\, 1.985\times 10^{-14} \sqrt{T} \\
-		&~~~~~~\text{Itoh 1989} ~~~~~~~~~ \text{Rozhansky 2001} \\
-	\text{Non-formal:}& ~~ n_0 \,=\, \frac{n_0(0)}
+		\,=\, 1.985\times 10^{-14} \sqrt{T}~,~~~
+		\text{Depricated:}~\nu_{in_0} \,=\, a_{in_0} \, \omega_{bi}~,~~~
+		\nu_\text{eff} \,=\, \nu_{ii} + \nu_{in_0} \\
+		\nonumber &~~~~~~\text{Itoh 1989} ~~~~~~~~~ \text{Rozhansky 2001} \\
+	&\text{Non-formal:} ~~ n_0 \,=\, \frac{n_0(0)}
 		{\left(1 + \exp\left[k(x - d)\right]\right)}~,~~~
 		n_0(0) \,=\, \frac{\theta \, \Gamma_c}{v_{T_i}} ~~ \text{for} ~~
-		0 < \theta \leq 1 \\
-	\text{Depricated:}&~\nu_{in_0} \,=\, a_{in_0} \, \omega_{bi}~,~~~
-		\nu_\text{eff} \,=\, \nu_{ii} + \nu_{in_0}
+		0 < \theta \leq 1
 \end{align}\normalsize
 
 <!--- OLD CHARGE EXCHANGE REACTION and IONIZATION RATE
@@ -122,9 +125,9 @@ The diffusivity function $D(\mathcal{E})$ is given in a few forms:
 
 Generalized versions for boundary conditions at the plasma edge ($x=0$):
 \small\begin{align}
-	\frac{\partial n}{\partial x} \,=\, \frac{n}{\lambda_n}~,
-		~~~~\frac{\partial T}{\partial x} \,=\, \frac{T}{\lambda_T}~,
-		~~~~\left(\frac{\partial Z}{\partial x} \,=\, \frac{Z}{\lambda_Z}\right)~;
+	n^\prime(0) \,=\, \frac{n}{\lambda_n}~,~~~~ T^\prime(0) \,=\,
+		\frac{T}{\lambda_T}~,~~~~ Z^\prime(0) \,=\, \frac{Z}{\lambda_Z}~~~
+		\text{or} ~~~ Z^\prime(0) \,=\, 0;
 \end{align}\normalsize
 
 ...towards the core ($x=L$):
@@ -160,11 +163,17 @@ Paquay's initial conditions for density and temperature, and Staps' initial cond
 		\left(1 + \frac{x}{\lambda_n}\right)~, ~~~~ T(x,0) \,=\, q_\infty \,
 		\dfrac{\gamma - 1}{\Gamma_\infty} \, \left[1
 		- \frac{\lambda_n}{\zeta \lambda_T + \lambda_n} \, \left(1
-		+ \frac{x}{\lambda_n}\right)^{-\zeta}\right]~, \\
+		+ \frac{x}{\lambda_n}\right)^{-\zeta}\right]~.
+\end{align}\normalsize
+
+<!---
+Staps' initial condition for $Z$ in H-mode:
+\small\begin{align}
 	Z(x,0) \,&=\, Z_S\left[1 - \tanh\left(\dfrac{L\,x - L}{2}\right)\right]
 		\,=\, Z_S\left[1 - \frac{\exp(L\,x - L) - 1}{\exp(L\,x - L)
 		+ 1}\right]~.
 \end{align}\normalsize
+-->
 
 Steady-State Solutions
 \small\begin{align}
@@ -179,15 +188,20 @@ Steady-State Solutions
 ### Physical Model
 As a starting point, the nonambipolar currents are used, rather than some cubic polynomial.
 Start with Staps' derivation, now known to be slightly incorrect, since the polarization current is defined slightly incorrectly in his version:
+<!--
 \small\begin{align}
 	&\frac{m_i n T}{e \rho_{\theta i} B^2} \, \frac{\partial Z}{\partial t}
 		\,=\, \frac{m_i \mu_i n T}{e \rho_{\theta i} B_\theta^2} \,
 		\frac{\partial^2 Z}{\partial x^2} \,+\, \left(g_n^\text{an} -
 		g_n^\text{cx}\right) \frac{n^\prime}{n} \,+\, \left(g_T^\text{an} -
 		g_T^\text{cx}\right) \frac{T^\prime}{T} \,+\, \left(g_Z^\text{an} -
-		g_Z^\text{cx}\right) Z - e\Gamma_i^{\pi\parallel} - e\Gamma_i^\text{ol} \\
-	&\frac{m_i n T}{e^2 \rho_{\theta i} B^2} \frac{\partial Z}{\partial t}
-		\,=\, \frac{m_i \mu n T}{e^2 \rho_{\theta i} B_\theta^2} \, 
+		g_Z^\text{cx}\right) Z - e\Gamma_i^{\pi\parallel} - e\Gamma_i^\text{ol}
+\end{align}\normalsize
+-->
+\small\begin{align}
+	&\frac{m_i \, n \, T}{e^2 \, \rho_{\theta i} \, B^2}
+		\frac{\partial Z}{\partial t} \,=\,
+		\frac{m_i \, \mu \, n \, T}{e^2 \rho_{\theta i} \, B_\theta^2} \,
 		\frac{\partial^2 Z}{\partial x^2} \,+\, \Gamma_e^\text{an} \,-\,
 		\Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{cx} \,-\,
 		\Gamma_i^\text{ol}
@@ -207,6 +221,8 @@ Corrected version, which is used:
 		\,-\, \Gamma_i^{\pi\parallel} \,-\, \Gamma_i^\text{ol}
 \end{align}\normalsize
 
+Some of the fluxes take this form: $\Gamma_j^\text{k} \,=\, g_n^\text{k}\,\dfrac{n^\prime}{n} \,+\, g_T^\text{k}\,\dfrac{T^\prime}{T} \,+\, g_Z^\text{k}\,Z$
+
 + Ion Bulk Viscosity: <!--- $N \,=\, \dfrac{\nu_{*i}\,\epsilon^{3/2}\,\nu_{ei}}{\nu_{ii}} ~~~\text{and}~~~ \eta \,=\, \dfrac{\epsilon^2 \sqrt{\pi}}{8 a_m} m_i \,n\, (v_{T_i})^2$
 \small\begin{align}
 	\begin{bmatrix}\xi_\theta \\[1ex] \xi_\phi \end{bmatrix} \,&=\, \dfrac{1}{\pi} \int_0^{\sqrt{\nu_{*i}}} \begin{bmatrix} 1 \\[1ex] \frac{5}{2} - x \end{bmatrix} x^2 \exp(-x) \, \tan^{-1}\left(\dfrac{2 N \sqrt{x}}{N^2 + Z^2 - x}\right) \text{d}x \\
@@ -217,9 +233,9 @@ Corrected version, which is used:
 \small\begin{align}
 	D_{\pi\parallel} \,=\, \frac{\epsilon^2}{(x - a_m) \sqrt{\pi}}\,
 		\frac{\rho_{\theta i} \, T}{B}~,~~~
-	e \Gamma_i^{\pi\parallel} \,=\, -e\,n_e\,D_{\pi\parallel}
-		\left(-\frac{n^\prime}{n} - \frac{Z}{\rho_{\theta i}}\right) \,
-		\text{Im}\left[X\left(Z + \frac{i \nu_{ii}}{\omega_t}\right)\right]
+	e \Gamma_i^{\pi\parallel} \,=\, e\,n_e\,D_{\pi\parallel}
+		\left(\frac{n^\prime}{n} + \frac{Z}{\rho_{\theta i}}\right) \,
+		\text{Im}\left[X\left(Z + \frac{i \, \nu_{ii}}{\omega_t}\right)\right]
 \end{align}\normalsize
 
 + Electron Anomalous Diffusion:
@@ -227,8 +243,8 @@ Corrected version, which is used:
 	D_\text{an} \,&=\, \frac{\epsilon^2 \sqrt{\pi}}{2 a_m}
 		\frac{\rho_{\theta e} T}{B}~,~~
 		g_n^\text{an} \,=\, -e \,n\, D_\text{an}~,~~
-		g_T^\text{an} \,=\, -e \,n\, \alpha_\text{an}\, D_\text{an}~,~~
-		g_Z^\text{an} \,=\, \frac{-e \,n\, D_\text{an}}{\rho_{\theta i}}
+		g_T^\text{an} \,=\, \alpha_\text{an}\, g_n^\text{an}~,~~
+		g_Z^\text{an} \,=\, \frac{g_n^\text{an}}{\rho_{\theta i}}
 \end{align}\normalsize
 
 + Charge Exchange Friction:
@@ -237,7 +253,7 @@ Corrected version, which is used:
 		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \,n \,T}{B_\theta^2}
 		\left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right]~,~~~~
 		g_T^\text{cx} \,=\, \alpha_\text{cx}\,g_n^\text{cx}~,~~~~
-		g_Z^\text{cx} \,=\, -\frac{g_n^\text{cx}}{\rho_{\theta i}}
+		g_Z^\text{cx} \,=\, \pm\frac{g_n^\text{cx}}{\rho_{\theta i}}~?
 \end{align}\normalsize
 
 + Ion Orbit Loss:
