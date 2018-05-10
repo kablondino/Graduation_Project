@@ -176,7 +176,31 @@ In simulating the dynamics, oscillations in the radial electric field began occu
 This adjustment was handled by eliminating any complex-valued function in the definition of this nonambipolar flux.
 \begin{figure}[tb] % Comparison of complex-valued plasma dispersion with simple gaussian
 	\centering
-	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Bulk_Definition_Comparison.png}
+	\begin{sagesilent}
+	reset()
+
+	var('x,z')
+
+	plasma_disp(z) = I*sqrt(pi)*exp(-z^2) * erfc(-I*z)
+
+	complex_one(x) = imag(plasma_disp.subs(z=x + 1*i))
+	complex_onetenth(x) = imag(plasma_disp.subs(z=x + 0.2*i))
+	complex_hundredth(x) = imag(plasma_disp.subs(z=x + 0.05*i))
+
+	complex_one_plot = plot(complex_one, (x,-4,4), color='olive', thickness=2, legend_label=r"Im$[X(Z + 1i)]$")
+	complex_onetenth_plot = plot(complex_onetenth, (x,-4,4), thickness=2, color='green', legend_label=r"Im$[X(Z + 0.2i)]$")
+	complex_hundredth_plot = plot(complex_hundredth, (x,-4,4), thickness=2, color='turquoise', legend_label=r"Im$[X(Z + 0.05i)]$")
+
+	non_complex_plot = plot(sqrt(pi)*exp(-(x)^2), (x,-4,4), color='blue', thickness=2, legend_label=r"$\sqrt{\pi} \, \exp(-Z^2)$", axes_labels=['$Z$', ''], gridlines=True)
+
+	combined_plots = complex_one_plot + complex_onetenth_plot + complex_hundredth_plot + non_complex_plot
+	combined_plots.set_aspect_ratio(2)
+#	combined_plots.set_legend_options(font_size=40)
+#	combined_plots.show(figsize=[20,10], fontsize=32)
+	\end{sagesilent}
+
+%	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Bulk_Definition_Comparison.png}
+	\sageplot[width=\textwidth]{combined_plots}
 	\caption{A visualization of the plasma dispersion function under the condition of Eq.~\ref{eq:plasma_disp_reduction}.
 	As the imaginary portion of the argument tends towards zero, the complementary error function with the imaginary argument tends towards unity.}
 	\label{fig:bulk_definition_comparison}
