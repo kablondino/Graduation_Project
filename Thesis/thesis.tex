@@ -33,6 +33,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{cleveref}
 
+% SageTeX!
+\usepackage{sagetex}
+
 % Minted package for printing code
 % MUST BE COMPILED with -shell-escape flag!
 \usepackage{minted}
@@ -59,20 +62,20 @@
 %}}}
 
 %{{{ Two Figures Side-by-Side, separate captions
-\newsavebox\IBoxA \newsavebox\IBoxB \newlength\IHeight
+%\newsavebox\IBoxA \newsavebox\IBoxB \newlength\IHeight
 \newcommand\TwoFig[6]{% Image1 Caption1 Label1 Im2 Cap2 Lab2
-	\sbox\IBoxA{\includegraphics[width=0.45\textwidth]{#1}}
-	\sbox\IBoxB{\includegraphics[width=0.45\textwidth]{#4}}%
-	\ifdim\ht\IBoxA>\ht\IBoxB
-		\setlength\IHeight{\ht\IBoxB}%
-	\else\setlength\IHeight{\ht\IBoxA}\fi
+%	\sbox\IBoxA{#1}
+%	\sbox\IBoxB{#4}%
+%	\ifdim\ht\IBoxA>\ht\IBoxB
+%		\setlength\IHeight{\ht\IBoxB}%
+%	\else\setlength\IHeight{\ht\IBoxA}\fi
 	\begin{figure}[hbt]
 		\minipage[t]{0.48\textwidth}\centering
-			\includegraphics[height=\IHeight]{#1}
+			{#1}
 			\caption{#2}\label{#3}
 		\endminipage\hfill\vrule\hfill
 		\minipage[t]{0.48\textwidth}\centering
-			\includegraphics[height=\IHeight]{#4}
+			{#4}
 			\caption{#5}\label{#6}
 		\endminipage
 	\end{figure}%
@@ -81,17 +84,17 @@
 
 %{{{ Two Figures Side-by-Side, with 1 caption
 \newcommand\TwoFigOneCap[4]{% Image1 Im2 Caption Label
-	\sbox\IBoxA{\includegraphics[width=0.45\textwidth]{#1}}
-	\sbox\IBoxB{\includegraphics[width=0.45\textwidth]{#2}}%
-	\ifdim\ht\IBoxA>\ht\IBoxB
-		\setlength\IHeight{\ht\IBoxB}%
-	\else\setlength\IHeight{\ht\IBoxA}\fi
+%	\sbox\IBoxA{#1}
+%	\sbox\IBoxB{#2}%
+%	\ifdim\ht\IBoxA>\ht\IBoxB
+%		\setlength\IHeight{\ht\IBoxB}%
+%	\else\setlength\IHeight{\ht\IBoxA}\fi
 	\begin{figure}[hbt]
 		\minipage[t]{0.48\textwidth}\centering
-			\includegraphics[height=\IHeight]{#1}
+			{#1}
 		\endminipage\hfill
 		\minipage[t]{0.48\textwidth}\centering
-			\includegraphics[height=\IHeight]{#2}
+			{#2}
 		\endminipage
 		\caption{#3}\label{#4}
 	\end{figure}%
