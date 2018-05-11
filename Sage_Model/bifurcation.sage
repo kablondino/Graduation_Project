@@ -23,7 +23,7 @@ co_1_zero = point((0,0), size=30, color='black')
 
 co_1_total = co_1_lower + co_1_upper + co_1 + co_1_zero
 
-#co_1_total.show()
+co_1_total.show()
 
 
 # ----------------- Co-dimension 2 ------------------------
