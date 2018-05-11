@@ -45,6 +45,10 @@ __init__.py
 # Configuration files for FiPy
 *config*.py
 
+# SageTeX things
+*.sagetex.*
+sage-plots-for-thesis.tex
+
 # Perl files
 *.pl
 
