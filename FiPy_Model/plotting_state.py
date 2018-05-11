@@ -105,13 +105,13 @@ for filename in file_list:
 
 	top_plot = density_plot + temp_plot
 	top_labels = [l.get_label() for l in top_plot]
-	ax_list[1].legend(top_plot, top_labels, loc='best', fontsize='medium')
+	ax_list[1].legend(top_plot, top_labels, loc='lower right', fontsize='medium')
 	bottom_plot = Z_plot + D_plot
 	bottom_labels = [l.get_label() for l in bottom_plot]
-	ax_list[3].legend(bottom_plot, bottom_labels, loc='best')
+	ax_list[3].legend(bottom_plot, bottom_labels, loc='lower right')
 
 
-	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{21}$, $D \sim 1 / [1 + 0.001 (Z)^2 + 0.0005 (Z_x)^2]$"+ "\n" +"$\mu = 0.05$, $t = " +str(int(filename_sans_ext))+ r"\cdot 5 \mu s$",\
+	fig_state.suptitle(r"$\Gamma_c = -1.0\times 10^{21}$, $D \sim 1 / [1 + 0.001 (Z)^2 + 0.0005 (Z_x)^2]$"+ "\n" +"$\mu = 0.05$, $t = " +str(int(filename_sans_ext))+ r"\cdot 0.5 \mu s$",\
 			fontsize=22)
 	fig_state.tight_layout(pad=0.2, w_pad=0.0)
 	plt.subplots_adjust(top=0.9)
