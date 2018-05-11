@@ -4,7 +4,7 @@
 """
 
 # Particle and heat flux from the core
-Gamma_c = -0.8
+Gamma_c = +0.2
 q_c = 5.0*Gamma_c
 
 # Number of cells
@@ -18,7 +18,7 @@ original_model = True
 res_tol = 1.0e-6
 
 # Total time steps; should be ~ L^2 / D
-total_timeSteps = 2000
+total_timeSteps = 1000
 
 # Size of time step denominator (delta t)
 # Either mu or epsilon is in the numerator, NOW DEPRICATED
@@ -28,14 +28,14 @@ timeStep = 1.0 / 375.0
 
 # Choose the Diffusivity model, as a string (case does not matter)
 # D_Zohm, D_Staps, and D_Shear are the possibilities
-D_choice = "D_Staps"
+D_choice = "D_Flow_Shear"
 # Coefficient of (Z')**beta in Stap's diffusivity
 alpha_sup = 0.25
 # Exponent of Z' in Stap's diffusivity
 beta = 2.0
 
 # If the D_choice is set to the flow-shear model, this would be the parameters
-shear_a1, shear_a2, shear_a3 = 0.1, 0.0, 0.5
+shear_a1, shear_a2, shear_a3 = 0.1, 0.0, 0.1
 
 # Initial condition choice, with True representing Paquay's initial conditions,
 # and False representing linear profiles.
@@ -52,7 +52,7 @@ generate_plots = True
 numerical_choice = "Staps"
 
 # Plot details
-plot_title = "$D \sim 1 / [1 + 0.25 (Z^\prime)^{2}]$"\
+plot_title = "$D \sim 1 / [1 + 0.1 (Z)^2 + 0.25 (Z^\prime)^{2}]$"\
 		+"\n" + r"$\Gamma_c = {:.3g},\, T \,=\, {:d},\,$"\
 		.format(Gamma_c, total_timeSteps)\
 		+ r"$\Delta t \,=\, {:.3e}$".format(timeStep)
@@ -77,5 +77,5 @@ aux_ymax = []
 save_plots = False
 save_TSVs = False
 
-save_directory = ""
+save_directory = "May_11_Original"
 

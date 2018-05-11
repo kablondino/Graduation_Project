@@ -79,6 +79,7 @@ elif (config.D_choice.lower() == "d_shear" or config.D_choice.lower()\
 			/ (1.0 + config.shear_a1*(Z)**2 + config.shear_a2*Z*Z.grad[0]\
 			+ config.shear_a3*numerix.dot(Z.grad, Z.grad))
 
+# Weymiens L--mode
 elif (config.D_choice.lower() == "d_weymiens_l" or config.D_choice.lower()\
 		== "weymiens_l" or config.D_choice.lower() == "weymiens"):
 	D_choice_local = D_min + (D_max - D_min) * (1 - config.alpha_sup\
@@ -135,8 +136,8 @@ def set_boundary_values(AGamma_c, Aq_c):
 		Mandatory core boundary condition:
 		d/dx(Z(L)) == 0
 	"""
-#	Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
-	Z.faceGrad.constrain(0.0, mesh.facesLeft)
+	Z.faceGrad.constrain(Z.faceValue / lambda_Z, mesh.facesLeft)
+#	Z.faceGrad.constrain(0.0, mesh.facesLeft)
 	Z.faceGrad.constrain(0.0, mesh.facesRight)
 
 
