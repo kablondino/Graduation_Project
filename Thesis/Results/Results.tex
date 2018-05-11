@@ -1,5 +1,5 @@
 \chapter{Results}\label{chapter:results}
-
+\section{Original Model} \label{sec:original_results}
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Graphics/Model_Graphs/Original_FS1_0000.png}
@@ -19,4 +19,39 @@
 	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0200.png}}
 	{CAPTION!}
 	{fig:Original_FS_H--mode_double}
+
+\section{Flux Model} \label{sec:flux_results}
+
+\begin{sagesilent}
+	reset()
+	import scipy
+	from scipy import constants
+	# THE DATA USED IN THE NEXT TABLE
+	# At x ~ 0.002, t = 200
+	#x	$n$	$T$	$Z$	$D$	$D_{an}$	$\Gamma_e^{an}$	$n_0$	$\langle\sigma_{cx} v\rangle$	$\Gamma_i^{cx}$	$D_{\pi\parallel}$	$\Gamma_i^{\pi\parallel}$	$\Gamma_i^{ol}$
+	x, density, temperature, Z, Diffusivity, D_an, Gamma_an, n_0, cx_rate, Gamma_cx, D_bulk, Gamma_bulk, Gamma_ol = 0.002125, 5.35434214493223e+17, 165.427742871548, 1.47166341450206, 2.13128525822014, 0.000700479137552669, 2.30504108694339e+17, 56167794581565.9, 2.5481649909684e-13, -4.83290085496657e+16, -0.0191697028228131, -1.17180463596314e+18, -466734643459656
+	alpha_an, alpha_cx = 1.5, 1.5
+	a_m, R = 0.6670832032063168, 1.6					# Minor, major radius
+	aspect = a_m / R									# Aspect ratio
+	B_phi = 3.9											# Toroidal field
+	B_theta = constants.mu_0 * 2.0e6 / ( 2*pi * a_m )	# Poloidal field
+	rho_pi = sqrt(2*constants.m_p * temperature / (constants.e * B_theta^2))
+	g_n_cx = -constants.m_p*n_0*cx_rate*density*temperature / (B_theta^2) * (B_theta^2 / (aspect*B_phi)**2)
+	g_T_cx = g_n_cx * alpha_cx
+	g_Z_cx = g_n_cx / rho_pi
+\end{sagesilent}
+
+The poloidal gyroradius is $\sage{rho_pi.n(digits=4)}$.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{r|cccc}
+		& $\frac{n^\prime}{n}$ & $\frac{T^\prime}{T}$ & $Z$ & $\sum$ \\ \hline
+		$\Gamma_i^{\pi\parallel}$ & $\sage{density * D_bulk.n(digits=4)}$ &  &  &  \\
+		$\Gamma_e^\text{an}$ & $\sage{(density * D_an).n(digits=4)}$ & $\sage{(density * D_an * alpha_an).n(digits=4)}$ & $\sage{(density * D_an / rho_pi).n(digits=4)}$ & $\sage{Gamma_an.n(digits=4)}$ \\
+		$\Gamma_i^\text{cx}$ & $\sage{g_n_cx.n(digits=4)}$ & $\sage{g_T_cx.n(digits=4)}$ & $\sage{g_Z_cx.n(digits=4)}$ & $\sage{Gamma_cx.n(digits=4)}$ \\
+		$\Gamma_i^\text{ol}$ &  &  & $\sage{Gamma_ol.n(digits=4)}$ &
+	\end{tabular}
+	\label{table:flux_values}
+\end{table}
 
