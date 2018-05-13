@@ -265,7 +265,6 @@ As $b$ approaches zero from some positive value, the size of the hysteresis shri
 
 	combined_plots = sum(b_plots) + sum(boxes)
 \end{sagesilent}
-
 \TwoFigOneCap{\sageplot[width=\textwidth]{combined_plots}}
 	{\includegraphics[width=\textwidth]{../Graphics/Bif_Graphs/Bif_3D.png}}
 	{These plots show the mentioned co-dimension 2 cusp bifurcation, composed of two co-dimension 1 fold bifurcations, as described by Equation~\ref{eq:sharp_bif}.
@@ -353,15 +352,19 @@ Drift waves are considered to be the only type of turbulence that pushes radial 
 Particular well-known instabilities can be coupled to the drift-wave turbulence, such as the drift resistant ballooning mode, among others \cite{scott_three-dimensional_1997}.
 Therefore, a form for the turbulence level will be restricted to one that adheres to the drift wave.
 
-The turbulence $\mathcal{E}$ evolves as the following, in the absence of shear in the plasma flow
+The anomalous transport depends on the turbulence level $\mathcal{E}$, with it generally going linearly \cite{hahm_rotation_1994}.
+\begin{align} % Diffusivity as a function of turbulence
+	D \,=\, D_\text{min} \,+\, (D_\text{max} - D_\text{min})
+		\frac{\mathcal{E}}{\mathcal{E}_\text{max}}
+	\label{eq:diffusivity_turbulence}
+\end{align}
+The maximum turbulence $\mathcal{E}_\text{max}$ is the ratio of some linear growth rate $\gamma_L$ to the saturation coefficient $\alpha_\text{sat}$ corresponding to that turbulence mechanism.
+This translates to an evolving turbulence equation as
 \begin{align} % Turbulence ODE
 	\frac{\partial\mathcal{E}}{\partial t} \,=\, \gamma_L\mathcal{E} - \alpha_\text{sat}\mathcal{E}^2~.
 	\label{eq:turbulence_ode}
 \end{align}
 This is the result from assuming the particle diffusivity increases linearly with the level of turbulence up to some maximum \cite{diamond_dynamics_1995}.
-The first term on the right-hand side is a linear growth term, with $\gamma_L$ as the growth rate.
-The second term is a nonlinear saturation term, with $\alpha_\text{sat}$ as the saturation rate.
-The maximum turbulence is the ratio of the linear growth rate to the saturation rate.
 
 It is now accepted that turbulent transport at the edge is particularly suppressed by shear in the flow of the $\mathbf{E}\times\mathbf{B}$ drift \cite{terry_suppression_2000}.
 The shear stress dissociates smaller turbulent structures, with their energy and momenta transferred to larger flows.
@@ -376,7 +379,7 @@ Both zonal and mean $\mathbf{E}\times\mathbf{B}$ flows are responsible for the d
 Zonal flows in particular are present in L--mode, in which the shear due to Reynolds stress comes from radial and poloidal perturbations \cite{diamond_zonal_2005}.
 However, they disappear in H--mode, leaving only mean flows present.
 
-The flow shear could reduce the growth rate of the turbulence \cite{diamond_self-regulating_1994}, which was coined the linear model.
+The flow shear reduces the growth rate of the turbulence \cite{diamond_self-regulating_1994}, which was coined the linear model.
 The other possibility is that flow shear can increase the saturation mechanism, which is the nonlinear model \cite{hahm_rotation_1994}.
 Each are implemented as some parameter that multiplies against their respective term in Equation~\ref{eq:turbulence_ode}.
 For example, the nonlinear model would adjust it to the following

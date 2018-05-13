@@ -1,24 +1,89 @@
 \chapter{Results}\label{chapter:results}
-\section{Original Model} \label{sec:original_results}
-\begin{figure}[tb]
-	\centering
-	\includegraphics[width=0.7\textwidth]{../Graphics/Model_Graphs/Original_FS1_0000.png}
-	\caption{CAPTION!}
-	\label{fig:Original_FS_L--mode}
-\end{figure}
-\begin{figure}[tb]
-	\centering
-	\includegraphics[width=0.7\textwidth]{../Graphics/Model_Graphs/Original_FS_0200.png}
-	\caption{CAPTION!}
-	\label{fig:Original_FS_H--mode}
-\end{figure}
+This chapter is broken into two sections.
+The first covers any verification of the changes made to the numerical parameters of the original model of the Z equation (Eq.~\ref{eq:original_Z_equation}).
+The second section shows the results of the flux version, Eq.~\ref{eq:reduced_normalized_Z_equation}.\todo{\color{red}ADD MORE!}
 
-\TwoFig{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS1_0000.png}}
-	{CAPTION!}
-	{fig:Original_FS_L--mode_double}
-	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0200.png}}
-	{CAPTION!}
-	{fig:Original_FS_H--mode_double}
+\section{Original Model} \label{sec:original_results}
+%{{{ Two time slices in the Flow-Shear Original Model
+\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0000.png}}
+	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0135.png}}
+	{The left plot shows the initial conditions set forth by Eqs.~\ref{eq:n_initial}--\ref{eq:T_initial}, with the right plot at a later time.
+	The diffusivity was set to the Flow-Shear model, \emph{i.e.} Eq.~\ref{eq:flow_shear_diffusivity}, with $a_1 = 0.1$, $a_2 = 0$, and $a_3 = 0.5$.
+	The core particle and heat fluxes, respectively, are set to $-0.8$ and $4.0$.}
+	{fig:Original_FS}
+%}}}
+
+If we look at the steady-state values of the equationladkjsf;alkdsfj\todo{\color{red}ADFADFADF}
+\begin{figure}[tb] % Steady-State as a function of Z, original model
+	\centering
+	\begin{sagesilent}
+		reset()
+
+		var('Z')
+
+		c_n, c_T = -1.1, -0.9
+		a, b, c = 3.0/2.0, 2.0, -1.0
+		Z_S = -3.0/2.0
+
+		# At t = 0
+		#0.49	0.683706980466396	1.32496145938483	-0.0206250867984561	5
+		#0.51	0.691213814264995	1.33027412776876	-0.0191672209048899	5
+		#0.53	0.698719562491543	1.33554223315998	-0.0177733476721204	5
+
+		# At t = 135
+		#0.49	0.610660563155032	1.30411254952973	-3.06036908428267	2.66118461102601
+		#0.51	0.618549890710752	1.31299641246706	-3.05151915868033	2.66386371895
+		#0.53	0.626467999984115	1.32173998954979	-3.0425333319374	2.66544015688424
+		# .........
+		#0.99	0.981110868143376	1.63421628926577	-1.48108678379191	0.491444796219089
+		#1.01	0.999673727872353	1.64981311266731	-1.28285663026662	0.499537912103461
+		#1.03	1.01660486587383	1.66401200235489	-1.09300528560897	0.513478891305364
+		# .........
+		#1.99	1.2435198107485	1.79762273772508	0.141694442025275	4.9908892834125
+		#2.01	1.24801940647034	1.79934360213636	0.141647858350999	4.99089991282975
+		#2.03	1.2525541146463	1.80107077486164	0.141626086988019	4.99090015667972
+
+		t = (0, 135, 135, 135)
+		x = (0.51, 0.51, 1.01, 2.01)
+		density = (0.691213814264995, 0.618549890710752, 0.999673727872353, 1.24801940647034)
+		density_grad = ((0.698719562491543 - 0.683706980466396) / 0.04,\
+				(0.610660563155032 - 0.626467999984115) / 0.04,\
+				(1.01660486587383 - 0.981110868143376) / 0.04,\
+				(1.2525541146463 - 1.2435198107485) / 0.04)
+		temperature = (1.33027412776876, 1.31299641246706, 1.64981311266731, 1.79934360213636)
+		temperature_grad = ((1.33554223315998 - 1.32496145938483) / 0.04,\
+				(1.32173998954979 - 1.30411254952973) / 0.04,\
+				(1.66401200235489 - 1.63421628926577) / 0.04,\
+				(1.80107077486164 - 1.79762273772508) / 0.04)
+
+		colors = rainbow(len(x) + 1)
+
+		G(Z) = a + b*(Z - Z_S) + c*(Z - Z_S)^3
+
+		steady_state_plots = []
+
+		for j in range(len(x)):
+		    f(Z) = (c_n * temperature[j] / density[j]^2) * density_grad[j] + (c_T / density[j]) * temperature_grad[j] + G(Z)
+		    steady_state_plots.append(plot(f, (Z,-3.5,1.5), ymin=-3, ymax=4,\
+		    		gridlines=True, color=colors[j], axes_labels=["$Z$",""],\
+		    		thickness=2.0, legend_label="$x = " +str(x[j].n(digits=3))\
+		    		+"$, $t = " +str(t[j].n(digits=3))+ "$"))
+
+		steady_state_plots.append(plot(G, (Z,-3.5,1.5), gridlines=True,\
+				color=colors[-1], thickness=2.0, legend_label="$G(Z)$"))
+
+		equation_label = text(r"$f(Z) = \frac{c_n \, T}{n^2} \, \frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \, \frac{\partial T}{\partial x} \,+\, G(Z)$",\
+				(-2,-2.5), bounding_box={'boxstyle': 'round', 'fc': 'w'},\
+				fontsize=16, color='black')
+
+		combined_plots = sum(steady_state_plots) + equation_label
+		combined_plots.set_aspect_ratio(0.4)
+	\end{sagesilent}
+	\sageplot[width=0.9\textwidth]{combined_plots}
+	\caption{This plot shows the steady-state values across $Z$ at different locations in the domain, corresponding with the plots in Fig.~\ref{fig:Original_FS}.
+	It assumes the concavity of the field is 
+	The three locations correspond to near the edge, at the transport barrier, and half-way in the domain.}
+\end{figure}
 
 \section{Flux Model} \label{sec:flux_results}
 
@@ -26,32 +91,71 @@
 	reset()
 	import scipy
 	from scipy import constants
-	# THE DATA USED IN THE NEXT TABLE
-	# At x ~ 0.002, t = 200
-	#x	$n$	$T$	$Z$	$D$	$D_{an}$	$\Gamma_e^{an}$	$n_0$	$\langle\sigma_{cx} v\rangle$	$\Gamma_i^{cx}$	$D_{\pi\parallel}$	$\Gamma_i^{\pi\parallel}$	$\Gamma_i^{ol}$
-	x, density, temperature, Z, Diffusivity, D_an, Gamma_an, n_0, cx_rate, Gamma_cx, D_bulk, Gamma_bulk, Gamma_ol = 0.002125, 5.35434214493223e+17, 165.427742871548, 1.47166341450206, 2.13128525822014, 0.000700479137552669, 2.30504108694339e+17, 56167794581565.9, 2.5481649909684e-13, -4.83290085496657e+16, -0.0191697028228131, -1.17180463596314e+18, -466734643459656
+
 	alpha_an, alpha_cx = 1.5, 1.5
 	a_m, R = 0.6670832032063168, 1.6					# Minor, major radius
-	aspect = a_m / R									# Aspect ratio
 	B_phi = 3.9											# Toroidal field
 	B_theta = constants.mu_0 * 2.0e6 / ( 2*pi * a_m )	# Poloidal field
-	rho_pi = sqrt(2*constants.m_p * temperature / (constants.e * B_theta^2))
-	g_n_cx = -constants.m_p*n_0*cx_rate*density*temperature / (B_theta^2) * (B_theta^2 / (aspect*B_phi)**2)
-	g_T_cx = g_n_cx * alpha_cx
-	g_Z_cx = g_n_cx / rho_pi
+
+	aspect = a_m / R									# Aspect ratio
+	q = aspect * B_phi/B_theta							# q value
 \end{sagesilent}
 
-The poloidal gyroradius is $\sage{rho_pi.n(digits=4)}$.
-
-\begin{table}[h]
+\begin{table}[!htb] % Shows flux data for a time slice at two locations
 	\centering
 	\begin{tabular}{r|cccc}
-		& $\frac{n^\prime}{n}$ & $\frac{T^\prime}{T}$ & $Z$ & $\sum$ \\ \hline
-		$\Gamma_i^{\pi\parallel}$ & $\sage{density * D_bulk.n(digits=4)}$ &  &  &  \\
-		$\Gamma_e^\text{an}$ & $\sage{(density * D_an).n(digits=4)}$ & $\sage{(density * D_an * alpha_an).n(digits=4)}$ & $\sage{(density * D_an / rho_pi).n(digits=4)}$ & $\sage{Gamma_an.n(digits=4)}$ \\
-		$\Gamma_i^\text{cx}$ & $\sage{g_n_cx.n(digits=4)}$ & $\sage{g_T_cx.n(digits=4)}$ & $\sage{g_Z_cx.n(digits=4)}$ & $\sage{Gamma_cx.n(digits=4)}$ \\
-		$\Gamma_i^\text{ol}$ &  &  & $\sage{Gamma_ol.n(digits=4)}$ &
+	\begin{sagesilent} # At x ~ 0.002, t = 200
+		# THE DATA USED IN THE NEXT TABLE
+		#x	$n$	$T$	$Z$	$D$	$D_{an}$	$\Gamma_e^{an}$	$n_0$	$\langle\sigma_{cx} v\rangle$	$\Gamma_i^{cx}$	$D_{\pi\parallel}$	$\Gamma_i^{\pi\parallel}$	$\Gamma_i^{ol}$
+		t = 200
+		x, density, temperature, Z, Diffusivity, D_an, Gamma_an, n_0, cx_rate, Gamma_cx, D_bulk, Gamma_bulk, Gamma_ol = 0.002125, 5.35434214493223e+17, 165.427742871548, 1.47166341450206, 2.13128525822014, 0.000700479137552669, 2.30504108694339e+17, 56167794581565.9, 2.5481649909684e-13, -4.83290085496657e+16, -0.0191697028228131, -1.17180463596314e+18, -466734643459656
+
+		v_Ti = sqrt(2.0 * constants.e * temperature / constants.m_p)
+		rho_pi = constants.m_p * v_Ti / (constants.e * B_theta)
+
+		nu_ii = 1.2 * sqrt(constants.m_e / constants.m_p)\
+				* 4.2058e-11 * density / sqrt(temperature^3)
+		omega_t = v_Ti / (q * R)
+
+		g_n_cx = -constants.m_p*n_0*cx_rate*density*(temperature/constants.e)\
+				/ (B_theta^2) * (B_theta^2 / (aspect*B_phi)**2)
+		g_T_cx = g_n_cx * alpha_cx
+		g_Z_cx = g_n_cx / rho_pi
+	\end{sagesilent}
+		$x = \sage{(x*1000).n(digits=4)}$ mm & $\dfrac{n^\prime}{n}$ & $\dfrac{T^\prime}{T}$ & $Z$ & Total \\
+		$\dagger \, \Gamma_i^{\pi\parallel}$ & $\sage{(density * D_bulk * sqrt(pi)*exp(-Z^2)).n(digits=3)}$ & --- & $\sage{((density * D_bulk / rho_pi) * sqrt(pi)*exp(-Z^2)).n(digits=3)}$ & $\sage{Gamma_bulk.n(digits=3)}$ \\
+		$\Gamma_e^\text{an}$ & $\sage{(density * D_an).n(digits=3)}$ & $\sage{(density * D_an * alpha_an).n(digits=3)}$ & $\sage{(density * D_an / rho_pi).n(digits=3)}$ & $\sage{Gamma_an.n(digits=3)}$ \\
+		$\Gamma_i^\text{cx}$ & $\sage{g_n_cx.n(digits=3)}$ & $\sage{g_T_cx.n(digits=3)}$ & $\sage{g_Z_cx.n(digits=3)}$ & $\sage{Gamma_cx.n(digits=3)}$ \\
+		$\Gamma_i^\text{ol}$ & --- & --- & --- & $\sage{Gamma_ol.n(digits=3)}$ \\ \hline
+
+	\begin{sagesilent} # x ~ 0.030125, t = 200
+		x, density, temperature, Z, Diffusivity, D_an, Gamma_an, n_0, cx_rate, Gamma_cx, D_bulk, Gamma_bulk, Gamma_ol = 0.030125, 1.08615114035334e+18, 221.843028685801, 1.77821178953312, 4.94743894562273, 0.00108811581270749, 6.12848344919829e+17, 1943024953.06425, 2.81018035060206e-13, -4232723648741.13, -0.0310869925862421, -1.37764340545142e+18, -1.15809327369854e-59
+
+		# Update for new values
+		v_Ti = sqrt(2.0 * constants.e * temperature / constants.m_p)
+		rho_pi = constants.m_p * v_Ti / (constants.e * B_theta)
+
+		nu_ii = 1.2 * sqrt(constants.m_e / constants.m_p)\
+				* 4.2058e-11 * density / sqrt(temperature^3)
+		omega_t = v_Ti / (q * R)
+
+		g_n_cx = -constants.m_p*n_0*cx_rate*density*(temperature/constants.e)\
+				/ (B_theta^2) * (B_theta^2 / (aspect*B_phi)**2)
+		g_T_cx = g_n_cx * alpha_cx
+		g_Z_cx = g_n_cx / rho_pi
+	\end{sagesilent}
+
+		$x = \sage{(x*1000).n(digits=4)}$ mm & & & & \\
+		$\dagger \, \Gamma_i^{\pi\parallel}$ & $\sage{(density * D_bulk * sqrt(pi)*exp(-Z^2)).n(digits=3)}$ & --- & $\sage{((density * D_bulk / rho_pi) * sqrt(pi)*exp(-Z^2)).n(digits=3)}$ & $\sage{Gamma_bulk.n(digits=3)}$ \\
+		$\Gamma_e^\text{an}$ & $\sage{(density * D_an).n(digits=3)}$ & $\sage{(density * D_an * alpha_an).n(digits=3)}$ & $\sage{(density * D_an / rho_pi).n(digits=3)}$ & $\sage{Gamma_an.n(digits=3)}$ \\
+		$\Gamma_i^\text{cx}$ & $\sage{g_n_cx.n(digits=3)}$ & $\sage{g_T_cx.n(digits=3)}$ & $\sage{g_Z_cx.n(digits=3)}$ & $\sage{Gamma_cx.n(digits=3)}$ \\
+		$\Gamma_i^\text{ol}$ & --- & --- & --- & $\sage{Gamma_ol.n(digits=3)}$
 	\end{tabular}
+	\caption{This table shows the values of the nonambipolar fluxes at two locations in the domain.
+	The upper half comes from a region of the transition, while the lower half is close to the core of the domain, indisputably in L--mode.
+	The appropriate gradient coefficients are shown in the columns, \emph{i.e.} $g_l^\text{k}$.
+	Note that, since bulk viscosity $\Gamma_i^{\pi\parallel}$ has a nonlinear term in the plasma dispersion function, its gradient coefficients are not entirely comparable.
+	Nevertheless, they do give an indication of the relative dominance.}
 	\label{table:flux_values}
 \end{table}
 

@@ -170,10 +170,16 @@ It appears in the dispersion equation for linearized waves in a non-relativistic
 		\frac{1}{\sqrt{\pi}} \int_{-\infty}^{+\infty} \frac{e^{-t^2}}{t - z}
 		\, \text{d}t \label{eq:plasma_disp}
 \end{align}
-\emph{\textbf{Note}} that this function is usually denoted as $Z$, but I am breaking this standard notation to avoid ambiguity with the normalized radial electric field.
+\emph{\textbf{Note}} that this function is usually denoted as $Z$, but I am breaking this standard notation, using $X$, to avoid ambiguity with the normalized radial electric field.
 
-In simulating the dynamics, oscillations in the radial electric field began occurring with with frequency much larger than any chosen time step size.
-This adjustment was handled by eliminating any complex-valued function in the definition of this nonambipolar flux.
+In the limit as $\nu_{ii} / \omega_t$ goes to zero, the plasma dispersion function reduces to a Gaussian, shown in Figure~\ref{fig:bulk_definition_comparison}.
+\begin{align} % Reduction of the plasma dispersion function into a gaussian
+	\lim_{b \,\to\, 0} \, \text{Im}\left[X(Z \,+\, b\,i)\right] \,=\, \sqrt{\pi} \,
+		\exp(-Z^2) \label{eq:plasma_disp_reduction}
+\end{align}
+This is reasonable, as $\omega_t$ is consistently two orders of magnitude larger than $\nu_{ii}$.
+The complementary error function goes to unity as its real component goes to zero while its imaginary portion is nonzero.
+More investigation is needed into the robustness of this form of the bulk viscosity, as well as a comparison with Eq.~\ref{eq:shaing_bulk}.
 \begin{figure}[tb] % Comparison of complex-valued plasma dispersion with simple gaussian
 	\centering
 	\begin{sagesilent}
@@ -206,15 +212,6 @@ This adjustment was handled by eliminating any complex-valued function in the de
 	\label{fig:bulk_definition_comparison}
 \end{figure}
 
-In the limit as $\nu_{ii} / \omega_t$ goes to zero, the plasma dispersion function reduces to a Gaussian, shown in Figure~\ref{fig:bulk_definition_comparison}.
-\begin{align} % Reduction of the plasma dispersion function into a gaussian
-	\lim_{b \,\to\, 0} \, \text{Im}\left[X(Z \,+\, b\,i)\right] \,=\, \sqrt{\pi} \,
-		\exp(-Z^2) \label{eq:plasma_disp_reduction}
-\end{align}
-This is reasonable, as $\omega_t$ is consistently two orders of magnitude larger than $\nu_{ii}$.
-The complementary error function goes to unity as its real component goes to zero while its imaginary portion is nonzero.
-More investigation is needed into the robustness of this form of the bulk viscosity, as well as a comparison with Eq.~\ref{eq:shaing_bulk}.
-
 With this modification, the final form used for this investigation is
 \begin{align} % Final form of Bulk Viscosity
 	\Gamma_i^{\pi\parallel} \,=\, \,n_e \, \sqrt{\pi} \, D_{\pi\parallel}
@@ -222,7 +219,8 @@ With this modification, the final form used for this investigation is
 		\exp\left(-Z^2\right) \label{eq:Gamma_bulk_final}
 \end{align}
 
-In addition, although this flux, at first glance, may take a similar shape to subsequently-presented fluxes, the plasma dispersion function does not allow for a direct comparison in the form of Eq.~\ref{eq:Gamma_an_g}.
+In addition, although this flux, at first glance, may take a similar shape to subsequently-presented fluxes, the nonlinearity of the plasma dispersion function does not allow the flux to be written in the form of Eq.~\ref{eq:Gamma_an_g}.
+Nevertheless, it can still be used for comparison.
 
 
 \subsection{Electron Anomalous Diffusion}\label{ssec:an_diffusion}
@@ -316,6 +314,7 @@ This current, also referred to as the ion loss cone, is compounded by the fact t
 The term $\nu_{*i}$ is the ion-ion collision frequency upon the ion banana bounce frequency. %, and $\nu_{in_0}$ is the ion-neutral collision frequency.
 %The sum of the ion-ion and ion-neutral frequency serves as the effective detrapping frequency.
 This particular form highly localizes the effect of the radial electric field \cite{kobayashi_experimental_2016}.
+As the ion collisionality $\nu_{*i}$ and the banana width $w_{bi}$
 
 Similar to bulk viscosity, and contrasting charge exchange friction and electron anomalous diffusion, this flux is explicitly nonlinear in $Z$.
 
@@ -349,14 +348,16 @@ All other possible sources of current are consolidated as the remaining terms, b
 The polynomial $G(Z)$ is cubic with an inflection point at $Z_S$, giving the transition behavior.
 The type of transition is wholly dictated by the values of the coefficients $a$, $b$, and $c$.
 
-The coefficients that are chosen for demonstration are the following.
-The particle-thermal diffusivity coupling constant $\zeta$ and the dynamic viscosity $\mu$ are used both in the original and flux models.
 \begin{table}[h] % Chosen parameters
 \centering
-\begin{tabular}{cc|ccccccc}
-	$\zeta$ & $\mu$ & $\epsilon$ & $c_n$ & $c_T$ & $a$ & $b$ & $c$ & $Z_S$ \\ \hline
-	0.5 & $\frac{1}{20}$ & $\frac{1}{25}$ & -1.1 & -0.9 & 1.5 & 2.0 & -1.0 & -1.5
-\end{tabular}
+	\begin{tabular}{cccc|ccccccc|cc}
+		$\zeta$ & $D_\text{min}$ & $D_\text{max}$ & $\mu$ & $\epsilon$ & $c_n$ & $c_T$ & $a$ & $b$ & $c$ & $Z_S$ & $\alpha_\text{an}$ & $\alpha_\text{cx}$ \\ \hline
+		0.5 & 2.0 & 0.4 & $\frac{1}{20}$ & $\frac{1}{25}$ & -1.1 & -0.9 & 1.5 & 2.0 & -1.0 & -1.5 & 1.5 & 1.5
+	\end{tabular}
+	\caption{The constant parameters chosen in the simulation.
+	The particle-thermal diffusivity coupling constant $\zeta$, the dynamic viscosity $\mu$, and the minimum and maximum diffusivity values $D_\text{min}, D_\text{max}$ are used both in the original and flux models.
+	The final two values are constants that couple the density gradient value to the temperature gradient value in $\Gamma_e^\text{an}$ and $\Gamma_i^\text{cx}$.}
+	\label{table:constants}
 \end{table}
 
 \subsection{Flux Model}\label{ssec:flux_Z_equation}
@@ -408,7 +409,7 @@ A further simplification can be done by multiplying everything by $2 / (e \, \rh
 \end{align}
 
 \section{Forms of Diffusivity}\label{sec:diffusivity}
-Various forms of $D$ (and subsequently $\chi$) are presented in investigations with this model.
+Various forms of $D$ (and subsequently $\chi$) are presented in investigations with this model, deriving from the basics established in Section~\ref{ssec:turbulence_sheared}.
 The original Itoh model has $D$ as a sigmoid function of the normalized radial electric field.
 Specifically, it was proportional to the hyperbolic tangent of the field, with a minimum and maximum diffusivity \cite{itoh_edge_1991, zohm_dynamic_1994}
 \begin{align} % Itoh diffusivity
@@ -487,7 +488,7 @@ They are derived for when $Z$ is a constant and in steady-state.
 		\frac{x}{\lambda_n}\right) \label{eq:n_initial} \\
 	T(x,0) \,&=\, \frac{q_c (\gamma \,-\, 1)}{\Gamma_c} \left[1 \,-\,
 		\frac{\lambda_n}{\zeta\lambda_T \,+\, \lambda_n} \left(1 \,+\,
-		\frac{x}{\lambda_n}\right)^{-\zeta}\right]\label{eq:T_initial}
+		\frac{x}{\lambda_n}\right)^{-\zeta}\right] \label{eq:T_initial}
 \end{align}
 One could also conceivably choose simple linear profiles, as the system would go into its steady-state relatively quickly.
 
