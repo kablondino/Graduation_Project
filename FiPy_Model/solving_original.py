@@ -26,7 +26,7 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 		== DiffusionTerm(coeff=(Diffusivity*density/zeta), var=temperature)\
 		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 
-# Z Equation
+# Z Equation, Original model
 G = a + b*(Z - Z_S) + c*(Z - Z_S)**3
 S_Z = ((c_n*temperature) / density**2) * density.grad[0]\
 		+ (c_T / density) * temperature.grad[0] + G

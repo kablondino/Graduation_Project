@@ -29,7 +29,7 @@ temperature.equation = TransientTerm(coeff=density, var=temperature)\
 		== DiffusionTerm(coeff=(Diffusivity*density/zeta), var=temperature)\
 		+ DiffusionTerm(coeff=Diffusivity*temperature, var=density)
 
-# Z Equation
+# Z Equation, Flux model
 Z.equation = TransientTerm(coeff=density, var=Z) ==\
 		DiffusionTerm(coeff=mu * density, var=Z) + (2.0 / rho_pi) * (\
 		+ Gamma_an\
@@ -68,7 +68,7 @@ if __name__ == '__main__':
 		temp_viewer = Viewer(temperature, xmin=0.0, xmax=L,\
 				datamin=0.0, datamax=None, legend='best')
 		ZD_viewer = Viewer((Z, Diffusivity), xmin=0.0, xmax=L, datamin=0.0,\
-				datamax=D_max+0.2, legend='best')
+				datamax=None, legend='best')
 #		D_viewer = Viewer(Diffusivity, xmin=0.0, xmax=L, datamin=0.0,\
 #				datamax=D_max + D_max/10.0, legend='lower right')
 		raw_input("Pause for Viewing Initial Conditions")
