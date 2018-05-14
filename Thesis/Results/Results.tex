@@ -11,7 +11,6 @@ Not shown here for the sake of brevity, a steady-state L--mode was also obtained
 \TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0000.png}}
 	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0135.png}}
 	{The left plot shows the initial conditions set forth by Eqs.~\ref{eq:n_initial}--\ref{eq:T_initial}, with the right plot at a later time.
-	The diffusivity was set to the Flow-Shear model, \emph{i.e.} Eq.~\ref{eq:flow_shear_diffusivity}, with $a_1 = 0.1$, $a_2 = 0$, and $a_3 = 0.5$.
 	The core particle and heat fluxes, respectively, are set to $-0.8$ and $4.0$.}
 	{fig:Original_FS}
 %}}}
@@ -105,18 +104,26 @@ The left zero of about $-3$ provokes the edge-side $Z$ value in the state.
 \section{Flux Model} \label{sec:flux_results}
 The flux model was simulated using SI units, with the routine exception of temperature in electron-volts.
 Scans over input power ($\Gamma_c$ and $q_c$) were done with both the full model and with excluding one nonambipolar flux at a time.
-However, one currently-unexplained phenomenon commanded the behavior.
+However, one currently-unexplained phenomenon commands the behavior as it attempts steady-state.
 
-First, a full run of the model was done, with the relevant variables shown in Fig.~\ref{fig:flux_state_full}.
-The parameters of the diffusivity, the time step size, and the core particle flux are indicated in the title.
-This time step was chosen to show the implying transport barrier characteristic of H--mode.
+First, a full run of the model is demonstrated, with the initial conditions for all the variables shown in Fig.~\ref{fig:flux_initial_conds}.
+%{{{ Two Figures for the initial conditions
+\TwoFigOneCap{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/state_G1e20_full_t0.png}}
+	{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/flux_G1e20_full_t0.png}}
+	{The initial conditions of the flux model (Eqs.~\ref{eq:n_initial} and \ref{eq:T_initial}), with the core particle flux $\Gamma_c = -10^{20}$ and core heat flux $q_c = 5\times 10^{22}$.}
+	{fig:flux_initial_conds}
+%}}}
+
+Evolving the system develops some expected and some unexpected results.
+Figure \ref{fig:flux_state_full} shows plots of the system after 200 time steps, which is equivalent to 1 ms of elapsed time.
 Table~\ref{table:flux_values} shows particular components of the fluxes at the same time step, when applicable, with the totals on the rightmost column.
+The upper half comes from a region of the transition, while the lower half is close to the core of the domain, indisputably in L--mode.
 %{{{ Two Figures for showing the full state, pre-oscillations
 \TwoFigOneCap{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/state_G1e20_full_t200.png}}
 	{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/flux_G1e20_full_t200.png}}
 	{The state including all of the nonambipolar fluxes.
-	The parameters for the diffusivity function, the core flux, and the particular time step are indicated.
-	}
+	The parameters for the diffusivity function and the core fluxes are identical to those in Fig.~\ref{fig:flux_initial_conds}.
+	The particular time step is indicated.}
 	{fig:flux_state_full}
 %}}}
 
@@ -143,7 +150,7 @@ Table~\ref{table:flux_values} shows particular components of the fluxes at the s
 		g_T_cx = g_n_cx * alpha_cx
 		g_Z_cx = g_n_cx / rho_pi
 	\end{sagesilent}
-		$x$ & & $\dfrac{n^\prime}{n}$ & $\dfrac{T^\prime}{T}$ & $Z$ & Total & $J_j^\text{k}$ \\ \hline
+		$x$ & & $g_n^\text{k}$ & $g_T^\text{k}$ & $g_Z^\text{k}$ & Total & $J_j^\text{k}$ \\ \hline
 		\multirow{4}{*}{$\sage{(x*100).n(digits=3)}$ cm} & $\dagger \, \Gamma_i^{\pi\parallel}$ & $\sage{(density * D_bulk * sqrt(pi)*exp(-Z^2)).n(digits=3)}$ & --- & $\sage{((density * D_bulk / rho_pi) * sqrt(pi)*exp(-Z^2)).n(digits=3)}$ & $\sage{Gamma_bulk.n(digits=3)}$ & $\sage{(constants.e * Gamma_bulk).n(digits=3)}$ \\
 		& $\Gamma_e^\text{an}$ & $\sage{(density * D_an).n(digits=3)}$ & $\sage{(density * D_an * alpha_an).n(digits=3)}$ & $\sage{(density * D_an / rho_pi).n(digits=3)}$ & $\sage{Gamma_an.n(digits=3)}$ & $\sage{(constants.e * Gamma_an).n(digits=3)}$ \\
 		& $\Gamma_i^\text{cx}$ & $\sage{g_n_cx.n(digits=3)}$ & $\sage{g_T_cx.n(digits=3)}$ & $\sage{g_Z_cx.n(digits=3)}$ & $\sage{Gamma_cx.n(digits=3)}$ & $\sage{(constants.e * Gamma_cx).n(digits=3)}$ \\
@@ -172,39 +179,53 @@ Table~\ref{table:flux_values} shows particular components of the fluxes at the s
 		 & $\Gamma_i^\text{ol}$ & --- & --- & --- & $\sage{Gamma_ol.n(digits=3)}$ & $\sage{(constants.e * Gamma_ol).n(digits=3)}$
 	\end{tabular}\normalsize
 	\caption{This table shows the values of the nonambipolar fluxes at two locations in the domain.
-	The upper half comes from a region of the transition, while the lower half is close to the core of the domain, indisputably in L--mode.
 	The appropriate gradient coefficients are shown in the columns, \emph{i.e.} $g_l^\text{k}$.
 	Note that, since bulk viscosity $\Gamma_i^{\pi\parallel}$ has a nonlinear term in the plasma dispersion function, its gradient coefficients are not entirely comparable.
 	Nevertheless, they do give an indication of the relative dominance.
 	The time step used is the same of that in Fig.~\ref{fig:flux_state_full}.}
 	\label{table:flux_values}
 \end{table}
-One note from this data is that the neoclassical bulk viscosity $\Gamma_i^{\pi\parallel}$ results in the largest flux.
-This is found consistently throughout all combinations of fluxes and input power.
+One clear trend from this data is that the neoclassical bulk viscosity $\Gamma_i^{\pi\parallel}$ in this form results in the largest flux, with the anomalous electron loss $\Gamma_e^\text{an}$ not far behind.
+The ion orbit loss is at a maximum with no radial electric field, and is suppressed very heavily in the presence of it.
+It therefore is the weakest of the four.
+These results are found consistently throughout all combinations of fluxes and input power.
 
-\begin{figure}[htb] % FLUXES STEADY-STATE, SAVED IMAGE, because it takes to long to run
+On the note of the bifurcation of the system: due to the linear forms of the anomalous electron loss $\Gamma_e^\text{an}$ and charge exchange friction $\Gamma_i^\text{cx}$, bifurcating behavior cannot arise due to them.
+Although the ion orbit loss $\Gamma_i^\text{ol}$ is also nonlinear, it generally goes very similarly as a Gaussian, meaning it has only two zeros, and only as $|Z|$ gets large.
+Plotted in Fig.~\ref{fig:fluxes_steady-state} are the fluxes as a function of $Z$, along with their sum.
+It is taken at a radial location towards the core, inside any potential transport barriers.
+
+\begin{figure}[!htb] % Fluxes vs Z, SAVED IMAGE, because it's too much code
 	\centering
-	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Flux_vs_Z_t200_core_simple.png}
-	%\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Flux_vs_Z_t200_core_complex.png}
-	\caption{This plots is akin to Fig.~\ref{fig:original_stationary_vs_Z} for the flux model; each nonambipolar flux is plotted against $Z$ at the indicated location and time.
-	It clearly shows three steady-state points, just as the original model, and shows the dominance of the bulk viscosity.}
+	\includegraphics[width=0.8\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_core_t200.png}
+	\caption{This plot is akin to Fig.~\ref{fig:original_stationary_vs_Z} for the flux model; each nonambipolar flux is plotted against $Z$ at the indicated location and time.
+	Other plots with at different positions and time slices have the same characteristic behavior, with the edge and barrier regions with smaller deviations from zero.
+	It clearly shows three steady-state points, just as the original model, and shows the dominance of the bulk viscosity.
+	The anomalous electron loss and charge exchange friction are nearly identical, and thus overlap in the figure.}
+	\label{fig:fluxes_steady-state}
 \end{figure}
-For absolute values above some threshold, the bulk viscosity defined with the full plasma dispersion function becomes erratic and unphysical.
-It seems to be similar to the function $\sin(1/x)$ as $x$ approaches zero.
 
+\subsection{Oscillations} \label{ssec:oscillations}
+After some unknown threshold is reached, oscillations begin to occur in the system.
+These oscillations do not seem to be the result of a physical mechanism, or at least any known one, as its frequency is much to great.
+The plots in Fig.~\ref{fig:oscillations_extended} are the result of reducing the time step size by one order of magnitude.
+Thus, the time step size becomes 500 ns, a time scale much too short to be any known physical mechanism.
+On the reverse, however, results in the PDE system failing to converge with a time step any larger than 10 $\mu$s, still with the phenomenon.
 %{{{ Two Figures for displaying the oscillations with large time step
-\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_full_t400.png}}
-	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_full_t401.png}}
-	{These two plots are one time step from another, with the same parameters as those found in Fig.~\ref{fig:flux_state_full}.
-	The defining feature of the mathematics is the rapid oscillations that occur.}
-	{fig:show_oscillations}
-%}}}
-%{{{ Two Figures for displaying the oscillations with short time step
-\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t1059.png}}
-	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t1060.png}}
-	{The same simulation was done as in Fig.~\ref{fig:show_oscillations}, with a time step one-tenth the size.}
-	{fig:show_oscillations_extended}
+%\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_full_t400.png}}
+%	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_full_t401.png}}
+%	{These two plots are one time step from another, with the same parameters as those found in Fig.~\ref{fig:flux_state_full}.
+%	The defining feature of the mathematics is the rapid oscillations that occur.}
+%	{fig:show_oscillations}
 %}}}
 
-On the note of bifurcation: due to the linear forms of the anomalous electron loss $\Gamma_e^\text{an}$ and charge exchange friction $\Gamma_i^\text{cx}$, bifurcating behavior cannot arise due to them.
+%{{{ Two Figures for displaying the oscillations with short time step
+\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t1059.png}
+	\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t1060.png}}
+	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/flux_G1e20_extended_t1059.png}
+	\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/flux_G1e20_extended_t1060.png}}
+	{These state and flux plots are one time step from each other, top to bottom, with the same parameters as those found in Fig.~\ref{fig:flux_state_full}.
+	It has been zoomed in to 6 mm inside of the plasma edge, to showcase the unexplained oscillations.}
+	{fig:oscillations_extended}
+%}}}
 

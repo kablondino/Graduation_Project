@@ -426,7 +426,7 @@ It was found that ``a flattened (steep) radial equilibrium gradient tends to enh
 Previous investigations using this form have had a variety of choices for the parameters, including $c = 0.25, \beta = 2$, and $c = 1, \beta = 2/3$ \cite{connor_review_2000} \cite{itoh_theoretical_1994}.
 In the cases of non-integer values of $\beta$, the absolute value of the derivative is used.
 
-Another form includes both the field itself and its shear \cite{paquay_studying_2012}, and will be referred to as the Flow-Shear model.
+Another form includes both the field itself and its shear \cite{paquay_studying_2012}, and will be referred to as the Flow-Shear model, and will be primarily.
 \begin{align} % Flow-Shear equation
 	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\,
 		\frac{D_\text{max} - D_\text{min}}{1 \,+\, a_1 Z^2 \,+\,
@@ -434,7 +434,8 @@ Another form includes both the field itself and its shear \cite{paquay_studying_
 		\label{eq:flow_shear_diffusivity}
 \end{align}
 The constant $a_1$ allows for the value of the radial electric field to also contribute to the diffusivity.
-This form has no literature support (and physical support, for that matter) for $a_2$, and therefore $a_2$ is set to zero.
+This form has no literature support (and physical analogue, for that matter) for $a_2$, and therefore $a_2$ is set to zero.
+The values chosen for the parameters are shown in Table~\ref{table:decay_lengths_FS_params}.
 
 \section{Boundary Conditions and Initial Profiles}\label{sec:boundary_conditions}
 The set of aforementioned PDE's is evaluated in a domain that is small enough to exclude the inner (core) boundary from any possible particle and heat sources.
@@ -456,13 +457,16 @@ Two of these are the following:
 \end{align}
 
 The typical decay length scales are chosen as the following, with ``Original'' referring to the system solving Eq.~\ref{eq:original_Z_equation}, and ``Flux'' referring to the system solving Eq.~\ref{eq:reduced_normalized_Z_equation}.
+In addition, after extensive trial-and-error, the table also includes values are those chosen for the parameters in the Flow-Shear model.
 \begin{table}[h] % Decay lengths at the edge
 \centering
-\begin{tabular}{r|ccc}
-	& $\lambda_n$ & $\lambda_T$ & $\lambda_Z$ \\ \hline
-	Original & 1.25 & 1.5 & 1.25 \\ \hline
-	Flux & 0.01 & 0.0125 & 0.01
-\end{tabular}
+	\begin{tabular}{r|ccc|ccc}
+		& $\lambda_n$ & $\lambda_T$ & $\lambda_Z$ & $a_1$ & $a_2$ & $a_3$ \\ \hline
+		Original & 1.25 & 1.5 & 1.25 & 0.1 & 0.0 & 0.1 \\ \hline
+		Flux & 0.01 & 0.0125 & 0.01 & $10^{-3}$ & 0.0 & $5\times 10^{-4}$
+	\end{tabular}
+	\caption{List of edge decay lengths and parameters for Eq.~\ref{eq:flow_shear_diffusivity}.}
+	\label{table:decay_lengths_FS_params}
 \end{table}
 
 The core side has a constant influx of particles and heat, stemming from fueling and heating.
