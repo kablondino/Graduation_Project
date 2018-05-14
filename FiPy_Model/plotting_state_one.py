@@ -88,10 +88,13 @@ bottom_plot = Z_plot + D_plot
 bottom_labels = [l.get_label() for l in bottom_plot]
 ax_list[3].legend(bottom_plot, bottom_labels, loc='lower right', fontsize='xx-large')
 
+#plt.xlim(0.0,0.006)
 
-fig_state.suptitle(r"$D \sim 1 / [1 + 0.001 (Z)^2 + 0.0005 (Z\,^\prime)^2]$"+ "\n"\
-		+ r"$\Gamma_c = -1.0\times 10^{20}$, $t \,=\, 200 \,\cdot\, 5 \, \mu$s",\
-		fontsize=20)
+#fig_state.suptitle(r"$D \sim 1 / [1 + 0.001 (Z)^2 + 0.0005 (Z\,^\prime)^2]$"+ "\n"\
+#		+ r"$\Gamma_c = -1.0\times 10^{20}$, $t \,=\, 1060 \,\cdot\, 0.5 \, \mu$s",\
+#		fontsize=20)
+fig_state.suptitle(r"$t \,=\, 200 \,\cdot\, 5 \, \mu$s",\
+		fontsize=24)
 fig_state.tight_layout(pad=0.2, w_pad=0.0)
 plt.subplots_adjust(top=0.94)
 

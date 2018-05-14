@@ -93,7 +93,9 @@ for k in range(len(ax_list)):
 	ax_list[k].yaxis.tick_right()
 	ax_list[k].tick_params(axis='y', labelsize='medium')
 
-fig_flux.suptitle("Fluxes", fontsize='xx-large')
+#plt.xlim(0.0,0.006)
+
+fig_flux.suptitle(r"Fluxes, $t \,=\, 200 \,\cdot\, 5 \, \mu$s", fontsize=24)
 fig_flux.tight_layout(pad=0.05, w_pad=0.0)
 #fig_flux.subplots_adjust(top=0.95)
 
