@@ -1,9 +1,12 @@
 \chapter{Results}\label{chapter:results}
 This chapter is broken into two sections.
-The first covers verification to any of the changes made to the numerical parameters of the original model of the Z equation (Eq.~\ref{eq:original_Z_equation}).
-The second section shows the results of the flux version, Eq.~\ref{eq:reduced_normalized_Z_equation}.\todo{\color{red}ADD MORE!?}
+The first covers verification to any of the changes made to the numerical parameters of the original model of the $Z$ equation (Eq.~\ref{eq:original_Z_equation}).
+The second section shows the results of the flux version, Eq.~\ref{eq:reduced_normalized_Z_equation}.
 
 \section{Original Model} \label{sec:original_results}
+Also as proven in \cite{paquay_studying_2012}, the Flow-Shear model of the diffusivity Eq.~\ref{eq:flow_shear_diffusivity} generates the bifurcating behavior as expected.
+Fig.~\ref{fig:Original_FS} shows L--mode as the initial condition, with a clear transport barrier formed, shown in this case at $x = 1.0$.
+Not shown here for the sake of brevity, a steady-state L--mode was also obtained through lowering the core fluxes.
 %{{{ Two time slices in the Flow-Shear Original Model
 \TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0000.png}}
 	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0135.png}}
@@ -12,6 +15,9 @@ The second section shows the results of the flux version, Eq.~\ref{eq:reduced_no
 	The core particle and heat fluxes, respectively, are set to $-0.8$ and $4.0$.}
 	{fig:Original_FS}
 %}}}
+The sign of $Z$ may differ from previous investigations; the choice of polynomial parameters and gradient coefficients are responsible.
+However, since the diffusivity is an even function, it does not affect the overall operational mode.
+The original diffusivity of Eq.~\ref{eq:Itoh_diffusivity}, an odd function, was not explored here, and is considered out-dated.
 
 If we look at the steady-state values of the $Z$ equation, we can identify stationary points, akin to what is done in Fig.~\ref{fig:stationaries_b}.
 In Fig.~\ref{fig:original_stationary_vs_Z}, the steady-state is plotted at three different spots in the domain, corresponding to the simulation shown in Fig.~\ref{fig:Original_FS}.

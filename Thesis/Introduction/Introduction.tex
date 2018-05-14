@@ -66,9 +66,6 @@ Investigated in this project is two which simulate the radial electric field, th
 To recreate the bifurcating behavior, it artificially invokes a nonlinear polynomial to an otherwise-linear equation
 The second of these models takes a more physical approach, by including nonlinear radial currents established by literature.
 
-The system of partial differential equations that are established are solved by using a one-dimensional finite-volume method solver.
-This method, and its intricacies, is described in Chapter~\ref{chapter:numerical_method}.
-
 \section{Research Questions}\label{sec:research_questions}
 Although there have been compilations of different theories describing the transition, there is yet to be a conclusive, comprehensive one \cite{connor_review_2000}.
 There is substantial evidence, both theoretically and experimentally, that a radial electric field is an essential piece in the forming and enforcing of H--mode.
@@ -99,10 +96,11 @@ This includes the forms of the bifurcations present tokamaks, a qualitative view
 Chapter~\ref{chapter:dynamical_model} completes the physics that is dealt with in this investigation.
 It primarily serves to set the stage for the model, including a description of the equations, their boundary conditions, and how they were derived.
 It also has descriptions of each nonambipolar particle flux and any nuance that is included in their form.
-
-The details of the numerical method used is described in Chapter~\ref{chapter:numerical_method}.
-This includes the intricacies of the solver, and the choice of solver.
 The numerical parameters that are not derived but rather chosen are also discussed.
+
+The system of partial differential equations that are established are solved by using a one-dimensional finite-volume method solver.
+The details of this numerical method used is described in Section~\ref{sec:numerical_method}.
+This includes the intricacies of the solver, and the choice of solver.
 
 The results of the investigation are presented in Chapter~\ref{chapter:results}, which are then compared to real-world results from literature.
 Uncertainties in the model as they pertain to experimental measurements are also a topic in this section.

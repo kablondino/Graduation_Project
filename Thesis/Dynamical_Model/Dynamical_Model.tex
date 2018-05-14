@@ -73,8 +73,6 @@ Particular turbulent and neoclassical phenomena affect ions and electrons differ
 Ultimately, these effects lead to some form of charge separation, inducing a nonambipolar particle flux.
 The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}, Itoh and Itoh \cite{itoh_role_1996}, and Stringer \cite{stringer_explanation_1993}.
 
-For added context, the profiles of these fluxes will also be given with abstract L-- and H--mode density, temperature, and $Z$ profiles, given in Figures~.\todo{\color{red}FIGURES MAYBE??!}
-
 \subsection{Polarization Current}\label{ssec:polarization_current}
 In Maxwell's correction of Amp\`ere's law, a current is induced whenever the time derivative of an electric field is non-zero in a medium, which originates from the changing state of polarization.
 The bounced-average motion of trapped ions has been shown to have a radial drift, on top of the toroidal precession.
@@ -352,7 +350,7 @@ The type of transition is wholly dictated by the values of the coefficients $a$,
 \centering
 	\begin{tabular}{cccc|ccccccc|cc}
 		$\zeta$ & $D_\text{min}$ & $D_\text{max}$ & $\mu$ & $\epsilon$ & $c_n$ & $c_T$ & $a$ & $b$ & $c$ & $Z_S$ & $\alpha_\text{an}$ & $\alpha_\text{cx}$ \\ \hline
-		0.5 & 2.0 & 0.4 & $\frac{1}{20}$ & $\frac{1}{25}$ & -1.1 & -0.9 & 1.5 & 2.0 & -1.0 & -1.5 & 1.5 & 1.5
+		0.5 & 5.0 & 0.4 & 0.05 & 0.04 & -1.1 & -0.9 & 1.5 & 2.0 & -1.0 & -1.5 & 1.5 & 1.5
 	\end{tabular}
 	\caption{The constant parameters chosen in the simulation.
 	The particle-thermal diffusivity coupling constant $\zeta$, the dynamic viscosity $\mu$, and the minimum and maximum diffusivity values $D_\text{min}, D_\text{max}$ are used both in the original and flux models.
@@ -493,5 +491,23 @@ They are derived for when $Z$ is a constant and in steady-state.
 One could also conceivably choose simple linear profiles, as the system would go into its steady-state relatively quickly.
 
 Together with Appendix~\ref{chapter:Plasma_Parameters}, the model is ready to be implemented in one's PDE solver of choice.
-The following chapter describes the choice made for this investigation using FiPy \cite{guyer_fipy:_2009}, a solver written in Python  that uses the Finite Volume Method.
+The following chapter describes the choice made for this investigation using FiPy \cite{guyer_fipy:_2009}, a solver written in Python  that uses the finite volume method.
+
+\section{Numerical Method}\label{sec:numerical_method}
+The finite volume method (FVM) is a numerical method of evaluating and representing partial differential equations.
+It is sometimes, confusingly, referred to as the finite difference \emph{scheme} or the cell-centered difference scheme, the former which clashes in name with the finite difference method.
+There are some characteristics it has in common with the two other well-known schemes, the finite difference method and the finite element method (FEM).
+
+All three methods involve nodes generated on a discrete mesh.
+In the FVM, the nodes are surrounded by the discrete elements called control volumes, with space variables able to be defined at the volume's centers or faces.
+In solving, volume integrals that contain a divergence term are converted by the divergence theorem to surface integrals.
+The terms are evaluated as fluxes at the surfaces of each control volume, and are accounted for between volumes, \emph{i.e.} conserved.
+It also allows for discontinuities of the coefficients, assuming it occurs on the boundaries of the volumes.
+Equations \ref{eq:shear_diffusivity} and \ref{eq:flow_shear_diffusivity} contain electric field shear term(s) to some exponent, potentially generating these discontinuities.
+This makes the method popular for computational fluid dynamics, of which one could consider this investigation \cite{eymard_finite_2003}.
+
+%%%%%%%%
+%The FEM is based on the variational formulation of the problem; it is obtained by multiplying the original equation by a test function.
+%The unknown variable is then approximated by some linear combination of ``shape'' functions, which then the equation in each element is integrated \cite{eymard_finite_2003}.
+%%%%%%%%
 
