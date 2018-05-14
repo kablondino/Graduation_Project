@@ -1,10 +1,10 @@
 \chapter{Results}\label{chapter:results}
 This chapter is broken into two sections.
-The first covers verification to any of the changes made to the numerical parameters of the original model of the $Z$ equation (Eq.~\ref{eq:original_Z_equation}).
+The first covers verification to the original model of the $Z$ equation (Eq.~\ref{eq:original_Z_equation}).
 The second section shows the results of the flux version, Eq.~\ref{eq:reduced_normalized_Z_equation}, including the problems that arose.
 
 \section{Original Model} \label{sec:original_results}
-Also as proven in \cite{paquay_studying_2012}, the Flow-Shear model of the diffusivity Eq.~\ref{eq:flow_shear_diffusivity} generates the bifurcating behavior as expected.
+Also as proven in \cite{paquay_studying_2012}, the Flow-Shear model of the diffusivity Eq.~\ref{eq:flow_shear_diffusivity} generates the bifurcating behavior.
 Fig.~\ref{fig:Original_FS} shows L--mode as the initial condition, with a clear transport barrier formed, shown in this case at $x = 1.0$.
 Not shown here for the sake of brevity, a steady-state L--mode was also obtained through lowering the core fluxes.
 %{{{ Two time slices in the Flow-Shear Original Model
@@ -15,7 +15,7 @@ Not shown here for the sake of brevity, a steady-state L--mode was also obtained
 	{fig:Original_FS}
 %}}}
 The sign of $Z$ may differ from previous investigations; the choice of polynomial parameters and gradient coefficients are responsible.
-However, since the diffusivity is an even function, it does not affect the overall operational mode.
+However, since the diffusivity is an even function in both field and shear, it does not fundamentally affect the overall operational mode.
 The original diffusivity of Eq.~\ref{eq:Itoh_diffusivity}, an odd function, was not explored here, and is considered out-dated.
 
 If we look at the steady-state values of the $Z$ equation, we can identify stationary points, akin to what is done in Fig.~\ref{fig:stationaries_b}.
@@ -185,9 +185,9 @@ The upper half comes from a region of the transition, while the lower half is cl
 	The time step used is the same of that in Fig.~\ref{fig:flux_state_full}.}
 	\label{table:flux_values}
 \end{table}
-One clear trend from this data is that the neoclassical bulk viscosity $\Gamma_i^{\pi\parallel}$ in this form results in the largest flux, with the anomalous electron loss $\Gamma_e^\text{an}$ not far behind.
-The ion orbit loss is at a maximum with no radial electric field, and is suppressed very heavily in the presence of it.
-It therefore is the weakest of the four.
+One clear trend from this data is that the neoclassical bulk viscosity $\Gamma_i^{\pi\parallel}$ in this form results in the largest flux, with the anomalous electron loss $\Gamma_e^\text{an}$ near the same order of magnitude.
+The ion orbit loss is at a maximum with no radial electric field, and is suppressed very heavily in the presence of it; it therefore is the weakest of the four.
+Charge exchange friction was also relatively weak, although seems to 
 These results are found consistently throughout all combinations of fluxes and input power.
 
 On the note of the bifurcation of the system: due to the linear forms of the anomalous electron loss $\Gamma_e^\text{an}$ and charge exchange friction $\Gamma_i^\text{cx}$, bifurcating behavior cannot arise due to them.
@@ -199,25 +199,20 @@ It is taken at a radial location towards the core, inside any potential transpor
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_core_t200.png}
 	\caption{This plot is akin to Fig.~\ref{fig:original_stationary_vs_Z} for the flux model; each nonambipolar flux is plotted against $Z$ at the indicated location and time.
-	Other plots with at different positions and time slices have the same characteristic behavior, with the edge and barrier regions with smaller deviations from zero.
-	It clearly shows three steady-state points, just as the original model, and shows the dominance of the bulk viscosity.
 	The anomalous electron loss and charge exchange friction are nearly identical, and thus overlap in the figure.}
 	\label{fig:fluxes_steady-state}
 \end{figure}
+
+Other plots at different positions and time slices have the same characteristic behavior, with the edge and barrier regions with smaller deviations from zero.
+It clearly shows three steady-state points, just as the original model, and shows the dominance of the bulk viscosity.
 
 \subsection{Oscillations} \label{ssec:oscillations}
 After some unknown threshold is reached, oscillations begin to occur in the system.
 These oscillations do not seem to be the result of a physical mechanism, or at least any known one, as its frequency is much to great.
 The plots in Fig.~\ref{fig:oscillations_extended} are the result of reducing the time step size by one order of magnitude.
 Thus, the time step size becomes 500 ns, a time scale much too short to be any known physical mechanism.
-On the reverse, however, results in the PDE system failing to converge with a time step any larger than 10 $\mu$s, still with the phenomenon.
-%{{{ Two Figures for displaying the oscillations with large time step
-%\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_full_t400.png}}
-%	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_full_t401.png}}
-%	{These two plots are one time step from another, with the same parameters as those found in Fig.~\ref{fig:flux_state_full}.
-%	The defining feature of the mathematics is the rapid oscillations that occur.}
-%	{fig:show_oscillations}
-%}}}
+Unfortunately not obvious in still images, one can notice the oscillating nature in all of the state variables and two of the fluxes.
+On the reverse, however, results in the PDE system failing to converge with a time step any larger than 10 $\mu$s, still incorporating the phenomenon.
 
 %{{{ Two Figures for displaying the oscillations with short time step
 \TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t1059.png}
@@ -225,7 +220,7 @@ On the reverse, however, results in the PDE system failing to converge with a ti
 	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/flux_G1e20_extended_t1059.png}
 	\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/flux_G1e20_extended_t1060.png}}
 	{These state and flux plots are one time step from each other, top to bottom, with the same parameters as those found in Fig.~\ref{fig:flux_state_full}.
-	It has been zoomed in to 6 mm inside of the plasma edge, to showcase the unexplained oscillations.}
+	It has been zoomed in to 6 mm inside of the plasma edge to showcase the unexplained oscillations, with a frequency still comparable to the time step.}
 	{fig:oscillations_extended}
 %}}}
 
