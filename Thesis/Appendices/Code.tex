@@ -2,8 +2,13 @@
 As covered Section~\ref{sec:numerical_method}, the finite volume method solver FiPy \cite{guyer_fipy:_2009} is used to solve the system of equations.
 This section will obviously not cover the code comprehensively, but it should give an idea on how the equations were declared, as this is not trivial.
 
-In the main solving program, the declarations of the equations and their coupling is the following:
-\inputminted[firstline=22, lastline=43, tabsize=4, breaklines=true, fontsize=\footnotesize, frame=single, linenos=true]{python}{../FiPy_Model/solving_flux.py}
+The system of PDE's for the original is declared in the following way.
+Due to the gradient terms, the original model requires declaring the $Z$ equation with lacking elegance, which are in the \mintinline{python}{S_Z} variable.
+\inputminted[firstline=19, lastline=38, tabsize=4, breaklines=true, fontsize=\footnotesize, frame=single, linenos=true]{python}{../FiPy_Model/solving_original.py}
+
+In the main solving program for the flux model, the declarations of the density and temperature (energy) equations are identical to the original model.
+As the terms in the flux model are more-closely based on physical principles, they declared much more elegantly.
+\inputminted[firstline=32, lastline=39, tabsize=4, breaklines=true, fontsize=\footnotesize, frame=single, linenos=true]{python}{../FiPy_Model/solving_flux.py}
 As mentioned at the end of Section~\ref{sec:transport_eqs}, it is much easier to implement the version Eq.~\ref{eq:U_compact} for the temperature equation.
 This is due to the finite volume method's foundation of dealing with conserved values.
 
@@ -18,5 +23,5 @@ The user is required to choose a tolerance which the residual must be less than 
 
 The \mintinline{python}{GMRES_Solver} option in the sweep indicates that the Generalized Minimal Residual Method was chosen for solving.
 It was most consistent in converging the system.
-The residual tolerance for the system in SI units was set to $10^{14}$.
+The residual tolerance for the original system is set to $10^{-6}$, and for the flux system is set to $10^{14}$.
 

@@ -490,10 +490,10 @@ They are derived for when $Z$ is a constant and in steady-state.
 \end{align}
 One could also conceivably choose simple linear profiles, as the system would go into its steady-state relatively quickly.
 
+\section{Numerical Method}\label{sec:numerical_method}
 Together with Appendix~\ref{chapter:Plasma_Parameters}, the model is ready to be implemented in one's PDE solver of choice.
 The following chapter describes the choice made for this investigation using FiPy \cite{guyer_fipy:_2009}, a solver written in Python  that uses the finite volume method.
 
-\section{Numerical Method}\label{sec:numerical_method}
 The finite volume method (FVM) is a numerical method of evaluating and representing partial differential equations.
 It is sometimes, confusingly, referred to as the finite difference \emph{scheme} or the cell-centered difference scheme, the former which clashes in name with the finite difference method.
 There are some characteristics it has in common with the two other well-known schemes, the finite difference method and the finite element method (FEM).
@@ -510,4 +510,7 @@ This makes the method popular for computational fluid dynamics, of which one cou
 %The FEM is based on the variational formulation of the problem; it is obtained by multiplying the original equation by a test function.
 %The unknown variable is then approximated by some linear combination of ``shape'' functions, which then the equation in each element is integrated \cite{eymard_finite_2003}.
 %%%%%%%%
+
+As this is a one-dimensional problem, the FVM reduces down to the finite difference method.
+Additional details on the implementation are presented in Appendix~\ref{chapter:Code}.
 
