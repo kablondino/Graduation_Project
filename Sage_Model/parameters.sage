@@ -11,39 +11,39 @@ from scipy import constants
 
 
 # ----------------- Physical Constants --------------------
-#pi = constants.pi
-charge = constants.e						# Elementary charge
-k_B_J = constants.k							# Boltzmann in J/K
-k_B_eV = k_B_J / charge						# Boltzmann in eV/K
-m_e = constants.m_e							# Electron mass
-m_i = constants.m_p							# Ion (H) mass
-epsilon_0 = constants.epsilon_0				# Permittivity of free space
-mu_0 = constants.mu_0						# Permeability of free space
-gamma = 5.0 / 3.0							# Adiabatic index for monoatomic
+pi = constants.pi
+charge = constants.e							# Elementary charge
+k_B_J = constants.k								# Boltzmann in J/K
+k_B_eV = k_B_J / charge							# Boltzmann in eV/K
+m_e = constants.m_e								# Electron mass
+m_i = constants.m_p								# Ion (H) mass
+epsilon_0 = constants.epsilon_0					# Permittivity of free space
+mu_0 = constants.mu_0							# Permeability of free space
+gamma = 5.0 / 3.0								# Adiabatic index for monoatomic
 
 
 # ----------------- ASDEX-U Specifications ----------------
-a_v = 0.8									# Vertical minor radius
-a_h = 0.5									# Horizontal minor radius
-a_m = ( (a_v**2 + a_h**2) / 2.0 )**(1.0/2.0)# Mean minor radius
-R = 1.6										# Major radius
-I_p = 2.0e6									# Plasma current
-B_phi = 3.9									# Toroidal field
-B_theta = mu_0 * I_p / ( 2*pi*a_m )			# Poloidal field
-B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
+a_v = 0.8   									# Vertical minor radius
+a_h = 0.5   									# Horizontal minor radius
+a_m = ( (a_v**2 + a_h**2) / 2.0 )**(1.0/2.0)	# Mean minor radius
+R = 1.65 										# Major radius
+I_phi = 1.6e6   								# Plasma current
+B_phi = 3.1 									# Toroidal field
+B_theta = mu_0 * I_phi / ( 2*pi*a_m )   		# Poloidal field
+B = ( B_phi**2 + B_theta**2 )**(1.0/2.0)		# Full field
 
 
 # ----------------- ITER Specifications -------------------
 #a_m = 2.0									# Mean minor radius
 #R = 6.2										# Major radius
-#I_p = 15.0e6								# Plasma current
+#I_phi = 15.0e6								# Plasma current
 #B_phi = 5.3									# Toroidal field
-#B_theta = mu_0 * I_p / ( 2*pi*a_m )			# Poloidal field
+#B_theta = mu_0 * I_phi / ( 2*pi*a_m )			# Poloidal field
 #B = ( B_phi**2 + B_theta**2 )**(1.0/2.0) 	# Full field
 
 
-aspect = a_m / R							# Aspect Ratio
-q = aspect * B_phi/B_theta					# q value
+aspect = a_m / R								# Aspect Ratio
+q = aspect * B_phi/B_theta						# q value
 
 L = 0.05									# in m
 
