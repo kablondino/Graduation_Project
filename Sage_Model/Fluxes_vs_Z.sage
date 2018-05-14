@@ -58,12 +58,12 @@ xs_after = (0.000625, 0.002375, 0.030375)
 #0.030125	1.08615114035334e+18	221.843028685801	1.77821178953312	4.94743894562273	0.00108811581270749	6.12848344919829e+17	1943024953.06425	2.81018035060206e-13	-4232723648741.13	-0.0310869925862421	-1.37764340545142e+18	-1.15809327369854e-59
 #0.030375	1.09087529545641e+18	222.110163544139	1.77923651112516	4.94775127669252	0.00109008262082869	6.16471134861609e+17	1512332115.80433	2.81130833603446e-13	-3313304089634.74	-0.0311554116345023	-1.38179703421831e+18	-8.48298023345065e-61
 
-#density_s_before = (4.19694805526202e+17, 5.25011171139421e+17, 1.08143075661057e+18)
-#density_s = (4.33724871698693e+17, 5.35434214493223e+17, 1.08615114035334e+18)
-#density_s_after = (4.5363600252481e+17, 5.45017799197483e+17, 1.09087529545641e+18)
-#temp_s_before = (139.83874547183, 163.482319322465, 221.574027780129)
-#temp_s = (143.5152651671, 165.427742871548, 221.843028685801)
-#temp_s_after = (148.383345375858, 167.165974949308, 222.110163544139)
+density_s_before = (4.19694805526202e+17, 5.25011171139421e+17, 1.08143075661057e+18)
+density_s = (4.33724871698693e+17, 5.35434214493223e+17, 1.08615114035334e+18)
+density_s_after = (4.5363600252481e+17, 5.45017799197483e+17, 1.09087529545641e+18)
+temp_s_before = (139.83874547183, 163.482319322465, 221.574027780129)
+temp_s = (143.5152651671, 165.427742871548, 221.843028685801)
+temp_s_after = (148.383345375858, 167.165974949308, 222.110163544139)
 
 
 ## t = 800
@@ -82,16 +82,16 @@ xs_after = (0.000625, 0.002375, 0.030375)
 #0.030125	1.61545847041041e+18	210.269807174714	2.70127620632695	4.82765751311035	0.00100341374358834	1.28117546250272e+18	1996227665.55463	2.76002531018542e-13	-9173134589521.49	-0.0286670915389496	-1.34827898125743e+17	-3.19866689589232e-63
 #0.030375	1.62048565103957e+18	210.464545935855	2.7032650898528	4.82864733853262	0.00100480866327195	1.28718239401939e+18	1553957689.67112	2.76087749746738e-13	-7173173373156.79	-0.0287182154086203	-1.34974794461851e+17	-1.924564397156e-64
 
-density_s_before = (6.53978299041876e+17, 8.30733006178698e+17, 1.61043221055563e+18)
-density_s = (6.76246983345087e+17, 8.3825021709018e+17, 1.61545847041041e+18)
-density_s_after = (7.0992703546841e+17, 8.4444700349267e+17, 1.62048565103957e+18)
-temp_s_before = (135.540529186539, 158.829442478889, 210.074141567838)
-temp_s = (139.122717899565, 159.597412122243, 210.269807174714)
-temp_s_after = (144.107989430169, 160.218708121321, 210.464545935855)
+#density_s_before = (6.53978299041876e+17, 8.30733006178698e+17, 1.61043221055563e+18)
+#density_s = (6.76246983345087e+17, 8.3825021709018e+17, 1.61545847041041e+18)
+#density_s_after = (7.0992703546841e+17, 8.4444700349267e+17, 1.62048565103957e+18)
+#temp_s_before = (135.540529186539, 158.829442478889, 210.074141567838)
+#temp_s = (139.122717899565, 159.597412122243, 210.269807174714)
+#temp_s_after = (144.107989430169, 160.218708121321, 210.464545935855)
 
 
 # ---------------------------------------------------------
-spot_choice = 2
+spot_choice = 0
 x_before = xs_before[spot_choice]
 x = xs[spot_choice]
 x_after = xs_after[spot_choice]
@@ -159,9 +159,9 @@ Gamma_cx(Z) = g_n_cx * density_grad / density  +  g_T_cx * temperature_grad / te
 
 
 ## Ion Bulk (Parallel) Viscosity
-#plasma_disp(Z) = imag(I*sqrt(pi) * e^(-(Z + I*nu_ii/omega_t)^2) * erfc(-I*(Z + I*nu_ii/omega_t)))
+plasma_disp(Z) = imag(I*sqrt(pi) * e^(-(Z + I*nu_ii/omega_t)^2) * erfc(-I*(Z + I*nu_ii/omega_t)))
 # Naive plasma dispersion:
-plasma_disp = sqrt(pi) * exp(-Z^2)
+#plasma_disp = sqrt(pi) * exp(-Z^2)
 D_bulk = aspect^2 * rho_pi * temperature / ((x - a_m) * B * sqrt(pi))	# [m^2 s^-1]
 
 Gamma_bulk(Z) = density * D_bulk * (density_grad / density  +  Z / rho_pi) * plasma_disp	# [m^-2 s^-1]
@@ -179,20 +179,23 @@ Gamma_ol(Z) = g_ol * exp(-radical_ol) / (charge * radical_ol)	# [m^-2 s^-1]
 
 # ----------------- Plotting ------------------------------
 Zmin, Zmax = -5, 5
-y_min, y_max = -6e18, 6e18
+y_min, y_max = -3.5e18, 1.5e18
 line_thickness = 2
 
-plot_title = "$x = " + str((xs[spot_choice]*100).n(digits=5))+ "$ cm, $t = 4$ ms," +"\n"+ r"Im$\left[X(z)\right] \,=\, \sqrt{\pi} \, $Re$\left[\exp(-z^2) \,\right. $erfc$\left.(-i \, z)\right]$"
+plot_title = r"Im$\left[X(z)\right] \,=\, \sqrt{\pi} \, $Re$\left[\exp(-z^2) \,\right. $erfc$\left.(-i \, z)\right]$"
+#plot_title = "$x = " + str((xs[spot_choice]*100).n(digits=5))+ "$ cm"
 
-Gamma_an_plot = plot(Gamma_an, (Z, Zmin, Zmax), legend_label=r"$\Gamma_e^{an}$", color='red', gridlines=True, thickness=line_thickness, ymin=y_min, ymax=y_max, title=plot_title)
+Gamma_an_plot = plot(Gamma_an, (Z, Zmin, Zmax), legend_label=r"$\Gamma_e^{an}$", color='red', gridlines=True, thickness=line_thickness, ymin=y_min, ymax=y_max)#, title=plot_title)
 Gamma_cx_plot = plot(Gamma_cx, (Z, Zmin, Zmax), legend_label=r"$\Gamma_i^{cx}$", color='green', thickness=line_thickness, ymin=y_min, ymax=y_max)
 Gamma_bulk_plot = plot(Gamma_bulk, (Z, Zmin, Zmax), legend_label=r"$\Gamma_i^{\pi\parallel}$", color='olive', thickness=line_thickness, ymin=y_min, ymax=y_max)
 Gamma_ol_plot = plot(Gamma_ol, (Z, Zmin, Zmax), legend_label=r"$\Gamma_i^{ol}$", color='blue', thickness=line_thickness)
 
-Gamma_sum_plot = plot(Gamma_an(Z) + Gamma_cx(Z) + Gamma_ol(Z) + Gamma_bulk(Z), (Z, Zmin, Zmax), legend_label=r"$\Sigma \Gamma^k$", color='magenta', gridlines=True, thickness=line_thickness, title=plot_title, ymin=y_min, ymax=y_max, linestyle='--', axes_labels=["$Z$",""])
+Gamma_sum_plot = plot(Gamma_an(Z) + Gamma_cx(Z) + Gamma_ol(Z) + Gamma_bulk(Z), (Z, Zmin, Zmax), legend_label=r"$\Sigma \Gamma^k$", color='magenta', gridlines=True, thickness=line_thickness, ymin=y_min, ymax=y_max, linestyle='--', axes_labels=["$Z$",""])#, title=plot_title)
 #Gamma_sum_plot.show(figsize=[18,10], fontsize=24)
 
-combined_plot = Gamma_an_plot + Gamma_cx_plot + Gamma_ol_plot + Gamma_bulk_plot + Gamma_sum_plot
+x_location = text("$x = " + str((xs[spot_choice]*100).n(digits=3))+ "$ cm\n $t = 1$ ms", (-3.5,1e18), color='black', fontsize=28)
+
+combined_plot = Gamma_an_plot + Gamma_cx_plot + Gamma_ol_plot + Gamma_bulk_plot + Gamma_sum_plot + x_location
 combined_plot.set_legend_options(font_size=28, loc='lower right')
 combined_plot.show(figsize=[18,10], fontsize=24)
 
