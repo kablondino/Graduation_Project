@@ -1,0 +1,69 @@
+\chapter{Plasma and Machine Parameters}\label{chapter:Plasma_Parameters}
+To tie this investigation to a physical machine, ASDEX-Upgrade was chosen.
+Future investigations are aided by this since a wealth of L--H transition data exists for the machine.
+All temperatures are in units of eV, unless otherwise noted, and the subscript $j$ indicates either electrons or ions.
+
+The size of the machine is as following, with $a_v = 0.8$ and $a_h = 0.5$ as the vertical and horizontal minor radii, respectively.
+\begin{sagesilent}
+	reset()
+	load("../Sage_Model/parameters.sage")
+\end{sagesilent}
+\begin{align} % Physical size
+	a_m \,&=\, \sqrt{\frac{a_v^2 + a_h^2}{2}} \,\approx\,
+		\sage{a_m.n(digits=3)}~\text{m}~,~~~~
+		R \,=\, \sage{R.n(digits=3)}~\text{m} \\
+		\epsilon \,&=\, \frac{a_m}{R} \,\approx\, \sage{epsilon.n(digits=2)}
+\end{align}
+Note that the symbol used for the aspect ratio is $\epsilon$ without subscript.
+Any value of permittivity is indicated by an $\epsilon$ \emph{with} a subscript.
+
+The magnetic field is produced by both the toroidal coils and the central solenoid.
+\begin{align} % Magnetic fields
+	I_\phi \,&=\, \sage{(I_phi/1.0e6).n(digits=3)}~\text{MA}~,~~~~
+		B_\theta \,=\, \frac{\mu_0 \, I_\phi}{2\pi \, a_m} \,\approx\,
+		\sage{B_theta.n(digits=3)}~\text{T}, \\
+	B \,&=\, \sage{B.n(digits=4)}~\text{T}
+\end{align}
+These allow for the calculation of the safety factor.
+\begin{align} % Safety factor
+	q \,=\, \frac{a_m \, B_\phi}{R \, B_\theta} \,=\,
+		\frac{\epsilon \, B_\phi}{B_\theta} \,\approx\, \sage{q.n(digits=3)}
+		\label{eq:safety_factor}
+\end{align}
+
+The thermal velocity is chosen as the one that selects the most probable speed.
+Without affecting the outcome of the study, one could choose another scheme, as they only differ by a relatively small factor.
+\begin{align} % Thermal velocity
+	v_{T_j} \,=\, \sqrt{\frac{2 \, e \, T}{m_j}}
+		\label{eq:thermal_velocity}
+\end{align}
+The frequency by which ions go from being in trapped orbits to untrapped orbits is the ion transition angular frequency.
+\begin{align} % Transition frequency
+	\omega_t \,=\, \frac{v_{T_i}}{q \, R} \label{eq:transition_freq}
+\end{align}
+The frequency by which ions/electrons ``bounce'' from one end of it's banana orbit to the other and back is the banana orbit bounce frequency.
+\begin{align} % Banana frequency
+	\omega_{bj} \,=\, \frac{\epsilon^{3/2} \, v_{T_j}}{q \, R}
+		\label{eq:banana_bounce_freq}
+\end{align}
+The width of the ion banana orbit plays a crucial role in the ion orbit loss flux.
+It heavily affects the penetration depth of this flux.
+\begin{align} % Banana width
+	w_{bi} \,=\, \rho_{\theta i} \sqrt{\epsilon} \label{eq:banana_width}
+\end{align}
+Electron-ion and ion-ion collision frequencies are taken from Freidberg \cite{freidberg_plasma_2007}.
+\begin{align} % Electron-ion and ion-ion collision frequencies
+	\nu_{ei} \,=\, 1.33\times 10^5 \, \frac{n_{20}}{(T_\text{keV})^{3/2}}
+		\,&=\, 4.2058\times 10^{-5} \, \frac{n}{(T_\text{eV})^{3/2}}
+		\label{eq:nu_ei} \\
+	\nu_{ii} \,=\, 1.2 \, \nu_{ei} \sqrt{\frac{m_e}{m_i}} \,&=\,
+		\sage{(4.2058e-5* 1.2 * sqrt(constants.m_e / constants.m_p)).n(digits=4)}
+		\, \frac{n}{(T_\text{eV})^{3/2}} \label{eq:nu_ii}
+\end{align}
+The ion collisionality is defined as the ratio of the ion-ion collision frequency to the banana orbit frequency.
+\begin{align} % Ion collisionality
+	\nu_{*i} \,=\, \frac{\nu_{ii}}{\omega_{bi}} \label{eq:collisionality}
+\end{align}
+
+%\inputminted[firstline=24, lastline=33, tabsize=4, breaklines=true, fontsize=\footnotesize, frame=single, linenos=true]{python}{../FiPy_Model/parameters.py}
+

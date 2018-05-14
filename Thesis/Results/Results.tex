@@ -1,7 +1,7 @@
 \chapter{Results}\label{chapter:results}
 This chapter is broken into two sections.
-The first covers any verification of the changes made to the numerical parameters of the original model of the Z equation (Eq.~\ref{eq:original_Z_equation}).
-The second section shows the results of the flux version, Eq.~\ref{eq:reduced_normalized_Z_equation}.\todo{\color{red}ADD MORE!}
+The first covers verification to any of the changes made to the numerical parameters of the original model of the Z equation (Eq.~\ref{eq:original_Z_equation}).
+The second section shows the results of the flux version, Eq.~\ref{eq:reduced_normalized_Z_equation}.\todo{\color{red}ADD MORE!?}
 
 \section{Original Model} \label{sec:original_results}
 %{{{ Two time slices in the Flow-Shear Original Model
@@ -13,7 +13,11 @@ The second section shows the results of the flux version, Eq.~\ref{eq:reduced_no
 	{fig:Original_FS}
 %}}}
 
-If we look at the steady-state values of the equationladkjsf;alkdsfj\todo{\color{red}ADFADFADF}
+If we look at the steady-state values of the $Z$ equation, we can identify stationary points, akin to what is done in Fig.~\ref{fig:stationaries_b}.
+In Fig.~\ref{fig:original_stationary_vs_Z}, the steady-state is plotted at three different spots in the domain, corresponding to the simulation shown in Fig.~\ref{fig:Original_FS}.
+The three spots are at the edge, the center of the high-shear area, and in the middle of the domain.
+These combined areas can be considered to show both L-- and H--mode.
+In addition, two more lines are added, indicating the first time step, and the polynomial $G(Z)$.
 \begin{figure}[tb] % Steady-State as a function of Z, original model
 	\centering
 	\begin{sagesilent}
@@ -81,30 +85,35 @@ If we look at the steady-state values of the equationladkjsf;alkdsfj\todo{\color
 	\end{sagesilent}
 	\sageplot[width=0.9\textwidth]{combined_plots}
 	\caption{This plot shows the steady-state values across $Z$ at different locations in the domain, corresponding with the plots in Fig.~\ref{fig:Original_FS}.
-	It assumes the concavity of the field is 
-	The three locations correspond to near the edge, at the transport barrier, and half-way in the domain.}
+	It assumes the diffusion term of the field is negligible.
+	The three locations correspond to near the edge, at the transport barrier, and half-way in the domain.
+	In addition, the first time step, considered in L--mode everywhere, and the polynomial $G(Z)$ are also added for comparison.}
+	\label{fig:original_stationary_vs_Z}
 \end{figure}
+
+In regions of low gradient values, the function is shifted upwards, causing only one stable point to form.
+An increase in gradient values causes a decrease to these functions.
+The lowest line is the one at the barrier, showing three zeros, with the middle being unstable.
+The left zero of about $-3$ provokes the edge-side $Z$ value in the state.
 
 \section{Flux Model} \label{sec:flux_results}
 
-\begin{sagesilent}
-	reset()
-	import scipy
-	from scipy import constants
 
-	alpha_an, alpha_cx = 1.5, 1.5
-	a_m, R = 0.6670832032063168, 1.6					# Minor, major radius
-	B_phi = 3.9											# Toroidal field
-	B_theta = constants.mu_0 * 2.0e6 / ( 2*pi * a_m )	# Poloidal field
-
-	aspect = a_m / R									# Aspect ratio
-	q = aspect * B_phi/B_theta							# q value
-\end{sagesilent}
+%{{{ Two Figures for showing the full state, pre-oscillations
+\TwoFigOneCap{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/state_G1e20_full_t200.png}}
+	{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/flux_G1e20_full_t200.png}}
+	{The state including all of the nonambipolar fluxes.
+	The parameters for the diffusivity function, the core flux, and the particular time step are indicated.
+	}
+	{fig:flux_state_full}
+%}}}
 
 \begin{table}[!htb] % Shows flux data for a time slice at two locations
 	\centering
 	\begin{tabular}{r|cccc}
 	\begin{sagesilent} # At x ~ 0.002, t = 200
+		reset()
+		load("../Sage_Model/parameters.sage")
 		# THE DATA USED IN THE NEXT TABLE
 		#x	$n$	$T$	$Z$	$D$	$D_{an}$	$\Gamma_e^{an}$	$n_0$	$\langle\sigma_{cx} v\rangle$	$\Gamma_i^{cx}$	$D_{\pi\parallel}$	$\Gamma_i^{\pi\parallel}$	$\Gamma_i^{ol}$
 		t = 200
@@ -158,4 +167,23 @@ If we look at the steady-state values of the equationladkjsf;alkdsfj\todo{\color
 	Nevertheless, they do give an indication of the relative dominance.}
 	\label{table:flux_values}
 \end{table}
+
+\begin{figure}[htb] % FLUXES STEADY-STATE, SAVED IMAGE, because it takes to long to run
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Flux_vs_Z_t200_core_simple.png}
+	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Flux_vs_Z_t200_core_complex.png}
+	\caption{These plots are akin to Fig.~\ref{fig:original_stationary_vs_Z} to the flux model; each nonambipolar flux is plotted against $Z$ at the indicated location and time.
+	One minor aspect with \emph{potentially} large ramifications differ the two plots.
+The top plot implements the bulk viscosity $\Gamma_e^{\pi\parallel}$ with the simple Gaussian form from Eq.~\ref{eq:plasma_disp_reduction}, and the bottom plot including the full version of the plasma dispersion function.}
+\end{figure}
+For absolute values above some threshold, the bulk viscosity defined with the full plasma dispersion function becomes erratic and unphysical.
+It seems to be similar to the function $\sin(1/x)$ as $x$ approaches zero.
+
+%{{{ Two Figures for displaying the oscillations
+\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_full_t400.png}}
+	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_full_t401.png}}
+	{These two plots are one time step from another, with the same parameters as those found in Fig.~\ref{fig:flux_state_full}.
+	The defining feature of the mathematics is the rapid oscillations that occur.}
+	{fig:show_oscillations}
+%}}}
 

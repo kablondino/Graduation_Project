@@ -4,6 +4,9 @@ This section will obviously not cover the code comprehensively, but it should gi
 
 In the main solving program, the declarations of the equations and their coupling is the following:
 \inputminted[firstline=22, lastline=43, tabsize=4, breaklines=true, fontsize=\footnotesize, frame=single, linenos=true]{python}{../FiPy_Model/solving_flux.py}
+As mentioned at the end of Section~\ref{sec:transport_eqs}, it is much easier to implement the version Eq.~\ref{eq:U_compact} for the temperature equation.
+This is due to the finite volume method's foundation of dealing with conserved values.
+
 One may notice in line \mintinline{python}{33}, the \mintinline{python}{TransientTerm} declares density $n$ as a coefficient.
 This corresponds to the term $\dfrac{\partial (n \, Z)}{\partial t}$; however, as noted earlier, the timescale by which the density and temperature evolves is much slower than that of the radial electric field.
 The extra term associated with it is therefore much smaller than the one written in on the left-hand side of Eq~\ref{eq:reduced_normalized_Z_equation}.
