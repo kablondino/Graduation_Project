@@ -6,6 +6,7 @@
 """
 
 #from input_handling import *
+import scipy
 from scipy import constants
 
 
