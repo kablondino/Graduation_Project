@@ -1,52 +1,49 @@
 \chapter{Conclusion} \label{chapter:conclusion}
 \section{Discussion} \label{sec:discussion}
 \begin{itemize}
-	\item \textbf{Which electric field-generating mechanisms are dominant in concrete experimental tokamak conditions?}
+	\item \textbf{which electric field-generating mechanism is dominant among the ones presented?}
 \end{itemize}
+The data suggests that the ion bulk viscosity $\Gamma_i^{\pi\parallel}$ and the anomalous electron loss $\Gamma_e^\text{an}$ consistently has the largest effect on the field.
+At the low end, the ion orbit loss $\Gamma_i^\text{ol}$ becomes highly suppressed once there is a nonzero value of the electric field at the edge, and thus is not dominant in H--mode.
+However, in L--mode, its value at the plasma edge is somewhat comparable.
 
-The ion bulk viscosity $\Gamma_i^{\pi\perp}$ and the anomalous electron loss $\Gamma_e^\text{an}$ consistently has the largest effect on the field, with the former resulting in strong oscillations.
-Ion orbit loss $\Gamma_i^\text{ol}$ becomes highly suppressed once there is a nonzero value of the electric field at the edge, and thus is not dominant in H--mode.
-In L--mode, $\Gamma_i^\text{ol}$
-The charge exchange friction $\Gamma_i^\text{cx}$ is highly dependent on the neutrals density, and therefore processes resulting in a higher neutrals density dictate its dominance.
-In this investigation, it was found to not supersede the two first mentioned.
-
+The charge exchange friction $\Gamma_i^\text{cx}$ is highly dependent on the neutrals density, and therefore processes that result in a higher neutrals density or a deeper penetration depth dictate its dominance.
+In this investigation, charge exchange friction was found to not supersede the two first mentioned.
 
 \begin{itemize}
 	\item \textbf{What are the appropriate forms of each flux for the model and what are the relative sensitivities and sources of uncertainty?}
 \end{itemize}
-
-Ion orbit loss is highly suppressed by nonzero values of $Z$.
-Also, the high spatial sensitivity pins it directly to the edge.
 The transport barrier typically forms a centimeter or two into the plasma, relatively distant from the area which the ion orbit loss is present.
 Uncertainties in the position or value of $Z$ highly affect this term, but does not manifest in any significant change in $Z$ itself.
 
-The shear viscosity is sensitive only to the dynamic viscosity $\mu$, and is completely necessary to have the system.
-However, the charge exchange friction and anomalous electron loss both significantly depend on the density and temperature gradients.
-Real-world calculation hypothetically become difficult since error is compounded in measurements of these.
+The shear viscosity $\Gamma_i^{\pi\perp}$ is sensitive only to the dynamic viscosity $\mu$, and is completely necessary to have the system.
+However, the charge exchange friction and anomalous electron loss both significantly depend on the density and temperature gradients, with the form of bulk viscosity presented here also depending on the density gradient.
+Real-world calculation of these fluxes become more difficult since error in measurements of the gradients are usually high.
 
 The parameters of the diffusivity are extremely sensitive, as a small change to the coefficient of the shear viscosity $a_3$ can change the fundamental behavior of the entire system.
-Due to this being a qualitative model, in which the parameters are chosen rather than calculated,...
-
+Due to this being a qualitative model, in which the parameters are chosen rather than calculated, the ease of the formation of the transport barrier must be tuned carefully.
+Values for these parameters were found to work in these conditions, but could be the culprit of unexpected behavior.
 
 \begin{itemize}
 	\item \textbf{What is the variation in dominance of each field-generating mechanism across increasing input power?}
 \end{itemize}
-
-As of now, charge exchange friction is directly proportional to the core particle flux $\Gamma_c$, giving it artificially-high relation on initialization.
-However, the bulk viscosity $\Gamma_i^{\pi\parallel}$ seems to be more heavily affected, potentially giving rise to unphysical oscillations.
+As of now, charge exchange friction is directly proportional to the core particle flux $\Gamma_c$, giving it quite literally a direct relation to the input power on initialization.
+However, the bulk viscosity $\Gamma_i^{\pi\parallel}$ seems to be more heavily affected, potentially giving rise to unphysical oscillations.\todo{\color{red}Substantiate!}
 Unsurprisingly, ion orbit loss is least affected by input heat and particle flux from the core.
 
-
+\section{Outlook} \label{sec:outlook}
 \begin{itemize}
 	\item \textbf{Future possible work and the outlook on the topic.}
 \end{itemize}
 
-A more-robust form of the charge exchange friction must be established and updated, since the neutrals form takes a qualitative approach, and is implemented weakly dynamically.
+A more-robust form of the charge exchange friction must be established and updated, since the neutrals form takes a qualitative approach, and is implemented weakly dynamically, \emph{i.e.} $k$ and $d$ are simple constants.
+
 There must be a comparison of the two bulk viscosity models, with experimental verification.
 As of now, there is no indication of one form having an advantage over the other, except in raw calculation.
 
 In addition, bifurcation analysis is required to prove that the sum of the nonambipolar fluxes provides the same bifurcating behavior the original model has.
+If it does not, alternative forms of the nonambipolar fluxes must be implemented, and derived if needed.
 Any newly-included mechanisms, such as Reynolds stress, should be subject to the same rigor.
+As was investigated in \cite{paquay_studying_2012}, the edge boundary conditions for $Z$ should also be investigated with any updated mechanisms.
 
-\section{Outlook} \label{sec:outlook}
 

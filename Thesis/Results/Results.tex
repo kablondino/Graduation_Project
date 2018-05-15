@@ -113,11 +113,11 @@ First, a full run of the model is demonstrated, with the initial conditions for 
 	{The initial conditions of the flux model (Eqs.~\ref{eq:n_initial} and \ref{eq:T_initial}), with the core particle flux $\Gamma_c = -10^{20}$ and core heat flux $q_c = 5\times 10^{22}$.}
 	{fig:flux_initial_conds}
 %}}}
-
 Evolving the system develops some expected and some unexpected results.
 Figure \ref{fig:flux_state_full} shows plots of the system after 200 time steps, which is equivalent to 1 ms of elapsed time.
-Table~\ref{table:flux_values} shows particular components of the fluxes at the same time step, when applicable, with the totals on the rightmost column.
-The upper half comes from a region of the transition, while the lower half is close to the core of the domain, indisputably in L--mode.
+Table~\ref{table:flux_values} shows the particular components of the fluxes $g_l^\text{k}$ at the same time step, when applicable, with the total particle flux and current in the two rightmost columns.
+The upper half comes from a region of the transition, while the lower half is close to the core of the domain.
+Since there is a reasonably low field value and field shear, it is safe to say the entire system is still in L--mode.
 %{{{ Two Figures for showing the full state, pre-oscillations
 \TwoFigOneCap{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/state_G1e20_full_t200.png}}
 	{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/flux_G1e20_full_t200.png}}
@@ -186,33 +186,42 @@ The upper half comes from a region of the transition, while the lower half is cl
 	\label{table:flux_values}
 \end{table}
 One clear trend from this data is that the neoclassical bulk viscosity $\Gamma_i^{\pi\parallel}$ in this form results in the largest flux, with the anomalous electron loss $\Gamma_e^\text{an}$ near the same order of magnitude.
-The ion orbit loss is at a maximum with no radial electric field, and is suppressed very heavily in the presence of it; it therefore is the weakest of the four.
-Charge exchange friction was also relatively weak, although seems to 
-These results are found consistently throughout all combinations of fluxes and input power.
+The ion orbit loss is at a maximum with no radial electric field, and is suppressed very heavily in the presence of it.
+Also, straying any reasonable distance from the edge causes it to very sharply go to zero.
+By far, it is the weakest of the four fluxes.
+These results are found consistently throughout the explored combinations of fluxes and input power.
+This includes setting the core particle flux to between $10^{-18}$ and $10^{21}~\text{m}^{-2}\cdot\text{s}^{-1}$
+The core heat flux $q_c$ was set to a factor of $500$ larger than $\Gamma_c$.
 
 On the note of the bifurcation of the system: due to the linear forms of the anomalous electron loss $\Gamma_e^\text{an}$ and charge exchange friction $\Gamma_i^\text{cx}$, bifurcating behavior cannot arise due to them.
-Although the ion orbit loss $\Gamma_i^\text{ol}$ is also nonlinear, it generally goes very similarly as a Gaussian, meaning it has only two zeros, and only as $|Z|$ gets large.
-Plotted in Fig.~\ref{fig:fluxes_steady-state} are the fluxes as a function of $Z$, along with their sum.
-It is taken at a radial location towards the core, inside any potential transport barriers.
+Although the ion orbit loss $\Gamma_i^\text{ol}$ is also nonlinear, it generally goes very similarly as a Gaussian, and is of little influence.
 
 \begin{figure}[!htb] % Fluxes vs Z, SAVED IMAGE, because it's too much code
 	\centering
-	\includegraphics[width=0.8\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_core_t200.png}
+	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_core_t200.png}
 	\caption{This plot is akin to Fig.~\ref{fig:original_stationary_vs_Z} for the flux model; each nonambipolar flux is plotted against $Z$ at the indicated location and time.
 	The anomalous electron loss and charge exchange friction are nearly identical, and thus overlap in the figure.}
 	\label{fig:fluxes_steady-state}
 \end{figure}
 
+Plotted in Fig.~\ref{fig:fluxes_steady-state} are the fluxes as a function of $Z$, along with their sum.
+It is taken at a radial location towards the core, inside any potential transport barriers.
 Other plots at different positions and time slices have the same characteristic behavior, with the edge and barrier regions with smaller deviations from zero.
 It clearly shows three steady-state points, just as the original model, and shows the dominance of the bulk viscosity.
 
-\subsection{Oscillations} \label{ssec:oscillations}
+\subsection{Unexpected Behavior} \label{ssec:unexpected}
 After some unknown threshold is reached, oscillations begin to occur in the system.
-These oscillations do not seem to be the result of a physical mechanism, or at least any known one, as its frequency is much to great.
+These oscillations do not seem to be the result of a physical mechanism, or at least any known one, as its frequency is much too great.
 The plots in Fig.~\ref{fig:oscillations_extended} are the result of reducing the time step size by one order of magnitude.
 Thus, the time step size becomes 500 ns, a time scale much too short to be any known physical mechanism.
-Unfortunately not obvious in still images, one can notice the oscillating nature in all of the state variables and two of the fluxes.
-On the reverse, however, results in the PDE system failing to converge with a time step any larger than 10 $\mu$s, still incorporating the phenomenon.
+This includes the dithering mode discussed in Section~\ref{ssec:oscillatory_transition}, as that is many orders of magnitude slower.
+
+Increasing the time step significantly results in the PDE system failing to converge with a time step any larger than 10 $\mu$s.
+At this time step size, the same unexpected phenomena are manifested.
+Unfortunately not obvious in still images, one can notice the oscillating nature in all of the state variables and fluxes.
+Although the amplitudes are seemingly small outside the particle diffusivity $D$, the effect is nevertheless prevalent.
+Larger parameters of $D$ were tested, \emph{e.g.} $a_3$, resulting in oscillations large enough in the state variables to diverge the system.
+This requires significantly more investigation, as it could be only one of many effects that causes the oscillations.
 
 %{{{ Two Figures for displaying the oscillations with short time step
 \TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t1059.png}
@@ -223,4 +232,25 @@ On the reverse, however, results in the PDE system failing to converge with a ti
 	It has been zoomed in to 6 mm inside of the plasma edge to showcase the unexplained oscillations, with a frequency still comparable to the time step.}
 	{fig:oscillations_extended}
 %}}}
+
+The system also lacks in finding a proper steady-state, even after ignoring the aforementioned oscillations, with the radial field gradually drifting upwards.
+Running a simulation with many small time steps, both effects becomes more pronounced.
+Figure~\ref{fig:state_40000} is at 20 ms (at the 40000\textsuperscript{th} time step) into the simulation, with the oscillations maximum amplitude oscillations.
+In addition, it is clear that $Z$ clearly continues to drift upwards, without finding a true steady-state.
+%{{{ Two Figures, very long run
+\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t40000.png}}
+	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/flux_G1e20_extended_t40000.png}}
+	{State and flux plots of a simulation after 20 ms have elapsed.
+	The domain of the oscillations have increased while the wavelength remains constant.
+	At these large values of $Z$, the bulk viscosity is heavily reduced.}
+	{fig:state_40000}
+%}}}
+
+\begin{figure}[!htb] % Fluxes vs Z for 40000
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_oscillations_t40000.png}
+	\caption{The fluxes as a function of $Z$ in the center of the oscillations of Fig.~\ref{fig:state_40000}.
+	The blue line indicates the actual value of $Z$; since it is nowhere near a zero, this is not steady-state.}
+	\label{fig:fluxes_steady-state_40000}
+\end{figure}
 

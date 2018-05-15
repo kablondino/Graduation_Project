@@ -210,14 +210,7 @@ More investigation is needed into the robustness of this form of the bulk viscos
 	\label{fig:bulk_definition_comparison}
 \end{figure}
 
-With this modification, the final form used for this investigation is
-\begin{align} % Final form of Bulk Viscosity
-	\Gamma_i^{\pi\parallel} \,=\, \,n_e \, \sqrt{\pi} \, D_{\pi\parallel}
-		\left(\frac{n^\prime}{n} + \frac{Z}{\rho_{\theta i}}\right) \,
-		\exp\left(-Z^2\right) \label{eq:Gamma_bulk_final}
-\end{align}
-
-In addition, although this flux, at first glance, may take a similar shape to subsequently-presented fluxes, the nonlinearity of the plasma dispersion function does not allow the flux to be written in the form of Eq.~\ref{eq:Gamma_an_g}.
+Although this flux, at first glance, may take a similar shape to subsequently-presented fluxes, the nonlinearity of the plasma dispersion function does not allow the flux to be written in the form of Eq.~\ref{eq:Gamma_an_g}.
 Nevertheless, it can still be used for comparison.
 
 
@@ -268,13 +261,13 @@ We can equate these two, assuming the weak function $\phi_\text{cx}(z) \propto z
 \end{align}
 Electrons are not exchanged above a particular temperature threshold, but rather fully ionized and lost to the bulk plasma.
 The term $E_0$ is simply the ionization energy for the particular species used; hydrogen is investigated in this project, and the term is thus set to 13.6 eV.
-The coefficient $C_\text{cx}$ is a numerical constant that chooses the maximum rate.
+The coefficient $C_\text{cx}$ is a numerical constant that defines the maximum rate.
 
 In the domain of the problem, the origin of neutrals is that of recycled particles from the divertor, and not that of the NBI.
 The profile of these therefore have a penetration depth from the edge, and drops off rapidly.
 \begin{align} % Neutrals profile
 	n_0 \,\propto\, \frac{\theta\,\Gamma_c}{v_{T_i}\left[1 \,+\,
-	\exp{(k(x - d))}\right]} \label{eq:neutral_density}
+		\exp{(k(x - d))}\right]} \label{eq:neutral_density}
 \end{align}
 The maximum value of the neutrals is governed by $\frac{\theta\,\Gamma_c}{v_{T_i}}$, in which $\theta$ is some small value less than unity.
 The penetration depth is $d$, with the rate of drop off determined by $k$.
@@ -314,14 +307,14 @@ The term $\nu_{*i}$ is the ion-ion collision frequency upon the ion banana bounc
 This particular form highly localizes the effect of the radial electric field \cite{kobayashi_experimental_2016}.
 As the ion collisionality $\nu_{*i}$ and the banana width $w_{bi}$
 
-Similar to bulk viscosity, and contrasting charge exchange friction and electron anomalous diffusion, this flux is explicitly nonlinear in $Z$.
+Similar to bulk viscosity, and contrasting charge exchange friction and electron anomalous diffusion, this flux is explicitly nonlinear in $Z$, and can have a general Gaussian shape.
 
 
 \section{Radial Electric Field Equation}\label{sec:Z_equation}
 A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
 %However, experiments and mathematical investigations indicate that flows in the plasma can tear apart turbulent eddies, which reduces the transport radially.\todo{\color{red}{Reword?}}
 To model the dynamics of the transition fully within this scope, the radial electric field must also be evolved explicitly.
-Two forms of the field equation are presented, with the latter being of more interest.
+Two forms of the field equation are presented, with the former having been studied for its mathematical properties. The latter is of more interest in this investigation.
 
 \subsection{Original Model}\label{ssec:original_Z_equation}
 Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{zohm_dynamic_1994} originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase.
