@@ -1,24 +1,33 @@
 \chapter{Conclusion} \label{chapter:conclusion}
 \section{Discussion} \label{sec:discussion}
 \begin{itemize}
-	\item \textbf{which electric field-generating mechanism is dominant among the ones presented?}
+	\item \textbf{Which electric field-generating mechanism is dominant among the ones presented?}
 \end{itemize}
-The data suggests that the ion bulk viscosity $\Gamma_i^{\pi\parallel}$ and the anomalous electron loss $\Gamma_e^\text{an}$ consistently has the largest effect on the field.
-At the low end, the ion orbit loss $\Gamma_i^\text{ol}$ becomes highly suppressed once there is a nonzero value of the electric field at the edge, and thus is not dominant in H--mode.
-However, in L--mode, its value at the plasma edge is somewhat comparable.
+
+The data suggests that the ion bulk viscosity $\Gamma_i^{\pi\parallel}$ consistently has the largest effect on the field, with the anomalous electron loss $\Gamma_e^\text{an}$ as second-most.
+At the low end, the ion orbit loss $\Gamma_i^\text{ol}$ becomes highly suppressed once there is a nonzero value of the electric field at the edge, and thus is effectively nonexistent in H--mode.
 
 The charge exchange friction $\Gamma_i^\text{cx}$ is highly dependent on the neutrals density, and therefore processes that result in a higher neutrals density or a deeper penetration depth dictate its dominance.
+In real-world cases, any methods of increasing the neutrals will increase this effect.
 In this investigation, charge exchange friction was found to not supersede the two first mentioned.
 
 \begin{itemize}
 	\item \textbf{What are the appropriate forms of each flux for the model and what are the relative sensitivities and sources of uncertainty?}
 \end{itemize}
-The transport barrier typically forms a centimeter or two into the plasma, relatively distant from the area which the ion orbit loss is present.
-Uncertainties in the position or value of $Z$ highly affect this term, but does not manifest in any significant change in $Z$ itself.
+
+The forms of the fluxes were taken from established literature.
+Two of the source fluxes go linearly with the field $Z$, while the other two are explicitly nonlinear.
+A comparison can be made with the original model by associating the components of the fluxes to the parameters of the original model.
+For example, the $g_n^\text{an}$ term from the anomalous electron loss flux is certainly contained within the $c_n$ coefficient, as they are both considered coefficients to the density gradient.
+Following this logic, only the bulk viscosity $\Gamma_i^{\pi\parallel}$ and ion orbit loss $\Gamma_i^\text{ol}$ can have components related to the cubic coefficient $c$ within the polynomial $G(Z)$.
 
 The shear viscosity $\Gamma_i^{\pi\perp}$ is sensitive only to the dynamic viscosity $\mu$, and is completely necessary to have the system.
-However, the charge exchange friction and anomalous electron loss both significantly depend on the density and temperature gradients, with the form of bulk viscosity presented here also depending on the density gradient.
+However, the charge exchange friction and anomalous electron loss both significantly depend on the density and temperature gradients, with the form of bulk viscosity used here also depending on the density gradient.
 Real-world calculation of these fluxes become more difficult since error in measurements of the gradients are usually high.
+
+The transport barrier typically forms a centimeter or two into the plasma, relatively distant from the area which the ion orbit loss is present.
+Uncertainties in the position or value of $Z$ highly affect this term, but does not manifest in any significant change in $Z$ itself.
+This follows exactly the behavior one would expect from $\Gamma_i^\text{ol}$.
 
 The parameters of the diffusivity are extremely sensitive, as a small change to the coefficient of the shear viscosity $a_3$ can change the fundamental behavior of the entire system.
 Due to this being a qualitative model, in which the parameters are chosen rather than calculated, the ease of the formation of the transport barrier must be tuned carefully.
@@ -27,23 +36,28 @@ Values for these parameters were found to work in these conditions, but could be
 \begin{itemize}
 	\item \textbf{What is the variation in dominance of each field-generating mechanism across increasing input power?}
 \end{itemize}
+
 As of now, charge exchange friction is directly proportional to the core particle flux $\Gamma_c$, giving it quite literally a direct relation to the input power on initialization.
-However, the bulk viscosity $\Gamma_i^{\pi\parallel}$ seems to be more heavily affected, potentially giving rise to unphysical oscillations.\todo{\color{red}Substantiate!}
-Unsurprisingly, ion orbit loss is least affected by input heat and particle flux from the core.
+Unsurprisingly, ion orbit loss is least affected by input heat and particle flux from the core, as any rise to $Z$ quickly vanishes the term.
+The bulk viscosity $\Gamma_i^{\pi\parallel}$ seems to be more heavily affected, potentially giving rise to unphysical oscillations.
+For large enough core particle fluxes, a transport barrier can be formed, as suggested from experiment.
+Excluding the bulk viscosity seems to prevent the formation.
+However, the presence of a transport barrier necessitates a relatively large difference in $Z$, to which the bulk viscosity is easily suppressed.
+From this, one can conclude that, within the mathematical model presented here, the bulk viscosity is the culprit for the L--H transition.
 
 \section{Outlook} \label{sec:outlook}
-\begin{itemize}
-	\item \textbf{Future possible work and the outlook on the topic.}
-\end{itemize}
+A more-complete picture of the radial electric field at the edge of the plasma, and its effects, seem to be necessary in understanding the physics of H--mode and the L--H transition.
+H--mode is considered necessary for viable fusion energy, and in knowing its physical origin and manner of control gives substantial progress to the field.
 
-A more-robust form of the charge exchange friction must be established and updated, since the neutrals form takes a qualitative approach, and is implemented weakly dynamically, \emph{i.e.} $k$ and $d$ are simple constants.
-
-There must be a comparison of the two bulk viscosity models, with experimental verification.
-As of now, there is no indication of one form having an advantage over the other, except in raw calculation.
+Due to the presence of unnatural results in this study, many of the nonambipolar fluxes may need adjustment or contextual comparison.
+A more-robust form of the charge exchange friction presented here should be established and updated, both in parameters and overall form.
+Since the neutrals profile takes a somewhat qualitative approach that is weakly dynamic, \emph{i.e.} $k$ and $d$ are simple constants, this can only be used as a starting point.
+In addition, it does not take in to account of different species of neutrals, making the flux overall too simple.
+A comparison of the two bulk viscosity models is also required, with some manner of experimental verification.
+The form dealt with here (Eq.~\ref{eq:stringer_Gamma_bulk}) is shown to dominate over the other fluxes; whether the alternate (Eq.~\ref{eq:shaing_bulk}) gives rise to the same effects and relative size to other nonambipolar fluxes remains to be seen.
 
 In addition, bifurcation analysis is required to prove that the sum of the nonambipolar fluxes provides the same bifurcating behavior the original model has.
 If it does not, alternative forms of the nonambipolar fluxes must be implemented, and derived if needed.
-Any newly-included mechanisms, such as Reynolds stress, should be subject to the same rigor.
-As was investigated in \cite{paquay_studying_2012}, the edge boundary conditions for $Z$ should also be investigated with any updated mechanisms.
-
+Both dithering (I-) mode and hysteresis was not found in this investigation for the fluxes provided, and is needed to be investigated separately.
+Any newly-included mechanisms, such as Reynolds stress, should be subject to this same rigor.
 

@@ -63,8 +63,9 @@ Experiments done at the TEXTOR tokamak were able to artificially induce the tran
 
 Many models have been developed to investigate the dynamics of H--mode and the transition.
 Investigated in this project is two which simulate the radial electric field, the first originally conceived by Zohm \cite{zohm_dynamic_1994} and further developed \cite{paquay_studying_2012} \cite{weymiens_bifurcation_2014}.
-To recreate the bifurcating behavior, it artificially invokes a nonlinear polynomial to an otherwise-linear equation
+To recreate the bifurcating behavior, it artificially invokes a nonlinear polynomial to an otherwise-linear equation.
 The second of these models takes a more physical approach, by including nonlinear radial currents established by literature.
+The focus of this investigation lies in the latter.
 
 \section{Research Questions}\label{sec:research_questions}
 Although there have been compilations of different theories describing the transition, there is yet to be a conclusive, comprehensive one \cite{connor_review_2000}.
@@ -75,14 +76,16 @@ It is therefore important to evaluate which terms dominate in their respective r
 The overall problem is thus stated simply: \textbf{Which electric field-generating mechanisms are dominant in concrete experimental tokamak conditions?}
 This is in an effort to determine which measurable and controllable values can predict H--mode.
 
-The first consideration is to decide \textbf{which mechanisms, and therefore necessary parameters, should be investigated}, as not all nonambipolar fluxes will significantly contribute to the transition.
+The first consideration is to decide which mechanisms, and therefore necessary parameters, should be investigated, as not all nonambipolar fluxes will significantly contribute to the transition.
 For example, the nonambipolar flux due to magnetic ripple loss is highly dependent on collisionality, in which lower collisionality results in a low flux \cite{stringer_effect_1972}.
 Since a relatively ideal operation (temperature on the order of 100 eV at the edge) will be investigated, this flux can be neglected.
 
 \textbf{Identifying the appropriate form of each flux for the model} and subsequently implementing them appropriately is the crucial next step.
 This includes \textbf{identifying the relative sensitivities and sources of uncertainty}.
-Because the model is highly nonlinear, it is potentially sensitive to the forms and relative strengths of each flux.
-The calculation is done with a finite volume method solver, in which the results requires verification with the literature.
+Because the model is nonlinear, it is potentially sensitive to the forms and relative strengths of each flux.
+In addition, the bifurcation of the plasma state relies strongly on the forms of the fluxes.
+Any robust use of the model for real-world experiments, at the minimum, requires the same qualitative behavior.
+The calculation of the PDE system is done with a finite volume method solver.
 
 The main input heating power regime previously investigate was strictly limited to near the H--L transition \cite{staps_backstepping_2017}.
 Performing a scan of input heating power significantly above the lower threshold could show a difference in behavior of the fluxes and resulting field.
