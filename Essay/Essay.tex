@@ -1,6 +1,5 @@
 \documentclass[12pt,a4paper]{letter}
 \name{Kevin A. Blondino}
-\signature{Kevin A. Blondino}
 \date{\today}
 
 \address{
@@ -8,7 +7,24 @@
 	5612 AZ Eindhoven
 }
 
-\usepackage{fullpage, indentfirst, amsmath}
+%{{{ Modify distance between pdf signature and name
+\makeatletter
+\renewcommand{\closing}[1]{\par\nobreak\vspace{\parskip}%
+	\stopbreaks
+		\noindent
+	\ifx\@empty\fromaddress\else
+		\hspace*{\longindentation}\fi
+	\parbox{\indentedwidth}{\raggedright
+			\ignorespaces #1\\[1\medskipamount]%
+			\ifx\@empty\fromsig
+				\fromname
+			\else \fromsig \fi\strut}%
+		\par}
+	\makeatother
+%}}}
+
+%{{{ Packages
+\usepackage{fullpage, indentfirst, amsmath, graphicx}
 \linespread{1.2}
 \usepackage[UKenglish]{isodate}
 \cleanlookdateon
@@ -17,6 +33,7 @@
 
 % Temporary Packages
 \usepackage{lipsum, color}
+%}}}
 
 \begin{document}
 \begin{letter}{
@@ -30,26 +47,41 @@
 The term ``holy grail'' is usually used to indicate some physical object or abstract goal with great significance or utility.
 Sometimes, it also implies it is elusive or somehow beyond reach.
 One may argue that for the energy industry, nuclear fusion is considered its holy grail.
-{\color{red}FINISH INTRO!}
 
-%Any origin story of nuclear energy must begin with Einstein's famous discovery, and probably the single most famous equation of all time, of $E = m\,c^2$.
-%It conveys a powerful, but still simple, statement about the fundamental rules of the universe.
-%Its technical name gives the best description: the mass-energy equivalence.
-%Mass and energy are not separate things, but different manifestations of the same thing.
-%The factor of $c^2$ means that a small amount of mass $m$ can ``become'' a whole lot of energy.
-%The nucleus of heavy atoms are strangely less massive than the combined sum of the 
 The public's perception of nuclear energy is usually one of fear and misunderstanding.
-Simply the word ``nuclear'' conjures images of large explosions, deadly radiation, and a nuclear wasteland.
-However, current nuclear energy technology has proven to be safer than traditional energy sources; however it still retains serious problems.
-There are two ways to tap into the energy stored in the nucleus, with one manner being significantly easier.
+Simply the word ``nuclear'' conjures images of large explosions, deadly radiation, and a nuclear fallout.
+However, current nuclear fission energy technology has proven to be safer than traditional energy sources; nevertheless, it still retains serious problems.
+These include the aforementioned fears, such as the possibility of reactor meltdowns, weaponization of nuclear fuel, etc. 
 
-Currently, most promising device for the generation of energy from nuclear fusion is called a tokamak.
+Nuclear \emph{fusion}, on the other hand, primarily does not need to deal with these issues.
+By its very nature, it is significantly more difficult to achieve than fission, unfortunately.
+The largest and most-funded research in fusion is that of thermonuclear fusion through magnetic confinement.
+The most popular type of machine for the research and future reactor is called a tokamak, which essentially is a toroidal chamber that keeps the fuel (plasma of isotopes of hydrogen) confined with a large magnetic field.
+Imagine a jelly-filled donut that still has the traditional donut shape, \emph{i.e.} there's a hole in the middle.
+The jelly inside that donut is the fuel, that can unfortunately leak out further into the dough than we would like during the normal operation.
 
-My research involved investigating the edge of the plasma.
+My research deals with a phenomenon that occurs right at the boundary of the confined plasma, or in the analogy, at the boundary of the jelly and the dough of this somewhat strange donut.
+The fusion community discovered in the early 1980s that if you heat the plasma beyond a certain point, the leaking of the fuel outwards seems to go down very suddenly.
+This was a momentous discover, as it allowed us to push the machines to higher temperatures and pressures, getting us closer to creating sustainable fusion energy.
+They coined this new operational state as H--mode, short for High operational mode, and named the previous state, unsurprisingly, L--mode.
+We then discovered a bit later that this occurs due to the generation of a radial electric field at the edge.
+The details of how this electric field comes to be is something even to this day we are not completely sure about.
 
-\closing{Sincerely,}
-\signature
-\name
+The entirety of my research focused on this issue.
+One group of scientists were working on the mathematics, particularly simulating the dynamics of the transition between L-- and H--mode.
+As it turns out, the mathematics of the transition between the two modes is not as simple as just finding how much is the right amount of input heating.
+Nevertheless, they had found the appropriate type of mathematical model that describes it.
+On the other end, ideas on the different mechanisms that cause the generation of this field had been developed and discussed.
+These mechanisms are called ``nonambipolar particle fluxes.''
+A particle flux is simply the number of particles that pass through an area per time.
+Nonambipolar in this context refers to the fact that these fluxes are not equal for both positive and negative charged particles.
+These fluxes cause the charge separation that is necessary for the electric field.
+
+\vspace*{10mm}
+
+\closing{Sincerely,
+\includegraphics[scale=0.35]{./Signature_Cropped.pdf}}
+
 
 \end{letter}
 \end{document}
