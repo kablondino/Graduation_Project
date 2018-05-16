@@ -1,9 +1,10 @@
 \chapter{Results}\label{chapter:results}
 This chapter is broken into two sections.
-The first covers verification to the original model of the $Z$ equation (Eq.~\ref{eq:original_Z_equation}).
+The first covers verification of the implementation of the code used on the Taylor-expanded model (Eq.~\ref{eq:original_Z_equation}).
+This includes control of the operational mode through input power and the observation of steady-state values at different points in the domain.
 The second section shows the results of the flux version, Eq.~\ref{eq:reduced_normalized_Z_equation}, including the problems that arose.
 
-\section{Original Model} \label{sec:original_results}
+\section{Verification with the Taylor-Expanded Model} \label{sec:original_results}
 Also as proven in \cite{paquay_studying_2012}, the Flow-Shear model of the diffusivity Eq.~\ref{eq:flow_shear_diffusivity} generates the bifurcating behavior.
 Fig.~\ref{fig:Original_FS} shows L--mode as the initial condition, with a clear transport barrier formed, shown in this case at $x = 1.0$.
 Not shown here for the sake of brevity, a steady-state L--mode was also obtained through lowering the core fluxes.
@@ -23,7 +24,7 @@ In Fig.~\ref{fig:original_stationary_vs_Z}, the steady-state is plotted at three
 The three spots are at the edge, the center of the high-shear area, and in the middle of the domain.
 These combined areas can be considered to show both L-- and H--mode.
 In addition, two more lines are added, indicating the first time step, and the polynomial $G(Z)$.
-\begin{figure}[tb] % Steady-State as a function of Z, original model
+\begin{figure}[!bt] % Steady-State as a function of Z, original model
 	\centering
 	\begin{sagesilent}
 		reset()
@@ -99,7 +100,9 @@ In addition, two more lines are added, indicating the first time step, and the p
 In regions of low gradient values, the function is shifted upwards, causing only one stable point to form.
 An increase in gradient values causes a decrease to these functions.
 The lowest line is the one at the barrier, showing three zeros, with the middle being unstable.
-The left zero of about $-3$ provokes the edge-side $Z$ value in the state.
+The left zero of about $-3$ provokes the edge-side $Z$ value in the state, with the right zero as the core-side value of $Z$.
+
+These results lead one to accept the implementation is capable of replicating previous work, including the bifurcation phenomena and diffusivity models.
 
 \section{Flux Model} \label{sec:flux_results}
 %{{{ Expected things
@@ -111,7 +114,7 @@ Unless otherwise noted, the boundary condition for $Z$ that is set to zero is us
 %{{{ Two Figures for the initial conditions
 \TwoFigOneCap{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/state_G1e20_full_t0.png}}
 	{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/flux_G1e20_full_t0.png}}
-	{The initial conditions of the flux model (Eqs.~\ref{eq:n_initial} and \ref{eq:T_initial}), with the core particle flux $\Gamma_c = -10^{20}$ and core heat flux $q_c = -5\times 10^{22}~\text{eV}\cdot\text{m}^{-2}\cdot\text{s}^{-1}$.}
+	{The initial conditions of the flux model (Eqs.~\ref{eq:n_initial} and \ref{eq:T_initial}), with the core particle flux $\Gamma_c = -10^{20}$ and core heat flux $q_c = -5\times 10^{22}~\text{eV}\cdot\text{m}^{-2}\cdot\text{s}^{-1} = -8.01~\text{kW}\cdot\text{m}^{-2}$.}
 	{fig:flux_initial_conds}
 %}}}
 
@@ -176,7 +179,7 @@ Unless otherwise noted, the boundary condition for $Z$ that is set to zero is us
 		 & $\Gamma_i^\text{ol}$ & --- & --- & --- & $\sage{Gamma_ol.n(digits=3)}$ & $\sage{(constants.e * Gamma_ol).n(digits=3)}$
 	\end{tabular}\normalsize
 	\caption{This table shows the values of the nonambipolar fluxes at two locations in the domain.
-	The appropriate gradient coefficients are shown in the columns, \emph{i.e.} $g_l^\text{k}$.
+	The appropriate gradient coefficients are shown in the columns, i.e., $g_l^\text{k}$.
 	Note that, since bulk viscosity $\Gamma_i^{\pi\parallel}$ has a nonlinear term in the plasma dispersion function, its gradient coefficients are not entirely comparable.
 	Nevertheless, they do give an indication of the relative dominance.
 	The time step used is the same of that in Fig.~\ref{fig:flux_state_full}.}
@@ -204,7 +207,7 @@ This includes setting the core particle flux to between $-10^{18}$ and $-10^{21}
 Plotted in Fig.~\ref{fig:fluxes_steady-state} are the fluxes as a function of $Z$, along with their sum as a dotted line.
 It is taken at a radial location towards the core, inside any potential transport barriers.
 Other plots at different positions and time slices have the same characteristic behavior, with the edge and barrier regions with smaller deviations from zero.
-It clearly shows three steady-state points, just as the original model, and shows the dominance of the bulk viscosity.
+It clearly shows three steady-state points, just as the Taylor-expanded model, and shows the dominance of the bulk viscosity.
 
 On the note of the bifurcation of the system: due to the linear forms of the anomalous electron loss $\Gamma_e^\text{an}$ and charge exchange friction $\Gamma_i^\text{cx}$, bifurcating behavior cannot arise due to them.
 Although the ion orbit loss $\Gamma_i^\text{ol}$ is also nonlinear, it generally goes very similarly as a Gaussian, and is of little influence.
@@ -295,13 +298,13 @@ In addition, it is clear that $Z$ clearly continues to drift upwards, without fi
 %}}}
 
 Altering the core particle and heat fluxes can lead to similar results, with somewhat varying magnitude.
-At a lower core flux, in Fig.~\ref{fig:lower_core_flux} at $\Gamma_c = 10^{18}~\text{m}^{-2}\cdot\text{s}^{-1}$, the system acts overall in the same manner, although with smaller-amplitude oscillations.
+At a lower core flux, in Fig.~\ref{fig:lower_core_flux} at $\Gamma_c = -10^{18}~\text{m}^{-2}\cdot\text{s}^{-1}$, the system acts overall in the same manner, although with smaller-amplitude oscillations.
 It also still fails to find a steady-state, as $Z$ continues to drift upwards, but again, at a slower rate.
 However, with larger core fluxes in Fig.~\ref{fig:higher_core_flux}, the system is able to successfully transitions into something that resembles H--mode.
-A clear transport barrier, \emph{i.e.} steep drop in particle transport, is formed.
+A clear transport barrier, i.e., steep drop in particle transport, is formed.
 It is temporary, however, as the transport barrier moves towards and is lost to the edge.
 Unfortunately, this causes the system to completely diverge and no subsequent solution is found.
-Excluding the bulk viscosity prevents the barrier from forming, indicating that the transition in these sets of parameters requires this flux.
+Excluding the bulk viscosity prevents the barrier from forming, confirming that the transition in these sets of parameters requires this flux.
 
 \begin{figure}[htb] % Sans bulk viscosity
 \begin{minipage}{0.49\linewidth}

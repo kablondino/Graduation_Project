@@ -42,7 +42,7 @@ In order to simplify the model, substituting the following definition of the int
 \begin{align} % U definition
 	U \,\equiv\, \frac{n \, T}{\gamma - 1} \label{eq:U_definition}
 \end{align}
-In addition, one of the liberties taken to simplify the model is that a single temperature is used, \emph{i.e.} the electron and ion temperatures are assumed identical.
+In addition, one of the liberties taken to simplify the model is that a single temperature is used, i.e., the electron and ion temperatures are assumed identical.
 This is certainly not the most realistic of choices, as ECRH obviously heats electrons more than ions.
 Nevertheless, this is not always the case, as it becomes less pronounced with higher densities \cite{sauter_l--_2012}.
 
@@ -71,7 +71,11 @@ Due to the clearly-defined diffusion terms, Eq.~\ref{eq:U_compact} is the form i
 As described in Section~\ref{ssec:E_r}, the dynamics of the radial electric field will be determined by investigating the various nonambipolar fluxes.
 Particular turbulent and neoclassical phenomena affect ions and electrons differently.
 Ultimately, these effects lead to some form of charge separation, inducing a nonambipolar particle flux.
-The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}, Itoh and Itoh \cite{itoh_role_1996}, and Stringer \cite{stringer_explanation_1993}.
+
+Any nonambipolar particle fluxes that are used in this model must be able to be described in one dimension over time, i.e., with no flux-surface integrations.
+In addition, it must encompass enough dynamic detail, being explicitly dependent on radial position, electric field, density and its gradient, etc.
+The ones presented here are deemed to fit these criteria.
+The fluxes chosen for this analysis comes from a compilation by Callen \cite{callen_toroidal_2009}, Itoh and Itoh \cite{itoh_role_1996}, Stringer \cite{stringer_explanation_1993}, and Toda \cite{toda_theoretical_1997}.
 
 \subsection{Polarization Current}\label{ssec:polarization_current}
 In Maxwell's correction of Amp\`ere's law, a current is induced whenever the time derivative of an electric field is non-zero in a medium, which originates from the changing state of polarization.
@@ -314,47 +318,13 @@ Similar to bulk viscosity, and contrasting charge exchange friction and electron
 A rigorous theory on what causes the diffusion coefficients $D$ and $\chi$ is still unknown.
 %However, experiments and mathematical investigations indicate that flows in the plasma can tear apart turbulent eddies, which reduces the transport radially.\todo{\color{red}{Reword?}}
 To model the dynamics of the transition fully within this scope, the radial electric field must also be evolved explicitly.
-Two forms of the field equation are presented, with the former having been studied for its mathematical properties. The latter is of more interest in this investigation.
-
-\subsection{Original Model}\label{ssec:original_Z_equation}
-Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{zohm_dynamic_1994} originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase.
-It was incorporated from the FitzHugh-Nagumo model, Eq.~\ref{eq:FitzHugh-Nagumo}.
-\begin{align} % Original Itoh model
-	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) \,+\, \mu
-		\frac{\partial Z^2}{\partial x^2}~,\label{eq:original_z} \\
-	N(Z,g) \,&\equiv\, g \,-\, g_0 \,+\, \left[\beta Z^3 \,-\, \alpha Z\right]~.
-\end{align}
-The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
-Weymiens \cite{weymiens_bifurcation_2012} rewrote the equation as
-\begin{align} % Weymiens ('original') model
-	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \,
-		\frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \,
-		\frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \,
-		\frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:original_Z_equation} \\
-	G(Z) \,\equiv\, a \,+\, b(Z - Z_S) \,+\, c(Z - Z_S)^3~.
-		\label{eq:G_polynomial}
-\end{align}
-This form has includes the polarization current on the left-hand side and the shear viscosity as the first term on the right-hand side.
-All other possible sources of current are consolidated as the remaining terms, bundling the density and temperature gradient terms accordingly.
-The polynomial $G(Z)$ is cubic with an inflection point at $Z_S$, giving the transition behavior.
-The type of transition is wholly dictated by the values of the coefficients $a$, $b$, and $c$.
-
-\begin{table}[h] % Chosen parameters
-\centering
-	\begin{tabular}{cccc|ccccccc|cc}
-		$\zeta$ & $D_\text{min}$ & $D_\text{max}$ & $\mu$ & $\epsilon$ & $c_n$ & $c_T$ & $a$ & $b$ & $c$ & $Z_S$ & $\alpha_\text{an}$ & $\alpha_\text{cx}$ \\ \hline
-		0.5 & 5.0 & 0.4 & 0.05 & 0.04 & -1.1 & -0.9 & 1.5 & 2.0 & -1.0 & -1.5 & 1.5 & 1.5
-	\end{tabular}
-	\caption{The constant parameters chosen in the simulation.
-	The particle-thermal diffusivity coupling constant $\zeta$, the dynamic viscosity $\mu$, and the minimum and maximum diffusivity values $D_\text{min}, D_\text{max}$ are used both in the original and flux models.
-	The final two values are constants that couple the density gradient value to the temperature gradient value in $\Gamma_e^\text{an}$ and $\Gamma_i^\text{cx}$.}
-	\label{table:constants}
-\end{table}
+Two forms of the field equation are presented, with the latter having been extensively studied for its mathematical properties.
+The former is of more interest in this investigation.
 
 \subsection{Flux Model}\label{ssec:flux_Z_equation}
-Rather than qualitatively creating an equation as the original model, a synthesis of the nonambipolar fluxes from Section~\ref{sec:nonambipolar_fluxes} is substituted into Eq.~\ref{eq:ambipolarity_constraint}.
+A synthesis of the nonambipolar fluxes from Section~\ref{sec:nonambipolar_fluxes} is substituted into Eq.~\ref{eq:ambipolarity_constraint} to give a PDE for $Z$.
 \begin{align} % Sum of the currents
-	\epsilon_0 \, \frac{\partial E_r}{\partial x} \,&=\, -J^\text{pol}
+	\epsilon_0 \, \frac{\partial E_r}{\partial t} \,&=\, -J^\text{pol}
 		- J^{\pi\perp} - J^{\pi\parallel} + J^\text{an} - J^\text{cx}
 		- J^\text{ol} \label{eq:current_sum}
 %	&=\, -\frac{e \, n \, \rho_{\theta i}}{2} \, \frac{\partial Z}{\partial t}
@@ -375,13 +345,13 @@ Rather than qualitatively creating an equation as the original model, a synthesi
 %		+ \left(\frac{x}{w_{bi}}\right)^4}\right]}{\sqrt{\nu_{*i} + Z^4
 %		+ \left(\frac{x}{w_{bi}}\right)^4}}
 \end{align}
-It is advantageous to bundle the neoclassical polarization current $J^\text{pol}$ with the left-hand side before it is normalized, \emph{i.e.} Eq.~\ref{eq:polarization_current_original}.
+It is advantageous to bundle the neoclassical polarization current $J^\text{pol}$ with the left-hand side before it is normalized, i.e., Eq.~\ref{eq:polarization_current_original}.
 \begin{align} % Non-normalized current equation
 	\left(\epsilon_0 \,+\, \frac{m_i \, n}{B_\theta^2}\right) \,
-	\frac{\partial E_r}{\partial x} \,&=\, -J^{\pi\perp} \,-\, J^{\pi\parallel}
+	\frac{\partial E_r}{\partial t} \,&=\, -J^{\pi\perp} \,-\, J^{\pi\parallel}
 		\,+\, J^\text{an} \,-\, J^\text{cx} - J^\text{ol}
 \end{align}
-With typical plasma parameters at the edge, \emph{i.e.} $n \sim 10^{19}~\text{m}^{-3}$, $B_\theta \sim 10^{-1}$, the coefficient in $J^\text{pol}$ is 4 orders of magnitude larger than $\epsilon_0$, and therefore dominates.
+With typical plasma parameters at the edge, e.g. $n \sim 10^{19}~\text{m}^{-3}$, $B_\theta \sim 10^{-1}$, the coefficient in $J^\text{pol}$ is 4 orders of magnitude larger than $\epsilon_0$, and therefore dominates.
 After normalizing this and the shear viscosity, the balance of currents is
 \begin{align} % Currents equation
 	\frac{e \, n \, \rho_{\theta i}}{2} \, \frac{\partial Z}{\partial t}
@@ -390,7 +360,7 @@ After normalizing this and the shear viscosity, the balance of currents is
 		J^{\pi\parallel} \,+\, J^\text{an} \,-\, J^\text{cx} - J^\text{ol}
 		\label{eq:normalized_Z_equation}
 \end{align}
-A further simplification can be done by multiplying everything by $2 / (e \, \rho_{\theta i})$.
+A further simplification can be done for convenience by multiplying everything by $2 / (e \, \rho_{\theta i})$, giving the version of the equation that is implemented.
 \begin{align} % Final Equation!
 	n \, \frac{\partial Z}{\partial t} \,=\, \frac{\partial}{\partial x}
 		\left[\mu \, n \, \frac{\partial Z}{\partial x}\right] \,+\,
@@ -399,9 +369,44 @@ A further simplification can be done by multiplying everything by $2 / (e \, \rh
 		\label{eq:reduced_normalized_Z_equation}
 \end{align}
 
+\subsection{Taylor-Expanded Model}\label{ssec:original_Z_equation}
+Itoh \emph{et al.} \cite{itoh_edge_1991} and Zohm \cite{zohm_dynamic_1994} originally modeled an evolution to the radial electric field, which included hysteresis and an oscillatory phase.
+It is in accordance with the FitzHugh-Nagumo bifurcation model, Eq.~\ref{eq:FitzHugh-Nagumo}.
+\begin{align} % Original Itoh model
+	\frac{\partial Z}{\partial t} \,&=\, -N(Z,g) \,+\, \mu
+		\frac{\partial Z^2}{\partial x^2}~,\label{eq:original_z} \\
+	N(Z,g) \,&\equiv\, g \,-\, g_0 \,+\, \left[\beta Z^3 \,-\, \alpha Z\right]~.
+\end{align}
+The nonlinear $N(Z,g)$ function introduces the bifurcating behavior, with $g$ acting as a gradient parameter, and $g_0$, $\alpha$, and $\beta$ as the bifurcation parameters \cite{itoh_model_1988}.
+Weymiens \cite{weymiens_bifurcation_2012} rewrote the equation and comprehensively investigated the bifurcation behavior of it.
+\begin{align} % Weymiens ('original') model
+	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \,
+		\frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \,
+		\frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \,
+		\frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:original_Z_equation} \\
+	G(Z) \,\equiv\, a \,+\, b(Z - Z_S) \,+\, c(Z - Z_S)^3~.
+		\label{eq:G_polynomial}
+\end{align}
+This form has includes the polarization current on the left-hand side and the shear viscosity as the first term on the right-hand side.
+All other possible sources of current are consolidated as the remaining terms, bundling the density and temperature gradient terms accordingly.
+The polynomial $G(Z)$ is cubic with an inflection point at $Z_S$, giving the bifurcation behavior.
+The type of transition is wholly dictated by the values of the coefficients $a$, $b$, and $c$.
+
+\begin{table}[h] % Chosen parameters
+\centering
+	\begin{tabular}{cccc|ccccccc|cc}
+		$\zeta$ & $D_\text{min}$ & $D_\text{max}$ & $\mu$ & $\epsilon$ & $c_n$ & $c_T$ & $a$ & $b$ & $c$ & $Z_S$ & $\alpha_\text{an}$ & $\alpha_\text{cx}$ \\ \hline
+		0.5 & 5.0 & 0.4 & 0.05 & 0.04 & -1.1 & -0.9 & 1.5 & 2.0 & -1.0 & -1.5 & 1.5 & 1.5
+	\end{tabular}
+	\caption{The constant parameters chosen in the simulation.
+	The particle-thermal diffusivity coupling constant $\zeta$, the dynamic viscosity $\mu$, and the minimum and maximum diffusivity values $D_\text{min}, D_\text{max}$ are used both in the flux and Taylor-expanded models.
+	The final two values are constants that couple the density gradient value to the temperature gradient value in $\Gamma_e^\text{an}$ and $\Gamma_i^\text{cx}$.}
+	\label{table:constants}
+\end{table}
+
 \section{Forms of Diffusivity}\label{sec:diffusivity}
 Various forms of $D$ (and subsequently $\chi$) are presented in investigations with this model, deriving from the basics established in Section~\ref{ssec:turbulence_sheared}.
-The original Itoh model has $D$ as a sigmoid function of the normalized radial electric field.
+Studies with the Taylor-expanded model has $D$ as a sigmoid function of the normalized radial electric field.
 Specifically, it was proportional to the hyperbolic tangent of the field, with a minimum and maximum diffusivity \cite{itoh_edge_1991, zohm_dynamic_1994}
 \begin{align} % Itoh diffusivity
 	D(Z) \,&=\, \frac{D_\text{max} + D_\text{min}}{2} \,+\,
@@ -449,13 +454,13 @@ Two of these are the following:
 		0 \label{eq:Z_edge_conds}
 \end{align}
 
-The typical decay length scales are chosen as the following, with ``Original'' referring to the system solving Eq.~\ref{eq:original_Z_equation}, and ``Flux'' referring to the system solving Eq.~\ref{eq:reduced_normalized_Z_equation}.
+The typical decay length scales are chosen as the following, with ``Expanded'' referring to the system solving Eq.~\ref{eq:original_Z_equation}, and ``Flux'' referring to the system solving Eq.~\ref{eq:reduced_normalized_Z_equation}.
 In addition, after extensive trial-and-error, the table also includes values are those chosen for the parameters in the Flow-Shear model.
 \begin{table}[h] % Decay lengths at the edge
 \centering
 	\begin{tabular}{r|ccc|ccc}
 		& $\lambda_n$ & $\lambda_T$ & $\lambda_Z$ & $a_1$ & $a_2$ & $a_3$ \\ \hline
-		Original & 1.25 & 1.5 & 1.25 & 0.1 & 0.0 & 0.1 \\ \hline
+		Expanded & 1.25 & 1.5 & 1.25 & 0.1 & 0.0 & 0.1 \\ \hline
 		Flux & 0.01 & 0.0125 & 0.01 & $10^{-3}$ & 0.0 & $5\times 10^{-4}$
 	\end{tabular}
 	\caption{List of edge decay lengths and parameters for Eq.~\ref{eq:flow_shear_diffusivity}.}
@@ -498,7 +503,7 @@ There are some characteristics it has in common with the two other well-known sc
 All three methods involve nodes generated on a discrete mesh.
 In the FVM, the nodes are surrounded by the discrete elements called control volumes, with space variables able to be defined at the volume's centers or faces.
 In solving, volume integrals that contain a divergence term are converted by the divergence theorem to surface integrals.
-The terms are evaluated as fluxes at the surfaces of each control volume, and are accounted for between volumes, \emph{i.e.} conserved.
+The terms are evaluated as fluxes at the surfaces of each control volume, and are accounted for between volumes, i.e., conserved.
 It also allows for discontinuities of the coefficients, assuming it occurs on the boundaries of the volumes.
 Equations \ref{eq:shear_diffusivity} and \ref{eq:flow_shear_diffusivity} contain electric field shear term(s) to some exponent, potentially generating these discontinuities.
 This makes the method popular for computational fluid dynamics, of which one could consider this investigation \cite{eymard_finite_2003}.
