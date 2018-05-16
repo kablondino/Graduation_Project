@@ -42,6 +42,8 @@ ax_list[0].tick_params(axis='y', labelsize=24)
 ax_list[0].grid(True)
 #ax_list[0].yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1e'))
 
+#plt.xlim(0.0,0.006)
+
 
 ## SECOND FLUX PLOT (Gamma_cx)
 ax_list.append(plt.subplot(4,1,2))
@@ -56,6 +58,8 @@ ax_list[1].grid(True)
 #ax_list[1].yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1e'))
 ax_list[1].yaxis.set_major_locator(ticker.MaxNLocator(4))
 
+#plt.xlim(0.0,0.006)
+
 
 ## THIRD FLUX PLOT (Gamma_bulk and D_bulk)
 ax_list.append(plt.subplot(4,1,3))
@@ -69,6 +73,8 @@ ax_list[2].tick_params(axis='y', labelsize=24)
 ax_list[2].grid(True)
 #ax_list[2].yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1e'))
 ax_list[2].yaxis.set_major_locator(ticker.MaxNLocator(4))
+
+#plt.xlim(0.0,0.006)
 
 
 ## FOURTH FLUX PLOT (Gamma_ol)
@@ -95,7 +101,7 @@ for k in range(len(ax_list)):
 
 #plt.xlim(0.0,0.006)
 
-fig_flux.suptitle(r"Fluxes, $t \,=\, 200 \,\cdot\, 5 \, \mu$s", fontsize=24)
+fig_flux.suptitle(r"Fluxes, $t \,=\, 1600 \,\cdot\, 0.5 \, \mu$s", fontsize=24)
 fig_flux.tight_layout(pad=0.05, w_pad=0.0)
 #fig_flux.subplots_adjust(top=0.95)
 

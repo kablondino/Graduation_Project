@@ -38,6 +38,8 @@ ax_list[0].tick_params(axis='x', labelbottom='off') # Remove top plot's x-axis l
 ax_list[0].tick_params(axis='y', labelsize=24)
 
 ax_list.append(ax_list[0].twinx())
+#ax_list[0].set_ylim(0.0, 1.2e18)
+#ax_list[1].set_ylim(140, 250)
 temp_plot = ax_list[1].plot(x, temperature, label=r"$T$",\
 		color='red', linewidth=2)
 ax_list[1].set_ylabel(r"$T$", fontsize='xx-large', rotation=0, labelpad=20)
@@ -50,6 +52,9 @@ ax_list[0].grid(True)
 #ax_list[0].yaxis.set_major_formatter(FormatStrFormatter('%.1e'))
 ax_list[1].grid(True)
 ax_list[1].yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+
+
+#plt.xlim(0.0,0.006)
 
 
 # BOTTOM STATE PLOT
@@ -93,7 +98,7 @@ ax_list[3].legend(bottom_plot, bottom_labels, loc='lower right', fontsize='xx-la
 #fig_state.suptitle(r"$D \sim 1 / [1 + 0.001 (Z)^2 + 0.0005 (Z\,^\prime)^2]$"+ "\n"\
 #		+ r"$\Gamma_c = -1.0\times 10^{20}$, $t \,=\, 1060 \,\cdot\, 0.5 \, \mu$s",\
 #		fontsize=20)
-fig_state.suptitle(r"$t \,=\, 200 \,\cdot\, 5 \, \mu$s",\
+fig_state.suptitle(r"$\Gamma_c \,=\, -10^{21}$, $t \,=\, 190 \,\cdot\, 5 \, \mu$s",\
 		fontsize=24)
 fig_state.tight_layout(pad=0.2, w_pad=0.0)
 plt.subplots_adjust(top=0.94)
