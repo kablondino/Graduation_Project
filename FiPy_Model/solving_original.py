@@ -16,6 +16,9 @@ import os	# For saving files to a specified directory
 from shutil import copyfile
 
 
+
+
+
 # ----------------- PDE Declarations ----------------------
 # Density Equation
 density.equation = TransientTerm(coeff=1.0, var=density)\
@@ -32,6 +35,8 @@ S_Z = ((c_n*temperature) / density**2) * density.grad[0]\
 		+ (c_T / density) * temperature.grad[0] + G
 Z.equation = TransientTerm(coeff=epsilon, var=Z)\
 		== DiffusionTerm(coeff=mu, var=Z) + S_Z
+
+
 
 # Fully-Coupled Equation
 full_equation = density.equation & temperature.equation & Z.equation
