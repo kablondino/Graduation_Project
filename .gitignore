@@ -32,6 +32,8 @@ __init__.py
 
 # Image and video files
 *.png
+*.jpg
+*.bmp
 *.mp4
 *.avi
 *.mkv
