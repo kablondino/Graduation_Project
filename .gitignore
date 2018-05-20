@@ -50,6 +50,7 @@ __init__.py
 # SageTeX things
 *.sagetex.*
 sage-plots-for-thesis.tex
+sage-plots-for-Slides.tex
 
 # Perl files
 *.pl
