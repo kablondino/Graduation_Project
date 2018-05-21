@@ -121,8 +121,8 @@
 %}}}
 
 \begin{document}
-% Title page
-\begin{frame}
+\begin{frame} % Title page
+\setcounter{framenumber}{0}
 \titlepage
 \end{frame}
 
@@ -133,9 +133,8 @@
 \end{textblock*}
 }
 
-%--------------------------------------
-
 \begin{frame} % Table of Contents
+\setcounter{framenumber}{0}
 \tableofcontents
 \end{frame}
 
@@ -482,7 +481,7 @@
 %--------------------------------------
 
 \section{Dynamical Model}
-\begin{frame}
+\begin{frame} % Transport Equations
 \frametitle{Dynamical Model: Transport Equations}
 \begin{itemize}
 	\item Conservation of mass
@@ -501,54 +500,293 @@
 \end{align}
 	\item Compact Equations
 \begin{align} % More reduced temperature equation
-	\dot{n} \,=\, \frac{\partial}{\partial x} \left[D \, n^\prime\right]~,~~~
-	\dot{T} \,=\, \frac{\partial}{\partial x}\left[\frac{D}{\zeta} \,
-		T^\prime\right] \,+\, \left(1 + \frac{1}{\zeta}\right) n^\prime \,
-		T^\prime \label{eq:transport_eqs_compact}
+	\dot{n} \,=\, \frac{\partial}{\partial x} \left[D \, n^\prime\right]~,~~
+	\frac{\partial(n\,T)}{\partial t} \,&=\, \frac{\partial}{\partial x}
+		\left[\frac{D\,n}{\zeta} \, T^\prime\right]
+		\,+\, \frac{\partial}{\partial x} \left[D\, n^\prime \, T \right]
+		\label{eq:U_compact}
 \end{align}
 \end{itemize}
 \end{frame}
 
 %--------------------------------------
 
-\begin{frame}
+\begin{frame} % Nonambipolar fluxes
 \frametitle{Dynamical Model: Nonambipolar Fluxes}
-A total of 6 fluxes were investigated:
-\begin{align}
-	\text{Polarization Current:}~~ J^\text{pol} \,&=\, \frac{e \, n \, \rho_{\theta i}}{2} \,
-		\frac{\partial Z}{\partial t} \label{eq:polarization_current_normalized} \\
-	\text{Ion Shear Viscosity:}~~ J^{\pi\perp} \,&=\, -\frac{e \, \rho_{\theta i}}{2} \,
-		\frac{\partial}{\partial x} \left[\mu \, n \, \frac{\partial Z}
-		{\partial x}\right] \label{eq:shear_current_normalized} \\
-	\text{Ion Bulk Viscosity:}~~ \Gamma_i^{\pi\parallel} \,=\, \,n_e\,&D_{\pi\parallel}
-		\left(\frac{n^\prime}{n} + \frac{Z}{\rho_{\theta i}}\right) \,
-		\text{Im}\left[X\left(Z \,+\, i\,\frac{\nu_{ii}}{\omega_t}\right)\right]
-		\label{eq:stringer_Gamma_bulk} \\
-	&D_{\pi\parallel} \,=\, \frac{\epsilon^2\,\rho_{\theta i}\,T}
-		{(x - a_m)\sqrt{\pi}\,B} \label{eq:stringer_D_bulk} \\
-	\text{Anomalous Electron Loss:}~~ \Gamma_e^\text{an} \\
-	\text{Charge Exchange Friction:}~~ \Gamma_i^\text{cx} \\
-	\text{Ion Orbit Loss:}~~ \Gamma_i^\text{ol}
+6 different nonambipolar fluxes were included in the investigation.
+\parencite{stringer_explanation_1993} \parencite{itoh_role_1996} \parencite{toda_theoretical_1997} \parencite{staps_backstepping_2017} \\
+%\begin{columns}[T]
+%	\column{0.5\textwidth}
+%		Polarization Current \\ Ion Shear Viscosity \\ Ion Bulk Viscosity \\
+%		Charge Exchange Friction \\ Anomalous Electron Loss \\ Ion Orbit Loss
+%	\column{0.5\textwidth}
+%	\begin{align*}
+%		J^\text{pol} \propto \dot{Z} \\ J^{\pi\perp} \propto \\ J^{\pi\parallel} \\
+%		J^\text{cx} \\ J^\text{an} \\ J^\text{ol}
+%	\end{align*}
+%\end{columns}
+\begin{center}
+\begin{tabular}{l|l} \hline
+	Polarization Current & $J^\text{pol} \propto \rho_{\theta i}\, n \, \dot{Z}$ \\ \\
+	Ion Shear Viscosity & $J^{\pi\perp} \propto \rho_{\theta i} \,
+		\nabla\left[\mu \, n \, Z^\prime\right]$ \\ \\
+	Ion Bulk Viscosity$\dagger$ & $J^{\pi\parallel} \propto \rho_{\theta i}
+		\left(n\,T^\prime + \frac{n\,T\,Z}{\rho_{\theta i}}\right)
+		\exp\left[-Z^2 + \dotsb\right]$ \\ \\
+	Ion Orbit Loss & $J^\text{ol} \propto \rho_{\theta i} \, n \,
+		\frac{\exp\left[-\sqrt{Z^4 + \dotsb}\right]}{\sqrt{Z^4 + \dotsb}}$ \\ \\
+	Charge Exchange Friction & $J^\text{cx} \propto n_0 \,
+		\langle \sigma_\text{cx} v\rangle \left(\nabla (n\,T) +
+		\frac{n\,T\,Z}{\rho_{\theta i}}\right)$ \\ \\
+	Anomalous Electron Loss & $J^\text{an} \propto \rho_{\theta e}
+		\left(\nabla (n\,T) + \frac{n\,T\,Z}{\rho_{\theta i}}\right)$
+\end{tabular}
+\end{center}
+% ----------------- Try again
+%\begin{align}
+%	\text{Polarization Current:}&~~ J^\text{pol} \,=\, \frac{e \, n \,
+%		\rho_{\theta i}}{2} \, \frac{\partial Z}{\partial t}
+%		\label{eq:polarization_current_normalized} \\
+%	\text{Ion Shear Viscosity:}&~~ J^{\pi\perp} \,=\, -\frac{e \, \rho_{\theta i}}{2} \,
+%		\frac{\partial}{\partial x} \left[\mu \, n \, \frac{\partial Z}
+%		{\partial x}\right] \label{eq:shear_current_normalized} \\
+%	\text{Ion Orbit Loss:}~~ \Gamma_i^\text{ol} \,&=\, n \, \rho_{\theta i} \,
+%		\nu_{ii} \, \nu_{*i} \, \frac{\exp\left[-\sqrt{\nu_{*i} + Z^4
+%		+ \left(\frac{x}{w_{bi}}\right)^4}\right]}{\sqrt{\nu_{*i} + Z^4
+%		+ \left(\frac{x}{w_{bi}}\right)^4}} \label{eq:Gamma_ol}
+%	\text{Charge Exchange Friction:}~~ \Gamma_e^\text{cx} \,=\,
+%		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \, n\,T}{B_\theta^2}
+%		\, \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right] \,
+%		\left(\frac{n^\prime}{n} \,+\, \frac{\alpha_\text{cx}\,T^\prime}
+%		{T} + \frac{Z}{\rho_{\theta i}}\right) \label{eq:Gamma_cx} \\
+%	\text{Anomalous Electron Loss:}~~ \Gamma_e^\text{an} \,=\, -n_e \,
+%		D_\text{an} \left(\frac{n^\prime}{n} \,+\,
+%		\frac{\alpha_\text{an}\,T_e^\prime}{T_e} \,+\,
+%		\frac{e\,E_r}{T_e}\right) \label{eq:Gamma_an_orig} \\
+%	D_\text{an} \,=\, \frac{\epsilon^2 \sqrt{\pi}}{2 a_m}
+%		\frac{\rho_{\theta e} \, T_e}{B} \label{eq:D_an} \\
+%	\text{Ion Bulk Viscosity:}~~ \Gamma_i^{\pi\parallel} \,=\, \,n_e\,D_{\pi\parallel}
+%		\left(\frac{n^\prime}{n} + \frac{Z}{\rho_{\theta i}}\right) \,
+%		\text{Im}\left[X\left(Z \,+\, i\,\frac{\nu_{ii}}{\omega_t}\right)\right]
+%		\label{eq:stringer_Gamma_bulk} \\
+%\end{align}
+\end{frame}
+
+%--------------------------------------
+
+\begin{frame} % Z equations
+\frametitle{Radial Electric Field Equations}
+
+Flux model
+\begin{align} % Flux model
+	\epsilon_0 \frac{\partial E_r}{\partial t} \,&=\, -\sum_\text{k} J^\text{k} \\
+	\frac{e \, n \, \rho_{\theta i}}{2} \, \frac{\partial Z}{\partial t}
+		\,&=\, \frac{e \, \rho_{\theta i}}{2} \frac{\partial}{\partial x}
+		\left[\mu \, n \, \frac{\partial Z}{\partial x}\right] \,-\,
+		J^{\pi\parallel} \,+\, J^\text{an} \,-\, J^\text{cx} - J^\text{ol}
+		\label{eq:normalized_Z_equation}
 \end{align}
+
+Taylor-expanded model \parencite{zohm_dynamic_1994}
+\begin{align} % Taylor-expanded model
+	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \,
+		\frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \,
+		\frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \,
+		\frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:original_Z_equation} \\
+	G(Z) \,\equiv\, a \,+\, b(Z - Z_S) \,+\, c(Z - Z_S)^3
+		\label{eq:G_polynomial}
+\end{align}
+
+\end{frame}
+
+%--------------------------------------
+
+\begin{frame} % Diffusivities and Boundary Conditions
+\frametitle{Diffusivity Model and Boundary Conditions}
+
+The particle diffusivity must be dependent on both the field and its shear \parencite{paquay_studying_2012}.
+\begin{align} % Flow-Shear diffusivity
+	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\,
+		\frac{D_\text{max} - D_\text{min}}{1 \,+\, a_1 Z^2 \,+\,
+		a_3 (Z^{\prime})^2} \label{eq:flow_shear_diffusivity}
+\end{align}
+
+Boundary conditions can dictate overall behavior
+\begin{align} % All boundary conditions
+	\Gamma(L) \,&=\, \Gamma_c~,~~~ &q(L) \,=\, q_c~,~~~ Z^\prime(L) \,&=\, 0 \\
+	n^\prime(0) \,&=\, \frac{n}{\lambda_n}~, ~~~~ &T^\prime(0) \,=\,
+	\frac{T}{\lambda_T}~,~~~ Z^\prime(0) \,&=\, \frac{Z}{\lambda_Z} ~~
+		\text{or} ~~ Z^\prime(0) \,=\, 0
+\end{align}
+
 \end{frame}
 
 %--------------------------------------
 
 \section{Results}
-\begin{frame}
-	This is a test!
+\begin{frame} % State plot
+\frametitle{Taylor-Expanded Model}
+
+\begin{figure}[h]
+\begin{minipage}{0.65\linewidth}
+	\centering
+	\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0135.png}
+\end{minipage}
+\begin{minipage}{0.34\linewidth}
+	\caption{H--mode, with a clear transport barrier, using the Flow-Shear model of diffusivity.}
+\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{sagesilent}
+	reset()
+
+	var('Z')
+
+	c_n, c_T = -1.1, -0.9
+	a, b, c = 3.0/2.0, 2.0, -1.0
+	Z_S = -3.0/2.0
+
+	# At t = 0
+	#0.49	0.683706980466396	1.32496145938483	-0.0206250867984561	5
+	#0.51	0.691213814264995	1.33027412776876	-0.0191672209048899	5
+	#0.53	0.698719562491543	1.33554223315998	-0.0177733476721204	5
+
+	# At t = 135
+	#0.49	0.610660563155032	1.30411254952973	-3.06036908428267	2.66118461102601
+	#0.51	0.618549890710752	1.31299641246706	-3.05151915868033	2.66386371895
+	#0.53	0.626467999984115	1.32173998954979	-3.0425333319374	2.66544015688424
+	# .........
+	#0.99	0.981110868143376	1.63421628926577	-1.48108678379191	0.491444796219089
+	#1.01	0.999673727872353	1.64981311266731	-1.28285663026662	0.499537912103461
+	#1.03	1.01660486587383	1.66401200235489	-1.09300528560897	0.513478891305364
+	# .........
+	#1.99	1.2435198107485	1.79762273772508	0.141694442025275	4.9908892834125
+	#2.01	1.24801940647034	1.79934360213636	0.141647858350999	4.99089991282975
+	#2.03	1.2525541146463	1.80107077486164	0.141626086988019	4.99090015667972
+
+	t = (0, 135, 135, 135)
+	x = (0.51, 0.51, 1.01, 2.01)
+	density = (0.691213814264995, 0.618549890710752, 0.999673727872353, 1.24801940647034)
+	density_grad = ((0.698719562491543 - 0.683706980466396) / 0.04,\
+			(0.610660563155032 - 0.626467999984115) / 0.04,\
+			(1.01660486587383 - 0.981110868143376) / 0.04,\
+			(1.2525541146463 - 1.2435198107485) / 0.04)
+	temperature = (1.33027412776876, 1.31299641246706, 1.64981311266731, 1.79934360213636)
+	temperature_grad = ((1.33554223315998 - 1.32496145938483) / 0.04,\
+			(1.32173998954979 - 1.30411254952973) / 0.04,\
+			(1.66401200235489 - 1.63421628926577) / 0.04,\
+			(1.80107077486164 - 1.79762273772508) / 0.04)
+
+	colors = rainbow(len(x) + 1)
+
+	G(Z) = a + b*(Z - Z_S) + c*(Z - Z_S)^3
+
+	steady_state_plots = []
+
+	for j in range(len(x)):
+	    f(Z) = (c_n * temperature[j] / density[j]^2) * density_grad[j] + (c_T / density[j]) * temperature_grad[j] + G(Z)
+	    steady_state_plots.append(plot(f, (Z,-3.5,1.5), ymin=-3, ymax=4,\
+	    		gridlines=True, color=colors[j], axes_labels=["$Z$",""],\
+	    		thickness=2.0, legend_label="$x = " +str(x[j].n(digits=3))\
+	    		+"$, $t = " +str(t[j].n(digits=3))+ "$"))
+
+	steady_state_plots.append(plot(G, (Z,-3.5,1.5), gridlines=True,\
+			color=colors[-1], thickness=2.0, legend_label="$G(Z)$"))
+
+	equation_label = text(r"$f(Z) = \frac{c_n \, T}{n^2} \, \frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \, \frac{\partial T}{\partial x} \,+\, G(Z)$",\
+			(-2,-2.5), bounding_box={'boxstyle': 'round', 'fc': 'w'},\
+			fontsize=16, color='black')
+
+	combined_plots = sum(steady_state_plots) + equation_label
+	combined_plots.set_aspect_ratio(0.4)
+\end{sagesilent}
+\begin{frame} % Show zeros
+\frametitle{Taylor-Expanded Model}
+\begin{figure}[h]
+	\sageplot[width=0.9\textwidth]{combined_plots}
+	\caption{The steady-state values across $Z$ at different locations in the domain.
+	Also, the first time step and the polynomial $G(Z)$ are added for comparison.}
+\end{figure}
 \end{frame}
 
 %--------------------------------------
 
-\begin{frame}
-	This is a test!
+\begin{frame} % Pre-oscillations
+\frametitle{Flux Model}
+\TwoFigOneCap{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/state_G1e20_full_t200.png}}
+	{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/flux_G1e20_full_t200.png}}
+	{$Z^\prime(0) = Z / \lambda_Z$ used, causing the initial decrease in diffusivity at the edge.}
+	{fig:flux_state_full}
+\end{frame}
+
+
+\begin{frame} % The steady-state pre-oscillation
+\frametitle{Flux Model}
+\begin{figure}[!b] % Fluxes vs Z, SAVED IMAGE, because it's too much code
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_core_t200.png}
+	\caption{Steady-state. The anomalous electron loss and charge exchange friction are nearly identical.
+	The blue vertical line indicates the true value of $Z$.}
+	\label{fig:fluxes_steady-state}
+\end{figure}
+\end{frame}
+
+
+\begin{frame} % Temporary H--mode
+\frametitle{Flux Model}
+\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e21_full_t190.png}}
+	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/flux_G1e21_full_t190.png}}
+	{Higher core fluxes ($\Gamma_c = 10^{21}~\text{m}^{-2}\cdot\text{s}^{-1}$), the system makes a transition.}
+	{fig:higher_core_flux}
+\end{frame}
+
+
+\begin{frame} % Oscillations
+\frametitle{Flux Model}
+
+\TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t1059.png}}
+	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t1060.png}}
+	{It has been zoomed in to 6 mm inside of the plasma edge to showcase the unexplained oscillations, with a frequency still comparable to the time step.}
+	{fig:oscillations_extended}
+
+\end{frame}
+
+
+\begin{frame} % No steady-state
+\frametitle{Flux Model}
+
+\begin{figure}[tb] % Fluxes vs Z for 40000
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_oscillations_t40000.png}
+	\caption{The fluxes as a function of $Z$ in the center of the oscillations a long-term run.
+	The vertical blue line indicates the actual value of $Z$; since it is nowhere near a zero, this particular point in the domain is not at steady-state.}
+	\label{fig:fluxes_steady-state_40000}
+\end{figure}
+
 \end{frame}
 
 %--------------------------------------
 
-\begin{frame}
-	This is a test!
+\section{Conclusions} % and ending
+\begin{frame} % Conclusions
+\frametitle{Conclusions and Future}
+
+\begin{itemize}
+	\item H--mode can be generated, but not as steady-state.
+	\item No dithering phase observed.
+	\item $J^{\pi\parallel}$ consistently has the largest effect; $J^\text{an}$ comes in second.
+	\item $J^\text{ol}$ becomes insignificant in the presence of a nonzero field, therefore cannot be dominant.
+\end{itemize}
+\begin{itemize}
+	\item $J^\text{cx}$ has more chosen (rather than) parameters; more analytic model should be used.
+	\begin{itemize}
+		\item It is also most closely related to the input power by definition of $n_0$, also doesn't account for different species of neutrals.
+	\end{itemize}
+	\item Bifurcation analysis needed on the sum of fluxes to prove it has needed characteristics.
+	\item `Unrealistic' oscillations and lack of consistent steady-state hinder any further progress.
+\end{itemize}
+
 \end{frame}
 
 %--------------------------------------
@@ -560,8 +798,55 @@ A total of 6 fluxes were investigated:
 %\nocite{*}
 \printbibliography
 \end{frame}
-%}}}
 
-%--------------------------------------
+%-------------------------------------- EXTRAS!
+
+\appendix
+\begin{frame} % J^pol, J^shear, J^bulk
+\begin{align}
+	J^\text{pol} \,&=\, \frac{e \, n \, \rho_{\theta i}}{2} \,
+		\frac{\partial Z}{\partial t} \\
+	J^{\pi\perp} \,&=\, -\frac{e \, \rho_{\theta i}}{2} \,
+		\frac{\partial}{\partial x} \left[\mu \, n \, \frac{\partial Z}
+		{\partial x}\right] \\
+	J^{\pi\parallel} \,&=\, e\,n_e\,D_{\pi\parallel}
+		\left(\frac{n^\prime}{n} + \frac{Z}{\rho_{\theta i}}\right) \,
+		\text{Im}\left[X\left(Z \,+\, i\,\frac{\nu_{ii}}{\omega_t}\right)
+		\right] \\
+	&D_{\pi\parallel} \,=\, \frac{\epsilon^2\,\rho_{\theta i}\,T}
+		{(x - a_m)\sqrt{\pi}\,B} \\
+		X(z) \,&\equiv\, i\,\sqrt{\pi} \, \exp(-z^2) \, \text{erfc}(-i\,z) \,=\,
+		\frac{1}{\sqrt{\pi}} \int_{-\infty}^{+\infty} \frac{e^{-t^2}}{t - z}
+		\, \text{d}t
+\end{align}
+\end{frame}
+
+\begin{frame} % Last 3 fluxes
+\begin{align}
+	J^\text{an} \,&=\, -e \, n_e \, D_\text{an} \left(\frac{n^\prime}{n}
+		\,+\, \frac{\alpha_\text{an}\,T_e^\prime}{T_e} \,+\,
+		\frac{Z}{\rho_{\theta i}}\right) \\
+	&D_\text{an} \,=\, \frac{\epsilon^2 \sqrt{\pi}}{2 a_m}
+		\frac{\rho_{\theta e} \, T_e}{B} \\
+	&n_0 \,\propto\, \frac{\Gamma_c}{v_{T_i}\left[1 \,+\,
+		\exp{(k(x - d))}\right]} \\
+	J^\text{cx} \,&=\,
+		-\frac{m_i \,n_0 \langle\sigma_\text{cx} v\rangle \, n\,T}{B_\theta^2}
+		\, \left[\frac{B_\theta^2}{\epsilon^2 B_\phi^2} + 2\right] \,
+		\left(\frac{n^\prime}{n} \,+\, \frac{\alpha_\text{cx}\,T^\prime}
+		{T} + \frac{Z}{\rho_{\theta i}}\right) \\
+	J^\text{ol} \,&=\, e \, n \, \rho_{\theta i} \, \nu_{ii} \, \nu_{*i} \,
+		\frac{\exp\left[-\sqrt{\nu_{*i} + Z^4
+		+ \left(\frac{x}{w_{bi}}\right)^4}\right]}{\sqrt{\nu_{*i} + Z^4
+		+ \left(\frac{x}{w_{bi}}\right)^4}}
+\end{align}
+\end{frame}
+
+\begin{frame}
+\centering
+Are the oscillations ELMs? \\
+\Huge No
+\end{frame}
+
 \end{document}
 
