@@ -482,7 +482,7 @@
 
 \section{Dynamical Model}
 \begin{frame} % Transport Equations
-\frametitle{Dynamical Model: Transport Equations}
+\frametitle{Transport Equations}
 \begin{itemize}
 	\item Conservation of mass
 \begin{align} % n continuity
@@ -492,11 +492,13 @@
 \end{align}
 	\item Conservation of energy
 \begin{align} % U continuity
-	\frac{\partial U}{\partial t} \,=\, \frac{\partial}{\partial t}
-		\left(\frac{n\,T}{\gamma - 1}\right) \,=\,
-		-\frac{\partial q}{\partial x}~, \label{eq:U_continuity} \\
-	q \,=\, -\chi \, n \, \frac{\partial T}{\partial x} \,+\,
-	\frac{\Gamma \, T}{\gamma - 1}~,~~~ \chi \,=\, \frac{D}{\zeta (\gamma - 1)}
+	\frac{\partial U}{\partial t} \,=\, -\frac{\partial q}{\partial x}~,~~~
+		q \,=\, -\chi \, n \, \frac{\partial T}{\partial x} \,+\,
+	\frac{\Gamma \, T}{\gamma - 1}
+\end{align}
+	\item Particle-Thermal Diffusivity Coupling
+\begin{align} % D to chi
+	\chi \,=\, \frac{D}{\zeta (\gamma - 1)}~,~~~ \zeta \approx 0.5
 \end{align}
 	\item Compact Equations
 \begin{align} % More reduced temperature equation
@@ -512,7 +514,7 @@
 %--------------------------------------
 
 \begin{frame} % Nonambipolar fluxes
-\frametitle{Dynamical Model: Nonambipolar Fluxes}
+\frametitle{Nonambipolar Fluxes}
 6 different nonambipolar fluxes were included in the investigation.
 \parencite{stringer_explanation_1993} \parencite{itoh_role_1996} \parencite{toda_theoretical_1997} \parencite{staps_backstepping_2017} \\
 %\begin{columns}[T]
@@ -856,7 +858,7 @@ Are the oscillations ELMs? \\
 	\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e20_extended_t40000.png}
 \end{minipage}
 \begin{minipage}{0.29\linewidth}
-	\caption{After 20 ms, oscillations still dominate, with the domain of oscillation bigger.}
+	\caption{After 20 ms, oscillations still dominate, with the domain of oscillation increased in size.}
 \end{minipage}
 \end{figure}
 
