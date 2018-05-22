@@ -1,11 +1,12 @@
 \documentclass[10pt]{beamer}
 \title[$E_r$-Generating Mechanisms in L-H Transitions]{Comparing Radial Electric Field-Generating Mechanisms in L--H Transitions}
-\author[K.A. Blondino]{\includegraphics[height=1.5cm]{../Graphics/tue_fusion_logo.png} \\ Kevin A. Blondino \\
+\author[K.A. Blondino]{\includegraphics[height=1.5cm]{../Graphics/tue_fusion_logo.png} \\ \vspace*{3mm}
+	Kevin A. Blondino \\ \vspace*{3mm}
 	Supervisor: dr. H.J. de Blank, TU/e \& DIFFER}
 \institute[TU/e]{Eindhoven University of Technology \\
 	\medskip
 	\textit{k.blondino@student.tue.nl}}
-\date{\today}
+\date{23 May 2018}
 
 %{{{ Presentation Style and Color
 \mode<presentation>
@@ -133,9 +134,59 @@
 \end{textblock*}
 }
 
-\begin{frame} % Table of Contents
-\setcounter{framenumber}{0}
-\tableofcontents
+%\begin{frame} % Research Questions
+%\begin{itemize}
+%	\item Which electric field-generating mechanisms are dominant in concrete experimental tokamak conditions?
+%	\item Is the 
+%\end{itemize}
+%\end{frame}
+
+%--------------------------------------
+
+\section{H--mode}
+\begin{frame} % H--mode
+\frametitle{H--mode}
+
+\begin{itemize}
+	\item The L--H transition is a bifurcation of anomalous transport at the edge. High auxiliary power develops strong sheared $\mathbf{E}\times\mathbf{B}$-drift plasma flow \parencite{terry_suppression_2000}.
+	\item Experiments at TEXTOR showed that a biased probe produced H--mode \parencite{weynants_confinement_1992}.
+\end{itemize}
+
+\begin{figure}[tb] % L--H-modes compare
+\begin{minipage}{0.59\linewidth}
+	\centering
+	\includegraphics[width=0.75\textwidth]{../Graphics/L-mode_H-mode_compare.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.39\linewidth}
+	\caption{A comparison of the radial pressure profiles of L--mode and H--mode \parencite{weymiens_bifurcation_2014}.}
+	\label{fig:L-mode_H-mode_compare}
+\end{minipage}
+\end{figure}
+
+\end{frame}
+
+%--------------------------------------
+
+\begin{frame} % Radial Electric Field
+\frametitle{Radial Electric Field}
+\begin{equation} % Lorentz Force Balance
+	\text{Force Balance:}~~E_r \,=\, -\frac{1}{n_j e_j}
+		\frac{\text{d} p_j}{\text{d} r} ~+~ V_{\theta j} B_\phi
+		~-~ V_{\phi j} B_\theta \label{eq:E_r}
+\end{equation}
+\begin{itemize}
+	\item $V_{\theta j}$ and $V_{\phi j}$ are unreasonably-difficult to measure.
+	\item Instead, look at nonambipolar particle fluxes that can be calculated by the electric field, density, temperature, and their gradients.
+\end{itemize}
+\begin{align} % Ambipolarity constraint and Z definition
+	\epsilon_0 \frac{\partial E_r}{\partial t} \,=\, -\sum J_r \,=\,
+		\sum_\text{k} q_j\Gamma_j^\text{k} \label{eq:ambipolarity_constraint} \\
+	Z \,\equiv\, \frac{\rho_{\theta i} \, e \, E_r}{T_i}~, ~~~~
+		\rho_{\theta i} \,\equiv\, \frac{m_i \, v_{T_i}}{e \, B_\theta}
+		\label{eq:Z_and_rho_definitions}
+\end{align}
+\textbf{Which electric field-generating mechanisms are dominant in concrete experimental tokamak conditions?}
 \end{frame}
 
 %--------------------------------------
@@ -429,77 +480,25 @@
 
 %--------------------------------------
 
-\section{H--mode}
-\begin{frame} % First H--mode slide
-\frametitle{H--mode}
-
-\begin{itemize}
-	\item The L--H transition is a bifurcation of anomalous transport at the edge. High auxiliary power develops strong sheared $\mathbf{E}\times\mathbf{B}$-drift plasma flow \parencite{terry_suppression_2000}.
-	\item Experiments at TEXTOR showed that a biased probe produced H--mode \parencite{weynants_confinement_1992}.
-\end{itemize}
-
-\begin{figure}[tb] % L--H-modes compare
-\begin{minipage}{0.59\linewidth}
-	\centering
-	\includegraphics[width=0.75\textwidth]{../Graphics/L-mode_H-mode_compare.png}
-\end{minipage}
-\hfill
-\begin{minipage}{0.39\linewidth}
-	\caption{A comparison of the radial pressure profiles of L--mode and H--mode \parencite{weymiens_bifurcation_2014}.}
-	\label{fig:L-mode_H-mode_compare}
-\end{minipage}
-\end{figure}
-
-\end{frame}
-
-%--------------------------------------
-
-\begin{frame} % Radial Electric Field
-\frametitle{Radial Electric Field}
-\begin{equation} % Lorentz Force Balance
-	E_r \,=\, -\frac{1}{n_j e_j} \frac{\text{d} p_j}{\text{d} r} + V_{\theta j} B_\phi - V_{\phi j} B_\theta
-	\label{eq:E_r}
-\end{equation}
-\begin{itemize}
-	\item $V_{\theta j}$ and $V_{\phi j}$ are unreasonably-difficult to measure.
-	\item Instead, look at nonambipolar particle fluxes that can be calculated by the electric field, density, temperature, and their gradients.
-\end{itemize}
-\begin{align} % Ambipolarity constraint
-	\epsilon_0 \frac{\partial E_r}{\partial t} \,=\, -\sum J_r \,=\,
-		\sum_\text{k} q_j\Gamma_j^\text{k} \label{eq:ambipolarity_constraint}
-\end{align}
-\begin{itemize}
-	\item It is useful to normalize the field to the gyroradius and temperature.
-\end{itemize}
-\begin{align} % Z definition
-	Z \,\equiv\, \frac{\rho_{\theta i} \, e \, E_r}{T_i}~, ~~~~
-		\rho_{\theta i} \,\equiv\, \frac{m_i \, v_{T_i}}{e \, B_\theta}
-		\label{eq:Z_and_rho_definitions}
-\end{align}
-\end{frame}
-
-%--------------------------------------
-
 \section{Dynamical Model}
 \begin{frame} % Transport Equations
 \frametitle{Transport Equations}
 \begin{itemize}
 	\item Conservation of mass
 \begin{align} % n continuity
-	\frac{\partial n}{\partial t} \,=\, -\frac{\partial \Gamma}{\partial x}~,
-		~~~ \Gamma \,=\, -D \, \frac{\partial n}{\partial x}
-		\label{eq:n_continuity}
+	\frac{\partial n}{\partial t} \,=\, \frac{\partial}{\partial x}
+		\left[D \, \frac{\partial n}{\partial x}\right]
 \end{align}
 	\item Conservation of energy
 \begin{align} % U continuity
-	\frac{\partial U}{\partial t} \,=\, -\frac{\partial q}{\partial x}~,~~~
-		q \,=\, -\chi \, n \, \frac{\partial T}{\partial x} \,+\,
-	\frac{\Gamma \, T}{\gamma - 1}
+	\frac{\partial U}{\partial t} \,=\, \frac{\partial}{\partial x}
+		\left[\chi \, n \, \frac{\partial T}{\partial x} \,+\,
+		\frac{\Gamma \, T}{\gamma - 1}\right]
 \end{align}
-	\item Particle-Thermal Diffusivity Coupling
-\begin{align} % D to chi
-	\chi \,=\, \frac{D}{\zeta (\gamma - 1)}~,~~~ \zeta \approx 0.5
-\end{align}
+%	\item Particle-Thermal Diffusivity Coupling
+%\begin{align} % D to chi
+%	\chi \,=\, \frac{D}{\zeta (\gamma - 1)}~,~~~ \zeta \approx 0.5
+%\end{align}
 	\item Compact Equations
 \begin{align} % More reduced temperature equation
 	\dot{n} \,=\, \frac{\partial}{\partial x} \left[D \, n^\prime\right]~,~~
@@ -509,6 +508,7 @@
 		\label{eq:U_compact}
 \end{align}
 \end{itemize}
+Diffusivity $D$ is based on the electric field and its derivative.
 \end{frame}
 
 %--------------------------------------
@@ -529,13 +529,13 @@
 %\end{columns}
 \begin{center}
 \begin{tabular}{l|l} \hline
-	Polarization Current & $J^\text{pol} \propto \rho_{\theta i}\, n \, \dot{Z}$ \\ \\
+	Neo Polarization Current & $J^\text{pol} \propto \rho_{\theta i}\, n \, \dot{Z}$ \\ \\
 	Ion Shear Viscosity & $J^{\pi\perp} \propto \rho_{\theta i} \,
 		\nabla\left[\mu \, n \, Z^\prime\right]$ \\ \\
-	Ion Bulk Viscosity$\dagger$ & $J^{\pi\parallel} \propto \rho_{\theta i}
+	Ion Bulk Viscosity$^\text{*}\dagger$ & $J^{\pi\parallel} \propto \rho_{\theta i}
 		\left(n\,T^\prime + \frac{n\,T\,Z}{\rho_{\theta i}}\right)
 		\exp\left[-Z^2 + \dotsb\right]$ \\ \\
-	Ion Orbit Loss & $J^\text{ol} \propto \rho_{\theta i} \, n \,
+	Ion Orbit Loss$^\text{*}$ & $J^\text{ol} \propto \rho_{\theta i} \, n \,
 		\frac{\exp\left[-\sqrt{Z^4 + \dotsb}\right]}{\sqrt{Z^4 + \dotsb}}$ \\ \\
 	Charge Exchange Friction & $J^\text{cx} \propto n_0 \,
 		\langle \sigma_\text{cx} v\rangle \left(\nabla (n\,T) +
@@ -579,7 +579,7 @@
 \begin{frame} % Z equations
 \frametitle{Radial Electric Field Equations}
 
-Flux model
+Flux model, from Maxwell's correction
 \begin{align} % Flux model
 	\epsilon_0 \frac{\partial E_r}{\partial t} \,&=\, -\sum_\text{k} J^\text{k} \\
 	\frac{e \, n \, \rho_{\theta i}}{2} \, \frac{\partial Z}{\partial t}
@@ -589,13 +589,13 @@ Flux model
 		\label{eq:normalized_Z_equation}
 \end{align}
 
-Taylor-expanded model \parencite{zohm_dynamic_1994}
+Taylor-expanded model, used by predecessors \parencite{zohm_dynamic_1994}
 \begin{align} % Taylor-expanded model
-	\epsilon \, \frac{\partial Z}{\partial t} \,=\, \mu \,
-		\frac{\partial^2 Z}{\partial x^2} \,+\, \frac{c_n T}{n^2} \,
-		\frac{\partial n}{\partial x} \,+\, \frac{c_T}{n} \,
-		\frac{\partial T}{\partial x} \,+\, G(Z)~,\label{eq:original_Z_equation} \\
-	G(Z) \,\equiv\, a \,+\, b(Z - Z_S) \,+\, c(Z - Z_S)^3
+	\epsilon \, \frac{\partial Z}{\partial t} ~=~ \mu \,
+		\frac{\partial^2 Z}{\partial x^2} ~+~ \frac{c_n T}{n^2} \,
+		\frac{\partial n}{\partial x} ~+~ \frac{c_T}{n} \,
+		\frac{\partial T}{\partial x} ~+~ G(Z)~,\label{eq:original_Z_equation} \\
+	G(Z) ~\equiv~ a ~+~ b(Z - Z_S) ~+~ c(Z - Z_S)^3
 		\label{eq:G_polynomial}
 \end{align}
 
@@ -603,41 +603,22 @@ Taylor-expanded model \parencite{zohm_dynamic_1994}
 
 %--------------------------------------
 
-\begin{frame} % Diffusivities and Boundary Conditions
-\frametitle{Diffusivity Model and Boundary Conditions}
-
-The particle diffusivity must be dependent on both the field and its shear \parencite{paquay_studying_2012}.
-\begin{align} % Flow-Shear diffusivity
-	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\,
-		\frac{D_\text{max} - D_\text{min}}{1 \,+\, a_1 Z^2 \,+\,
-		a_3 (Z^{\prime})^2} \label{eq:flow_shear_diffusivity}
-\end{align}
-
-Boundary conditions can dictate overall behavior
-\begin{align} % All boundary conditions
-	\Gamma(L) \,&=\, \Gamma_c~,~~~ &q(L) \,=\, q_c~,~~~ Z^\prime(L) \,&=\, 0 \\
-	n^\prime(0) \,&=\, \frac{n}{\lambda_n}~, ~~~~ &T^\prime(0) \,=\,
-	\frac{T}{\lambda_T}~,~~~ Z^\prime(0) \,&=\, \frac{Z}{\lambda_Z} ~~
-		\text{or} ~~ Z^\prime(0) \,=\, 0
-\end{align}
-
-\end{frame}
-
-%--------------------------------------
-
 \section{Results}
-\begin{frame} % State plot
+\begin{frame} % Taylor-expanded state plot
 \frametitle{Taylor-Expanded Model}
+
+The Taylor-expanded model is verified exhibiting expected behavior.
 
 \begin{figure}[h]
 \begin{minipage}{0.65\linewidth}
 	\centering
-	\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/Original_FS_0135.png}
+	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Original_FS_0135.png}
 \end{minipage}
 \begin{minipage}{0.34\linewidth}
 	\caption{H--mode, with a clear transport barrier, using the Flow-Shear model of diffusivity.}
 \end{minipage}
 \end{figure}
+
 \end{frame}
 
 \begin{sagesilent}
@@ -703,7 +684,7 @@ Boundary conditions can dictate overall behavior
 	combined_plots = sum(steady_state_plots) + equation_label
 	combined_plots.set_aspect_ratio(0.4)
 \end{sagesilent}
-\begin{frame} % Show zeros
+\begin{frame} % Taylor-expanded show zeros
 \frametitle{Taylor-Expanded Model}
 \begin{figure}[h]
 	\sageplot[width=0.9\textwidth]{combined_plots}
@@ -717,7 +698,7 @@ Boundary conditions can dictate overall behavior
 \begin{frame} % Pre-oscillations
 \frametitle{Flux Model}
 \TwoFigOneCap{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/state_G1e20_full_t200.png}}
-	{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/flux_G1e20_full_t200.png}}
+	{\includegraphics[width=\linewidth]{../Graphics/Model_Graphs/flux_G1e20_full_t200_edited.png}}
 	{$Z^\prime(0) = Z / \lambda_Z$ used, causing the initial decrease in diffusivity at the edge.}
 	{fig:flux_state_full}
 \end{frame}
@@ -738,8 +719,8 @@ Boundary conditions can dictate overall behavior
 \begin{frame} % Temporary H--mode
 \frametitle{Flux Model}
 \TwoFigOneCap{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/state_G1e21_full_t190.png}}
-	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/flux_G1e21_full_t190.png}}
-	{Higher core fluxes ($\Gamma_c = 10^{21}~\text{m}^{-2}\cdot\text{s}^{-1}$), the system makes a transition.}
+	{\includegraphics[width=\textwidth]{../Graphics/Model_Graphs/flux_G1e21_full_t190_edited.png}}
+	{Higher core fluxes ($\Gamma_c = -10^{21}~\text{m}^{-2}\cdot\text{s}^{-1}$), the system makes a transition.}
 	{fig:higher_core_flux}
 \end{frame}
 
@@ -755,15 +736,28 @@ Boundary conditions can dictate overall behavior
 \end{frame}
 
 
-\begin{frame} % No steady-state
+\begin{frame} % No steady-state, edge
 \frametitle{Flux Model}
 
-\begin{figure}[tb] % Fluxes vs Z for 40000
+\begin{figure}[tb] % Fluxes vs Z for 40000, edge
 	\centering
-	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_oscillations_t40000.png}
-	\caption{The fluxes as a function of $Z$ in the center of the oscillations a long-term run.
+	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_edge_t40000.png}
+	\caption{The fluxes as a function of $Z$ at the edge of a long-term run.
 	The vertical blue line indicates the actual value of $Z$; since it is nowhere near a zero, this particular point in the domain is not at steady-state.}
-	\label{fig:fluxes_steady-state_40000}
+	\label{fig:fluxes_steady-state_edge_40000}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame} % No steady-state, core
+\frametitle{Flux Model}
+
+\begin{figure}[tb] % Fluxes vs Z for 40000, core
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Graphics/Model_Graphs/Fluxes_vs_Z_core_t40000.png}
+	\caption{... towards the core of a long-term run.}
+	\label{fig:fluxes_steady-state_core_40000}
 \end{figure}
 
 \end{frame}
@@ -776,7 +770,6 @@ Boundary conditions can dictate overall behavior
 
 \begin{itemize}
 	\item H--mode can be generated, but not as steady-state.
-	\item No dithering phase observed.
 	\item $J^{\pi\parallel}$ consistently has the largest effect; $J^\text{an}$ comes in second.
 	\item $J^\text{ol}$ becomes insignificant in the presence of a nonzero field, therefore cannot be dominant.
 \end{itemize}
@@ -805,6 +798,29 @@ Boundary conditions can dictate overall behavior
 %-------------------------------------- EXTRAS!
 
 \appendix
+
+\begin{frame} % Diffusivities and Boundary Conditions
+\frametitle{Diffusivity Model and Boundary Conditions}
+
+The particle diffusivity must be dependent on both the field and its shear \parencite{paquay_studying_2012}.
+\begin{align} % Flow-Shear diffusivity
+	D(Z, Z^{\prime}) \,=\, D_\text{min} \,+\,
+		\frac{D_\text{max} - D_\text{min}}{1 \,+\, a_1 Z^2 \,+\,
+		a_3 (Z^{\prime})^2} \label{eq:flow_shear_diffusivity}
+\end{align}
+
+Boundary conditions can dictate overall behavior
+\begin{align} % All boundary conditions
+	\Gamma(L) \,&=\, \Gamma_c~,~~~ &q(L) \,=\, q_c~,~~~ Z^\prime(L) \,&=\, 0 \\
+	n^\prime(0) \,&=\, \frac{n}{\lambda_n}~, ~~~~ &T^\prime(0) \,=\,
+	\frac{T}{\lambda_T}~,~~~ Z^\prime(0) \,&=\, \frac{Z}{\lambda_Z} ~~
+		\text{or} ~~ Z^\prime(0) \,=\, 0
+\end{align}
+
+\end{frame}
+
+%--------------------------------------
+
 \begin{frame} % J^pol, J^shear, J^bulk
 \begin{align}
 	J^\text{pol} \,&=\, \frac{e \, n \, \rho_{\theta i}}{2} \,
